@@ -123,7 +123,7 @@ class Importer:
         identity=self.outcome_id(key,claim['submission'])
         previous=self.final_states.get(identity)
         if previous and previous['decision']=='blocked':
-            claim.pop('verification',None);claim['exclude']=True
+            claim.pop('verification',None);claim['review_note']='Final nanoda check rejected this proof; the submitted bound remains Claimed.'
             return
         if stage=='lean' and previous:
             # A late checkpoint cannot replace any final outcome for this source.
@@ -132,9 +132,10 @@ class Importer:
         if stage=='final':
             self.final_states[identity]=dict(key=key,submission=claim['submission'],decision=verdict['decision'],evidence=evidence)
         if verdict['decision']=='blocked':
-            claim.pop('verification',None);claim['exclude']=True
-            self.notes.append(key+': nanoda rejected; row blocked; publisher maintainer alert applies')
-        elif verdict['decision']=='lean-verified':claim['verification']=evidence
+            claim.pop('verification',None);claim['review_note']='Final nanoda check rejected this proof; the submitted bound remains Claimed.'
+            self.notes.append(key+': nanoda rejected; Lean Verified removed; eligible row remains Claimed; publisher maintainer alert applies')
+        elif verdict['decision']=='lean-verified':
+            claim['verification']=evidence;claim.pop('review_note',None)
         else:claim.pop('verification',None)
 
     def verify(self,claims,previous):
@@ -161,7 +162,7 @@ class Importer:
                 state=self.final_states.get(self.outcome_id(key,claim['submission']))
                 if state and state['decision']!='lean-verified':
                     claim.pop('verification',None)
-                    if state['decision']=='blocked':claim['exclude']=True
+                    if state['decision']=='blocked':claim['review_note']='Final nanoda check rejected this proof; the submitted bound remains Claimed.'
         artifacts=self.api.pages(PREFIX+'actions/artifacts',key='artifacts')
         by_id={a['id']:a for a in artifacts}
         # Newest result for a source wins; process oldest first.
@@ -230,7 +231,7 @@ def row_for(key,claim,now,old=None):
         upstream_status_at=item.get('merged_at') or item['created_at'],site_observed_at=old['site_observed_at'] if old else now,
         source=dict(kind='repo-artifact',url=source))
     meta=dict(checked_at=now[:10],source_url=source,repo=sub['repo_url'].removeprefix('https://github.com/'),
-        site_badge=False,eligible_for_record=row['upstream_status']=='merged',proof_status=proof['reason'] if proof else 'Submitted bound; independent verification has not passed.',
+        site_badge=False,eligible_for_record=row['upstream_status']=='merged',proof_status=proof['reason'] if proof else claim.get('review_note','Submitted bound; independent verification has not passed.'),
         upstream_tier=tier,site_tier=tier,comparison_key=PROBLEMS[sub['problem']][0]+'/v1',
         publication_date=item['created_at'],publication_date_precision='date-time',publication_date_role='Submission opened',
         publication_source_url=item['html_url'],direct_submission=True,route=route)

@@ -119,14 +119,17 @@ class RefreshTests(unittest.TestCase):
         importer.retain_outcome(key,claim,'lean',early,{'marker':'early'})
         self.assertIn('verification',claim)
         importer.retain_outcome(key,claim,'final',blocked,{'marker':'final-rejection'})
-        self.assertTrue(claim['exclude']);self.assertNotIn('verification',claim)
+        self.assertFalse(claim.get('exclude'));self.assertNotIn('verification',claim)
         # Even an early publisher that uploads late cannot undo final rejection.
         importer.retain_outcome(key,claim,'lean',early,{'marker':'late-early'})
-        self.assertTrue(claim['exclude']);self.assertNotIn('verification',claim)
+        self.assertFalse(claim.get('exclude'));self.assertNotIn('verification',claim)
         previous=dict(entries={},final_states=copy.deepcopy(importer.final_states))
         fresh=r.Importer(DiscoveryAPI())
         new_claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
-        self.assertEqual(fresh.verify({key:new_claim},previous),{})
+        self.assertEqual(set(fresh.verify({key:new_claim},previous)),{key})
+        row,meta,_=r.row_for(key,new_claim,'2026-10-11T00:00:00Z')
+        self.assertEqual(row['tier'],'claimed');self.assertNotIn('rerun_status',row)
+        self.assertIn('nanoda check rejected',meta['proof_status'])
         self.assertEqual(fresh.final_states,previous['final_states'])
         # Changed source gets its own decision; the rejected source stays blocked.
         changed=copy.deepcopy(new_claim);changed.pop('exclude',None);changed['submission']['commit']='c'*40
@@ -141,3 +144,14 @@ class RefreshTests(unittest.TestCase):
         importer.retain_outcome(key,claim,'final',{'decision':'pending'},{'marker':'ambiguous'})
         importer.retain_outcome(key,claim,'lean',{'decision':'lean-verified'},{'marker':'late-early'})
         self.assertNotIn('verification',claim)
+
+    def test_merged_rejected_pr_remains_claimed_after_restart(self):
+        key='direct-pr-6';sub=dict(d.parse_body(self.issue()['body']),source_subdir='submissions/dft/alice-proof')
+        pr=dict(number=6,state='closed',merged=True,labels=[],head={'sha':sub['commit']},user={'login':'alice'},created_at='2026-10-10T12:00:00Z',html_url='https://github.com/bigospeedrun/verifier/pull/6')
+        importer=r.Importer(DiscoveryAPI(prs=[pr]))
+        claim=dict(route='pull_request',item=pr,submission=sub)
+        importer.retain_outcome(key,claim,'final',{'decision':'blocked'},{'marker':'rejection'})
+        recovered=importer.verify({key:dict(route='pull_request',item=pr,submission=None)},dict(final_states=copy.deepcopy(importer.final_states)))
+        row,meta,_=r.row_for(key,recovered[key],'2026-10-11T00:00:00Z')
+        self.assertEqual(row['tier'],'claimed');self.assertEqual(row['upstream_status'],'merged')
+        self.assertNotIn('rerun_status',row);self.assertNotIn('receipt_url',meta)

@@ -50,7 +50,9 @@ the immutable -lean proof artifact, and verification_stage=lean in both envelope
 and receipt. Only exact-target Lean acceptance with the permitted-axiom audit and
 nanoda pending/advisory_queued can use this path. Source verification may still run.
 Final outcomes are retained per submission fingerprint in direct-submissions.json.
-A final nanoda rejection removes the row and remains blocked after artifact expiry
-or a late early-publisher result. A final ambiguous result removes early Verified
+A final nanoda rejection removes Lean Verified status. An eligible open or merged
+submission remains Claimed, with the rejection stated in its proof status. The
+rejected source cannot regain Verified status after artifact expiry or a late
+early-publisher result. A final ambiguous result removes early Verified
 status. A changed source is a new submission fingerprint. Smoke identities and all
 test flags remain excluded. The publisher owns the maintainer rejection alert.
