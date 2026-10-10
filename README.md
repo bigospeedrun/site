@@ -1,5 +1,7 @@
 # Big O Speedrun
 
+Live: https://bigospeedrun.com
+
 Big O Speedrun tracks improved algorithmic bounds for classic problems. Each board shows exact-score rankings, source links, dates and evidence levels.
 
 ## Run locally
