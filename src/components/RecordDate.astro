@@ -1,0 +1,9 @@
+---
+import type {RecordEntry} from '../lib/types';import {localTimeFallback} from '../lib/freshness';
+interface Props {record:RecordEntry;}
+const {record:r}=Astro.props;
+---
+{r.publicationYear?<time datetime={String(r.publicationYear)}>{r.publicationYear}</time>:<><time datetime={r.date} data-local-time={r.date.length>10?true:undefined}>{localTimeFallback(r.date)}</time></>}
+<script>
+document.querySelectorAll<HTMLTimeElement>('time[data-local-time]').forEach(el=>{const date=new Date(el.dateTime);if(Number.isFinite(date.getTime()))el.textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(date)});
+</script>

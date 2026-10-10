@@ -1,0 +1,7 @@
+---
+import ProblemPage from '../../components/ProblemPage.astro';
+import {problems} from '../../lib/data';
+export function getStaticPaths(){return problems.map(p=>({params:{problem:p.slug,model:p.modelId},props:{p}}))}
+const {p}=Astro.props;
+---
+<ProblemPage p={p}/>

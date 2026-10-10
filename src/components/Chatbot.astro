@@ -1,0 +1,36 @@
+---
+import '../styles/chatbot.css';
+---
+<div id="bos-chat" class="bos-chat">
+  <button class="bos-chat-toggle" type="button" aria-label="Ask about Big O Speedrun" aria-expanded="false" aria-controls="bos-chat-panel" hidden>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </button>
+  <section id="bos-chat-panel" class="bos-chat-panel" role="dialog" aria-labelledby="bos-chat-title" hidden>
+    <header class="bos-chat-header">
+      <h2 id="bos-chat-title">Ask about Big O Speedrun</h2>
+      <button class="bos-chat-close" type="button" aria-label="Close chat">×</button>
+    </header>
+    <div class="bos-chat-messages" role="log" aria-live="off" aria-label="Chat messages" tabindex="0">
+      <div class="bos-chat-starters">
+        <p>Ask about the problems, records or evidence.</p>
+        <button type="button">What does each evidence level mean?</button>
+        <button type="button">What is the latest multiplication bound?</button>
+        <button type="button">How do I submit a result?</button>
+      </div>
+    </div>
+    <p class="bos-chat-status" role="status" aria-live="polite"></p>
+    <footer class="bos-chat-footer">
+      <p class="bos-chat-disclosure">Checking chat availability…</p>
+      <p class="bos-chat-logging" hidden>We send messages, replies, IP addresses, browser information and page paths to Discord to improve the site. Do not send private information.</p>
+      <form class="bos-chat-form">
+        <label class="bos-chat-sr" for="bos-chat-input">Message</label>
+        <input id="bos-chat-input" type="text" placeholder="Type a message…" maxlength="2000" autocomplete="off" disabled/>
+        <button type="submit" aria-label="Send message" disabled><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m22 2-7 20-4-9L2 9Z M22 2 11 13"/></svg></button>
+      </form>
+    </footer>
+  </section>
+</div>
+<script>
+  import {initChatbot} from '../scripts/chatbot';
+  initChatbot();
+</script>

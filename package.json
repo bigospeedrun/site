@@ -1,0 +1,28 @@
+{
+  "name": "bigospeedrun-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 4321",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4321",
+    "check": "astro check",
+    "test": "node --experimental-strip-types --test src/lib/*.test.ts",
+    "prebuild": "node scripts/sync-data.mjs",
+    "predev": "node scripts/sync-data.mjs",
+    "sync-data": "node scripts/sync-data.mjs",
+    "validate-data": "node scripts/validate-data.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "astro": "^7.3.8",
+    "katex": "^0.19.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/katex": "^0.16.8",
+    "@types/node": "^26.6.4",
+    "typescript": "^6.0.3"
+  }
+}

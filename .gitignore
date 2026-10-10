@@ -1,0 +1,31 @@
+node_modules/
+dist/
+.astro/
+*.log
+# Reviewed checker logs are part of the published evidence bundle.
+!public/sources/**/*.log
+!data/sources/**/*.log
+screenshots/
+
+.refresh.lock
+.refresh-dist/
+.refresh-previous/
+.refresh-venv/
+
+# Local settings, credentials and development reports.
+.env
+.env.*
+!.env.example
+.vercel/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.DS_Store
+
+.local-preview/
+
+# Python data importer caches and local environments.
+__pycache__/
+*.py[cod]
+.venv/

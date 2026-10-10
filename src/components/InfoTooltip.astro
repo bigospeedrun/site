@@ -1,0 +1,32 @@
+---
+interface Props {label:string;}
+const {label}=Astro.props;
+const id='info-'+crypto.randomUUID();
+---
+<info-tooltip><button type="button" aria-label={label} aria-describedby={id} aria-expanded="false">i</button><div id={id} role="tooltip" hidden><slot/></div></info-tooltip>
+<script>
+class InfoTooltip extends HTMLElement {
+ connectedCallback(){
+  const button=this.querySelector('button')!;const panel=this.querySelector<HTMLDivElement>('[role=tooltip]')!;let pinned=false;
+  const place=()=>{const r=button.getBoundingClientRect();const box=panel.getBoundingClientRect();panel.style.left=Math.max(12,Math.min(r.left,innerWidth-box.width-12))+'px';panel.style.top=Math.max(12,Math.min(r.bottom+6,innerHeight-box.height-12))+'px'};
+  const show=()=>{panel.hidden=false;button.setAttribute('aria-expanded','true');place()};
+  const hide=()=>{panel.hidden=true;button.setAttribute('aria-expanded','false');pinned=false};
+  button.addEventListener('click',()=>{pinned=!pinned;pinned?show():hide()});
+  this.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')show()});
+  this.addEventListener('pointerleave',()=>{if(!pinned&&!this.contains(document.activeElement))hide()});
+  button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))show()});
+  this.addEventListener('focusout',e=>{if(!this.contains(e.relatedTarget as Node))hide()});
+  this.addEventListener('keydown',e=>{if(e.key==='Escape'){hide();button.focus()}});
+  document.addEventListener('click',e=>{if(!this.contains(e.target as Node))hide()});
+  window.addEventListener('resize',()=>{if(!panel.hidden)place()});
+  document.addEventListener('scroll',()=>{if(!panel.hidden)place()},true);
+ }
+}
+if(!customElements.get('info-tooltip'))customElements.define('info-tooltip',InfoTooltip);
+</script>
+<style>
+info-tooltip{display:inline-block;vertical-align:middle;font-size:1rem;line-height:1.5;white-space:normal}
+button{display:inline-flex;width:1.35rem;height:1.35rem;align-items:center;justify-content:center;padding:0;border:1px solid var(--line);border-radius:50%;font:italic 1rem Georgia,serif;color:var(--accent);background:transparent;cursor:pointer}
+[role=tooltip]{position:fixed;z-index:30;width:min(23rem,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow:auto;padding:.8rem;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:.4rem;box-shadow:0 4px 20px #0003;font-size:1rem;font-weight:400;text-align:left;white-space:normal}
+[hidden]{display:none}
+</style>

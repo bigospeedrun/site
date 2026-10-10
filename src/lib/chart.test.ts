@@ -1,0 +1,184 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { chartDate, chartRecords, chartScale, chartWindowScale, chartWindow, chartTimeTicks, type ChartEntry } from './chart.ts';
+import { ranked } from './ranking.ts';
+import { classifyEvidence, evidenceLevels, isBoardEntry, isBreakthroughRecord } from './evidence.ts';
+const e=(id:string,score:string,time:number,level='claimed',scoreRelation='attained'):ChartEntry=>({id,repoId:0,score,time,level,scoreRelation,date:new Date(time).toISOString(),author:'',boundHtml:'',url:''});
+const allLevels=new Set(evidenceLevels.map(l=>l.id));
+
+// Read the real board inputs. Only the adapter fields required for admission,
+// source-date selection and table ranking are needed by these regression tests.
+function boardFixture(slug:string) {
+ const source=JSON.parse(readFileSync(new URL(`../data/${slug}.json`,import.meta.url),'utf8'));
+ return source.records.map((r:any)=>{
+  const m=source.record_metadata?.[r.id]??{};
+  const repo=(m.source_url??r.source?.url??r.submission_url)?.match(/^https:\/\/github.com\/([^/]+\/[^/]+)/)?.[1]??'';
+  const announcementDate=['openai-original-109','exact-dft-2026','subset-sum-2026'].includes(r.id)&&!m.publication_date?'2026-10-06':undefined;
+  const sourceDate=r.id==='directed-sssp-2026'&&!m.publication_date?'2026-09-21T06:31:30Z':undefined;
+  const date=m.publication_date??announcementDate??sourceDate??r.submitted_at??r.site_observed_at;
+  const record={id:r.id,isBreakthrough:isBreakthroughRecord(slug,r.id),repo,repoId:0,score:r.score,scoreRelation:r.score_relation,upstreamStatus:r.upstream_status??'not-applicable',reproductionOf:m.reproduction_of,date,
+   publicationYear:m.publication_date_precision==='year'?m.publication_year:undefined,
+   dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':m.publication_date_role?.toLowerCase().includes('commit')?'Commit date':m.publication_date_role?.includes('paper')?'Paper date':m.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',
+   raceEventAt:m.race_event_at??(m.publication_date_precision==='date-time'?m.publication_date:undefined)??(m.upstream_selected?r.submitted_at:undefined),
+   level:classifyEvidence({slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:m.upstream_selected===true,proofPassed:m.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)}),
+   author:'',boundHtml:'',url:''};
+  return record;
+ }).filter((r:any)=>isBoardEntry(slug,r));
+}
+function checkBoardProgression(slug:string) {
+ const board=boardFixture(slug);
+ const dated:ChartEntry[]=board.filter((r:any)=>chartDate(r)!==undefined).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
+ const marks=chartRecords(dated,allLevels,true);
+ const top=ranked(board,'higher-is-better')[0].record;
+ assert.ok(chartDate(top as any),'The current table leader has a source date');
+ assert.equal(marks.at(-1)?.id,top.id,'Last chart record must be table rank 1');
+ for(const mark of marks){
+  const available=dated.filter(r=>r.time<=mark.time);
+  assert.equal(mark.id,ranked(available,'higher-is-better')[0].record.id);
+ }
+ assert.ok(!dated.some(r=>r.id==='classical-baseline'));
+ return {dated,marks};
+}
+
+test('multiplication ends at the current table leader; the historical Swapnil claim beats the later reviewed entry',()=>{
+ const {dated}=checkBoardProgression('integer-multiplication');
+ const regression=dated.filter(r=>['crocswap-pr-151','swapnil-snapshot-ea9e8685d1621a98','crocswap-selected-75ea36bd581c1c02'].includes(r.id));
+ const marks=chartRecords(regression,allLevels,true);
+ assert.equal(marks.at(-1)?.id,'swapnil-snapshot-ea9e8685d1621a98');
+ assert.equal(marks.at(-1)?.level,'claimed');
+ assert.ok(dated.some(r=>r.id==='crocswap-selected-75ea36bd581c1c02'));
+ assert.ok(!marks.some(r=>r.id==='crocswap-selected-75ea36bd581c1c02'));
+ const reviewed=chartRecords(regression,new Set(['human-verified','lean-verified']),true);
+ assert.equal(reviewed.at(-1)?.id,'crocswap-selected-75ea36bd581c1c02');
+});
+
+test('DFT joins the OpenAI strict endpoint, Ryan Shea and the eumemic table leader',()=>{
+ const {dated}=checkBoardProgression('exact-dft');
+ const regression=dated.filter(r=>['openai-uniform-dft-frontier','shea256-exact-dft-2026','eumemic-exact-dft-2026'].includes(r.id));
+ const marks=chartRecords(regression,allLevels,true);
+ assert.deepEqual(marks.map(r=>r.id),['openai-uniform-dft-frontier','shea256-exact-dft-2026','eumemic-exact-dft-2026']);
+ assert.equal(marks[0].scoreRelation,'strict-upper-bound');
+ assert.equal(marks.at(-1)?.scoreRelation,'strict-upper-bound');
+ assert.deepEqual(chartRecords(regression,new Set(['lean-verified']),true).map(r=>r.id),['openai-uniform-dft-frontier']);
+});
+
+test('record selection uses table endpoint and tie rules; filters rebuild the line',()=>{
+ const entries=[e('a','1/100',1),e('b','2/100',2,'human-verified'),e('c','15/1000',3),e('tie','2/100',4),e('open','1/10',5,'claimed','strict-upper-bound'),e('attained','1/10',6)];
+ assert.deepEqual(chartRecords(entries,allLevels,true).map(e=>e.id),['a','b','open','attained']);
+ assert.deepEqual(chartRecords(entries,new Set(['claimed']),true).map(e=>e.id),['a','c','tie','open','attained']);
+ assert.deepEqual(chartRecords(entries,new Set(),true),[]);
+});
+
+test('simultaneous results keep table rank 1 and lower-is-better uses the same table rule',()=>{
+ const entries=[e('a','2',1),e('b','1',1),e('c','3/2',2),e('d','1/2',3)];
+ assert.deepEqual(chartRecords(entries,allLevels,false).map(e=>e.id),['b','d']);
+ assert.equal(chartRecords(entries,allLevels,false).at(-1)?.id,ranked(entries,'lower-is-better')[0].record.id);
+});
+
+test('source dates remain valid without priority dates; observations and year-only dates stay off axis',()=>{
+ const source={date:'2026-10-09T13:03:10Z',dateLabel:'Source date'};
+ assert.equal(chartDate(source),source.date);
+ assert.equal(chartDate({...source,dateLabel:'Observed'}),undefined);
+ assert.equal(chartDate({...source,publicationYear:2026}),undefined);
+ assert.equal(chartDate({...source,date:'not a date'}),undefined);
+});
+
+test('scale includes the reference limit; zero and single values stay finite',()=>{
+ for(const [values,limit] of [[[.000001,.0006],1],[[.49],0],[[0],1]] as [number[],number][]){
+  const s=chartScale(values,limit),v=s.log?Math.log10(limit):limit;
+  assert.ok(Number.isFinite(s.lo)&&Number.isFinite(s.hi)&&s.lo<v&&s.hi>v);
+ }
+ assert.equal(chartScale([.000001,.0006],1).log,true);
+});
+
+
+test('each race begins with its breakthrough, using real dates or the Oct 6 announcement day',()=>{
+ const starts=[
+  ['integer-multiplication','openai-original-109','2026-10-06',true],
+  ['exact-dft','exact-dft-2026','2026-10-06',true],
+  ['subset-sum','subset-sum-2026','2026-10-06',false],
+  ['3sum','anthropic-2026','2026-10-05',false],
+  ['apsp','anthropic-2026','2026-10-05',false],
+  ['directed-sssp','directed-sssp-2026','2026-09-21',false],
+ ] as const;
+ for(const [slug,id,day,higher] of starts){
+  const dated=boardFixture(slug).filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
+  const first=chartRecords(dated,allLevels,higher)[0];
+  assert.equal(first?.id,id,slug+' begins with its breakthrough');
+  if(slug==='integer-multiplication')assert.equal(first.score,`1/${2n**182n}`);
+  assert.equal(new Date(first.time).toISOString().slice(0,10),day,slug+' preserves its publication or announcement date');
+ }
+});
+
+test('zoom carries the prior record line without inventing a mark at the range boundary',()=>{
+ const day=86400000;
+ const entries=[e('start','1/1000000000000',0),e('old','1/10000',day),e('recent','1/100',3*day),e('best','1/10',4*day)];
+ const full=chartWindow(entries,allLevels,true);
+ assert.equal(full.records[0].id,'start');
+ assert.equal(full.carry,undefined);
+ const zoom=chartWindow(entries,allLevels,true,24);
+ assert.equal(zoom.start,3*day);
+ assert.equal(zoom.carry?.id,'old');
+ assert.deepEqual(zoom.records.map(r=>r.id),['recent','best']);
+ const fullScale=chartScale(full.records.map(r=>Number(r.score.split('/')[0])/Number(r.score.split('/')[1])),1);
+ const zoomScale=chartScale([zoom.carry!,...zoom.records].map(r=>Number(r.score.split('/')[0])/Number(r.score.split('/')[1])),1);
+ assert.ok(zoomScale.lo>fullScale.lo,'zoom rescales the visible record values');
+});
+
+
+test('multi-day date ticks are unique local midnights; short ranges retain distinct minute labels',()=>{
+ const start=new Date(2026,9,6,7,23).getTime(),end=new Date(2026,9,9,6,23).getTime();
+ const full=chartTimeTicks(start,end,6);
+ assert.equal(full.showTimes,false);
+ assert.deepEqual(full.times.map(t=>new Date(t).getDate()),[7,8,9]);
+ assert.ok(full.times.every(t=>new Date(t).getHours()===0&&new Date(t).getMinutes()===0));
+ const short=chartTimeTicks(end-86400000,end,3);
+ assert.equal(short.showTimes,true);
+ assert.equal(new Set(short.times.map(t=>Math.floor(t/60000))).size,short.times.length);
+ assert.equal(chartTimeTicks(end,end,6).times.length,1);
+});
+
+
+test('zoom scales fit visible marks without the limit or offscreen carried record',()=>{
+ const entries=[e('old','1/1000000000000',0),e('a','1/10000',3*86400000),e('b','2/10000',4*86400000)];
+ const view=chartWindow(entries,allLevels,true,24);
+ const zoom=chartWindowScale(view,1,true);
+ assert.equal(zoom.log,false);
+ assert.ok(zoom.lo>0&&zoom.lo<.0001&&zoom.hi>.0002&&zoom.hi<.001);
+ const full=chartWindowScale(chartWindow(entries,allLevels,true),1,false);
+ assert.ok(full.hi>0&&full.log);
+ for(const values of [[],[0],[.49]]){
+  const scale=chartScale(values);
+  assert.ok(Number.isFinite(scale.lo)&&Number.isFinite(scale.hi)&&scale.hi>scale.lo);
+ }
+});
+
+
+test('breakthrough remains the start of progression for every evidence filter combination',()=>{
+ const start={...e('breakthrough','1/1000000000000',0),isBreakthrough:true};
+ const entries=[start,e('claim','1/100',1),e('review','1/10',2,'human-verified'),e('proof','1/5',3,'lean-verified')];
+ for(let mask=0;mask<8;mask++){
+  const levels=new Set<string>(evidenceLevels.filter((_,i)=>mask&(1<<i)).map(l=>l.id));
+  const records=chartRecords(entries,levels,true);
+  assert.equal(records[0].id,start.id);
+  assert.ok(records.slice(1).every(r=>levels.has(r.level)));
+  if(!mask)assert.deepEqual(records.map(r=>r.id),[start.id]);
+  const view=chartWindow(entries,levels,true);
+  assert.equal(view.records[0].id,start.id);
+  const scale=chartWindowScale(view,1,false);
+  assert.ok(scale.lo<Math.log10(1e-12));
+ }
+});
+
+
+test('real problem boards retain only their breakthrough when all evidence filters are off',()=>{
+ for(const slug of ['integer-multiplication','exact-dft','3sum','apsp','subset-sum']){
+  const board=boardFixture(slug);
+  const dated=board.filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
+  const records=chartRecords(dated,new Set(),['integer-multiplication','exact-dft'].includes(slug));
+  assert.equal(records.length,1,slug);
+  assert.equal(records[0].isBreakthrough,true,slug);
+  assert.equal(records[0].id,board.find((r:any)=>r.isBreakthrough).id,slug);
+ }
+});

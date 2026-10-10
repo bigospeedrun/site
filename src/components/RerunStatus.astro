@@ -1,0 +1,12 @@
+---
+import {readFileSync} from 'node:fs';
+import {localTimeFallback} from '../lib/freshness';
+import type {RecordEntry} from '../lib/types';
+interface Props {record:RecordEntry;}
+const {record:r}=Astro.props;
+const rerun=r.rerunStatus;
+const receipt=rerun?.receipt_path?JSON.parse(readFileSync('public/'+rerun.receipt_path,'utf8')):null;
+---
+{r.evidenceLevel==='lean-verified'&&rerun?.checked_at&&<p>The proof check passed <time datetime={rerun.checked_at} data-local-time>{localTimeFallback(rerun.checked_at)}</time>.</p>}
+
+{receipt&&<span class="rerun-evidence"><a href={'/'+rerun!.receipt_path}>Receipt</a> <a href={'/'+receipt.log_path}>Checker log</a> <a href={'/'+receipt.time_path}>Timing</a>{receipt.artifact_path&&<a href={'/'+receipt.artifact_path}>Proof source</a>}</span>}

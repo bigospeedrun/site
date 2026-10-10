@@ -1,0 +1,118 @@
+---
+import InfoTooltip from './InfoTooltip.astro';
+import type { RecordEntry } from '../lib/types';
+import { evidenceLevels, evidenceName, breakthroughLabel } from '../lib/evidence';
+import { math } from '../lib/math';
+import { tableBound } from '../lib/ranking';
+import { chartDate, chartWindowScale, chartWindow, chartRanges, scoreValue, type ChartEntry } from '../lib/chart';
+interface Props { records: RecordEntry[]; direction: string; label: string; slug?: string; boundLatex?: string; limit?: number; }
+const { records, direction, label, slug = direction==='higher-is-better'?'integer-multiplication':'3sum' } = Astro.props;
+const dataFiles = import.meta.glob('../data/*.json', {eager:true,import:'default'}) as Record<string,any>;
+const source = dataFiles[`../data/${slug}.json`];
+const higher = direction==='higher-is-better';
+const symbol = higher ? '\\kappa' : '\\alpha';
+const form = Astro.props.boundLatex ?? (higher ? 'O(n\\log^{1-\\kappa} n)' : slug==='subset-sum' ? 'O^*(2^{\\alpha n})' : slug==='directed-sssp' ? 'O(n\\log^{\\alpha}n)' : 'O(n^{\\alpha})');
+const limit = Astro.props.limit ?? scoreValue(higher ? source?.score.maximum??'1' : source?.score.minimum??'0');
+const limitBound = higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
+const dated = records.filter(r=>chartDate(r)!==undefined);
+const entries:ChartEntry[] = dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(higher&&['openai-original-109','exact-dft-2026'].includes(r.id)?tableBound(r,true,3):r.bound),url:r.evidence[0]?.url??'#'}));
+const defaultLevels=evidenceLevels.map(l=>l.id);
+const scales=Object.fromEntries(chartRanges.flatMap(range=>Array.from({length:2**evidenceLevels.length},(_,mask)=>{
+ const levels=evidenceLevels.filter((_,i)=>mask&(1<<i)).map(l=>l.id);
+ const view=chartWindow(entries,new Set(levels),higher,range.hours);
+ const scale=chartWindowScale(view,limit,range.hours>0);
+ return [`${range.id}:${levels.sort().join(',')}`,{...scale,ticks:scale.ticks.map(t=>({...t,html:math(t.tex)}))}];
+})));
+const scale=scales[`all:${[...defaultLevels].sort().join(',')}`];
+const payload={entries,higher,limit,scales,levels:Object.fromEntries(evidenceLevels.map(l=>[l.id,l.name]))};
+const omitted=records.length-dated.length;
+const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
+---
+<progress-chart data-chart={JSON.stringify(payload)} aria-label={`${label} record progression`}>
+ <div class="plot-heading">
+  <h2><span class="desktop-heading"><span set:html={math(symbol)}/> in <span set:html={math(form)}/>, {higher?'higher':'lower'} is better</span><span class="mobile-heading"><span set:html={math(symbol)}/> in <span set:html={math(form)}/><span class="mobile-bound-form"><span data-scale-name>{scale.log?'log':'linear'}</span> scale, {higher?'higher':'lower'} is better</span></span></h2>
+  <div class="plot-info"><InfoTooltip label="How to read this plot">
+    <p>The line connects only entries that improve the best dated bound at the selected evidence levels. The first breakthrough always stays in the progression, regardless of the evidence filters. Its star marks the start of the race. Other marks use the shape of their evidence level. Hover, focus, or tap a mark to see the entry and its source. Dates use known publication or commit dates. The Oct 6 announcements supply the day when an earlier publication date is unknown. A day without a known time has no hour in its tooltip. These dates do not establish scientific priority. Range controls end at the latest dated result. A line entering from the left shows the record already in force; its original mark stays outside the selected range.</p>
+    {omitted>0&&<p>{omitted} {omitted===1?'entry has':'entries have'} no known publication date or only a publication year. They remain in the table and are left off this time axis. {slug==='integer-multiplication'&&'The CrocSwap README lists older scores without publication dates; the date we read that list is not the date of each result.'}</p>}
+    {strict&&<p>Hollow marks show strict upper endpoints: the bound holds for each smaller fixed value, but not necessarily at the endpoint. They join the record line when the table ranks them first among the dated results available at that time.</p>}
+    <p>On All, the dashed reference is the problem’s limit, <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>). It is a reference, not a proved attainable bound. Zoomed views omit this reference and fit the scale to their visible marks.</p>
+    {evidenceLevels.map(l=><p><strong>{evidenceName(l.id)}.</strong> {l.definition}</p>)}
+  </InfoTooltip></div>
+ </div>
+ <div class="plot-legend" hidden={!entries.length}><div class="plot-levels" role="list" aria-label="Evidence level marks">
+  {evidenceLevels.map((level,i)=><span class="level-label" role="listitem" aria-label={level.name} title={level.name}><span class:list={['plot-key',level.id]} aria-hidden="true">{i===0?'●':i===1?'■':'◆'}</span><span class="level-name">{level.name}</span><span class="level-short" aria-hidden="true">{i===0?'Claimed':i===1?'Human':'Lean'}</span></span>)}
+ </div><div class="plot-symbols">
+ {entries.some(r=>r.isBreakthrough)&&<span class="breakthrough-key"><svg viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0 -9 L2.6 -3 L8.6 -2.8 L4.2 1.4 L5.3 7.3 L0 4.5 L-5.3 7.3 L-4.2 1.4 L-8.6 -2.8 L-2.6 -3 Z"/></svg>{breakthroughLabel}</span>}
+ {strict&&<div class="endpoint-key"><span class="endpoint-full">○ strict endpoint</span><span class="endpoint-short" aria-hidden="true">○ strict</span><InfoTooltip label="About strict endpoints">Hollow marks show strict upper endpoints: the bound holds for each smaller fixed value, but not necessarily at the endpoint. They join the record line when the table ranks them first among the dated results available at that time.</InfoTooltip></div>}
+ </div></div>
+ <div class="plot-area" hidden={!entries.length}>
+  <div class="plot-axis-title"><span set:html={math(symbol)}/> (<span data-scale-name>{scale.log?'log':'linear'}</span> scale)</div>
+  <svg class="progress-svg" aria-label="Record bounds by date" role="group"></svg>
+  <div class="plot-labels" aria-hidden="true"></div>
+  <div class="plot-reference" set:html={math(`${symbol}=${limit}:\\ ${limitBound}`)}/>
+  <div class="plot-tooltip" hidden role="status"></div>
+ </div>
+ <div class="plot-ranges" role="group" aria-label="Date range" hidden={!entries.length}>
+  {chartRanges.map(range=><button type="button" data-range={range.id} aria-pressed={range.id==='all'}>{range.name}</button>)}
+ </div>
+ <p class="plot-state" aria-live="polite">{!entries.length&&'No publication dates are known for these entries. See the table for their bounds.'}</p>
+ <noscript><p>Enable JavaScript to explore the plot. The table contains the bounds and their sources.</p></noscript>
+</progress-chart>
+<script>
+ import './chart/controller';
+</script>
+<style>
+ progress-chart [hidden]{display:none!important}
+ progress-chart{display:block;margin:1.25rem 0 .75rem;font-family:var(--font-sans,system-ui,sans-serif);font-size:max(16px,var(--font-min,16px));color:var(--fg)}
+ .mobile-heading,.level-short,.endpoint-short{display:none}
+ .plot-heading{position:relative;margin-bottom:4px;text-align:center}
+ .plot-heading h2{font-family:inherit;font-size:17px;line-height:1.4;margin:0;padding:0 28px;letter-spacing:normal;font-weight:500}
+ .plot-info{position:absolute;right:0;top:0;margin:0;font:inherit;text-align:left}
+ .plot-info p:last-child{margin-bottom:0}
+ .plot-legend{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0 12px;margin:0 0 2px}
+ .plot-symbols{display:flex;align-items:center;justify-content:center;gap:12px;font-size:var(--font-min);line-height:1.4}
+ .breakthrough-key{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+ .breakthrough-key svg{width:18px;height:18px;fill:var(--accent)}
+ progress-chart :global(.plot-point.breakthrough){color:var(--accent)}
+ .plot-levels{display:flex;align-items:center;justify-content:center;gap:12px;min-width:max-content;padding:0;margin:0;border:0;font:inherit}
+ .plot-levels .level-label{display:flex;align-items:center;gap:4px;min-height:28px}
+ .plot-key.claimed{color:var(--claimed)}.plot-key.human-verified{color:var(--human-verified)}.plot-key.lean-verified{color:var(--lean-verified)}
+ .plot-axis-title{position:absolute;left:14px;top:152px;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap}.endpoint-key{display:flex;align-items:center;gap:4px;margin:0;font:inherit;white-space:nowrap}
+ .plot-area{position:relative;height:330px;width:100%}
+ .progress-svg{display:block;width:100%;height:330px;overflow:visible}
+ .plot-labels{position:absolute;inset:0;pointer-events:none}
+ .plot-reference{position:absolute;left:108px;top:0;background:var(--surface);padding:0 8px;font:inherit}
+ .plot-tooltip{position:absolute;z-index:5;max-width:360px;width:max-content;background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:0 4px 20px #0002;padding:16px;line-height:1.6;overflow-wrap:anywhere}
+ .plot-tooltip :global(p){margin:0 0 .5rem}.plot-tooltip :global(p:last-child){margin:0}
+ .plot-tooltip :global(.plot-bound){overflow-x:auto;max-width:100%}
+ .plot-ranges{display:flex;justify-content:center;gap:4px;margin:3px 0 0}
+ .plot-ranges button{font:inherit;font-size:var(--font-min);line-height:1.25;padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--fg);cursor:pointer}
+ .plot-ranges button[aria-pressed="true"]{background:var(--link);border-color:var(--link);color:var(--bg)}
+ .plot-ranges button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+ .plot-state{margin:.6rem 0 0;font:inherit}.plot-state:empty{display:none}
+ progress-chart :global(.axis-tick){position:absolute;transform:translate(-100%,-50%);text-align:right;padding-right:12px;color:var(--fg);white-space:nowrap}
+ progress-chart :global(.plot-grid){stroke:var(--line);stroke-width:1}
+ progress-chart :global(.plot-record){stroke:var(--link);fill:none;stroke-width:2.5;stroke-linejoin:round}
+ progress-chart :global(.plot-limit){stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 5}
+ progress-chart :global(.plot-date){font:max(16px,var(--font-min,16px)) var(--font-sans,system-ui,sans-serif);fill:var(--fg)}
+ progress-chart :global(.plot-point){cursor:pointer;outline:none}
+ progress-chart :global(.plot-point:focus .mark),progress-chart :global(.plot-point:hover .mark){stroke:var(--fg);stroke-width:3}
+ progress-chart :global(.mark){stroke:var(--surface);stroke-width:1.5;fill:currentColor}
+ progress-chart :global(.claimed){color:var(--claimed)}progress-chart :global(.human-verified){color:var(--human-verified)}progress-chart :global(.lean-verified){color:var(--lean-verified)}
+ progress-chart :global(.endpoint .mark){fill:var(--surface);stroke:currentColor;stroke-width:2}
+ @media(max-width:600px){
+  .plot-heading h2{font-size:16px;line-height:1.35;padding:0 26px}
+  .desktop-heading,.level-name,.endpoint-full,.plot-axis-title{display:none}
+  .mobile-heading,.mobile-bound-form{display:block}
+  .level-short,.endpoint-short{display:inline;white-space:nowrap}
+  .plot-legend{flex-direction:column}
+  .plot-levels{gap:8px;font-size:var(--font-min);min-width:0;flex-wrap:nowrap}
+  .plot-levels .level-label{flex-shrink:0;gap:3px;white-space:nowrap;min-height:32px}
+  .plot-key{font-size:13px}
+  .endpoint-key{gap:3px;white-space:nowrap}
+  .plot-reference{left:60px}
+  .plot-tooltip{max-width:calc(100% - 12px)}
+  .plot-area,.progress-svg{height:380px}
+  progress-chart :global(.axis-tick){padding-right:8px}
+ }
+</style>

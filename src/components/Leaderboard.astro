@@ -1,0 +1,49 @@
+---
+import type {RecordEntry} from '../lib/types';
+import {evidenceLevels} from '../lib/evidence';
+import TrackTable from './TrackTable.astro';
+interface Props {records:RecordEntry[];direction:string;kappa:boolean;}
+const {records,direction,kappa}=Astro.props;
+---
+<evidence-board>
+<fieldset aria-label="Evidence filters">{evidenceLevels.map(level=><label title={level.definition}><input type="checkbox" value={level.id} checked/> {level.name}</label>)}</fieldset>
+<TrackTable records={records} direction={direction} label="Results" kappa={kappa}/>
+<p class="no-results" hidden>No results match the selected evidence levels.</p>
+<nav class="pagination" aria-label="Results pages"><button type="button" data-previous>Previous</button><span aria-live="polite" data-page></span><button type="button" data-next>Next</button></nav>
+</evidence-board>
+<script>
+import {isVisibleAtEvidence} from '../lib/evidence';
+class EvidenceBoard extends HTMLElement {
+ connectedCallback(){
+ let page=0;
+ const rows=Array.from(this.querySelectorAll<HTMLTableRowElement>('tbody tr'));
+ const filters=Array.from(this.querySelectorAll<HTMLInputElement>('input'));
+ const previous=this.querySelector<HTMLButtonElement>('[data-previous]')!;
+ const next=this.querySelector<HTMLButtonElement>('[data-next]')!;
+ const render=()=>{
+  const levels=filters.filter(input=>input.checked).map(input=>input.value);
+  this.dataset.selectedLevels=JSON.stringify(levels);
+  window.dispatchEvent(new CustomEvent('evidence-filter-change',{detail:{levels}}));
+  const shown=rows.filter(row=>isVisibleAtEvidence({isBreakthrough:row.dataset.breakthrough==='true',evidenceLevel:row.dataset.level!},levels));
+  const pages=Math.max(1,Math.ceil(shown.length/10));page=Math.min(page,pages-1);
+  rows.forEach(row=>row.hidden=true);shown.slice(page*10,page*10+10).forEach(row=>row.hidden=false);
+  this.querySelector('[data-page]')!.textContent=`Page ${page+1} of ${pages} · ${shown.length} ${shown.length===1?'result':'results'}`;
+  previous.disabled=page===0;next.disabled=page===pages-1;
+  this.querySelector<HTMLElement>('.no-results')!.hidden=shown.length>0;
+ };
+ filters.forEach(input=>input.addEventListener('change',()=>{page=0;render()}));
+ previous.addEventListener('click',()=>{page--;render()});next.addEventListener('click',()=>{page++;render()});render();
+ }
+}
+customElements.define('evidence-board',EvidenceBoard);
+</script>
+<style>
+.info-link{display:inline-flex;width:1.3rem;height:1.3rem;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;font:italic 1rem Georgia,serif;text-decoration:none}
+evidence-board{display:block;margin:1.5rem 0}fieldset{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem;border:0;padding:0;margin:0 0 1rem}label{display:flex;gap:.4rem;align-items:center;cursor:pointer}input{width:1rem;height:1rem;accent-color:var(--accent)}.pagination{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}button{font:inherit;padding:.45rem .8rem;border:1px solid var(--line);border-radius:.35rem;background:var(--surface);color:var(--fg);cursor:pointer}button:disabled{opacity:.45;cursor:default}
+@media(max-width:600px){
+ fieldset{gap:.2rem .8rem;margin-bottom:.6rem}label{min-height:36px}
+ .pagination{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.4rem;margin-top:.65rem}
+ .pagination span{font-size:.9375rem;text-align:center;line-height:1.35}
+ .pagination button{font-size:.9375rem;min-height:44px;padding:.4rem .55rem}
+}
+</style>

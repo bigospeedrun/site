@@ -1,0 +1,35 @@
+.bos-chat [hidden] { display: none !important; }
+.bos-chat { font: 1rem/1.5 var(--font-sans); color: var(--fg); }
+.bos-chat button { font: inherit; }
+.bos-chat-toggle { position: fixed; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); z-index: 80; display: grid; place-items: center; width: 54px; height: 54px; padding: 0; border: 1px solid var(--accent); border-radius: 50%; color: var(--bg); background: var(--accent); box-shadow: 0 4px 18px #0003; }
+.bos-chat-toggle:hover { box-shadow: 0 5px 24px #0005; }
+.bos-chat-panel { position: fixed; z-index: 90; right: 24px; bottom: 24px; width: min(420px, calc(100vw - 32px)); height: min(620px, calc(100dvh - 48px)); display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 48px #0004; overflow: hidden; }
+.bos-chat-header { display: flex; align-items: center; gap: 8px; justify-content: space-between; padding: 12px 12px 12px 18px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.bos-chat-header h2 { font-size: 1rem; margin: 0; letter-spacing: normal; line-height: 1.4; }
+.bos-chat-close { min-width: 44px; min-height: 44px; padding: 0; font-size: 28px !important; border: 0; background: transparent; }
+.bos-chat-messages { display: flex; flex-direction: column; flex: 1; min-height: 0; gap: 14px; padding: 18px; overflow-y: auto; overscroll-behavior: contain; }
+.bos-chat-starters { display: grid; gap: 10px; }
+.bos-chat-starters p { margin: 0 0 4px; color: var(--muted); }
+.bos-chat-starters button { text-align: left; min-height: 44px; padding: 10px 12px; background: var(--subtle); }
+.bos-chat-starters button:hover { background: var(--accent-bg); }
+.bos-chat-message { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; padding: 10px 12px; border-radius: 10px; }
+.bos-chat-message[data-role=user] { align-self: flex-end; background: var(--accent-bg); border: 1px solid var(--line); }
+.bos-chat-message[data-role=assistant] { align-self: flex-start; background: var(--subtle); }
+.bos-chat-message .katex { font-size: 1.05em; }
+.bos-chat-message .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; margin: .5em 0; }
+.bos-chat-message a { color: var(--link); }
+.bos-chat-message code { background: var(--surface); font-size: .95em; }
+.bos-chat-status { margin: 0; padding: 0 18px; font-size: .9375rem; color: var(--muted); }
+.bos-chat-status:not(:empty):not(.bos-chat-sr) { padding-bottom: 10px; }
+.bos-chat-footer { flex-shrink: 0; padding: 12px; border-top: 1px solid var(--line); }
+.bos-chat-disclosure, .bos-chat-logging { font-size: .9375rem; color: var(--muted); line-height: 1.4; margin: 0 0 10px; }
+.bos-chat-form { display: flex; gap: 8px; }
+.bos-chat-form input { min-width: 0; flex: 1; min-height: 44px; width: 100%; padding: 9px 10px; font: inherit; border: 1px solid var(--line); border-radius: 6px; color: var(--fg); background: var(--bg); }
+.bos-chat-form input::placeholder { color: var(--muted); }
+.bos-chat-form button { display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 8px; color: var(--bg); background: var(--accent); border-color: var(--accent); }
+.bos-chat-sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 600px) {
+  .bos-chat-toggle { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); }
+  .bos-chat-panel { right: 8px; bottom: max(8px, env(safe-area-inset-bottom)); width: calc(100vw - 16px); height: min(620px, calc(100dvh - 16px - env(safe-area-inset-bottom))); }
+  .bos-chat-messages { padding: 14px; }
+}

@@ -1,0 +1,11 @@
+---
+import type {ScoreRelation} from '../lib/types';
+import {decimal} from '../lib/ranking';
+interface Props {score:string;relation?:ScoreRelation;expandable?:boolean;precision?:number;}
+const {score,relation='attained',expandable=false,precision=3}=Astro.props;
+const [a,b='1']=score.split('/');const value=Number(a)/Number(b);
+const scientific=value!==0&&Math.abs(value)<.001;
+const [coefficient,exponent]=value.toExponential(precision).split('e');
+---
+<span class="score-number" title={relation==='strict-upper-bound'?`Strict upper endpoint: < ${score}; endpoint not attained`:`Exact score: ${score}`}>{relation==='strict-upper-bound'&&<span class="score-relation">&lt; </span>}{scientific?<>{Number(coefficient)}<span class="times"> × </span>10<sup>{Number(exponent)}</sup></>:decimal(score)}</span>
+{expandable&&<details class="score-exact"><summary>Exact score</summary><code class="exact">{relation==='strict-upper-bound'?'< ':''}{score}</code></details>}
