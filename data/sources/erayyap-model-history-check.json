@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-10T17:56:07Z",
+  "source_commit": "bf26205a9d79d563eb7966cb957cfce0bc1048c3",
+  "first_claim_date": "2026-10-07T18:54:32Z",
+  "repository_created_at": "2026-10-07T18:55:02Z",
+  "first_claim_date_basis": "Timestamp of the root commit containing the claim; repository creation followed at 18:55:02 UTC.",
+  "score": "203/147573952589676412928",
+  "score_basis": "Inferred exact dyadic, not an explicitly printed rational: the source reports log2(kappa) rounded to -59.335 and uses dyadic_below(gmin/2, 8). Among k/2^68 for 256<=k<512, only k=406 rounds to that exponent. Source code was read as text, never executed.",
+  "model_check": "The pinned introduction states the same deterministic fixed-finite-alphabet, fixed-finite-number-of-one-dimensional-tapes model for multiplying two n-bit integers. The modified cost accounting is only outlined; full correctness remains claimed.",
+  "proof_status": "Claimed, not independently checked. The source provides a proof outline: asymptotic chain counts and the changes to tape procedures still need written proofs. Its exact numerical checks and small-parameter gate checks do not establish the full algorithm. No Lean proof.",
+  "prior_board_best": {
+    "id": "openai-original-109",
+    "score": "1/6129982163463555433433388108601236734474956488734408704",
+    "date": "2026-10-06",
+    "date_basis": "Site announcement fallback"
+  },
+  "first_crocswap_submission_at": "2026-10-07T20:58:44Z",
+  "first_swapnil_row_at": "2026-10-08T07:17:47Z",
+  "historical_improvement": true,
+  "excluded_pranavbalakri": {
+    "first_claim_date": "2026-10-08T20:37:23Z",
+    "score": "18471/500000000",
+    "reason": "Below earlier CrocSwap PR 74 and Swapnil round 7. Exploratory nonintegrated values excluded."
+  }
+}
