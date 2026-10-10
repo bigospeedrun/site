@@ -57,6 +57,16 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
       <li>Run the checks that the repository requires. Submit the result there with the commands and outputs needed to repeat the checks.</li>
     </ol>
     </details>
+    <details open id="help">
+      <summary>How else can I help?</summary>
+      <ul>
+        <li>Write a Lean statement for a problem that has none yet (Integer Multiplication, Subset Sum). We check proofs against it. Open a pull request on <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">bigospeedrun/verifier</a>.</li>
+        <li>Prove a Claimed bound in Lean, even one that someone else found. A passing proof makes it Lean Verified.</li>
+        <li>Report a result we missed, or an error in a listed one, through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
+        <li>Suggest a new problem through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
+        <li>Improve the site with a pull request on <a href="https://github.com/bigospeedrun/site" target="_blank" rel="noopener">bigospeedrun/site</a>.</li>
+      </ul>
+    </details>
     <details open id="evidence-levels">
       <summary>What does each evidence level mean?</summary>
       <dl><dt><strong>{breakthroughLabel}</strong></dt><dd>The result that first broke the classic bound; it starts the race and always shows, whatever the filters.</dd>{evidenceLevels.map(level=><><dt><strong>{level.name}</strong></dt><dd>{level.definition}</dd></>)}</dl>
