@@ -35,7 +35,7 @@ const statements:Record<string,string>={
 };
 ---
 <Layout title={p.title}>
-<h1 class="screen-reader-heading">{p.title}</h1>
+<h1>{p.title}</h1>
 <section class="problem-intro" aria-label="Problem definition">
 <p set:html={statements[p.slug]}/>
 {classic&&<p>Classic bound: <span set:html={math(classic.bound)}/> ({classicCitations[p.slug].map((citation,i)=><>{i>0?"; ":""}<a href={citation.url} target={citation.url.startsWith("https://github.com/")?"_blank":undefined} rel={citation.url.startsWith("https://github.com/")?"noopener":undefined}>{citation.name}</a></>)}).</p>}
@@ -53,7 +53,6 @@ const statements:Record<string,string>={
 <ul>{p.repos.map(repo=><li><a href={repo.url} target="_blank" rel="noopener">{repo.name}</a></li>)}</ul></section>
 </Layout>
 <style>
-.screen-reader-heading{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .evidence-rules{padding-left:1.4rem;margin:1rem 0 1.5rem;color:var(--fg)}.evidence-rules li{margin:.5rem 0}.claimed{color:var(--claimed)}.human-verified{color:var(--human-verified)}.lean-verified{color:var(--lean-verified)}.problem-intro{max-width:72rem}.problem-intro p{margin-bottom:.85rem}
 .repos{margin-top:2rem}.repos h2{font-size:1.35rem}.repos ul{padding-left:1.4rem;margin:.6rem 0}.repos li{margin:.3rem 0}.repos a{overflow-wrap:anywhere}
 </style>

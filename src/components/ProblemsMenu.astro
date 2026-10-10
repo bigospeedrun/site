@@ -1,0 +1,56 @@
+---
+import {problemLinks} from '../lib/navigation';
+const current = Astro.url.pathname.split('/')[1];
+---
+<div class="problems-menu">
+  <a href="/#problems" data-problems-trigger>Problems</a>
+  <nav id="problems-menu" aria-label="Problems" hidden>
+    <ul>{problemLinks.map(([slug,label])=><li><a href={'/'+slug} aria-current={current===slug?'page':undefined}>{label}</a></li>)}</ul>
+  </nav>
+</div>
+<script>
+  const fallback = document.querySelector<HTMLAnchorElement>('[data-problems-trigger]')!;
+  const menu = document.getElementById('problems-menu')!;
+  const container = fallback.parentElement!;
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.textContent = fallback.textContent;
+  trigger.className = 'problems-trigger';
+  trigger.setAttribute('aria-controls', menu.id);
+  trigger.setAttribute('aria-expanded', 'false');
+  fallback.replaceWith(trigger);
+  const close = () => {
+    menu.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+  };
+  trigger.addEventListener('click', () => {
+    menu.hidden = !menu.hidden;
+    trigger.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  document.addEventListener('click', event => {
+    if (!container.contains(event.target as Node)) close();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !menu.hidden) {
+      close();
+      trigger.focus();
+    }
+  });
+  container.addEventListener('focusout', event => {
+    if (!container.contains(event.relatedTarget as Node | null)) close();
+  });
+</script>
+<style>
+  .problems-menu { position: relative; }
+  .problems-menu :global(.problems-trigger) { border: 0; border-radius: 0; padding: 0; color: var(--link); background: transparent; text-decoration: underline; text-underline-offset: .2em; }
+  .problems-menu :global(.problems-trigger:hover) { text-decoration-thickness: 2px; }
+  nav { position: absolute; top: calc(100% + 12px); right: 0; width: max-content; max-width: calc(100vw - 36px); max-height: 70dvh; overflow-y: auto; z-index: 20; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 8px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li a { display: block; padding: 9px 12px; border-radius: 4px; color: var(--fg); text-decoration: none; }
+  li a:hover { background: var(--subtle); }
+  li a[aria-current=page] { background: var(--accent-bg); font-weight: 650; text-decoration: underline; }
+  @media (max-width: 600px) {
+    .problems-menu { position: static; }
+    nav { top: 100%; left: 18px; right: 18px; width: auto; max-width: none; }
+  }
+</style>

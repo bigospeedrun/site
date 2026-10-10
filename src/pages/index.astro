@@ -32,7 +32,7 @@ const rows = [
 <Layout title="Big O Speedrun" home>
   <div class="landing">
     <div set:html={inlineMath(content)}/>
-    <div class="table-wrap" tabindex="0" role="region" aria-label="Compare classic bounds, first breakthroughs, and latest results">
+    <div id="problems" class="table-wrap" tabindex="0" role="region" aria-label="Compare classic bounds, first breakthroughs, and latest results">
       <table>
         <thead><tr><th scope="col">PROBLEM</th><th scope="col">CLASSIC BOUND</th><th scope="col">{breakthroughLabel.toUpperCase()}</th><th scope="col">LATEST {rows.some(row=>row.endpoint)&&<InfoTooltip label="About open endpoints">{rows.filter(row=>row.endpoint).map(row=><p>For {row.name}, the bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</p>)}</InfoTooltip>}</th></tr></thead>
         <tbody>{rows.map(row=><tr>
