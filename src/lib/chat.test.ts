@@ -151,7 +151,8 @@ test('provider timeout aborts the request and returns a safe error', async () =>
   assert.doesNotMatch(await response.text(), /private/);
 });
 
-test('Discord is opt-in, requires disclosure, suppresses mentions and never exposes its URL', async () => {
+test('Discord is opt-in, requires disclosure, suppresses mentions and never exposes its URL', async (t) => {
+  t.mock.method(console, 'info', () => {});
   const calls: {url: string; body: any}[] = [];
   const fetcher: typeof fetch = async (url, init) => {
     calls.push({url: String(url), body: JSON.parse(String(init?.body))});
@@ -166,6 +167,28 @@ test('Discord is opt-in, requires disclosure, suppresses mentions and never expo
   const logs = calls.filter(c => c.url.includes('discord'));
   assert.equal(logs.length, 2); assert.deepEqual(logs[0].body.allowed_mentions, {parse: []});
   assert.match(logs[0].body.content, /Page: \/about/);
+});
+
+test('Discord server logs contain only HTTP status and delivery failures do not break replies', async (t) => {
+  const output = t.mock.method(console, 'info', () => {});
+  for (const status of [204, 429, 500]) {
+    const handler = setup(async (url) => String(url).includes('anthropic')
+      ? fixtureStream([textEvent('Private reply')])
+      : new Response(status === 204 ? null : 'Private response body', {status}),
+    {webhookUrl: 'https://discord.com/api/webhooks/private-test-token'});
+    const response = await handler(request({messages, loggingNotice: true}));
+    assert.match(await response.text(), /\[DONE\]/);
+    const calls = output.mock.calls.slice(-2);
+    assert.equal(calls.length, 2);
+    for (const call of calls) assert.deepEqual(call.arguments, ['Chat Discord webhook HTTP status:', status]);
+  }
+  assert.equal(output.mock.callCount(), 6);
+  const handler = setup(async (url) => {
+    if (String(url).includes('anthropic')) return fixtureStream([textEvent('Reply')]);
+    throw new Error('Private network details');
+  }, {webhookUrl: 'https://discord.com/api/webhooks/private-test-token'});
+  assert.match(await (await handler(request({messages, loggingNotice: true}))).text(), /\[DONE\]/);
+  assert.equal(output.mock.callCount(), 6);
 });
 
 test('reply renderer escapes HTML, blocks executable URLs, removes URL queries and renders safe math', () => {

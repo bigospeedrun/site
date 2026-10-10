@@ -133,11 +133,12 @@ export function createChatHandler(options: Options) {
     const log = async (text: string) => {
       if (!logging) return;
       try {
-        await fetcher(options.webhookUrl!, {
+        const response = await fetcher(options.webhookUrl!, {
           method: 'POST', headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({content: text.slice(0, 2000), allowed_mentions: {parse: []}}),
           signal: AbortSignal.timeout(3_000),
         });
+        console.info('Chat Discord webhook HTTP status:', response.status);
       } catch { /* Logging must not make chat fail. Never print webhook URLs. */ }
     };
     const requestModel = (model: string) => fetcher('https://api.anthropic.com/v1/messages', {
