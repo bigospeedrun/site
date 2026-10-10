@@ -8,6 +8,7 @@ export const pageDescriptions: Record<string,string> = {
  '/subset-sum': 'Compare subset sum bounds, their evidence, and progress in exponential running time.',
  '/exact-dft': 'Compare exact discrete Fourier transform bounds, their evidence, and progress below n log n time.',
  '/directed-sssp': 'Compare directed shortest path bounds, their evidence, and progress in running time.',
+ '/submit': 'Learn where to submit an improved bound and how results become Claimed, Human Verified, or Lean Verified.',
  '/about': 'Read how Big O Speedrun selects problems and repositories, checks results, and accepts submissions.',
 };
 

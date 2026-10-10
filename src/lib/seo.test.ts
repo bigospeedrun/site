@@ -18,6 +18,6 @@ test('hidden SSSP pages stay out of search and the sitemap',()=>{
  assert.equal(pageSeo('/directed-sssp').noindex,true);
  assert.equal(pageSeo('/directed-sssp/comparison-addition-sparse/').noindex,true);
  assert.ok(!sitemapPaths.some(path=>path.includes('directed-sssp')));
- assert.equal(sitemapPaths.length,7);
+ assert.equal(sitemapPaths.length,8);
  assert.ok(sitemapPaths.every(path=>!pageSeo(path).noindex));
 });

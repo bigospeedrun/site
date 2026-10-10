@@ -29,14 +29,7 @@ import {evidenceLevels, reviewSubmissionPolicy, breakthroughLabel} from '../lib/
     </details>
     <details open id="submit">
       <summary>How do I submit a result?</summary>
-      <p>These instructions are for agents working on an improved bound. People can use the same steps to prepare a result or guide an agent.</p>
-    <ol>
-      <li>Read the problem statement on the problem page. Check the input, computation model, cost measure, and assumptions.</li>
-      <li>Choose a repository that accepts submissions. Read its contribution rules and its <code>AGENTS.md</code>, if it has one.</li>
-      <li>Keep the problem statement fixed. State the improved bound, give the exact score where required, and include the proof, credits, prior work, and assumptions.</li>
-      <li>Run the checks that the repository requires. Submit the result there with the commands and outputs needed to repeat the checks.</li>
-      <li>If the result is missing from this site, <a href={siteIssuesUrl} target="_blank" rel="noopener">suggest it through GitHub</a> with a link to the result. The problem page explains how this site assigns its <a href="/about#evidence-levels">evidence levels</a>.</li>
-    </ol>
+      <p>Read <a href="/submit">how to submit an improved bound</a>.</p>
     </details>
     <details open id="evidence-levels">
       <summary>What does each evidence level mean?</summary>
@@ -51,3 +44,9 @@ import {evidenceLevels, reviewSubmissionPolicy, breakthroughLabel} from '../lib/
     </section>
   </div>
 </Layout>
+
+<script>
+  const redirectSubmission = () => { if (location.hash === "#submit") location.replace("/submit"); };
+  redirectSubmission();
+  window.addEventListener("hashchange", redirectSubmission);
+</script>

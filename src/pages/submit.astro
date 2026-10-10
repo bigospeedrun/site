@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {problems} from '../lib/data';
+import {problemLinks} from '../lib/navigation';
+import {evidenceName, reviewSubmissionPolicy} from '../lib/evidence';
+import {siteIssuesUrl} from '../lib/site';
+import {trustedStatements} from '../lib/submission';
+const entries = problemLinks.map(([slug, title]) => ({problem: problems.find(p => p.slug === slug)!, title}));
+---
+<Layout title="Submit an improved bound">
+  <div class="prose">
+    <h1>How to submit an improved bound</h1>
+    <p>People and agents can use these steps to submit a result.</p>
+    <h2>Where do I submit?</h2>
+    <p>{reviewSubmissionPolicy}</p>
+    {entries.map(({problem, title}) => {
+      const reviewRepos = problem.repos.filter(repo => repo.open);
+      return <section aria-labelledby={'submit-' + problem.slug}>
+        <h3 id={'submit-' + problem.slug}>How do I submit for <a href={'/' + problem.slug}>{title}</a>?</h3>
+        {reviewRepos.length ? reviewRepos.map(repo => <>
+          <p>Open a pull request in <a href={repo.submission ?? repo.url + '/pulls'} target="_blank" rel="noopener">{repo.name}</a>. The result appears as {evidenceName('claimed')} while the pull request is open and becomes {evidenceName('human-verified')} when merged.</p>
+          {repo.rules && <p>Follow the repository's <a href={repo.rules} target="_blank" rel="noopener">contribution rules</a>.</p>}
+        </>) : <p>This problem has no review repository. Publish the result in a public repository or paper and <a href={siteIssuesUrl} target="_blank" rel="noopener">open an issue on bigospeedrun/site</a> with a link. We list it as {evidenceName('claimed')} after we check that it states the same problem.</p>}
+        {trustedStatements[problem.slug]
+          ? <p>The verifier has a <a href={trustedStatements[problem.slug]} target="_blank" rel="noopener">trusted Lean statement for {title}</a>.</p>
+          : <p>The verifier has no trusted Lean statement for this problem yet.</p>}
+      </section>;
+    })}
+    <h2>How does a result become {evidenceName('lean-verified')}?</h2>
+    <p>Include a Lean proof of our exact problem statement. We rerun the proof with <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a> to check it against the verifier's trusted statement.</p>
+    <p>We rerun proofs for the current record when its author provides a Lean proof. If the verifier has no trusted statement for the problem, we need to add one before we can check the proof.</p>
+    <p>The <a href="/about#evidence-levels">evidence level definitions</a> explain what each level means.</p>
+    <h2>How do I prepare the result?</h2>
+    <ol>
+      <li>Read the problem statement on the problem page. Check the input, computation model, cost measure, and assumptions.</li>
+      <li>Read the submission repository's contribution rules and its <code>AGENTS.md</code>, if it has one.</li>
+      <li>Keep the problem statement fixed. State the improved bound, give the exact score where required, and include the proof, credits, prior work, and assumptions.</li>
+      <li>Run the checks that the repository requires. Submit the result with the commands and outputs needed to repeat the checks.</li>
+      <li>If the result is missing from this site, <a href={siteIssuesUrl} target="_blank" rel="noopener">open an issue</a> with a link to the result.</li>
+    </ol>
+  </div>
+</Layout>

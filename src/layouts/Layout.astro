@@ -1,5 +1,6 @@
 ---
 import '../styles/site.css';
+import {problemLinks} from '../lib/navigation';
 import Chatbot from '../components/Chatbot.astro';
 import {dataUpdatedAt} from '../lib/data';
 import 'katex/dist/katex.min.css';
@@ -8,7 +9,7 @@ interface Props { title: string; home?: boolean; dataUpdated?: string; }
 const { title, home = false, dataUpdated = dataUpdatedAt } = Astro.props;
 const pageTitle=home?'Big O Speedrun':title+' · Big O Speedrun';
 const {canonical,description,noindex}=pageSeo(Astro.url.pathname);
-const links = [['integer-multiplication','Integer Multiplication'],['exact-dft','Fourier Transform'],['3sum','3SUM'],['apsp','APSP'],['subset-sum','Subset Sum']];
+const links = problemLinks;
 const fallbackDate = new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(dataUpdated));
 ---
 <!doctype html><html lang="en"><head>
@@ -42,11 +43,11 @@ const fallbackDate = new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Ang
 <script is:inline>try{const t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header"><a class="brand" href="/"><img src="/icon-192.png" width="44" height="44" alt=""/><span>Big O <strong>Speedrun</strong></span></a><div class="header-actions"><a href="/about" aria-current={Astro.url.pathname.replace(/\/$/,'')==='/about'?'page':undefined}>About</a><button id="theme" aria-label="Switch color theme" title="Switch color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="theme-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></g><path class="theme-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div></header>
+<header class="site-header"><a class="brand" href="/"><img src="/icon-192.png" width="44" height="44" alt=""/><span>Big O <strong>Speedrun</strong></span></a><div class="header-actions"><a href="/about" aria-current={Astro.url.pathname.replace(/\/$/,'')==='/about'?'page':undefined}>About</a><a href="/submit" aria-current={Astro.url.pathname.replace(/\/$/,'')==='/submit'?'page':undefined}>Submit</a><button id="theme" aria-label="Switch color theme" title="Switch color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="theme-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></g><path class="theme-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div></header>
 <nav class="problem-nav" aria-label="Problems">{links.map(([slug,label])=><a href={'/'+slug} aria-current={Astro.url.pathname.split('/')[1]===slug?'page':undefined}><span class="tab-full">{label}</span><span class="tab-short">{slug==='integer-multiplication'?'Multiplication':slug==='exact-dft'?'Fourier':label}</span></a>)}</nav>
 <main id="main" class:list={{home}}><slot/></main>
 <footer class="site-footer">
-  <p class="footer-links"><a href="https://github.com/bigospeedrun" target="_blank" rel="noopener">GitHub</a> · <a href="/about">About</a> · <span>Created by <a href="https://nilmamano.com">Nil Mamano</a></span> · <span class="data-updated">Data updated <time datetime={dataUpdated} data-local-datetime>{fallbackDate} PT</time></span></p>
+  <p class="footer-links"><a href="https://github.com/bigospeedrun" target="_blank" rel="noopener">GitHub</a> · <a href="/about">About</a> · <a href="/submit">Submit</a> · <span>Created by <a href="https://nilmamano.com">Nil Mamano</a></span> · <span class="data-updated">Data updated <time datetime={dataUpdated} data-local-datetime>{fallbackDate} PT</time></span></p>
 </footer>
 <script>
   const themeButton=document.getElementById('theme')!;
