@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "submission": {
+    "schema_version": 1,
+    "problem": "dft",
+    "repo_url": "https://github.com/example/proof",
+    "commit": "1111111111111111111111111111111111111111",
+    "bound": "1/1000",
+    "authors": []
+  },
+  "test_only": true,
+  "issue_body_sha256": "61ea05f5c095ad77cc6db7ea72eef6ccedc4dfd7d6a084f920aabeae995af12d",
+  "issue_submitter_login": "submitter",
+  "problem_id": "exact-dft/uniform-exact-arithmetic",
+  "score_relation": "attained",
+  "model_revision": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "model_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+  "source_published_at": null,
+  "checked_at": "2026-10-10T13:00:00Z",
+  "workflow_conclusion": null,
+  "challenge": {
+    "file": "challenges/dft/UniformFourier233.lean",
+    "sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+    "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+    "generated_sha256": "d6173066ce915cd2e85e1c656c31c050ccc9285bf69e8b177cf8e35c55b1650a"
+  },
+  "theorem_names": [
+    "Race.bound"
+  ],
+  "record_gate": null,
+  "submission_sha256": "7775763a3b9d888ca5a721023d2f747e89d4c2531dbf8735eb1d31d11a05eb32",
+  "issue_number": 42,
+  "issue_url": "https://github.com/bigospeedrun/verifier/issues/42",
+  "issue_created_at": "2026-10-10T12:00:00Z",
+  "issue_updated_at": "2026-10-10T12:00:00Z",
+  "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/123/artifacts/99",
+  "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/123",
+  "run_id": "123",
+  "run_attempt": "1",
+  "verifier_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "status": "fixture_only",
+  "verification_status": "passed",
+  "importable": false,
+  "reason": "lean_and_axiom_passed_nanoda_incomplete",
+  "receipt": {
+    "request": {
+      "direct_submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "repo_url": "https://github.com/example/proof",
+        "commit": "1111111111111111111111111111111111111111",
+        "bound": "1/1000",
+        "authors": []
+      },
+      "repo_url": "https://github.com/example/proof",
+      "commit": "1111111111111111111111111111111111111111",
+      "challenge_file": "challenges/dft/UniformFourier233.lean",
+      "theorem_names": "Race.bound",
+      "lean_toolchain": "leanprover/lean4:v4.34.1"
+    },
+    "status": "not_verified",
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "theorems": {
+      "Race.bound": {
+        "lean_kernel": "passed",
+        "nanoda_kernel": "incomplete"
+      }
+    },
+    "kernels": {
+      "lean": {
+        "status": "passed",
+        "reason": "comparator_acceptance"
+      },
+      "nanoda": {
+        "status": "incomplete",
+        "reason": "out_of_memory"
+      }
+    },
+    "axiom_audit": {
+      "status": "passed",
+      "reported_axioms": {
+        "Race.bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "generated_challenge_sha256": "d6173066ce915cd2e85e1c656c31c050ccc9285bf69e8b177cf8e35c55b1650a",
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/123",
+    "verifier_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "checked_at": "2026-10-10T13:00:00Z"
+  },
+  "fixture_note": "Synthetic Race.bound contract test; no proof compiled. Never import into production."
+}
