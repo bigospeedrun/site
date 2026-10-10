@@ -2,7 +2,17 @@
 import base64,json,os,time
 from urllib.parse import urlencode,quote
 from urllib.request import Request,urlopen
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
+from http.client import HTTPException
+from email.utils import parsedate_to_datetime
+
+def rate_limit_wait(headers):
+    value=(headers or {}).get('Retry-After','').strip()
+    if value.isascii() and value.isdigit():return int(value)
+    if value:
+        try:return max(0,parsedate_to_datetime(value).timestamp()-time.time())
+        except (ValueError, TypeError, OverflowError):pass
+    return 20
 
 def api(path,params=None):
     if params:path+=('&' if '?' in path else '?')+urlencode(params)
@@ -13,8 +23,13 @@ def api(path,params=None):
             request=Request('https://api.github.com/'+path,headers=headers,method='GET')
             with urlopen(request,timeout=120) as response:return json.load(response)
         except HTTPError as error:
-            if attempt<2 and error.code in (429,502,503):time.sleep(20);continue
+            if attempt<2 and (error.code==429 or 500<=error.code<600):
+                time.sleep(rate_limit_wait(error.headers) if error.code==429 else 2 ** (attempt+1));continue
             raise RuntimeError(f'GitHub GET failed: {path.split("?")[0]} (HTTP {error.code})') from None
+        except (URLError, ConnectionError, TimeoutError, HTTPException):
+            if attempt<2:
+                time.sleep(2 ** (attempt+1));continue
+            raise RuntimeError(f'GitHub GET failed: {path.split("?")[0]} (connection error after 3 attempts)') from None
     raise RuntimeError('GitHub GET retries exhausted')
 
 def pages(path,params=None,limit=30):
