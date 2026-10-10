@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Privacy">
+  <div class="prose">
+    <h1>Privacy</h1>
+    <p>The site loads Google Analytics on bigospeedrun.com and www.bigospeedrun.com. The configuration requests IP anonymization and disables Google Signals and ad personalization. The site uses Google's default cookie settings.</p>
+    <p>The chatbot sends messages and recent conversation history to Anthropic to generate replies. It also sends site information and the current page path, or the home page path if the page is not in its site information.</p>
+    <p>When Discord logging is enabled, the chatbot sends the latest message, IP address, browser user agent, and page path to a Discord log. It also sends completed replies. Each log entry is limited to 2,000 characters, so some fields can be cut off. The chat shows a notice when this logging is enabled.</p>
+    <p>The chat server uses IP addresses and request times in memory to limit how often visitors can send messages. It also logs Discord delivery status codes. The site's Vercel configuration does not specify request-log fields or retention periods.</p>
+    <p>The site saves the selected color theme in browser local storage. The chatbot keeps conversation history in page memory.</p>
+    <p>For privacy questions, use the <a href="/about#contact">contact links on the About page</a>.</p>
+  </div>
+</Layout>
