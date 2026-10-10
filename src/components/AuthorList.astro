@@ -1,0 +1,11 @@
+---
+import type {Author} from '../lib/types';
+interface Props {authors: Author[]}
+const {authors}=Astro.props;
+---
+<span class="author-list">
+{authors.length<=2 ? authors.map((author,index)=><>{index>0&&' and '}<span class="author"><a href={author.url} target="_blank" rel="noopener">{author.name}</a>{author.twitterUsername&&<> <a class="x-handle" href={`https://x.com/${author.twitterUsername}`} target="_blank" rel="noopener" aria-label={`${author.name} on X`}>@{author.twitterUsername}</a></>}</span></>) : <details><summary><span>{authors[0].name} + {authors.length-1} more</span></summary><ul>{authors.map(author=><li><a href={author.url} target="_blank" rel="noopener">{author.name}</a>{author.twitterUsername&&<> <a class="x-handle" href={`https://x.com/${author.twitterUsername}`} target="_blank" rel="noopener" aria-label={`${author.name} on X`}>@{author.twitterUsername}</a></>}</li>)}</ul></details>}
+</span>
+<style>
+.author-list{overflow-wrap:anywhere;line-height:1.6}.author a,li a{text-decoration:underline;text-underline-offset:.18em;display:inline-block;min-height:44px;align-content:center}.x-handle{font-size:.9em}details{display:inline-block;vertical-align:top;max-width:100%}summary{cursor:pointer;min-height:44px;align-content:center;color:var(--link, var(--accent));text-decoration:underline;text-underline-offset:.18em}ul{margin:.2rem 0;padding-left:1.2rem}a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>

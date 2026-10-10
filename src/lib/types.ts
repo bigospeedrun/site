@@ -1,9 +1,10 @@
 export type ScoreRelation = 'attained' | 'strict-upper-bound';
 import type {EvidenceLevel} from './evidence';
 export interface Link { name: string; url: string }
+export interface Author extends Link { login?: string; twitterUsername?: string }
 export interface RecordEntry {
  id: string; isBreakthrough?: boolean; reproductionOf?: string; score: string; scoreRelation?: ScoreRelation; evidenceLevel: EvidenceLevel; title: string; date: string; dateLabel: string; publicationYear?: number; repo: string; repoId: number;
- authors: Link[]; bound: string; evidence: Link[]; predecessors: string[];
+ authors: Author[]; evidenceUrl?: string; bound: string; evidence: Link[]; predecessors: string[];
  dependencies: { id?: string; statement: string; source_url: string; status: string }[];
  status: string; comparisonNote: string; upstreamStatus: string; upstreamSelected?: boolean; comparison: string; eligible: boolean; raceEventAt?: string; rerunStatus?: {state:string;checked_at?:string;receipt_path?:string|null};
  provenance?: { model?: string; harness?: string; container_digest?: string; logs?: string[] };

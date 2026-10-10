@@ -43,6 +43,12 @@ jobs:
         run: npm ci --ignore-scripts
       - name: Validate and copy data
         run: npm run sync-data
+      - name: Refresh public author profiles
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/refresh-authors.mjs
       - name: Check, test, and build
         run: |
           npm run check
@@ -53,7 +59,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TARGET_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
-          git add -- data/*.json data/sources data/manifests src/data public/sources
+          git add -- data/*.json data/sources data/manifests src/data public/sources src/lib/author-profiles.json
           if git diff --cached --quiet; then
             echo 'Reviewed data is unchanged.'
             exit 0

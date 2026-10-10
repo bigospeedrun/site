@@ -1,8 +1,7 @@
 ---
-import type {RecordEntry} from '../lib/types';import {ranked,boundPrecision,tableBound} from '../lib/ranking';import RecordTable from './RecordTable.astro';
+import type {RecordEntry} from '../lib/types';import {ranked} from '../lib/ranking';import RecordTable from './RecordTable.astro';
 interface Props {records:RecordEntry[];direction:string;label:string;kappa:boolean;}
-const {records,direction,label,kappa}=Astro.props;
-const digits=boundPrecision(records.map(r=>r.score),kappa);
-const rows=ranked(records,direction).map(row=>({...row,record:{...row.record,bound:tableBound(row.record,kappa,row.record.isBreakthrough&&kappa?3:digits)}}));
+const {records,direction,label}=Astro.props;
+const rows=ranked(records,direction);
 ---
 <RecordTable rows={rows} label={label}/>
