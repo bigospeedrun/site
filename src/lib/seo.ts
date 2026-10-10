@@ -8,6 +8,7 @@ export const pageDescriptions: Record<string,string> = {
  '/subset-sum': 'Compare subset sum bounds, their evidence, and progress in exponential running time.',
  '/exact-dft': 'Compare exact discrete Fourier transform bounds, their evidence, and progress below n log n time.',
  '/directed-sssp': 'Compare directed shortest path bounds, their evidence, and progress in running time.',
+ '/privacy': 'Read how the site uses Google Analytics, chat messages and browser storage.',
  '/about': 'Read how Big O Speedrun selects problems and repositories, checks results, and accepts submissions.',
 };
 
@@ -17,7 +18,7 @@ export function pageSeo(pathname:string) {
  const canonicalPath = path==='/'?'/':path;
  return {
   canonical: siteOrigin+canonicalPath,
-  noindex: canonicalPath==='/directed-sssp',
+  noindex: canonicalPath==='/directed-sssp'||canonicalPath==='/404',
   description: pageDescriptions[canonicalPath]??pageDescriptions['/'],
  };
 }

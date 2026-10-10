@@ -4,7 +4,7 @@ import {problemLinks} from '../lib/navigation';
 import Chatbot from '../components/Chatbot.astro';
 import {dataUpdatedAt} from '../lib/data';
 import 'katex/dist/katex.min.css';
-import {pageSeo, shareImage} from '../lib/seo';
+import {pageSeo, shareImage, siteOrigin} from '../lib/seo';
 interface Props { title: string; home?: boolean; dataUpdated?: string; }
 const { title, home = false, dataUpdated = dataUpdatedAt } = Astro.props;
 const pageTitle=home?'Big O Speedrun':title+' · Big O Speedrun';
@@ -17,6 +17,10 @@ const fallbackDate = new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Ang
 <title>{pageTitle}</title><meta name="description" content={description}/>
 {noindex&&<meta name="robots" content="noindex"/>}
 <link rel="canonical" href={canonical}/>
+<link rel="help" type="text/plain" href="/llms.txt" title="Agent guide"/>
+<link rel="alternate" type="application/json" href="/chat-knowledge.json" title="Current records and evidence"/>
+{home && <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Big O Speedrun',url:siteOrigin,description,sameAs:'https://github.com/bigospeedrun'}).replace(/</g,'\\u003c')}/>}
+
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"/>
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192"/>
@@ -47,7 +51,7 @@ const fallbackDate = new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Ang
 <nav class="problem-nav" aria-label="Problems">{links.map(([slug,label])=><a href={'/'+slug} aria-current={Astro.url.pathname.split('/')[1]===slug?'page':undefined}><span class="tab-full">{label}</span><span class="tab-short">{slug==='integer-multiplication'?'Multiplication':slug==='exact-dft'?'Fourier':label}</span></a>)}</nav>
 <main id="main" class:list={{home}}><slot/></main>
 <footer class="site-footer">
-  <p class="footer-links"><a href="https://github.com/bigospeedrun" target="_blank" rel="noopener">GitHub</a> · <a href="/about">About</a> · <span>Created by <a href="https://nilmamano.com">Nil Mamano</a></span> · <span class="data-updated">Data updated <time datetime={dataUpdated} data-local-datetime>{fallbackDate} PT</time></span></p>
+  <p class="footer-links"><a href="https://github.com/bigospeedrun" target="_blank" rel="noopener">GitHub</a> · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <span>Created by <a href="https://nilmamano.com">Nil Mamano</a></span> · <span class="data-updated">Data updated <time datetime={dataUpdated} data-local-datetime>{fallbackDate} PT</time></span></p>
 </footer>
 <script>
   const themeButton=document.getElementById('theme')!;
