@@ -1,0 +1,11 @@
+{
+  "number": 318,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/318",
+  "title": "Re-pin the root Makefile/README in research/joint-dual/SOURCE.json (fixes the failing 'Verify research artifacts' job on main and all PRs)",
+  "body": "The repo-wide **Verify research artifacts** workflow (`make joint-dual-verify`) currently fails on `main` itself (runs at 14:08 and 14:13 UTC today) and therefore on every open pull request, with `AssertionError: Makefile` in `joint_dual_compose.check_sources`: the root `Makefile` and `README.md` changed on main while `research/joint-dual/SOURCE.json` pins their sha256.\n\nThis PR regenerates the pins with the package's own `scripts/experiments/pin_joint_dual_sources.py` (only the `Makefile` and `README.md` digests change) and the two joint-dual certificates that record the source-manifest hash. Locally under Python 3.11: `scripts/experiments/verify_joint_dual.py` passes (`PASS conditional kappa=4764513337/100000000000000 … PASS exact recurrence, 47 strict inequalities, seven margins, eventual cutoffs`) and `tests/test_joint_reclaim.py` passes (16 tests). No mathematical content changes.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+  "created_at": "2026-10-10T16:31:10Z",
+  "updated_at": "2026-10-10T16:39:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
