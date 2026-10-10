@@ -157,11 +157,21 @@ class DirectImportTests(unittest.TestCase):
 
     def test_exact_issue_bytes_and_version_bound(self):
         for change in [{'body':self.issue['body']+'\n'},{'user':{'login':'other'}},{'state':'closed'},
-                       {'updated_at':'2026-10-10T11:00:00Z'},{'pull_request':{}}]:
+                       {'created_at':'2026-10-10T11:00:00Z'},{'pull_request':{}}]:
             with self.subTest(change=change),self.assertRaises(gate.Rejected):self.check(issue={**self.issue,**change})
         for field in ['issue_body_sha256','issue_submitter_login','submission_sha256']:
             env=copy.deepcopy(self.env);env.pop(field)
             with self.subTest(field=field),self.assertRaises(gate.Rejected):self.check(env=env)
+
+    def test_result_comment_keeps_unchanged_submission_valid(self):
+        later = dict(self.issue, updated_at='2026-10-10T23:00:00Z')
+        result = self.check(issue=later)
+        self.assertEqual(result['decision'], 'lean-verified')
+        self.assertEqual(result['id'], self.check()['id'])
+        self.assertEqual(result['issue_updated_at_at_verification'], self.issue['updated_at'])
+        self.assertEqual(result['issue_updated_at_at_import'], later['updated_at'])
+        with self.assertRaises(gate.Rejected):
+            self.check(issue=dict(later, body=later['body'].replace('47171/62500000', '1/1000')))
 
     def test_source_bound_profile_and_theorem_tampering(self):
         for kind in ['source','bound','profile','generated','theorem']:

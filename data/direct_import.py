@@ -159,7 +159,9 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
     require(isinstance(body, str) and len(body.encode()) <= 16000, 'Invalid issue body')
     require(env.get('issue_body_sha256') == sha(body.encode()), 'Exact issue body hash mismatch')
     require(env.get('issue_submitter_login') == issue.get('user', {}).get('login') and bool(env.get('issue_submitter_login')), 'Issue submitter mismatch')
-    require(env.get('issue_created_at') == issue.get('created_at') and env.get('issue_updated_at') == issue.get('updated_at'), 'Issue version mismatch')
+    require(env.get('issue_created_at') == issue.get('created_at'), 'Issue creation identity mismatch')
+    # Comments can change updated_at without changing the bound or source.
+    # The raw body hash and normalized request below bind the actual input.
     submission = parse_body(body)
     require(env.get('submission') == submission and env.get('submission_sha256') == sha(canonical(submission).encode()), 'Normalized submission mismatch')
     require(env.get('problem_id') == PROBLEMS[submission['problem']][0] and env.get('score_relation') == 'attained', 'Envelope model/relation mismatch')
@@ -210,6 +212,9 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
                 problem_id=PROBLEMS[submission['problem']][0], score=submission['bound'], score_relation='attained',
                 source_commit=submission['commit'], source_url=submission['repo_url'], authors=submission['authors'],
                 workflow_conclusion=run.get('conclusion'), issue_submitter=env['issue_submitter_login'], receipt_url=run_url, checked_at=checked_at,
+                issue_created_at=issue.get('created_at'),
+                issue_updated_at_at_verification=env.get('issue_updated_at'),
+                issue_updated_at_at_import=issue.get('updated_at'),
                 review_required=['authorship', 'first publication date', 'historical record eligibility'])
 
 
