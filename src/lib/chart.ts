@@ -67,7 +67,14 @@ export function chartTimeTicks(start:number,end:number,maxTicks:number) {
  return {showTimes:true,times};
 }
 
-export function chartWindowScale(view: ReturnType<typeof chartWindow>, limit: number, zoomed: boolean) {
+export function chartWindowScale(view: ReturnType<typeof chartWindow>, limit: number, zoomed: boolean, classic?: number) {
+ // Polynomial races have tiny improvements near the classic exponent. Keep
+ // their distant trivial limit outside the axis, and retain the entering record
+ // so zoom never clips the horizontal line or hides its next improvement.
+ if(classic!==undefined){
+  const records=[...(view.carry?[view.carry]:[]),...view.records];
+  return chartScale(records.map(r=>scoreValue(r.score)),classic);
+ }
  const records=view.records.length?view.records:view.carry?[view.carry]:[];
  return chartScale(records.map(r=>scoreValue(r.score)),zoomed?undefined:limit);
 }

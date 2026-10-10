@@ -194,3 +194,18 @@ test('nearby exponent ticks have distinct labels at their actual plotted values'
   }
  }
 });
+
+
+test('APSP and 3SUM separate small improvements without forcing the trivial limit onto the axis',()=>{
+ for(const [first,current,classic,limit] of [[2.99942,2.995943,3,2],[1.9992,1.995782,2,1]]){
+  const entries=[e('first',`${Math.round(first*1e6)}/1000000`,0),e('current',`${Math.round(current*1e6)}/1000000`,4*86400000)];
+  for(const hours of [0,72,24]){
+   const scale=chartWindowScale(chartWindow(entries,allLevels,false,hours),limit,hours>0,classic);
+   assert.equal(scale.log,false);
+   assert.ok(scale.lo>limit&&scale.hi>classic);
+   assert.ok(scale.lo<current&&scale.hi>first);
+   // Even a 250px plot must separate these records by at least 100px.
+   assert.ok((first-current)/(scale.hi-scale.lo)*250>100);
+  }
+ }
+});

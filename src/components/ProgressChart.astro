@@ -13,17 +13,19 @@ const symbol = higher ? '\\kappa' : '\\alpha';
 const form = Astro.props.boundLatex ?? (higher ? 'O(n\\log^{1-\\kappa} n)' : slug==='subset-sum' ? 'O^*(2^{\\alpha n})' : slug==='directed-sssp' ? 'O(n\\log^{\\alpha}n)' : 'O(n^{\\alpha})');
 const limit = Astro.props.limit ?? scoreValue(higher ? source?.score.maximum??'1' : source?.score.minimum??'0');
 const limitBound = higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
+const classicRecord = ['apsp','3sum'].includes(slug) ? source?.records.find((r:any)=>r.id==='classical-baseline') : undefined;
+const classic = classicRecord ? scoreValue(classicRecord.score) : undefined;
 const dated = records.filter(r=>chartDate(r)!==undefined);
 const entries:ChartEntry[] = dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(r.bound),url:r.evidence[0]?.url??'#'}));
 const defaultLevels=evidenceLevels.map(l=>l.id);
 const scales=Object.fromEntries(chartRanges.flatMap(range=>Array.from({length:2**evidenceLevels.length},(_,mask)=>{
  const levels=evidenceLevels.filter((_,i)=>mask&(1<<i)).map(l=>l.id);
  const view=chartWindow(entries,new Set(levels),higher,range.hours);
- const scale=chartWindowScale(view,limit,range.hours>0);
+ const scale=chartWindowScale(view,limit,range.hours>0,classic);
  return [`${range.id}:${levels.sort().join(',')}`,{...scale,ticks:scale.ticks.map(t=>({...t,html:math(t.tex)}))}];
 })));
 const scale=scales[`all:${[...defaultLevels].sort().join(',')}`];
-const payload={entries,higher,limit,scales,levels:Object.fromEntries(evidenceLevels.map(l=>[l.id,l.name]))};
+const payload={entries,higher,limit,classic,scales,levels:Object.fromEntries(evidenceLevels.map(l=>[l.id,l.name]))};
 const omitted=records.length-dated.length;
 const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
 ---
@@ -34,7 +36,7 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
     <p>The line connects only entries that improve the best dated bound at the selected evidence levels. The first breakthrough always stays in the progression, regardless of the evidence filters. Its star marks the start of the race. Other marks use the shape of their evidence level. Hover, focus, or tap a mark to see the entry and its source. Dates use known publication or commit dates. The Oct 6 announcements supply the day when an earlier publication date is unknown. A day without a known time has no hour in its tooltip. These dates do not establish scientific priority. Range controls end at the latest dated result. A line entering from the left shows the record already in force; its original mark stays outside the selected range.</p>
     {omitted>0&&<p>{omitted} {omitted===1?'entry has':'entries have'} no known publication date or only a publication year. They remain in the table and are left off this time axis. {slug==='integer-multiplication'&&'The CrocSwap README lists older scores without publication dates; the date we read that list is not the date of each result.'}</p>}
     {strict&&<p>Hollow marks show strict upper endpoints: the bound holds for each smaller fixed value, but not necessarily at the endpoint. They join the record line when the table ranks them first among the dated results available at that time.</p>}
-    <p>On All, the dashed reference is the problem’s limit, <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>). It is a reference, not a proved attainable bound. Zoomed views omit this reference and fit the scale to their visible marks.</p>
+    {classic!==undefined?<p>The vertical axis fits the dated records and the classic bound. The dashed line marks the classic bound. The trivial reference stays below the displayed range so small improvements remain visible. Zoomed views include the record in force at the left edge.</p>:<p>On All, the dashed reference is the problem’s limit, <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>). It is a reference, not a proved attainable bound. Zoomed views omit this reference and fit the scale to their visible marks.</p>}
     {evidenceLevels.map(l=><p><strong>{evidenceName(l.id)}.</strong> {l.definition}</p>)}
   </InfoTooltip></div>
  </div>
@@ -51,6 +53,7 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
   <div class="plot-reference" set:html={math(`${symbol}=${limit}:\\ ${limitBound}`)}/>
   <div class="plot-tooltip" hidden role="status"></div>
  </div>
+ {classic!==undefined&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math(`O(n^{${classic}})`)}/>. The trivial reference <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>) is below this range.</p>}
  <div class="plot-ranges" role="group" aria-label="Date range" hidden={!entries.length}>
   {chartRanges.map(range=><button type="button" data-range={range.id} aria-pressed={range.id==='all'}>{range.name}</button>)}
  </div>
@@ -84,6 +87,7 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
  .plot-tooltip{position:absolute;z-index:5;max-width:360px;width:max-content;background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:0 4px 20px #0002;padding:16px;line-height:1.6;overflow-wrap:anywhere}
  .plot-tooltip :global(p){margin:0 0 .5rem}.plot-tooltip :global(p:last-child){margin:0}
  .plot-tooltip :global(.plot-bound){overflow-x:auto;max-width:100%}
+ .plot-reference-note{margin:6px 0;font-size:16px;line-height:1.5;text-align:center}
  .plot-ranges{display:flex;justify-content:center;gap:4px;margin:3px 0 0}
  .plot-ranges button{font:inherit;font-size:var(--font-min);line-height:1.25;padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--fg);cursor:pointer}
  .plot-ranges button[aria-pressed="true"]{background:var(--link);border-color:var(--link);color:var(--bg)}

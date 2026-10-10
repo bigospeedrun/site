@@ -1,7 +1,7 @@
 import { breakthroughLabel } from '../../lib/evidence';
 import { chartWindow, chartRanges, chartTimeTicks, scoreValue, type ChartEntry } from '../../lib/chart';
 interface Payload {
- entries: ChartEntry[]; higher: boolean; limit: number;
+ entries: ChartEntry[]; higher: boolean; limit: number; classic?: number;
  scales: Record<string,{log:boolean;lo:number;hi:number;ticks:{value:number;html:string}[]}>;
  levels: Record<string,string>;
 }
@@ -41,7 +41,7 @@ class ProgressChart extends HTMLElement {
  disconnectedCallback(){this.observer?.disconnect();window.removeEventListener('evidence-filter-change',this.onEvidenceChange)}
  private closeTooltip(){this.querySelector<HTMLElement>('.plot-tooltip')!.hidden=true}
  private draw(){
-  const {entries,higher,limit}=this.data;
+  const {entries,higher,limit,classic}=this.data;
   const levels=new Set(this.levels);
   const scale=this.data.scales[`${this.range}:${[...levels].sort().join(',')}`];
   this.querySelectorAll('[data-scale-name]').forEach(label=>label.textContent=scale.log?'log':'linear');
@@ -68,10 +68,11 @@ class ProgressChart extends HTMLElement {
    plot.append(svg('line',{x1:left,x2:right,y1:py,y2:py,class:'plot-grid'}));
    const label=document.createElement('span');label.className='axis-tick';label.style.left=`${left}px`;label.style.top=`${py}px`;label.innerHTML=tick.html;labels.append(label);
   }
-  reference.hidden=this.range!=='all';
-  if(this.range==='all'){
-   const limitY=y(limit);
+  reference.hidden=classic!==undefined||this.range!=='all';
+  if(classic!==undefined||this.range==='all'){
+   const limitY=y(classic??limit);
    plot.append(svg('line',{x1:left,x2:right,y1:limitY,y2:limitY,class:'plot-limit'}));
+   reference.style.left=`${left}px`;
    reference.style.top=`${Math.max(0,limitY-28)}px`;
   }
   if(entries.length){
