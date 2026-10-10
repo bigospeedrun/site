@@ -45,14 +45,15 @@ class PRTests(unittest.TestCase):
         env=copy.deepcopy(env or self.env)
         raw_receipt=json.dumps(env['receipt']).encode()
         proof=zipped({'receipt.json':raw_receipt,'pr-request.json':json.dumps(env['request'])})
-        pm=dict(id=8,expired=False,digest='sha256:'+d.sha(proof),name='pr-verification-123-2-3',workflow_run=dict(id=123,head_sha='a'*40))
+        pm=dict(id=8,expired=False,digest='sha256:'+d.sha(proof),name='pr-verification-123-2-3'+('-lean' if env.get('verification_stage')=='lean' else ''),workflow_run=dict(id=123,head_sha='a'*40))
         env['receipt_artifact']=dict(id=8,name=pm['name'],digest=pm['digest'],url='https://github.com/bigospeedrun/verifier/actions/runs/123/artifacts/8')
         env['receipt_sha256']=d.sha(raw_receipt)
-        raw=zipped({'pr-submission-3.json':json.dumps(env)})
+        env_name='pr-submission-3'+('-lean' if env.get('verification_stage')=='lean' else '')+'.json'
+        raw=zipped({env_name:json.dumps(env)})
         am=dict(id=9,expired=False,digest='sha256:'+d.sha(raw),name='pr-submission-123-2-publisher-456-2',workflow_run=dict(id=456,head_sha='a'*40))
         if mutate_artifact:am.update(mutate_artifact)
         if mutate_proof:pm.update(mutate_proof)
-        return p.validate_pr_result(raw,am,'pr-submission-3.json',pr or self.pr,run or self.run,publisher or self.publisher,proof,pm,self.trust,layout or self.layout)
+        return p.validate_pr_result(raw,am,env_name,pr or self.pr,run or self.run,publisher or self.publisher,proof,pm,self.trust,layout or self.layout)
 
     def test_pass_and_separate_source_head(self):
         result,_,_=self.check()
@@ -70,6 +71,22 @@ class PRTests(unittest.TestCase):
         production['request']['test_only'] = False
         self.assertEqual(production['receipt'], smoke['receipt'])
         self.assertEqual(self.check(env=production)[0]['decision'], 'lean-verified')
+
+    def test_early_pr_and_final_blocked_merged_pr(self):
+        early=copy.deepcopy(self.env);early['verification_stage']='lean';early['workflow_conclusion']=None
+        receipt=early['receipt'];receipt['verification_stage']='lean'
+        receipt['kernels']['nanoda']=dict(status='pending',reason='advisory_queued')
+        receipt['theorems']['Race.bound']['nanoda_kernel']='pending'
+        run=dict(self.run,status='in_progress',conclusion=None)
+        self.assertEqual(self.check(env=early,run=run)[0]['decision'],'lean-verified')
+        final=copy.deepcopy(self.env);final.update(verification_stage='final',importable=False,disposition='blocked')
+        final['receipt']['verification_stage']='final'
+        final['receipt']['kernels']['nanoda']=dict(status='rejected',reason='nanoda_type_equality_rejection')
+        final['receipt']['theorems']['Race.bound']['nanoda_kernel']='rejected'
+        self.assertEqual(self.check(env=final)[0]['decision'],'blocked')
+        final['receipt']['kernels']['nanoda']['status']='passed'
+        final['receipt']['theorems']['Race.bound']['nanoda_kernel']='passed'
+        with self.assertRaises(d.Rejected):self.check(env=final)
 
     def test_only_merged_and_non_test(self):
         for change in [dict(state='open',merged=False),dict(merged=False),dict(merge_commit_sha='e'*40),dict(labels=[{'name':'test'}])]:

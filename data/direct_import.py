@@ -100,7 +100,8 @@ def parse_body(body):
 def checked_receipt(archive, metadata, env, run, revision):
     require(isinstance(archive, bytes) and len(archive) <= MAX_EVIDENCE_BYTES, 'Missing or oversized receipt archive')
     require(isinstance(metadata, dict), 'Missing receipt artifact metadata')
-    expected = dict(id=metadata.get('id'), name=f'verifier-receipt-and-logs-{run["id"]}-{run["run_attempt"]}-{env["issue_number"]}',
+    suffix = '-lean' if env.get('verification_stage') == 'lean' else ''
+    expected = dict(id=metadata.get('id'), name=f'verifier-receipt-and-logs-{run["id"]}-{run["run_attempt"]}-{env["issue_number"]}{suffix}',
                     digest='sha256:'+sha(archive), archive_url=f'https://github.com/{REPOSITORY}/actions/runs/{run["id"]}/artifacts/{metadata.get("id")}')
     require(type(metadata.get('id')) is int and not metadata.get('expired', True), 'Invalid receipt artifact')
     require(metadata.get('name') == expected['name'] and metadata.get('digest') == expected['digest'], 'Receipt artifact digest/name mismatch')
@@ -143,7 +144,7 @@ theorem Race.bound : ∃ order solve W, DFTProgram order solve W ∧
         target = f'theorem Race.bound : EndStatement.{problem}.SolvedInTime (({n} : Rat) / {d}) := by\n  sorry\n'
     return base + ('\n-- Big O Speedrun exact-bound target; generated from validated integers.\n' + target).encode()
 
-def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt_archive=None, receipt_artifact=None):
+def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt_archive=None, receipt_artifact=None, publisher=None):
     """Return a review candidate; even a pass does not establish credit or priority."""
     require(not is_test_submission(issue), 'Test-labeled submission stays off the board')
     require(len(archive) <= MAX_BYTES, 'Artifact exceeds size limit')
@@ -154,22 +155,32 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
     require(revision in trusted_revisions, 'Unreviewed verifier revision')
     trust = trusted_revisions[revision]
     require(run.get('path') == WORKFLOW and run.get('workflow_id') == trust['workflow_id'], 'Workflow identity mismatch')
-    require(run.get('head_branch') == trust['branch'] and run.get('event') in ('issues', 'schedule', 'workflow_dispatch') and run.get('status') == 'completed', 'Untrusted or unfinished run')
+    early = publisher is not None
+    require(run.get('head_branch') == trust['branch'] and run.get('event') in ('issues', 'schedule', 'workflow_dispatch') and run.get('status') in (('in_progress', 'completed') if early else ('completed',)), 'Untrusted or unfinished run')
     require(any(ref.get('path','').split('@')[0] == REPOSITORY+'/'+REUSABLE and ref.get('sha') == revision for ref in run.get('referenced_workflows', [])), 'Reusable workflow revision mismatch')
     run_id, attempt = str(run['id']), str(run['run_attempt'])
     run_url = f'https://github.com/{REPOSITORY}/actions/runs/{run_id}'
     require(run.get('html_url') == run_url, 'Run URL mismatch')
-    require(artifact.get('name') == f'direct-submission-{run_id}-{attempt}-{issue["number"]}', 'Artifact attempt mismatch')
-    require(artifact.get('workflow_run', {}).get('id') == run['id'] and artifact['workflow_run'].get('head_sha') == revision, 'Artifact run mismatch')
+    if not early:
+        require(artifact.get('name') == f'direct-submission-{run_id}-{attempt}-{issue["number"]}', 'Artifact attempt mismatch')
+        require(artifact.get('workflow_run', {}).get('id') == run['id'] and artifact['workflow_run'].get('head_sha') == revision, 'Artifact run mismatch')
     try:
         with zipfile.ZipFile(io.BytesIO(archive)) as zipped:
-            require(zipped.namelist() == ['direct-submission.json'], 'Unexpected artifact members')
-            require(zipped.infolist()[0].file_size <= MAX_BYTES, 'Expanded artifact exceeds size limit')
-            env = read_json(zipped.read('direct-submission.json'))
+            name = f'direct-submission-{issue["number"]}-lean.json' if early else 'direct-submission.json'
+            require(name in zipped.namelist() and len(zipped.namelist()) == len(set(zipped.namelist())), 'Unexpected artifact members')
+            if not early: require(zipped.namelist() == [name], 'Unexpected artifact members')
+            require(sum(x.file_size for x in zipped.infolist()) <= MAX_BYTES, 'Expanded artifact exceeds size limit')
+            env = read_json(zipped.read(name))
     except (zipfile.BadZipFile, RuntimeError) as error:
         raise Rejected('Invalid artifact archive') from error
     require(isinstance(env, dict) and type(env.get('schema_version')) is int and env['schema_version'] == 1, 'Unsupported envelope')
     require(not is_test_submission(issue, env), 'Test submission stays off the board at every evidence level')
+    if early:
+        from direct_pr import validate_publisher_artifact
+        validate_publisher_artifact(env, artifact, run, publisher, trusted_revisions)
+        require(env.get('verification_stage') == 'lean' and env.get('receipt',{}).get('verification_stage') == 'lean', 'Missing early stage binding')
+    else:
+        require(env.get('verification_stage', 'final') == 'final' and env.get('receipt',{}).get('verification_stage', 'final') == 'final', 'Final artifact has early stage')
     receipt = env.get('receipt', {})
     require(isinstance(receipt, dict) and env.get('test_only') is False and env.get('importable') is True and env.get('status') != 'fixture_only' and not receipt.get('test_only'), 'Test replay is not importable')
     receipt = checked_receipt(receipt_archive, receipt_artifact, env, run, revision)
@@ -191,7 +202,7 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
     require(env.get('submission') == submission and env.get('submission_sha256') == sha(canonical(submission).encode()), 'Normalized submission mismatch')
     require(env.get('problem_id') == PROBLEMS[submission['problem']][0] and env.get('score_relation') == 'attained', 'Envelope model/relation mismatch')
     require(env.get('source_published_at') is None, 'Publication date needs independent review')
-    require(env.get('workflow_conclusion') is None, 'Producer cannot supply workflow conclusion')
+    require(env.get('workflow_conclusion') in (None, run.get('conclusion')) if early else env.get('workflow_conclusion') is None, 'Workflow conclusion mismatch')
     key = submission.get('entrypoint', submission['problem'])
     profile = trust['profiles'][key]
     base = trust['statements'][profile['challenge_file']]
@@ -247,7 +258,9 @@ def validate_proof(submission, receipt, trust, revision, run_url):
     if nanoda_state == 'rejected' or any(receipt['theorems'][name].get('nanoda_kernel') == 'rejected' for name in names):
         decision, reason = 'blocked', 'Nanoda rejected the proof; escalate to Lead'
     elif lean.get('status') == 'passed' and audit.get('status') == 'passed' and all(receipt['theorems'][name].get('lean_kernel') == 'passed' for name in names):
-        if nanoda_state == 'passed' and all(receipt['theorems'][name].get('nanoda_kernel') == 'passed' for name in names):
+        if receipt.get('verification_stage') == 'lean' and nanoda_state == 'pending' and nanoda.get('reason') == 'advisory_queued' and all(receipt['theorems'][name].get('nanoda_kernel') == 'pending' for name in names):
+            decision, reason = 'lean-verified', 'Lean and permitted-axiom audit passed; nanoda advisory check pending'
+        elif nanoda_state == 'passed' and all(receipt['theorems'][name].get('nanoda_kernel') == 'passed' for name in names):
             decision, reason = 'lean-verified', 'Lean and nanoda passed; permitted-axiom audit passed'
         elif nanoda_state == 'incomplete' and nanoda.get('reason') in ('out_of_memory', 'timeout', 'disk_limit', 'total_deadline') and all(receipt['theorems'][name].get('nanoda_kernel') == 'incomplete' for name in names):
             decision, reason = 'lean-verified', 'Lean and permitted-axiom audit passed; nanoda incomplete: ' + nanoda['reason']

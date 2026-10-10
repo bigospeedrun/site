@@ -47,7 +47,7 @@ class DirectImportTests(unittest.TestCase):
             issue_url=self.issue['html_url'],issue_created_at=self.issue['created_at'],issue_updated_at=self.issue['updated_at'],
             run_id='123',run_attempt='2',run_url=self.run['html_url'],verifier_commit=self.revision,status='passed',receipt=receipt)
 
-    def check(self, *, env=None, run=None, issue=None, meta_change=None, extra_file=False, receipt_meta_change=None, raw_receipt_tamper=False, log_files=None):
+    def check(self, *, env=None, run=None, issue=None, meta_change=None, extra_file=False, receipt_meta_change=None, raw_receipt_tamper=False, log_files=None, publisher=None):
         env=copy.deepcopy(self.env if env is None else env)
         raw=json.dumps(env['receipt']).encode()
         receipt_stream=io.BytesIO()
@@ -56,7 +56,7 @@ class DirectImportTests(unittest.TestCase):
             for name, content in (log_files or {}).items():
                 zipped.writestr(name, content)
         receipt_archive=receipt_stream.getvalue()
-        receipt_meta=dict(id=100,expired=False,name='verifier-receipt-and-logs-123-2-7',digest='sha256:'+gate.sha(receipt_archive),workflow_run={'id':123,'head_sha':self.revision})
+        receipt_meta=dict(id=100,expired=False,name='verifier-receipt-and-logs-123-2-7'+('-lean' if publisher else ''),digest='sha256:'+gate.sha(receipt_archive),workflow_run={'id':123,'head_sha':self.revision})
         env['receipt_artifact']={k:receipt_meta[k] for k in ['id','name','digest']}
         env['receipt_artifact']['archive_url']='https://github.com/bigospeedrun/verifier/actions/runs/123/artifacts/100'
         env['receipt_url']=env['receipt_artifact']['archive_url']
@@ -64,13 +64,15 @@ class DirectImportTests(unittest.TestCase):
         if receipt_meta_change:receipt_meta.update(receipt_meta_change)
         stream=io.BytesIO()
         with zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED) as zipped:
-            zipped.writestr('direct-submission.json',json.dumps(env))
+            zipped.writestr('direct-submission-7-lean.json' if publisher else 'direct-submission.json',json.dumps(env))
             if extra_file:zipped.writestr('../code.py','not executed')
         archive=stream.getvalue()
         meta=dict(id=99,expired=False,digest='sha256:'+gate.sha(archive),name='direct-submission-123-2-7',
                   workflow_run={'id':123,'head_sha':self.revision})
+        if publisher:
+            meta.update(name='pr-submission-123-2-publisher-456-2',workflow_run={'id':456,'head_sha':self.revision})
         if meta_change:meta.update(meta_change)
-        return gate.validate_result(archive, self.issue if issue is None else issue,self.run if run is None else run,meta,self.trust,receipt_archive=receipt_archive,receipt_artifact=receipt_meta)
+        return gate.validate_result(archive, self.issue if issue is None else issue,self.run if run is None else run,meta,self.trust,receipt_archive=receipt_archive,receipt_artifact=receipt_meta,publisher=publisher)
 
     def test_committed_form_and_challenge_fixture(self):
         body = (FIXTURES/'issue-form-body.txt').read_text()
@@ -116,6 +118,20 @@ class DirectImportTests(unittest.TestCase):
         production.update(test_only=False, importable=True, status='passed')
         self.assertEqual(production['receipt'], smoke['receipt'])
         self.assertEqual(self.check(env=production)['decision'], 'lean-verified')
+
+    def test_early_issue_binds_publisher_stage_and_pending_reason(self):
+        self.trust[self.revision]['publisher_workflow_id']=43
+        publisher=dict(self.run,id=456,workflow_id=43,path='.github/workflows/pr-publish.yml',event='workflow_run',html_url='https://github.com/bigospeedrun/verifier/actions/runs/456')
+        self.env.update(verification_stage='lean',publisher_commit=self.revision,publisher_run_id='456',publisher_run_attempt='2')
+        receipt=self.env['receipt'];receipt['verification_stage']='lean'
+        receipt['kernels']['nanoda']=dict(status='pending',reason='advisory_queued')
+        for target in receipt['theorems'].values():target['nanoda_kernel']='pending'
+        run=dict(self.run,status='in_progress',conclusion=None)
+        self.assertEqual(self.check(run=run,publisher=publisher)['decision'],'lean-verified')
+        with self.assertRaises(gate.Rejected):self.check(run=run)
+        with self.assertRaises(gate.Rejected):self.check(run=run,publisher=dict(publisher,head_sha='b'*40))
+        receipt['kernels']['nanoda']['reason']='unknown'
+        self.assertEqual(self.check(run=run,publisher=publisher)['decision'],'pending')
 
     def test_evidence_log_hashes(self):
         content = b'Synthetic test log, not proof evidence.'

@@ -111,3 +111,33 @@ class RefreshTests(unittest.TestCase):
         first=importer.evidence(*args);saved=dict(importer.files)
         self.assertEqual(first,importer.evidence(*args))
         self.assertEqual(saved,importer.files)
+
+    def test_final_rejection_survives_expiry_restart_and_late_early_pass(self):
+        importer=r.Importer(DiscoveryAPI())
+        claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
+        key='direct-issue-5';early=dict(decision='lean-verified');blocked=dict(decision='blocked')
+        importer.retain_outcome(key,claim,'lean',early,{'marker':'early'})
+        self.assertIn('verification',claim)
+        importer.retain_outcome(key,claim,'final',blocked,{'marker':'final-rejection'})
+        self.assertTrue(claim['exclude']);self.assertNotIn('verification',claim)
+        # Even an early publisher that uploads late cannot undo final rejection.
+        importer.retain_outcome(key,claim,'lean',early,{'marker':'late-early'})
+        self.assertTrue(claim['exclude']);self.assertNotIn('verification',claim)
+        previous=dict(entries={},final_states=copy.deepcopy(importer.final_states))
+        fresh=r.Importer(DiscoveryAPI())
+        new_claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
+        self.assertEqual(fresh.verify({key:new_claim},previous),{})
+        self.assertEqual(fresh.final_states,previous['final_states'])
+        # Changed source gets its own decision; the rejected source stays blocked.
+        changed=copy.deepcopy(new_claim);changed.pop('exclude',None);changed['submission']['commit']='c'*40
+        fresh.retain_outcome(key,changed,'lean',early,{'marker':'changed-source'})
+        self.assertIn('verification',changed)
+
+    def test_final_ambiguous_cannot_reuse_early_pass(self):
+        importer=r.Importer(DiscoveryAPI())
+        claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
+        key='direct-issue-5'
+        importer.retain_outcome(key,claim,'lean',{'decision':'lean-verified'},{'marker':'early'})
+        importer.retain_outcome(key,claim,'final',{'decision':'pending'},{'marker':'ambiguous'})
+        importer.retain_outcome(key,claim,'lean',{'decision':'lean-verified'},{'marker':'late-early'})
+        self.assertNotIn('verification',claim)

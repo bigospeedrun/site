@@ -19,12 +19,12 @@ def archive_members(raw, metadata):
         require(sum(i.file_size for i in archive.infolist())<=MAX_EVIDENCE_BYTES,'Expanded artifact too large')
         return {n:archive.read(n) for n in names}
 
-def validate_run(run, trust, publisher=False):
+def validate_run(run, trust, publisher=False, early=False):
     revision=run.get('head_sha')
     require(revision in trust,'Unreviewed workflow revision')
     policy=trust[revision]
     require(run.get('repository',{}).get('full_name')==REPOSITORY and run.get('head_repository',{}).get('full_name')==REPOSITORY,'Untrusted workflow repository')
-    require(run.get('status')=='completed' and run.get('head_branch')=='main','Unfinished or non-main run')
+    require(run.get('status') in (('in_progress','completed') if early and not publisher else ('completed',)) and run.get('head_branch')=='main','Unfinished or non-main run')
     require(run.get('path')==(PUBLISHER if publisher else WORKFLOW),'Wrong workflow path')
     require(run.get('workflow_id')==policy['publisher_workflow_id' if publisher else 'workflow_id'],'Wrong workflow ID')
     require(run.get('event') in (('workflow_run',) if publisher else ('schedule','issues','workflow_dispatch')),'Wrong workflow event')
@@ -32,6 +32,13 @@ def validate_run(run, trust, publisher=False):
     if not publisher:
         require(any(x.get('sha')==revision and x.get('path','').split('@')[0]==REPOSITORY+'/'+REUSABLE for x in run.get('referenced_workflows',[])),'Reusable workflow revision mismatch')
     return policy
+
+def validate_publisher_artifact(env, artifact, run, publisher, trust):
+    validate_run(publisher, trust, publisher=True)
+    require(env.get('publisher_commit')==publisher['head_sha'] and env.get('publisher_run_id')==str(publisher['id']) and env.get('publisher_run_attempt')==str(publisher['run_attempt']), 'Publisher pin mismatch')
+    name=f'pr-submission-{run["id"]}-{run["run_attempt"]}-publisher-{publisher["id"]}-{publisher["run_attempt"]}'
+    require(artifact.get('name')==name and artifact.get('workflow_run',{}).get('id')==publisher['id'] and artifact['workflow_run'].get('head_sha')==publisher['head_sha'], 'Publisher artifact identity mismatch')
+
 
 def blob_hash(raw):
     return hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
@@ -93,22 +100,26 @@ def inspect_pr(api, pr, base_sha=None):
                 changed_files_sha256=sha(canonical(changed).encode()),head_sha=head,base_sha=base)
 
 def validate_pr_result(raw, result_artifact, env_name, pr, run, publisher, proof_raw, proof_artifact, trust, layout):
-    policy=validate_run(run,trust);validate_run(publisher,trust,True)
+    early=env_name.endswith('-lean.json')
+    policy=validate_run(run,trust,early=early);validate_run(publisher,trust,True)
+    suffix='-lean' if early else ''
     members=archive_members(raw,result_artifact)
-    require(env_name==f'pr-submission-{pr["number"]}.json' and env_name in members,'Missing PR envelope')
+    require(env_name==f'pr-submission-{pr["number"]}{suffix}.json' and env_name in members,'Missing PR envelope')
     env=read_json(members[env_name]);request=env.get('request',{})
     require(not is_test_submission(pr,env) and env.get('test_only') is False and request.get('test_only') is False,'Test PR receipt stays off board')
     require(env.get('schema_version')==2 and env.get('route')=='pull_request' and request.get('route')=='pull_request','Wrong PR schema')
-    require(pr.get('merged') is True and pr['state']=='closed' and env.get('importable') is True and env.get('disposition')=='merge','PR not API-confirmed merged')
+    require(pr.get('merged') is True and pr['state']=='closed','PR not API-confirmed merged')
+    require((env.get('importable') is True and env.get('disposition')=='merge') or (not early and env.get('importable') is False and env.get('disposition') in ('blocked','keep_open')), 'Invalid PR disposition')
+    require(env.get('verification_stage','final') == ('lean' if early else 'final') and env.get('receipt',{}).get('verification_stage','final') == ('lean' if early else 'final'), 'Receipt stage mismatch')
     require(env.get('merge_commit')==pr.get('merge_commit_sha') and re.fullmatch('[0-9a-f]{40}',pr.get('merge_commit_sha','')),'Merge identity mismatch')
     require(env.get('publisher_commit')==publisher['head_sha'] and env.get('publisher_run_id')==str(publisher['id']) and env.get('publisher_run_attempt')==str(publisher['run_attempt']),'Publisher pin mismatch')
     name=f'pr-submission-{run["id"]}-{run["run_attempt"]}-publisher-{publisher["id"]}-{publisher["run_attempt"]}'
     require(result_artifact.get('name')==name and result_artifact.get('workflow_run',{}).get('id')==publisher['id'] and result_artifact['workflow_run'].get('head_sha')==publisher['head_sha'],'Publisher artifact identity mismatch')
-    require(env.get('run_id')==str(run['id']) and env.get('run_attempt')==str(run['run_attempt']) and env.get('run_url')==run['html_url'] and env.get('verifier_commit')==run['head_sha'] and env.get('workflow_path')==WORKFLOW and env.get('workflow_conclusion')==run['conclusion'],'Verification run mismatch')
+    require(env.get('run_id')==str(run['id']) and env.get('run_attempt')==str(run['run_attempt']) and env.get('run_url')==run['html_url'] and env.get('verifier_commit')==run['head_sha'] and env.get('workflow_path')==WORKFLOW and (env.get('workflow_conclusion') in (None,run['conclusion']) if early else env.get('workflow_conclusion')==run['conclusion']),'Verification run mismatch')
     require(request.get('pr_number')==pr['number'] and request.get('pr_url')==pr['html_url']==f'https://github.com/{REPOSITORY}/pull/{pr["number"]}' and request.get('pr_submitter_login')==pr['user']['login'] and request.get('pr_created_at')==pr['created_at'],'PR identity mismatch')
     require(request.get('verifier_commit')==run['head_sha'] and request.get('gate')=='ready','Controller/gate mismatch')
     for key,value in layout.items():require(request.get(key)==value,'PR source binding mismatch: '+key)
-    proof_name=f'pr-verification-{run["id"]}-{run["run_attempt"]}-{pr["number"]}'
+    proof_name=f'pr-verification-{run["id"]}-{run["run_attempt"]}-{pr["number"]}{suffix}'
     require(proof_artifact.get('name')==proof_name and proof_artifact.get('workflow_run',{}).get('id')==run['id'] and proof_artifact['workflow_run'].get('head_sha')==run['head_sha'],'Proof artifact identity mismatch')
     expected=dict(id=proof_artifact['id'],name=proof_name,digest=proof_artifact['digest'],url=f'https://github.com/{REPOSITORY}/actions/runs/{run["id"]}/artifacts/{proof_artifact["id"]}')
     require(env.get('receipt_artifact')==expected,'Proof artifact envelope mismatch')
@@ -123,4 +134,6 @@ def validate_pr_result(raw, result_artifact, env_name, pr, run, publisher, proof
     require(logs<=hashes.keys(),'Missing evidence log hash')
     for name,digest in hashes.items():require(name in evidence and sha(evidence[name])==digest,'Receipt log hash mismatch')
     decision,reason,checked=validate_proof(layout['submission'],receipt,policy,run['head_sha'],run['html_url'])
+    if env.get('disposition') == 'blocked': require(decision == 'blocked', 'Unsubstantiated rejection')
+    if env.get('disposition') == 'keep_open': require(decision == 'pending', 'Unsubstantiated suspension')
     return dict(decision=decision,reason=reason,checked_at=checked,receipt_url=run['html_url']),env,evidence

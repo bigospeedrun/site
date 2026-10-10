@@ -42,3 +42,15 @@ GitHub labels. Smoke issue #1 and PR #2 are also permanently excluded by number.
 
 PR envelope/receipt fixtures were read at verifier 49c04a7. They remain synthetic
 and non-importable. Production proof outcomes are never inferred from fixtures.
+
+Early publication contract reviewed at verifier 038a82c on 2026-10-11.
+The prior 49c04a7 policy is retained for its in-flight final-only smoke.
+Early evidence binds a completed trusted publisher, the source run and attempt,
+the immutable -lean proof artifact, and verification_stage=lean in both envelope
+and receipt. Only exact-target Lean acceptance with the permitted-axiom audit and
+nanoda pending/advisory_queued can use this path. Source verification may still run.
+Final outcomes are retained per submission fingerprint in direct-submissions.json.
+A final nanoda rejection removes the row and remains blocked after artifact expiry
+or a late early-publisher result. A final ambiguous result removes early Verified
+status. A changed source is a new submission fingerprint. Smoke identities and all
+test flags remain excluded. The publisher owns the maintainer rejection alert.

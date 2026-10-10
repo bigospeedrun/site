@@ -28,7 +28,7 @@ def json_bytes(value):return (json.dumps(value,indent=2,ensure_ascii=False)+'\n'
 
 class Importer:
     def __init__(self, api, root=ROOT):
-        self.api=api;self.root=Path(root);self.trust={};self.runs={};self.files={};self.notes=[]
+        self.api=api;self.root=Path(root);self.trust={};self.runs={};self.files={};self.notes=[];self.final_states={}
         self.config=json.loads((self.root/'direct-trust.json').read_text())
         self.policy_hash=sha(canonical(self.config).encode())
 
@@ -38,8 +38,8 @@ class Importer:
             tree=self.api.json(PREFIX+'git/trees/'+revision,{'recursive':1})
             require(not tree.get('truncated'),'Truncated controller tree')
             actual={e['path']:dict(sha=e['sha'],mode=e['mode']) for e in tree['tree'] if e['type']!='tree' and not e['path'].startswith('submissions/')}
-            require(actual==self.config['controller_blobs'],'Unreviewed controller content')
-            policy=copy.deepcopy(self.config);policy['statements']={}
+            require(actual in [self.config['controller_blobs'], *self.config.get('previous_controller_blobs', {}).values()], 'Unreviewed controller content')
+            policy=copy.deepcopy(self.config);policy['controller_blobs']=actual;policy['statements']={}
             for profile in policy['profiles'].values():
                 path=profile['challenge_file']
                 if path in policy['statements']:continue
@@ -96,7 +96,7 @@ class Importer:
         return claims
 
     def evidence(self,key,env,run,artifact,proof_artifact,result_raw,proof_raw,verdict,publisher=None):
-        identity=f'{key}-{run["id"]}-{run["run_attempt"]}'
+        identity=f'{key}-{run["id"]}-{run["run_attempt"]}'+('-'+env['verification_stage'] if env.get('verification_stage') else '')
         prefix='sources/'+identity
         witness=dict(envelope=env,verification_run=run,result_artifact=artifact,proof_artifact=proof_artifact)
         if publisher:witness['publisher_run']=publisher
@@ -108,14 +108,37 @@ class Importer:
                 archive.writestr(info, raw)
         self.files[prefix+'.zip']=zipped.getvalue()
         self.files[prefix+'-source.json']=json_bytes(witness)
-        summary=dict(schema_version=1,status='passed',checked_at=verdict['checked_at'],
+        summary=dict(schema_version=1,status='passed' if verdict['decision']=='lean-verified' else verdict['decision'],checked_at=verdict['checked_at'],
             description=verdict['reason'],receipt_url=verdict['receipt_url'],
             artifact_path=prefix+'.zip',artifact_sha256=sha(zipped.getvalue()),source_receipt_path=prefix+'-source.json')
         self.files[prefix+'.json']=json_bytes(summary)
         return dict(**verdict,receipt_path=prefix+'.json',receipt_sha256=sha(self.files[prefix+'.json']),policy_hash=self.policy_hash,result_artifact_id=artifact.get('id'),
+                    controller_fingerprint=sha(canonical(self.trust[run['head_sha']]['controller_blobs']).encode()) if run.get('head_sha') in self.trust else None,
                     source_file=env.get('receipt',{}).get('profile',{}).get('solution_module','Submission').replace('.', '/')+'.lean')
 
+    def outcome_id(self,key,submission):
+        return key+':'+sha(canonical(submission).encode())
+
+    def retain_outcome(self,key,claim,stage,verdict,evidence):
+        identity=self.outcome_id(key,claim['submission'])
+        previous=self.final_states.get(identity)
+        if previous and previous['decision']=='blocked':
+            claim.pop('verification',None);claim['exclude']=True
+            return
+        if stage=='lean' and previous:
+            # A late checkpoint cannot replace any final outcome for this source.
+            if previous['decision']!='lean-verified':claim.pop('verification',None)
+            return
+        if stage=='final':
+            self.final_states[identity]=dict(key=key,submission=claim['submission'],decision=verdict['decision'],evidence=evidence)
+        if verdict['decision']=='blocked':
+            claim.pop('verification',None);claim['exclude']=True
+            self.notes.append(key+': nanoda rejected; row blocked; publisher maintainer alert applies')
+        elif verdict['decision']=='lean-verified':claim['verification']=evidence
+        else:claim.pop('verification',None)
+
     def verify(self,claims,previous):
+        self.final_states=copy.deepcopy(previous.get('final_states',{}))
         # Keep a validated receipt across GitHub artifact expiry, but never across
         # changed submission bytes, test labels, closure, or changed trust policy.
         for key,claim in claims.items():
@@ -124,10 +147,21 @@ class Importer:
             if claim['submission'] is None and prior.get('submission') and claim['item']['head']['sha']==prior['submission']['commit']:
                 claim['submission']=prior['submission'];same=True
             proof=prior.get('verification')
-            if same and proof and proof.get('policy_hash')==self.policy_hash:
+            approved_fingerprints={sha(canonical(blobs).encode()) for blobs in [self.config['controller_blobs'],*self.config.get('previous_controller_blobs',{}).values()]}
+            if same and proof and (proof.get('policy_hash')==self.policy_hash or proof.get('controller_fingerprint') in approved_fingerprints):
                 path=self.root/proof['receipt_path']
                 if path.is_file() and sha(path.read_bytes())==proof['receipt_sha256']:
                     claim['verification']=proof
+        for key,claim in claims.items():
+            if claim['submission'] is None:
+                for state in self.final_states.values():
+                    if state['key']==key and state['submission']['commit']==claim['item']['head']['sha']:
+                        claim['submission']=state['submission'];break
+            if claim['submission']:
+                state=self.final_states.get(self.outcome_id(key,claim['submission']))
+                if state and state['decision']!='lean-verified':
+                    claim.pop('verification',None)
+                    if state['decision']=='blocked':claim['exclude']=True
         artifacts=self.api.pages(PREFIX+'actions/artifacts',key='artifacts')
         by_id={a['id']:a for a in artifacts}
         # Newest result for a source wins; process oldest first.
@@ -139,11 +173,11 @@ class Importer:
                 if key not in claims:continue
             else:
                 if not artifact['name'].startswith('pr-submission-'):continue
-                if not any(c['route']=='pull_request' for c in claims.values()):continue
+                if not claims:continue
             raw=self.artifact(artifact)
             members=archive_members(raw,artifact)
             for name,content in members.items():
-                if name!='direct-submission.json' and not re.fullmatch(r'pr-submission-\d+\.json',name):continue
+                if name!='direct-submission.json' and not re.fullmatch(r'(?:pr-submission-\d+(?:-lean)?|direct-submission-\d+-lean)\.json',name):continue
                 env=read_json(content)
                 number=env.get('issue_number') if env.get('schema_version')==1 else env.get('request',{}).get('pr_number')
                 key=('direct-issue-' if env.get('schema_version')==1 else 'direct-pr-')+str(number)
@@ -159,17 +193,17 @@ class Importer:
                     require(not proof_meta.get('expired'),'Evidence artifact expired')
                     proof_raw=self.artifact(proof_meta)
                     if env['schema_version']==1:
-                        verdict=validate_result(raw,item,run,artifact,self.trust,receipt_archive=proof_raw,receipt_artifact=proof_meta)
                         publisher=None
+                        if name.endswith('-lean.json'):
+                            publisher=self.run(int(env['publisher_run_id']));self.trusted(publisher['head_sha'])
+                        verdict=validate_result(raw,item,run,artifact,self.trust,receipt_archive=proof_raw,receipt_artifact=proof_meta,publisher=publisher)
                     else:
                         publisher=self.run(int(env['publisher_run_id']));self.trusted(publisher['head_sha'])
                         layout=inspect_pr(self.api,item,env['request']['base_sha'])
                         verdict,env,_=validate_pr_result(raw,artifact,name,item,run,publisher,proof_raw,proof_meta,self.trust,layout)
                         claim['submission']=layout['submission']
-                    if verdict['decision']=='blocked':
-                        claim['exclude']=True;self.notes.append(key+': nanoda rejected; row blocked');continue
-                    if verdict['decision']=='lean-verified':
-                        claim['verification']=self.evidence(key,env,run,artifact,proof_meta,raw,proof_raw,verdict,publisher)
+                    evidence=self.evidence(key,env,run,artifact,proof_meta,raw,proof_raw,verdict,publisher)
+                    self.retain_outcome(key,claim,env.get('verification_stage','final'),verdict,evidence)
                 except (Rejected,ValueError,KeyError,TypeError,zipfile.BadZipFile) as error:
                     self.notes.append(key+': receipt not admitted ('+type(error).__name__+')')
         return {k:c for k,c in claims.items() if c.get('submission') and not c.get('exclude')}
@@ -205,7 +239,7 @@ def row_for(key,claim,now,old=None):
         meta['receipt_url']=proof['receipt_url']
     return row,meta,{path:raw}
 
-def prepare(root,claims,files,now):
+def prepare(root,claims,files,now,final_states=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
     for slug,doc in documents.items():
         old={r['id']:r for r in doc['records']}
@@ -220,6 +254,7 @@ def prepare(root,claims,files,now):
             doc['updated_at']=now;doc['checked_at']=now[:10]
             files[slug+'.json']=json_bytes(doc)
     state=dict(schema_version=1,entries={k:{field:v for field,v in c.items() if field in ('route','submission','verification')} for k,c in claims.items()})
+    state['final_states']=final_states or {}
     files['direct-submissions.json']=json_bytes(state)
     if any(slug+'.json' in files for slug in SLUGS.values()):
         registry=json.loads((root/'registry.json').read_text());registry['updated_at']=now;registry['checked_at']=now[:10]
@@ -250,7 +285,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--check-only',action='store_true');args=parser.parse_args()
     importer=Importer(GitHub());claims=importer.collect()
     now=datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
-    files=prepare(ROOT,claims,importer.files,now);transaction(ROOT,files,args.check_only)
+    files=prepare(ROOT,claims,importer.files,now,importer.final_states);transaction(ROOT,files,args.check_only)
     print(f'{now}: direct submissions: {len(claims)} rows; {len(files)} changed files; check_only={args.check_only}')
     for note in importer.notes:print(note)
 
