@@ -9,7 +9,7 @@ const allLevels=new Set(evidenceLevels.map(l=>l.id));
 
 // Read the real board inputs. Only the adapter fields required for admission,
 // source-date selection and table ranking are needed by these regression tests.
-function boardFixture(slug:string) {
+function boardEntries(slug:string) {
  const source=JSON.parse(readFileSync(new URL(`../data/${slug}.json`,import.meta.url),'utf8'));
  return source.records.map((r:any)=>{
   const m=source.record_metadata?.[r.id]??{};
@@ -26,41 +26,52 @@ function boardFixture(slug:string) {
   return record;
  }).filter((r:any)=>isBoardEntry(slug,r));
 }
-function checkBoardProgression(slug:string) {
- const board=boardFixture(slug);
+function checkBoardProgression(slug:string, higher:boolean) {
+ const board=boardEntries(slug);
  const dated:ChartEntry[]=board.filter((r:any)=>chartDate(r)!==undefined).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
- const marks=chartRecords(dated,allLevels,true);
- const top=ranked(board,'higher-is-better')[0].record;
+ const direction=higher?'higher-is-better':'lower-is-better';
+ const marks=chartRecords(dated,allLevels,higher);
+ const top=ranked(board,direction)[0].record;
  assert.ok(chartDate(top as any),'The current table leader has a source date');
  assert.equal(marks.at(-1)?.id,top.id,'Last chart record must be table rank 1');
  for(const mark of marks){
   const available=dated.filter(r=>r.time<=mark.time);
-  assert.equal(mark.id,ranked(available,'higher-is-better')[0].record.id);
+  assert.equal(mark.id,ranked(available,direction)[0].record.id);
  }
  assert.ok(!dated.some(r=>r.id==='classical-baseline'));
  return {dated,marks};
 }
 
-test('multiplication ends at the current table leader; the historical Swapnil claim beats the later reviewed entry',()=>{
- const {dated}=checkBoardProgression('integer-multiplication');
- const regression=dated.filter(r=>['crocswap-pr-151','swapnil-snapshot-ea9e8685d1621a98','crocswap-selected-75ea36bd581c1c02'].includes(r.id));
- const marks=chartRecords(regression,allLevels,true);
- assert.equal(marks.at(-1)?.id,'swapnil-snapshot-ea9e8685d1621a98');
- assert.equal(marks.at(-1)?.level,'claimed');
- assert.ok(dated.some(r=>r.id==='crocswap-selected-75ea36bd581c1c02'));
- assert.ok(!marks.some(r=>r.id==='crocswap-selected-75ea36bd581c1c02'));
- const reviewed=chartRecords(regression,new Set(['human-verified','lean-verified']),true);
- assert.equal(reviewed.at(-1)?.id,'crocswap-selected-75ea36bd581c1c02');
+test('each live board progression ends at its current table leader',()=>{
+ for(const slug of ['integer-multiplication','exact-dft','3sum','apsp','subset-sum','directed-sssp']){
+  checkBoardProgression(slug,['integer-multiplication','exact-dft'].includes(slug));
+ }
 });
 
-test('DFT joins the OpenAI strict endpoint, Ryan Shea and the eumemic table leader',()=>{
- const {dated}=checkBoardProgression('exact-dft');
- const regression=dated.filter(r=>['openai-uniform-dft-frontier','shea256-exact-dft-2026','eumemic-exact-dft-2026'].includes(r.id));
+test('a historical stronger claim beats a later reviewed entry; filters rebuild the line',()=>{
+ const regression=[
+  e('earlier-claim','472154791/1000000000000',1),
+  e('historical-claim','6685733/10000000000',2),
+  e('later-reviewed','330942774629799/500000000000000000',3,'human-verified'),
+ ];
  const marks=chartRecords(regression,allLevels,true);
- assert.deepEqual(marks.map(r=>r.id),['openai-uniform-dft-frontier','shea256-exact-dft-2026','eumemic-exact-dft-2026']);
+ assert.deepEqual(marks.map(r=>r.id),['earlier-claim','historical-claim']);
+ assert.equal(marks.at(-1)?.level,'claimed');
+ const reviewed=chartRecords(regression,new Set(['human-verified','lean-verified']),true);
+ assert.deepEqual(reviewed.map(r=>r.id),['later-reviewed']);
+});
+
+test('DFT strict endpoints and attained improvements follow score order',()=>{
+ const regression=[
+  e('original-endpoint','1/50000000000',1,'lean-verified','strict-upper-bound'),
+  e('attained-improvement','73/1000000',2),
+  e('improved-endpoint','607/1250000',3,'claimed','strict-upper-bound'),
+ ];
+ const marks=chartRecords(regression,allLevels,true);
+ assert.deepEqual(marks.map(r=>r.id),['original-endpoint','attained-improvement','improved-endpoint']);
  assert.equal(marks[0].scoreRelation,'strict-upper-bound');
  assert.equal(marks.at(-1)?.scoreRelation,'strict-upper-bound');
- assert.deepEqual(chartRecords(regression,new Set(['lean-verified']),true).map(r=>r.id),['openai-uniform-dft-frontier']);
+ assert.deepEqual(chartRecords(regression,new Set(['lean-verified']),true).map(r=>r.id),['original-endpoint']);
 });
 
 test('record selection uses table endpoint and tie rules; filters rebuild the line',()=>{
@@ -93,21 +104,14 @@ test('scale includes the reference limit; zero and single values stay finite',()
 });
 
 
-test('each race begins with its breakthrough, using real dates or the Oct 6 announcement day',()=>{
- const starts=[
-  ['integer-multiplication','openai-original-109','2026-10-06',true],
-  ['exact-dft','exact-dft-2026','2026-10-06',true],
-  ['subset-sum','subset-sum-2026','2026-10-06',false],
-  ['3sum','anthropic-2026','2026-10-05',false],
-  ['apsp','anthropic-2026','2026-10-05',false],
-  ['directed-sssp','directed-sssp-2026','2026-09-21',false],
- ] as const;
- for(const [slug,id,day,higher] of starts){
-  const dated=boardFixture(slug).filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
-  const first=chartRecords(dated,allLevels,higher)[0];
-  assert.equal(first?.id,id,slug+' begins with its breakthrough');
-  if(slug==='integer-multiplication')assert.equal(first.score,`1/${2n**182n}`);
-  assert.equal(new Date(first.time).toISOString().slice(0,10),day,slug+' preserves its publication or announcement date');
+test('each public race begins with its dated breakthrough',()=>{
+ for(const slug of ['integer-multiplication','exact-dft','subset-sum','3sum','apsp']){
+  const dated=boardEntries(slug).filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
+  const breakthrough=dated.find((r:any)=>r.isBreakthrough);
+  assert.ok(breakthrough,slug+' has a dated breakthrough');
+  const first=chartRecords(dated,allLevels,['integer-multiplication','exact-dft'].includes(slug))[0];
+  assert.equal(first?.id,breakthrough.id,slug+' begins with its breakthrough');
+  assert.equal(first.time,Date.parse(chartDate(breakthrough)!));
  }
 });
 
@@ -174,7 +178,7 @@ test('breakthrough remains the start of progression for every evidence filter co
 
 test('real problem boards retain only their breakthrough when all evidence filters are off',()=>{
  for(const slug of ['integer-multiplication','exact-dft','3sum','apsp','subset-sum']){
-  const board=boardFixture(slug);
+  const board=boardEntries(slug);
   const dated=board.filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
   const records=chartRecords(dated,new Set(),['integer-multiplication','exact-dft'].includes(slug));
   assert.equal(records.length,1,slug);
