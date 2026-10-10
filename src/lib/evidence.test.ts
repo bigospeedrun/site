@@ -30,7 +30,7 @@ test('open review submissions join the board as Claimed; rejected results and re
  assert.equal(isBoardEntry('3sum',{repo:'anthropics/formal-math',upstreamStatus:'not-applicable',reproductionOf:'original'}),false);
 });
 
-test('table exponents share the least separating precision, capped at eight places',async()=>{
+test('table bounds keep conservative rounding and strict endpoint notation',async()=>{
  const {boundPrecision,boundExponent,tableBound}=await import('./ranking.ts');
  assert.equal(boundPrecision(['1/10','1/5'],true),3);
  assert.equal(boundExponent('1/3',true,8),'0.66666667');
@@ -39,13 +39,13 @@ test('table exponents share the least separating precision, capped at eight plac
  assert.equal(tableBound({score:'1/50000000000',scoreRelation:'strict-upper-bound',bound:''},true,1),'O(n \\log^{1-2\\cdot 10^{\\scriptstyle -11}+\\varepsilon} n)');
 });
 
-test('scientific savings round down, preserve tiny improvements, and cap at six significant digits',async()=>{
+test('scientific savings round down, preserve tiny improvements, and separate close records',async()=>{
  const {scientificSaving,boundPrecision}=await import('./ranking.ts');
  assert.equal(scientificSaving('607/1250000',3),'4.85\\cdot 10^{-4}');
  assert.equal(scientificSaving('6685733/10000000000',4),'6.685\\cdot 10^{-4}');
  assert.equal(scientificSaving('1/10000000000000',4),'10^{-13}');
  assert.equal(scientificSaving('1/6129982163463555433433388108601236734474956488734408704',4),'1.631\\cdot 10^{-55}');
- assert.equal(boundPrecision(['6685733/10000000000','6685732/10000000000'],true),6);
+ assert.equal(boundPrecision(['6685733/10000000000','6685732/10000000000'],true),7);
  const leaders=['744728650221677/1000000000000000000','372359941334341/500000000000000000','186178624839407/250000000000000000'];
  const digits=boundPrecision(leaders,true);
  assert.equal(digits,6);

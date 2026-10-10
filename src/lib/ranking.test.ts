@@ -34,3 +34,39 @@ test('polynomial table bounds preserve singleton improvements and exact decimal 
  assert.equal(boundPrecision(['997891/500000','2499/1250'],false),6);
  assert.equal(tableBound({score:'997891/500000',bound:'O(n^{1.995782})'},false,6),'O(n^{1.995782})');
 });
+
+
+test('bound exponents retain all source digits and exact repeating fractions',async()=>{
+ const {tableBound}=await import('./ranking.ts');
+ for(const [score,expected] of [['2995943/1000000','2.995943'],['149971/50000','2.99942'],['1999999999999999999/1000000000000000000','1.999999999999999999'],['1/3','\\frac{1}{3}']]){
+  assert.equal(tableBound({score,bound:'O(n^{x})'},false,4),`O(n^{${expected}})`);
+ }
+});
+
+test('all source problems keep distinct scores visible and never overstate a saving',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const {boundPrecision,tableBound,scientificSaving}=await import('./ranking.ts');
+ for(const slug of ['integer-multiplication','exact-dft','3sum','apsp','subset-sum','directed-sssp']){
+  const data=JSON.parse(readFileSync(new URL(`../data/${slug}.json`,import.meta.url),'utf8'));
+  const kappa=data.score.symbol==='kappa';
+  const scores:string[]=data.records.map((r:any)=>r.score);
+  const digits=boundPrecision(scores,kappa);
+  const labels=new Map<string,string>();
+  for(const score of scores){
+   const label=tableBound({score,bound:'O(n^{x})'},kappa,digits);
+   if(labels.has(label))assert.equal(compare(score,labels.get(label)!),0,`${slug}: distinct scores share ${label}`);
+   labels.set(label,score);
+   if(kappa){
+    const tex=scientificSaving(score,digits);
+    const match=tex.match(/^(?:(\d+(?:\.\d+)?)\\cdot )?10\^\{(-?\d+)\}$/);
+    const coefficient=match?match[1]??'1':tex;
+    const exponent=match?Number(match[2]):0;
+    const decimals=coefficient.split('.')[1]?.length??0;
+    const n=BigInt(coefficient.replace('.',''));
+    const shift=exponent-decimals;
+    const shown=shift>=0?`${n*10n**BigInt(shift)}`:`${n}/${10n**BigInt(-shift)}`;
+    assert.ok(compare(shown,score)<=0,`${slug}: saving exceeds the source`);
+   }
+  }
+ }
+});

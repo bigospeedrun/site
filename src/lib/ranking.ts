@@ -55,22 +55,32 @@ export function boundExponent(score:string,kappa:boolean,digits:number):string {
  const value=String(rounded).padStart(digits+1,'0');
  return value.slice(0,-digits)+'.'+value.slice(-digits);
 }
+// Return the exact number of decimal places, or null for a repeating decimal.
+function decimalPlaces(score:string):number|null {
+ let [n,d=1n]=score.split('/').map(BigInt);
+ const gcd=(a:bigint,b:bigint):bigint=>b===0n?a:gcd(b,a%b);
+ d/=gcd(n,d);
+ let twos=0,fives=0;
+ while(d%2n===0n){d/=2n;twos++}
+ while(d%5n===0n){d/=5n;fives++}
+ return d===1n?Math.max(twos,fives):null;
+}
 export function boundPrecision(scores:string[],kappa:boolean):number {
  if(kappa){
   const unique=scores.filter((score,index)=>scores.findIndex(peer=>compare(score,peer)===0)===index);
-  for(let digits=3;digits<6;digits++)if(new Set(unique.map(score=>scientificSaving(score,digits))).size===unique.length)return digits;
-  return 6;
+  // No precision cap: exact rational scores must never collapse to one label.
+  for(let digits=3;;digits++)if(new Set(unique.map(score=>scientificSaving(score,digits))).size===unique.length)return digits;
  }
- // Preserve the value of terminating decimal exponents, even when there is only one row.
- // Other rationals retain eight decimal places with conservative upward rounding.
- return Math.max(0,...scores.map(score=>{
-  const [n,d=1n]=score.split('/').map(BigInt);
-  for(let digits=0;digits<8;digits++)if(n*10n**BigInt(digits)%d===0n)return digits;
-  return 8;
- }));
+ return Math.max(0,...scores.map(score=>decimalPlaces(score)??0));
+}
+function exactExponent(score:string):string {
+ const places=decimalPlaces(score);
+ if(places!==null)return boundExponent(score,false,places);
+ const [n,d='1']=score.split('/');
+ return `\\frac{${n}}{${d}}`;
 }
 export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number):string {
- const exponent=kappa?'1-'+scientificSaving(record.score,digits).replace(/10\^\{/g,'10^{\\scriptstyle '):boundExponent(record.score,false,digits);
+ const exponent=kappa?'1-'+scientificSaving(record.score,digits).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score);
  const power=exponent+(record.scoreRelation==='strict-upper-bound'?'+\\varepsilon':'');
  if(kappa||record.bound.includes('\\log'))return `O(n \\log^{${power}} n)`;
  if(record.bound.includes('2^{'))return `O${record.bound.startsWith('O^*')?'^*':''}(2^{${power}n})`;

@@ -3,7 +3,6 @@ import InfoTooltip from './InfoTooltip.astro';
 import type { RecordEntry } from '../lib/types';
 import { evidenceLevels, evidenceName, breakthroughLabel } from '../lib/evidence';
 import { math } from '../lib/math';
-import { tableBound } from '../lib/ranking';
 import { chartDate, chartWindowScale, chartWindow, chartRanges, scoreValue, type ChartEntry } from '../lib/chart';
 interface Props { records: RecordEntry[]; direction: string; label: string; slug?: string; boundLatex?: string; limit?: number; }
 const { records, direction, label, slug = direction==='higher-is-better'?'integer-multiplication':'3sum' } = Astro.props;
@@ -15,7 +14,7 @@ const form = Astro.props.boundLatex ?? (higher ? 'O(n\\log^{1-\\kappa} n)' : slu
 const limit = Astro.props.limit ?? scoreValue(higher ? source?.score.maximum??'1' : source?.score.minimum??'0');
 const limitBound = higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
 const dated = records.filter(r=>chartDate(r)!==undefined);
-const entries:ChartEntry[] = dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(higher&&['openai-original-109','exact-dft-2026'].includes(r.id)?tableBound(r,true,3):r.bound),url:r.evidence[0]?.url??'#'}));
+const entries:ChartEntry[] = dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(r.bound),url:r.evidence[0]?.url??'#'}));
 const defaultLevels=evidenceLevels.map(l=>l.id);
 const scales=Object.fromEntries(chartRanges.flatMap(range=>Array.from({length:2**evidenceLevels.length},(_,mask)=>{
  const levels=evidenceLevels.filter((_,i)=>mask&(1<<i)).map(l=>l.id);

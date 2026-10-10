@@ -90,6 +90,13 @@ export function chartScale(values: number[], limit?: number) {
  const nice = [1,2,5,10].map(n=>n*step).find(n=>span/n<=5)!;
  const lo = Math.floor(min/nice)*nice, hi = Math.ceil(max/nice)*nice;
  const ticks = [];
- for(let v=lo;v<=hi+nice*.01;v+=nice) ticks.push({value:Number(v.toPrecision(12)),tex:Number(v.toPrecision(6)).toString()});
+ // Label the same value used for placement. Precision follows the tick step,
+ // not a fixed significant-digit cap that can merge nearby tick labels.
+ const places=Math.max(0,-Math.floor(Math.log10(nice)));
+ for(let i=0;i<=Math.round((hi-lo)/nice);i++){
+  const value=Number((lo+i*nice).toFixed(Math.min(100,places)));
+  const tex=String(value).replace(/e([+-]?\d+)/,(_,e)=>`\\cdot 10^{${Number(e)}}`);
+  ticks.push({value,tex});
+ }
  return {log,lo:lo-span*.04,hi:hi+span*.1,ticks};
 }

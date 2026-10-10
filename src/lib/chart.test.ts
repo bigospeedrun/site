@@ -182,3 +182,15 @@ test('real problem boards retain only their breakthrough when all evidence filte
   assert.equal(records[0].id,board.find((r:any)=>r.isBreakthrough).id,slug);
  }
 });
+
+
+test('nearby exponent ticks have distinct labels at their actual plotted values',()=>{
+ for(const values of [[2.995943,2.99942],[2.995943,2.9959431],[.00000000005101691,.00000000005101692]]){
+  const {ticks}=chartScale(values);
+  assert.equal(new Set(ticks.map(t=>t.tex)).size,ticks.length);
+  for(const tick of ticks){
+   const decimal=tick.tex.replace(/\\cdot 10\^\{(-?\d+)\}/,'e$1');
+   assert.equal(Number(decimal),tick.value);
+  }
+ }
+});

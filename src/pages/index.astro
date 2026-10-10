@@ -4,7 +4,7 @@ import InfoTooltip from '../components/InfoTooltip.astro';
 import content from '../lib/landing.html?raw';
 import {math, inlineMath} from '../lib/math';
 import {problems, boardRecords} from '../lib/data';
-import {ranked, tableBound} from '../lib/ranking';
+import {ranked} from '../lib/ranking';
 import {evidenceName, breakthroughLabel} from '../lib/evidence';
 import {localTimeFallback} from '../lib/freshness';
 const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
@@ -18,13 +18,11 @@ const rows = [
   const problem=problems.find(p=>p.slug===row.slug)!;
   const records=boardRecords(problem);
   const breakthroughRecord=problem.records.find(record=>record.id===row.breakthroughId)!;
-  const kappa=problem.symbol==='kappa';
-  const digits=kappa?3:4;
-  const breakthrough=tableBound(breakthroughRecord,kappa,digits);
+  const breakthrough=breakthroughRecord.bound;
   const best=ranked(records,problem.direction)[0]?.record;
   // Observation dates do not establish publication after the October 6 announcement.
   const latest=best&&!best.publicationYear&&best.dateLabel!=='Observed'&&best.date.slice(0,10)>'2026-10-06'?best:undefined;
-  const latestBound=latest?tableBound(latest,kappa,digits):undefined;
+  const latestBound=latest?.bound;
   const endpoint=latest?.scoreRelation==='strict-upper-bound';
   return {...row,breakthrough,latest,latestBound,endpoint};
 });
