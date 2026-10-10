@@ -19,12 +19,12 @@ export function initChatbot() {
   const logging = root.querySelector<HTMLElement>('.bos-chat-logging')!;
   const starters = root.querySelector<HTMLElement>('.bos-chat-starters')!;
   const history: Message[] = [];
-  let config: Config | null = null, busy = false;
+  let config: Config | null = null, busy = false, checking = false;
   let controller: AbortController | null = null;
   const phone = matchMedia('(max-width: 600px)');
   const visibleCharts = new Set<Element>();
   function updateLauncher() {
-    toggle.hidden = !panel.hidden || (phone.matches && visibleCharts.size > 0);
+    toggle.hidden = !config?.available || !panel.hidden || (phone.matches && visibleCharts.size > 0);
   }
   // Keep the floating launcher clear of chart marks, dates and controls on
   // narrow screens. The open conversation stays available until closed.
@@ -45,8 +45,10 @@ export function initChatbot() {
     list.setAttribute('aria-busy', String(busy));
   }
 
-  async function configure() {
-    config = null; controls();
+  async function configure(focusInput = false) {
+    if (checking) return;
+    checking = true;
+    config = null; controls(); updateLauncher();
     try {
       const response = await fetch('/api/chat', {cache: 'no-store', signal: AbortSignal.timeout(8_000)});
       if (!response.ok) throw new Error();
@@ -59,8 +61,10 @@ export function initChatbot() {
       disclosure.textContent = 'The chat is not available. Please read the FAQ on the About page.';
       logging.hidden = true;
     }
-    controls();
-    if (!panel.hidden && !busy && config?.available) input.focus();
+    checking = false;
+    if (!config?.available && !panel.hidden) hide();
+    controls(); updateLauncher();
+    if (focusInput && !panel.hidden && !busy && config?.available) input.focus();
   }
 
   function hide() {
@@ -71,10 +75,20 @@ export function initChatbot() {
     else document.querySelector<HTMLButtonElement>('progress-chart button')?.focus({preventScroll: true});
   }
   updateLauncher();
+  void configure();
+  // Status is runtime configuration, never a build-time flag. Recheck hidden
+  // chat on return and periodically so an open page can pick up availability.
+  const refreshAvailability = () => {
+    if (document.visibilityState === 'visible' && panel.hidden && !busy) void configure();
+  };
+  window.addEventListener('focus', refreshAvailability);
+  document.addEventListener('visibilitychange', refreshAvailability);
+  window.setInterval(refreshAvailability, 60_000);
   toggle.addEventListener('click', () => {
+    if (!config?.available) return;
     panel.hidden = false; toggle.hidden = true;
     toggle.setAttribute('aria-expanded', 'true'); close.focus();
-    void configure();
+    void configure(true);
   });
   close.addEventListener('click', hide);
   panel.addEventListener('keydown', event => { if (event.key === 'Escape') { event.preventDefault(); hide(); } });

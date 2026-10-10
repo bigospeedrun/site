@@ -60,6 +60,18 @@ test('keyless development is a clear stub; deployed keyless handler fails closed
   assert.equal(calls, 0);
 });
 
+test('status stays keyless with Discord configured and makes no provider or knowledge calls', async () => {
+  let calls = 0;
+  const handler = createChatHandler({webhookUrl: 'https://discord.com/api/webhooks/test-only',
+    knowledge: async () => { calls++; throw new Error(); },
+    fetcher: async () => { calls++; throw new Error(); },
+  });
+  const response = await handler(new Request('https://bigospeedrun.com/api/chat'));
+  assert.equal(response.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await response.json(), {logging: true, stub: false, available: false});
+  assert.equal(calls, 0);
+});
+
 test('rejects cross-origin, malformed roles, too many messages, and unbounded bodies before provider work', async () => {
   let calls = 0;
   const handler = setup(async () => { calls++; throw new Error(); });

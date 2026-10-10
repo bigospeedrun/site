@@ -9,6 +9,35 @@ const browser = await chromium.launch({executablePath: '/usr/bin/google-chrome',
 const origin = 'http://127.0.0.1:4335';
 const errors = [];
 try {
+  const availabilityPage = await browser.newPage();
+  let available = false, failStatus = false;
+  let releaseStatus;
+  const statusGate = new Promise(resolve => { releaseStatus = resolve; });
+  await availabilityPage.route('**/api/chat', async route => {
+    assert.equal(route.request().method(), 'GET');
+    await statusGate;
+    if (failStatus) return route.fulfill({status: 503, body: 'Unavailable'});
+    return route.fulfill({json: {available, logging: true, stub: false}});
+  });
+  const initialStatus = availabilityPage.waitForResponse('**/api/chat');
+  await availabilityPage.goto(origin + '/about');
+  const unavailableLauncher = availabilityPage.locator('.bos-chat-toggle');
+  assert.equal(await unavailableLauncher.isVisible(), false);
+  releaseStatus();
+  await (await initialStatus).finished();
+  await availabilityPage.waitForFunction(() => document.querySelector('.bos-chat-disclosure')?.textContent.includes('not available yet'));
+  assert.equal(await unavailableLauncher.isVisible(), false);
+  available = true;
+  await availabilityPage.evaluate(() => window.dispatchEvent(new Event('focus')));
+  await unavailableLauncher.waitFor({state: 'visible'});
+  failStatus = true;
+  const failedStatus = availabilityPage.waitForResponse('**/api/chat');
+  await availabilityPage.evaluate(() => window.dispatchEvent(new Event('focus')));
+  await (await failedStatus).finished();
+  await unavailableLauncher.waitFor({state: 'hidden'});
+  assert.equal(await availabilityPage.locator('.bos-chat-panel').isVisible(), false);
+  await availabilityPage.close();
+  console.log('Availability: hidden while pending/keyless/503; shows on runtime status change without reload');
   for (const [name, options] of [
     ['1280', {viewport: {width: 1280, height: 900}, colorScheme: 'light'}],
     ['iphone15', {...devices['iPhone 15'], defaultBrowserType: undefined, colorScheme: 'light'}],
