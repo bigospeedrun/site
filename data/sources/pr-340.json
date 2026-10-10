@@ -1,0 +1,11 @@
+{
+  "number": 340,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/340",
+  "title": "Conditional κ ≈ 7.7766181e-4: exact-objective free-form final retiming (490 gates, φ −85.9) replacing #337's 52-gate descent on the same word",
+  "body": "Draft — full strict replay in progress; this will be marked ready with the exact κ and the PASS line once it completes.\n\n**What changes versus #337.** Nothing before the final stage: the same oriented p10b source, PR327 complex supplier, 480 frame retimings, 120 target groups, 1,241 entrance families, 240 early restorations, 15 terminal sinks and 125 reorderings, reproduced byte-exactly (post-reorder word `f506e89c…`). The final concave-descent selection (52 gates, φ −75.37) is replaced by a 490-gate selection (φ −85.89: 335 descents, 53 uphill moves, 102 constructed frames) found by an exact-objective simulated-annealing search over each gate's full legal frame interval (depth-2 meet/join closure of the neighbouring operand frames plus the word's registered frames), with nested chains, fixed endpoints, exact integer operand source spans, G-nondegeneracy with prime witnesses and COPY lifetimes enforced. Every entry is admitted by the unchanged `engines/descent2_transform.py`; paid calls 47,820 → 47,801, rank mass unchanged (177,855), final word `b1c96e44…`.\n\n**Price.** Native κ = 388830904643257/(5·10¹⁷) = 7.77661809286514e-4 (bit binds below PR327's cap), +1.57e-8 over #337's 7.77646131e-4 native value; the 8-level prime-threshold bootstrap adds the same ~3e-15 as in #337.\n\nPackage `research/p10b-exact-retime` is #337's package with `stages/descent2-selection.json`, `SOURCE.json` and `MANIFEST.json` changed (docs updated with the replay numbers at ready time). Prepared by Rohan Arun with Anthropic Claude assistance; all upstream credits (eumemic, DreamingOfClouds, chafreaky, PR327/PR325 authors) retained.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+  "created_at": "2026-10-10T22:52:59Z",
+  "updated_at": "2026-10-10T23:06:38Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
