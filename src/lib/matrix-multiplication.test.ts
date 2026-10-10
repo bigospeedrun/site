@@ -15,9 +15,10 @@ test('matrix records use one complex circuit model and keep manuscript dates sep
  assert.equal(data.problem_id,'matrix-multiplication/arithmetic-circuit-complex');
  assert.equal(data.score.direction,'lower-is-better');
  assert.match(data.model.description,/every field/);
- const rows=data.records.filter((r:any)=>r.id!=='classical-baseline').map((r:any)=>({...r,date:data.record_metadata[r.id].publication_date,repoId:0}));
+ // Fixed equal-score examples remain valid when a future claim takes the lead.
+ const rows=[{id:'openai',score:'9/4',date:'2026-10-06',repoId:0},{id:'navot',score:'9/4',date:'2026-10-07',repoId:0}];
  const ranks=ranked(rows,'lower-is-better');
- assert.deepEqual(ranks.filter(r=>r.rank===1).map(r=>r.record.id),['openai-matrix-nine-fourths-2026','navot-matrix-all-fields-2026']);
+ assert.deepEqual(ranks.filter(r=>r.rank===1).map(r=>r.record.id),['openai','navot']);
  const first=data.record_metadata['openai-matrix-2258-2026'];
  const best=data.record_metadata['openai-matrix-nine-fourths-2026'];
  assert.equal(first.publication_date,best.publication_date);
