@@ -7,8 +7,8 @@ import {createChatHandler} from '../lib/chat-handler.ts';
 import {pageText, type ChatKnowledge} from '../lib/chat-knowledge.ts';
 
 async function addPages(knowledge: ChatKnowledge, load: (path: string) => Promise<string>) {
-  for (const path of ['/about', '/submit', ...knowledge.problems.map(p => p.path)]) {
-    knowledge.pages[path] = pageText(await load(path), path !== '/about' && path !== '/submit');
+  for (const path of ['/about', ...knowledge.problems.map(p => p.path)]) {
+    knowledge.pages[path] = pageText(await load(path), path !== '/about');
   }
   knowledge.pages['/'] = 'Big O Speedrun tracks improved algorithmic bounds for classic problems.';
   return knowledge;
