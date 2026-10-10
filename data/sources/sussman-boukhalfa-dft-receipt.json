@@ -1,0 +1,38 @@
+{
+  "state": "passed",
+  "checked_at": "2026-10-10T11:53:44.227117Z",
+  "observed_at": "2026-10-10T12:06:44Z",
+  "summary": "Lean kernel check passed; the second independent kernel check did not complete.",
+  "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/38045878911",
+  "source_commit": "837dc3130adc79f7b7ab4ddd56c15576bbd766b0",
+  "verifier_commit": "51954b9c362f37d49a23325f8328e72afb576288",
+  "score": "47171/62500000",
+  "score_relation": "attained",
+  "scope": "All-positive-length exact DFT and convolution in the OpenAI family-130 exact scalar/index RAM model; transform_mainY and convolution_mainY.",
+  "lean_kernel": "passed",
+  "axiom_audit": {
+    "OAI.PowerSaving.convolution_mainY": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "OAI.PowerSaving.transform_mainY": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "second_kernel": {
+    "name": "nanoda",
+    "state": "not-completed",
+    "reason": "out of memory; no verdict"
+  },
+  "upstream_workflow_conclusion": "failure",
+  "upstream_receipt_status": "not_verified",
+  "site_tier_basis": "The published Lean Verified definition requires the Lean kernel check, which passed; this receipt does not claim two-kernel verification.",
+  "artifact_path": "sources/sussman-boukhalfa-dft-upstream-receipt.json",
+  "artifact_sha256": "98b0f514772290cb3ae0dd7aeec2cfda0d38161d2afe88e96ab3f7023cd79aef",
+  "log_path": "sources/sussman-boukhalfa-dft-verification.log",
+  "log_sha256": "578345e21cb2d56f8ea4e50b951e8a52b5368d78a06b3a025546f4c77b8618f2",
+  "log_description": "Combined unchanged lean.log, audit.log and nanoda.log, with file-name separators; original hashes remain in the upstream receipt."
+}

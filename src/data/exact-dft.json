@@ -355,7 +355,7 @@
       "id": "shea256-exact-dft-five-stage-2026",
       "kind": "improvement",
       "score": "47171/62500000",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-10T01:43:53Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-10T05:52:59Z",
@@ -365,7 +365,7 @@
         "url": "https://github.com/chafreaky/wht-power-saving-lean/blob/fd19e46b728faa414cbfbf91b01a6a0b7903375d/README.md"
       },
       "spec_version": "1",
-      "title": "Sussman–Boukhalfa all-length exact DFT claim",
+      "title": "Sussman–Boukhalfa all-length exact DFT bound",
       "authors": [
         {
           "name": "Jacob Sussman",
@@ -391,12 +391,12 @@
         "certificate_path": null
       },
       "dependencies": [],
-      "source_commit": "fd19e46b728faa414cbfbf91b01a6a0b7903375d",
+      "source_commit": "837dc3130adc79f7b7ab4ddd56c15576bbd766b0",
       "score_relation": "attained",
       "rerun_status": {
-        "state": "pending",
-        "checked_at": "2026-10-10T05:52:59Z",
-        "receipt_path": null
+        "state": "passed",
+        "checked_at": "2026-10-10T11:53:44.227117Z",
+        "receipt_path": "sources/sussman-boukhalfa-dft-receipt.json"
       }
     }
   ],
@@ -565,10 +565,10 @@
       "repo": "chafreaky/wht-power-saving-lean",
       "site_badge": false,
       "eligible_for_record": true,
-      "record_eligibility_note": "Claimed result in the matching OpenAI family-130 model; independent proof rerun pending.",
-      "proof_status": "Source-reported Lean proof; no site rerun. Ryan Shea separately reports a reproduction.",
+      "record_eligibility_note": "Matching OpenAI family-130 exact DFT statement; Lean kernel and permitted-axiom audit passed. Nanoda did not complete.",
+      "proof_status": "Lean kernel check passed; the second independent kernel check did not complete.",
       "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "site_tier": "verified",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
       "comparison_status": "Read pinned chafreaky/wht-power-saving-lean fd19e46b Work/Fourier233/UniformFourierChallenge.lean and diffed against OpenAI fd4aeeb UniformFourier.lean: only comment, exponent and seven declaration names differ. RAM, DFTProgram and ConvProgram definitions unchanged. Written framework model also unchanged.",
       "scope": "Every positive length; exact complex arithmetic, specified root, and O(log(n+2))-bit integer/address words. Scalar preparation, schedule construction, index work and movement are charged. No finite-precision, numerical-stability or bit-complexity claim.",
@@ -584,8 +584,10 @@
       "notes_url": "https://github.com/chafreaky/wht-power-saving-lean/blob/fd19e46b728faa414cbfbf91b01a6a0b7903375d/README.md",
       "claim_date_commit": "fd19e46b728faa414cbfbf91b01a6a0b7903375d",
       "reproduction_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/62554f945b58454fb8452f4daaca1222ce5ca58e/results/five-stage-pr233.md",
-      "primary_submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/pull/2"
+      "primary_submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/pull/2",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38045878911",
+      "verification_source_commit": "837dc3130adc79f7b7ab4ddd56c15576bbd766b0"
     }
   },
-  "updated_at": "2026-10-10T05:54:18Z"
+  "updated_at": "2026-10-10T12:06:44Z"
 }
