@@ -10,6 +10,7 @@ import {localTimeFallback} from '../lib/freshness';
 const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
 const rows = [
   {slug:'integer-multiplication', name:'Integer Multiplication', classic:'O(n \\log n)', breakthroughId:'openai-original-109', source:'https://github.com/openai/math/tree/main/preprints/Integer-multiplication-below-n-log-n-September-23-2026'},
+  {slug:'matrix-multiplication', name:'Matrix Multiplication', classic:'O(n^{2.371177+\\varepsilon})', breakthroughId:'openai-matrix-nine-fourths-2026', source:'https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf'},
   {slug:'exact-dft', name:'Fourier Transform', classic:'O(n \\log n)', breakthroughId:'exact-dft-2026', source:'https://github.com/openai/math/tree/main/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026'},
   {slug:'3sum', name:'3SUM', classic:'O(n^2)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
   {slug:'apsp', name:'APSP', classic:'O(n^3)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},

@@ -94,7 +94,8 @@
       "problem_ids": [
         "subset-sum/randomized-word-ram",
         "integer-multiplication/multitape-tm",
-        "exact-dft/uniform-exact-arithmetic"
+        "exact-dft/uniform-exact-arithmetic",
+        "matrix-multiplication/arithmetic-circuit-complex"
       ],
       "tracking_branch": "main",
       "listing_mode": "research-artifact",
@@ -106,7 +107,8 @@
       "comparison_keys": {
         "subset-sum": "subset-sum/randomized-word-ram/v1/scope-v1",
         "integer-multiplication": "integer-multiplication/multitape-tm/v1/conditional-unreviewed",
-        "exact-dft": "exact-dft/uniform-exact-arithmetic/v1/scope-v1"
+        "exact-dft": "exact-dft/uniform-exact-arithmetic/v1/scope-v1",
+        "matrix-multiplication": "matrix-multiplication/arithmetic-circuit-complex/v1"
       },
       "checked_at": "2026-10-08",
       "source_url": "https://github.com/openai/math",
@@ -314,6 +316,30 @@
       "submission_url": "https://github.com/Swapnil-jain/integer-mult-kappa",
       "agents_url": null,
       "rules_url": "https://github.com/Swapnil-jain/integer-mult-kappa/blob/d583bef0524c5de91a03ac3961757a72c822e027/README.md"
+    },
+    {
+      "repo_id": null,
+      "repo": "selanavot/matrix-multiplication-all-fields",
+      "owner": "selanavot",
+      "url": "https://github.com/selanavot/matrix-multiplication-all-fields",
+      "problem_ids": [
+        "matrix-multiplication/arithmetic-circuit-complex"
+      ],
+      "tracking_branch": "main",
+      "listing_mode": "research-artifact",
+      "opted_in": false,
+      "manifest_source": null,
+      "admitted_at": "2026-10-11",
+      "license_status": "Source fork; see upstream license and repository notices",
+      "verification_profile": null,
+      "comparison_keys": {
+        "matrix-multiplication": "matrix-multiplication/arithmetic-circuit-complex/v1"
+      },
+      "checked_at": "2026-10-11",
+      "source_url": "https://github.com/selanavot/matrix-multiplication-all-fields/blob/08481ef22bca7dc9ffba091083b7c1e81e537220/README.md",
+      "submission_url": null,
+      "agents_url": null,
+      "rules_url": null
     }
   ],
   "problems": [
@@ -356,6 +382,13 @@
       "slug": "directed-sssp",
       "problem_id": "directed-sssp/comparison-addition-sparse",
       "data_file": "directed-sssp.json",
+      "status": "status-only",
+      "race_repo": null
+    },
+    {
+      "slug": "matrix-multiplication",
+      "problem_id": "matrix-multiplication/arithmetic-circuit-complex",
+      "data_file": "matrix-multiplication.json",
       "status": "status-only",
       "race_repo": null
     }

@@ -81,7 +81,7 @@ function exactExponent(score:string):string {
 }
 export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number):string {
  const exponent=kappa?'1-'+scientificSaving(record.score,digits).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score);
- const power=exponent+(record.scoreRelation==='strict-upper-bound'?'+\\varepsilon':'');
+ const power=exponent+(record.scoreRelation==='strict-upper-bound'||record.bound.includes('\\varepsilon')?'+\\varepsilon':'');
  if(kappa||record.bound.includes('\\log'))return `O(n \\log^{${power}} n)`;
  if(record.bound.includes('2^{'))return `O${record.bound.startsWith('O^*')?'^*':''}(2^{${power}n})`;
  return `O(n^{${power}})`;

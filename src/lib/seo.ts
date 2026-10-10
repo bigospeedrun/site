@@ -3,6 +3,7 @@ export const shareImage = `${siteOrigin}/og.png`;
 export const pageDescriptions: Record<string,string> = {
  '/': 'Track improved algorithmic bounds for classic problems, with results, proofs, and progress over time.',
  '/integer-multiplication': 'Compare integer multiplication bounds, their evidence, and progress below n log n time.',
+ '/matrix-multiplication': 'Compare square matrix multiplication bounds over the complex numbers, their evidence, and progress in arithmetic complexity.',
  '/3sum': 'Compare 3SUM bounds, their evidence, and progress below quadratic time.',
  '/apsp': 'Compare all-pairs shortest path bounds, their evidence, and progress below cubic time.',
  '/subset-sum': 'Compare subset sum bounds, their evidence, and progress in exponential running time.',

@@ -8,12 +8,13 @@ const files=import.meta.glob('../data/*.json',{eager:true,import:'default'});
 const read=(file:string):any=>files['../data/'+file];
 const registry=read('registry.json');
 export const dataUpdatedAt:string=[registry.updated_at,...registry.problems.map((p:any)=>read(p.data_file).updated_at)].sort((a,b)=>Date.parse(a)-Date.parse(b)).at(-1);
-const titles:Record<string,string>={'3sum':'3SUM',apsp:'All-pairs shortest paths','subset-sum':'Subset Sum','integer-multiplication':'Integer multiplication','exact-dft':'Exact discrete Fourier transform','directed-sssp':'Directed shortest paths'};
+const titles:Record<string,string>={'matrix-multiplication':'Matrix Multiplication','3sum':'3SUM',apsp:'All-pairs shortest paths','subset-sum':'Subset Sum','integer-multiplication':'Integer multiplication','exact-dft':'Exact discrete Fourier transform','directed-sssp':'Directed shortest paths'};
 const repoName=(url:string):string=>url?.match(/^https:\/\/github.com\/([^/]+\/[^/]+)/)?.[1]??'';
 const bound=(slug:string,score:string,relation?:string)=>{
  const value=decimal(score);const [n,d]=score.split('/');const exact=d?`\\frac{${n}}{${d}}`:n;
  if(relation==='strict-upper-bound')return `O(n \\log^{1-\\kappa} n),\\quad \\kappa < ${exact}`;
  if(slug==='integer-multiplication'||slug==='exact-dft')return score==='0'?'O(n \\log n)':`O(n \\log^{${logExponent(score)}} n)`;
+ if(slug==='matrix-multiplication')return `O(n^{${value}+\\varepsilon})`;
  if(slug==='subset-sum')return `O(2^{${value}n})`;
  if(slug==='directed-sssp')return `O(n \\log^{${exact}} n)`;
  return `O(n^{${value}})`;
@@ -32,7 +33,7 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  if(r.evidence.paper_url)evidence.push({name:'Paper',url:r.evidence.paper_url});
  if(r.evidence.certificate_path&&repo&&r.source_commit)evidence.push({name:'Certificate',url:`https://github.com/${repo}/blob/${r.source_commit}/${r.evidence.certificate_path}`});
  if(meta.source_url_public!==false&&r.source_commit&&repo)evidence.push({name:'Commit',url:`https://github.com/${repo}/tree/${r.source_commit}`});
- return {id:r.id,reproductionOf:meta.reproduction_of,score:r.score,scoreRelation:r.score_relation??'attained',evidenceLevel,evidenceUrl:recordEvidenceUrl(evidenceLevel,r,evidence[0]?.url,meta.receipt_url),title:r.title,date:meta.publication_date??announcementDate??sourceDate??r.submitted_at??r.site_observed_at,publicationYear:meta.publication_date_precision==='year'?meta.publication_year:undefined,dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':meta.publication_date_role?.toLowerCase().includes('commit')?'Commit date':meta.publication_date_role?.includes('paper')?'Paper date':meta.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',repo:meta.source_url_public===false?'':repo,repoId:entry?.repo_id??0,authors:r.authors.map((a:any)=>{
+ return {id:r.id,reproductionOf:meta.reproduction_of,score:r.score,scoreRelation:r.score_relation??'attained',evidenceLevel,evidenceUrl:recordEvidenceUrl(evidenceLevel,r,evidence[0]?.url,meta.receipt_url),title:r.title,date:meta.publication_date??announcementDate??sourceDate??r.submitted_at??r.site_observed_at,publicationYear:meta.publication_date_precision==='year'?meta.publication_year:undefined,dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':meta.publication_date_role?.toLowerCase().includes('commit')?'Commit date':meta.publication_date_role?.includes('paper')?'Paper date':meta.publication_date?'Source date':meta.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',repo:meta.source_url_public===false?'':repo,repoId:entry?.repo_id??0,authors:r.authors.map((a:any)=>{
  const url=r.id==="crocswap-selected-75ea36bd581c1c02"?"https://github.com/Dugongue":a.url;
  return authorFromProfile({...a,url},profiles);
 }),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,provenance:r.provenance};

@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "problem_id": "matrix-multiplication/arithmetic-circuit-complex",
+  "model": {
+    "id": "arithmetic-circuit-complex",
+    "version": "1",
+    "description": "Multiply two n by n complex matrices exactly with division-free arithmetic circuits. Scalar addition, subtraction and multiplication each cost one; inputs and constants are free. For every epsilon > 0, one positive constant C bounds the cost by C n^(t+epsilon) for every positive size n. Results over every field qualify by specialization to the complex numbers.",
+    "definition_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatrixMultiplication.lean"
+  },
+  "score": {
+    "id": "arithmetic-exponent",
+    "version": "1",
+    "symbol": "t",
+    "definition": "An exponent t guarantees O(n^(t+epsilon)) scalar operations for every fixed epsilon > 0.",
+    "direction": "lower-is-better",
+    "encoding": "rational-string",
+    "minimum": "2",
+    "maximum": "3"
+  },
+  "checked_at": "2026-10-11",
+  "sources": [
+    {
+      "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatrixMultiplication.lean",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "url": "https://arxiv.org/abs/2608.16884",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "url": "https://github.com/selanavot/matrix-multiplication-all-fields/blob/08481ef22bca7dc9ffba091083b7c1e81e537220/README.md",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "url": "https://arxiv.org/abs/2610.10593v1",
+      "checked_at": "2026-10-11"
+    }
+  ],
+  "records": [
+    {
+      "id": "classical-baseline",
+      "kind": "baseline",
+      "score": "2371177/1000000",
+      "tier": "claimed",
+      "submitted_at": null,
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+      "site_observed_at": "2026-10-10T22:29:27.649745Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.16884"
+      },
+      "spec_version": "1",
+      "title": "Dupont et al. with AlphaEvolve square matrix multiplication bound",
+      "authors": [
+        {
+          "name": "Dupont et al. with AlphaEvolve",
+          "url": "https://arxiv.org/abs/2608.16884"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://arxiv.org/abs/2608.16884",
+      "artifact": {
+        "path": "sources/matrix-classical-baseline.json",
+        "sha256": "79ac29e2caf57d31b3b2704d7cd324dad9e9a35b256caaf9c6d75ebd953629fd"
+      },
+      "evidence": {
+        "paper_url": "https://arxiv.org/abs/2608.16884",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": []
+    },
+    {
+      "id": "openai-matrix-2258-2026",
+      "kind": "improvement",
+      "score": "1129/500",
+      "tier": "claimed",
+      "submitted_at": "2026-10-10T22:29:27.649745Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+      "site_observed_at": "2026-10-10T22:29:27.649745Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf"
+      },
+      "spec_version": "1",
+      "title": "OpenAI square matrix multiplication bound",
+      "authors": [
+        {
+          "name": "OpenAI",
+          "url": "https://github.com/openai"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
+      "artifact": {
+        "path": "sources/matrix-openai-matrix-2258-2026.json",
+        "sha256": "da3cd09a8d1f1ce6cd222b33d0f7279feee7e532138c5c3ef34526f091c5cb13"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    },
+    {
+      "id": "openai-matrix-nine-fourths-2026",
+      "kind": "improvement",
+      "score": "9/4",
+      "tier": "claimed",
+      "submitted_at": "2026-10-10T22:29:27.649745Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+      "site_observed_at": "2026-10-10T22:29:27.649745Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf"
+      },
+      "spec_version": "1",
+      "title": "OpenAI square matrix multiplication bound",
+      "authors": [
+        {
+          "name": "OpenAI",
+          "url": "https://github.com/openai"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+      "artifact": {
+        "path": "sources/matrix-openai-matrix-nine-fourths-2026.json",
+        "sha256": "94f80a54d922cf186b81a1298640e31be67cd1d150699529f7b1c2f0a5a1c445"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    },
+    {
+      "id": "openai-matrix-all-fields-2026",
+      "kind": "improvement",
+      "score": "1185527443003373/500000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-10T22:29:27.649745Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+      "site_observed_at": "2026-10-10T22:29:27.649745Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf"
+      },
+      "spec_version": "1",
+      "title": "OpenAI square matrix multiplication bound",
+      "authors": [
+        {
+          "name": "OpenAI",
+          "url": "https://github.com/openai"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
+      "artifact": {
+        "path": "sources/matrix-openai-matrix-all-fields-2026.json",
+        "sha256": "d054185744de973b982ac065ccb54424a21a45955fb24c24a94184dae6307388"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    },
+    {
+      "id": "navot-matrix-all-fields-2026",
+      "kind": "improvement",
+      "score": "9/4",
+      "tier": "claimed",
+      "submitted_at": "2026-10-10T22:29:27.649745Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+      "site_observed_at": "2026-10-10T22:29:27.649745Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/selanavot/matrix-multiplication-all-fields/blob/08481ef22bca7dc9ffba091083b7c1e81e537220/README.md"
+      },
+      "spec_version": "1",
+      "title": "Sela Navot square matrix multiplication bound",
+      "authors": [
+        {
+          "name": "Sela Navot",
+          "url": "https://github.com/selanavot"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/selanavot/matrix-multiplication-all-fields/blob/08481ef22bca7dc9ffba091083b7c1e81e537220/README.md",
+      "artifact": {
+        "path": "sources/matrix-navot-matrix-all-fields-2026.json",
+        "sha256": "373add3c4e19e8f32abb6ac2438ce31a56cfe090deed14b5444b4316dd65189d"
+      },
+      "evidence": {
+        "paper_url": "https://doi.org/10.5281/zenodo.23219128",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "08481ef22bca7dc9ffba091083b7c1e81e537220"
+    },
+    {
+      "id": "zadeh-matrix-2026",
+      "kind": "improvement",
+      "score": "59278981/25000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-10T22:29:27.649745Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+      "site_observed_at": "2026-10-10T22:29:27.649745Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.10593v1"
+      },
+      "spec_version": "1",
+      "title": "Reza Zadeh square matrix multiplication bound",
+      "authors": [
+        {
+          "name": "Reza Zadeh",
+          "url": "https://arxiv.org/abs/2610.10593v1"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://arxiv.org/abs/2610.10593v1",
+      "artifact": {
+        "path": "sources/matrix-zadeh-matrix-2026.json",
+        "sha256": "00684738abdf1e7fc77531ae80c94bb56c673180f04eafe98504ecadd4657fd9"
+      },
+      "evidence": {
+        "paper_url": "https://arxiv.org/abs/2610.10593v1",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": []
+    }
+  ],
+  "record_metadata": {
+    "classical-baseline": {
+      "checked_at": "2026-10-11",
+      "eligible_for_record": false,
+      "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+      "site_badge": false,
+      "site_tier": "claimed",
+      "upstream_tier": "claimed",
+      "source_url": "https://arxiv.org/abs/2608.16884",
+      "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+      "comparison_status": "Complex numbers; prior preprint bound.",
+      "publication_year": 2026,
+      "publication_date": "2026-08-17",
+      "publication_date_precision": "date",
+      "publication_date_role": "Public release date",
+      "publication_source_url": "https://arxiv.org/abs/2608.16884",
+      "manuscript_date": null,
+      "scope": "Complex numbers; prior preprint bound."
+    },
+    "openai-matrix-2258-2026": {
+      "checked_at": "2026-10-11",
+      "eligible_for_record": true,
+      "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+      "site_badge": false,
+      "site_tier": "claimed",
+      "upstream_tier": "claimed",
+      "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
+      "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+      "comparison_status": "Characteristic zero, including complex numbers. Manuscript dated 2026-09-24; public collection released 2026-10-06.",
+      "publication_year": 2026,
+      "publication_date": "2026-10-06",
+      "publication_date_precision": "date",
+      "publication_date_role": "Public release date",
+      "publication_source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
+      "manuscript_date": "2026-09-24",
+      "scope": "Characteristic zero, including complex numbers.",
+      "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision."
+    },
+    "openai-matrix-nine-fourths-2026": {
+      "checked_at": "2026-10-11",
+      "eligible_for_record": true,
+      "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+      "site_badge": false,
+      "site_tier": "claimed",
+      "upstream_tier": "claimed",
+      "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+      "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+      "comparison_status": "Complex numbers. Author supplies Lean; no site rerun yet. Manuscript dated 2026-10-02; public collection released 2026-10-06.",
+      "publication_year": 2026,
+      "publication_date": "2026-10-06",
+      "publication_date_precision": "date",
+      "publication_date_role": "Public release date",
+      "publication_source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+      "manuscript_date": "2026-10-02",
+      "scope": "Complex numbers. Author supplies Lean; no site rerun yet.",
+      "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision."
+    },
+    "openai-matrix-all-fields-2026": {
+      "checked_at": "2026-10-11",
+      "eligible_for_record": true,
+      "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+      "site_badge": false,
+      "site_tier": "claimed",
+      "upstream_tier": "claimed",
+      "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
+      "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+      "comparison_status": "Every fixed field, including complex numbers. Manuscript dated 2026-09-24; public collection released 2026-10-06.",
+      "publication_year": 2026,
+      "publication_date": "2026-10-06",
+      "publication_date_precision": "date",
+      "publication_date_role": "Public release date",
+      "publication_source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
+      "manuscript_date": "2026-09-24",
+      "scope": "Every fixed field, including complex numbers.",
+      "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision."
+    },
+    "navot-matrix-all-fields-2026": {
+      "checked_at": "2026-10-11",
+      "eligible_for_record": true,
+      "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+      "site_badge": false,
+      "site_tier": "claimed",
+      "upstream_tier": "claimed",
+      "source_url": "https://github.com/selanavot/matrix-multiplication-all-fields/blob/08481ef22bca7dc9ffba091083b7c1e81e537220/README.md",
+      "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+      "comparison_status": "Every field, including complex numbers. Author supplies Lean; no site rerun yet.",
+      "publication_year": 2026,
+      "publication_date": "2026-10-07",
+      "publication_date_precision": "date",
+      "publication_date_role": "Public release date",
+      "publication_source_url": "https://doi.org/10.5281/zenodo.23219128",
+      "manuscript_date": null,
+      "scope": "Every field, including complex numbers. Author supplies Lean; no site rerun yet.",
+      "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision."
+    },
+    "zadeh-matrix-2026": {
+      "checked_at": "2026-10-11",
+      "eligible_for_record": true,
+      "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+      "site_badge": false,
+      "site_tier": "claimed",
+      "upstream_tier": "claimed",
+      "source_url": "https://arxiv.org/abs/2610.10593v1",
+      "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+      "comparison_status": "Rational, real and complex numbers. Exact rational certificate and Python verifier; no Lean proof supplied.",
+      "publication_year": 2026,
+      "publication_date": "2026-10-06",
+      "publication_date_precision": "date",
+      "publication_date_role": "Public release date",
+      "publication_source_url": "https://arxiv.org/abs/2610.10593v1",
+      "manuscript_date": null,
+      "scope": "Rational, real and complex numbers. Exact rational certificate and Python verifier; no Lean proof supplied.",
+      "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision."
+    }
+  },
+  "updated_at": "2026-10-10T22:29:27.649745Z"
+}

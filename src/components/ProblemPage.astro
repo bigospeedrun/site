@@ -1,4 +1,5 @@
 ---
+import MatrixHistory from './MatrixHistory.astro';
 import Layout from '../layouts/Layout.astro';
 import {boardRecords} from '../lib/data';
 import ProgressChart from './ProgressChart.astro';
@@ -12,6 +13,7 @@ const {p}=Astro.props;
 const records=boardRecords(p);
 const classic=p.records.find(r=>r.id==='classical-baseline');
 const classicCitations:Record<string,{name:string;url:string}[]>={
+ 'matrix-multiplication':[{name:'Dupont et al., preprint published August 17, 2026',url:'https://arxiv.org/abs/2608.16884'}],
  '3sum':[{name:'Gajentaan and Overmars 1995, account of the folklore algorithm',url:'https://people.csail.mit.edu/virgi/6.s078/papers/gajovermars.pdf'}],
  'apsp':[{name:'Floyd 1962',url:'https://doi.org/10.1145/367766.368168'}],
  'subset-sum':[{name:'Horowitz and Sahni 1974',url:'https://doi.org/10.1145/321812.321823'}],
@@ -20,9 +22,11 @@ const classicCitations:Record<string,{name:string;url:string}[]>={
  'directed-sssp':[{name:'Fredman and Tarjan 1987',url:'https://doi.org/10.1145/28869.28874'}],
 };
 const kappa=p.symbol==='kappa';
-const boundLatex=kappa?'O(n \\log^{1-\\kappa} n)':p.slug==='subset-sum'?'O(2^{\\alpha n})':p.slug==='directed-sssp'?'O(n \\log^{\\alpha} n)':'O(n^{\\alpha})';
-const limit=kappa?1:p.slug==='apsp'?2:p.slug==='3sum'?1:0;
+const matrix=p.slug==='matrix-multiplication';
+const boundLatex=matrix?'O(n^{t+\\varepsilon})':kappa?'O(n \\log^{1-\\kappa} n)':p.slug==='subset-sum'?'O(2^{\\alpha n})':p.slug==='directed-sssp'?'O(n \\log^{\\alpha} n)':'O(n^{\\alpha})';
+const limit=matrix?2:kappa?1:p.slug==='apsp'?2:p.slug==='3sum'?1:0;
 const statements:Record<string,string>={
+ 'matrix-multiplication':'Multiply two '+math('n\\times n')+' matrices over '+math('\\mathbb{C}')+' exactly. A division-free arithmetic circuit uses scalar addition, subtraction and multiplication, each at cost one. Inputs and field constants are free. Results proved over every field also qualify because they hold over '+math('\\mathbb{C}')+'.',
  '3sum': 'Given '+math('n')+' integers, decide whether three distinct positions sum to zero. For each fixed '+math('k')+', inputs have magnitude at most '+math('n^k')+'. One deterministic word-RAM program per '+math('k')+' must work for every word width '+math('W \\ge b(\\lfloor\\log_2 n\\rfloor+1)')+', with a fixed constant '+math('b')+'. Signed arithmetic, indirect memory access and branches cost one step.',
  'apsp': 'Given a directed graph on '+math('n')+' vertices with polynomially bounded integer weights and no negative cycles, compute reachability and shortest-path distances for every ordered pair. Inputs are edge-presence and weight matrices. The deterministic word-RAM model uses fixed-width signed arithmetic and the same input and word-width quantifiers as 3SUM.',
  'integer-multiplication':'Multiply two '+math('n')+'-bit integers on a Turing machine with a fixed finite alphabet and a fixed number of one-dimensional tapes.',
@@ -37,7 +41,7 @@ const statements:Record<string,string>={
 <p set:html={statements[p.slug]}/>
 {classic&&<p>Classic bound: <span set:html={math(classic.bound)}/> ({classicCitations[p.slug].map((citation,i)=><>{i>0?"; ":""}<a href={citation.url} target={citation.url.startsWith("https://github.com/")?"_blank":undefined} rel={citation.url.startsWith("https://github.com/")?"noopener":undefined}>{citation.name}</a></>)}).</p>}
 {p.slug==='subset-sum'&&<details><summary>Full computation rules</summary><p>Word reads and writes, indirect addressing, comparison, arithmetic (including multiplication, division and remainder), bitwise operations, shifts and independent uniform random words each cost one operation. Overflow costs multiple operations. Retained random words use memory. All input access and preparation count; the program has no advice or external tables. For each fixed <span set:html={math('c')}/> and <span set:html={math('b\\le n^c')}/>, the bound holds for every random outcome, and the program does not depend on <span set:html={math('c')}/>.</p></details>}
-<p>The bound has the form <span set:html={math(boundLatex)}/>. {kappa?<><span set:html={math('\\kappa')}/> is the saving in the logarithmic exponent; higher is better.</>:<><span set:html={math('\\alpha')}/> is the time exponent; lower is better.</>}</p>
+<p>The bound has the form <span set:html={math(boundLatex)}/>. {matrix?<><span set:html={math('t')}/> is the arithmetic exponent; lower is better. For every fixed <span set:html={math('\\varepsilon>0')}/>, one positive constant <span set:html={math('C')}/> bounds a correct circuit’s cost by <span set:html={math('C n^{t+\\varepsilon}')}/> for every positive size <span set:html={math('n')}/>. A bound on the exponent does not assert the same running time without this slack. <a href="https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatrixMultiplication.lean" target="_blank" rel="noopener">Exact Lean statement</a>.</>:kappa?<><span set:html={math('\\kappa')}/> is the saving in the logarithmic exponent; higher is better.</>:<><span set:html={math('\\alpha')}/> is the time exponent; lower is better.</>}</p>
 <ul class="evidence-rules">
 <li><strong>What counts as <span class="claimed">Claimed</span>:</strong> {p.slug==='integer-multiplication'?<>Published bounds outside <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>, and open pull requests to it that are not yet merged.</>:'Published results for this problem without a qualifying repository review or Lean proof check.'}</li>
 <li><strong>What counts as <span class="human-verified">Human Verified</span>:</strong> {p.slug==='integer-multiplication'?<>Results merged into <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>, a community repo. In particular, merged pull requests and results selected on its main branch qualify.</>:<>This problem has no community repo with a qualifying review rule.</>}</li>
@@ -46,6 +50,7 @@ const statements:Record<string,string>={
 </section>
 <Leaderboard records={records} direction={p.direction} kappa={kappa}/>
 <ProgressChart slug={p.slug} records={records} direction={p.direction} label={p.title} boundLatex={boundLatex} limit={limit}/>
+{matrix&&<MatrixHistory/>}
 <section class="repos"><h2>Relevant repos <InfoTooltip label="How repositories are selected">{repoSelectionText}</InfoTooltip></h2>
 <ul>{p.repos.map(repo=><li><a href={repo.url} target="_blank" rel="noopener">{repo.name}</a></li>)}</ul></section>
 </Layout>

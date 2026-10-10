@@ -19,7 +19,7 @@ function boardEntries(slug:string) {
   const date=m.publication_date??announcementDate??sourceDate??r.submitted_at??r.site_observed_at;
   const record={id:r.id,isBreakthrough:isBreakthroughRecord(slug,r.id),repo,repoId:0,score:r.score,scoreRelation:r.score_relation,upstreamStatus:r.upstream_status??'not-applicable',reproductionOf:m.reproduction_of,date,
    publicationYear:m.publication_date_precision==='year'?m.publication_year:undefined,
-   dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':m.publication_date_role?.toLowerCase().includes('commit')?'Commit date':m.publication_date_role?.includes('paper')?'Paper date':m.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',
+   dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':m.publication_date_role?.toLowerCase().includes('commit')?'Commit date':m.publication_date_role?.includes('paper')?'Paper date':m.publication_date?'Source date':m.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',
    raceEventAt:m.race_event_at??(m.publication_date_precision==='date-time'?m.publication_date:undefined)??(m.upstream_selected?r.submitted_at:undefined),
    level:classifyEvidence({slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:m.upstream_selected===true,proofPassed:m.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)}),
    author:'',boundHtml:'',url:''};
@@ -43,7 +43,7 @@ function checkBoardProgression(slug:string, higher:boolean) {
 }
 
 test('each live board progression ends at its current table leader',()=>{
- for(const slug of ['integer-multiplication','exact-dft','3sum','apsp','subset-sum','directed-sssp']){
+ for(const slug of ['matrix-multiplication','integer-multiplication','exact-dft','3sum','apsp','subset-sum','directed-sssp']){
   checkBoardProgression(slug,['integer-multiplication','exact-dft'].includes(slug));
  }
 });
@@ -105,7 +105,7 @@ test('scale includes the reference limit; zero and single values stay finite',()
 
 
 test('each public race begins with its dated breakthrough',()=>{
- for(const slug of ['integer-multiplication','exact-dft','subset-sum','3sum','apsp']){
+ for(const slug of ['matrix-multiplication','integer-multiplication','exact-dft','subset-sum','3sum','apsp']){
   const dated=boardEntries(slug).filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
   const breakthrough=dated.find((r:any)=>r.isBreakthrough);
   assert.ok(breakthrough,slug+' has a dated breakthrough');
@@ -177,7 +177,7 @@ test('breakthrough remains the start of progression for every evidence filter co
 
 
 test('real problem boards retain only their breakthrough when all evidence filters are off',()=>{
- for(const slug of ['integer-multiplication','exact-dft','3sum','apsp','subset-sum']){
+ for(const slug of ['matrix-multiplication','integer-multiplication','exact-dft','3sum','apsp','subset-sum']){
   const board=boardEntries(slug);
   const dated=board.filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));
   const records=chartRecords(dated,new Set(),['integer-multiplication','exact-dft'].includes(slug));
