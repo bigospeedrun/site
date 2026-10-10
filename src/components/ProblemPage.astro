@@ -1,5 +1,4 @@
 ---
-import MatrixHistory from './MatrixHistory.astro';
 import Layout from '../layouts/Layout.astro';
 import {boardRecords} from '../lib/data';
 import ProgressChart from './ProgressChart.astro';
@@ -50,7 +49,6 @@ const statements:Record<string,string>={
 </section>
 <Leaderboard records={records} direction={p.direction} kappa={kappa}/>
 <ProgressChart slug={p.slug} records={records} direction={p.direction} label={p.title} boundLatex={boundLatex} limit={limit}/>
-{matrix&&<MatrixHistory/>}
 <section class="repos"><h2>Relevant repos <InfoTooltip label="How repositories are selected">{repoSelectionText}</InfoTooltip></h2>
 <ul>{p.repos.map(repo=><li><a href={repo.url} target="_blank" rel="noopener">{repo.name}</a></li>)}</ul></section>
 </Layout>
