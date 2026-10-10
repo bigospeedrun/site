@@ -47,6 +47,25 @@ def read_json(raw):
     except (ValueError, UnicodeError) as error:
         raise Rejected('Invalid JSON') from error
 
+def is_test_submission(github_item, *payloads):
+    """Shared exclusion for issue/PR receipts and any future open-claim reader.
+
+    GitHub labels must come from fresh API metadata. Test sources never produce
+    a board row, including a Claimed row. Inspect known nested request/receipt
+    containers because either route can propagate its test flag there.
+    """
+    labels = github_item.get('labels', [])
+    if any((label.get('name', '') if isinstance(label, dict) else str(label)).strip().casefold() == 'test'
+           for label in labels):
+        return True
+    def marked(value):
+        if not isinstance(value, dict):
+            return False
+        return (value.get('test_only') is True or value.get('status') == 'fixture_only'
+                or any(marked(value.get(key)) for key in
+                       ('request', 'inputs', 'receipt', 'submission', 'direct_submission')))
+    return any(marked(value) for value in (github_item, *payloads))
+
 def normalize(value):
     fields = {'schema_version', 'problem', 'bound', 'repo_url', 'commit', 'authors'}
     require(isinstance(value, dict) and fields <= value.keys() and not value.keys()-fields-{'entrypoint'}, 'Invalid submission fields')
@@ -126,6 +145,7 @@ theorem Race.bound : ∃ order solve W, DFTProgram order solve W ∧
 
 def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt_archive=None, receipt_artifact=None):
     """Return a review candidate; even a pass does not establish credit or priority."""
+    require(not is_test_submission(issue), 'Test-labeled submission stays off the board')
     require(len(archive) <= MAX_BYTES, 'Artifact exceeds size limit')
     require(artifact.get('digest') == 'sha256:' + sha(archive), 'Artifact digest mismatch')
     require(type(artifact.get('id')) is int and not artifact.get('expired', True), 'Invalid artifact identity')
@@ -149,6 +169,7 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
     except (zipfile.BadZipFile, RuntimeError) as error:
         raise Rejected('Invalid artifact archive') from error
     require(isinstance(env, dict) and type(env.get('schema_version')) is int and env['schema_version'] == 1, 'Unsupported envelope')
+    require(not is_test_submission(issue, env), 'Test submission stays off the board at every evidence level')
     receipt = env.get('receipt', {})
     require(isinstance(receipt, dict) and env.get('test_only') is False and env.get('importable') is True and env.get('status') != 'fixture_only' and not receipt.get('test_only'), 'Test replay is not importable')
     receipt = checked_receipt(receipt_archive, receipt_artifact, env, run, revision)

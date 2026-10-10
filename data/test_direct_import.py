@@ -87,6 +87,26 @@ class DirectImportTests(unittest.TestCase):
             self.assertEqual(receipt['theorems'][name]['reported_axioms'],
                              receipt['axiom_audit']['reported_axioms'][name])
 
+    def test_test_labels_exclude_receipts_and_open_claims(self):
+        for labels in [[{'name': 'test'}], ['test'], [{'name': 'TEST'}]]:
+            for route in ['issue', 'pull_request']:
+                item = dict(self.issue, labels=labels)
+                if route == 'pull_request':
+                    item['pull_request'] = {'url': 'https://api.github.com/repos/bigospeedrun/verifier/pulls/2'}
+                self.assertTrue(gate.is_test_submission(item))
+                with self.assertRaises(gate.Rejected):
+                    self.check(issue=item)
+        self.assertFalse(gate.is_test_submission(dict(self.issue, labels=[{'name': 'verification-needs-review'}])))
+        for payload in [{'test_only': True}, {'request': {'test_only': True}},
+                        {'receipt': {'test_only': True}}, {'request': {'inputs': {'test_only': True}}},
+                        {'request': {'inputs': {}, 'submission': {'test_only': True}}}]:
+            self.assertTrue(gate.is_test_submission(self.issue, payload))
+        for field in ['request', 'receipt']:
+            env = copy.deepcopy(self.env)
+            env.setdefault(field, {})['test_only'] = True
+            with self.assertRaises(gate.Rejected):
+                self.check(env=env)
+
     def test_evidence_log_hashes(self):
         content = b'Synthetic test log, not proof evidence.'
         receipt = self.env['receipt']

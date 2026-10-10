@@ -19,3 +19,9 @@ checked before connecting this module to an importer. No live trust is enabled.
 
 Final producer contract checked against verifier commit `01c71e9` on 2026-10-10.
 The form and envelope fixtures are byte copies from that commit.
+
+On 2026-10-11, test-source exclusion was added before receipt admission.
+`is_test_submission` is the shared filter for both GitHub issue and PR metadata:
+a `test` label or a propagated `test_only: true` excludes every evidence tier,
+including Claimed. Any future PR importer or open-claim reader must apply this
+filter before creating a row, using current GitHub labels. Neither path is active.
