@@ -25,4 +25,4 @@ On Vercel, select Astro, Node.js 22, build command `npm run build`, and output d
 
 ## License
 
-Code is licensed under the [MIT License](LICENSE). Data is released under [CC0 1.0](data/LICENSE). Third-party papers, proofs and assets retain their own licenses.
+Code is licensed under the [MIT License](LICENSE). [CC0 1.0](data/LICENSE) covers the data files we wrote, including the registry, problem files, schemas and our receipts. It does not cover `data/sources/`: third-party material there keeps its original license, with LICENSE/NOTICE copies beside the sources where available. See the [source license inventory](data/README.md#licenses) for missing copies. These terms also apply to copies distributed by the site.
