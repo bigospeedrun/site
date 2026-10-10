@@ -29,6 +29,10 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
       <p>Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). For Lean Verified results, we rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement.</p>
       <p>{reviewSubmissionPolicy} We find published results by watching GitHub and posts about these problems. Anyone can report one through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>. We list them as Claimed after we check that they state the same problem.</p>
     </details>
+    <details open id="latest-results">
+      <summary>How do we keep track of the latest results?</summary>
+      <p>An hourly GitHub workflow imports new pull requests from the review repos, like <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>. An agent also searches GitHub for new repos about these problems and flags the ones that state a bound. A second agent reads each flagged repo, checks that it solves the same problem, and compares it with the board. If it was the best bound when it appeared, we add it as Claimed.</p>
+    </details>
     <details open id="repos">
       <summary>How are relevant repos selected?</summary>
       <p>{repoSelectionText}</p>
