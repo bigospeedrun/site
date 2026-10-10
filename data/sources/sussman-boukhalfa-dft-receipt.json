@@ -1,11 +1,11 @@
 {
   "state": "passed",
-  "checked_at": "2026-10-10T11:53:44.227117Z",
-  "observed_at": "2026-10-10T12:06:44Z",
-  "summary": "Lean kernel check passed; the second independent kernel check did not complete.",
-  "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/38045878911",
+  "checked_at": "2026-10-10T14:25:46.083751Z",
+  "observed_at": "2026-10-10T14:57:54Z",
+  "summary": "Both kernel checks passed: Lean and nanoda.",
+  "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/38050668997",
   "source_commit": "837dc3130adc79f7b7ab4ddd56c15576bbd766b0",
-  "verifier_commit": "51954b9c362f37d49a23325f8328e72afb576288",
+  "verifier_commit": "6551945e441b57c1b14f9ad8942ee5db1e05eb96",
   "score": "47171/62500000",
   "score_relation": "attained",
   "scope": "All-positive-length exact DFT and convolution in the OpenAI family-130 exact scalar/index RAM model; transform_mainY and convolution_mainY.",
@@ -24,15 +24,14 @@
   },
   "second_kernel": {
     "name": "nanoda",
-    "state": "not-completed",
-    "reason": "out of memory; no verdict"
+    "state": "passed"
   },
-  "upstream_workflow_conclusion": "failure",
-  "upstream_receipt_status": "not_verified",
-  "site_tier_basis": "The published Lean Verified definition requires the Lean kernel check, which passed; this receipt does not claim two-kernel verification.",
+  "upstream_workflow_conclusion": "success",
+  "upstream_receipt_status": "passed",
+  "site_tier_basis": "Both independent kernel checks and the permitted-axiom audit passed for the exact DFT and convolution statements.",
   "artifact_path": "sources/sussman-boukhalfa-dft-upstream-receipt.json",
-  "artifact_sha256": "98b0f514772290cb3ae0dd7aeec2cfda0d38161d2afe88e96ab3f7023cd79aef",
+  "artifact_sha256": "e8486e564d7efd2259a3186688d6d88077a6976fa82d30ca41753bebdad6d5c0",
   "log_path": "sources/sussman-boukhalfa-dft-verification.log",
-  "log_sha256": "578345e21cb2d56f8ea4e50b951e8a52b5368d78a06b3a025546f4c77b8618f2",
+  "log_sha256": "ba3d471e7d222d1a76363954d845ab65288a495c40ab80ded85557d3ebe1905a",
   "log_description": "Combined unchanged lean.log, audit.log and nanoda.log, with file-name separators; original hashes remain in the upstream receipt."
 }
