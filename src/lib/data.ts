@@ -38,10 +38,8 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
 }),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,provenance:r.provenance};
  });
  const kappa=data.score.symbol==='kappa';
- if(kappa){
-  const digits=boundPrecision(records.filter(r=>isBoardEntry(p.slug,r)).map(r=>r.score),true);
-  for(const record of records)if(record.id!=='classical-baseline')record.bound=tableBound(record,true,digits);
- }
+ const digits=boundPrecision(records.filter(r=>isBoardEntry(p.slug,r)).map(r=>r.score),kappa);
+ for(const record of records)if(record.id!=='classical-baseline')record.bound=tableBound(record,kappa,digits);
  return {slug:p.slug,title:titles[p.slug],model:data.model.id.replaceAll('-',' '),modelId:data.model.id,scope:data.model.description,direction:data.score.direction,symbol:data.score.symbol==='kappa'?'kappa':'exponent',repos,records,lastDataCheck:data.updated_at,lastProofCheck:records.filter(r=>r.rerunStatus?.checked_at&&['passed','failed'].includes(r.rerunStatus.state)).map(r=>r.rerunStatus!.checked_at!).filter(Boolean).sort().at(-1)??null,sourceFetch:data.checked_at,pending:'Independent checks have not run. No site proof badges.',notes:[],};
 });
 
