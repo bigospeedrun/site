@@ -16,3 +16,6 @@ This module returns review candidates only. Authorship and publication dates
 still need review. The final trusted verifier revision and live GitHub run metadata
 (including referenced reusable workflows and both artifact digests) must be
 checked before connecting this module to an importer. No live trust is enabled.
+
+Final producer contract checked against verifier commit `01c71e9` on 2026-10-10.
+The form and envelope fixtures are byte copies from that commit.

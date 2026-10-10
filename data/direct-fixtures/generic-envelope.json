@@ -65,7 +65,12 @@
     "theorems": {
       "Race.bound": {
         "lean_kernel": "passed",
-        "nanoda_kernel": "incomplete"
+        "nanoda_kernel": "incomplete",
+        "reported_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
       }
     },
     "kernels": {

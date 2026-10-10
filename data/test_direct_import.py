@@ -72,6 +72,21 @@ class DirectImportTests(unittest.TestCase):
         if meta_change:meta.update(meta_change)
         return gate.validate_result(archive, self.issue if issue is None else issue,self.run if run is None else run,meta,self.trust,receipt_archive=receipt_archive,receipt_artifact=receipt_meta)
 
+    def test_committed_form_and_challenge_fixture(self):
+        body = (FIXTURES/'issue-form-body.txt').read_text()
+        submission = gate.parse_body(body)
+        self.assertEqual(submission['bound'], '1/1000')
+        self.assertEqual(submission['authors'], [])
+        envelope = json.loads((FIXTURES/'generic-envelope.json').read_text())
+        profile = self.trust[self.revision]['profiles'][submission['problem']]
+        base = self.trust[self.revision]['statements'][profile['challenge_file']]
+        self.assertEqual(gate.sha(gate.challenge_bytes(envelope['submission'], base)),
+                         envelope['challenge']['generated_sha256'])
+        receipt = envelope['receipt']
+        for name in envelope['theorem_names']:
+            self.assertEqual(receipt['theorems'][name]['reported_axioms'],
+                             receipt['axiom_audit']['reported_axioms'][name])
+
     def test_evidence_log_hashes(self):
         content = b'Synthetic test log, not proof evidence.'
         receipt = self.env['receipt']
