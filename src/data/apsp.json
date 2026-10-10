@@ -163,6 +163,44 @@
           "status": "unverified"
         }
       ]
+    },
+    {
+      "id": "jihoon-hyun-apsp-2026",
+      "kind": "improvement",
+      "score": "299791/100000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-07T09:11:13Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T12:06:44Z",
+      "site_observed_at": "2026-10-10T12:06:44Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
+      },
+      "spec_version": "1",
+      "title": "Jihoon Hyun all-edges APSP claim",
+      "authors": [
+        {
+          "name": "Jihoon Hyun",
+          "url": "https://github.com/qawbecrdtey"
+        }
+      ],
+      "predecessors": [
+        "https://arxiv.org/abs/2610.06783",
+        "https://github.com/anthropics/formal-math"
+      ],
+      "submission_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md",
+      "source_commit": "0725f2477587d67212936777b8a264c9793ac7bb",
+      "artifact": {
+        "path": "sources/improved-exponents-model-check.json",
+        "sha256": "7bc7c81470d43f99d3f3b800c065ad4196d5dcddecf29233ef1ba03c6083c9a0"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md",
+        "theorem": "apsp_allEdges_pruned",
+        "certificate_path": null
+      },
+      "dependencies": []
     }
   ],
   "record_metadata": {
@@ -217,7 +255,30 @@
       "credits": "Swapnil Jain; builds on Alman and Vassilevska Williams, ImprovedExponents, and the reductions credited in the source README.",
       "license_status": "Apache-2.0; LICENSE and NOTICE retained",
       "notes_url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/stacked.md"
+    },
+    "jihoon-hyun-apsp-2026": {
+      "checked_at": "2026-10-10",
+      "source_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md",
+      "repo": "qawbecrdtey/ImprovedExponents",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Source-reported Lean proof; no independent site rerun. Historical Claimed result.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/word-ram/v1",
+      "comparison_status": "Pinned upstream/3sum-apsp/EndStatement.lean equals anthropics/formal-math at e1a4e6508154ea59f030480661590a9fe3018011 byte for byte.",
+      "scope": "Deterministic programs in the upstream word RAM: every polynomial input-magnitude bound, every instance, and every word size above the stated logarithmic threshold. All-edges route proves EndStatement.APSP and EndStatement.MinPlusProduct at exponent 2.99791.",
+      "publication_date_precision": "date-time",
+      "publication_date": "2026-10-07T09:11:13Z",
+      "publication_date_role": "First repository commit stating this bound",
+      "publication_source_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/a3a87451f930e41d802d3d415ec12ca4bcd3161e/README.md",
+      "claim_date_commit": "a3a87451f930e41d802d3d415ec12ca4bcd3161e",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "credits": "Jihoon Hyun (qawbecrdtey); source credits Claude Fable 5.1 and Claude Opus 5.5 for implementation under his direction, and Alman and Vassilevska Williams for the underlying algorithms and framework.",
+      "license_status": "Apache-2.0; LICENSE and NOTICE retained",
+      "notes_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
     }
   },
-  "updated_at": "2026-10-10T09:04:13Z"
+  "updated_at": "2026-10-10T12:06:44Z"
 }
