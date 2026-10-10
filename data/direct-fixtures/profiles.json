@@ -1,0 +1,76 @@
+{
+  "dft": {
+    "challenge_file": "challenges/dft/UniformFourier233.lean",
+    "challenge_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+    "lean_toolchain": "leanprover/lean4:v4.34.1",
+    "manifest_file": "profiles/lake-manifest.json",
+    "tools_file": "profiles/tools.json",
+    "solution_module": "Submission",
+    "source_roots": [
+      "Submission"
+    ],
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "bound_kind": "saving",
+    "maximum": "1",
+    "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+  },
+  "3sum": {
+    "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+    "challenge_sha256": "4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987",
+    "lean_toolchain": "leanprover/lean4:v4.33.1",
+    "manifest_file": "profiles/anthropic-lake-manifest.json",
+    "tools_file": "profiles/anthropic-tools.json",
+    "solution_module": "Submission",
+    "source_roots": [
+      "Submission"
+    ],
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "bound_kind": "exponent",
+    "maximum": "2",
+    "upstream_commit": "e1a4e6508154ea59f030480661590a9fe3018011"
+  },
+  "apsp": {
+    "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+    "challenge_sha256": "4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987",
+    "lean_toolchain": "leanprover/lean4:v4.33.1",
+    "manifest_file": "profiles/anthropic-lake-manifest.json",
+    "tools_file": "profiles/anthropic-tools.json",
+    "solution_module": "Submission",
+    "source_roots": [
+      "Submission"
+    ],
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "bound_kind": "exponent",
+    "maximum": "3",
+    "upstream_commit": "e1a4e6508154ea59f030480661590a9fe3018011"
+  },
+  "dft233": {
+    "lean_toolchain": "leanprover/lean4:v4.34.1",
+    "challenge_file": "challenges/dft/UniformFourier233.lean",
+    "challenge_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+    "solution_module": "Work.Fourier233.Main",
+    "theorem_names": [
+      "OAI.PowerSaving.transform_mainY",
+      "OAI.PowerSaving.convolution_mainY"
+    ],
+    "source_roots": [
+      "OAI",
+      "Work",
+      "WHTCheck"
+    ],
+    "permitted_axioms": [
+      "propext",
+      "Quot.sound",
+      "Classical.choice"
+    ],
+    "saving": "7547360/10000000000",
+    "model": "OpenAI.PowerSaving.DFTProgram (exact scalar/index RAM; all positive lengths)",
+    "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+  }
+}
