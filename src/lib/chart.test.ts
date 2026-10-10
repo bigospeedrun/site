@@ -213,3 +213,11 @@ test('APSP and 3SUM separate small improvements without forcing the trivial limi
   }
  }
 });
+
+
+test('multi-day ticks respect the phone limit and retain the first and last days',()=>{
+ const start=new Date(2026,9,6,7,23).getTime(),end=new Date(2026,9,11,6,23).getTime();
+ const ticks=chartTimeTicks(start,end,3);
+ assert.deepEqual(ticks.times.map(t=>new Date(t).getDate()),[7,9,11]);
+ assert.equal(chartTimeTicks(start,end,1).times.length,1);
+});

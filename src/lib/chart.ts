@@ -60,7 +60,9 @@ export function chartTimeTicks(start:number,end:number,maxTicks:number) {
   if(day.getTime()<start)day.setDate(day.getDate()+1);
   const times:number[]=[];
   while(day.getTime()<=end){times.push(day.getTime());day.setDate(day.getDate()+1)}
-  return {showTimes:false,times};
+  const count=Math.max(1,Math.floor(maxTicks));
+  const selected=times.length<=count?times:Array.from({length:count},(_,i)=>times[count===1?0:Math.round(i*(times.length-1)/(count-1))]);
+  return {showTimes:false,times:selected};
  }
  const count=span===0?1:Math.min(maxTicks,Math.floor(span/60000)+1);
  const times=Array.from({length:count},(_,i)=>count===1?start:start+span*i/(count-1));

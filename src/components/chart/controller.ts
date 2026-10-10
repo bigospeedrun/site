@@ -79,6 +79,7 @@ class ProgressChart extends HTMLElement {
   }
   if(entries.length){
    const count=times.length;
+   let previousLabelRight=-Infinity;
    for(let i=0;i<count;i++){
     const time=times[i],px=x(time);
     plot.append(svg('line',{x1:px,x2:px,y1:top,y2:bottom,class:'plot-grid'}));
@@ -87,7 +88,17 @@ class ProgressChart extends HTMLElement {
     const d=new Date(time);
     const dateOnly=dateOnlyAxis||entries.some(e=>e.time===time&&/^\d{4}-\d{2}-\d{2}$/.test(e.date));
     tick.textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(tick);
-    if(showTimes&&!dateOnly){const t=svg('text',{x:labelX,y:bottom+35,'text-anchor':tick.getAttribute('text-anchor')!,class:'plot-date'});t.textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d);plot.append(t)}
+    const tickLabels=[tick];
+    if(showTimes&&!dateOnly){const t=svg('text',{x:labelX,y:bottom+35,'text-anchor':tick.getAttribute('text-anchor')!,class:'plot-date'});t.textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d);plot.append(t);tickLabels.push(t)}
+    // Measure the rendered text, including localized month names and time rows.
+    const halfWidth=Math.max(...tickLabels.map(label=>label.getBBox().width))/2;
+    const center=Math.max(halfWidth+4,Math.min(width-halfWidth-4,labelX));
+    if(center-halfWidth<previousLabelRight+10){
+     tickLabels.forEach(label=>label.remove());
+    }else{
+     tickLabels.forEach(label=>label.setAttribute('x',String(center)));
+     previousLabelRight=center+halfWidth;
+    }
    }
    const axis=svg('text',{x:(left+right)/2,y:height-3,'text-anchor':'middle',class:'plot-date'});
    axis.textContent=dateOnlyAxis?'Date':'Date (local time)';plot.append(axis);

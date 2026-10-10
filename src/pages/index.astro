@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {problemDisplayName} from '../lib/navigation';
 import InfoTooltip from '../components/InfoTooltip.astro';
 import content from '../lib/landing.html?raw';
 import {math, inlineMath} from '../lib/math';
@@ -9,12 +10,12 @@ import {evidenceName, breakthroughLabel} from '../lib/evidence';
 import {localTimeFallback} from '../lib/freshness';
 const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
 const rows = [
-  {slug:'integer-multiplication', name:'Integer Multiplication', classic:'O(n \\log n)', breakthroughId:'openai-original-109', source:'https://github.com/openai/math/tree/main/preprints/Integer-multiplication-below-n-log-n-September-23-2026'},
-  {slug:'matrix-multiplication', name:'Matrix Multiplication', classic:'O(n^{2.371177+\\varepsilon})', breakthroughId:'openai-matrix-nine-fourths-2026', source:'https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf'},
-  {slug:'exact-dft', name:'Fourier Transform', classic:'O(n \\log n)', breakthroughId:'exact-dft-2026', source:'https://github.com/openai/math/tree/main/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026'},
-  {slug:'3sum', name:'3SUM', classic:'O(n^2)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
-  {slug:'apsp', name:'APSP', classic:'O(n^3)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
-  {slug:'subset-sum', name:'Subset Sum', classic:'O^*(2^{n/2})', breakthroughId:'subset-sum-2026', source:'https://github.com/openai/math/tree/main/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026'},
+  {slug:'integer-multiplication', classic:'O(n \\log n)', breakthroughId:'openai-original-109', source:'https://github.com/openai/math/tree/main/preprints/Integer-multiplication-below-n-log-n-September-23-2026'},
+  {slug:'matrix-multiplication', classic:'O(n^{2.371177+\\varepsilon})', breakthroughId:'openai-matrix-nine-fourths-2026', source:'https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf'},
+  {slug:'exact-dft', classic:'O(n \\log n)', breakthroughId:'exact-dft-2026', source:'https://github.com/openai/math/tree/main/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026'},
+  {slug:'3sum', classic:'O(n^2)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
+  {slug:'apsp', classic:'O(n^3)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
+  {slug:'subset-sum', classic:'O^*(2^{n/2})', breakthroughId:'subset-sum-2026', source:'https://github.com/openai/math/tree/main/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026'},
 ].map(row=>{
   const problem=problems.find(p=>p.slug===row.slug)!;
   const records=boardRecords(problem);
@@ -25,7 +26,7 @@ const rows = [
   const latest=best&&!best.publicationYear&&best.dateLabel!=='Observed'&&best.date.slice(0,10)>'2026-10-06'?best:undefined;
   const latestBound=latest?.bound;
   const endpoint=latest?.scoreRelation==='strict-upper-bound';
-  return {...row,breakthrough,latest,latestBound,endpoint};
+  return {...row,name:problemDisplayName(row.slug),breakthrough,latest,latestBound,endpoint};
 });
 
 ---

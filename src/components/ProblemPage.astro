@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {problemDisplayName} from '../lib/navigation';
 import {boardRecords} from '../lib/data';
 import ProgressChart from './ProgressChart.astro';
 import Leaderboard from './Leaderboard.astro';
@@ -9,6 +10,7 @@ import {math} from '../lib/math';
 import {localTimeFallback} from '../lib/freshness';
 interface Props {p:import('../lib/types').Problem;}
 const {p}=Astro.props;
+const displayName=problemDisplayName(p.slug,p.title);
 const records=boardRecords(p);
 const classic=p.records.find(r=>r.id==='classical-baseline');
 const classicCitations:Record<string,{name:string;url:string}[]>={
@@ -34,8 +36,8 @@ const statements:Record<string,string>={
  'directed-sssp':'Compute exact shortest paths from one source in a directed graph with nonnegative real weights, using a uniform deterministic RAM/comparison-addition algorithm. The stated bound applies only when '+math('m\\le nF(n),\\quad F(n)=\\lfloor\\lfloor\\log_2 n\\rfloor^{3/4}\\rfloor')+'. The source uses Bellman–Ford outside this density range.',
 };
 ---
-<Layout title={p.title}>
-<h1>{p.title}</h1>
+<Layout title={displayName}>
+<h1>{displayName}</h1>
 <section class="problem-intro" aria-label="Problem definition">
 <p set:html={statements[p.slug]}/>
 {classic&&<p>Classic bound: <span set:html={math(classic.bound)}/> ({classicCitations[p.slug].map((citation,i)=><>{i>0?"; ":""}<a href={citation.url} target={citation.url.startsWith("https://github.com/")?"_blank":undefined} rel={citation.url.startsWith("https://github.com/")?"noopener":undefined}>{citation.name}</a></>)}).</p>}
@@ -48,7 +50,7 @@ const statements:Record<string,string>={
 </ul>
 </section>
 <Leaderboard records={records} direction={p.direction} kappa={kappa}/>
-<ProgressChart slug={p.slug} records={records} direction={p.direction} label={p.title} boundLatex={boundLatex} limit={limit}/>
+<ProgressChart slug={p.slug} records={records} direction={p.direction} label={displayName} boundLatex={boundLatex} limit={limit}/>
 <section class="repos"><h2>Relevant repos <InfoTooltip label="How repositories are selected">{repoSelectionText}</InfoTooltip></h2>
 <ul>{p.repos.map(repo=><li><a href={repo.url} target="_blank" rel="noopener">{repo.name}</a></li>)}</ul></section>
 </Layout>
