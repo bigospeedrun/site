@@ -35,6 +35,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: .refresh-venv/bin/python data/refresh.py
+      - name: Refresh direct submission issues and PRs
+        continue-on-error: true
+        timeout-minutes: 8
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: .refresh-venv/bin/python data/direct_refresh.py
       - name: Validate refreshed bundle
         run: .refresh-venv/bin/python data/validate.py
       - name: Test data tooling

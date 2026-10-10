@@ -107,6 +107,16 @@ class DirectImportTests(unittest.TestCase):
             with self.assertRaises(gate.Rejected):
                 self.check(env=env)
 
+    def test_non_test_copy_retains_same_proof_but_can_admit(self):
+        smoke = copy.deepcopy(self.env)
+        smoke.update(test_only=True, importable=False, status='fixture_only')
+        with self.assertRaises(gate.Rejected):
+            self.check(env=smoke)
+        production = copy.deepcopy(smoke)
+        production.update(test_only=False, importable=True, status='passed')
+        self.assertEqual(production['receipt'], smoke['receipt'])
+        self.assertEqual(self.check(env=production)['decision'], 'lean-verified')
+
     def test_evidence_log_hashes(self):
         content = b'Synthetic test log, not proof evidence.'
         receipt = self.env['receipt']

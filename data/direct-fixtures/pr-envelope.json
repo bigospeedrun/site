@@ -1,0 +1,155 @@
+{
+  "disposition": "merge",
+  "fixture_note": "Synthetic schema example, not a Lean run or merged PR.",
+  "importable": false,
+  "merge_commit": "dddddddddddddddddddddddddddddddddddddddd",
+  "publisher_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "publisher_run_attempt": "2",
+  "publisher_run_id": "456",
+  "reason": "lean_and_axiom_passed",
+  "receipt": {
+    "artifact_sha256": {},
+    "axiom_audit": {
+      "exit_code": 0,
+      "reported_axioms": {
+        "Race.bound": [
+          "propext"
+        ]
+      },
+      "status": "passed"
+    },
+    "checked_at": "2026-10-10T12:00:00Z",
+    "generated_challenge_sha256": "93002f6a6e1cad9cd626fa103bd9761d9a8c772a695024c7bd06796cea65ec7f",
+    "kernels": {
+      "lean": {
+        "status": "passed"
+      },
+      "nanoda": {
+        "status": "passed"
+      }
+    },
+    "profile": {
+      "bound_kind": "exponent",
+      "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+      "challenge_sha256": "4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987",
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "manifest_file": "profiles/anthropic-lake-manifest.json",
+      "maximum": "2",
+      "solution_module": "Submission",
+      "source_roots": [
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "tools_file": "profiles/anthropic-tools.json",
+      "upstream_commit": "e1a4e6508154ea59f030480661590a9fe3018011"
+    },
+    "request": {
+      "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "direct_submission": {
+        "authors": [],
+        "bound": "1999/1000",
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "problem": "3sum",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "schema_version": 1,
+        "source_subdir": "submissions/3sum/alice-proof"
+      },
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "repo_url": "https://github.com/bigospeedrun/verifier",
+      "source_subdir": "submissions/3sum/alice-proof",
+      "theorem_names": "Race.bound"
+    },
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/123",
+    "schema_version": 1,
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "theorems": {
+      "Race.bound": {
+        "lean_kernel": "passed",
+        "nanoda_kernel": "passed",
+        "reported_axioms": [
+          "propext"
+        ]
+      }
+    },
+    "verifier_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "receipt_artifact": {
+    "digest": "sha256:0db6ec183fb99b5e42ec43dbd7b64e1d3df6277d889e06cd043cc90828a63c5c",
+    "id": 99,
+    "name": "pr-verification-123-1-7",
+    "url": "https://github.com/bigospeedrun/verifier/actions/runs/123/artifacts/99"
+  },
+  "receipt_sha256": "d5bd2ca4555f65d03602e092f4be52fcf62a0d0d994993e726937ff2e73fe82e",
+  "request": {
+    "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "changed_files": [
+      {
+        "mode": "100644",
+        "path": "submissions/3sum/alice-proof/Submission.lean",
+        "sha": "cccccccccccccccccccccccccccccccccccccccc",
+        "size": 39
+      },
+      {
+        "mode": "100644",
+        "path": "submissions/3sum/alice-proof/manifest.json",
+        "sha": "23809b3efe3e851b12a827e58e053232ad5d2483",
+        "size": 39
+      }
+    ],
+    "changed_files_sha256": "1a6034f96f69c6817db189d5340dbe4d90c9e437c5a1454cb10d8f8f6433387e",
+    "gate": "ready",
+    "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "inputs": {
+      "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "direct_submission": {
+        "authors": [],
+        "bound": "1999/1000",
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "problem": "3sum",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "schema_version": 1,
+        "source_subdir": "submissions/3sum/alice-proof"
+      },
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "repo_url": "https://github.com/bigospeedrun/verifier",
+      "source_subdir": "submissions/3sum/alice-proof",
+      "theorem_names": "Race.bound"
+    },
+    "manifest_sha256": "9592a0d9f9e17de9081f3d8cbbdebd95262526a92ce491f60c674d642c9cbb62",
+    "manifest_utf8": "{\"problem\":\"3sum\",\"bound\":\"1999/1000\"}\n",
+    "pr_created_at": "2026-10-10T10:00:00Z",
+    "pr_number": 7,
+    "pr_submitter_login": "alice",
+    "pr_url": "https://github.com/bigospeedrun/verifier/pull/7",
+    "route": "pull_request",
+    "schema_version": 2,
+    "source_subdir": "submissions/3sum/alice-proof",
+    "submission": {
+      "authors": [],
+      "bound": "1999/1000",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "problem": "3sum",
+      "repo_url": "https://github.com/bigospeedrun/verifier",
+      "schema_version": 1,
+      "source_subdir": "submissions/3sum/alice-proof"
+    },
+    "submission_sha256": "38824c8d9fe0ff8a2142c921e0a766b22ca35801d995b5b58f79c82ae98e736f",
+    "test_only": true,
+    "verifier_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "route": "pull_request",
+  "run_attempt": "1",
+  "run_id": "123",
+  "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/123",
+  "schema_version": 2,
+  "test_only": true,
+  "verifier_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "workflow_conclusion": "success",
+  "workflow_path": ".github/workflows/submissions.yml"
+}

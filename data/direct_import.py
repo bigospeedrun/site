@@ -2,7 +2,7 @@
 
 Callers must obtain issue/run/artifact metadata from the GitHub API themselves.
 The trust mapping is locally reviewed configuration, never artifact/issue input.
-No revisions are enabled here and this module is not wired into refresh.py.
+The hourly direct_refresh.py supplies the locally reviewed controller policy.
 """
 import hashlib
 import io
@@ -184,21 +184,43 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
     # Comments can change updated_at without changing the bound or source.
     # The raw body hash and normalized request below bind the actual input.
     submission = parse_body(body)
+    # Reviewed legacy DFT profile proves the same fixed bound. The public form
+    # cannot select it; only an authenticated trusted receipt can supply it.
+    if env.get('submission', {}).get('entrypoint') == 'dft233':
+        submission = normalize(dict(submission, entrypoint='dft233'))
     require(env.get('submission') == submission and env.get('submission_sha256') == sha(canonical(submission).encode()), 'Normalized submission mismatch')
     require(env.get('problem_id') == PROBLEMS[submission['problem']][0] and env.get('score_relation') == 'attained', 'Envelope model/relation mismatch')
     require(env.get('source_published_at') is None, 'Publication date needs independent review')
     require(env.get('workflow_conclusion') is None, 'Producer cannot supply workflow conclusion')
+    key = submission.get('entrypoint', submission['problem'])
+    profile = trust['profiles'][key]
+    base = trust['statements'][profile['challenge_file']]
+    require(env.get('model_revision') == profile['upstream_commit'] and env.get('model_sha256') == profile['challenge_sha256'], 'Envelope model pin mismatch')
+    require(env.get('theorem_names') == profile['theorem_names'], 'Envelope targets mismatch')
+    require(env.get('challenge') == dict(file=profile['challenge_file'], sha256=profile['challenge_sha256'], upstream_commit=profile['upstream_commit'], generated_sha256=sha(challenge_bytes(submission, base))), 'Envelope challenge mismatch')
+    decision, reason, checked_at = validate_proof(submission, receipt, trust, revision, run_url)
+    require(env.get('checked_at') == checked_at, 'Envelope completion timestamp mismatch')
+    return dict(decision=decision, reason=reason, id=f'direct-{issue["number"]}-{env["submission_sha256"]}',
+                problem_id=PROBLEMS[submission['problem']][0], score=submission['bound'], score_relation='attained',
+                source_commit=submission['commit'], source_url=submission['repo_url'], authors=submission['authors'],
+                workflow_conclusion=run.get('conclusion'), issue_submitter=env['issue_submitter_login'], receipt_url=run_url, checked_at=checked_at,
+                issue_created_at=issue.get('created_at'),
+                issue_updated_at_at_verification=env.get('issue_updated_at'),
+                issue_updated_at_at_import=issue.get('updated_at'),
+                review_required=['authorship', 'first publication date', 'historical record eligibility'])
+
+
+def validate_proof(submission, receipt, trust, revision, run_url):
     key = 'dft233' if submission.get('entrypoint') == 'dft233' else submission['problem']
     require(key in trust['profiles'], 'Unreviewed challenge profile')
     profile = trust['profiles'][key]
     require(receipt.get('profile') == profile, 'Trusted profile mismatch')
     base = trust['statements'][profile['challenge_file']]
     require(sha(base) == profile['challenge_sha256'], 'Trusted statement bytes mismatch')
-    require(env.get('model_revision') == profile['upstream_commit'] and env.get('model_sha256') == profile['challenge_sha256'], 'Envelope model pin mismatch')
     names = profile['theorem_names']
-    require(env.get('theorem_names') == names, 'Envelope targets mismatch')
-    require(env.get('challenge') == dict(file=profile['challenge_file'], sha256=profile['challenge_sha256'], upstream_commit=profile['upstream_commit'], generated_sha256=sha(challenge_bytes(submission, base))), 'Envelope challenge mismatch')
     expected = dict(direct_submission=submission, repo_url=submission['repo_url'], commit=submission['commit'], challenge_file=profile['challenge_file'], theorem_names=','.join(names), lean_toolchain=profile['lean_toolchain'])
+    if 'source_subdir' in submission:
+        expected['source_subdir'] = submission['source_subdir']
     require(receipt.get('request') == expected, 'Receipt request mismatch')
     require(receipt.get('verifier_commit') == revision and receipt.get('run_url') == run_url, 'Receipt provenance mismatch')
     require(receipt.get('generated_challenge_sha256') == sha(challenge_bytes(submission, base)), 'Exact bound statement mismatch')
@@ -209,7 +231,7 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
         checked_at = datetime.fromtimestamp(finished, timezone.utc).isoformat().replace('+00:00', 'Z')
     except (ValueError, OverflowError, OSError) as error:
         raise Rejected('Invalid completion timestamp') from error
-    require(env.get('checked_at') == receipt.get('checked_at') == checked_at, 'Completion timestamp mismatch')
+    require(receipt.get('checked_at') == checked_at, 'Completion timestamp mismatch')
     audit = receipt.get('axiom_audit', {})
     reported = audit.get('reported_axioms', {})
     require(set(reported) == set(names), 'Incomplete axiom audit')
@@ -229,14 +251,7 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
             decision, reason = 'lean-verified', 'Lean and nanoda passed; permitted-axiom audit passed'
         elif nanoda_state == 'incomplete' and nanoda.get('reason') in ('out_of_memory', 'timeout', 'disk_limit', 'total_deadline') and all(receipt['theorems'][name].get('nanoda_kernel') == 'incomplete' for name in names):
             decision, reason = 'lean-verified', 'Lean and permitted-axiom audit passed; nanoda incomplete: ' + nanoda['reason']
-    return dict(decision=decision, reason=reason, id=f'direct-{issue["number"]}-{env["submission_sha256"]}',
-                problem_id=PROBLEMS[submission['problem']][0], score=submission['bound'], score_relation='attained',
-                source_commit=submission['commit'], source_url=submission['repo_url'], authors=submission['authors'],
-                workflow_conclusion=run.get('conclusion'), issue_submitter=env['issue_submitter_login'], receipt_url=run_url, checked_at=checked_at,
-                issue_created_at=issue.get('created_at'),
-                issue_updated_at_at_verification=env.get('issue_updated_at'),
-                issue_updated_at_at_import=issue.get('updated_at'),
-                review_required=['authorship', 'first publication date', 'historical record eligibility'])
+    return decision, reason, checked_at
 
 
 def current_record_gate(problem, data_bytes, site_commit, checked_at, exclude_issue_url=None):

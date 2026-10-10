@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "reviewed_commit": "49c04a7818afddbd32f21b74fe7206a411bde6c7",
+  "workflow_id": 380847968,
+  "publisher_workflow_id": 380847965,
+  "branch": "main",
+  "profiles": {
+    "dft": {
+      "challenge_file": "challenges/dft/UniformFourier233.lean",
+      "challenge_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+      "lean_toolchain": "leanprover/lean4:v4.34.1",
+      "manifest_file": "profiles/lake-manifest.json",
+      "tools_file": "profiles/tools.json",
+      "solution_module": "Submission",
+      "source_roots": [
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "bound_kind": "saving",
+      "maximum": "1",
+      "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    },
+    "3sum": {
+      "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+      "challenge_sha256": "4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987",
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "manifest_file": "profiles/anthropic-lake-manifest.json",
+      "tools_file": "profiles/anthropic-tools.json",
+      "solution_module": "Submission",
+      "source_roots": [
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "bound_kind": "exponent",
+      "maximum": "2",
+      "upstream_commit": "e1a4e6508154ea59f030480661590a9fe3018011"
+    },
+    "apsp": {
+      "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+      "challenge_sha256": "4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987",
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "manifest_file": "profiles/anthropic-lake-manifest.json",
+      "tools_file": "profiles/anthropic-tools.json",
+      "solution_module": "Submission",
+      "source_roots": [
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "bound_kind": "exponent",
+      "maximum": "3",
+      "upstream_commit": "e1a4e6508154ea59f030480661590a9fe3018011"
+    },
+    "dft233": {
+      "lean_toolchain": "leanprover/lean4:v4.34.1",
+      "challenge_file": "challenges/dft/UniformFourier233.lean",
+      "challenge_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+      "solution_module": "Work.Fourier233.Main",
+      "theorem_names": [
+        "OAI.PowerSaving.transform_mainY",
+        "OAI.PowerSaving.convolution_mainY"
+      ],
+      "source_roots": [
+        "OAI",
+        "Work",
+        "WHTCheck"
+      ],
+      "permitted_axioms": [
+        "propext",
+        "Quot.sound",
+        "Classical.choice"
+      ],
+      "saving": "7547360/10000000000",
+      "model": "OpenAI.PowerSaving.DFTProgram (exact scalar/index RAM; all positive lengths)",
+      "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    }
+  },
+  "controller_blobs": {
+    ".github/ISSUE_TEMPLATE/lean-submission.yml": {
+      "sha": "524f03531b3e439c022e5aedbd2744d9ddabd740",
+      "mode": "100644"
+    },
+    ".github/workflows/pr-publish.yml": {
+      "sha": "9bc6bda54e5e21754726a70592cdc585f1ea3407",
+      "mode": "100644"
+    },
+    ".github/workflows/submission-check.yml": {
+      "sha": "675f189854e1d7101ffb0a8552dc271b1f5c7c2d",
+      "mode": "100644"
+    },
+    ".github/workflows/submissions.yml": {
+      "sha": "bbfcd1a0f2cf73cd9c37f634e1d5aae3220387d6",
+      "mode": "100644"
+    },
+    ".github/workflows/verify.yml": {
+      "sha": "146755c80d556f598002ddbefc3e3b52447f796d",
+      "mode": "100644"
+    },
+    ".gitignore": {
+      "sha": "209a5554ca89b5f26b69fe761eb43a40c9bf70df",
+      "mode": "100644"
+    },
+    "AGENTS.md": {
+      "sha": "025fe616b3cff57c0cda851bffa0e0f1b3734f02",
+      "mode": "100644"
+    },
+    "LICENSE": {
+      "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "mode": "100644"
+    },
+    "NOTICE": {
+      "sha": "2cb96b68c01ce9a92c39a657b3fa2f1969772310",
+      "mode": "100644"
+    },
+    "README.md": {
+      "sha": "0a374d6e03c61e6f741713710167d2a4e9209004",
+      "mode": "100644"
+    },
+    "challenges/3sum-apsp/EndStatement.lean": {
+      "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+      "mode": "100644"
+    },
+    "challenges/3sum-apsp/LICENSE": {
+      "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "mode": "100644"
+    },
+    "challenges/3sum-apsp/NOTICE": {
+      "sha": "0a0dbf49888306f7d732790bbbf2ca2e75c37e6b",
+      "mode": "100644"
+    },
+    "challenges/dft/UniformFourier233.lean": {
+      "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
+      "mode": "100644"
+    },
+    "docs/direct-submissions.md": {
+      "sha": "b6c0644bb19e844fc363ff77fac198d61a2ff2ec",
+      "mode": "100644"
+    },
+    "docs/execution.md": {
+      "sha": "49588da212929c452c312c24a359ba663b263827",
+      "mode": "100644"
+    },
+    "docs/pr-submissions.md": {
+      "sha": "4eac909f1395ce712c2a3b15fe3e4a1241e8edf1",
+      "mode": "100644"
+    },
+    "docs/targets.md": {
+      "sha": "c9b473c7fed4d96dbb29b0fdc4ee317a4f6b58b2",
+      "mode": "100644"
+    },
+    "profiles/anthropic-lake-manifest.json": {
+      "sha": "278733a7ecc1563b8ceb70e62df049d43c6a83c6",
+      "mode": "100644"
+    },
+    "profiles/anthropic-tools.json": {
+      "sha": "871d1e936a5419934cb83d004ca4ebeafca9c0c9",
+      "mode": "100644"
+    },
+    "profiles/dft233.json": {
+      "sha": "f8062d33870db562c95991226ffbe34c5bf87516",
+      "mode": "100644"
+    },
+    "profiles/direct.json": {
+      "sha": "4a02f8a54110c61334bffe19480dd620b308c8a7",
+      "mode": "100644"
+    },
+    "profiles/lake-manifest.json": {
+      "sha": "e482097fe44d3d747b31881ad5e329786531be6a",
+      "mode": "100644"
+    },
+    "profiles/tools.json": {
+      "sha": "d42e31df496f5a429a97f4788e79f7595ba9a376",
+      "mode": "100644"
+    },
+    "scripts/CacheHashes.lean": {
+      "sha": "abbcb4b81afb1e41e2ba31e336242ce3fe6bf616",
+      "mode": "100644"
+    },
+    "scripts/inside.py": {
+      "sha": "fcfb01afe2c2ac135fdb51dd9a7184a882e82335",
+      "mode": "100644"
+    },
+    "scripts/lake-shim.c": {
+      "sha": "275782886c6fa39155508228a4809f80c8b14f20",
+      "mode": "100644"
+    },
+    "scripts/pr_submissions.py": {
+      "sha": "535f7de3e18bcc483fb1b5993239d1b13f150aa0",
+      "mode": "100644"
+    },
+    "scripts/queue_lease.py": {
+      "sha": "ed02f91ad31fffb8446898ea2016cce425e7cfd7",
+      "mode": "100644"
+    },
+    "scripts/smoke.py": {
+      "sha": "52717438d320d789e3b68131825a30d9bb5c3c20",
+      "mode": "100644"
+    },
+    "scripts/submissions.py": {
+      "sha": "f2b7d4a7568bd34223ed335b06475f30bcfe5762",
+      "mode": "100644"
+    },
+    "scripts/verdicts.py": {
+      "sha": "03fc1ae40cf0dfbfa05a28b85c61f40c6c73eb89",
+      "mode": "100644"
+    },
+    "scripts/verifier.py": {
+      "sha": "2577733e863b96a53bf8e3ba05ba0cab74db0ff1",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/dft-837dc31.json": {
+      "sha": "1300e4eb8a3eadb9076c86b9441cebdef08385a7",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/generic-envelope.json": {
+      "sha": "ad59202cea8833bc031f2f5652119c9a058c339b",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/historical-dft-receipt.json": {
+      "sha": "4662acbf1edaea188970f25b8bd187ad0c645584",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/issue-form-body.txt": {
+      "sha": "702f18518614667ab2d708527de267af2ed62e92",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/pr-envelope.json": {
+      "sha": "2a8c5eb2673c33dc52ad71d5b4d85c5dfae302d3",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/pr-receipt.json": {
+      "sha": "02e387f719dcb8d58e5b4f0cda9fde628bf8f862",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/prepare-report.json": {
+      "sha": "4b3956a0ccd1b5d294f436ab2a84f42980d64816",
+      "mode": "100644"
+    },
+    "tests/fixtures/direct/replayed-envelope.json": {
+      "sha": "80cd5f35a6812e88eb117019242f718beb6aa163",
+      "mode": "100644"
+    },
+    "tests/test_pr_submissions.py": {
+      "sha": "b8c6520e2e13ff601bcac17f26ed7b35d5176e53",
+      "mode": "100644"
+    },
+    "tests/test_queue_security.py": {
+      "sha": "833c6028da5c348c89dc4769e82dde1dfd5b59b0",
+      "mode": "100644"
+    },
+    "tests/test_smoke.py": {
+      "sha": "0cb17730d5c247a2e5f199c5aeab1a644ea408b2",
+      "mode": "100644"
+    },
+    "tests/test_submissions.py": {
+      "sha": "4ea30344ff7ad48d37f74b3b93d9b15b97beb566",
+      "mode": "100644"
+    },
+    "tests/test_verifier.py": {
+      "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
+      "mode": "100644"
+    }
+  }
+}
