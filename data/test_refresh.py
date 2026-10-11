@@ -19,10 +19,9 @@ class RefreshTests(unittest.TestCase):
         root=refresh.ROOT
         with tempfile.TemporaryDirectory(dir=refresh.git_state_dir()) as temp:
             stage=Path(temp)
-            for pattern in ('*.json','sources/*','manifests/*'):
-                for p in root.glob(pattern):
-                    if p.is_file():
-                        q=stage/p.relative_to(root);q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(p.read_bytes())
+            snapshot=json.loads((root/'direct-fixtures/refresh-snapshot.json').read_text())
+            for rel,raw in snapshot.items():
+                q=stage/rel;q.parent.mkdir(parents=True,exist_ok=True);q.write_text(raw)
             def api(path):
                 repo='/'.join(path.split('/')[1:3]);suffix='__head.json' if '/commits/' in path else '__repo.json'
                 result=refresh.load(stage,'sources/'+repo.replace('/','__')+suffix)

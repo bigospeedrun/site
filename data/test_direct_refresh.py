@@ -49,7 +49,8 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(r.Importer(DiscoveryAPI(prs=[pr])).collect(),{})
 
     def test_closed_issues_removed_and_non_direct_rows_retained(self):
-        docs={slug:json.loads((ROOT/(slug+'.json')).read_text()) for slug in r.SLUGS.values()}
+        fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
+        docs={slug:fixtures[slug] for slug in r.SLUGS.values()}
         claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
         expected={slug:([row for row in doc['records'] if not doc['record_metadata'][row['id']].get('direct_submission')],
                         {key:meta for key,meta in doc['record_metadata'].items() if not meta.get('direct_submission')})
@@ -63,7 +64,7 @@ class RefreshTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp)
             for slug,doc in docs.items():(root/(slug+'.json')).write_bytes(r.json_bytes(doc))
-            (root/'registry.json').write_bytes((ROOT/'registry.json').read_bytes())
+            (root/'registry.json').write_bytes(r.json_bytes({'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'}))
             first=r.prepare(root,{'direct-issue-5':claim},{},'2026-10-11T00:00:00Z')
             for path,raw in first.items():
                 dest=root/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)

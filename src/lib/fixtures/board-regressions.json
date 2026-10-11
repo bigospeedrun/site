@@ -1,0 +1,909 @@
+{
+  "matrix-multiplication": {
+    "problem_id": "matrix-multiplication/arithmetic-circuit-complex",
+    "model": {
+      "id": "arithmetic-circuit-complex",
+      "version": "1",
+      "description": "Multiply two n by n complex matrices exactly with division-free arithmetic circuits. Scalar addition, subtraction and multiplication each cost one; inputs and constants are free. For every epsilon > 0, one positive constant C bounds the cost by C n^(t+epsilon) for every positive size n. Results over every field qualify by specialization to the complex numbers.",
+      "definition_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatrixMultiplication.lean"
+    },
+    "score": {
+      "id": "arithmetic-exponent",
+      "version": "1",
+      "symbol": "t",
+      "definition": "An exponent t guarantees O(n^(t+epsilon)) scalar operations for every fixed epsilon > 0.",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "2",
+      "maximum": "3"
+    },
+    "records": [
+      {
+        "id": "classical-baseline",
+        "score": "2371177/1000000",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T22:29:27.649745Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2608.16884"
+        },
+        "submission_url": "https://arxiv.org/abs/2608.16884"
+      },
+      {
+        "id": "openai-matrix-nine-fourths-2026",
+        "score": "9/4",
+        "submitted_at": "2026-10-10T22:29:27.649745Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T22:29:27.649745Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf"
+        },
+        "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-11T05:45:39.160927Z",
+          "receipt_path": "sources/maintainer-matrix-nine-fourths-38112644463.json"
+        }
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "site_tier": "claimed",
+        "source_url": "https://arxiv.org/abs/2608.16884",
+        "publication_year": 2026,
+        "publication_date": "2026-08-17",
+        "publication_date_precision": "date",
+        "publication_date_role": "Public release date",
+        "manuscript_date": null
+      },
+      "openai-matrix-nine-fourths-2026": {
+        "site_tier": "verified",
+        "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+        "publication_year": 2026,
+        "publication_date": "2026-10-06",
+        "publication_date_precision": "date",
+        "publication_date_role": "Public release date",
+        "manuscript_date": "2026-10-02"
+      }
+    }
+  },
+  "integer-multiplication": {
+    "problem_id": "integer-multiplication/multitape-tm",
+    "model": {
+      "id": "multitape-tm",
+      "version": "1",
+      "description": "Multiply two n-bit integers on a fixed finite-alphabet Turing machine with a fixed number of one-dimensional tapes. Community witnesses remain conditional on the OpenAI #109 framework and their stated transfer interfaces.",
+      "definition_url": "https://github.com/CrocSwap/integer-mult-bounds"
+    },
+    "score": {
+      "id": "log-saving",
+      "version": "1",
+      "symbol": "kappa",
+      "definition": "Worst-case O(n (log n)^(1-kappa)).",
+      "direction": "higher-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "1"
+    },
+    "records": [
+      {
+        "id": "classical-baseline",
+        "score": "0",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://annals.math.princeton.edu/2021/193-2/p04"
+        },
+        "submission_url": "https://annals.math.princeton.edu/2021/193-2/p04"
+      },
+      {
+        "id": "openai-original-109",
+        "score": "1/6129982163463555433433388108601236734474956488734408704",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex"
+        },
+        "submission_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex"
+      },
+      {
+        "id": "crocswap-frozen-154",
+        "score": "1/22835963083295358096932575511191922182123945984",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+      },
+      {
+        "id": "crocswap-balanced-153",
+        "score": "1/11417981541647679048466287755595961091061972992",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+      },
+      {
+        "id": "crocswap-same-network-129",
+        "score": "1/680564733841876926926749214863536422912",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+      },
+      {
+        "id": "crocswap-h46-111",
+        "score": "1/2596148429267413814265248164610048",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md"
+      },
+      {
+        "id": "crocswap-pr-434",
+        "score": "1134386495022041/1000000000000000000",
+        "submitted_at": "2026-10-11T12:20:44Z",
+        "upstream_status": "open",
+        "site_observed_at": "2026-10-11T12:46:58Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/434"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/434"
+      },
+      {
+        "id": "crocswap-pr-435",
+        "score": "1128832830332521/1000000000000000000",
+        "submitted_at": "2026-10-11T12:21:21Z",
+        "upstream_status": "open",
+        "site_observed_at": "2026-10-11T12:46:58Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/435"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/435"
+      },
+      {
+        "id": "crocswap-pr-436",
+        "score": "1128983115440183/1000000000000000000",
+        "submitted_at": "2026-10-11T12:21:51Z",
+        "upstream_status": "open",
+        "site_observed_at": "2026-10-11T12:46:58Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/436"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/436"
+      },
+      {
+        "id": "crocswap-pr-437",
+        "score": "1806275959707/1600000000000000",
+        "submitted_at": "2026-10-11T12:26:28Z",
+        "upstream_status": "open",
+        "site_observed_at": "2026-10-11T12:46:58Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/437"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/437"
+      },
+      {
+        "id": "crocswap-pr-438",
+        "score": "45340333148791/40000000000000000",
+        "submitted_at": "2026-10-11T12:36:23Z",
+        "upstream_status": "open",
+        "site_observed_at": "2026-10-11T12:46:58Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/438"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/438"
+      },
+      {
+        "id": "crocswap-pr-439",
+        "score": "56696402193643/50000000000000000",
+        "submitted_at": "2026-10-11T12:46:32Z",
+        "upstream_status": "open",
+        "site_observed_at": "2026-10-11T12:46:58Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/439"
+        },
+        "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/439"
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "publication_year": 2021,
+        "publication_date_precision": "year",
+        "site_tier": "claimed"
+      },
+      "openai-original-109": {
+        "source_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex",
+        "date_precision": "Manuscript dated September 23, 2026; submitted_at is observation time.",
+        "site_tier": "claimed",
+        "publication_date_precision": "unknown"
+      },
+      "crocswap-frozen-154": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
+        "date_precision": "Checkpoint publication time unchecked; submitted_at is observation time.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "unknown"
+      },
+      "crocswap-balanced-153": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
+        "date_precision": "Checkpoint publication time unchecked; submitted_at is observation time.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "unknown"
+      },
+      "crocswap-same-network-129": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
+        "date_precision": "Checkpoint publication time unchecked; submitted_at is observation time.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "unknown"
+      },
+      "crocswap-h46-111": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
+        "date_precision": "Checkpoint publication time unchecked; submitted_at is observation time.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "unknown"
+      },
+      "crocswap-pr-434": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/434",
+        "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-11T12:20:44Z",
+        "race_event_at": "2026-10-11T12:20:44Z"
+      },
+      "crocswap-pr-435": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/435",
+        "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-11T12:21:21Z",
+        "race_event_at": "2026-10-11T12:21:21Z"
+      },
+      "crocswap-pr-436": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/436",
+        "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-11T12:21:51Z",
+        "race_event_at": "2026-10-11T12:21:51Z"
+      },
+      "crocswap-pr-437": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/437",
+        "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-11T12:26:28Z",
+        "race_event_at": "2026-10-11T12:26:28Z"
+      },
+      "crocswap-pr-438": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/438",
+        "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-11T12:36:23Z",
+        "race_event_at": "2026-10-11T12:36:23Z"
+      },
+      "crocswap-pr-439": {
+        "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/439",
+        "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+        "upstream_selected": false,
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-11T12:46:32Z",
+        "race_event_at": "2026-10-11T12:46:32Z"
+      }
+    }
+  },
+  "exact-dft": {
+    "problem_id": "exact-dft/uniform-exact-arithmetic",
+    "model": {
+      "id": "uniform-exact-arithmetic",
+      "version": "1",
+      "description": "Fixed deterministic programs for every positive n. Exact canonical DFT and full convolution over complex vectors. Root of unity supplied; unrestricted coefficients and exact complex arithmetic. Polynomially bounded integer values and indices. Cost includes root-order selection and scalar preparation. Excludes bit complexity and the separate subsequential circuit result.",
+      "definition_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/130.md"
+    },
+    "score": {
+      "id": "log-saving",
+      "version": "1",
+      "symbol": "kappa",
+      "definition": "Arithmetic work O(n (log n)^(1-kappa)) for every positive length.",
+      "direction": "higher-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "1"
+    },
+    "records": [
+      {
+        "id": "classical-baseline",
+        "score": "0",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://doi.org/10.1090/S0025-5718-1965-0178586-1"
+        },
+        "submission_url": "https://doi.org/10.1090/S0025-5718-1965-0178586-1"
+      },
+      {
+        "id": "exact-dft-2026",
+        "score": "1/10000000000000",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Computability/FourierTransform/Main.lean"
+        },
+        "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Computability/FourierTransform/Main.lean",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-09T15:13:11.361385+00:00",
+          "receipt_path": "sources/dft-upstream-receipt.json"
+        }
+      },
+      {
+        "id": "openai-uniform-dft-frontier",
+        "score": "1/50000000000",
+        "submitted_at": "2026-10-08T05:20:00Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-09T15:00:24Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Computability/FourierTransform/Main.lean"
+        },
+        "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Computability/FourierTransform/Main.lean",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-09T15:38:29.607243+00:00",
+          "receipt_path": "sources/dft-frontier-receipt.json"
+        },
+        "score_relation": "strict-upper-bound"
+      },
+      {
+        "id": "eumemic-exact-dft-2026",
+        "score": "607/1250000",
+        "submitted_at": "2026-10-09T09:34:21Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-09T15:00:24Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/eumemic/exact-dft-bounds/blob/6f87d1a0c9ae462cdcb2034a1361c87623221e66/notes/batched-dft-note.tex"
+        },
+        "submission_url": "https://github.com/eumemic/exact-dft-bounds/blob/6f87d1a0c9ae462cdcb2034a1361c87623221e66/notes/batched-dft-note.tex",
+        "score_relation": "strict-upper-bound"
+      },
+      {
+        "id": "shea256-exact-dft-2026",
+        "score": "73/1000000",
+        "submitted_at": "2026-10-08T23:56:35Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-09T15:00:24Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/0b0170640e8659cc3343830d3207bbeaf26660c3/manuscript.md"
+        },
+        "submission_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/0b0170640e8659cc3343830d3207bbeaf26660c3/manuscript.md",
+        "score_relation": "attained"
+      },
+      {
+        "id": "jacob-sussman-exact-dft-2026",
+        "score": "3737273/5000000000",
+        "submitted_at": "2026-10-09T19:00:33Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-09T20:54:43Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/f010392c923279e3dd59ef3aa5fedad23affc5fd/README.md"
+        },
+        "submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/f010392c923279e3dd59ef3aa5fedad23affc5fd/README.md",
+        "score_relation": "attained",
+        "rerun_status": {
+          "state": "pending",
+          "checked_at": "2026-10-09T20:54:43Z",
+          "receipt_path": null
+        }
+      },
+      {
+        "id": "shea256-exact-dft-round11-2026",
+        "score": "67/100000",
+        "submitted_at": "2026-10-09T15:24:16Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T02:52:24Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/53f03853aea8caf46de7cc9d93efc9bb034bb4c7/results/round11.md"
+        },
+        "submission_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/53f03853aea8caf46de7cc9d93efc9bb034bb4c7/results/round11.md",
+        "score_relation": "attained"
+      },
+      {
+        "id": "shea256-exact-dft-five-stage-2026",
+        "score": "47171/62500000",
+        "submitted_at": "2026-10-10T01:43:53Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T05:52:59Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/chafreaky/wht-power-saving-lean/blob/fd19e46b728faa414cbfbf91b01a6a0b7903375d/README.md"
+        },
+        "submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/pull/2",
+        "score_relation": "attained",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-10T14:25:46.083751Z",
+          "receipt_path": "sources/sussman-boukhalfa-dft-receipt.json"
+        }
+      },
+      {
+        "id": "jacob-sussman-exact-dft-e8-2026",
+        "score": "4381239/5000000000",
+        "submitted_at": "2026-10-10T22:44:33Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-11T00:59:38Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md"
+        },
+        "submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+        "score_relation": "attained",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-11T03:35:39.209230Z",
+          "receipt_path": "sources/maintainer-dft-e8-38106559475.json"
+        }
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "publication_year": 1970,
+        "publication_date_precision": "year",
+        "site_tier": "claimed",
+        "publication_date_role": "Bluestein all-length reduction (1970); Cooley\u2013Tukey FFT account is 1965."
+      },
+      "exact-dft-2026": {
+        "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Computability/FourierTransform/Main.lean",
+        "site_tier": "verified",
+        "publication_date_precision": "unknown"
+      },
+      "openai-uniform-dft-frontier": {
+        "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Computability/FourierTransform/Main.lean",
+        "site_tier": "verified",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Pinned source commit, not paper priority"
+      },
+      "eumemic-exact-dft-2026": {
+        "source_url": "https://github.com/eumemic/exact-dft-bounds/blob/6f87d1a0c9ae462cdcb2034a1361c87623221e66/notes/batched-dft-note.tex",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Source snapshot commit, not scientific priority",
+        "publication_date": "2026-10-09T09:34:21Z"
+      },
+      "shea256-exact-dft-2026": {
+        "source_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/0b0170640e8659cc3343830d3207bbeaf26660c3/manuscript.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Source snapshot commit, not scientific priority",
+        "publication_date": "2026-10-08T23:56:35Z"
+      },
+      "jacob-sussman-exact-dft-2026": {
+        "source_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/f010392c923279e3dd59ef3aa5fedad23affc5fd/README.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Commit first adding the README claim, not scientific priority",
+        "publication_date": "2026-10-09T19:00:33Z"
+      },
+      "shea256-exact-dft-round11-2026": {
+        "source_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/53f03853aea8caf46de7cc9d93efc9bb034bb4c7/results/round11.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Commit first stating this README bound, not scientific priority",
+        "publication_date": "2026-10-09T15:24:16Z"
+      },
+      "shea256-exact-dft-five-stage-2026": {
+        "source_url": "https://github.com/chafreaky/wht-power-saving-lean/blob/fd19e46b728faa414cbfbf91b01a6a0b7903375d/README.md",
+        "site_tier": "verified",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "First primary-source commit stating the bound",
+        "publication_date": "2026-10-10T01:43:53Z"
+      },
+      "jacob-sussman-exact-dft-e8-2026": {
+        "source_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+        "site_tier": "verified",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Commit first adding the README claim (committer timestamp), not scientific priority",
+        "publication_date": "2026-10-10T22:44:33Z"
+      }
+    }
+  },
+  "3sum": {
+    "problem_id": "3sum/word-ram",
+    "model": {
+      "id": "word-ram",
+      "version": "1",
+      "description": "Deterministic decision on n integers, three distinct positions. For every fixed k, input magnitude at most n^k. One fixed program for each k; correctness for every word width W >= b(floor(log2 n)+1). Signed fixed-width addition, subtraction, multiplication, indirect load/store and branch are unit-cost steps.",
+      "definition_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean"
+    },
+    "score": {
+      "id": "time-exponent",
+      "version": "1",
+      "symbol": "alpha",
+      "definition": "Worst-case O(n^alpha).",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "2"
+    },
+    "records": [
+      {
+        "id": "classical-baseline",
+        "score": "2",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://www.sciencedirect.com/science/article/pii/0925772195000222"
+        },
+        "submission_url": "https://www.sciencedirect.com/science/article/pii/0925772195000222"
+      },
+      {
+        "id": "anthropic-2026",
+        "score": "2499/1250",
+        "submitted_at": "2026-10-05T17:44:29Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean"
+        },
+        "submission_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-08T22:12:13.857231Z",
+          "receipt_path": "sources/anthropic-comparator-receipt.json"
+        }
+      },
+      {
+        "id": "bigospeedrun-local-baseline-19992",
+        "score": "2499/1250",
+        "submitted_at": "2026-10-08T22:25:27.032164+00:00",
+        "submission_url": "https://github.com/bigospeedrun/3sum/blob/02286f1026443cd76a2b04d05737f2f141449390/records/baseline-19992/submission/Submission.lean",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/bigospeedrun/3sum/blob/02286f1026443cd76a2b04d05737f2f141449390/records/baseline-19992/submission/Submission.lean"
+        },
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T22:35:20.574242Z",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-08T22:33:38.808770+00:00",
+          "receipt_path": "sources/3sum-scored-baseline-receipt.json"
+        }
+      },
+      {
+        "id": "swapnil-jain-3sum-2026",
+        "score": "997891/500000",
+        "submitted_at": "2026-10-10T07:43:56Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T09:04:13Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/bands.md"
+        },
+        "submission_url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/bands.md"
+      },
+      {
+        "id": "jihoon-hyun-3sum-2026",
+        "score": "24987/12500",
+        "submitted_at": "2026-10-07T09:11:13Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T12:06:44Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
+        },
+        "submission_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "publication_year": 1995,
+        "publication_date_precision": "year",
+        "site_tier": "claimed",
+        "publication_date_role": "cited-account-not-invention"
+      },
+      "anthropic-2026": {
+        "source_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
+        "site_tier": "verified",
+        "publication_date_precision": "date-time",
+        "publication_year": 2026,
+        "publication_date": "2026-10-05T17:44:29Z",
+        "publication_date_role": "arXiv v1 paper submission, not formalization publication",
+        "date_precision": "Exact arXiv v1 submission timestamp in UTC; observation time separate."
+      },
+      "bigospeedrun-local-baseline-19992": {
+        "source_url": "https://github.com/bigospeedrun/3sum/blob/02286f1026443cd76a2b04d05737f2f141449390/records/baseline-19992/submission/Submission.lean",
+        "reproduction_of": "anthropic-2026",
+        "site_tier": "verified",
+        "publication_date": "2026-10-08T22:25:27.032164+00:00",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Local wrapper creation, not new mathematical result",
+        "date_precision": "Exact local wrapper timestamps; paper date remains on the original record."
+      },
+      "swapnil-jain-3sum-2026": {
+        "source_url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/bands.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-10T07:43:56Z",
+        "publication_date_role": "First README commit stating this exponent, not scientific priority"
+      },
+      "jihoon-hyun-3sum-2026": {
+        "source_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-07T09:11:13Z",
+        "publication_date_role": "First repository commit stating this bound"
+      }
+    }
+  },
+  "apsp": {
+    "problem_id": "apsp/word-ram",
+    "model": {
+      "id": "word-ram",
+      "version": "1",
+      "description": "Deterministic directed APSP with polynomially bounded integer weights and no negative cycles. Same fixed-width word RAM and quantifiers as EndStatement. Input edge-presence and weight matrices; output reachability flags and distances for every ordered pair.",
+      "definition_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean"
+    },
+    "score": {
+      "id": "time-exponent",
+      "version": "1",
+      "symbol": "alpha",
+      "definition": "Worst-case O(n^alpha).",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "3"
+    },
+    "records": [
+      {
+        "id": "classical-baseline",
+        "score": "3",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://doi.org/10.1145/367766.368168"
+        },
+        "submission_url": "https://doi.org/10.1145/367766.368168"
+      },
+      {
+        "id": "anthropic-2026",
+        "score": "149971/50000",
+        "submitted_at": "2026-10-05T17:44:29Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean"
+        },
+        "submission_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
+        "rerun_status": {
+          "state": "passed",
+          "checked_at": "2026-10-08T22:12:13.857231Z",
+          "receipt_path": "sources/anthropic-comparator-receipt.json"
+        }
+      },
+      {
+        "id": "swapnil-jain-apsp-2026",
+        "score": "2995943/1000000",
+        "submitted_at": "2026-10-10T06:05:39Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T09:04:13Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/stacked.md"
+        },
+        "submission_url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/stacked.md"
+      },
+      {
+        "id": "jihoon-hyun-apsp-2026",
+        "score": "299791/100000",
+        "submitted_at": "2026-10-07T09:11:13Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-10T12:06:44Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
+        },
+        "submission_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "publication_year": 1962,
+        "publication_date_precision": "year",
+        "site_tier": "claimed"
+      },
+      "anthropic-2026": {
+        "source_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
+        "site_tier": "verified",
+        "publication_date_precision": "date-time",
+        "publication_year": 2026,
+        "publication_date": "2026-10-05T17:44:29Z",
+        "publication_date_role": "arXiv v1 paper submission, not formalization publication",
+        "date_precision": "Exact arXiv v1 submission timestamp in UTC; observation time separate."
+      },
+      "swapnil-jain-apsp-2026": {
+        "source_url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/stacked.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-10T06:05:39Z",
+        "publication_date_role": "First README commit stating this exponent, not scientific priority"
+      },
+      "jihoon-hyun-apsp-2026": {
+        "source_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "date-time",
+        "publication_date": "2026-10-07T09:11:13Z",
+        "publication_date_role": "First repository commit stating this bound"
+      }
+    }
+  },
+  "subset-sum": {
+    "problem_id": "subset-sum/randomized-word-ram",
+    "model": {
+      "id": "randomized-word-ram",
+      "version": "1",
+      "description": "Positive integers a_1,...,a_n and nonnegative target t, n>=2; repeats and empty subset allowed. Let b be maximum input/target bit length. Word RAM has w=ceil(4(n+b+log2(n+2))) bits. Reads/writes, indirect addressing, comparison, arithmetic including multiply/divide/remainder, bitwise operations and shifts cost one word operation; overflow uses charged multiple operations. Independent uniform w-bit random word costs one operation; one-way randomness with retained words charged to memory. One finite program for all n,b, no advice or external tables; all preprocessing and input access charged. Halts on every run, correct with probability at least 2/3 for every fixed input. For every fixed c and b<=n^c, every random outcome costs O(2^(0.49n)); program does not depend on c.",
+      "definition_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/build/sections/introduction.tex"
+    },
+    "score": {
+      "id": "exponential-time-exponent",
+      "version": "1",
+      "symbol": "alpha",
+      "definition": "Worst-case over random outcomes O(2^(alpha n)), for each fixed polynomial input-bit bound b<=n^c; per-input success probability at least 2/3.",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "1/2"
+    },
+    "records": [
+      {
+        "id": "classical-baseline",
+        "score": "1/2",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://doi.org/10.1145/321812.321823"
+        },
+        "submission_url": "https://doi.org/10.1145/321812.321823"
+      },
+      {
+        "id": "subset-sum-2026",
+        "score": "49/100",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/build/sections/introduction.tex"
+        },
+        "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/README.md"
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "publication_year": 1974,
+        "publication_date_precision": "year",
+        "site_tier": "claimed"
+      },
+      "subset-sum-2026": {
+        "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/README.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "unknown"
+      }
+    }
+  },
+  "directed-sssp": {
+    "problem_id": "directed-sssp/comparison-addition-sparse",
+    "model": {
+      "id": "comparison-addition-sparse",
+      "version": "1",
+      "description": "Uniform deterministic exact directed SSSP with nonnegative real weights in the source RAM/comparison-addition model. Improved branch requires m <= n F(n), F(n)=floor(floor(log2 n)^(3/4)). Score applies only on that density profile. Bellman-Ford fallback outside it; no general-density improvement claimed.",
+      "definition_url": "https://github.com/spicylemonade/c-hd-proof/blob/98c53accb47a505482a1781597ae14bf67e81cec/README.md"
+    },
+    "score": {
+      "id": "log-time-exponent",
+      "version": "1",
+      "symbol": "alpha",
+      "definition": "Worst-case O(n (log n)^alpha) on m <= n floor(floor(log2 n)^(3/4)).",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "1"
+    },
+    "records": [
+      {
+        "id": "classical-baseline",
+        "score": "1",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://doi.org/10.1145/28869.28874"
+        },
+        "submission_url": "https://doi.org/10.1145/28869.28874"
+      },
+      {
+        "id": "directed-sssp-2026",
+        "score": "11/12",
+        "submitted_at": "2026-10-08T21:34:39.207006Z",
+        "upstream_status": "not-applicable",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/spicylemonade/c-hd-proof/blob/98c53accb47a505482a1781597ae14bf67e81cec/README.md"
+        },
+        "submission_url": "https://github.com/spicylemonade/c-hd-proof/blob/98c53accb47a505482a1781597ae14bf67e81cec/README.md"
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "publication_year": 1987,
+        "publication_date_precision": "year",
+        "site_tier": "claimed"
+      },
+      "directed-sssp-2026": {
+        "source_url": "https://github.com/spicylemonade/c-hd-proof/blob/98c53accb47a505482a1781597ae14bf67e81cec/README.md",
+        "site_tier": "claimed",
+        "publication_date_precision": "unknown"
+      }
+    }
+  }
+}

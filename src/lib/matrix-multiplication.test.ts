@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {ranked,tableBound} from './ranking.ts';
 import {classifyEvidence,isBreakthroughRecord} from './evidence.ts';
-const data=JSON.parse(readFileSync(new URL('../data/matrix-multiplication.json',import.meta.url),'utf8'));
+const data=JSON.parse(readFileSync(new URL('./fixtures/board-regressions.json',import.meta.url),'utf8'))['matrix-multiplication'];
 
 test('matrix exponent bounds retain epsilon slack in tables and chat knowledge',()=>{
  for(const [score,expected] of [['9/4','2.25'],['237115924/100000000','2.37115924'],['1185527443003373/500000000000000','2.371054886006746']]){

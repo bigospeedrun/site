@@ -17,6 +17,13 @@ CONFIG = json.loads((ROOT/'direct-trust.json').read_text())
 BINDING = CONFIG['maintainer_bindings']['dft-e8']
 NOW = '2026-10-11T05:00:00Z'
 
+def board_fixture(slug):
+    return json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())[slug]
+
+def write_board_fixture(root,name):
+    doc={'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'} if name=='registry.json' else board_fixture(name.removesuffix('.json'))
+    (root/name).write_bytes(encode(doc))
+
 
 def fixture(stage='lean', nanoda=None, binding=None):
     binding = copy.deepcopy(binding or BINDING)
@@ -124,7 +131,7 @@ class MaintainerTests(unittest.TestCase):
         self.assertEqual(check(r,a,run,b)['decision'],'pending')
 
     def test_record_pin_score_model_credit_and_priority(self):
-        doc=json.loads((ROOT/'exact-dft.json').read_text());before=copy.deepcopy(doc)
+        doc=board_fixture('exact-dft');before=copy.deepcopy(doc)
         verdict=check(*fixture());apply_record(doc,BINDING,verdict,'sources/example.json',NOW)
         row=next(r for r in doc['records'] if r['id']==BINDING['record_id'])
         old=next(r for r in before['records'] if r['id']==BINDING['record_id'])
@@ -207,10 +214,11 @@ class MaintainerTests(unittest.TestCase):
 
     def test_matrix_existing_row_receives_only_its_evidence(self):
         binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
-        doc=json.loads((ROOT/binding['board']).read_text());old=copy.deepcopy(doc['records'][-1])
+        doc=board_fixture(binding['board'].removesuffix('.json'));doc['records'].reverse()
+        old=copy.deepcopy(next(r for r in doc['records'] if r['id']==binding['record_id']))
         verdict=check(*fixture(binding=binding))
         apply_record(doc,binding,verdict,'sources/example.json',NOW)
-        row=doc['records'][-1]
+        row=next(r for r in doc['records'] if r['id']==binding['record_id'])
         self.assertEqual(row['tier'],'verified')
         self.assertEqual(row['authors'],old['authors']);self.assertEqual(row['score'],'9/4')
         self.assertEqual(row['submitted_at'],old['submitted_at'])
@@ -221,7 +229,7 @@ class MaintainerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary)
             for name in ['exact-dft.json','matrix-multiplication.json','registry.json']:
-                (root/name).write_bytes((ROOT/name).read_bytes())
+                write_board_fixture(root,name)
             (root/'direct-fixtures').mkdir()
             for name in ['UniformFourierE8.lean','MatrixMultiplication.lean']:
                 (root/'direct-fixtures'/name).write_bytes((ROOT/'direct-fixtures'/name).read_bytes())
@@ -252,7 +260,7 @@ class MaintainerTests(unittest.TestCase):
     def test_transaction_cache_expiry_and_repeat(self):
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary)
-            for name in ['exact-dft.json','registry.json']:(root/name).write_bytes((ROOT/name).read_bytes())
+            for name in ['exact-dft.json','registry.json']:write_board_fixture(root,name)
             (root/'direct-fixtures').mkdir();(root/'direct-fixtures/UniformFourierE8.lean').write_bytes((ROOT/'direct-fixtures/UniformFourierE8.lean').read_bytes())
             r,a,run,b=fixture();raw=pack(r,a)
             api=SimpleNamespace(pages=lambda *args,**kwargs:[a])

@@ -43,11 +43,11 @@ test('bound exponents retain all source digits and exact repeating fractions',as
  }
 });
 
-test('all source problems keep distinct scores visible and never overstate a saving',async()=>{
+test('pinned problem fixtures keep distinct scores visible and never overstate a saving',async()=>{
  const {readFileSync}=await import('node:fs');
  const {boundPrecision,tableBound,scientificSaving}=await import('./ranking.ts');
  for(const slug of ['matrix-multiplication','integer-multiplication','exact-dft','3sum','apsp','subset-sum','directed-sssp']){
-  const data=JSON.parse(readFileSync(new URL(`../data/${slug}.json`,import.meta.url),'utf8'));
+  const data=JSON.parse(readFileSync(new URL('./fixtures/board-regressions.json',import.meta.url),'utf8'))[slug];
   const kappa=data.score.symbol==='kappa';
   const scores:string[]=data.records.map((r:any)=>r.score);
   const digits=boundPrecision(scores,kappa);

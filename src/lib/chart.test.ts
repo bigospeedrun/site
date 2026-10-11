@@ -7,10 +7,10 @@ import { classifyEvidence, evidenceLevels, isBoardEntry, isBreakthroughRecord } 
 const e=(id:string,score:string,time:number,level='claimed',scoreRelation='attained'):ChartEntry=>({id,repoId:0,score,time,level,scoreRelation,date:new Date(time).toISOString(),author:'',boundHtml:'',url:''});
 const allLevels=new Set(evidenceLevels.map(l=>l.id));
 
-// Read the real board inputs. Only the adapter fields required for admission,
+// Read pinned board regression fixtures. Only the adapter fields required for admission,
 // source-date selection and table ranking are needed by these regression tests.
 function boardEntries(slug:string) {
- const source=JSON.parse(readFileSync(new URL(`../data/${slug}.json`,import.meta.url),'utf8'));
+ const source=JSON.parse(readFileSync(new URL('./fixtures/board-regressions.json',import.meta.url),'utf8'))[slug];
  return source.records.map((r:any)=>{
   const m=source.record_metadata?.[r.id]??{};
   const repo=(m.source_url??r.source?.url??r.submission_url)?.match(/^https:\/\/github.com\/([^/]+\/[^/]+)/)?.[1]??'';
@@ -42,7 +42,7 @@ function checkBoardProgression(slug:string, higher:boolean) {
  return {dated,marks};
 }
 
-test('each live board progression ends at its current table leader',()=>{
+test('each fixture board progression ends at its current table leader',()=>{
  for(const slug of ['matrix-multiplication','integer-multiplication','exact-dft','3sum','apsp','subset-sum','directed-sssp']){
   checkBoardProgression(slug,['integer-multiplication','exact-dft'].includes(slug));
  }
@@ -176,7 +176,7 @@ test('breakthrough remains the start of progression for every evidence filter co
 });
 
 
-test('real problem boards retain only their breakthrough when all evidence filters are off',()=>{
+test('fixture problem boards retain only their breakthrough when all evidence filters are off',()=>{
  for(const slug of ['matrix-multiplication','integer-multiplication','exact-dft','3sum','apsp','subset-sum']){
   const board=boardEntries(slug);
   const dated=board.filter((r:any)=>chartDate(r)).map((r:any)=>({...r,time:Date.parse(chartDate(r)!)}));

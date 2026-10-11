@@ -1,0 +1,521 @@
+{
+  "exact-dft": {
+    "schema_version": 1,
+    "problem_id": "exact-dft/uniform-exact-arithmetic",
+    "model": {
+      "id": "uniform-exact-arithmetic",
+      "version": "1",
+      "description": "Fixed deterministic programs for every positive n. Exact canonical DFT and full convolution over complex vectors. Root of unity supplied; unrestricted coefficients and exact complex arithmetic. Polynomially bounded integer values and indices. Cost includes root-order selection and scalar preparation. Excludes bit complexity and the separate subsequential circuit result.",
+      "definition_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/130.md"
+    },
+    "score": {
+      "id": "log-saving",
+      "version": "1",
+      "symbol": "kappa",
+      "definition": "Arithmetic work O(n (log n)^(1-kappa)) for every positive length.",
+      "direction": "higher-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "1"
+    },
+    "checked_at": "2026-10-11",
+    "sources": [
+      {
+        "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/130.md",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://web.stanford.edu/class/cme324/classics/cooley-tukey.pdf",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://doi.org/10.1109/TAU.1970.1162132",
+        "checked_at": "2026-10-08",
+        "status": "Full text unchecked: browser challenge. All-length baseline uses Bluestein reduction with FFT; Cooley-Tukey alone is not the all-length source."
+      },
+      {
+        "url": "https://github.com/eumemic/exact-dft-bounds/blob/6f87d1a0c9ae462cdcb2034a1361c87623221e66/notes/batched-dft-note.tex",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/0b0170640e8659cc3343830d3207bbeaf26660c3/manuscript.md",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/f010392c923279e3dd59ef3aa5fedad23affc5fd/README.md",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/53f03853aea8caf46de7cc9d93efc9bb034bb4c7/results/round11.md",
+        "checked_at": "2026-10-10"
+      },
+      {
+        "url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/62554f945b58454fb8452f4daaca1222ce5ca58e/results/five-stage-pr233.md",
+        "checked_at": "2026-10-10"
+      },
+      {
+        "url": "https://github.com/chafreaky/wht-power-saving-lean/blob/fd19e46b728faa414cbfbf91b01a6a0b7903375d/README.md",
+        "checked_at": "2026-10-10"
+      }
+    ],
+    "records": [
+      {
+        "id": "classical-baseline",
+        "kind": "baseline",
+        "score": "0",
+        "tier": "claimed",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "upstream_status_at": "2026-10-08T21:34:39.207006Z",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://doi.org/10.1090/S0025-5718-1965-0178586-1"
+        },
+        "spec_version": "1",
+        "title": "Cooley and Tukey (1965), FFT; Bluestein (1970), all-length reduction",
+        "authors": [
+          {
+            "name": "Cooley and Tukey (1965), FFT; Bluestein (1970), all-length reduction",
+            "url": "https://doi.org/10.1090/S0025-5718-1965-0178586-1"
+          }
+        ],
+        "predecessors": [],
+        "submission_url": "https://doi.org/10.1090/S0025-5718-1965-0178586-1",
+        "artifact": {
+          "path": "sources/exact-dft-baseline.json",
+          "sha256": "87a992fca2b099a1c9a1b7d31c4b8d3b8d3b0eeaa89539a480f310ec950dfe23"
+        },
+        "evidence": {
+          "paper_url": "https://doi.org/10.1090/S0025-5718-1965-0178586-1",
+          "theorem": null,
+          "certificate_path": null
+        },
+        "dependencies": []
+      },
+      {
+        "id": "jacob-sussman-exact-dft-e8-2026",
+        "kind": "improvement",
+        "score": "4381239/5000000000",
+        "tier": "claimed",
+        "submitted_at": "2026-10-10T22:44:33Z",
+        "upstream_status": "not-applicable",
+        "upstream_status_at": "2026-10-10T22:44:33Z",
+        "site_observed_at": "2026-10-11T00:59:38Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md"
+        },
+        "spec_version": "1",
+        "title": "Jacob Sussman all-length exact DFT E8 claim",
+        "authors": [
+          {
+            "name": "Jacob Sussman",
+            "url": "https://github.com/jacobalansussman"
+          }
+        ],
+        "predecessors": [
+          "https://github.com/openai/math"
+        ],
+        "submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+        "artifact": {
+          "path": "sources/jacobalansussman-dft-e8-claim.json",
+          "sha256": "b1308e75ac57fbaeecf026bf0bc19d5f30941611b033145f6d24d3b33f0dc8d7"
+        },
+        "evidence": {
+          "paper_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+          "theorem": "OAI.PowerSaving.transform_mainE8; OAI.PowerSaving.convolution_mainE8",
+          "certificate_path": null
+        },
+        "dependencies": [],
+        "source_commit": "9c94857bbaee886f8649edee0bc2d3c738f9555e",
+        "score_relation": "attained"
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "checked_at": "2026-10-08",
+        "eligible_for_record": true,
+        "proof_status": "Classical paper baseline; no site proof check.",
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "source_access": "opened classic paper scan; Bluestein full text unchecked",
+        "publication_year": 1970,
+        "publication_date_precision": "year",
+        "publication_source_url": "https://doi.org/10.1109/TAU.1970.1162132",
+        "upstream_tier": "claimed",
+        "site_tier": "claimed",
+        "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+        "publication_date_role": "Bluestein all-length reduction (1970); Cooley\u2013Tukey FFT account is 1965."
+      },
+      "jacob-sussman-exact-dft-e8-2026": {
+        "checked_at": "2026-10-11",
+        "source_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+        "repo": "jacobalansussman/wht-power-saving-lean",
+        "site_badge": false,
+        "eligible_for_record": true,
+        "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+        "upstream_tier": "claimed",
+        "site_tier": "claimed",
+        "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+        "comparison_status": "Challenge matches OpenAI fd4aeeb after removing comments/blank lines and normalizing seven E8 suffixes and the exponent. RAM, DFTProgram and ConvProgram are unchanged.",
+        "scope": "Fixed deterministic programs for every positive n. Exact canonical DFT and full convolution over complex vectors. Root of unity supplied; unrestricted coefficients and exact complex arithmetic. Polynomially bounded integer values and indices. Cost includes root-order selection and scalar preparation. Excludes bit complexity and the separate subsequential circuit result.",
+        "exact_statement": "All positive-length exact DFT and full convolution in O(n (log n)^(1-8762478/10^10)).",
+        "score_interpretation": "Attained as claimed: saving 8762478/10^10, stored as 4381239/5000000000. The separate WHT result is not imported.",
+        "model_note": "OpenAI family-130 exact complex scalar/index RAM; unchanged DFTProgram and ConvProgram.",
+        "publication_date_precision": "date-time",
+        "publication_date_role": "Commit first adding the README claim (committer timestamp), not scientific priority",
+        "publication_date": "2026-10-10T22:44:33Z",
+        "publication_source_url": "https://github.com/jacobalansussman/wht-power-saving-lean/commit/5ba30467a0066b82683f18c80e53c2b1e7752ca3",
+        "claim_date_commit": "5ba30467a0066b82683f18c80e53c2b1e7752ca3",
+        "listing_status": "research-draft",
+        "open_race": false,
+        "notes_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/VERIFY.md",
+        "license_status": "Apache-2.0; LICENSE and NOTICE retained",
+        "credits": "Jacob Sussman directed Claude agents. README credits icekylinx, ikeboy, jamesyc, eumemic, Chafik Boukhalfa (chafreaky) and OpenAI for prior devices and reductions. Chafik is credited for the late pairing idea, not named as co-author of this new circuit; his program, pairs and certificate were not used."
+      }
+    },
+    "updated_at": "2026-10-11T04:36:17Z"
+  },
+  "matrix-multiplication": {
+    "schema_version": 1,
+    "problem_id": "matrix-multiplication/arithmetic-circuit-complex",
+    "model": {
+      "id": "arithmetic-circuit-complex",
+      "version": "1",
+      "description": "Multiply two n by n complex matrices exactly with division-free arithmetic circuits. Scalar addition, subtraction and multiplication each cost one; inputs and constants are free. For every epsilon > 0, one positive constant C bounds the cost by C n^(t+epsilon) for every positive size n. Results over every field qualify by specialization to the complex numbers.",
+      "definition_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatrixMultiplication.lean"
+    },
+    "score": {
+      "id": "arithmetic-exponent",
+      "version": "1",
+      "symbol": "t",
+      "definition": "An exponent t guarantees O(n^(t+epsilon)) scalar operations for every fixed epsilon > 0.",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "2",
+      "maximum": "3"
+    },
+    "checked_at": "2026-10-11",
+    "sources": [
+      {
+        "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatrixMultiplication.lean",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "url": "https://arxiv.org/abs/2608.16884",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "url": "https://github.com/selanavot/matrix-multiplication-all-fields/blob/08481ef22bca7dc9ffba091083b7c1e81e537220/README.md",
+        "checked_at": "2026-10-11"
+      }
+    ],
+    "records": [
+      {
+        "id": "classical-baseline",
+        "kind": "baseline",
+        "score": "2371177/1000000",
+        "tier": "claimed",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+        "site_observed_at": "2026-10-10T22:29:27.649745Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2608.16884"
+        },
+        "spec_version": "1",
+        "title": "Dupont et al. with AlphaEvolve square matrix multiplication bound",
+        "authors": [
+          {
+            "name": "Dupont et al. with AlphaEvolve",
+            "url": "https://arxiv.org/abs/2608.16884"
+          }
+        ],
+        "predecessors": [],
+        "submission_url": "https://arxiv.org/abs/2608.16884",
+        "artifact": {
+          "path": "sources/matrix-classical-baseline.json",
+          "sha256": "79ac29e2caf57d31b3b2704d7cd324dad9e9a35b256caaf9c6d75ebd953629fd"
+        },
+        "evidence": {
+          "paper_url": "https://arxiv.org/abs/2608.16884",
+          "theorem": null,
+          "certificate_path": null
+        },
+        "dependencies": []
+      },
+      {
+        "id": "openai-matrix-nine-fourths-2026",
+        "kind": "improvement",
+        "score": "9/4",
+        "tier": "claimed",
+        "submitted_at": "2026-10-10T22:29:27.649745Z",
+        "upstream_status": "not-applicable",
+        "upstream_status_at": "2026-10-10T22:29:27.649745Z",
+        "site_observed_at": "2026-10-10T22:29:27.649745Z",
+        "source": {
+          "kind": "repo-artifact",
+          "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf"
+        },
+        "spec_version": "1",
+        "title": "OpenAI square matrix multiplication bound",
+        "authors": [
+          {
+            "name": "OpenAI",
+            "url": "https://github.com/openai"
+          }
+        ],
+        "predecessors": [],
+        "submission_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+        "artifact": {
+          "path": "sources/matrix-openai-matrix-nine-fourths-2026.json",
+          "sha256": "94f80a54d922cf186b81a1298640e31be67cd1d150699529f7b1c2f0a5a1c445"
+        },
+        "evidence": {
+          "paper_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+          "theorem": "OAI.MatrixMultiplication.complex_omega_le_nine_quarters",
+          "certificate_path": null
+        },
+        "dependencies": [],
+        "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "checked_at": "2026-10-11",
+        "eligible_for_record": false,
+        "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+        "site_badge": false,
+        "site_tier": "claimed",
+        "upstream_tier": "claimed",
+        "source_url": "https://arxiv.org/abs/2608.16884",
+        "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+        "comparison_status": "Complex numbers; prior preprint bound.",
+        "publication_year": 2026,
+        "publication_date": "2026-08-17",
+        "publication_date_precision": "date",
+        "publication_date_role": "Public release date",
+        "publication_source_url": "https://arxiv.org/abs/2608.16884",
+        "manuscript_date": null,
+        "scope": "Complex numbers; prior preprint bound."
+      },
+      "openai-matrix-nine-fourths-2026": {
+        "checked_at": "2026-10-11",
+        "eligible_for_record": true,
+        "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+        "site_badge": false,
+        "site_tier": "claimed",
+        "upstream_tier": "claimed",
+        "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+        "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
+        "comparison_status": "Complex numbers. Author supplies Lean; no site rerun yet. Manuscript dated 2026-10-02; public collection released 2026-10-06.",
+        "publication_year": 2026,
+        "publication_date": "2026-10-06",
+        "publication_date_precision": "date",
+        "publication_date_role": "Public release date",
+        "publication_source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+        "manuscript_date": "2026-10-02",
+        "scope": "Complex numbers. Author supplies Lean; no site rerun yet.",
+        "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision."
+      }
+    },
+    "updated_at": "2026-10-11T05:49:20Z"
+  },
+  "3sum": {
+    "schema_version": 1,
+    "problem_id": "3sum/word-ram",
+    "model": {
+      "id": "word-ram",
+      "version": "1",
+      "description": "Deterministic decision on n integers, three distinct positions. For every fixed k, input magnitude at most n^k. One fixed program for each k; correctness for every word width W >= b(floor(log2 n)+1). Signed fixed-width addition, subtraction, multiplication, indirect load/store and branch are unit-cost steps.",
+      "definition_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean"
+    },
+    "score": {
+      "id": "time-exponent",
+      "version": "1",
+      "symbol": "alpha",
+      "definition": "Worst-case O(n^alpha).",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "2"
+    },
+    "checked_at": "2026-10-10",
+    "sources": [
+      {
+        "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://people.csail.mit.edu/virgi/6.s078/papers/gajovermars.pdf",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/README.md",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://arxiv.org/abs/2610.06783v1",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/bands.md",
+        "checked_at": "2026-10-10"
+      }
+    ],
+    "records": [
+      {
+        "id": "classical-baseline",
+        "kind": "baseline",
+        "score": "2",
+        "tier": "claimed",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "upstream_status_at": "2026-10-08T21:34:39.207006Z",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://www.sciencedirect.com/science/article/pii/0925772195000222"
+        },
+        "spec_version": "1",
+        "title": "Folklore quadratic 3SUM algorithm; documented by Gajentaan and Overmars (1995)",
+        "authors": [
+          {
+            "name": "Folklore; cited account by Anka Gajentaan and Mark H. Overmars",
+            "url": "https://people.csail.mit.edu/virgi/6.s078/papers/gajovermars.pdf"
+          }
+        ],
+        "predecessors": [],
+        "submission_url": "https://www.sciencedirect.com/science/article/pii/0925772195000222",
+        "artifact": {
+          "path": "sources/3sum-baseline.json",
+          "sha256": "8719692b30adb832b92e8e2fc51c2539fdf514f591ec71906d3ba20706525cfc"
+        },
+        "evidence": {
+          "paper_url": "https://www.sciencedirect.com/science/article/pii/0925772195000222",
+          "theorem": null,
+          "certificate_path": null
+        },
+        "dependencies": []
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "checked_at": "2026-10-08",
+        "eligible_for_record": true,
+        "proof_status": "Classical paper baseline; no site proof check.",
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "source_access": "opened paper mirror; publisher denied access",
+        "publication_year": 1995,
+        "publication_date_precision": "year",
+        "publication_source_url": "https://people.csail.mit.edu/virgi/6.s078/papers/gajovermars.pdf",
+        "upstream_tier": "claimed",
+        "site_tier": "claimed",
+        "comparison_key": "3sum/word-ram/v1",
+        "attribution_note": "Gajentaan and Overmars introduced the 3SUM-hardness framework and described the existing quadratic algorithm. This citation does not attribute the algorithm invention to them. 1995 is the cited account year; the folklore origin date is unknown.",
+        "publication_date_role": "cited-account-not-invention"
+      }
+    },
+    "updated_at": "2026-10-10T12:06:44Z"
+  },
+  "apsp": {
+    "schema_version": 1,
+    "problem_id": "apsp/word-ram",
+    "model": {
+      "id": "word-ram",
+      "version": "1",
+      "description": "Deterministic directed APSP with polynomially bounded integer weights and no negative cycles. Same fixed-width word RAM and quantifiers as EndStatement. Input edge-presence and weight matrices; output reachability flags and distances for every ordered pair.",
+      "definition_url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean"
+    },
+    "score": {
+      "id": "time-exponent",
+      "version": "1",
+      "symbol": "alpha",
+      "definition": "Worst-case O(n^alpha).",
+      "direction": "lower-is-better",
+      "encoding": "rational-string",
+      "minimum": "0",
+      "maximum": "3"
+    },
+    "checked_at": "2026-10-10",
+    "sources": [
+      {
+        "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://algol60.org/acm/097.pdf",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/README.md",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://arxiv.org/abs/2610.06783v1",
+        "checked_at": "2026-10-08"
+      },
+      {
+        "url": "https://github.com/Swapnil-jain/threesum-derand/blob/087ece61dd9ef6108441927785b16dfda0e95284/proofs/stacked.md",
+        "checked_at": "2026-10-10"
+      }
+    ],
+    "records": [
+      {
+        "id": "classical-baseline",
+        "kind": "baseline",
+        "score": "3",
+        "tier": "claimed",
+        "submitted_at": null,
+        "upstream_status": "not-applicable",
+        "upstream_status_at": "2026-10-08T21:34:39.207006Z",
+        "site_observed_at": "2026-10-08T21:34:39.207006Z",
+        "source": {
+          "kind": "paper",
+          "url": "https://doi.org/10.1145/367766.368168"
+        },
+        "spec_version": "1",
+        "title": "Robert W. Floyd (1962), Algorithm 97: Shortest path",
+        "authors": [
+          {
+            "name": "Robert W. Floyd (1962), Algorithm 97: Shortest path",
+            "url": "https://doi.org/10.1145/367766.368168"
+          }
+        ],
+        "predecessors": [],
+        "submission_url": "https://doi.org/10.1145/367766.368168",
+        "artifact": {
+          "path": "sources/apsp-baseline.json",
+          "sha256": "e471e3f98e7c9a4077c837f3d764114845c4d3d63ec7adbbe0d37b97ba24463b"
+        },
+        "evidence": {
+          "paper_url": "https://doi.org/10.1145/367766.368168",
+          "theorem": null,
+          "certificate_path": null
+        },
+        "dependencies": []
+      }
+    ],
+    "record_metadata": {
+      "classical-baseline": {
+        "checked_at": "2026-10-08",
+        "eligible_for_record": true,
+        "proof_status": "Classical paper baseline; no site proof check.",
+        "date_precision": "Publication year only; exact submission time unknown. site_observed_at is separate.",
+        "source_access": "opened paper scan; DOI full text unchecked",
+        "publication_year": 1962,
+        "publication_date_precision": "year",
+        "publication_source_url": "https://doi.org/10.1145/367766.368168",
+        "upstream_tier": "claimed",
+        "site_tier": "claimed",
+        "comparison_key": "apsp/word-ram/v1"
+      }
+    },
+    "updated_at": "2026-10-10T12:06:44Z"
+  }
+}
