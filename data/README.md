@@ -80,6 +80,12 @@ The profile stages the harfe fixed-point dependency at
 `770940ddf9878cf61952ed53d910b92bca841838` as proof source. It ignores dependency
 build files and compiled objects, rejects module collisions, and retains the
 same kernel and axiom checks. Admission checks the dependency identity in the
-receipt and the hashed staged-source manifest. The matrix binding has no run ID
-yet and remains inactive until the exact run is reviewed and assigned. DFT keeps
-its original b27295a controller binding.
+receipt and the hashed staged-source manifest. The original matrix run 38109326251 did not pass; its dependency failed to
+compile and no complete axiom audit was available. Controller c53eaff was reviewed
+on 2026-10-11. It applies the approved compatibility patch before hashing the
+staged dependency source. The matrix challenge and allowed axioms are unchanged.
+The new binding selects run 38110310511 at c53eaff. The receipt must contain
+`patches/harfe-770940dd-lean434.patch` and its exact SHA256
+`735fd11378e447c5e704bcfb7be8ede7214e3596a2fbb671716794afd8e18462`
+in `solution_dependencies`, matching the reviewed profile. Missing or different
+patch metadata cannot admit a proof. DFT keeps its b27295a controller binding.

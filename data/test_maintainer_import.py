@@ -159,7 +159,7 @@ class MaintainerTests(unittest.TestCase):
 
 
     def test_matrix_pending_binding_never_admits_without_run(self):
-        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths'])
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=None
         with self.assertRaises(Rejected):check(*fixture(binding=binding))
 
     def test_matrix_pinned_dependency_and_target_acceptance(self):
@@ -177,6 +177,21 @@ class MaintainerTests(unittest.TestCase):
                         {'../brouwer.lean':'a'*64}]:
             with self.subTest(sources=sources),self.assertRaises(Rejected):
                 check(*fixture(binding=binding),source_manifest=sources)
+
+    def test_matrix_requires_exact_patch_metadata(self):
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
+        dep=binding['profile']['solution_dependencies'][0]
+        self.assertEqual(dep['patch_file'],'patches/harfe-770940dd-lean434.patch')
+        self.assertEqual(dep['patch_sha256'],'735fd11378e447c5e704bcfb7be8ede7214e3596a2fbb671716794afd8e18462')
+        for field in ['patch_file','patch_sha256']:
+            for omit in [True,False]:
+                r,a,run,b=fixture(binding=binding)
+                if omit:r['solution_dependencies'][0].pop(field)
+                else:r['solution_dependencies'][0][field]='wrong'
+                with self.subTest(field=field,omit=omit),self.assertRaises(Rejected):check(r,a,run,b)
+        r,a,run,b=fixture(binding=binding);r['profile']=copy.deepcopy(r['profile'])
+        r['profile']['solution_dependencies'][0].pop('patch_sha256')
+        with self.assertRaises(Rejected):check(r,a,run,b)
 
     def test_matrix_existing_row_receives_only_its_evidence(self):
         binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
@@ -216,7 +231,8 @@ class MaintainerTests(unittest.TestCase):
             (root/'direct-fixtures').mkdir();(root/'direct-fixtures/UniformFourierE8.lean').write_bytes((ROOT/'direct-fixtures/UniformFourierE8.lean').read_bytes())
             r,a,run,b=fixture();raw=pack(r,a)
             api=SimpleNamespace(pages=lambda *args,**kwargs:[a])
-            importer=SimpleNamespace(root=root,config=CONFIG,api=api,notes=[],trusted=lambda _:None,run=lambda _:run,artifact=lambda _:raw)
+            config=copy.deepcopy(CONFIG);config['maintainer_bindings']={'dft-e8':config['maintainer_bindings']['dft-e8']}
+            importer=SimpleNamespace(root=root,config=config,api=api,notes=[],trusted=lambda _:None,run=lambda _:run,artifact=lambda _:raw)
             files=collect_maintainer(importer,{},NOW)
             for path,content in files.items():
                 target=root/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(content)
