@@ -20,7 +20,7 @@ const missingProofs = entries.filter(({problem}) => {
 const separator = (index: number, length: number) => index === 0 ? '' : index === length - 1 ? ' and ' : ', ';
 ---
 <Layout title="About">
-  <h1>About</h1>
+  <h1 class="sr-only">About</h1>
   <div class="about-layout">
   <div class="prose">
     <section aria-labelledby="point">
