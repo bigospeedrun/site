@@ -7,7 +7,8 @@ The notification planner compares it with `data/discord-records.json`.
 A new board leader emits one message. A record that gains Lean Verified emits one
 message, including when it is not the leader. A simultaneous new leader and Lean
 upgrade emits one message. Human Verified upgrades alone do not emit a message.
-Scores use exact fractions in plain text. Strict endpoints and matrix exponents
+Messages use the same decimal precision as the site tables, with scientific savings
+expanded to plain decimal text. Event keys retain exact fractions. Strict endpoints and matrix exponents
 include “for every fixed epsilon > 0”. Each message links to its board.
 
 The initial committed baseline suppresses a launch flood. Event keys include the

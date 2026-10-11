@@ -24,12 +24,12 @@ test('Human Verified upgrade or author-name edit alone does not post',()=>{
  const initial=baseline(snapshot());const changed=board([row('a','Human Verified')]);changed.records[0].authors=['Alice Example'];
  assert.equal(plan(initial,snapshot(changed)).messages.length,0);
 });
-test('exact plain bounds preserve fractions and strict endpoints for all six problems',()=>{
- assert.equal(plainBound('3sum','997891/500000'),'O(n^(997891/500000))');
- assert.equal(plainBound('apsp','2995943/1000000'),'O(n^(2995943/1000000))');
- assert.match(plainBound('matrix-multiplication','9/4'),/9\/4 \+ epsilon/);
- assert.match(plainBound('subset-sum','49/100'),/2\^\(\(49\/100\) \* n\)/);
- assert.match(plainBound('integer-multiplication','1/999999999999999999999'),/1 - 1\/999999999999999999999/);
+test('decimal plain bounds preserve site precision and strict endpoints for all six problems',()=>{
+ assert.equal(plainBound('3sum','997891/500000'),'O(n^1.995782)');
+ assert.equal(plainBound('apsp','2995943/1000000'),'O(n^2.995943)');
+ assert.match(plainBound('matrix-multiplication','9/4'),/2\.25 \+ epsilon/);
+ assert.match(plainBound('subset-sum','49/100'),/2\^\(0\.49n\)/);
+ assert.match(plainBound('integer-multiplication','1/999999999999999999999'),/1 - 0\.000000000000000000001/);
  assert.match(plainBound('exact-dft','1/1000','strict-upper-bound'),/\+ epsilon.*every fixed epsilon > 0/);
  assert.equal(plainBound('exact-dft','1/1000').includes('epsilon'),false);
 });
@@ -41,11 +41,18 @@ test('feed leader uses the site exact ranking and ties',()=>{
 });
 test('message contains problem, exact bound, evidence, author and link without mentions',()=>{
  const record=row();record.authors=['@everyone <@123>\nAlice'];
- const text=message(board(),record);assert.match(text,/Fourier Transform: O\(n/);assert.match(text,/Claimed/);assert.match(text,/Alice/);assert.match(text,/https:\/\/bigospeedrun.com\/exact-dft$/);assert.ok(!text.includes('@'));
+ const text=message(board(),record);assert.match(text,/Fourier Transform: new record O\(n/);assert.match(text,/Claimed/);assert.match(text,/Alice/);assert.match(text,/https:\/\/bigospeedrun.com\/exact-dft$/);assert.ok(!text.includes('@'));
 });
 test('webhook delivery disables mentions, confirms sends, and fails soft without retry',async()=>{
  const messages=[{key:'a',content:'One'},{key:'b',content:'Two'},{key:'c',content:'Three'}];let calls=0;
  const send=async(url:unknown,options:any)=>{assert.match(String(url),/\?wait=true$/);assert.equal(options.redirect,'error');assert.deepEqual(JSON.parse(options.body).allowed_mentions,{parse:[]});calls++;if(calls===1)return new Response('',{status:200});if(calls===2)return new Response('',{status:429});throw new Error('connection lost');};
  assert.deepEqual(await deliver('https://discord.com/api/webhooks/123/fake',messages,send as typeof fetch),{sent:1,failed:2});assert.equal(calls,3);
  await assert.rejects(deliver('https://example.com/token',messages,send as typeof fetch),/invalid/);
+});
+
+test('decimal saving expansion and author wording follow the requested message format',()=>{
+ assert.equal(plainBound('exact-dft','47171/62500000','attained',6),'O(n log^(1 - 0.000754736) n)');
+ const record=row();record.authors=['jacobalansussman','chafreaky'];record.bound=plainBound('exact-dft','47171/62500000','attained',6);
+ assert.equal(message(board(),record),'Fourier Transform: new record O(n log^(1 - 0.000754736) n). Claimed. By jacobalansussman and chafreaky. https://bigospeedrun.com/exact-dft');
+ assert.match(message(board(),record,false),/: record verified /);
 });
