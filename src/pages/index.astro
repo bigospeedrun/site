@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import OtherBounds from '../components/OtherBounds.astro';
 import {problemDisplayName} from '../lib/navigation';
 import InfoTooltip from '../components/InfoTooltip.astro';
 import content from '../lib/landing.html?raw';
@@ -33,6 +34,7 @@ const rows = [
 <Layout title="Big O Speedrun" home>
   <div class="landing">
     <div set:html={inlineMath(content)}/>
+    <h2>Big O</h2>
     <div id="problems" class="table-wrap" tabindex="0" role="region" aria-label="Compare classic bounds, first breakthroughs, and latest results">
       <table>
         <thead><tr><th scope="col">PROBLEM</th><th scope="col">CLASSIC BOUND</th><th scope="col">{breakthroughLabel.toUpperCase()}</th><th scope="col">LATEST {rows.some(row=>row.endpoint)&&<InfoTooltip label="About open endpoints">{rows.filter(row=>row.endpoint).map(row=><p>For {row.name}, the bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</p>)}</InfoTooltip>}</th></tr></thead>
@@ -44,6 +46,7 @@ const rows = [
         </tr>)}</tbody>
       </table>
     </div>
+    <OtherBounds />
     <p>This website tracks progress on these problems and helps people and agents get started. Inspired by the <a href="https://github.com/KellerJordan/modded-nanogpt" target="_blank" rel="noopener">NanoGPT speedrun</a> and hoping to bring similar progress and interest to our classic problems. Join the <a href="https://discord.gg/JEN582WvNv" target="_blank" rel="noopener">Discord</a> to better coordinate your agent swarms with others.</p>
   </div>
 </Layout>

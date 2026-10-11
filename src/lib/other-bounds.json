@@ -1,0 +1,824 @@
+{
+  "checkedAt": "2026-10-11",
+  "families": [
+    {
+      "family": "003",
+      "slug": "quasi-riemann",
+      "name": "Quasi-Riemann hypothesis",
+      "quantity": "\\theta",
+      "direction": "lower",
+      "statement": "The quantity is the zero-free half-plane threshold \\(\\theta\\) for zeta, Dirichlet functions and finite-order Eisenstein Hecke functions over \\(\\mathbb{Q}(\\sqrt{-3})\\). A lower threshold is better. The claims retain the source proof conditions.",
+      "baseline": {
+        "value": "7/8",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "7/8"
+      },
+      "claims": [
+        {
+          "author": "Jizhou Guo",
+          "handle": "aster2024",
+          "value": "\\sigma^{\\dagger}",
+          "display": "\\approx0.874957019420099",
+          "date": "2026-10-07T21:26:00-07:00",
+          "dateSource": "https://github.com/aster2024/openai-math-followups/commit/08c61321395c3d303f925bca3984173220bb1d9c",
+          "dateKind": "first-stated",
+          "url": "https://github.com/aster2024/openai-math-followups/blob/a371d874a63222dd662a2ce4ce0562df0c210eb2/README.md",
+          "lean": true,
+          "leanNote": "Repository has Lean, but this result has exact-arithmetic certificates and a conditional paper.",
+          "evidence": "claimed",
+          "note": "Here \\(\\sigma^{\\dagger}\\) is the root in \\((0.8749570194,0.8749570195)\\) of \\(7884s^3-18819s^2+14643s-3686=0\\). The paper is conditional. The bound assumes the released Hecke analytic and transfer inputs and the retuned probe estimates in the linked written argument."
+        },
+        {
+          "author": "Argonaut Math",
+          "handle": "Argonaut-Math",
+          "value": "3499999/4000000",
+          "display": "0.87499975",
+          "date": "2026-10-08T01:19:00-07:00",
+          "dateSource": "https://github.com/Argonaut-Math/argonaut-math-quasi-riemann-boundary/commit/c6e7b0c6fc72a18c783cef52f2ef89ea5aa9774f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Argonaut-Math/argonaut-math-quasi-riemann-boundary/blob/5971383edcb0b1cf863927eed3b359d2d3ba346e/README.md",
+          "lean": true,
+          "leanNote": "Yes; source archives and a Lean file; author reports Comparator.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "Baiying Liu",
+          "handle": "liubaiying101",
+          "value": "(1507-2\\sqrt{921})/1653",
+          "display": "\\approx0.87495706979917",
+          "date": "2026-10-08T06:48:00-07:00",
+          "dateSource": "https://github.com/liubaiying101/Slightly-improved-zero-free-half-planes-for-the-quasi-Riemann-hypothesis/commit/11b1781f9dc70109f56383f0c3b49259abe0ee31",
+          "dateKind": "snapshot",
+          "url": "https://github.com/liubaiying101/Slightly-improved-zero-free-half-planes-for-the-quasi-Riemann-hypothesis/blob/7d10420de90efa2f082a06a342fc7accbd57ab37/README.md",
+          "lean": true,
+          "leanNote": "Yes; main theorem claimed.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "LW56e2",
+          "handle": "LW56e2",
+          "value": "4374785349/5000000000",
+          "display": "0.8749570698",
+          "date": "2026-10-08T11:48:00-07:00",
+          "dateSource": "https://github.com/LW56e2/quasi-riemann-improved/commit/990acfb94cc44c033f29c7661bd7578e3f529b4b",
+          "dateKind": "first-stated",
+          "url": "https://github.com/LW56e2/quasi-riemann-improved/blob/b83dbbd914c5751acf9bc3389cde58970437278f/README.md",
+          "lean": true,
+          "leanNote": "Yes; main theorem claimed.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "CrossNox",
+          "handle": "CrossNox",
+          "value": "0.8749570698",
+          "display": "0.8749570698",
+          "date": "2026-10-08T16:33:00-07:00",
+          "dateSource": "https://github.com/CrossNox/quasi-riemann-hypothesis-extension/commit/f677cc0a820bb2aff86bb4cbe783d076f5c097db",
+          "dateKind": "first-stated",
+          "url": "https://github.com/CrossNox/quasi-riemann-hypothesis-extension/blob/f677cc0a820bb2aff86bb4cbe783d076f5c097db/README.md",
+          "lean": true,
+          "leanNote": "Yes; main theorem claimed.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "Tim Gehrunger / ProofCouncil",
+          "handle": "GTimG",
+          "value": "874957019421/10^{12}",
+          "display": "0.874957019421",
+          "date": "2026-10-09T07:01:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/commit/290d9c5463344c3e2fab93b878f3281e77e3fd6f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/c4213421d2d396643955988770c5d2e886bbaec4/README.md",
+          "lean": true,
+          "leanNote": "Yes; complete proof source and reported multi-kernel receipts.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "Nielstron",
+          "handle": "Nielstron",
+          "value": "11/12-e/4",
+          "display": "\\approx0.874957019420099",
+          "date": "2026-10-09T12:27:00-07:00",
+          "dateSource": "https://github.com/Nielstron/QuasiRiemannTracker/commit/2fc2b0b7f2b9510df4618936e1b2ccd58f7d9171",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/commit/2fc2b0b7f2b9510df4618936e1b2ccd58f7d9171",
+          "lean": true,
+          "leanNote": "Yes; source and reported checks in GTimG contribution package.",
+          "evidence": "claimed",
+          "note": "Here \\(e\\) is the root in \\([1/6,1/5]\\) of \\(657e^3-954e^2+21e+20=0\\)."
+        },
+        {
+          "author": "TheRealDubb / Xenoproof",
+          "handle": "TheRealDubb",
+          "value": "0.8749570194201",
+          "display": "0.8749570194201",
+          "date": "2026-10-09T20:07:00-07:00",
+          "dateSource": "https://github.com/TheRealDubb/family-003-extension-xenoproof/commit/f209f0fb50b335bd65d74f74b334a3b620083ab1",
+          "dateKind": "first-stated",
+          "url": "https://github.com/TheRealDubb/family-003-extension-xenoproof/blob/b6c98187528e036b8c60414a6961ef999caf31fb/README.md",
+          "lean": true,
+          "leanNote": "Yes; main theorem claimed.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "Akash Levy",
+          "handle": "akashlevy",
+          "value": "10499/12000",
+          "display": "10499/12000",
+          "date": "2026-10-09T20:20:00-07:00",
+          "dateSource": "https://github.com/akashlevy/QuasiRiemannTracker/commit/ec626ec9c0e7ab7b29f6c916314932caeb4df39a",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/commit/ec626ec9c0e7ab7b29f6c916314932caeb4df39a",
+          "lean": true,
+          "leanNote": "Yes; 228 new modules reported in source package.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "Zhongpai Gao",
+          "handle": "Gaozhongpai",
+          "value": "2187392879/2500000000",
+          "display": "0.8749571516",
+          "date": "2026-10-09T20:27:00-07:00",
+          "dateSource": "https://github.com/Gaozhongpai/seven-eighths-refinement-certificates/commit/8c995528481f144debf70ffd25678a3fdf379fd4",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Gaozhongpai/seven-eighths-refinement-certificates/blob/8c995528481f144debf70ffd25678a3fdf379fd4/README.md",
+          "lean": false,
+          "leanNote": "No loose .lean files in tree; older kernel evidence reported, latest stronger claim is a conditional written proof.",
+          "evidence": "claimed",
+          "note": "The latest stronger claim is a conditional written proof. The bound assumes the released Hecke analytic and transfer inputs and the retuned probe estimates in the linked written argument."
+        },
+        {
+          "author": "Hailey Collet",
+          "handle": "HaileyStorm",
+          "value": "11/12-\\ell/4",
+          "display": "\\le0.87488664704",
+          "date": "2026-10-10T05:04:00-07:00",
+          "dateSource": "https://github.com/HaileyStorm/QuasiRiemannTracker/commit/58344dfdbe756cf2f743da1908ffe0582418cf5b",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/commit/58344dfdbe756cf2f743da1908ffe0582418cf5b",
+          "lean": true,
+          "leanNote": "Yes; proof contribution and reported multi-kernel receipts.",
+          "evidence": "claimed",
+          "note": "Here \\(\\ell\\) is the unique root in \\([1/6,1/5]\\) of \\(927\\ell^4-3135\\ell^3+2433\\ell^2+275\\ell-100=0\\). The certified display upper bound is \\(683505193/781250000\\)."
+        }
+      ],
+      "repos": [
+        {
+          "name": "lixiang90/RH-Zero-Free-Formalization",
+          "url": "https://github.com/lixiang90/RH-Zero-Free-Formalization"
+        },
+        {
+          "name": "DrMurphyIsIn/qrh-debruijn-newman",
+          "url": "https://github.com/DrMurphyIsIn/qrh-debruijn-newman"
+        },
+        {
+          "name": "Rogerhu12/openai-math-extensions",
+          "url": "https://github.com/Rogerhu12/openai-math-extensions"
+        },
+        {
+          "name": "aster2024/openai-math-followups",
+          "url": "https://github.com/aster2024/openai-math-followups"
+        },
+        {
+          "name": "stevenecreech/math",
+          "url": "https://github.com/stevenecreech/math"
+        },
+        {
+          "name": "Gaozhongpai/QuasiRiemannTracker",
+          "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker"
+        }
+      ],
+      "bestHandle": "HaileyStorm"
+    },
+    {
+      "family": "005",
+      "slug": "catalan",
+      "name": "Catalan’s constant",
+      "quantity": "\\mu(G)",
+      "direction": "lower",
+      "statement": "The quantity is an upper bound on the irrationality exponent \\(\\mu(G)\\) of Catalan’s constant. A lower bound is better. The release states irrationality but gives no finite exponent bound; the baseline is the trivial extended-real upper bound \\(+\\infty\\).",
+      "baseline": {
+        "value": "+\\infty",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Catalans-constant-is-irrational-September-24-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "+\\infty"
+      },
+      "claims": [
+        {
+          "author": "S. Litsey",
+          "handle": "slitsey",
+          "value": "8720",
+          "display": "8720",
+          "date": "2026-10-10T18:13:00-07:00",
+          "dateSource": "https://github.com/slitsey/catalan-irrationality-measure/commit/5cdfe002b4affdb39756eb789fbb192103386574",
+          "dateKind": "first-stated",
+          "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/5cdfe002b4affdb39756eb789fbb192103386574/README.md",
+          "lean": true,
+          "leanNote": "Yes; Challenge, Solution and comparator supplied.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [],
+      "bestHandle": "slitsey"
+    },
+    {
+      "family": "029",
+      "slug": "primitive-roots",
+      "name": "Primitive-root primes",
+      "quantity": "a\\text{ in }c_bx/(\\log x)^a",
+      "direction": "lower",
+      "statement": "The quantity is the power \\(a\\) in the lower bound \\(c_bx/(\\log x)^a\\) for primitive-root primes in \\((x,2x)\\), for the same admissible integer base \\(b\\). A lower power is better.",
+      "baseline": {
+        "value": "2",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "2"
+      },
+      "claims": [
+        {
+          "author": "Rogerhu12",
+          "handle": "Rogerhu12",
+          "value": "1",
+          "display": "1",
+          "date": "2026-10-07T12:52:00-07:00",
+          "dateSource": "https://github.com/Rogerhu12/openai-math-extensions/commit/f8a2bb24c83a80f0026018e3577dd4ca29d2fc60",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Rogerhu12/openai-math-extensions/blob/8e94120c0e9eecfe3d4991eb2102d4da8ede96cf/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [
+        {
+          "name": "Rogerhu12/openai-math-extensions",
+          "url": "https://github.com/Rogerhu12/openai-math-extensions",
+          "note": "The Hecke-character extension changes the target."
+        }
+      ],
+      "bestHandle": "Rogerhu12"
+    },
+    {
+      "family": "111",
+      "slug": "matroid-prophet",
+      "name": "One-sample matroid prophet inequality",
+      "quantity": "C\\text{ in }\\mathbb{E}[R]\\ge C\\mathbb{E}[\\mathrm{OPT}]",
+      "direction": "higher",
+      "statement": "The quantity is the guaranteed fraction of expected offline optimum, with one sample per element of an arbitrary finite matroid and the same almighty full-seed arrival-order adversary. A higher fraction is better. Computation can take exponential time.",
+      "baseline": {
+        "value": "2^{-310}",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "2^{-310}"
+      },
+      "claims": [
+        {
+          "author": "bottlebrushes",
+          "handle": "bottlebrushes",
+          "value": "2^{-38}",
+          "display": "2^{-38}",
+          "date": "2026-10-10T04:15:00-07:00",
+          "dateSource": "https://github.com/bottlebrushes/math/commit/b20ff915be8962902ea0ce000f4cf284fd8743fa",
+          "dateKind": "first-stated",
+          "url": "https://github.com/bottlebrushes/math/blob/b20ff915be8962902ea0ce000f4cf284fd8743fa/lean/OAI/Probability/MatroidProphet/Main.lean",
+          "lean": true,
+          "leanNote": "Yes; Lean changes and comparator challenge inspected; no build run.",
+          "evidence": "claimed",
+          "note": ""
+        },
+        {
+          "author": "Ryan Shea",
+          "handle": "shea256",
+          "value": "8003458533570087953/16807475946150704657203200000",
+          "display": "\\approx4.76\\cdot10^{-10}",
+          "date": "2026-10-10T11:23:00-07:00",
+          "dateSource": "https://github.com/shea256/matroid-prophet-inequality/commit/deb20b28cc53d8e6d865702b44cd6cd789c357d3",
+          "dateKind": "first-stated",
+          "url": "https://github.com/shea256/matroid-prophet-inequality/blob/4f650d6d33ba4438ab32e85900aa1e13cf921f40/README.md",
+          "lean": false,
+          "leanNote": "No; formalization pending.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [],
+      "bestHandle": "shea256"
+    },
+    {
+      "family": "115",
+      "slug": "contingency-tables",
+      "name": "Contingency-table sampling",
+      "quantity": "A d^p",
+      "direction": "lower",
+      "statement": "The quantity is the ideal auxiliary-chain inverse-gap upper bound \\(A d^p\\), where \\(d=10+(m+1)(n+1)\\ge10\\). Lower \\(p\\) is better, with \\(A\\) also tracked. This is an internal bound, not the complete algorithm runtime.",
+      "baseline": {
+        "value": "98{,}560d^{126}",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Exact-Uniform-Sampling-of-Contingency-Tables-with-Arbitrary-Margins-September-24-2026/main.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "98{,}560d^{126}"
+      },
+      "claims": [
+        {
+          "author": "EcoDataLab; Codex agents credited",
+          "handle": "EcoDataLab",
+          "value": "80{,}000d^{17}",
+          "display": "80{,}000d^{17}",
+          "date": "2026-10-08T22:47:00-07:00",
+          "dateSource": "https://github.com/EcoDataLab/contingency-tables/commit/d2e8b0be8e65fdf94b800df60296d8dd49098b62",
+          "dateKind": "first-stated",
+          "url": "https://github.com/EcoDataLab/contingency-tables/blob/fe72b20170e7f85e399368e56baf65b8782b4b50/README.md",
+          "lean": true,
+          "leanNote": "Yes; component and integrated sampler claims have different receipt scopes.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [],
+      "bestHandle": "EcoDataLab"
+    },
+    {
+      "family": "127",
+      "slug": "average-sensitivity",
+      "name": "Average sensitivity",
+      "quantity": "C\\text{ in }\\mathrm{AS}(f)\\le Cd\\sqrt n",
+      "direction": "lower",
+      "statement": "The quantity is the universal coefficient \\(C\\) in \\(\\mathrm{AS}(f)\\le Cd\\sqrt n\\) for polynomial threshold functions of degree at most \\(d\\), with \\(1\\le d\\le n\\) and \\(\\operatorname{sign}(0)=1\\). A lower coefficient is better.",
+      "baseline": {
+        "value": "8",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026/main.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "8"
+      },
+      "claims": [
+        {
+          "author": "Prathmesh Lagdive, Vaibhav Aglave, Suraj Damre",
+          "handle": "log-prathm",
+          "value": "3.83",
+          "display": "3.83",
+          "date": "2026-10-09T12:51:00-07:00",
+          "dateSource": "https://github.com/log-prathm/ptf-average-sensitivity/commit/a02ba53faa209f9383e320220c131e11d6b41db9",
+          "dateKind": "first-stated",
+          "url": "https://github.com/log-prathm/ptf-average-sensitivity/blob/5e9f26cf74935f08be20f9ac4deb57b291d707d8/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [
+        {
+          "name": "log-prathm/ptf-average-sensitivity",
+          "url": "https://github.com/log-prathm/ptf-average-sensitivity",
+          "note": "The dimension-dependent refinements are separate."
+        }
+      ],
+      "bestHandle": "log-prathm"
+    },
+    {
+      "family": "160",
+      "slug": "van-der-waerden",
+      "name": "Van der Waerden numbers",
+      "quantity": "c\\text{ in }W_r(k)>k^{ck\\lfloor\\log_2r\\rfloor}",
+      "direction": "higher",
+      "statement": "The quantity is the coefficient \\(c\\) in \\(W_r(k)>k^{ck\\lfloor\\log_2r\\rfloor}\\), for sufficiently large \\(k\\), uniformly in \\(r\\). A higher coefficient is better. The claim assumes the upstream geometric and counting arguments, shorter dilation, local-lemma balance and separate balancing of light positions. The sharper region allows every fixed \\(c<1/24\\); \\(1/24\\) is not an attained value.",
+      "baseline": {
+        "value": "1/100000",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Quantitative-Superexponential-Bounds-for-van-der-Waerden-Numbers-September-23-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "1/100000"
+      },
+      "claims": [
+        {
+          "author": "Rohan Arun",
+          "handle": "rohanarun",
+          "value": "1/25",
+          "display": "1/25",
+          "date": "2026-10-09T22:45:00-07:00",
+          "dateSource": "https://github.com/rohanarun/van-der-waerden-refinement/commit/9a1de8d6e0e47d2de3d31eb93bd8b0f551a41be4",
+          "dateKind": "first-stated",
+          "url": "https://github.com/rohanarun/van-der-waerden-refinement/blob/54ac9715fceab938ca77d5980c36ab691765a04d/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [
+        {
+          "name": "rohanarun/van-der-waerden-refinement",
+          "url": "https://github.com/rohanarun/van-der-waerden-refinement",
+          "note": "The sharper region gives every fixed coefficient below the stated supremum."
+        }
+      ],
+      "bestHandle": "rohanarun"
+    },
+    {
+      "family": "161",
+      "slug": "sidorenko",
+      "name": "Sidorenko counterexample",
+      "quantity": "C\\text{ in }-D+C",
+      "direction": "lower",
+      "statement": "The quantity is the nondirect residual constant \\(C\\) in the exponent \\(-D+C\\). A lower constant is better. This is an internal proof step, conditional on transfer within the source orbit-counting argument. The counterexample still has \\(35\\) vertices and \\(66\\) edges; this constant does not give the full dimension.",
+      "baseline": {
+        "value": "1641",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-counterexample-to-Sidorenkos-conjecture-September-23-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "1641"
+      },
+      "claims": [
+        {
+          "author": "Rohan Arun",
+          "handle": "rohanarun",
+          "value": "189",
+          "display": "189",
+          "date": "2026-10-09T23:41:00-07:00",
+          "dateSource": "https://github.com/rohanarun/sidorenko-template-refinements/commit/b513fb4576b30443d0f41df556d378b676723e06",
+          "dateKind": "first-stated",
+          "url": "https://github.com/rohanarun/sidorenko-template-refinements/blob/d1df2a5cc0cb0c9003466b1c7f8ecb77a8e72a7d/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [],
+      "bestHandle": "rohanarun"
+    },
+    {
+      "family": "167",
+      "slug": "unit-distance-grid",
+      "name": "Unit-distance final grid",
+      "quantity": "N j",
+      "direction": "lower",
+      "statement": "The quantity is the number of selected edges \\(Nj\\) in the final algebraic-grid proof step. Fewer edges are better. The claim assumes the upstream generic-grid and private-valuation lemmas. The line cases are separate, and no better headline unit-distance exponent is claimed.",
+      "baseline": {
+        "value": "20\\cdot5=100",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-weak-pinned-planar-distance-theorem-September-23-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "20\\cdot5=100"
+      },
+      "claims": [
+        {
+          "author": "Rohan Arun",
+          "handle": "rohanarun",
+          "value": "8\\cdot4=32",
+          "display": "8\\cdot4=32",
+          "date": "2026-10-09T22:36:00-07:00",
+          "dateSource": "https://github.com/rohanarun/unit-distance-grid-refinement/commit/dd9b3e29f4cf4aef163d5b9c52686cc86c6b9e6a",
+          "dateKind": "first-stated",
+          "url": "https://github.com/rohanarun/unit-distance-grid-refinement/blob/62455a6709204f79a3a93c4eace817c3ce0d54ec/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [
+        {
+          "name": "rohanarun/unit-distance-grid-refinement",
+          "url": "https://github.com/rohanarun/unit-distance-grid-refinement",
+          "note": "The line cases are separate from the final grid."
+        }
+      ],
+      "bestHandle": "rohanarun"
+    },
+    {
+      "family": "187",
+      "slug": "snaky",
+      "name": "Snaky",
+      "quantity": "\\text{Maker moves}",
+      "direction": "lower",
+      "statement": "The quantity is the upper bound on Maker moves needed to win Snaky on the infinite square board. Fewer moves are better. Nándor Sieben’s finite \\(17\\times17\\) strategy, supplied by gotrevor, also works on the infinite board. The separate \\(15\\times15\\) result concerns board size.",
+      "baseline": {
+        "value": "21",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Snaky-in-21-Maker-moves-September-25-2026/article.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "21"
+      },
+      "claims": [
+        {
+          "author": "Nándor Sieben (strategy), supplied by gotrevor",
+          "handle": "gotrevor",
+          "value": "20",
+          "display": "20",
+          "date": "2026-10-07T06:45:00-07:00",
+          "dateSource": "https://github.com/gotrevor/snaky-15x15/commit/cca8f10baad9cea494aabd4afd3fc60935b980f5",
+          "dateKind": "first-stated",
+          "url": "https://github.com/gotrevor/snaky-15x15/blob/1173345102f9d39472e38db0fdd810f7bfd4ed4e/README.md",
+          "lean": true,
+          "leanNote": "Yes; strategy-checker formalization.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [
+        {
+          "name": "gotrevor/snaky-15x15",
+          "url": "https://github.com/gotrevor/snaky-15x15",
+          "note": "The smaller finite board is a separate result."
+        }
+      ],
+      "bestHandle": "gotrevor"
+    },
+    {
+      "family": "190",
+      "slug": "ordered-matrix-removal",
+      "name": "Ordered matrix removal",
+      "quantity": "k\\text{ in a }k\\times k\\text{ pattern}",
+      "direction": "lower",
+      "statement": "The quantity is the side length \\(k\\) of a square ordered binary pattern that obstructs polynomial removal. A lower side length is better. Later repair-distance constants do not change this quantity.",
+      "baseline": {
+        "value": "66",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Polynomial-removal-fails-for-ordered-binary-matrices-September-25-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "66"
+      },
+      "claims": [
+        {
+          "author": "erebos-labs",
+          "handle": "erebos-labs",
+          "value": "4",
+          "display": "4",
+          "date": "2026-10-09T08:07:00-07:00",
+          "dateSource": "https://github.com/erebos-labs/ordered-matrix-removal-4x4/commit/6d21ce36e83b71d8a44015016cf3ac77e44b55ff",
+          "dateKind": "first-stated",
+          "url": "https://github.com/erebos-labs/ordered-matrix-removal-4x4/blob/6d21ce36e83b71d8a44015016cf3ac77e44b55ff/README.md",
+          "lean": true,
+          "leanNote": "Yes; main obstruction and later repair theorem.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [
+        {
+          "name": "erebos-labs/ordered-matrix-removal-4x4",
+          "url": "https://github.com/erebos-labs/ordered-matrix-removal-4x4",
+          "note": "The later repair-distance theorem concerns another quantity."
+        }
+      ],
+      "bestHandle": "erebos-labs"
+    },
+    {
+      "family": "191",
+      "slug": "heilbronn-triangle",
+      "name": "Heilbronn triangle",
+      "quantity": "\\eta\\text{ in }\\Delta(n)\\ge cn^{-2+\\eta}",
+      "direction": "higher",
+      "statement": "The quantity is the saving \\(\\eta\\) in \\(\\Delta(n)\\ge cn^{-2+\\eta}\\). A higher saving is better. The baseline is \\(\\eta=2/(45435k+16)\\), where \\(k=T^2+1\\) and \\(T=\\binom{\\binom{163}{41}}{3}\\); the displayed approximation comes from the follow-up. The claim assumes the manuscript’s determinant/carry, conditional-digit distribution, orbit, deletion and interpolation estimates. Lean covers finite packing and selected scales only.",
+      "baseline": {
+        "value": "\\approx3.18\\cdot10^{-236}",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-power-improvement-in-the-Heilbronn-triangle-lower-bound-September-25-2026/main.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "2/(45435(T^2+1)+16),\\quad T=\\binom{\\binom{163}{41}}{3}"
+      },
+      "claims": [
+        {
+          "author": "Ivan Blinov",
+          "handle": "littleBro",
+          "value": "1/(498\\cdot379^{17}+7)",
+          "display": "\\approx2.92\\cdot10^{-47}",
+          "date": "2026-10-08T13:04:00-07:00",
+          "dateSource": "https://github.com/littleBro/heilbronn-triangle-bounds/commit/9891f18f6b978ef012258901853c259857b8d5c5",
+          "dateKind": "first-stated",
+          "url": "https://github.com/littleBro/heilbronn-triangle-bounds/blob/2259fc0f9d7edc0785838bceee835829df034952/README.md",
+          "lean": true,
+          "leanNote": "Yes, finite packing and selected scales only.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [],
+      "bestHandle": "littleBro"
+    },
+    {
+      "family": "268",
+      "slug": "haldane-gap",
+      "name": "Spin-one Haldane gap",
+      "quantity": "\\gamma_L\\text{ at }J=1",
+      "direction": "higher",
+      "statement": "The quantity is the uniform periodic spin-one spectral-gap lower bound \\(\\gamma_L\\) at \\(J=1\\), compared on the original domain of even \\(L\\ge2304\\). A higher lower bound is better. The claim assumes the cited OpenAI spatial-transfer identities and certified finite inputs. The extension to every integer \\(L\\ge24\\) is listed under Relevant repos.",
+      "baseline": {
+        "value": "\\log(20)/784",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-periodic-spin-one-Haldane-gap-September-24-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "\\log(20)/784"
+      },
+      "claims": [
+        {
+          "author": "amachino; GPT-6 Astra Max credited",
+          "handle": "amachino",
+          "value": "0.1515",
+          "display": "0.1515",
+          "date": "2026-10-07T22:04:00-07:00",
+          "dateSource": "https://github.com/amachino/haldane-gap-refinement/commit/15909bdc15e947795b6fba946008dd8530bb3477",
+          "dateKind": "first-stated",
+          "url": "https://github.com/amachino/haldane-gap-refinement/blob/15909bdc15e947795b6fba946008dd8530bb3477/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": ""
+        }
+      ],
+      "repos": [
+        {
+          "name": "amachino/haldane-gap-refinement",
+          "url": "https://github.com/amachino/haldane-gap-refinement",
+          "note": "The extension includes every integer length at least 24."
+        }
+      ],
+      "bestHandle": "amachino"
+    }
+  ],
+  "followups": [
+    {
+      "family": "007",
+      "name": "Ordinary two-point correlations and the corrected Elliott conjecture",
+      "repos": [
+        {
+          "name": "aster2024/openai-math-followups",
+          "url": "https://github.com/aster2024/openai-math-followups"
+        }
+      ]
+    },
+    {
+      "family": "011",
+      "name": "Prime-factor statistics of \\(p-1\\)",
+      "repos": [
+        {
+          "name": "aster2024/openai-math-followups",
+          "url": "https://github.com/aster2024/openai-math-followups"
+        }
+      ]
+    },
+    {
+      "family": "017",
+      "name": "The irrationality exponent of \\(\\pi\\) is \\(2\\)",
+      "repos": [
+        {
+          "name": "Rogerhu12/openai-math-extensions",
+          "url": "https://github.com/Rogerhu12/openai-math-extensions"
+        },
+        {
+          "name": "r52367950-max/rational-log-irrationality",
+          "url": "https://github.com/r52367950-max/rational-log-irrationality"
+        },
+        {
+          "name": "jdb19937/log-irrationality-measure",
+          "url": "https://github.com/jdb19937/log-irrationality-measure"
+        },
+        {
+          "name": "rohitkrjha/log23-measure",
+          "url": "https://github.com/rohitkrjha/log23-measure"
+        },
+        {
+          "name": "KitaKen1/log2-irrationality-exponent",
+          "url": "https://github.com/KitaKen1/log2-irrationality-exponent"
+        }
+      ]
+    },
+    {
+      "family": "030",
+      "name": "Modularity of elliptic curves over imaginary quadratic fields",
+      "repos": [
+        {
+          "name": "Rogerhu12/openai-math-extensions",
+          "url": "https://github.com/Rogerhu12/openai-math-extensions"
+        }
+      ]
+    },
+    {
+      "family": "073",
+      "name": "The Falconer distance conjecture",
+      "repos": [
+        {
+          "name": "haraldschilly/math-distance-set-similarity",
+          "url": "https://github.com/haraldschilly/math-distance-set-similarity"
+        }
+      ]
+    },
+    {
+      "family": "076",
+      "name": "Real ultraflat Littlewood polynomials and unbounded binary merit factors",
+      "repos": [
+        {
+          "name": "jeff-kline/ultraflat-littlewood-rate",
+          "url": "https://github.com/jeff-kline/ultraflat-littlewood-rate"
+        }
+      ]
+    },
+    {
+      "family": "084",
+      "name": "The geometric case of the Erdős similarity conjecture",
+      "repos": [
+        {
+          "name": "haraldschilly/math-distance-set-similarity",
+          "url": "https://github.com/haraldschilly/math-distance-set-similarity"
+        }
+      ]
+    },
+    {
+      "family": "124",
+      "name": "Polynomial-time scheduling on three identical machines",
+      "repos": [
+        {
+          "name": "drbh/scheduling-proof-exploration",
+          "url": "https://github.com/drbh/scheduling-proof-exploration"
+        }
+      ]
+    },
+    {
+      "family": "139",
+      "name": "Subpolynomial query complexity for log-concave sampling",
+      "repos": [
+        {
+          "name": "jianfenglu/accelerated-logconcave-sampling",
+          "url": "https://github.com/jianfenglu/accelerated-logconcave-sampling"
+        }
+      ]
+    },
+    {
+      "family": "159",
+      "name": "Erdős’s reciprocal-sum conjecture and quasipolynomial Szemerédi bounds",
+      "repos": [
+        {
+          "name": "Rogerhu12/openai-math-extensions",
+          "url": "https://github.com/Rogerhu12/openai-math-extensions"
+        }
+      ]
+    },
+    {
+      "family": "172",
+      "name": "Classification of finite Euclidean Ramsey configurations",
+      "repos": [
+        {
+          "name": "Rogerhu12/openai-math-extensions",
+          "url": "https://github.com/Rogerhu12/openai-math-extensions"
+        },
+        {
+          "name": "JD-Jones-ASES/six-concyclic-lean",
+          "url": "https://github.com/JD-Jones-ASES/six-concyclic-lean"
+        }
+      ]
+    },
+    {
+      "family": "179",
+      "name": "The circulant Hadamard and Barker-sequence conjectures",
+      "repos": [
+        {
+          "name": "acprk/butson-hadamard-prime-once",
+          "url": "https://github.com/acprk/butson-hadamard-prime-once"
+        }
+      ]
+    },
+    {
+      "family": "199",
+      "name": "Counterexamples to Auslander–Reiten, Tachikawa and related homological conjectures",
+      "repos": [
+        {
+          "name": "KitaKen1/tachikawa-characteristic-zero",
+          "url": "https://github.com/KitaKen1/tachikawa-characteristic-zero"
+        }
+      ]
+    },
+    {
+      "family": "248",
+      "name": "Thompson’s group \\(F\\) is nonamenable",
+      "repos": [
+        {
+          "name": "acprk/thompson-f-explicit-isoperimetric",
+          "url": "https://github.com/acprk/thompson-f-explicit-isoperimetric"
+        }
+      ]
+    },
+    {
+      "family": "252",
+      "name": "A torsion-free hyperbolic group that is neither residually finite nor linear over any field",
+      "repos": [
+        {
+          "name": "Apsiape/hyperbolic-group-not-sofic",
+          "url": "https://github.com/Apsiape/hyperbolic-group-not-sofic"
+        }
+      ]
+    },
+    {
+      "family": "369",
+      "name": "The hot spots conjecture for simply connected planar domains",
+      "repos": [
+        {
+          "name": "aster2024/openai-math-followups",
+          "url": "https://github.com/aster2024/openai-math-followups"
+        }
+      ]
+    }
+  ]
+}

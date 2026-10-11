@@ -1,3 +1,4 @@
+import otherBounds from './other-bounds.json' with {type:'json'};
 export const siteOrigin = 'https://bigospeedrun.com';
 export const shareImage = `${siteOrigin}/og.png`;
 export const pageDescriptions: Record<string,string> = {
@@ -12,10 +13,12 @@ export const pageDescriptions: Record<string,string> = {
  '/privacy': 'Read how the site uses Google Analytics, chat messages and browser storage.',
  '/about': 'Read how Big O Speedrun selects problems and repositories, checks results, and accepts submissions.',
 };
+for(const family of otherBounds.families) pageDescriptions['/other/'+family.slug]='Compare claimed improvements for '+family.name+', with source dates and proof scope.';
 
 // Model permalinks show the same page as the main problem URL.
 export function pageSeo(pathname:string) {
- const path = '/'+(pathname.split('/').filter(Boolean)[0]??'');
+ const segments=pathname.split('/').filter(Boolean);
+ const path = '/'+(segments[0]==='other'?segments.slice(0,2).join('/'):(segments[0]??''));
  const canonicalPath = path==='/'?'/':path;
  return {
   canonical: siteOrigin+canonicalPath,

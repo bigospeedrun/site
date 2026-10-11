@@ -18,6 +18,14 @@ test('hidden SSSP pages stay out of search and the sitemap',()=>{
  assert.equal(pageSeo('/directed-sssp').noindex,true);
  assert.equal(pageSeo('/directed-sssp/comparison-addition-sparse/').noindex,true);
  assert.ok(!sitemapPaths.some(path=>path.includes('directed-sssp')));
- assert.deepEqual([...sitemapPaths].sort(),['/','/3sum','/about','/apsp','/exact-dft','/integer-multiplication','/matrix-multiplication','/privacy','/subset-sum'].sort());
+ assert.deepEqual(sitemapPaths.filter(path=>!path.startsWith('/other/')).sort(),['/','/3sum','/about','/apsp','/exact-dft','/integer-multiplication','/matrix-multiplication','/privacy','/subset-sum'].sort());
  assert.ok(sitemapPaths.every(path=>!pageSeo(path).noindex));
+});
+
+test('other-bound families have distinct canonical URLs and sitemap entries',()=>{
+ assert.equal(sitemapPaths.filter(path=>path.startsWith('/other/')).length,13);
+ for(const path of sitemapPaths.filter(path=>path.startsWith('/other/'))){
+  assert.equal(pageSeo(path+'/').canonical,siteOrigin+path);
+  assert.notEqual(pageSeo(path).description,pageDescriptions['/']);
+ }
 });
