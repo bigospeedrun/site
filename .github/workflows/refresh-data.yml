@@ -60,6 +60,11 @@ jobs:
           npm run check
           npm test
           npm run build
+      - name: Plan Discord record notifications
+        continue-on-error: true
+        env:
+          DISCORD_RECORDS_WEBHOOK: ${{ secrets.DISCORD_RECORDS_WEBHOOK }}
+        run: node --experimental-strip-types scripts/discord-records.ts plan "$RUNNER_TEMP/discord-records.json"
       - name: Commit changed data only
         env:
           GH_TOKEN: ${{ github.token }}
@@ -75,3 +80,9 @@ jobs:
           git commit -m 'Refresh reviewed leaderboard data'
           gh auth setup-git
           git push origin "HEAD:$TARGET_BRANCH"
+      - name: Post Discord record notifications
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          DISCORD_RECORDS_WEBHOOK: ${{ secrets.DISCORD_RECORDS_WEBHOOK }}
+        run: node --experimental-strip-types scripts/discord-records.ts send "$RUNNER_TEMP/discord-records.json"
