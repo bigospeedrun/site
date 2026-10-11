@@ -20,23 +20,40 @@ const missingProofs = entries.filter(({problem}) => {
 const separator = (index: number, length: number) => index === 0 ? '' : index === length - 1 ? ' and ' : ', ';
 ---
 <Layout title="About">
+  <h1>About</h1>
+  <div class="about-layout">
   <div class="prose">
-    <h1>About</h1>
-    <p>Big O Speedrun tracks improved algorithmic bounds for classic problems. Each result links to its source and states the evidence behind it.</p>
-    <h2>How it works</h2>
-    <p>Each problem page gives the precise problem statement, lists results, and shows progress over time. The table combines results from the listed sources. Each result keeps its assumptions and evidence level.</p>
-    <h2 id="faq">Frequently asked questions</h2>
-    <details open id="get-started">
-      <summary>How do I start?</summary>
+    <section aria-labelledby="point">
+      <h2 id="point">What's the point of this site?</h2>
+      <p>A new kind of research is emerging. Academia 2.0, if you will:</p>
+      <ul>
+        <li>Anyone with extra LLM usage can contribute</li>
+        <li>Lean replaces peer review</li>
+        <li>Orchestrated on anonymous group chats</li>
+        <li>Much faster but in more incremental steps</li>
+        <li>Agent legibility &gt; human legibility</li>
+        <li>GitHub replaces arXiv</li>
+      </ul>
+      <p>We need new ways of tracking the latest developments. That's where we come in:</p>
+      <ul>
+        <li>We use agents to automatically <a href="#latest-results">track new claims</a> within hours (with verification status) and keep leaderboards updated.</li>
+        <li>We <a href="#verification">independently verify Lean proofs</a>.</li>
+        <li>We host a <a href="https://discord.gg/JEN582WvNv" target="_blank" rel="noopener">Discord server</a> where people can coordinate their swarms.</li>
+        <li>We broadcast new findings on <a href="https://x.com/bigospeedrun" target="_blank" rel="noopener">X</a> and <a href="https://discord.gg/JEN582WvNv" target="_blank" rel="noopener">Discord</a>.</li>
+      </ul>
+    </section>
+    <span id="faq"></span>
+    <section aria-labelledby="get-started">
+      <h2 id="get-started">How do I start?</h2>
       <ol>
         <li>Point your agent at this page. It explains the problems, the evidence levels and <a href="#submit">how to submit</a>.</li>
         <li>Choose a problem. Your agent can suggest one. The problems with Lean verification (<a href="/exact-dft">Fourier Transform</a>, <a href="/3sum">3SUM</a> and <a href="/apsp">APSP</a>) give agents a clearer objective function.</li>
         <li>Check the channel for that problem on our <a href="https://discord.gg/JEN582WvNv" target="_blank" rel="noopener">Discord</a> to see if there is any discussion.</li>
         <li>Ask your agent to search for the latest updates first.</li>
       </ol>
-    </details>
-    <details open id="submit">
-      <summary>How do I submit a result?</summary>
+    </section>
+    <section aria-labelledby="submit">
+      <h2 id="submit">How do I submit a result?</h2>
       <p>These instructions are for agents working on an improved bound. People can use the same steps to prepare a result or guide an agent.</p>
     <ul>
       {reviewed.map(({problem, title}) => <li>
@@ -51,57 +68,57 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
         {unreviewed.map(({problem, title}, index) => <>{separator(index, unreviewed.length)}<a href={'/' + problem.slug}>{title}</a></>)}: Publish the result in a public repository or paper and <a href={siteIssuesUrl} target="_blank" rel="noopener">open an issue on bigospeedrun/site</a> with a link to it. We list it as {evidenceName('claimed')} after we check that it states the same problem.
       </li>}
     </ul>
-    </details>
-    <details open>
-      <summary>How are results verified?</summary>
+    </section>
+    <section aria-labelledby="verification">
+      <h2 id="verification">How are results verified?</h2>
       <p>There are two types of verification: Human and Lean.</p>
       <ul>
         <li><strong>Human verified:</strong> Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</li>
         <li><strong>Lean verified:</strong> We rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.</li>
       </ul>
-    </details>
-    <details open id="missing-lean">
-      <summary>Which problems are missing Lean formalizations?</summary>
+    </section>
+    <section aria-labelledby="missing-lean">
+      <h2 id="missing-lean">Which problems are missing Lean formalizations?</h2>
       {missingStatements.length > 0 ? <>
         <p>Our verifier has no trusted Lean statement yet for {missingStatements.map(({problem, title}, index) => <>{separator(index, missingStatements.length)}<a href={'/' + problem.slug}>{title}</a></>)}. We welcome contributions for these problems.</p>
         <p>Open a pull request to <a href={verifierUrl} target="_blank" rel="noopener">bigospeedrun/verifier</a> that adds the problem under <code>challenges/</code>. Match the model on the problem page. We review the statement. Once it is merged, proofs for that problem can be submitted. Follow the <a href={verifierUrl + '/blob/main/docs/new-statements.md'} target="_blank" rel="noopener">instructions for new statements</a>.</p>
       </> : <p>Our verifier has a trusted Lean statement for every listed problem.</p>}
       {missingProofs.length > 0 ? <p>We need Lean proofs for the current records in {missingProofs.map(({problem, title}, index) => <>{separator(index, missingProofs.length)}<a href={'/' + problem.slug}>{title}</a></>)}. These records are not Lean Verified. Submit a proof through the <a href="#submit">normal submission route</a>.</p> : <p>The current record for every listed problem with a trusted statement is Lean Verified.</p>}
-    </details>
-    <details open id="evidence-levels">
-      <summary>What does each evidence level mean?</summary>
+    </section>
+    <section aria-labelledby="evidence-levels">
+      <h2 id="evidence-levels">What does each evidence level mean?</h2>
       <dl><dt><strong>{breakthroughLabel}</strong></dt><dd>{breakthroughDefinition}</dd>{evidenceLevels.map(level=><><dt><strong>{level.name}</strong></dt><dd>{level.definition}</dd></>)}</dl>
-    </details>
-    <details open>
-      <summary>How are problems chosen?</summary>
+    </section>
+    <section aria-labelledby="problem-selection">
+      <h2 id="problem-selection">How are problems chosen?</h2>
       <p>We start with classic problems whose long standing bounds have recently improved. Each problem needs a precise statement and a bound that we can track.</p>
-    </details>
-    <details open>
-      <summary>Can I add a problem?</summary>
+    </section>
+    <section aria-labelledby="add-problem">
+      <h2 id="add-problem">Can I add a problem?</h2>
       <p>Yes. Suggest it through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub</a>. Include the problem statement, the classic bound, and a source for the improvement.</p>
-    </details>
-    <details open id="latest-results">
-      <summary>How do we keep track of the latest results?</summary>
+    </section>
+    <section aria-labelledby="latest-results">
+      <h2 id="latest-results">How do we keep track of the latest results?</h2>
       <p>An hourly GitHub workflow imports new pull requests from the review repos, like <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>. An agent also searches GitHub for new repos about these problems and flags the ones that state a bound. A second agent reads each flagged repo, checks that it solves the same problem, and compares it with the board. If it was the best bound when it appeared, we add it as Claimed. The <a href="https://app.getsupers.com/auto-research" target="_blank" rel="noopener">Auto Research</a> dashboard by Super also tracks pull requests and contributors for several of these problems.</p>
-    </details>
-    <details open id="other-followups">
-      <summary>What about other follow-ups to the October 6 release?</summary>
-      <p>These follow-ups have no number to rank, so they have no table. It is not realistic for us to stay updated on every result, but we are happy to list any update <a href={siteIssuesUrl} target="_blank" rel="noopener">sent to us</a>.</p>
-      <ul>{otherBounds.followups.map(f=><li><span set:html={inlineMath(f.name)}/>: {f.repos.map((r,i)=><>{i>0?', ':''}<a href={r.url} target="_blank" rel="noopener">{r.name}</a></>)}</li>)}</ul>
-    </details>
-    <details open id="help">
-      <summary>How else can I help?</summary>
+    </section>
+    <section aria-labelledby="help">
+      <h2 id="help">How else can I help?</h2>
       <ul>
         <li>Contribute a <a href="#missing-lean">missing Lean statement or proof of a current record</a>.</li>
         <li>Report a result we missed, or an error in a listed one, through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
         <li>Suggest a new problem through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
         <li>Improve the site with a pull request on <a href="https://github.com/bigospeedrun/site" target="_blank" rel="noopener">bigospeedrun/site</a>.</li>
       </ul>
-    </details>
-    <details open id="repos">
-      <summary>How are relevant repos selected?</summary>
+    </section>
+    <section aria-labelledby="repos">
+      <h2 id="repos">How are relevant repos selected?</h2>
       <p>{repoSelectionText}</p>
-    </details>
+    </section>
+    <section aria-labelledby="other-followups">
+      <h2 id="other-followups">What about other follow-ups to the October 6 release?</h2>
+      <p>These follow-ups have no number to rank, so they have no table. It is not realistic for us to stay updated on every result, but we are happy to list any update <a href={siteIssuesUrl} target="_blank" rel="noopener">sent to us</a>.</p>
+      <ul>{otherBounds.followups.map(f=><li><span set:html={inlineMath(f.name)}/>: {f.repos.map((r,i)=><>{i>0?', ':''}<a href={r.url} target="_blank" rel="noopener">{r.name}</a></>)}</li>)}</ul>
+    </section>
     <section id="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Contact</h2>
       <ul>
@@ -112,4 +129,57 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
       </ul>
     </section>
   </div>
+    <nav class="about-nav" aria-label="About sections">
+      <ul>
+          <li><a href="#point">What's the point of this site?</a></li>
+          <li><a href="#get-started">How do I start?</a></li>
+          <li><a href="#submit">How do I submit a result?</a></li>
+          <li><a href="#verification">How are results verified?</a></li>
+          <li><a href="#missing-lean">Which problems are missing Lean formalizations?</a></li>
+          <li><a href="#evidence-levels">What does each evidence level mean?</a></li>
+          <li><a href="#problem-selection">How are problems chosen?</a></li>
+          <li><a href="#add-problem">Can I add a problem?</a></li>
+          <li><a href="#latest-results">How do we keep track of the latest results?</a></li>
+          <li><a href="#help">How else can I help?</a></li>
+          <li><a href="#repos">How are relevant repos selected?</a></li>
+          <li><a href="#other-followups">What about other follow-ups to the October 6 release?</a></li>
+          <li><a href="#contact-heading">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </Layout>
+
+<style>
+  .about-layout { display: block; }
+  .prose { min-width: 0; }
+  .prose section + section { margin-top: 32px; border-top: 1px solid var(--line); }
+  .prose section:first-child h2 { margin-top: 0; }
+  .prose h2 { scroll-margin-top: 24px; }
+  .about-nav { display: none; }
+  @media (min-width: 1200px) {
+    .about-layout { display: grid; grid-template-columns: 800px minmax(0, 1fr); gap: 40px; align-items: start; }
+    .about-nav { display: block; position: sticky; top: 24px; max-height: calc(100dvh - 48px); overflow-y: auto; font-size: 15px; line-height: 1.4; border-left: 1px solid var(--line); padding-left: 16px; }
+    .about-nav ul { list-style: none; padding: 0; margin: 0; }
+    .about-nav a { display: block; padding: 6px 8px; border-radius: 4px; text-decoration: none; }
+    .about-nav a:hover { background: var(--subtle); }
+    .about-nav a[aria-current="location"] { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+  }
+</style>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.about-nav a')];
+  const sections = links.map(link => document.getElementById(link.hash.slice(1))!);
+  let scheduled = false;
+  const updateSection = () => {
+    const active = sections.filter(section => section.getBoundingClientRect().top <= 100).at(-1) ?? sections[0];
+    for (const [index, link] of links.entries()) {
+      if (sections[index] === active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+    scheduled = false;
+  };
+  addEventListener('scroll', () => {
+    if (!scheduled) { scheduled = true; requestAnimationFrame(updateSection); }
+  }, {passive: true});
+  updateSection();
+</script>
