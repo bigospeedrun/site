@@ -91,3 +91,16 @@ names, exact bound, source pins and proof log hashes remain unchanged. That copy
 admits as Lean Verified with nanoda advisory pending and requires API-confirmed
 merge. It is not a new proof run, and PR 2 remains permanently excluded from
 production discovery. The final nanoda result is not asserted by this fixture.
+
+Final PR replay checked on 2026-10-11: source run 38099440876 completed successfully;
+publisher run 38105662522 published artifacts 11689691758 (proof) and 11689541707
+(result). The unchanged archives are live-pr-final-*.zip. Raw receipt SHA256 is
+6ea83cedd5cd9027d3de374ebf29c304e92c0779dd45ef6e2aeb9a69606d114b.
+Both kernels and the permitted-axiom audit passed. The same real-exclusion and
+counterfactual-admission tests now cover the final stage, including API merge.
+
+Publisher commit 00844597c637bebb242b1860e9be797f3ffaab42 was reviewed separately:
+excluding submission folders, its only changes from 038a82c are two documentation
+links (AGENTS.md and README.md) and docs/new-statements.md. It is now an exact
+additional controller snapshot; no verifier code or workflow identity changed.
+This does not approve later controller revisions automatically.

@@ -68,25 +68,30 @@ class LiveIssueReceiptTests(unittest.TestCase):
 
 
 class LivePRReceiptTests(unittest.TestCase):
+    stem='live-pr-smoke'
+    env_name='pr-submission-2-lean.json'
+    raw_sha='c8c7e35cc529e8bfa1c602f7311a219e94793cce88c51f6cff831363070bec8c'
+    reason='nanoda advisory check pending'
+
     def setUp(self):
         from direct_pr import archive_members
-        self.api=json.loads((FIXTURES/'live-pr-smoke-api.json').read_text())
-        self.proof=(FIXTURES/'live-pr-smoke-proof.zip').read_bytes()
-        self.result=(FIXTURES/'live-pr-smoke-result.zip').read_bytes()
+        self.api=json.loads((FIXTURES/(self.stem+'-api.json')).read_text())
+        self.proof=(FIXTURES/(self.stem+'-proof.zip')).read_bytes()
+        self.result=(FIXTURES/(self.stem+'-result.zip')).read_bytes()
         self.files=archive_members(self.proof,self.api['proof_artifact'])
-        self.env=json.loads(archive_members(self.result,self.api['result_artifact'])['pr-submission-2-lean.json'])
+        self.env=json.loads(archive_members(self.result,self.api['result_artifact'])[self.env_name])
         policy=json.loads((FIXTURES.parent/'direct-trust.json').read_text())
         policy['statements']={p['challenge_file']:(FIXTURES/Path(p['challenge_file']).name).read_bytes() for p in policy['profiles'].values()}
-        self.assertIn(self.api['run']['head_sha'],[policy['reviewed_commit'],*policy['previous_controller_blobs']])
+        for key in ['run','publisher']:self.assertIn(self.api[key]['head_sha'],[policy['reviewed_commit'],*policy['previous_controller_blobs']])
         self.trust={self.api['run']['head_sha']:policy,self.api['publisher']['head_sha']:policy}
 
     def check(self,pr=None):
         from direct_pr import validate_pr_result
         a=self.api
-        return validate_pr_result(self.result,a['result_artifact'],'pr-submission-2-lean.json',pr or a['pr'],a['run'],a['publisher'],self.proof,a['proof_artifact'],self.trust,a['layout'])
+        return validate_pr_result(self.result,a['result_artifact'],self.env_name,pr or a['pr'],a['run'],a['publisher'],self.proof,a['proof_artifact'],self.trust,a['layout'])
 
     def test_real_early_merged_smoke_is_excluded_and_all_proof_hashes_match(self):
-        self.assertEqual(gate.sha(self.files['receipt.json']),'c8c7e35cc529e8bfa1c602f7311a219e94793cce88c51f6cff831363070bec8c')
+        self.assertEqual(gate.sha(self.files['receipt.json']),self.raw_sha)
         receipt=json.loads(self.files['receipt.json']);self.assertEqual(receipt,self.env['receipt'])
         self.assertEqual(json.loads(self.files['pr-request.json']),self.env['request'])
         for name,digest in receipt['artifact_sha256'].items():self.assertEqual(gate.sha(self.files[name]),digest)
@@ -116,11 +121,18 @@ class LivePRReceiptTests(unittest.TestCase):
         self.proof=archive(self.files);self.api['proof_artifact']['digest']='sha256:'+gate.sha(self.proof)
         self.env['receipt_artifact']['digest']=self.api['proof_artifact']['digest']
         self.env['receipt_sha256']=gate.sha(self.files['receipt.json'])
-        self.result=archive({'pr-submission-2-lean.json':json.dumps(self.env).encode()})
+        self.result=archive({self.env_name:json.dumps(self.env).encode()})
         self.api['result_artifact']['digest']='sha256:'+gate.sha(self.result)
         result=self.check(dict(self.api['pr'],labels=[]))[0]
         self.assertEqual(result['decision'],'lean-verified')
-        self.assertIn('nanoda advisory check pending',result['reason'])
+        self.assertIn(self.reason,result['reason'])
         with self.assertRaisesRegex(gate.Rejected,'API-confirmed merged'):self.check(dict(self.api['pr'],labels=[],merged=False))
         from direct_refresh import SMOKE_NUMBERS
         self.assertIn(self.api['pr']['number'],SMOKE_NUMBERS)
+
+
+class LivePRFinalReceiptTests(LivePRReceiptTests):
+    stem='live-pr-final'
+    env_name='pr-submission-2.json'
+    raw_sha='6ea83cedd5cd9027d3de374ebf29c304e92c0779dd45ef6e2aeb9a69606d114b'
+    reason='Lean and nanoda passed; permitted-axiom audit passed'
