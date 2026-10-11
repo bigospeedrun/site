@@ -3,7 +3,7 @@ import {problems} from '../lib/data';
 import {problemLinks} from '../lib/navigation';
 import Layout from '../layouts/Layout.astro';
 import {siteIssuesUrl, repoSelectionText} from '../lib/site';
-import {evidenceName, evidenceLevels, reviewSubmissionPolicy, breakthroughLabel} from '../lib/evidence';
+import {evidenceName, evidenceLevels, breakthroughLabel} from '../lib/evidence';
 const entries = problemLinks.map(([slug, title]) => ({problem: problems.find(p => p.slug === slug)!, title}));
 const reviewed = entries.filter(({problem}) => problem.repos.some(repo => repo.open));
 const unreviewed = entries.filter(({problem}) => !problem.repos.some(repo => repo.open));
@@ -27,9 +27,8 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     <details open>
       <summary>How are results verified?</summary>
       <p>There are two types of verification: Human and Lean.</p>
-      <p>Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it.</p>
+      <p>Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</p>
       <p>For Lean Verified results, we rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.</p>
-      <p>{reviewSubmissionPolicy} We find published results by watching GitHub and posts about these problems. Anyone can report one through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>. We list them as Claimed after we check that they state the same problem.</p>
     </details>
     <details open id="latest-results">
       <summary>How do we keep track of the latest results?</summary>
