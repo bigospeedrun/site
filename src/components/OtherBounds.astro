@@ -1,25 +1,13 @@
 ---
-import AuthorList from './AuthorList.astro';
 import data from '../lib/other-bounds.json';
-import {math, inlineMath} from '../lib/math';
-import {localTimeFallback} from '../lib/freshness';
+import LandingTable from './LandingTable.astro';
+const rows=data.families.map(f=>{
+  const best=f.claims.find(c=>c.handle===f.bestHandle)!;
+  return {href:'/other/'+f.slug,name:f.name,breakthrough:f.baseline.bound,source:f.baseline.url,
+    latest:{bound:best.bound,url:best.url,evidenceLevel:'claimed' as const,date:best.date}};
+});
 ---
 <section aria-labelledby="other-bounds">
   <h2 id="other-bounds">Other bounds</h2>
-  <div class="table-wrap other-table" tabindex="0" role="region" aria-label="Other bounds from the October 6 release">
-    <table><thead><tr><th scope="col">Problem</th><th scope="col">Quantity</th><th scope="col">OpenAI baseline</th><th scope="col">Current best claim</th></tr></thead>
-      <tbody>{data.families.map(f=>{const best=f.claims.find(c=>c.handle===f.bestHandle)!;return <tr>
-        <td><a href={'/other/'+f.slug}>{f.name}</a></td>
-        <td class="bound"><span class="mobile-bound-label">Quantity</span><span set:html={math(f.quantity)}/><small>{f.direction==='lower'?'Lower is better.':'Higher is better.'}</small></td>
-        <td class="bound"><span class="mobile-bound-label">Baseline</span><a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.value)}/>{f.family==='005'&&<small>No finite bound stated.</small>}</td>
-        <td class="latest-cell"><span class="mobile-bound-label">Best</span><div class="latest-result"><a href={best.url} target="_blank" rel="noopener" set:html={math(best.display)}/><AuthorList authors={best.authors}/><time datetime={best.date} data-local-datetime>{localTimeFallback(best.date)}</time></div></td>
-      </tr>})}</tbody>
-    </table>
-  </div>
-  <p>Other follow-ups to the October 6 release, with no number to rank:</p>
-  <ul class="followups">{data.followups.map(f=><li><span set:html={inlineMath(f.name)}/>: {f.repos.map((r,i)=><>{i>0?', ':''}<a href={r.url} target="_blank" rel="noopener">{r.name}</a></>)}</li>)}</ul>
+  <LandingTable rows={rows} label="Other bounds from the October 6 release" />
 </section>
-<style>
-.other-table .bound{white-space:normal}.other-table small{display:block;font-size:1rem;margin-top:.35rem}.other-table .latest-result{display:flex;flex-direction:column;align-items:flex-start;gap:.25rem}.other-table .latest-result>span,.other-table time{font-size:1rem}.other-table :global(.katex){font-size:1.1em}.other-table td{min-width:0}.other-table td>span:not(.mobile-bound-label),.other-table td>a{max-width:100%;overflow-x:auto}.followups{padding-left:1.3rem}.followups li{margin:.6rem 0;overflow-wrap:anywhere}
-@media(max-width:600px){.other-table td{grid-template-columns:76px minmax(0,1fr)}.other-table small{grid-column:2}.other-table .bound :global(.katex){font-size:16px}}
-</style>

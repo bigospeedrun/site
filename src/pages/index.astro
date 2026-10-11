@@ -2,14 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import OtherBounds from '../components/OtherBounds.astro';
 import {problemDisplayName} from '../lib/navigation';
-import InfoTooltip from '../components/InfoTooltip.astro';
+import LandingTable from '../components/LandingTable.astro';
 import content from '../lib/landing.html?raw';
-import {math, inlineMath} from '../lib/math';
+import {inlineMath} from '../lib/math';
 import {problems, boardRecords} from '../lib/data';
 import {ranked} from '../lib/ranking';
-import {evidenceName, breakthroughLabel} from '../lib/evidence';
-import {localTimeFallback} from '../lib/freshness';
-const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
 const rows = [
   {slug:'integer-multiplication', classic:'O(n \\log n)', breakthroughId:'openai-original-109', source:'https://github.com/openai/math/tree/main/preprints/Integer-multiplication-below-n-log-n-September-23-2026'},
   {slug:'matrix-multiplication', classic:'O(n^{2.371177+\\varepsilon})', breakthroughId:'openai-matrix-nine-fourths-2026', source:'https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf'},
@@ -27,7 +24,7 @@ const rows = [
   const latest=best&&!best.publicationYear&&best.dateLabel!=='Observed'&&best.date.slice(0,10)>'2026-10-06'?best:undefined;
   const latestBound=latest?.bound;
   const endpoint=latest?.scoreRelation==='strict-upper-bound';
-  return {...row,name:problemDisplayName(row.slug),breakthrough,latest,latestBound,endpoint};
+  return {...row,href:'/'+row.slug,name:problemDisplayName(row.slug),breakthrough,latest:latest?{bound:latestBound!,url:latest.evidence[0]?.url??'/'+row.slug,evidenceLevel:latest.evidenceLevel,date:latest.date}:undefined,endpoint};
 });
 
 ---
@@ -35,17 +32,7 @@ const rows = [
   <div class="landing">
     <div set:html={inlineMath(content)}/>
     <h2>Big O</h2>
-    <div id="problems" class="table-wrap" tabindex="0" role="region" aria-label="Compare classic bounds, first breakthroughs, and latest results">
-      <table>
-        <thead><tr><th scope="col">PROBLEM</th><th scope="col">CLASSIC BOUND</th><th scope="col">{breakthroughLabel.toUpperCase()}</th><th scope="col">LATEST {rows.some(row=>row.endpoint)&&<InfoTooltip label="About open endpoints">{rows.filter(row=>row.endpoint).map(row=><p>For {row.name}, the bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</p>)}</InfoTooltip>}</th></tr></thead>
-        <tbody>{rows.map(row=><tr>
-          <td><a href={'/'+row.slug}>{row.name}</a></td>
-          <td class="bound"><span class="mobile-bound-label">Classic</span><span set:html={math(row.classic)}/></td>
-          <td class="bound"><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>First</span><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/></td>
-          <td class="latest-cell"><span class="mobile-bound-label">Latest</span><div class="latest-result">{row.latest?<><a href={row.latest.evidence[0]?.url??'/'+row.slug} {...githubLink(row.latest.evidence[0]?.url??'/'+row.slug)} title={evidenceName(row.latest.evidenceLevel)} set:html={math(row.latestBound!)}/><span class="latest-metadata"> <a class:list={['latest-level',row.latest.evidenceLevel]} href="/about#evidence-levels">{evidenceName(row.latest.evidenceLevel)}</a><span class="latest-date"><time datetime={row.latest.date} data-local-datetime={row.latest.date.includes('T')?true:undefined}>{localTimeFallback(row.latest.date)}</time></span></span></>:<span aria-label="No later result">—</span>}{row.endpoint&&<span class="mobile-bound-info"><InfoTooltip label="About this strict endpoint">The bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</InfoTooltip></span>}</div></td>
-        </tr>)}</tbody>
-      </table>
-    </div>
+    <LandingTable rows={rows} id="problems" label="Compare classic bounds, first breakthroughs, and latest results" classic />
     <OtherBounds />
     <p>This website tracks progress on these problems and helps people and agents get started. Inspired by the <a href="https://github.com/KellerJordan/modded-nanogpt" target="_blank" rel="noopener">NanoGPT speedrun</a> and hoping to bring similar progress and interest to our classic problems. Join the <a href="https://discord.gg/JEN582WvNv" target="_blank" rel="noopener">Discord</a> to better coordinate your agent swarms with others.</p>
   </div>

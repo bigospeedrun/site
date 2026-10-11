@@ -1,0 +1,25 @@
+---
+import InfoTooltip from './InfoTooltip.astro';
+import {math} from '../lib/math';
+import {evidenceName, breakthroughLabel} from '../lib/evidence';
+import {localTimeFallback} from '../lib/freshness';
+import type {EvidenceLevel} from '../lib/evidence';
+interface Row {
+  href:string; name:string; classic?:string; breakthrough:string; source:string;
+  latest?:{bound:string;url:string;evidenceLevel:EvidenceLevel;date:string}; endpoint?:boolean;
+}
+interface Props {rows:Row[];id?:string;label:string;classic?:boolean;}
+const {rows,id,label,classic=false}=Astro.props;
+const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
+---
+<div id={id} class="table-wrap" tabindex="0" role="region" aria-label={label}>
+  <table>
+    <thead><tr><th scope="col">PROBLEM</th>{classic&&<th scope="col">CLASSIC BOUND</th>}<th scope="col">{breakthroughLabel.toUpperCase()}</th><th scope="col">LATEST {rows.some(row=>row.endpoint)&&<InfoTooltip label="About open endpoints">{rows.filter(row=>row.endpoint).map(row=><p>For {row.name}, the bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</p>)}</InfoTooltip>}</th></tr></thead>
+    <tbody>{rows.map(row=><tr>
+      <td><a href={row.href}>{row.name}</a></td>
+      {classic&&<td class="bound"><span class="mobile-bound-label">Classic</span><span set:html={math(row.classic!)}/></td>}
+      <td class="bound"><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>First</span><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/></td>
+      <td class="latest-cell"><span class="mobile-bound-label">Latest</span><div class="latest-result">{row.latest?<><a href={row.latest.url} {...githubLink(row.latest.url)} title={evidenceName(row.latest.evidenceLevel)} set:html={math(row.latest.bound)}/><span class="latest-metadata"> <a class:list={['latest-level',row.latest.evidenceLevel]} href="/about#evidence-levels">{evidenceName(row.latest.evidenceLevel)}</a><span class="latest-date"><time datetime={row.latest.date} data-local-datetime={row.latest.date.includes('T')?true:undefined}>{localTimeFallback(row.latest.date)}</time></span></span></>:<span aria-label="No later result">—</span>}{row.endpoint&&<span class="mobile-bound-info"><InfoTooltip label="About this strict endpoint">The bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</InfoTooltip></span>}</div></td>
+    </tr>)}</tbody>
+  </table>
+</div>

@@ -3,6 +3,8 @@ import {problems, boardRecords} from '../lib/data';
 import {ranked} from '../lib/ranking';
 import {problemLinks} from '../lib/navigation';
 import {submissionRoute, verifierUrl, verifierProblems} from '../lib/submission';
+import otherBounds from '../lib/other-bounds.json';
+import {inlineMath} from '../lib/math';
 import Layout from '../layouts/Layout.astro';
 import {siteIssuesUrl, repoSelectionText} from '../lib/site';
 import {evidenceName, evidenceLevels, breakthroughLabel} from '../lib/evidence';
@@ -72,6 +74,11 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     <details open id="latest-results">
       <summary>How do we keep track of the latest results?</summary>
       <p>An hourly GitHub workflow imports new pull requests from the review repos, like <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>. An agent also searches GitHub for new repos about these problems and flags the ones that state a bound. A second agent reads each flagged repo, checks that it solves the same problem, and compares it with the board. If it was the best bound when it appeared, we add it as Claimed.</p>
+    </details>
+    <details open id="other-followups">
+      <summary>What about other follow-ups to the October 6 release?</summary>
+      <p>These follow-ups have no number to rank, so they have no table. It is not realistic for us to stay updated on every result, but we are happy to list any update <a href={siteIssuesUrl} target="_blank" rel="noopener">sent to us</a>.</p>
+      <ul>{otherBounds.followups.map(f=><li><span set:html={inlineMath(f.name)}/>: {f.repos.map((r,i)=><>{i>0?', ':''}<a href={r.url} target="_blank" rel="noopener">{r.name}</a></>)}</li>)}</ul>
     </details>
     <details open id="help">
       <summary>How else can I help?</summary>
