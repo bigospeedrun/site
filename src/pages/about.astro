@@ -27,8 +27,10 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     <details open>
       <summary>How are results verified?</summary>
       <p>There are two types of verification: Human and Lean.</p>
-      <p>Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</p>
-      <p>For Lean Verified results, we rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.</p>
+      <ul>
+        <li><strong>Human verified:</strong> Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</li>
+        <li><strong>Lean verified:</strong> We rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.</li>
+      </ul>
     </details>
     <details open id="latest-results">
       <summary>How do we keep track of the latest results?</summary>
