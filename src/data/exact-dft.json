@@ -17,7 +17,7 @@
     "minimum": "0",
     "maximum": "1"
   },
-  "checked_at": "2026-10-10",
+  "checked_at": "2026-10-11",
   "sources": [
     {
       "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/130.md",
@@ -398,6 +398,49 @@
         "checked_at": "2026-10-10T14:25:46.083751Z",
         "receipt_path": "sources/sussman-boukhalfa-dft-receipt.json"
       }
+    },
+    {
+      "id": "jacob-sussman-exact-dft-e8-2026",
+      "kind": "improvement",
+      "score": "4381239/5000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-10T22:44:33Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-10T22:44:33Z",
+      "site_observed_at": "2026-10-11T00:59:38Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md"
+      },
+      "spec_version": "1",
+      "title": "Jacob Sussman all-length exact DFT E8 claim",
+      "authors": [
+        {
+          "name": "Jacob Sussman",
+          "url": "https://github.com/jacobalansussman"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/openai/math"
+      ],
+      "submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+      "artifact": {
+        "path": "sources/jacobalansussman-dft-e8-claim.json",
+        "sha256": "b1308e75ac57fbaeecf026bf0bc19d5f30941611b033145f6d24d3b33f0dc8d7"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+        "theorem": "OAI.PowerSaving.transform_mainE8; OAI.PowerSaving.convolution_mainE8",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "9c94857bbaee886f8649edee0bc2d3c738f9555e",
+      "score_relation": "attained",
+      "rerun_status": {
+        "state": "pending",
+        "checked_at": "2026-10-11T00:59:38Z",
+        "receipt_path": null
+      }
     }
   ],
   "record_metadata": {
@@ -587,7 +630,33 @@
       "primary_submission_url": "https://github.com/jacobalansussman/wht-power-saving-lean/pull/2",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38050668997",
       "verification_source_commit": "837dc3130adc79f7b7ab4ddd56c15576bbd766b0"
+    },
+    "jacob-sussman-exact-dft-e8-2026": {
+      "checked_at": "2026-10-11",
+      "source_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/README.md",
+      "repo": "jacobalansussman/wht-power-saving-lean",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Author-reported Lean Comparator pass using precompiled earlier modules and a substitute sandbox; nanoda disabled. No independent rerun for this pin.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "comparison_status": "Challenge matches OpenAI fd4aeeb after removing comments/blank lines and normalizing seven E8 suffixes and the exponent. RAM, DFTProgram and ConvProgram are unchanged.",
+      "scope": "Fixed deterministic programs for every positive n. Exact canonical DFT and full convolution over complex vectors. Root of unity supplied; unrestricted coefficients and exact complex arithmetic. Polynomially bounded integer values and indices. Cost includes root-order selection and scalar preparation. Excludes bit complexity and the separate subsequential circuit result.",
+      "exact_statement": "All positive-length exact DFT and full convolution in O(n (log n)^(1-8762478/10^10)).",
+      "score_interpretation": "Attained as claimed: saving 8762478/10^10, stored as 4381239/5000000000. The separate WHT result is not imported.",
+      "model_note": "OpenAI family-130 exact complex scalar/index RAM; unchanged DFTProgram and ConvProgram.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Commit first adding the README claim (committer timestamp), not scientific priority",
+      "publication_date": "2026-10-10T22:44:33Z",
+      "publication_source_url": "https://github.com/jacobalansussman/wht-power-saving-lean/commit/5ba30467a0066b82683f18c80e53c2b1e7752ca3",
+      "claim_date_commit": "5ba30467a0066b82683f18c80e53c2b1e7752ca3",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "notes_url": "https://github.com/jacobalansussman/wht-power-saving-lean/blob/9c94857bbaee886f8649edee0bc2d3c738f9555e/VERIFY.md",
+      "license_status": "Apache-2.0; LICENSE and NOTICE retained",
+      "credits": "Jacob Sussman directed Claude agents. README credits icekylinx, ikeboy, jamesyc, eumemic, Chafik Boukhalfa (chafreaky) and OpenAI for prior devices and reductions. Chafik is credited for the late pairing idea, not named as co-author of this new circuit; his program, pairs and certificate were not used."
     }
   },
-  "updated_at": "2026-10-10T14:57:54Z"
+  "updated_at": "2026-10-11T00:59:38Z"
 }

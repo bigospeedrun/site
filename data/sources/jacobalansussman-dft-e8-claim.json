@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-11T00:59:38Z",
+  "repo": "jacobalansussman/wht-power-saving-lean",
+  "source_commit": "9c94857bbaee886f8649edee0bc2d3c738f9555e",
+  "claim_date_commit": "5ba30467a0066b82683f18c80e53c2b1e7752ca3",
+  "publication_date": "2026-10-10T22:44:33Z",
+  "publication_date_basis": "Committer timestamp of the first commit adding the exact README claim; parent f010392c does not state it.",
+  "author": "Jacob Sussman",
+  "saving": "8762478/10000000000",
+  "score": "4381239/5000000000",
+  "theorems": [
+    "OAI.PowerSaving.transform_mainE8",
+    "OAI.PowerSaving.convolution_mainE8"
+  ],
+  "model_check": "Challenge matches OpenAI fd4aeeb after removing comments/blank lines and normalizing seven E8 suffixes and the exponent. RAM, DFTProgram and ConvProgram are unchanged.",
+  "upstream": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "files": {
+    "sources/jacobalansussman-dft-e8-README.md": "2029b33bbad4879630097164322b0ac3d4ea10db15f7aa93d75b5a16bb617483",
+    "sources/jacobalansussman-dft-e8-Main.lean": "bab0ed9d29c5b7fe4ccec431c1acf38e2dd7ffed6b6578f56696372dba6f3585",
+    "sources/jacobalansussman-dft-e8-UniformFourierChallenge.lean": "c53743049ea5d252c6a0873730073dd40230fdb4d01e9561f77470fd4fb09720",
+    "sources/jacobalansussman-dft-e8-RELATED-WORK.md": "e9e6eab12d40f6d82402a6c74c9814dd27c9e796aa2c1948c69ed09fba83d8f5",
+    "sources/jacobalansussman-dft-e8-first-README.md": "d114f440d0031cec8285d591885477ee970813373a93ae4d6aa5aae79ed5c717"
+  },
+  "verification": "Author-reported Lean Comparator checks only. No independent rerun for this pin; no inherited receipt.",
+  "credits": "Jacob Sussman directed Claude agents. README credits icekylinx, ikeboy, jamesyc, eumemic, Chafik Boukhalfa (chafreaky) and OpenAI for prior devices and reductions. Chafik is credited for the late pairing idea, not named as co-author of this new circuit; his program, pairs and certificate were not used."
+}
