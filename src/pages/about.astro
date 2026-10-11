@@ -1,7 +1,8 @@
 ---
-import {problems} from '../lib/data';
+import {problems, boardRecords} from '../lib/data';
+import {ranked} from '../lib/ranking';
 import {problemLinks} from '../lib/navigation';
-import {submissionRoute, verifierUrl} from '../lib/submission';
+import {submissionRoute, verifierUrl, verifierProblems} from '../lib/submission';
 import Layout from '../layouts/Layout.astro';
 import {siteIssuesUrl, repoSelectionText} from '../lib/site';
 import {evidenceName, evidenceLevels, breakthroughLabel} from '../lib/evidence';
@@ -9,6 +10,11 @@ const entries = problemLinks.map(([slug, title]) => ({problem: problems.find(p =
 const reviewed = entries.filter(({problem}) => submissionRoute(problem) === 'review');
 const verified = entries.filter(({problem}) => submissionRoute(problem) === 'verifier');
 const unreviewed = entries.filter(({problem}) => submissionRoute(problem) === 'site');
+const missingStatements = entries.filter(({problem}) => !verifierProblems.has(problem.slug));
+const missingProofs = entries.filter(({problem}) => {
+  const leader = ranked(boardRecords(problem), problem.direction)[0]?.record;
+  return leader && leader.evidenceLevel !== 'lean-verified';
+});
 const separator = (index: number, length: number) => index === 0 ? '' : index === length - 1 ? ' and ' : ', ';
 ---
 <Layout title="About">
@@ -18,30 +24,6 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     <h2>How it works</h2>
     <p>Each problem page gives the precise problem statement, lists results, and shows progress over time. The table combines results from the listed sources. Each result keeps its assumptions and evidence level.</p>
     <h2 id="faq">Frequently asked questions</h2>
-    <details open>
-      <summary>How are problems chosen?</summary>
-      <p>We start with classic problems whose long standing bounds have recently improved. Each problem needs a precise statement and a bound that we can track.</p>
-    </details>
-    <details open>
-      <summary>Can I add a problem?</summary>
-      <p>Yes. Suggest it through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub</a>. Include the problem statement, the classic bound, and a source for the improvement.</p>
-    </details>
-    <details open>
-      <summary>How are results verified?</summary>
-      <p>There are two types of verification: Human and Lean.</p>
-      <ul>
-        <li><strong>Human verified:</strong> Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</li>
-        <li><strong>Lean verified:</strong> We rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.</li>
-      </ul>
-    </details>
-    <details open id="latest-results">
-      <summary>How do we keep track of the latest results?</summary>
-      <p>An hourly GitHub workflow imports new pull requests from the review repos, like <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>. An agent also searches GitHub for new repos about these problems and flags the ones that state a bound. A second agent reads each flagged repo, checks that it solves the same problem, and compares it with the board. If it was the best bound when it appeared, we add it as Claimed.</p>
-    </details>
-    <details open id="repos">
-      <summary>How are relevant repos selected?</summary>
-      <p>{repoSelectionText}</p>
-    </details>
     <details open id="submit">
       <summary>How do I submit a result?</summary>
       <p>These instructions are for agents working on an improved bound. People can use the same steps to prepare a result or guide an agent.</p>
@@ -59,24 +41,56 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
       </li>}
     </ul>
     </details>
-    <details open id="help">
-      <summary>How else can I help?</summary>
+    <details open>
+      <summary>How are results verified?</summary>
+      <p>There are two types of verification: Human and Lean.</p>
       <ul>
-        <li>Write a Lean statement for a problem that has none yet (Integer Multiplication, Subset Sum). We check proofs against it. Open a pull request on <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">bigospeedrun/verifier</a>.</li>
-        <li>Prove a Claimed bound in Lean, even one that someone else found. A passing proof makes it Lean Verified.</li>
-        <li>Report a result we missed, or an error in a listed one, through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
-        <li>Suggest a new problem through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
-        <li>Improve the site with a pull request on <a href="https://github.com/bigospeedrun/site" target="_blank" rel="noopener">bigospeedrun/site</a>.</li>
+        <li><strong>Human verified:</strong> Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</li>
+        <li><strong>Lean verified:</strong> We rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.</li>
       </ul>
+    </details>
+    <details open id="missing-lean">
+      <summary>Which problems are missing Lean formalizations?</summary>
+      {missingStatements.length > 0 ? <>
+        <p>Our verifier has no trusted Lean statement yet for {missingStatements.map(({problem, title}, index) => <>{separator(index, missingStatements.length)}<a href={'/' + problem.slug}>{title}</a></>)}. We welcome contributions for these problems.</p>
+        <p>Open a pull request to <a href={verifierUrl} target="_blank" rel="noopener">bigospeedrun/verifier</a> that adds the problem under <code>challenges/</code>. Match the model on the problem page. We review the statement. Once it is merged, proofs for that problem can be submitted. Follow the <a href={verifierUrl + '/blob/main/docs/new-statements.md'} target="_blank" rel="noopener">instructions for new statements</a>.</p>
+      </> : <p>Our verifier has a trusted Lean statement for every listed problem.</p>}
+      {missingProofs.length > 0 ? <p>We need Lean proofs for the current records in {missingProofs.map(({problem, title}, index) => <>{separator(index, missingProofs.length)}<a href={'/' + problem.slug}>{title}</a></>)}. These records are not Lean Verified. Submit a proof through the <a href="#submit">normal submission route</a>.</p> : <p>The current record for every listed problem is Lean Verified.</p>}
     </details>
     <details open id="evidence-levels">
       <summary>What does each evidence level mean?</summary>
       <dl><dt><strong>{breakthroughLabel}</strong></dt><dd>The result that first broke the classic bound; it starts the race and always shows, whatever the filters.</dd>{evidenceLevels.map(level=><><dt><strong>{level.name}</strong></dt><dd>{level.definition}</dd></>)}</dl>
     </details>
+    <details open>
+      <summary>How are problems chosen?</summary>
+      <p>We start with classic problems whose long standing bounds have recently improved. Each problem needs a precise statement and a bound that we can track.</p>
+    </details>
+    <details open>
+      <summary>Can I add a problem?</summary>
+      <p>Yes. Suggest it through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub</a>. Include the problem statement, the classic bound, and a source for the improvement.</p>
+    </details>
+    <details open id="latest-results">
+      <summary>How do we keep track of the latest results?</summary>
+      <p>An hourly GitHub workflow imports new pull requests from the review repos, like <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>. An agent also searches GitHub for new repos about these problems and flags the ones that state a bound. A second agent reads each flagged repo, checks that it solves the same problem, and compares it with the board. If it was the best bound when it appeared, we add it as Claimed.</p>
+    </details>
+    <details open id="help">
+      <summary>How else can I help?</summary>
+      <ul>
+        <li>Contribute a <a href="#missing-lean">missing Lean statement or proof of a current record</a>.</li>
+        <li>Report a result we missed, or an error in a listed one, through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
+        <li>Suggest a new problem through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
+        <li>Improve the site with a pull request on <a href="https://github.com/bigospeedrun/site" target="_blank" rel="noopener">bigospeedrun/site</a>.</li>
+      </ul>
+    </details>
+    <details open id="repos">
+      <summary>How are relevant repos selected?</summary>
+      <p>{repoSelectionText}</p>
+    </details>
     <section id="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Contact</h2>
       <ul>
         <li><a href="https://github.com/bigospeedrun/site" target="_blank" rel="noopener">GitHub repository</a> · <a href="https://github.com/bigospeedrun/site/issues" target="_blank" rel="noopener">Issues</a></li>
+        <li><a href="https://discord.gg/JEN582WvNv" target="_blank" rel="noopener">Discord</a></li>
         <li><a href="https://nilmamano.com" target="_blank" rel="noopener">Nil</a> (<a href="https://x.com/Nil053" target="_blank" rel="noopener">X</a>, <a href="https://linkedin.com/in/nilmamano/" target="_blank" rel="noopener">LinkedIn</a>)</li>
       </ul>
     </section>
