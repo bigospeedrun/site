@@ -1,0 +1,11 @@
+{
+  "number": 397,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/397",
+  "title": "Formalize the indexed B_K scalar bridge and bind the pinned B3 word",
+  "body": "This adds a standalone Lean formalization of the existing normalized scalar borrowing chain, including descending cleanup and the signed endpoint. Stage-indexed composition is proved for every nonempty finite list of bank pairs over any abelian group. The nineteen-operation B3 term is definitionally equal (`rfl`) to the three-pair indexed chain.\n\nEach stage must satisfy its explicit complete normalized shear and helper-preservation contracts for every input. Under those contracts, signed exchange restores every bank and the shared helper state, with arbitrary correlations allowed. Physical frames, owners, endpoint operators, scratch lifetimes, costs, all-size compilation and analytic transfer remain separate obligations.\n\nThe included `bridged.py` snapshot is pinned to Git blob `626a28614b07066528fd5f189d87cffa5015ac60`. Replay uses hash-locked selected-AST recognition outside the Lean kernel, compares the generated term byte-for-byte with the submitted target, and never executes upstream Python. It requires an already installed Lean 4.33.0 and performs no downloads.\n\nValidation: fresh temporary builds of all three modules at trust level zero; 22 transitive axiom reports with no `sorryAx` or project-defined axioms; five rejected controls covering twin sign, cleanup order, unsigned endpoint, stage index and helper threading. The new correspondence results use no axioms; other new results use `propext`, with `Quot.sound` additionally used by the generic correlated endpoint.\n\nThis formalizes the existing Jacob Sussman/PR363/373/375 bridge lineage, also inherited by PR377/381/390. It claims no new borrowing mechanism, correlated-helper insight, global novelty or priority, and does not certify PR390's heterogeneous physical provider. Source attribution and license text are included.\n",
+  "created_at": "2026-10-11T07:54:17Z",
+  "updated_at": "2026-10-11T09:32:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

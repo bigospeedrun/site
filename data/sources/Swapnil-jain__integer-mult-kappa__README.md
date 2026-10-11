@@ -2,6 +2,8 @@
 
 **Conditional research draft by Swapnil Jain.**
 
+**Paper:** *Ceilings and Impossibility Results for Finite Witnesses of Sub-n log n Integer Multiplication* (Swapnil Jain). Corrected v2 on [ResearchGate](https://www.researchgate.net/publication/415549533_Ceilings_and_Impossibility_Results_for_Finite_Witnesses_of_Sub-n_log_n_Integer_Multiplication) (11 October 2026); v1 on Zenodo, [doi:10.5281/zenodo.23265442](https://doi.org/10.5281/zenodo.23265442). v2 fixes six statements in v1 and extends the reproduction pack; see its "Changes since v1" section.
+
 This draft builds on OpenAI's *Integer multiplication below n log n* and on Douglas
 Colkitt's [integer-mult-bounds](https://github.com/CrocSwap/integer-mult-bounds). In
 that model (a fixed finite alphabet and a fixed number of one-dimensional tapes),
