@@ -37,6 +37,7 @@ class ProgressChart extends HTMLElement {
   this.observer=new ResizeObserver(()=>this.draw());
   this.observer.observe(this);
   this.draw();
+  void document.fonts.ready.then(()=>{if(this.isConnected)this.draw()});
  }
  disconnectedCallback(){this.observer?.disconnect();window.removeEventListener('evidence-filter-change',this.onEvidenceChange)}
  private closeTooltip(){this.querySelector<HTMLElement>('.plot-tooltip')!.hidden=true}
@@ -53,7 +54,18 @@ class ProgressChart extends HTMLElement {
   plot.replaceChildren();labels.replaceChildren();this.closeTooltip();
   const width=this.clientWidth;
   if(!width)return;
-  const mobile=width<600,height=mobile?380:330,left=mobile?(scale.log?60:80):108,right=width-(mobile?12:20),top=26;
+  const mobile=width<600,height=mobile?380:330,right=width-(mobile?12:20),top=26;
+  const tickStep=mobile?Math.max(1,Math.ceil((scale.ticks.length-1)/3)):1;
+  const yTicks=scale.ticks.filter((_,i)=>i%tickStep===0||i===scale.ticks.length-1);
+  const tickLabels=yTicks.map(tick=>{
+   const label=document.createElement('span');label.className='axis-tick';label.innerHTML=tick.html;labels.append(label);
+   return label;
+  });
+  // Reserve space for the rendered KaTeX labels, their padding, and the rotated title.
+  const axisTitle=this.querySelector<HTMLElement>('.plot-axis-title')!;
+  const titleRight=axisTitle.getClientRects().length?axisTitle.getBoundingClientRect().right-plot.getBoundingClientRect().left:0;
+  const widestTick=Math.max(0,...tickLabels.map(label=>label.getBoundingClientRect().width));
+  const left=Math.ceil(Math.max(mobile?60:108,widestTick+(titleRight?titleRight+12:4)));
   const ticks=chartTimeTicks(start,end,mobile?3:Math.min(6,Math.max(3,Math.floor((right-left)/155))));
   const dateOnlyAxis=entries.every(e=>/^\d{4}-\d{2}-\d{2}$/.test(e.date));
   const times=dateOnlyAxis&&end-start<=86400000?[...new Set([start,end])]:ticks.times;
@@ -63,12 +75,15 @@ class ProgressChart extends HTMLElement {
   const transform=(v:number)=>scale.log?Math.log10(v):v;
   const y=(v:number)=>bottom-(transform(v)-scale.lo)/(scale.hi-scale.lo)*(bottom-top);
   const x=(time:number)=>start===end?(left+right)/2:left+(time-start)/(end-start)*(right-left);
-  const tickStep=mobile?Math.max(1,Math.ceil((scale.ticks.length-1)/3)):1;
-  const yTicks=scale.ticks.filter((_,i)=>i%tickStep===0||i===scale.ticks.length-1);
-  for(const tick of yTicks){
-   const py=y(tick.value);
+  let previousTickBottom=-Infinity;
+  for(let index=yTicks.length-1;index>=0;index--){
+   const py=y(yTicks[index].value),label=tickLabels[index];
+   const halfHeight=label.getBoundingClientRect().height/2;
+   // A final log-scale tick can be much closer than the regular tick step.
+   if(py-halfHeight<previousTickBottom+8){label.remove();continue}
+   previousTickBottom=py+halfHeight;
    plot.append(svg('line',{x1:left,x2:right,y1:py,y2:py,class:'plot-grid'}));
-   const label=document.createElement('span');label.className='axis-tick';label.style.left=`${left}px`;label.style.top=`${py}px`;label.innerHTML=tick.html;labels.append(label);
+   label.style.left=`${left}px`;label.style.top=`${py}px`;
   }
   reference.hidden=classic!==undefined||this.range!=='all';
   if(classic!==undefined||this.range==='all'){
