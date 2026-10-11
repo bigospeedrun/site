@@ -7,6 +7,7 @@ import content from '../lib/landing.html?raw';
 import {inlineMath} from '../lib/math';
 import {problems, boardRecords} from '../lib/data';
 import {ranked} from '../lib/ranking';
+import {breakthroughLabel} from '../lib/evidence';
 const rows = [
   {slug:'integer-multiplication', classic:'O(n \\log n)', breakthroughId:'openai-original-109', source:'https://github.com/openai/math/tree/main/preprints/Integer-multiplication-below-n-log-n-September-23-2026'},
   {slug:'matrix-multiplication', classic:'O(n^{2.371177+\\varepsilon})', breakthroughId:'openai-matrix-nine-fourths-2026', source:'https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf'},
@@ -32,7 +33,7 @@ const rows = [
   <div class="landing">
     <div set:html={inlineMath(content)}/>
     <h2>Big O</h2>
-    <LandingTable rows={rows} id="problems" label="Compare classic bounds, first breakthroughs, and latest results" classic />
+    <LandingTable rows={rows} id="problems" label={`Compare classic bounds, ${breakthroughLabel.toLowerCase()}s, and latest results`} classic />
     <OtherBounds />
     <p>This website tracks progress on these problems and helps people and agents get started. Inspired by the <a href="https://github.com/KellerJordan/modded-nanogpt" target="_blank" rel="noopener">NanoGPT speedrun</a> and hoping to bring similar progress and interest to our classic problems. Join the <a href="https://discord.gg/JEN582WvNv" target="_blank" rel="noopener">Discord</a> to better coordinate your agent swarms with others.</p>
   </div>

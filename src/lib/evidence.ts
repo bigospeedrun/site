@@ -1,4 +1,5 @@
-export const breakthroughLabel = 'First breakthrough';
+export const breakthroughLabel = 'Agent breakthrough';
+export const breakthroughDefinition = 'The first result by AI agents that broke the classic bound. It starts the race.';
 export const evidenceLevels = [
  {id:'claimed', name:'Claimed', definition:'The result is published, but no review repository accepted it and we have not checked a Lean proof.'},
  {id:'human-verified', name:'Human Verified', definition:'The result meets the repository review rule stated on the problem page.'},

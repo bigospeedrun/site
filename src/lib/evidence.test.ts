@@ -54,8 +54,8 @@ test('scientific savings round down, preserve tiny improvements, and separate cl
  assert.equal(isBoardEntry('exact-dft',{id:'classical-baseline',repo:'',upstreamStatus:'not-applicable'}),false);
 });
 
-test('every board keeps only its first breakthrough when all evidence checkboxes are off',()=>{
- assert.equal(breakthroughLabel,'First breakthrough');
+test('every board keeps only its agent breakthrough when all evidence checkboxes are off',()=>{
+ assert.equal(breakthroughLabel,'Agent breakthrough');
  for(const [slug,id] of [['integer-multiplication','openai-original-109'],['exact-dft','exact-dft-2026'],['3sum','anthropic-2026'],['apsp','anthropic-2026'],['subset-sum','subset-sum-2026']]) {
   const records=[{id,evidenceLevel:'claimed',isBreakthrough:isBreakthroughRecord(slug,id)},{id:'later',evidenceLevel:'lean-verified',isBreakthrough:isBreakthroughRecord(slug,'later')}];
   assert.deepEqual(records.filter(r=>isVisibleAtEvidence(r,[])).map(r=>r.id),[id]);

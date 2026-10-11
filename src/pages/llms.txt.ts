@@ -1,4 +1,5 @@
 import {problemLinks} from '../lib/navigation';
+import {breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
 import {siteOrigin} from '../lib/seo';
 export function GET() {
   return new Response(`# Big O Speedrun
@@ -14,6 +15,8 @@ Use this site to compare bounds, read their assumptions and evidence, and find t
 ${problemLinks.map(([slug,title])=>`- [${title}](${siteOrigin}/${slug}): bounds, evidence rules and source links.`).join('\n')}
 
 ## Reference
+
+${breakthroughLabel}: ${breakthroughDefinition}
 
 - [Submit a result](${siteOrigin}/about#submit): start here to find the submission route for each problem and the full instructions.
 - [About and evidence levels](${siteOrigin}/about#evidence-levels): evidence definitions.

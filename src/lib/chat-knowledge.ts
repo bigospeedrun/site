@@ -1,12 +1,13 @@
 import type {Problem, RecordEntry} from './types.ts';
 import {ranked, boundPrecision, tableBound} from './ranking.ts';
-import {evidenceLevels, evidenceName, isBoardEntry} from './evidence.ts';
+import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition} from './evidence.ts';
 
 export interface ChatKnowledge {
   updatedAt: string;
   pages: Record<string, string>;
   problems: {path: string; title: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string}[];
   evidence: typeof evidenceLevels;
+  breakthrough: {name:string; definition:string};
 }
 
 // Use exactly the board's admission and ranking rules, including tied records.
@@ -14,6 +15,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
   boardRecords = (p: Problem) => p.records.filter(r => isBoardEntry(p.slug, r))): ChatKnowledge {
   return {
     updatedAt, pages: {}, evidence: evidenceLevels,
+    breakthrough: {name:breakthroughLabel, definition:breakthroughDefinition},
     problems: problems.filter(p => p.slug !== 'directed-sssp').map(p => {
       const records = boardRecords(p);
       const digits = boundPrecision(records.map(r => r.score), p.symbol === 'kappa');

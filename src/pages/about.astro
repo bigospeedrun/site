@@ -7,7 +7,7 @@ import otherBounds from '../lib/other-bounds.json';
 import {inlineMath} from '../lib/math';
 import Layout from '../layouts/Layout.astro';
 import {siteIssuesUrl, repoSelectionText} from '../lib/site';
-import {evidenceName, evidenceLevels, breakthroughLabel} from '../lib/evidence';
+import {evidenceName, evidenceLevels, breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
 const entries = problemLinks.map(([slug, title]) => ({problem: problems.find(p => p.slug === slug)!, title}));
 const reviewed = entries.filter(({problem}) => submissionRoute(problem) === 'review');
 const verified = entries.filter(({problem}) => submissionRoute(problem) === 'verifier');
@@ -61,7 +61,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     </details>
     <details open id="evidence-levels">
       <summary>What does each evidence level mean?</summary>
-      <dl><dt><strong>{breakthroughLabel}</strong></dt><dd>The result that first broke the classic bound; it starts the race and always shows, whatever the filters.</dd>{evidenceLevels.map(level=><><dt><strong>{level.name}</strong></dt><dd>{level.definition}</dd></>)}</dl>
+      <dl><dt><strong>{breakthroughLabel}</strong></dt><dd>{breakthroughDefinition}</dd>{evidenceLevels.map(level=><><dt><strong>{level.name}</strong></dt><dd>{level.definition}</dd></>)}</dl>
     </details>
     <details open>
       <summary>How are problems chosen?</summary>
