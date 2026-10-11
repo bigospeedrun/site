@@ -1,0 +1,11 @@
+{
+  "number": 364,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/364",
+  "title": "κ = 8.04879370798932e-4: #362 with κ-exact min-cost carrier matching in the base producer (+3.0e-8)",
+  "body": "**Conditional κ = 201219842699733/(2.5·10¹⁷) ≈ 8.04879370798932e-4**, +3.01e-8 over #361/#362 (8.04849251275843e-4, tied).\n\nStacked on #362, which is our composition of #357 (reordered-design PLAIN12 base) with #359's post-Design-T stages. The complex supplier is unchanged: Sussman's E8 unit. The bit side binds.\n\n**Change.** In the base word's producer, Hopcroft–Karp carrier matching is replaced by the min-cost full matching with the κ-exact first-order weights J(r) = r ln(100/r), from our radical-campaign \"I-matching\" result (`producer/matchlib.py`). It is still a maximum matching, and R is unchanged.\n\nEverything downstream is re-derived on the new word:\n- #329 stages: 480 descent / 120 target / 240 restore / 10 sink;\n- Design T + 470 twins;\n- #359's kernel: 335 entries, φ −403.88;\n- retiming: 93 gates;\n- reorders: 130 + 2.\n\nOn the staged word alone, before the post stages, κ is 8.0368457e-4 against 8.0365454e-4 with HK.\n\nEvery stage passes `stagelib.full_check`. The bit coarse saving comes from both engines, and #315's outer assembly gives 47 strict constraints, all positive.\n\nDraft: the full `verify.sh` replay is running, and I'll post the PASS line here.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TGoMCHAqctZe4wtb4qr7vv\n",
+  "created_at": "2026-10-11T03:36:29Z",
+  "updated_at": "2026-10-11T03:46:49Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
