@@ -158,7 +158,7 @@ class MaintainerTests(unittest.TestCase):
 
 
     def test_matrix_pending_binding_never_admits_without_run(self):
-        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=None
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths'])
         with self.assertRaises(Rejected):check(*fixture(binding=binding))
 
     def test_matrix_pinned_dependency_and_target_acceptance(self):
@@ -195,8 +195,7 @@ class MaintainerTests(unittest.TestCase):
             (root/'direct-fixtures').mkdir();(root/'direct-fixtures/UniformFourierE8.lean').write_bytes((ROOT/'direct-fixtures/UniformFourierE8.lean').read_bytes())
             r,a,run,b=fixture();raw=pack(r,a)
             api=SimpleNamespace(pages=lambda *args,**kwargs:[a])
-            config=copy.deepcopy(CONFIG);config['maintainer_bindings']={'dft-e8':config['maintainer_bindings']['dft-e8']}
-            importer=SimpleNamespace(root=root,config=config,api=api,notes=[],trusted=lambda _:None,run=lambda _:run,artifact=lambda _:raw)
+            importer=SimpleNamespace(root=root,config=CONFIG,api=api,notes=[],trusted=lambda _:None,run=lambda _:run,artifact=lambda _:raw)
             files=collect_maintainer(importer,{},NOW)
             for path,content in files.items():
                 target=root/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(content)

@@ -79,6 +79,6 @@ The profile stages the harfe fixed-point dependency at
 `770940ddf9878cf61952ed53d910b92bca841838` as proof source. It ignores dependency
 build files and compiled objects, rejects module collisions, and retains the
 same kernel and axiom checks. Admission checks the dependency identity in the
-receipt and the hashed staged-source manifest. The matrix binding selects run 38109326251 at controller 99713a3, checked through
-the GitHub API on 2026-10-11. It admits no evidence until that run publishes a
-valid receipt. DFT keeps its original b27295a controller binding.
+receipt and the hashed staged-source manifest. The matrix binding has no run ID
+yet and remains inactive until the exact run is reviewed and assigned. DFT keeps
+its original b27295a controller binding.
