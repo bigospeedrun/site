@@ -1,4 +1,5 @@
 ---
+import AuthorList from '../../components/AuthorList.astro';
 import Layout from '../../layouts/Layout.astro';
 import data from '../../lib/other-bounds.json';
 import {math, inlineMath} from '../../lib/math';
@@ -10,21 +11,20 @@ const {family:f}=Astro.props;
   <h1>{f.name}</h1>
   <p set:html={inlineMath(f.statement)}/>
   <p>OpenAI baseline: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.value)}/>, released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time>.</p>
-  <p>These results are <a href="/about#evidence-levels" class="claimed">Claimed</a>: their authors published them, and we have not checked them. “Lean supplied” means the source contains Lean files; it does not mean we verified the bound.</p>
-  <p>The dates show the first statements found for these values in repository history. A date marked “Snapshot” has an unresolved first statement. The sources were checked on October 11, 2026.</p>
+  <p>These results are <a href="/about#evidence-levels" class="claimed">Claimed</a>: their authors published them, and we have not checked them.</p>
   <div class="results-scroll" role="region" aria-label={'Claims for '+f.name} tabindex="0"><table>
-    <thead><tr><th scope="col">Bound</th><th scope="col">Evidence level</th><th scope="col">Author</th><th scope="col">Date</th><th scope="col">Lean supplied</th></tr></thead>
+    <thead><tr><th scope="col">Bound</th><th scope="col">Evidence level</th><th scope="col">Author</th><th scope="col">Date</th><th scope="col">Proof scope</th></tr></thead>
     <tbody>{f.claims.map(c=><tr>
       <td class="bound"><a href={c.url} target="_blank" rel="noopener" set:html={math(c.display)}/>{(c.value!==c.display||c.note)&&<details><summary>Exact value and conditions</summary><div class="exact" set:html={math(c.value)}/>{c.note&&<p set:html={inlineMath(c.note)}/>}</details>}</td>
       <td><a class="claimed" href="/about#evidence-levels">Claimed</a></td>
-      <td>{c.author}</td>
+      <td><AuthorList authors={c.authors}/></td>
       <td><a href={c.dateSource} target="_blank" rel="noopener"><time datetime={c.date} data-local-datetime>{localTimeFallback(c.date)}</time></a>{c.dateKind==='snapshot'&&<span> (Snapshot)</span>}</td>
-      <td>{c.lean?'Yes':'No'}<details><summary>Proof scope</summary><p>{c.leanNote}</p></details></td>
+      <td><details><summary>Proof scope</summary><p>{c.proofScope}</p></details></td>
     </tr>)}</tbody>
   </table></div>
   {f.repos.length>0&&<section><h2>Relevant repos</h2><ul>{f.repos.map(r=><li><a href={r.url} target="_blank" rel="noopener">{r.name}</a>{'note' in r&&r.note&&<>: {r.note}</>}</li>)}</ul></section>}
 </Layout>
 <style>
 .results-scroll{border:1px solid var(--line);border-radius:.5rem}table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:1rem}th,td{padding:.85rem .75rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}th{font-weight:600;background:var(--surface)}th:first-child{width:28%}tr:last-child td{border-bottom:0}.bound :global(.katex){font-size:22px}.claimed{color:var(--claimed)}details{margin-top:.5rem}summary{cursor:pointer}details p{font-size:1rem}.exact{overflow-x:auto;padding:.5rem 0}.exact :global(.katex){font-size:1.05em}li{margin:.5rem 0;overflow-wrap:anywhere}
-@media(max-width:900px){table,tbody{display:block}thead{display:none}tr{display:grid;grid-template-columns:minmax(0,1fr);border-bottom:1px solid var(--line);padding:.5rem}td{border:0;padding:.35rem;min-width:0}tr:last-child{border:0}td:nth-child(3)::before{content:'Author: ';font-weight:600}td:nth-child(4)::before{content:'Date: ';font-weight:600}td:nth-child(5)::before{content:'Lean supplied: ';font-weight:600}.bound>a{display:block;overflow-x:auto}.bound :global(.katex){font-size:22px}}
+@media(max-width:900px){table,tbody{display:block}thead{display:none}tr{display:grid;grid-template-columns:minmax(0,1fr);border-bottom:1px solid var(--line);padding:.5rem}td{border:0;padding:.35rem;min-width:0}tr:last-child{border:0}td:nth-child(3)::before{content:'Author: ';font-weight:600}td:nth-child(4)::before{content:'Date: ';font-weight:600}.bound>a{display:block;overflow-x:auto}.bound :global(.katex){font-size:22px}}
 </style>
