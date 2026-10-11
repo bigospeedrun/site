@@ -70,4 +70,24 @@ The counterfactual test changes only test flags, envelope admission status, and
 resulting receipt/archive hashes. It preserves all proof outcomes, theorem targets,
 source pins, log hashes and timestamps. This copy passes receipt validation but is
 not a new proof run or a board import. Discovery still permanently excludes issue
-1 and PR 2. The live generic PR path remains pending a completed smoke receipt.
+1 and PR 2. The generic PR early receipt is covered below; its final nanoda outcome remains pending.
+
+
+Live PR early receipt replay checked on 2026-10-11:
+https://github.com/bigospeedrun/verifier/actions/runs/38099440876
+Publisher: https://github.com/bigospeedrun/verifier/actions/runs/38099445948
+The live-pr-smoke ZIPs are unchanged public artifacts 11688532955 (proof) and
+11688234279 (publisher result). Both archive digests, raw receipt hash and every
+listed evidence-file hash match. The API confirmed PR 2 merged as
+79878b79d2eec01cbdc40417547cd2d99d6aba04. The source folder, manifest and changed-file
+list were independently inspected through the GitHub API at the verified head and
+base pins; live-pr-smoke-api.json saves that inspected layout and API identities.
+Controller content matched the reviewed 038a82c policy for both workflows.
+
+The original test-only envelope is excluded with or without its test label. The
+counterfactual test clears only test flags, changes importable to true, and updates
+the derived request/receipt/archive hashes. All actual proof results, theorem
+names, exact bound, source pins and proof log hashes remain unchanged. That copy
+admits as Lean Verified with nanoda advisory pending and requires API-confirmed
+merge. It is not a new proof run, and PR 2 remains permanently excluded from
+production discovery. The final nanoda result is not asserted by this fixture.
