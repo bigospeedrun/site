@@ -33,6 +33,25 @@ test('decimal plain bounds preserve site precision and strict endpoints for all 
  assert.match(plainBound('exact-dft','1/1000','strict-upper-bound'),/\+ epsilon.*every fixed epsilon > 0/);
  assert.equal(plainBound('exact-dft','1/1000').includes('epsilon'),false);
 });
+test('plain bounds trim decimal padding after rounding at board precision',()=>{
+ assert.equal(plainBound('3sum','981/500','attained',6),'O(n^1.962)');
+ assert.equal(plainBound('3sum','997891/500000','attained',6),'O(n^1.995782)');
+ assert.equal(plainBound('apsp','3','attained',6),'O(n^3)');
+ assert.equal(plainBound('apsp','10','attained',0),'O(n^10)');
+ assert.equal(plainBound('matrix-multiplication','9/4','attained',6),'O(n^(2.25 + epsilon)), for every fixed epsilon > 0');
+ assert.equal(plainBound('subset-sum','49/100','attained',6),'O(2^(0.49n))');
+ assert.equal(plainBound('exact-dft','1/1000','attained',6),'O(n log^(1 - 0.001) n)');
+ assert.equal(plainBound('integer-multiplication','1/1000','strict-upper-bound',6),'O(n log^(1 - 0.001 + epsilon) n), for every fixed epsilon > 0');
+ assert.equal(plainBound('3sum','19619994/10000000','attained',6),'O(n^1.962)');
+ assert.equal(plainBound('3sum','19620006/10000000','attained',6),'O(n^1.962001)');
+});
+test('bound display changes preserve reservations and do not post again',()=>{
+ const before=board([{...row(),bound:'O(n log^(1 - 0.00100000) n)'}]);
+ const initial=baseline(snapshot(before));
+ const result=plan(initial,snapshot(board()));
+ assert.deepEqual(result.messages,[]);
+ assert.deepEqual(result.state.reserved,initial.reserved);
+});
 test('feed leader uses the site exact ranking and ties',()=>{
  const records=[{...row('b'),scoreRelation:'attained',date:'2026-10-11',repoId:0,evidenceLevel:'claimed',authors:[{name:'Alice',url:'https://github.com/alice'}]},
  {...row('a'),scoreRelation:'attained',date:'2026-10-10',repoId:0,evidenceLevel:'claimed',authors:[{name:'Alice',url:'https://github.com/alice'}]}] satisfies Parameters<typeof feedBoard>[1];

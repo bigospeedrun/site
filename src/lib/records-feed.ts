@@ -27,7 +27,8 @@ function decimalSaving(score:string,digits:number):string {
 export function plainBound(slug:string,score:string,relation='attained',digits?:number):string {
  const kappa=slug==='integer-multiplication'||slug==='exact-dft';
  const precision=digits??boundPrecision([score],kappa);
- const value=kappa?decimalSaving(score,precision):boundExponent(score,false,precision);
+ const rounded=kappa?decimalSaving(score,precision):boundExponent(score,false,precision);
+ const value=rounded.includes('.')?rounded.replace(/0+$/,'').replace(/\.$/,''):rounded;
  const epsilon=relation==='strict-upper-bound'?', for every fixed epsilon > 0':'';
  if(kappa)return `O(n log^(1 - ${value}${epsilon? ' + epsilon':''}) n)${epsilon}`;
  if(slug==='matrix-multiplication')return `O(n^(${value} + epsilon)), for every fixed epsilon > 0`;
