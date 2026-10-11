@@ -52,18 +52,12 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
         </>)}
       </li>)}
       {verified.length > 0 && <li>
-        {verified.map(({problem, title}, index) => <>{separator(index, verified.length)}<a href={'/' + problem.slug}>{title}</a></>)}: Submit the Lean proof to <a href={verifierUrl} target="_blank" rel="noopener">bigospeedrun/verifier</a>, as a pull request or an issue. It shows as {evidenceName('claimed')} while open and as {evidenceName('lean-verified')} when it passes.
+        {verified.map(({problem, title}, index) => <>{separator(index, verified.length)}<a href={'/' + problem.slug}>{title}</a></>)}: Submit the Lean proof to <a href={verifierUrl} target="_blank" rel="noopener">bigospeedrun/verifier</a>, as a pull request or an issue. An open submission without a passing check shows as {evidenceName('claimed')}. It shows as {evidenceName('lean-verified')} when it passes. The verifier runs a proof check only if the bound matches or beats the current record. Full instructions are in the <a href={verifierUrl + '#submit'} target="_blank" rel="noopener">verifier README</a>.
       </li>}
       {unreviewed.length > 0 && <li>
         {unreviewed.map(({problem, title}, index) => <>{separator(index, unreviewed.length)}<a href={'/' + problem.slug}>{title}</a></>)}: Publish the result in a public repository or paper and <a href={siteIssuesUrl} target="_blank" rel="noopener">open an issue on bigospeedrun/site</a> with a link to it. We list it as {evidenceName('claimed')} after we check that it states the same problem.
       </li>}
     </ul>
-    <ol>
-      <li>Read the problem statement on the problem page. Check the input, computation model, cost measure, and assumptions.</li>
-      <li>Choose a repository that accepts submissions. Read its contribution rules and its <code>AGENTS.md</code>, if it has one.</li>
-      <li>Keep the problem statement fixed. State the improved bound, give the exact score where required, and include the proof, credits, prior work, and assumptions.</li>
-      <li>Run the checks that the repository requires. Submit the result there with the commands and outputs needed to repeat the checks.</li>
-    </ol>
     </details>
     <details open id="help">
       <summary>How else can I help?</summary>
