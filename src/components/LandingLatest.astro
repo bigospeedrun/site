@@ -1,0 +1,37 @@
+---
+import InfoTooltip from './InfoTooltip.astro';
+import {math} from '../lib/math';
+import {evidenceName, type EvidenceLevel} from '../lib/evidence';
+import {localTimeFallback} from '../lib/freshness';
+interface Props {records:{bound:string;url:string;evidenceLevel:EvidenceLevel;date:string;endpoint?:boolean}[];}
+const {records}=Astro.props;
+const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
+---
+<landing-latest class="latest-result">
+{records.map((record,index)=><span data-candidate data-evidence-level={record.evidenceLevel} hidden={index!==0}>
+ <a href={record.url} {...githubLink(record.url)} title={evidenceName(record.evidenceLevel)} set:html={math(record.bound)}/><span class="latest-metadata"> <a class:list={['latest-level',record.evidenceLevel]} href="/about#evidence-levels">{evidenceName(record.evidenceLevel)}</a><span class="latest-date"><time datetime={record.date} data-local-datetime={record.date.includes('T')?true:undefined}>{localTimeFallback(record.date)}</time></span></span>
+ {record.endpoint&&<span class="mobile-bound-info"><InfoTooltip label="About this strict endpoint">The bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</InfoTooltip></span>}
+</span>)}
+<span data-no-result aria-label="No later result" hidden={records.length>0}>-</span>
+</landing-latest>
+<script>
+import {getEvidenceLevels,subscribeEvidenceLevels} from '../lib/evidence-filters';
+import {firstSelected} from '../lib/landing-records';
+class LandingLatest extends HTMLElement{
+ private unsubscribe?:()=>void;
+ connectedCallback(){
+  const candidates=Array.from(this.querySelectorAll<HTMLElement>('[data-candidate]')).map(element=>({element,evidenceLevel:element.dataset.evidenceLevel!}));
+  const render=()=>{
+   const selected=firstSelected(candidates,getEvidenceLevels());
+   candidates.forEach(candidate=>candidate.element.hidden=candidate!==selected);
+   this.querySelector<HTMLElement>('[data-no-result]')!.hidden=Boolean(selected);
+  };
+  this.unsubscribe=subscribeEvidenceLevels(render);render();
+ }
+ disconnectedCallback(){this.unsubscribe?.()}
+}
+customElements.define('landing-latest',LandingLatest);
+</script>
+<style>
+landing-latest{display:block}[hidden]{display:none!important}
+</style>

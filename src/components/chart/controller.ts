@@ -1,3 +1,4 @@
+import {getEvidenceLevels} from '../../lib/evidence-filters';
 import { breakthroughLabel } from '../../lib/evidence';
 import { chartWindow, chartRanges, chartTimeTicks, scoreValue, type ChartEntry } from '../../lib/chart';
 interface Payload {
@@ -24,8 +25,7 @@ class ProgressChart extends HTMLElement {
  };
  connectedCallback(){
   this.data=JSON.parse(this.dataset.chart!);
-  const board=document.querySelector<HTMLElement>('evidence-board');
-  this.levels=board?.dataset.selectedLevels?JSON.parse(board.dataset.selectedLevels):Object.keys(this.data.levels);
+  this.levels=getEvidenceLevels();
   window.addEventListener('evidence-filter-change',this.onEvidenceChange);
   this.querySelectorAll<HTMLButtonElement>('[data-range]').forEach(button=>button.addEventListener('click',()=>{
    this.range=button.dataset.range!;

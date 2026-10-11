@@ -4,7 +4,7 @@ import LandingTable from './LandingTable.astro';
 const rows=data.families.map(f=>{
   const best=f.claims.find(c=>c.handle===f.bestHandle)!;
   return {href:'/other/'+f.slug,name:f.name,breakthrough:f.baseline.bound,source:f.baseline.url,
-    latest:{bound:best.bound,url:best.url,evidenceLevel:'claimed' as const,date:best.date}};
+    latest:[{bound:best.bound,url:best.url,evidenceLevel:'claimed' as const,date:best.date}]};
 });
 ---
 <section aria-labelledby="other-bounds">

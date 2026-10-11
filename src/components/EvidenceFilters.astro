@@ -1,0 +1,23 @@
+---
+import {evidenceLevels} from '../lib/evidence';
+---
+<evidence-filters><fieldset aria-label="Evidence filters">{evidenceLevels.map(level=><label title={level.definition}><input type="checkbox" value={level.id} checked/> {level.name}</label>)}</fieldset></evidence-filters>
+<script>
+import {getEvidenceLevels,setEvidenceLevels,subscribeEvidenceLevels} from '../lib/evidence-filters';
+import type {EvidenceLevel} from '../lib/evidence';
+class EvidenceFilters extends HTMLElement{
+ private unsubscribe?:()=>void;
+ connectedCallback(){
+  const inputs=Array.from(this.querySelectorAll<HTMLInputElement>('input'));
+  const render=()=>{const levels=getEvidenceLevels();inputs.forEach(input=>input.checked=levels.includes(input.value as EvidenceLevel))};
+  inputs.forEach(input=>input.addEventListener('change',()=>setEvidenceLevels(inputs.filter(input=>input.checked).map(input=>input.value as EvidenceLevel))));
+  this.unsubscribe=subscribeEvidenceLevels(render);render();
+ }
+ disconnectedCallback(){this.unsubscribe?.()}
+}
+customElements.define('evidence-filters',EvidenceFilters);
+</script>
+<style>
+evidence-filters{display:block}fieldset{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem;border:0;padding:0;margin:0 0 1rem}label{display:flex;gap:.4rem;align-items:center;cursor:pointer}input{width:1rem;height:1rem;accent-color:var(--accent)}
+@media(max-width:600px){fieldset{gap:.2rem .8rem;margin-bottom:.6rem}label{min-height:36px}}
+</style>
