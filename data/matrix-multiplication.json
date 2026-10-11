@@ -75,7 +75,7 @@
       "id": "openai-matrix-nine-fourths-2026",
       "kind": "improvement",
       "score": "9/4",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-10T22:29:27.649745Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-10T22:29:27.649745Z",
@@ -100,11 +100,16 @@
       },
       "evidence": {
         "paper_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
-        "theorem": null,
+        "theorem": "OAI.MatrixMultiplication.complex_omega_le_nine_quarters",
         "certificate_path": null
       },
       "dependencies": [],
-      "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+      "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-11T05:32:23.064856Z",
+        "receipt_path": "sources/maintainer-matrix-nine-fourths-38112644463.json"
+      }
     }
   ],
   "record_metadata": {
@@ -129,9 +134,9 @@
     "openai-matrix-nine-fourths-2026": {
       "checked_at": "2026-10-11",
       "eligible_for_record": true,
-      "proof_status": "Published claim; no qualifying repository review or site Lean rerun.",
+      "proof_status": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
       "site_badge": false,
-      "site_tier": "claimed",
+      "site_tier": "verified",
       "upstream_tier": "claimed",
       "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
       "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
@@ -143,8 +148,10 @@
       "publication_source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
       "manuscript_date": "2026-10-02",
       "scope": "Complex numbers. Author supplies Lean; no site rerun yet.",
-      "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision."
+      "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision.",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38112644463",
+      "verification_source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
     }
   },
-  "updated_at": "2026-10-10T22:29:27.649745Z"
+  "updated_at": "2026-10-11T05:44:21Z"
 }
