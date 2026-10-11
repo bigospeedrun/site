@@ -16,6 +16,15 @@ class ProgressChart extends HTMLElement {
  private data!:Payload;
  private observer?:ResizeObserver;
  private range="all";
+ private pinnedId?:string;
+ private onDocumentClick=(event:MouseEvent)=>{
+  const target=event.target;
+  if(!(target instanceof Element))return;
+  if(this.contains(target)&&target.closest('.plot-point, .plot-tooltip'))return;
+  this.unpin();
+ };
+ private onDocumentKeydown=(event:KeyboardEvent)=>{if(event.key==='Escape')this.unpin()};
+ private onPointerLeave=()=>{if(!this.pinnedId)this.closeTooltip()};
  private levels:string[]=[];
  private onEvidenceChange=(event:Event)=>{
   const levels=(event as CustomEvent<{levels:string[]}>).detail?.levels;
@@ -32,14 +41,26 @@ class ProgressChart extends HTMLElement {
    this.querySelectorAll('[data-range]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
    this.draw();
   }));
-  this.addEventListener('keydown',event=>{if(event.key==='Escape')this.closeTooltip()});
-  this.addEventListener('pointerleave',()=>this.closeTooltip());
+  document.addEventListener('click',this.onDocumentClick);
+  document.addEventListener('keydown',this.onDocumentKeydown);
+  this.addEventListener('pointerleave',this.onPointerLeave);
   this.observer=new ResizeObserver(()=>this.draw());
   this.observer.observe(this);
   this.draw();
   void document.fonts.ready.then(()=>{if(this.isConnected)this.draw()});
  }
- disconnectedCallback(){this.observer?.disconnect();window.removeEventListener('evidence-filter-change',this.onEvidenceChange)}
+ disconnectedCallback(){
+  this.observer?.disconnect();
+  window.removeEventListener('evidence-filter-change',this.onEvidenceChange);
+  document.removeEventListener('click',this.onDocumentClick);
+  document.removeEventListener('keydown',this.onDocumentKeydown);
+  this.removeEventListener('pointerleave',this.onPointerLeave);
+ }
+ private unpin(){
+  this.pinnedId=undefined;
+  this.querySelectorAll('.plot-point').forEach(point=>point.setAttribute('aria-pressed','false'));
+  this.closeTooltip();
+ }
  private closeTooltip(){this.querySelector<HTMLElement>('.plot-tooltip')!.hidden=true}
  private draw(){
   const {entries,higher,limit,classic}=this.data;
@@ -126,17 +147,27 @@ class ProgressChart extends HTMLElement {
   }
   for(const entry of records){
    const px=x(entry.time),py=y(scoreValue(entry.score)),endpoint=entry.scoreRelation==='strict-upper-bound';
-   const point=svg('g',{transform:`translate(${px},${py})`,class:`plot-point ${entry.isBreakthrough?'breakthrough':entry.level}${endpoint?' endpoint':''}`,tabindex:0,role:'button','aria-label':`Player: ${entry.author}, ${this.entryLevel(entry)}. Show bound and source.`, 'data-entry-id':entry.id});
+   const point=svg('g',{transform:`translate(${px},${py})`,class:`plot-point ${entry.isBreakthrough?'breakthrough':entry.level}${endpoint?' endpoint':''}`,tabindex:0,role:'button','aria-pressed':String(this.pinnedId===entry.id),'aria-label':`Player: ${entry.author}, ${this.entryLevel(entry)}. Show bound and source.`, 'data-entry-id':entry.id});
    point.append(svg('circle',{r:13,fill:'transparent'}));
    if(entry.isBreakthrough)point.append(svg('path',{d:'M0 -9 L2.6 -3 L8.6 -2.8 L4.2 1.4 L5.3 7.3 L0 4.5 L-5.3 7.3 L-4.2 1.4 L-8.6 -2.8 L-2.6 -3 Z',class:'mark'}));
    else if(entry.level==='human-verified')point.append(svg('rect',{x:-5,y:-5,width:10,height:10,class:'mark'}));
    else if(entry.level==='lean-verified')point.append(svg('path',{d:'M 0 -7 L 7 0 L 0 7 L -7 0 Z',class:'mark'}));
    else point.append(svg('circle',{r:5.5,class:'mark'}));
    const show=()=>this.showEntry(entry,px,py,width,height);
-   point.addEventListener('pointerenter',show);point.addEventListener('focus',show);point.addEventListener('click',show);
-   point.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();show()}});
+   const preview=()=>{if(!this.pinnedId)show()};
+   const toggle=()=>{
+    if(this.pinnedId===entry.id){this.unpin();return}
+    this.pinnedId=entry.id;
+    this.querySelectorAll('.plot-point').forEach(mark=>mark.setAttribute('aria-pressed',String(mark===point)));
+    show();
+   };
+   point.addEventListener('pointerenter',preview);point.addEventListener('focus',preview);
+   point.addEventListener('click',toggle);
+   point.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();if(!event.repeat)toggle()}});
    plot.append(point);
+   if(this.pinnedId===entry.id)show();
   }
+  if(this.pinnedId&&!records.some(entry=>entry.id===this.pinnedId))this.unpin();
   state.textContent=!entries.length?'No publication dates are known for these entries. See the table for their bounds.':!records.length&&!carry?'No dated results match the selected evidence levels.':'';
  }
  private entryLevel(entry:ChartEntry){return entry.isBreakthrough?breakthroughLabel+(entry.level==='lean-verified'?' · Lean Verified':''):this.data.levels[entry.level]}
@@ -153,8 +184,11 @@ class ProgressChart extends HTMLElement {
   tooltip.append(author,bound,date,level);
   if(entry.scoreRelation==='strict-upper-bound'){const note=document.createElement('p');note.textContent='This endpoint is not attained.';tooltip.append(note)}
   tooltip.append(link);
-  tooltip.style.left=`${Math.max(4,Math.min(x+16,width-tooltip.offsetWidth-4))}px`;
-  tooltip.style.top=`${Math.max(4,Math.min(y+16,height-tooltip.offsetHeight-4))}px`;
+  const tooltipWidth=tooltip.offsetWidth,tooltipHeight=tooltip.offsetHeight;
+  const left=x+16+tooltipWidth<=width-4?x+16:x-16-tooltipWidth;
+  const top=y+16+tooltipHeight<=height-4?y+16:y-16-tooltipHeight;
+  tooltip.style.left=`${Math.max(4,Math.min(left,width-tooltipWidth-4))}px`;
+  tooltip.style.top=`${Math.max(4,Math.min(top,height-tooltipHeight-4))}px`;
  }
 }
 if(!customElements.get('progress-chart'))customElements.define('progress-chart',ProgressChart);
