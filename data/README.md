@@ -84,8 +84,11 @@ receipt and the hashed staged-source manifest. The original matrix run 381093262
 compile and no complete axiom audit was available. Controller c53eaff was reviewed
 on 2026-10-11. It applies the approved compatibility patch before hashing the
 staged dependency source. The matrix challenge and allowed axioms are unchanged.
-The new binding selects run 38110310511 at c53eaff. The receipt must contain
+Run 38110310511 also failed to compile. Review of controller 46aad1d on
+2026-10-11 found one explicit Finset type annotation added to the patch and
+classification of Invalid field compile errors; the trusted statement is unchanged.
+The current binding selects replacement run 38111181535 at 46aad1d. The receipt must contain
 `patches/harfe-770940dd-lean434.patch` and its exact SHA256
-`735fd11378e447c5e704bcfb7be8ede7214e3596a2fbb671716794afd8e18462`
+`3869c0852d564563f7d29bad972c87f032a07f8dac8300f9340106815233098e`
 in `solution_dependencies`, matching the reviewed profile. Missing or different
 patch metadata cannot admit a proof. DFT keeps its b27295a controller binding.

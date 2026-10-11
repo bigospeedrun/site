@@ -182,7 +182,7 @@ class MaintainerTests(unittest.TestCase):
         binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
         dep=binding['profile']['solution_dependencies'][0]
         self.assertEqual(dep['patch_file'],'patches/harfe-770940dd-lean434.patch')
-        self.assertEqual(dep['patch_sha256'],'735fd11378e447c5e704bcfb7be8ede7214e3596a2fbb671716794afd8e18462')
+        self.assertEqual(dep['patch_sha256'],'3869c0852d564563f7d29bad972c87f032a07f8dac8300f9340106815233098e')
         for field in ['patch_file','patch_sha256']:
             for omit in [True,False]:
                 r,a,run,b=fixture(binding=binding)
