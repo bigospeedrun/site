@@ -13,7 +13,7 @@ const unreviewed = entries.filter(({problem}) => submissionRoute(problem) === 's
 const missingStatements = entries.filter(({problem}) => !verifierProblems.has(problem.slug));
 const missingProofs = entries.filter(({problem}) => {
   const leader = ranked(boardRecords(problem), problem.direction)[0]?.record;
-  return leader && leader.evidenceLevel !== 'lean-verified';
+  return verifierProblems.has(problem.slug) && leader && leader.evidenceLevel !== 'lean-verified';
 });
 const separator = (index: number, length: number) => index === 0 ? '' : index === length - 1 ? ' and ' : ', ';
 ---
@@ -55,7 +55,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
         <p>Our verifier has no trusted Lean statement yet for {missingStatements.map(({problem, title}, index) => <>{separator(index, missingStatements.length)}<a href={'/' + problem.slug}>{title}</a></>)}. We welcome contributions for these problems.</p>
         <p>Open a pull request to <a href={verifierUrl} target="_blank" rel="noopener">bigospeedrun/verifier</a> that adds the problem under <code>challenges/</code>. Match the model on the problem page. We review the statement. Once it is merged, proofs for that problem can be submitted. Follow the <a href={verifierUrl + '/blob/main/docs/new-statements.md'} target="_blank" rel="noopener">instructions for new statements</a>.</p>
       </> : <p>Our verifier has a trusted Lean statement for every listed problem.</p>}
-      {missingProofs.length > 0 ? <p>We need Lean proofs for the current records in {missingProofs.map(({problem, title}, index) => <>{separator(index, missingProofs.length)}<a href={'/' + problem.slug}>{title}</a></>)}. These records are not Lean Verified. Submit a proof through the <a href="#submit">normal submission route</a>.</p> : <p>The current record for every listed problem is Lean Verified.</p>}
+      {missingProofs.length > 0 ? <p>We need Lean proofs for the current records in {missingProofs.map(({problem, title}, index) => <>{separator(index, missingProofs.length)}<a href={'/' + problem.slug}>{title}</a></>)}. These records are not Lean Verified. Submit a proof through the <a href="#submit">normal submission route</a>.</p> : <p>The current record for every listed problem with a trusted statement is Lean Verified.</p>}
     </details>
     <details open id="evidence-levels">
       <summary>What does each evidence level mean?</summary>
