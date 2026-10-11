@@ -160,10 +160,17 @@ class MaintainerTests(unittest.TestCase):
         for rev,blobs in [(CONFIG['reviewed_commit'],CONFIG['controller_blobs']),
                           (BINDING['controller'],CONFIG['previous_controller_blobs'][BINDING['controller']]),
                           ('a1d7bae0657d2a9f32b087d09718ea4f71c10dfa',CONFIG['previous_controller_blobs']['a1d7bae0657d2a9f32b087d09718ea4f71c10dfa']),
-                          ('ed049e9b9926929df9e20bcbc6e877ee20f41e38',CONFIG['previous_controller_blobs']['ed049e9b9926929df9e20bcbc6e877ee20f41e38'])]:
+                          ('ed049e9b9926929df9e20bcbc6e877ee20f41e38',CONFIG['previous_controller_blobs']['ed049e9b9926929df9e20bcbc6e877ee20f41e38']),
+                          ('9b4b7bfc41c37ed37787be2e98401a952475370f',CONFIG['previous_controller_blobs']['9b4b7bfc41c37ed37787be2e98401a952475370f'])]:
             self.assertIn(rev,Importer(API(blobs)).trusted(rev))
         bad=copy.deepcopy(CONFIG['controller_blobs']);bad['scripts/verifier.py']['sha']='a'*40
         with self.assertRaises(Rejected):Importer(API(bad)).trusted(CONFIG['reviewed_commit'])
+        checkpoint_revision='9b4b7bfc41c37ed37787be2e98401a952475370f'
+        for field,value in [('sha','a'*40),('mode','100755')]:
+            bad=copy.deepcopy(CONFIG['previous_controller_blobs'][checkpoint_revision])
+            bad['scripts/live_publish.py'][field]=value
+            with self.subTest(field=field),self.assertRaises(Rejected):
+                Importer(API(bad)).trusted(checkpoint_revision)
 
 
     def test_matrix_pending_binding_never_admits_without_run(self):
