@@ -1,0 +1,11 @@
+{
+  "number": 357,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/357",
+  "title": "κ = 8.03654539036015e-4: #354's staged Design T + twins on a reordered-design p10b base word (+0.064%)",
+  "body": "**Conditional κ = 160730907807203/(2·10¹⁷) ≈ 8.03654539036015e-4**, +5.17e-7 (+0.064 %) over #354 (8.03137165163490e-4).\n\nStacked on #354 (chafreaky). The complex supplier is unchanged: Sussman's E8 unit, as in #352/#354. The bit side binds.\n\nOnly the base word changes. #325's producer (as vendored in #329) is re-run with two knobs changed:\n- the local design list reordered by one transposition (`['A',0,0]` created last);\n- PLAIN = 12.\n\n#329's own discovery scripts then re-derive the stages on that word: 480 descent gates, 120 target groups, 240 restorations and 10 sinks. No kernel, as in #354. #354's Design T + twins follow unchanged, with one exception: twin keeps 470 of the 471 eligible planes, so that the residual sum stays ≡ 0 mod 5 (bank tiling).\n\n| | bit coarse c | κ |\n|---|---:|---:|\n| #354 | 160756542666561/(2·10¹⁷) | 8.03137165163490e-4 |\n| this PR | 8043009195213/10¹⁶ | 8.03654539036015e-4 |\n\nControl: the same chain on #325's original design reproduces #354's κ exactly. The #346 byte-for-byte control (step 2c) still runs, on #354's original parity word (kept as `data/parity325`).\n\nDraft: the full `verify.sh` replay is running, and I'll post the PASS line here.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TGoMCHAqctZe4wtb4qr7vv\n",
+  "created_at": "2026-10-11T02:06:59Z",
+  "updated_at": "2026-10-11T02:06:59Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
