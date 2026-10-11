@@ -286,7 +286,10 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--check-only',action='store_true');args=parser.parse_args()
     importer=Importer(GitHub());claims=importer.collect()
     now=datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
-    files=prepare(ROOT,claims,importer.files,now,importer.final_states);transaction(ROOT,files,args.check_only)
+    files=prepare(ROOT,claims,importer.files,now,importer.final_states)
+    from maintainer_import import collect_maintainer
+    files=collect_maintainer(importer,files,now)
+    transaction(ROOT,files,args.check_only)
     print(f'{now}: direct submissions: {len(claims)} rows; {len(files)} changed files; check_only={args.check_only}')
     for note in importer.notes:print(note)
 

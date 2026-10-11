@@ -42,3 +42,31 @@ sources, rather than their manuscripts or README files. The Shea claim
 receipt records that no repository-root license was found at its inspected
 commit. The arXiv source is a citation and date record, not a paper copy.
 The absence of a license copy does not place third-party material under CC0.
+
+## Maintainer verification receipts
+
+The hourly `direct_refresh.py` step also checks explicitly pinned maintainer
+runs in `direct-trust.json`. A binding fixes the existing board row, source
+repository and commit, exact score, model, trusted profile and workflow run.
+It does not discover or import arbitrary manual runs. No source code is executed.
+
+The importer checks the reviewed controller tree, GitHub workflow/run/attempt
+identity, archive digest, raw receipt, exact challenge, both named theorems,
+Lean result and permitted-axiom audit. A valid `-lean` checkpoint can raise the
+row to Lean Verified while nanoda runs. The final receipt replaces the checkpoint
+and its log archive. A real nanoda rejection removes Lean Verified; the existing
+claim remains. A resource-limited nanoda check preserves Lean Verified. Cached
+receipts are revalidated after artifact expiry; a final rejection cannot fall
+back to a late checkpoint. Test receipts are excluded.
+
+The direct and maintainer changes share one staged validation transaction. An
+error keeps the prior bundle. The workflow already treats this step as optional,
+so the integer-multiplication importer and its commit can still complete.
+
+Review on 2026-10-11: controller a1d7bae fixes test-only reporting and classifies
+located Lean compile errors. It preserves receipt identity and admission rules.
+Controller b27295a adds early/final publication to the maintainer workflow and
+registers the E8 profile. Its statement matches the prior trusted DFT statement
+after changing seven names and the saving to 8762478/10^10. The vendored statement
+hash is checked at admission. This review adds these exact controller snapshots;
+it does not approve later code changes.

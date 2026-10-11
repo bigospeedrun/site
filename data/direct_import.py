@@ -235,6 +235,11 @@ def validate_proof(submission, receipt, trust, revision, run_url):
     require(receipt.get('request') == expected, 'Receipt request mismatch')
     require(receipt.get('verifier_commit') == revision and receipt.get('run_url') == run_url, 'Receipt provenance mismatch')
     require(receipt.get('generated_challenge_sha256') == sha(challenge_bytes(submission, base)), 'Exact bound statement mismatch')
+    return validate_kernel_receipt(receipt, names)
+
+
+def validate_kernel_receipt(receipt, names):
+    """Shared Lean, permitted-axiom and advisory-kernel evidence policy."""
     require(receipt.get('theorem_names') == names and set(receipt.get('theorems', {})) == set(names), 'Missing or unexpected theorem targets')
     finished = receipt.get('finished_unix')
     require(type(finished) in (int, float), 'Missing completion timestamp')

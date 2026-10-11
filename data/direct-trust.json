@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_commit": "038a82c66eea7c09d5cf0d23808f190578b4dc11",
+  "reviewed_commit": "b27295a975ba3c086403c34d66e1d63e0dc0a0b8",
   "workflow_id": 380847968,
   "publisher_workflow_id": 380847965,
   "branch": "main",
@@ -98,7 +98,7 @@
       "mode": "100644"
     },
     ".github/workflows/verify.yml": {
-      "sha": "146755c80d556f598002ddbefc3e3b52447f796d",
+      "sha": "0f267d5f57ef2adc2f2dd0aadba52dd5caa97387",
       "mode": "100644"
     },
     ".gitignore": {
@@ -106,7 +106,7 @@
       "mode": "100644"
     },
     "AGENTS.md": {
-      "sha": "b1980af229490c70bd06d75b3a1fe88ac17dcd12",
+      "sha": "d4ace13a7478b267fc7398f51220a7f660fadaa4",
       "mode": "100644"
     },
     "LICENSE": {
@@ -118,7 +118,7 @@
       "mode": "100644"
     },
     "README.md": {
-      "sha": "febc9cb54f620f46a04e9e830ff59da7974801b7",
+      "sha": "0ed787db81db7506a3048cd76e002f5a0fa30b39",
       "mode": "100644"
     },
     "challenges/3sum-apsp/EndStatement.lean": {
@@ -137,6 +137,10 @@
       "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
       "mode": "100644"
     },
+    "challenges/dft/UniformFourierE8.lean": {
+      "sha": "3235d8621b218a5807b1e5238558d8f7c72d1489",
+      "mode": "100644"
+    },
     "docs/cache-review.md": {
       "sha": "cadfa9f7ab87e1b60e06d3440d5483b7a43214e3",
       "mode": "100644"
@@ -147,6 +151,10 @@
     },
     "docs/execution.md": {
       "sha": "49588da212929c452c312c24a359ba663b263827",
+      "mode": "100644"
+    },
+    "docs/new-statements.md": {
+      "sha": "6d3a90fce0a7e072049bac97d5adb137848543a6",
       "mode": "100644"
     },
     "docs/pr-submissions.md": {
@@ -163,6 +171,10 @@
     },
     "profiles/anthropic-tools.json": {
       "sha": "871d1e936a5419934cb83d004ca4ebeafca9c0c9",
+      "mode": "100644"
+    },
+    "profiles/dft-e8.json": {
+      "sha": "db1ce48093166e40e4734839d22257af86bd3beb",
       "mode": "100644"
     },
     "profiles/dft233.json": {
@@ -198,7 +210,7 @@
       "mode": "100644"
     },
     "scripts/pr_submissions.py": {
-      "sha": "15a160060d6bfcebadf9b7cd6856ee5edb7c2ea3",
+      "sha": "951a3219361b41b10feeb080a5123edc257a6b5f",
       "mode": "100644"
     },
     "scripts/queue_lease.py": {
@@ -210,11 +222,11 @@
       "mode": "100644"
     },
     "scripts/submissions.py": {
-      "sha": "d7ae363bebc7656dd6767a3240db1aa6903c3a49",
+      "sha": "1197afb79e8ed425aaeaac35210a7875b51b6666",
       "mode": "100644"
     },
     "scripts/verdicts.py": {
-      "sha": "22021cdc3d92d0cdfddbfead6c9a23d24a19278d",
+      "sha": "e5952e91eb63de08684268db1cb322c02bdbcf09",
       "mode": "100644"
     },
     "scripts/verifier.py": {
@@ -258,7 +270,7 @@
       "mode": "100644"
     },
     "tests/test_pr_submissions.py": {
-      "sha": "8a1e146d4b0686658eb7b4fe00c8dba97005c447",
+      "sha": "58c6a6f76b2ca7407082d8a58cbea0d7bbd798cd",
       "mode": "100644"
     },
     "tests/test_queue_security.py": {
@@ -266,11 +278,11 @@
       "mode": "100644"
     },
     "tests/test_smoke.py": {
-      "sha": "045c4dbf29a7f7e711524143011284e513b99705",
+      "sha": "07bc785233d7680d3de08a2a01b2020c2f9a369b",
       "mode": "100644"
     },
     "tests/test_submissions.py": {
-      "sha": "e63f7a293b36cdf403cee8145f31a4909160398e",
+      "sha": "309e61ff869a28e7c8e094997c04f272f1d0204a",
       "mode": "100644"
     },
     "tests/test_verifier.py": {
@@ -666,6 +678,443 @@
         "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
         "mode": "100644"
       }
+    },
+    "038a82c66eea7c09d5cf0d23808f190578b4dc11": {
+      ".github/ISSUE_TEMPLATE/lean-submission.yml": {
+        "sha": "524f03531b3e439c022e5aedbd2744d9ddabd740",
+        "mode": "100644"
+      },
+      ".github/workflows/pr-publish.yml": {
+        "sha": "8ac3ea8bfc9e4255197b0c781c66d93a0f5926fb",
+        "mode": "100644"
+      },
+      ".github/workflows/submission-check.yml": {
+        "sha": "60b8e37ecf18889ceae899c2a94305569a2719ad",
+        "mode": "100644"
+      },
+      ".github/workflows/submissions.yml": {
+        "sha": "bbfcd1a0f2cf73cd9c37f634e1d5aae3220387d6",
+        "mode": "100644"
+      },
+      ".github/workflows/verify.yml": {
+        "sha": "146755c80d556f598002ddbefc3e3b52447f796d",
+        "mode": "100644"
+      },
+      ".gitignore": {
+        "sha": "209a5554ca89b5f26b69fe761eb43a40c9bf70df",
+        "mode": "100644"
+      },
+      "AGENTS.md": {
+        "sha": "b1980af229490c70bd06d75b3a1fe88ac17dcd12",
+        "mode": "100644"
+      },
+      "LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "NOTICE": {
+        "sha": "2cb96b68c01ce9a92c39a657b3fa2f1969772310",
+        "mode": "100644"
+      },
+      "README.md": {
+        "sha": "febc9cb54f620f46a04e9e830ff59da7974801b7",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/EndStatement.lean": {
+        "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/NOTICE": {
+        "sha": "0a0dbf49888306f7d732790bbbf2ca2e75c37e6b",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourier233.lean": {
+        "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
+        "mode": "100644"
+      },
+      "docs/cache-review.md": {
+        "sha": "cadfa9f7ab87e1b60e06d3440d5483b7a43214e3",
+        "mode": "100644"
+      },
+      "docs/direct-submissions.md": {
+        "sha": "264f77ff6ee7058beeae379063f4b0400558bcfd",
+        "mode": "100644"
+      },
+      "docs/execution.md": {
+        "sha": "49588da212929c452c312c24a359ba663b263827",
+        "mode": "100644"
+      },
+      "docs/pr-submissions.md": {
+        "sha": "d48011fa4668c999b3601e4d1a13c85b4e5e7561",
+        "mode": "100644"
+      },
+      "docs/targets.md": {
+        "sha": "c9b473c7fed4d96dbb29b0fdc4ee317a4f6b58b2",
+        "mode": "100644"
+      },
+      "profiles/anthropic-lake-manifest.json": {
+        "sha": "278733a7ecc1563b8ceb70e62df049d43c6a83c6",
+        "mode": "100644"
+      },
+      "profiles/anthropic-tools.json": {
+        "sha": "871d1e936a5419934cb83d004ca4ebeafca9c0c9",
+        "mode": "100644"
+      },
+      "profiles/dft233.json": {
+        "sha": "f8062d33870db562c95991226ffbe34c5bf87516",
+        "mode": "100644"
+      },
+      "profiles/direct.json": {
+        "sha": "4a02f8a54110c61334bffe19480dd620b308c8a7",
+        "mode": "100644"
+      },
+      "profiles/lake-manifest.json": {
+        "sha": "e482097fe44d3d747b31881ad5e329786531be6a",
+        "mode": "100644"
+      },
+      "profiles/tools.json": {
+        "sha": "d42e31df496f5a429a97f4788e79f7595ba9a376",
+        "mode": "100644"
+      },
+      "scripts/CacheHashes.lean": {
+        "sha": "abbcb4b81afb1e41e2ba31e336242ce3fe6bf616",
+        "mode": "100644"
+      },
+      "scripts/inside.py": {
+        "sha": "fcfb01afe2c2ac135fdb51dd9a7184a882e82335",
+        "mode": "100644"
+      },
+      "scripts/lake-shim.c": {
+        "sha": "275782886c6fa39155508228a4809f80c8b14f20",
+        "mode": "100644"
+      },
+      "scripts/live_publish.py": {
+        "sha": "d6bec180a2ec67f45e48314ca774da84bfd511d0",
+        "mode": "100644"
+      },
+      "scripts/pr_submissions.py": {
+        "sha": "15a160060d6bfcebadf9b7cd6856ee5edb7c2ea3",
+        "mode": "100644"
+      },
+      "scripts/queue_lease.py": {
+        "sha": "67077f037a1c13724b08304f0a07fb5628af2f3d",
+        "mode": "100644"
+      },
+      "scripts/smoke.py": {
+        "sha": "e8ff960d5817b47deb6f7996a4e083c6abcecf75",
+        "mode": "100644"
+      },
+      "scripts/submissions.py": {
+        "sha": "d7ae363bebc7656dd6767a3240db1aa6903c3a49",
+        "mode": "100644"
+      },
+      "scripts/verdicts.py": {
+        "sha": "22021cdc3d92d0cdfddbfead6c9a23d24a19278d",
+        "mode": "100644"
+      },
+      "scripts/verifier.py": {
+        "sha": "90a8bcdfaa05b94446219c904e46ad170539fa36",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/dft-837dc31.json": {
+        "sha": "1300e4eb8a3eadb9076c86b9441cebdef08385a7",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/generic-envelope.json": {
+        "sha": "ad59202cea8833bc031f2f5652119c9a058c339b",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/historical-dft-receipt.json": {
+        "sha": "4662acbf1edaea188970f25b8bd187ad0c645584",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/issue-form-body.txt": {
+        "sha": "702f18518614667ab2d708527de267af2ed62e92",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-envelope.json": {
+        "sha": "2a8c5eb2673c33dc52ad71d5b4d85c5dfae302d3",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-receipt.json": {
+        "sha": "02e387f719dcb8d58e5b4f0cda9fde628bf8f862",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/prepare-report.json": {
+        "sha": "4b3956a0ccd1b5d294f436ab2a84f42980d64816",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/replayed-envelope.json": {
+        "sha": "80cd5f35a6812e88eb117019242f718beb6aa163",
+        "mode": "100644"
+      },
+      "tests/test_live_publish.py": {
+        "sha": "22c11114f150cef2aa5aa922357cbd8c906c8532",
+        "mode": "100644"
+      },
+      "tests/test_pr_submissions.py": {
+        "sha": "8a1e146d4b0686658eb7b4fe00c8dba97005c447",
+        "mode": "100644"
+      },
+      "tests/test_queue_security.py": {
+        "sha": "833c6028da5c348c89dc4769e82dde1dfd5b59b0",
+        "mode": "100644"
+      },
+      "tests/test_smoke.py": {
+        "sha": "045c4dbf29a7f7e711524143011284e513b99705",
+        "mode": "100644"
+      },
+      "tests/test_submissions.py": {
+        "sha": "e63f7a293b36cdf403cee8145f31a4909160398e",
+        "mode": "100644"
+      },
+      "tests/test_verifier.py": {
+        "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
+        "mode": "100644"
+      }
+    },
+    "a1d7bae0657d2a9f32b087d09718ea4f71c10dfa": {
+      ".github/ISSUE_TEMPLATE/lean-submission.yml": {
+        "sha": "524f03531b3e439c022e5aedbd2744d9ddabd740",
+        "mode": "100644"
+      },
+      ".github/workflows/pr-publish.yml": {
+        "sha": "8ac3ea8bfc9e4255197b0c781c66d93a0f5926fb",
+        "mode": "100644"
+      },
+      ".github/workflows/submission-check.yml": {
+        "sha": "60b8e37ecf18889ceae899c2a94305569a2719ad",
+        "mode": "100644"
+      },
+      ".github/workflows/submissions.yml": {
+        "sha": "bbfcd1a0f2cf73cd9c37f634e1d5aae3220387d6",
+        "mode": "100644"
+      },
+      ".github/workflows/verify.yml": {
+        "sha": "146755c80d556f598002ddbefc3e3b52447f796d",
+        "mode": "100644"
+      },
+      ".gitignore": {
+        "sha": "209a5554ca89b5f26b69fe761eb43a40c9bf70df",
+        "mode": "100644"
+      },
+      "AGENTS.md": {
+        "sha": "d4ace13a7478b267fc7398f51220a7f660fadaa4",
+        "mode": "100644"
+      },
+      "LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "NOTICE": {
+        "sha": "2cb96b68c01ce9a92c39a657b3fa2f1969772310",
+        "mode": "100644"
+      },
+      "README.md": {
+        "sha": "0ed787db81db7506a3048cd76e002f5a0fa30b39",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/EndStatement.lean": {
+        "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/NOTICE": {
+        "sha": "0a0dbf49888306f7d732790bbbf2ca2e75c37e6b",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourier233.lean": {
+        "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
+        "mode": "100644"
+      },
+      "docs/cache-review.md": {
+        "sha": "cadfa9f7ab87e1b60e06d3440d5483b7a43214e3",
+        "mode": "100644"
+      },
+      "docs/direct-submissions.md": {
+        "sha": "264f77ff6ee7058beeae379063f4b0400558bcfd",
+        "mode": "100644"
+      },
+      "docs/execution.md": {
+        "sha": "49588da212929c452c312c24a359ba663b263827",
+        "mode": "100644"
+      },
+      "docs/new-statements.md": {
+        "sha": "6d3a90fce0a7e072049bac97d5adb137848543a6",
+        "mode": "100644"
+      },
+      "docs/pr-submissions.md": {
+        "sha": "d48011fa4668c999b3601e4d1a13c85b4e5e7561",
+        "mode": "100644"
+      },
+      "docs/targets.md": {
+        "sha": "c9b473c7fed4d96dbb29b0fdc4ee317a4f6b58b2",
+        "mode": "100644"
+      },
+      "profiles/anthropic-lake-manifest.json": {
+        "sha": "278733a7ecc1563b8ceb70e62df049d43c6a83c6",
+        "mode": "100644"
+      },
+      "profiles/anthropic-tools.json": {
+        "sha": "871d1e936a5419934cb83d004ca4ebeafca9c0c9",
+        "mode": "100644"
+      },
+      "profiles/dft233.json": {
+        "sha": "f8062d33870db562c95991226ffbe34c5bf87516",
+        "mode": "100644"
+      },
+      "profiles/direct.json": {
+        "sha": "4a02f8a54110c61334bffe19480dd620b308c8a7",
+        "mode": "100644"
+      },
+      "profiles/lake-manifest.json": {
+        "sha": "e482097fe44d3d747b31881ad5e329786531be6a",
+        "mode": "100644"
+      },
+      "profiles/tools.json": {
+        "sha": "d42e31df496f5a429a97f4788e79f7595ba9a376",
+        "mode": "100644"
+      },
+      "scripts/CacheHashes.lean": {
+        "sha": "abbcb4b81afb1e41e2ba31e336242ce3fe6bf616",
+        "mode": "100644"
+      },
+      "scripts/inside.py": {
+        "sha": "fcfb01afe2c2ac135fdb51dd9a7184a882e82335",
+        "mode": "100644"
+      },
+      "scripts/lake-shim.c": {
+        "sha": "275782886c6fa39155508228a4809f80c8b14f20",
+        "mode": "100644"
+      },
+      "scripts/live_publish.py": {
+        "sha": "d6bec180a2ec67f45e48314ca774da84bfd511d0",
+        "mode": "100644"
+      },
+      "scripts/pr_submissions.py": {
+        "sha": "951a3219361b41b10feeb080a5123edc257a6b5f",
+        "mode": "100644"
+      },
+      "scripts/queue_lease.py": {
+        "sha": "67077f037a1c13724b08304f0a07fb5628af2f3d",
+        "mode": "100644"
+      },
+      "scripts/smoke.py": {
+        "sha": "e8ff960d5817b47deb6f7996a4e083c6abcecf75",
+        "mode": "100644"
+      },
+      "scripts/submissions.py": {
+        "sha": "1197afb79e8ed425aaeaac35210a7875b51b6666",
+        "mode": "100644"
+      },
+      "scripts/verdicts.py": {
+        "sha": "e5952e91eb63de08684268db1cb322c02bdbcf09",
+        "mode": "100644"
+      },
+      "scripts/verifier.py": {
+        "sha": "90a8bcdfaa05b94446219c904e46ad170539fa36",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/dft-837dc31.json": {
+        "sha": "1300e4eb8a3eadb9076c86b9441cebdef08385a7",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/generic-envelope.json": {
+        "sha": "ad59202cea8833bc031f2f5652119c9a058c339b",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/historical-dft-receipt.json": {
+        "sha": "4662acbf1edaea188970f25b8bd187ad0c645584",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/issue-form-body.txt": {
+        "sha": "702f18518614667ab2d708527de267af2ed62e92",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-envelope.json": {
+        "sha": "2a8c5eb2673c33dc52ad71d5b4d85c5dfae302d3",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-receipt.json": {
+        "sha": "02e387f719dcb8d58e5b4f0cda9fde628bf8f862",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/prepare-report.json": {
+        "sha": "4b3956a0ccd1b5d294f436ab2a84f42980d64816",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/replayed-envelope.json": {
+        "sha": "80cd5f35a6812e88eb117019242f718beb6aa163",
+        "mode": "100644"
+      },
+      "tests/test_live_publish.py": {
+        "sha": "22c11114f150cef2aa5aa922357cbd8c906c8532",
+        "mode": "100644"
+      },
+      "tests/test_pr_submissions.py": {
+        "sha": "58c6a6f76b2ca7407082d8a58cbea0d7bbd798cd",
+        "mode": "100644"
+      },
+      "tests/test_queue_security.py": {
+        "sha": "833c6028da5c348c89dc4769e82dde1dfd5b59b0",
+        "mode": "100644"
+      },
+      "tests/test_smoke.py": {
+        "sha": "07bc785233d7680d3de08a2a01b2020c2f9a369b",
+        "mode": "100644"
+      },
+      "tests/test_submissions.py": {
+        "sha": "309e61ff869a28e7c8e094997c04f272f1d0204a",
+        "mode": "100644"
+      },
+      "tests/test_verifier.py": {
+        "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
+        "mode": "100644"
+      }
+    }
+  },
+  "maintainer_workflow_id": 380402814,
+  "maintainer_bindings": {
+    "dft-e8": {
+      "run_id": 38106559475,
+      "controller": "b27295a975ba3c086403c34d66e1d63e0dc0a0b8",
+      "profile": {
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "challenge_file": "challenges/dft/UniformFourierE8.lean",
+        "challenge_sha256": "71db0509bf319aebee047b9a5a17b33691457e8eb5e005044b48a3b33d17735b",
+        "solution_module": "Work.FourierE8.Main",
+        "theorem_names": [
+          "OAI.PowerSaving.transform_mainE8",
+          "OAI.PowerSaving.convolution_mainE8"
+        ],
+        "source_roots": [
+          "OAI",
+          "Work",
+          "WHTCheck"
+        ],
+        "permitted_axioms": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "saving": "4381239/5000000000",
+        "model": "OpenAI.PowerSaving.DFTProgram (exact scalar/index RAM; all positive lengths)",
+        "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+      },
+      "board": "exact-dft.json",
+      "problem_id": "exact-dft/uniform-exact-arithmetic",
+      "record_id": "jacob-sussman-exact-dft-e8-2026",
+      "repo_url": "https://github.com/jacobalansussman/wht-power-saving-lean",
+      "commit": "9c94857bbaee886f8649edee0bc2d3c738f9555e",
+      "score": "4381239/5000000000",
+      "score_relation": "attained"
     }
   }
 }
