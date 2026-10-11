@@ -159,7 +159,8 @@ class MaintainerTests(unittest.TestCase):
             def json(self,*args):return {'truncated':False,'tree':[dict(path=p,type='blob',**v) for p,v in self.blobs.items()]}
         for rev,blobs in [(CONFIG['reviewed_commit'],CONFIG['controller_blobs']),
                           (BINDING['controller'],CONFIG['previous_controller_blobs'][BINDING['controller']]),
-                          ('a1d7bae0657d2a9f32b087d09718ea4f71c10dfa',CONFIG['previous_controller_blobs']['a1d7bae0657d2a9f32b087d09718ea4f71c10dfa'])]:
+                          ('a1d7bae0657d2a9f32b087d09718ea4f71c10dfa',CONFIG['previous_controller_blobs']['a1d7bae0657d2a9f32b087d09718ea4f71c10dfa']),
+                          ('ed049e9b9926929df9e20bcbc6e877ee20f41e38',CONFIG['previous_controller_blobs']['ed049e9b9926929df9e20bcbc6e877ee20f41e38'])]:
             self.assertIn(rev,Importer(API(blobs)).trusted(rev))
         bad=copy.deepcopy(CONFIG['controller_blobs']);bad['scripts/verifier.py']['sha']='a'*40
         with self.assertRaises(Rejected):Importer(API(bad)).trusted(CONFIG['reviewed_commit'])
