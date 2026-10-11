@@ -6,11 +6,11 @@ export interface FeedRecord {id:string; score:string; relation:string; evidence:
 export interface FeedBoard {slug:string; name:string; url:string; leader:string|null; records:FeedRecord[]}
 export interface FeedSnapshot {schema_version:1; boards:FeedBoard[]}
 export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]}
-export interface FeedMessage {key:string; content:string}
-export interface RecordPost {key:string; text:string; posted_at:string}
+export interface FeedMessage {key:string; content:string; x_text?:string}
+export interface RecordPost {key:string; text:string; x_text:string; posted_at:string}
 export function appendRecordPost(previous:RecordPost[],entry:FeedMessage,postedAt:string):RecordPost[] {
  if(previous.some(post=>post.key===entry.key))return previous.slice(-500);
- return [...previous,{key:entry.key,text:entry.content,posted_at:postedAt}].slice(-500);
+ return [...previous,{key:entry.key,text:entry.content,x_text:entry.x_text??entry.content,posted_at:postedAt}].slice(-500);
 }
 
 // Expand the site's scientific saving into decimal text without floating-point rounding.
@@ -48,6 +48,15 @@ export function message(board:FeedBoard,record:FeedRecord,newRecord=true):string
  const authors=clean(joined).slice(0,1000)||'Unknown author';
  return `${clean(board.name)}: ${newRecord?'new record':'record verified'} ${record.bound}. ${record.evidence}. By ${authors}. ${board.url}`;
 }
+// Count each URL as X's fixed 23 characters; count Unicode code points elsewhere.
+export function xPostLength(text:string):number {
+ return Array.from(text.replace(/https?:\/\/\S+/g,'x'.repeat(23))).length;
+}
+export function xMessage(board:FeedBoard,record:FeedRecord,newRecord=true):string {
+ const names=record.authors.map(name=>name.replace(/[\r\n\t]+/g,' ').trim());
+ const status=record.evidence==='Claimed'?'Claimed (not verified)':record.evidence;
+ return `${newRecord?'New record!':'Record verified!'}\n\nProblem: ${board.name}\n${newRecord?'New value':'Value'}: ${record.bound}\n${names.length>1?'Players':'Player'}: ${names.join(', ')||'Unknown author'}\nStatus: ${status}\n\n${board.url}`;
+}
 export function baseline(snapshot:FeedSnapshot):FeedState {
  const reserved:string[]=[];
  for(const board of snapshot.boards)for(const r of board.records)if(r.id===board.leader||r.evidence==='Lean Verified')reserved.push(eventKey(board,r));
@@ -63,7 +72,7 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot):{state:FeedState;
    const newLeader=record.id===board.leader&&(!oldLeader||identity(old!,oldLeader)!==identity(board,record));
    const gainedLean=record.evidence==='Lean Verified'&&prior?.evidence!=='Lean Verified';
    const key=eventKey(board,record);
-   if((newLeader||gainedLean)&&!reserved.has(key)){reserved.add(key);messages.push({key,content:message(board,record,newLeader)});}
+   if((newLeader||gainedLean)&&!reserved.has(key)){reserved.add(key);messages.push({key,content:message(board,record,newLeader),x_text:xMessage(board,record,newLeader)});}
   }
  }
  return {state:{schema_version:1,snapshot,reserved:[...reserved]},messages};

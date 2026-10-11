@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost} from './records-feed.ts';
+import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength} from './records-feed.ts';
 import type {FeedSnapshot,FeedBoard,FeedRecord} from './records-feed.ts';
 const row=(id='a',evidence='Claimed',score='1/1000'):FeedRecord=>({id,evidence,score,relation:'attained',authors:['Alice'],bound:plainBound('exact-dft',score)});
 const board=(records=[row()],leader='a'):FeedBoard=>({slug:'exact-dft',name:'Fourier Transform',url:'https://bigospeedrun.com/exact-dft',leader,records});
@@ -73,8 +73,8 @@ test('only Discord-accepted messages enter the log, before the next send',async(
   posts=appendRecordPost(posts,entry,'2026-10-11T17:00:00.000Z');
  });
  assert.deepEqual(result,{sent:2,failed:2});
- assert.deepEqual(posts,[{key:'a',text:messages[0].content,posted_at:'2026-10-11T17:00:00.000Z'},
-  {key:'d',text:'Last accepted.',posted_at:'2026-10-11T17:00:00.000Z'}]);
+ assert.deepEqual(posts,[{key:'a',text:messages[0].content,x_text:messages[0].content,posted_at:'2026-10-11T17:00:00.000Z'},
+  {key:'d',text:'Last accepted.',x_text:'Last accepted.',posted_at:'2026-10-11T17:00:00.000Z'}]);
 });
 
 test('record post log keeps the newest 500 exact texts and deduplicates keys',()=>{
@@ -106,7 +106,8 @@ test('send CLI persists accepted posts even when another Discord send fails',asy
   mkdirSync(join(root,'data'));
   writeFileSync(join(root,'data/records-posts.json'),'[]\n');
   const content='Exact Discord punctuation. https://bigospeedrun.com/exact-dft';
-  writeFileSync(join(root,'batch.json'),JSON.stringify([{key:'accepted',content},{key:'failed',content:'Not posted'}]));
+  const xText=xMessage(board(),{...row(),bound:'O(n^0.'+'1'.repeat(300)+')'});
+  writeFileSync(join(root,'batch.json'),JSON.stringify([{key:'accepted',content,x_text:xText},{key:'failed',content:'Not posted'}]));
   const script=new URL('../../scripts/discord-records.ts',import.meta.url).href;
   const code=`process.chdir(${JSON.stringify(root)});process.argv=['node','script','send','batch.json'];let calls=0;globalThis.fetch=async()=>new Response('',{status:++calls===1?200:500});await import(${JSON.stringify(script)});`;
   const result=spawnSync(process.execPath,['--experimental-strip-types','--input-type=module','-e',code],
@@ -115,6 +116,40 @@ test('send CLI persists accepted posts even when another Discord send fails',asy
   assert.match(result.stdout,/1 sent, 1 failed/);
   const posts=JSON.parse(readFileSync(join(root,'data/records-posts.json'),'utf8'));
   assert.equal(posts.length,1);assert.equal(posts[0].key,'accepted');assert.equal(posts[0].text,content);
+  assert.equal(posts[0].x_text,xText);assert.match(result.stderr,/X post exceeds 280 characters/);
   assert.equal(new Date(posts[0].posted_at).toISOString(),posts[0].posted_at);
  }finally{rmSync(root,{recursive:true,force:true});}
+});
+
+
+test('X new-record wording matches the approved template and preserves Discord text',()=>{
+ const b={...board(),name:'Integer Multiplication',url:'https://bigospeedrun.com/integer-multiplication'};
+ const r={...row(),authors:['sreekanth nair'],bound:'O(n log^(1 - 0.00137255015936798) n)'};
+ const text=xMessage(b,r);
+ assert.equal(text,'New record!\n\nProblem: Integer Multiplication\nNew value: O(n log^(1 - 0.00137255015936798) n)\nPlayer: sreekanth nair\nStatus: Claimed (not verified)\n\nhttps://bigospeedrun.com/integer-multiplication');
+ assert.ok(xPostLength(text)<=280);
+ const planned=plan(baseline({schema_version:1,boards:[]}),snapshot({...b,records:[r]})).messages[0];
+ assert.equal(planned.content,message(b,r));assert.equal(planned.x_text,text);
+ const saved=appendRecordPost([],planned,'2026-10-11T00:00:00.000Z')[0];
+ assert.equal(saved.text,message(b,r));assert.equal(saved.x_text,text);
+});
+
+test('X verified posts use Value, the site evidence label, and comma-separated Players',()=>{
+ const r={...row('a','Lean Verified'),authors:['Alice','Bob','Carol']};
+ const text=xMessage(board(),r,false);
+ assert.equal(text,`Record verified!\n\nProblem: Fourier Transform\nValue: ${r.bound}\nPlayers: Alice, Bob, Carol\nStatus: Lean Verified\n\nhttps://bigospeedrun.com/exact-dft`);
+ assert.match(xMessage(board(),{...r,evidence:'Human Verified'},false),/Status: Human Verified/);
+ const upgrade=plan(baseline(snapshot()),snapshot(board([r]))).messages[0];
+ assert.equal(upgrade.x_text,text);assert.equal(upgrade.content,message(board(),r,false));
+ assert.ok(xPostLength(text)<=280);
+});
+
+test('X length counts URLs as 23 and retains oversized bounds for review',t=>{
+ assert.equal(xPostLength('https://bigospeedrun.com/integer-multiplication'),23);
+ assert.equal(xPostLength('A https://bigospeedrun.com/exact-dft B'),27);
+ assert.equal(xPostLength('x'.repeat(257)+'https://example.com'),280);
+ const bound='O(n log^(1 - 0.'+'1'.repeat(300)+') n)';
+ const text=xMessage(board(),{...row(),bound});
+ assert.ok(text.includes(bound));assert.ok(xPostLength(text)>280);
+ t.diagnostic(`Oversized bound fixture: ${xPostLength(text)} characters; kept in full for manual review.`);
 });

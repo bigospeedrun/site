@@ -1,5 +1,5 @@
 import {readFileSync,writeFileSync,existsSync,renameSync} from 'node:fs';
-import {baseline,plan,deliver,appendRecordPost} from '../src/lib/records-feed.ts';
+import {baseline,plan,deliver,appendRecordPost,xPostLength} from '../src/lib/records-feed.ts';
 import type {FeedSnapshot,FeedState,FeedMessage,RecordPost} from '../src/lib/records-feed.ts';
 const statePath='data/discord-records.json';
 const postsPath='data/records-posts.json';
@@ -10,6 +10,10 @@ async function main(){
  if(mode==='send'){
   if(!batch||!existsSync(batch)){console.log('No reserved Discord batch.');return;}
   const messages:FeedMessage[]=read(batch);
+  for(const entry of messages){
+   const length=xPostLength(entry.x_text??entry.content);
+   if(length>280)console.warn(`X post exceeds 280 characters (${length}): ${entry.key}; full text retained.`);
+  }
   let posts:RecordPost[]=existsSync(postsPath)?read(postsPath):[];
   const result=await deliver(process.env.DISCORD_RECORDS_WEBHOOK??'',messages,fetch,entry=>{
    posts=appendRecordPost(posts,entry,new Date().toISOString());
