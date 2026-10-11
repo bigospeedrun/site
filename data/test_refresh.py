@@ -50,7 +50,9 @@ class RefreshTests(unittest.TestCase):
                         self.assertFalse(problem['record_metadata'][r['id']]['eligible_for_record'])
     def test_refresh_in_standalone_and_nested_repositories(self):
         source=refresh.ROOT
-        tracked=subprocess.check_output(['git','ls-files'],cwd=source,text=True).splitlines()
+        # Hourly imports create receipt files before this test and before commit.
+        # Copy those files too, because current board JSON already references them.
+        tracked=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard'],cwd=source,text=True).splitlines()
         def api(path):
             repo='/'.join(path.split('/')[1:3]);suffix='__head.json' if '/commits/' in path else '__repo.json'
             return refresh.load(source,'sources/'+repo.replace('/','__')+suffix)

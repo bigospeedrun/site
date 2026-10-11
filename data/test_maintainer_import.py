@@ -205,24 +205,37 @@ class MaintainerTests(unittest.TestCase):
         self.assertEqual(row['evidence']['theorem'],'OAI.MatrixMultiplication.complex_omega_le_nine_quarters')
 
     def test_failed_matrix_audit_does_not_block_valid_dft(self):
-        config=copy.deepcopy(CONFIG);config['maintainer_bindings']['matrix-nine-fourths']['run_id']=123456
-        dft=fixture('final');matrix=fixture('final',binding=config['maintainer_bindings']['matrix-nine-fourths'])
-        matrix[0]['axiom_audit'].update(status='not_completed_or_rejected',reported_axioms={})
-        items={x[2]['id']:(x,pack(x[0],x[1])) for x in [dft,matrix]}
-        def pages(path,**kwargs):
-            return [items[int(path.split('/')[-2])][0][1]]
-        api=SimpleNamespace(pages=pages)
-        importer=SimpleNamespace(root=ROOT,config=config,api=api,notes=[],trusted=lambda _:None,
-            run=lambda run_id:items[run_id][0][2],
-            artifact=lambda artifact:items[artifact['workflow_run']['id']][1])
-        files=collect_maintainer(importer,{},NOW)
-        self.assertIn('exact-dft.json',files)
-        self.assertNotIn('matrix-multiplication.json',files)
-        self.assertEqual(json.loads(files[STATE])['entries']['dft-e8']['verdict']['decision'],'lean-verified')
-        self.assertTrue(any('matrix-nine-fourths: receipt not admitted' in note for note in importer.notes))
-        # Binding order must not change isolation or erase the other receipt state.
-        importer.config['maintainer_bindings']=dict(reversed(list(config['maintainer_bindings'].items())))
-        self.assertEqual(collect_maintainer(importer,{},NOW),files)
+        # Use a private pre-import snapshot, not a production receipt cache.
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            for name in ['exact-dft.json','matrix-multiplication.json','registry.json']:
+                (root/name).write_bytes((ROOT/name).read_bytes())
+            (root/'direct-fixtures').mkdir()
+            for name in ['UniformFourierE8.lean','MatrixMultiplication.lean']:
+                (root/'direct-fixtures'/name).write_bytes((ROOT/'direct-fixtures'/name).read_bytes())
+            doc=json.loads((root/'exact-dft.json').read_text())
+            row=next(r for r in doc['records'] if r['id']==BINDING['record_id'])
+            row['tier']=doc['record_metadata'][row['id']]['site_tier']='claimed'
+            row.pop('rerun_status',None)
+            (root/'exact-dft.json').write_bytes(encode(doc))
+            config=copy.deepcopy(CONFIG);config['maintainer_bindings']['matrix-nine-fourths']['run_id']=123456
+            dft=fixture('final');matrix=fixture('final',binding=config['maintainer_bindings']['matrix-nine-fourths'])
+            matrix[0]['axiom_audit'].update(status='not_completed_or_rejected',reported_axioms={})
+            items={x[2]['id']:(x,pack(x[0],x[1])) for x in [dft,matrix]}
+            def pages(path,**kwargs):
+                return [items[int(path.split('/')[-2])][0][1]]
+            api=SimpleNamespace(pages=pages)
+            importer=SimpleNamespace(root=root,config=config,api=api,notes=[],trusted=lambda _:None,
+                run=lambda run_id:items[run_id][0][2],
+                artifact=lambda artifact:items[artifact['workflow_run']['id']][1])
+            files=collect_maintainer(importer,{},NOW)
+            self.assertIn('exact-dft.json',files)
+            self.assertNotIn('matrix-multiplication.json',files)
+            self.assertEqual(json.loads(files[STATE])['entries']['dft-e8']['verdict']['decision'],'lean-verified')
+            self.assertTrue(any('matrix-nine-fourths: receipt not admitted' in note for note in importer.notes))
+            # Binding order must not change isolation or erase the other receipt state.
+            importer.config['maintainer_bindings']=dict(reversed(list(config['maintainer_bindings'].items())))
+            self.assertEqual(collect_maintainer(importer,{},NOW),files)
 
     def test_transaction_cache_expiry_and_repeat(self):
         with tempfile.TemporaryDirectory() as temporary:
