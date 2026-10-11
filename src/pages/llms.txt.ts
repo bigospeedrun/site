@@ -18,6 +18,7 @@ ${problemLinks.map(([slug,title])=>`- [${title}](${siteOrigin}/${slug}): bounds,
 
 ${breakthroughLabel}: ${breakthroughDefinition}
 
+- [How do I start?](${siteOrigin}/about#get-started): choose a problem and check the latest updates.
 - [Submit a result](${siteOrigin}/about#submit): start here to find the submission route for each problem and the full instructions.
 - [About and evidence levels](${siteOrigin}/about#evidence-levels): evidence definitions.
 - [Structured data](${siteOrigin}/chat-knowledge.json): update times, page text, evidence definitions, current leaders overall and by evidence level, their assumptions and sources, and repository submission links. This file does not contain the full record history.
