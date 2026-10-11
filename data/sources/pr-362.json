@@ -1,0 +1,11 @@
+{
+  "number": 362,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/362",
+  "title": "κ = 8.04849251275843e-4: #359's post-Design-T kernel/retime/reorders on our reordered-design base (+0.068%)",
+  "body": "**Conditional κ = 804849251275843/10¹⁸ ≈ 8.04849251275843e-4**, +5.46e-7 (+0.068 %) over #359 (8.04303459176812e-4).\n\nStacked on #359 (chafreaky). The complex supplier is unchanged: Sussman's E8 unit. The bit side binds.\n\nThis composes two independent gains:\n- **our #357:** #325's producer with the design list reordered and PLAIN = 12, #329's stages re-derived on that word, then Design T + twins (470 twins);\n- **chafreaky's #359:** the post-Design-T stages, re-derived on that Design T word with #359's own discovery tools.\n\n| stage | this PR | #359 |\n|---|---|---|\n| shared-donor kernel | 335 entries, rank 440, φ −403.88 | 323, 435, −386.03 |\n| retiming | 93 gates, φ −48.79 | 47, −49.68 |\n| reorders | 130 + 2 (φ −296.89, −5.55), then 0 | 130 + 2 |\n\nEvery stage passes `stagelib.full_check` (legality, exact frames and nondegeneracy, formal F2 of every column, source spans). The bit coarse saving comes from both engines, and #315's outer assembly gives 47 strict constraints, all positive.\n\nDraft: the full `verify.sh` replay is running, and I'll post the PASS line here.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TGoMCHAqctZe4wtb4qr7vv\n",
+  "created_at": "2026-10-11T02:56:55Z",
+  "updated_at": "2026-10-11T03:07:41Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
