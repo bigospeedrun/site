@@ -17,7 +17,7 @@
     "minimum": "0",
     "maximum": "2"
   },
-  "checked_at": "2026-10-10",
+  "checked_at": "2026-10-11",
   "sources": [
     {
       "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
@@ -251,6 +251,42 @@
         "certificate_path": null
       },
       "dependencies": []
+    },
+    {
+      "id": "direct-issue-4",
+      "kind": "improvement",
+      "score": "981/500",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-11T21:07:40Z",
+      "spec_version": "1",
+      "title": "c0ldzy17 direct 3sum submission",
+      "authors": [
+        {
+          "name": "c0ldzy17",
+          "url": "https://github.com/c0ldzy17"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/4",
+      "source_commit": "2b639655e07421b9ac743de9090459bab473a7c0",
+      "artifact": {
+        "path": "sources/direct-issue-4-submission.json",
+        "sha256": "abd7f873e2aca46c8cf166a4ae93526336d630001f6bed39560eb536dbfd515f"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/4",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-11T21:07:40Z",
+      "site_observed_at": "2026-10-11T21:19:01Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/c0ldzy17/three-sum-lean/blob/2b639655e07421b9ac743de9090459bab473a7c0/Submission.lean"
+      }
     }
   ],
   "record_metadata": {
@@ -350,7 +386,24 @@
       "credits": "Jihoon Hyun (qawbecrdtey); source credits Claude Fable 5.1 and Claude Opus 5.5 for implementation under his direction, and Alman and Vassilevska Williams for the underlying algorithms and framework.",
       "license_status": "Apache-2.0; LICENSE and NOTICE retained",
       "notes_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
+    },
+    "direct-issue-4": {
+      "checked_at": "2026-10-11",
+      "source_url": "https://github.com/c0ldzy17/three-sum-lean/blob/2b639655e07421b9ac743de9090459bab473a7c0/Submission.lean",
+      "repo": "c0ldzy17/three-sum-lean",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sum/word-ram/v1",
+      "publication_date": "2026-10-11T21:07:40Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/4",
+      "direct_submission": true,
+      "route": "issue"
     }
   },
-  "updated_at": "2026-10-10T12:06:44Z"
+  "updated_at": "2026-10-11T21:19:01Z"
 }

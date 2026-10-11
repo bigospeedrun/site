@@ -1,0 +1,11 @@
+{
+  "number": 495,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/495",
+  "title": "Add combined E8 witness at κ = 0.001307044366925301",
+  "body": "## Change and mathematical scope\n\nCombine the four-replica R705 bit supplier and the retimed eight-replica R560 complex supplier. The exact composition gives **κ = 0.001307044366925301**, **80.637878% above pinned main** (`12a4934`). This is an exponent-saving comparison, not a measured runtime gain.\n\nThe bound is conditional. In addition to main's framework, it uses the pending mutable-target, whole-call idle-hosting, and Gaussian-adapter interfaces. All-size compilation, complete-cover execution, restored-work and ordinary-leaf contracts, bad-class portability, and analytic transfer remain assumptions. The proof gives six exact bootstrap steps and sequential finite-cutoff existence; it does not certify complete numerical cutoffs.\n\nThe package contains fixed witness data, a concise proof, source attribution, offline reconstruction and independent arithmetic checks, plus one Makefile target and CI workflow. Main's selected-result record stays unchanged. The supplier lineage includes #458, #462 and #467; source pins and OpenAI Codex assistance are recorded in `NOTICE`.\n\n## Validation\n\n- `make e8-combined-verify` passed locally and [on Linux with Python 3.11 and 3.14](https://github.com/aliromman/integer-mult-bounds/actions/runs/38172405255): both words, geometry, phases, owners, costs, all 47 strict inequalities, and certificate agreement.\n- Independent supplier audits and a separate rational moment calculation passed. Corruption controls rejected altered witnesses.\n- `make selected-record-check` and the complete staged `git diff --check` passed.\n- Sixteen of seventeen existing repository verification groups passed, with GCC/Boost retries for macOS tooling. `verify-joint` fails its stored source-hash check (`AssertionError: Makefile`) on unchanged main at `12a4934`.\n",
+  "created_at": "2026-10-11T20:44:01Z",
+  "updated_at": "2026-10-11T20:44:01Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
