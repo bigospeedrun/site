@@ -52,7 +52,8 @@ def pack(receipt, artifact, damage=False, source_manifest=None):
     if receipt['profile'].get('solution_dependencies'):
         manifest = source_manifest if source_manifest is not None else {
             receipt['profile']['solution_module'].replace('.', '/')+'.lean':sha(b'synthetic main'),
-            'FixedPointTheorems/brouwer.lean':sha(b'synthetic dependency')}
+            'FixedPointTheorems/brouwer.lean':sha(b'synthetic dependency'),
+            'FixedPointTheorems.lean':sha(b'synthetic root module')}
         logs['source-sha256.json']=encode(manifest)
     receipt['artifact_sha256']={n:sha(raw) for n,raw in logs.items()}
     if damage: logs['lean.log']=b'changed'
@@ -187,6 +188,26 @@ class MaintainerTests(unittest.TestCase):
         self.assertEqual(row['authors'],old['authors']);self.assertEqual(row['score'],'9/4')
         self.assertEqual(row['submitted_at'],old['submitted_at'])
         self.assertEqual(row['evidence']['theorem'],'OAI.MatrixMultiplication.complex_omega_le_nine_quarters')
+
+    def test_failed_matrix_audit_does_not_block_valid_dft(self):
+        config=copy.deepcopy(CONFIG);config['maintainer_bindings']['matrix-nine-fourths']['run_id']=123456
+        dft=fixture('final');matrix=fixture('final',binding=config['maintainer_bindings']['matrix-nine-fourths'])
+        matrix[0]['axiom_audit'].update(status='not_completed_or_rejected',reported_axioms={})
+        items={x[2]['id']:(x,pack(x[0],x[1])) for x in [dft,matrix]}
+        def pages(path,**kwargs):
+            return [items[int(path.split('/')[-2])][0][1]]
+        api=SimpleNamespace(pages=pages)
+        importer=SimpleNamespace(root=ROOT,config=config,api=api,notes=[],trusted=lambda _:None,
+            run=lambda run_id:items[run_id][0][2],
+            artifact=lambda artifact:items[artifact['workflow_run']['id']][1])
+        files=collect_maintainer(importer,{},NOW)
+        self.assertIn('exact-dft.json',files)
+        self.assertNotIn('matrix-multiplication.json',files)
+        self.assertEqual(json.loads(files[STATE])['entries']['dft-e8']['verdict']['decision'],'lean-verified')
+        self.assertTrue(any('matrix-nine-fourths: receipt not admitted' in note for note in importer.notes))
+        # Binding order must not change isolation or erase the other receipt state.
+        importer.config['maintainer_bindings']=dict(reversed(list(config['maintainer_bindings'].items())))
+        self.assertEqual(collect_maintainer(importer,{},NOW),files)
 
     def test_transaction_cache_expiry_and_repeat(self):
         with tempfile.TemporaryDirectory() as temporary:

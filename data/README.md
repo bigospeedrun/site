@@ -60,7 +60,8 @@ receipts are revalidated after artifact expiry; a final rejection cannot fall
 back to a late checkpoint. Test receipts are excluded.
 
 The direct and maintainer changes share one staged validation transaction. An
-error keeps the prior bundle. The workflow already treats this step as optional,
+invalid maintainer receipt retains that binding’s prior evidence and does not
+block another binding. A transaction validation error keeps the prior bundle. The workflow already treats this step as optional,
 so the integer-multiplication importer and its commit can still complete.
 
 Review on 2026-10-11: controller a1d7bae fixes test-only reporting and classifies

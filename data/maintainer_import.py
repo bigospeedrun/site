@@ -7,8 +7,9 @@ The final receipt supersedes its Lean checkpoint, including after artifact expir
 import copy
 import json
 import re
+import zipfile
 from pathlib import Path
-from direct_import import (REPOSITORY, require, sha, read_json, is_test_submission,
+from direct_import import (REPOSITORY, Rejected, require, sha, read_json, is_test_submission,
                            validate_kernel_receipt, canonical)
 from direct_pr import PREFIX, archive_members
 
@@ -77,7 +78,7 @@ def validate_maintainer(raw, artifact, run, binding, config, statement):
         require(isinstance(sources, dict) and bool(sources), 'Empty staged-source manifest')
         roots = profile['source_roots'] + [root for dep in dependencies for root in dep['source_roots']]
         require(all(re.fullmatch(r'(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean', path)
-                    and path.split('/')[0] in roots and isinstance(digest, str)
+                    and path.split('/')[0].removesuffix('.lean') in roots and isinstance(digest, str)
                     and re.fullmatch('[0-9a-f]{64}', digest) for path, digest in sources.items()),
                 'Invalid staged-source hashes')
         require(profile['solution_module'].replace('.', '/')+'.lean' in sources, 'Missing solution module hash')
@@ -123,11 +124,23 @@ def choose_receipt(cached, candidates):
 
 
 def collect_maintainer(importer, files, now):
+    """One invalid receipt must not prevent another board's valid update."""
+    for key, binding in importer.config.get('maintainer_bindings', {}).items():
+        isolated = copy.copy(importer)
+        isolated.config = dict(importer.config, maintainer_bindings={key: binding})
+        try:
+            files = _collect_maintainer(isolated, dict(files), now)
+        except (Rejected, KeyError, TypeError, ValueError, zipfile.BadZipFile) as error:
+            importer.notes.append(f'Maintainer {key}: receipt not admitted; prior evidence retained: {error}')
+    return files
+
+
+def _collect_maintainer(importer, files, now):
     root, config = importer.root, importer.config
     if not config.get('maintainer_bindings'):
         return files
     state_path = root/STATE
-    state = read_json(state_path.read_bytes()) if state_path.exists() else dict(schema_version=1, entries={})
+    state = read_json(files[STATE]) if STATE in files else read_json(state_path.read_bytes()) if state_path.exists() else dict(schema_version=1, entries={})
     for key, binding in config['maintainer_bindings'].items():
         if binding.get('run_id') is None:
             importer.notes.append(f'Maintainer {key}: awaiting a reviewed run ID; no import attempted')
