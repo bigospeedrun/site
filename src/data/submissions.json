@@ -4837,11 +4837,11 @@
       "pr_number": 275,
       "author": "lydakis",
       "author_url": "https://github.com/lydakis",
-      "title": "Weighted gen5b matching and independent retimed E8 component verification",
+      "title": "Exact bank optimization, weighted matching, and E8 verification",
       "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/275",
       "submitted_at": "2026-10-10T04:17:25Z",
-      "updated_at": "2026-10-11T07:09:49Z",
-      "source_commit": "b1372b602ff22e796b73211a7bacc4acd9afa8f3",
+      "updated_at": "2026-10-11T10:11:21Z",
+      "source_commit": "615a38a62361e0d47542b3fc122f3a18bc6968e2",
       "upstream_status": "open",
       "upstream_status_at": "2026-10-10T04:17:25Z",
       "checked_at": "2026-10-11",
@@ -6619,15 +6619,15 @@
       "pr_number": 376,
       "author": "applecrusher",
       "author_url": "https://github.com/applecrusher",
-      "title": "Conditional κ = 0.0010136047711928194: E8 response-subspace composition",
+      "title": "Conditional κ = 0.0010166669602067516: E8 shared donors, target re-synthesis and signed nine-stage bit",
       "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/376",
       "submitted_at": "2026-10-11T05:44:01Z",
-      "updated_at": "2026-10-11T09:49:06Z",
-      "source_commit": "d2ca9838c1d4438c54daf1792a3cec994f58c725",
+      "updated_at": "2026-10-11T10:08:43Z",
+      "source_commit": "fb4caba8d3f247d79e387eff8b28799df283f24e",
       "upstream_status": "open",
       "upstream_status_at": "2026-10-11T05:44:01Z",
       "checked_at": "2026-10-11",
-      "claimed_score": "5068023855964097/5000000000000000000",
+      "claimed_score": "2541667400516879/2500000000000000000",
       "record_ids": [
         "crocswap-pr-376"
       ],
@@ -7210,7 +7210,7 @@
       "title": "Conditional kappa 0.001017250500928266: ordered sequential entrance gauges",
       "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/409",
       "submitted_at": "2026-10-11T09:41:27Z",
-      "updated_at": "2026-10-11T09:46:16Z",
+      "updated_at": "2026-10-11T10:09:17Z",
       "source_commit": "212e03d7665d08fc6a037d3e33612cb7fc60874d",
       "upstream_status": "open",
       "upstream_status_at": "2026-10-11T09:41:27Z",
@@ -7218,6 +7218,78 @@
       "claimed_score": "508625250464133/500000000000000000",
       "record_ids": [
         "crocswap-pr-409"
+      ],
+      "note": null
+    },
+    {
+      "pr_number": 410,
+      "author": "eumemic",
+      "author_url": "https://github.com/eumemic",
+      "title": "κ = 1.017562145187818e-3: enlarged entrance spaces with sequential donor promotion",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/410",
+      "submitted_at": "2026-10-11T09:57:46Z",
+      "updated_at": "2026-10-11T09:57:46Z",
+      "source_commit": "95ad14d5359d62a89e7bb06eb59b68029e77fb6f",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-11T09:57:46Z",
+      "checked_at": "2026-10-11",
+      "claimed_score": "508781072593909/500000000000000000",
+      "record_ids": [
+        "crocswap-pr-410"
+      ],
+      "note": null
+    },
+    {
+      "pr_number": 411,
+      "author": "eumemic",
+      "author_url": "https://github.com/eumemic",
+      "title": "κ = 1.017629458064773e-3: exact target-prefix resynthesis on sequential206",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/411",
+      "submitted_at": "2026-10-11T10:02:50Z",
+      "updated_at": "2026-10-11T10:02:50Z",
+      "source_commit": "f58d95f2c5da03445e704ea9c72cc55df9e68190",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-11T10:02:50Z",
+      "checked_at": "2026-10-11",
+      "claimed_score": "1017629458064773/1000000000000000000",
+      "record_ids": [
+        "crocswap-pr-411"
+      ],
+      "note": null
+    },
+    {
+      "pr_number": 412,
+      "author": "chafreaky",
+      "author_url": "https://github.com/chafreaky",
+      "title": "Conditional κ = 1.017776060460931·10⁻³: checker-clean composition of sequential and enlarged entrance gauges with re-pivoting and padding fusion (+1.47·10⁻⁷ over #411; #406/#408–#410 fail gx E4)",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/412",
+      "submitted_at": "2026-10-11T10:11:42Z",
+      "updated_at": "2026-10-11T10:11:42Z",
+      "source_commit": "616d9d678c00d79693b869934464003ba5b8d1b1",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-11T10:11:42Z",
+      "checked_at": "2026-10-11",
+      "claimed_score": "1017776060460931/1000000000000000000",
+      "record_ids": [
+        "crocswap-pr-412"
+      ],
+      "note": null
+    },
+    {
+      "pr_number": 413,
+      "author": "rohanarun",
+      "author_url": "https://github.com/rohanarun",
+      "title": "Candidate conditional kappa 0.001017671197486403: enlarged entrance spaces",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/413",
+      "submitted_at": "2026-10-11T10:12:36Z",
+      "updated_at": "2026-10-11T10:14:31Z",
+      "source_commit": "cacb1f486a2ef5a184829b7f4d0cc4e357b47001",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-11T10:12:36Z",
+      "checked_at": "2026-10-11",
+      "claimed_score": "1017671197486403/1000000000000000000",
+      "record_ids": [
+        "crocswap-pr-413"
       ],
       "note": null
     }
