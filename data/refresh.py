@@ -8,7 +8,7 @@ from github_read import api, pages, content
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
-IMPORTER_VERSION = 2
+IMPORTER_VERSION = 3
 
 def dump(root, path, data):
     p = root / path
@@ -155,6 +155,13 @@ def refresh(stage, now):
             listing['checked_at']=day
             path=listing['manifest_source']['path'];manifest=load(stage,path)
             manifest['rules_url']=f"https://github.com/{listing['repo']}/blob/{heads[listing['repo']]['sha']}/"+('CONTRIBUTING.md' if listing['repo']==CROC else 'README.md')
+            # A related listing can pin the same adapter manifest. Do not change
+            # its bytes underneath that listing's independently pinned revision.
+            shared=any(other is not listing and other.get('manifest_source') and
+                       other['manifest_source']['path']==path for other in reg['repositories'])
+            if shared and manifest!=load(stage,path):
+                path='manifests/'+listing['repo'].replace('/','--')+'--'+heads[listing['repo']]['sha']+'.json'
+                listing['manifest_source']['path']=path
             dump(stage,path,manifest);listing['rules_url']=manifest['rules_url'];listing['manifest_source']['revision']='sha256:'+artifact(stage,path)['sha256']
     dump(stage,'registry.json',reg)
     dump(stage,'sources/intake.json',dict(checked_at=day,assembled_at=now,pulls_source=f'https://api.github.com/repos/{CROC}/pulls',count=len(pulls),fingerprint=fingerprint))

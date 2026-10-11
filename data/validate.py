@@ -19,7 +19,7 @@ registry=load('registry.json');validate(registry,load('schemas/registry-v1.json'
 for listing in registry['repositories']:
  manifest=listing['manifest_source']
  if manifest:
-  raw=safe_path(manifest['path']).read_bytes();assert manifest['revision']=='sha256:'+hashlib.sha256(raw).hexdigest()
+  raw=safe_path(manifest['path']).read_bytes();assert manifest['revision']=='sha256:'+hashlib.sha256(raw).hexdigest(), f"Manifest hash mismatch: {listing['repo']} ({manifest['path']})"
   validate(json.loads(raw),load('schemas/manifest-v1.json'))
 for stem in ['submissions','chart-cross-check']:validate(load(stem+'.json'),load('schemas/'+stem+'-v1.json'))
 print('Checked',registry['checked_at'])

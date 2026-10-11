@@ -26,6 +26,8 @@ class RefreshTests(unittest.TestCase):
             def api(path):
                 repo='/'.join(path.split('/')[1:3]);suffix='__head.json' if '/commits/' in path else '__repo.json'
                 result=refresh.load(stage,'sources/'+repo.replace('/','__')+suffix)
+                if '/commits/' in path and repo==refresh.SWAP:
+                    result['sha']='a'*40  # New upstream HEAD changes the shared manifest.
                 if '/commits/' in path:
                     result.setdefault('files', []).append({'filename':'fixture.txt','patch':'unused diff text'})
                 return result
@@ -34,9 +36,27 @@ class RefreshTests(unittest.TestCase):
                 if path=='certificates/selected-result.json':return (stage/f'sources/crocswap-selected-{sha}.json').read_bytes()
                 return (stage/f'sources/crocswap-certificate-{sha}.json').read_bytes()
             intake=refresh.load(stage,'sources/intake.json');intake.pop('fingerprint',None);refresh.dump(stage,'sources/intake.json',intake)
+            registry=refresh.load(stage,'registry.json')
+            swap=next(r for r in registry['repositories'] if r['repo']==refresh.SWAP)
+            # Explicit fixture: a second listing pins this same source, regardless
+            # of whether the live registry retains its historical alias.
+            alias=json.loads(json.dumps(swap));alias['repo']='fixture/shared-manifest'
+            registry['repositories'].append(alias);refresh.dump(stage,'registry.json',registry)
+            pinned=dict(alias['manifest_source']);pinned_bytes=(stage/pinned['path']).read_bytes()
             pulls=refresh.load(stage,'sources/crocswap-pulls.json')
             with patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda *a:pulls):
                 first=refresh.refresh(stage,'2026-10-09T15:00:00Z')
+                updated=refresh.load(stage,'registry.json')['repositories']
+                updated_swap=next(r for r in updated if r['repo']==refresh.SWAP)
+                updated_alias=next(r for r in updated if r['repo']=='fixture/shared-manifest')
+                self.assertEqual(updated_alias['manifest_source'],pinned)
+                self.assertEqual((stage/pinned['path']).read_bytes(),pinned_bytes)
+                self.assertNotEqual(updated_swap['manifest_source']['path'],pinned['path'])
+                self.assertIn('a'*40,refresh.load(stage,updated_swap['manifest_source']['path'])['rules_url'])
+                for listing in updated:
+                    manifest=listing['manifest_source']
+                    if manifest:
+                        self.assertEqual(manifest['revision'],'sha256:'+refresh.artifact(stage,manifest['path'])['sha256'])
                 for head_path in (stage/'sources').glob('*__head.json'):
                     self.assertTrue(all('patch' not in f for f in json.loads(head_path.read_text()).get('files', [])))
                 snapshot={p.relative_to(stage):p.read_bytes() for p in stage.rglob('*') if p.is_file()}
