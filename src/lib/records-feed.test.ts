@@ -41,11 +41,11 @@ test('feed leader uses the site exact ranking and ties',()=>{
 });
 test('message contains problem, exact bound, evidence, author and link without mentions',()=>{
  const record=row();record.authors=['@everyone <@123>\nAlice'];
- const text=message(board(),record);assert.match(text,/Fourier Transform: new record O\(n/);assert.match(text,/Claimed/);assert.match(text,/Alice/);assert.match(text,/https:\/\/bigospeedrun.com\/exact-dft$/);assert.ok(!text.includes('@'));
+ const text=message(board(),record);assert.ok(text.startsWith('**New claim** | **Fourier Transform** | `O(n'));assert.match(text,/Claimed/);assert.match(text,/Alice/);assert.match(text,/https:\/\/bigospeedrun.com\/exact-dft\)$/);assert.ok(!text.includes('@'));
 });
 test('webhook delivery disables mentions, confirms sends, and fails soft without retry',async()=>{
  const messages=[{key:'a',content:'One'},{key:'b',content:'Two'},{key:'c',content:'Three'}];let calls=0;
- const send=async(url:unknown,options:any)=>{assert.match(String(url),/\?wait=true$/);assert.equal(options.redirect,'error');assert.deepEqual(JSON.parse(options.body).allowed_mentions,{parse:[]});calls++;if(calls===1)return new Response('',{status:200});if(calls===2)return new Response('',{status:429});throw new Error('connection lost');};
+ const send=async(url:unknown,options:any)=>{assert.match(String(url),/\?wait=true$/);assert.equal(options.redirect,'error');assert.deepEqual(JSON.parse(options.body).allowed_mentions,{parse:[]});assert.equal(JSON.parse(options.body).flags,4);calls++;if(calls===1)return new Response('',{status:200});if(calls===2)return new Response('',{status:429});throw new Error('connection lost');};
  assert.deepEqual(await deliver('https://discord.com/api/webhooks/123/fake',messages,send as typeof fetch),{sent:1,failed:2});assert.equal(calls,3);
  await assert.rejects(deliver('https://example.com/token',messages,send as typeof fetch),/invalid/);
 });
@@ -53,8 +53,8 @@ test('webhook delivery disables mentions, confirms sends, and fails soft without
 test('decimal saving expansion and author wording follow the requested message format',()=>{
  assert.equal(plainBound('exact-dft','47171/62500000','attained',6),'O(n log^(1 - 0.000754736) n)');
  const record=row();record.authors=['jacobalansussman','chafreaky'];record.bound=plainBound('exact-dft','47171/62500000','attained',6);
- assert.equal(message(board(),record),'Fourier Transform: new record O(n log^(1 - 0.000754736) n). Claimed. By jacobalansussman and chafreaky. https://bigospeedrun.com/exact-dft');
- assert.match(message(board(),record,false),/: record verified /);
+ assert.equal(message(board(),record),'**New claim** | **Fourier Transform** | `O(n log^(1 - 0.000754736) n)` | by jacobalansussman and chafreaky | Claimed | [bigospeedrun.com/exact-dft](https://bigospeedrun.com/exact-dft)');
+ assert.ok(message(board(),record,false).startsWith('**Record verified** | '));
 });
 
 
@@ -126,7 +126,7 @@ test('X new-record wording matches the approved template and preserves Discord t
  const b={...board(),name:'Integer Multiplication',url:'https://bigospeedrun.com/integer-multiplication'};
  const r={...row(),authors:['sreekanth nair'],bound:'O(n log^(1 - 0.00137255015936798) n)'};
  const text=xMessage(b,r);
- assert.equal(text,'New record!\n\nProblem: Integer Multiplication\nNew value: O(n log^(1 - 0.00137255015936798) n)\nPlayer: sreekanth nair\nStatus: Claimed (not verified)\n\nhttps://bigospeedrun.com/integer-multiplication');
+ assert.equal(text,'New claim!\n\nProblem: Integer Multiplication\nNew value: O(n log^(1 - 0.00137255015936798) n)\nPlayer: sreekanth nair\nStatus: Claimed (not verified)\n\nhttps://bigospeedrun.com/integer-multiplication');
  assert.ok(xPostLength(text)<=280);
  const planned=plan(baseline({schema_version:1,boards:[]}),snapshot({...b,records:[r]})).messages[0];
  assert.equal(planned.content,message(b,r));assert.equal(planned.x_text,text);
@@ -152,4 +152,36 @@ test('X length counts URLs as 23 and retains oversized bounds for review',t=>{
  const text=xMessage(board(),{...row(),bound});
  assert.ok(text.includes(bound));assert.ok(xPostLength(text)>280);
  t.diagnostic(`Oversized bound fixture: ${xPostLength(text)} characters; kept in full for manual review.`);
+});
+
+
+test('Discord escapes author markdown, removes mentions, and stays on one line',()=>{
+ const r={...row(),authors:['@a_b*c~d`e|f\\g[h](i)\nnext\tname','Bob']};
+ const text=message(board(),r);
+ assert.ok(text.includes('by a\\_b\\*c\\~d\\`e\\|f\\\\g\\[h\\]\\(i\\) next name and Bob |'));
+ assert.doesNotMatch(text,/[\r\n\t@]/);
+ const long=message(board(),{...r,authors:['_'.repeat(1200)]});
+ assert.ok(long.length<2000);assert.ok(long.includes(' | Claimed | ['));
+});
+
+test('Discord and X headlines follow evidence; upgrades retain Record verified',()=>{
+ for(const evidence of ['Claimed','Human Verified','Lean Verified']){
+  const r=row('a',evidence),title=evidence==='Claimed'?'New claim':'New record';
+  assert.ok(message(board(),r).startsWith(`**${title}** | `));
+  assert.ok(xMessage(board(),r).startsWith(`${title}!\n\nProblem: `));
+  assert.ok(message(board(),r,false).startsWith('**Record verified** | '));
+  assert.ok(xMessage(board(),r,false).startsWith('Record verified!\n\nProblem: '));
+ }
+});
+
+test('format changes retain old event keys and accepted post text',()=>{
+ const b=board(),r=b.records[0];
+ const key='["exact-dft","a","1/1000","attained"]:record';
+ const initial=baseline(snapshot(b));assert.ok(initial.reserved.includes(key));
+ assert.deepEqual(plan(initial,snapshot(b)).messages,[]);
+ const entry={key,content:message(b,r),x_text:xMessage(b,r)};
+ const old=[{key,text:'Old Discord format',x_text:'Old X format',posted_at:'2026-10-11T00:00:00.000Z'}];
+ assert.deepEqual(appendRecordPost(old,entry,'2026-10-12T00:00:00.000Z'),old);
+ const first=plan(baseline({schema_version:1,boards:[]}),snapshot(b)).messages[0];
+ assert.equal(first.key,key);
 });

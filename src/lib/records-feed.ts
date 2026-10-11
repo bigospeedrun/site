@@ -41,12 +41,16 @@ export function feedBoard(problem:Pick<Problem,'slug'|'direction'>,records:Pick<
 }
 function identity(board:FeedBoard,record:FeedRecord):string {return JSON.stringify([board.slug,record.id,record.score,record.relation]);}
 function eventKey(board:FeedBoard,record:FeedRecord):string {return identity(board,record)+':'+(record.evidence==='Lean Verified'?'lean':'record');}
-function clean(text:string):string {return text.replace(/[\r\n\t<>@`*_~|\\]/g,' ').replace(/\s+/g,' ').trim();}
+function clean(text:string):string {return text.replace(/[<>@]/g,' ').replace(/\s+/g,' ').trim();}
+function discordText(text:string):string {return text.replace(/[\\`*_~|[\]()]/g,'\\$&');}
+function headline(record:FeedRecord,newRecord:boolean):string {
+ return newRecord?(record.evidence==='Claimed'?'New claim':'New record'):'Record verified';
+}
 export function message(board:FeedBoard,record:FeedRecord,newRecord=true):string {
- const names=record.authors;
+ const names=record.authors.map(clean).filter(Boolean);
  const joined=names.length<2?names.join(''):names.slice(0,-1).join(', ')+' and '+names.at(-1);
- const authors=clean(joined).slice(0,1000)||'Unknown author';
- return `${clean(board.name)}: ${newRecord?'new record':'record verified'} ${record.bound}. ${record.evidence}. By ${authors}. ${board.url}`;
+ const authors=discordText(joined.slice(0,500)||'Unknown author');
+ return `**${headline(record,newRecord)}** | **${discordText(clean(board.name))}** | \`${record.bound}\` | by ${authors} | ${record.evidence} | [${board.url.replace(/^https?:\/\//,'')}](${board.url})`;
 }
 // Count each URL as X's fixed 23 characters; count Unicode code points elsewhere.
 export function xPostLength(text:string):number {
@@ -55,7 +59,7 @@ export function xPostLength(text:string):number {
 export function xMessage(board:FeedBoard,record:FeedRecord,newRecord=true):string {
  const names=record.authors.map(name=>name.replace(/[\r\n\t]+/g,' ').trim());
  const status=record.evidence==='Claimed'?'Claimed (not verified)':record.evidence;
- return `${newRecord?'New record!':'Record verified!'}\n\nProblem: ${board.name}\n${newRecord?'New value':'Value'}: ${record.bound}\n${names.length>1?'Players':'Player'}: ${names.join(', ')||'Unknown author'}\nStatus: ${status}\n\n${board.url}`;
+ return `${headline(record,newRecord)}!\n\nProblem: ${board.name}\n${newRecord?'New value':'Value'}: ${record.bound}\n${names.length>1?'Players':'Player'}: ${names.join(', ')||'Unknown author'}\nStatus: ${status}\n\n${board.url}`;
 }
 export function baseline(snapshot:FeedSnapshot):FeedState {
  const reserved:string[]=[];
