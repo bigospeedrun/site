@@ -1,0 +1,72 @@
+{
+  "run": {
+    "id": 38089724305,
+    "head_branch": "main",
+    "head_sha": "49c04a7818afddbd32f21b74fe7206a411bde6c7",
+    "path": ".github/workflows/submissions.yml",
+    "event": "workflow_dispatch",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847968,
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/38089724305",
+    "run_attempt": 1,
+    "referenced_workflows": [
+      {
+        "path": "bigospeedrun/verifier/.github/workflows/submission-check.yml@49c04a7818afddbd32f21b74fe7206a411bde6c7",
+        "sha": "49c04a7818afddbd32f21b74fe7206a411bde6c7",
+        "ref": "refs/heads/main"
+      }
+    ],
+    "repository": {
+      "full_name": "bigospeedrun/verifier"
+    },
+    "head_repository": {
+      "full_name": "bigospeedrun/verifier"
+    }
+  },
+  "issue": {
+    "html_url": "https://github.com/bigospeedrun/verifier/issues/1",
+    "number": 1,
+    "title": "[Lean submission] TEST ONLY: DFT 837dc31 live issue smoke",
+    "user": {
+      "login": "nmamano"
+    },
+    "labels": [
+      {
+        "name": "test"
+      }
+    ],
+    "state": "open",
+    "created_at": "2026-10-10T21:58:10Z",
+    "updated_at": "2026-10-11T00:10:37Z",
+    "body": "### Problem\n\ndft\n\n### Repository URL\n\nhttps://github.com/chafreaky/wht-power-saving-lean\n\n### Commit SHA\n\n837dc3130adc79f7b7ab4ddd56c15576bbd766b0\n\n### Bound\n\n47171/62500000\n"
+  },
+  "artifacts": [
+    {
+      "id": 11686437001,
+      "name": "verifier-receipt-and-logs-38089724305-1-1",
+      "expired": false,
+      "digest": "sha256:3c948eecafd4bd0de1131611505aacc8a11a2d6696a9ac345cfc38ca39bdc591",
+      "workflow_run": {
+        "id": 38089724305,
+        "repository_id": 1413001192,
+        "head_repository_id": 1413001192,
+        "head_branch": "main",
+        "head_sha": "49c04a7818afddbd32f21b74fe7206a411bde6c7"
+      }
+    },
+    {
+      "id": 11686036945,
+      "name": "direct-submission-38089724305-1-1",
+      "expired": false,
+      "digest": "sha256:2c137bf951c678afbe02cf3d0c0bc1968c8d8ad78971fd0a397bc9f3da069b3e",
+      "workflow_run": {
+        "id": 38089724305,
+        "repository_id": 1413001192,
+        "head_repository_id": 1413001192,
+        "head_branch": "main",
+        "head_sha": "49c04a7818afddbd32f21b74fe7206a411bde6c7"
+      }
+    }
+  ]
+}

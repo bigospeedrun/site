@@ -56,3 +56,18 @@ rejected source cannot regain Verified status after artifact expiry or a late
 early-publisher result. A final ambiguous result removes early Verified
 status. A changed source is a new submission fingerprint. Smoke identities and all
 test flags remain excluded. The publisher owns the maintainer rejection alert.
+
+Live issue smoke replay checked on 2026-10-11:
+https://github.com/bigospeedrun/verifier/actions/runs/38089724305
+The two live-issue-smoke ZIPs are unchanged public GitHub artifacts 11686036945
+(result) and 11686437001 (proof). live-issue-smoke-api.json retains the API fields
+used by validation. Both archive digests, the exact raw receipt hash, and every
+receipt-listed evidence hash are tested offline. Both kernels and the permitted
+axiom audit passed. The original envelope stays fixture_only/test_only and is
+rejected, even without its test label. Its raw receipt equals the envelope receipt.
+
+The counterfactual test changes only test flags, envelope admission status, and
+resulting receipt/archive hashes. It preserves all proof outcomes, theorem targets,
+source pins, log hashes and timestamps. This copy passes receipt validation but is
+not a new proof run or a board import. Discovery still permanently excludes issue
+1 and PR 2. The live generic PR path remains pending a completed smoke receipt.
