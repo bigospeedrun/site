@@ -732,22 +732,23 @@
       "family": "190",
       "slug": "ordered-matrix-removal",
       "name": "Ordered matrix removal",
-      "quantity": "k\\text{ in a }k\\times k\\text{ pattern}",
+      "quantity": "r c\\text{ cells in an }r\\times c\\text{ pattern}",
       "direction": "lower",
-      "statement": "The quantity is the side length \\(k\\) of a square ordered binary pattern that obstructs polynomial removal. A lower side length is better. Later repair-distance constants do not change this quantity.",
+      "statement": "The quantity is the number of cells \\(rc\\) in a forbidden ordered binary pattern with \\(r\\) rows and \\(c\\) columns that has no polynomial removal bound. The goal is the smallest such pattern, measured in cells. Fewer cells are better. Later repair-distance constants do not change this quantity.",
       "baseline": {
-        "value": "66",
+        "value": "4356",
         "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Polynomial-removal-fails-for-ordered-binary-matrices-September-25-2026/paper.pdf",
         "date": "2026-10-06T14:58:00-07:00",
-        "exactValue": "66",
-        "bound": "k\\le 66"
+        "exactValue": "4356",
+        "bound": "66\\times 66\\text{ pattern }(4356\\text{ cells})",
+        "display": "66\\times 66\\text{ pattern }(4356\\text{ cells})"
       },
       "claims": [
         {
           "author": "erebos-labs",
           "handle": "erebos-labs",
-          "value": "4",
-          "display": "4",
+          "value": "16",
+          "display": "4\\times 4\\text{ pattern }(16\\text{ cells})",
           "date": "2026-10-09T08:07:00-07:00",
           "dateSource": "https://github.com/erebos-labs/ordered-matrix-removal-4x4/commit/6d21ce36e83b71d8a44015016cf3ac77e44b55ff",
           "dateKind": "first-stated",
@@ -763,7 +764,29 @@
             }
           ],
           "proofScope": "Main obstruction and later repair theorem.",
-          "bound": "k\\le 4"
+          "bound": "4\\times 4\\text{ pattern }(16\\text{ cells})"
+        },
+        {
+          "author": "Ryan Shea",
+          "handle": "shea256",
+          "value": "12",
+          "display": "3\\times 4\\text{ pattern }(12\\text{ cells})",
+          "date": "2026-10-11T18:38:15Z",
+          "dateSource": "https://github.com/shea256/ordered-binary-matrix-removal/commit/fbc3e0010700821d20480d340afa61a05e6ef747",
+          "dateKind": "first-stated",
+          "url": "https://github.com/shea256/ordered-binary-matrix-removal/blob/fbc3e0010700821d20480d340afa61a05e6ef747/README.md",
+          "lean": true,
+          "leanNote": "Author-supplied Lean theorem; source inspected, no independent rerun.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Ryan Shea",
+              "url": "https://github.com/shea256"
+            }
+          ],
+          "proofScope": "Source inspection only; no independent rerun. OrderedRemoval.Rectangular.no_polynomial_removal_bound states that the fixed 3×4 pattern has no polynomial removal bound, for arbitrarily small distance parameters and arbitrarily large hosts, with arbitrary binary repairs.",
+          "bound": "3\\times 4\\text{ pattern }(12\\text{ cells})"
         }
       ],
       "repos": [
@@ -771,9 +794,14 @@
           "name": "erebos-labs/ordered-matrix-removal-4x4",
           "url": "https://github.com/erebos-labs/ordered-matrix-removal-4x4",
           "note": "The later repair-distance theorem concerns another quantity."
+        },
+        {
+          "name": "shea256/ordered-binary-matrix-removal",
+          "url": "https://github.com/shea256/ordered-binary-matrix-removal",
+          "note": "A 3×4 obstruction; author-supplied Lean theorem, no independent rerun."
         }
       ],
-      "bestHandle": "erebos-labs"
+      "bestHandle": "shea256"
     },
     {
       "family": "191",

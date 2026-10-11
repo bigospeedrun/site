@@ -10,7 +10,7 @@ const {family:f}=Astro.props;
 <Layout title={f.name}>
   <h1>{f.name}</h1>
   <p set:html={inlineMath(f.statement)}/>
-  <p>OpenAI baseline: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.value)}/>, released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time>.</p>
+  <p>OpenAI baseline: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.display ?? f.baseline.value)}/>, released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time>.</p>
   <p>These results are <a href="/about#evidence-levels" class="claimed">Claimed</a>: their authors published them, and we have not checked them.</p>
   <div class="results-scroll" role="region" aria-label={'Claims for '+f.name} tabindex="0"><table>
     <thead><tr><th scope="col">Bound</th><th scope="col">Evidence level</th><th scope="col">Author</th><th scope="col">Date</th><th scope="col">Proof scope</th></tr></thead>
