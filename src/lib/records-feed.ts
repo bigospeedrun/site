@@ -7,6 +7,11 @@ export interface FeedBoard {slug:string; name:string; url:string; leader:string|
 export interface FeedSnapshot {schema_version:1; boards:FeedBoard[]}
 export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]}
 export interface FeedMessage {key:string; content:string}
+export interface RecordPost {key:string; text:string; posted_at:string}
+export function appendRecordPost(previous:RecordPost[],entry:FeedMessage,postedAt:string):RecordPost[] {
+ if(previous.some(post=>post.key===entry.key))return previous.slice(-500);
+ return [...previous,{key:entry.key,text:entry.content,posted_at:postedAt}].slice(-500);
+}
 
 // Expand the site's scientific saving into decimal text without floating-point rounding.
 function decimalSaving(score:string,digits:number):string {
@@ -64,14 +69,18 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot):{state:FeedState;
  return {state:{schema_version:1,snapshot,reserved:[...reserved]},messages};
 }
 
-export async function deliver(webhook:string,messages:FeedMessage[],send:typeof fetch=fetch):Promise<{sent:number;failed:number}> {
+export async function deliver(webhook:string,messages:FeedMessage[],send:typeof fetch=fetch,onAccepted?:(entry:FeedMessage)=>void):Promise<{sent:number;failed:number}> {
  if(!/^https:\/\/discord\.com\/api\/webhooks\/\d+\/[A-Za-z0-9_-]+$/.test(webhook))throw new Error('Missing or invalid records webhook');
- let sent=0,failed=0;
+ let sent=0,failed=0,logFailed=false;
  for(const entry of messages){
+  let accepted=false;
   try {
    const response=await send(webhook+'?wait=true',{method:'POST',redirect:'error',signal:AbortSignal.timeout(15000),headers:{'Content-Type':'application/json'},body:JSON.stringify({content:entry.content,allowed_mentions:{parse:[]},flags:4})});
-   if(response.ok)sent++;else failed++;
+   if(response.ok){sent++;accepted=true;}else failed++;
   }catch{failed++;} // Never log a URL, response body or exception containing a secret.
+  // Keep sending the reserved batch even if the local acceptance log fails.
+  if(accepted&&onAccepted){try{onAccepted(entry);}catch{logFailed=true;}}
  }
+ if(logFailed)throw new Error('Accepted Discord message log could not be saved');
  return {sent,failed};
 }

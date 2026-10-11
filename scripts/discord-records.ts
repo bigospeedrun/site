@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync,existsSync,renameSync} from 'node:fs';
-import {baseline,plan,deliver} from '../src/lib/records-feed.ts';
-import type {FeedSnapshot,FeedState,FeedMessage} from '../src/lib/records-feed.ts';
+import {baseline,plan,deliver,appendRecordPost} from '../src/lib/records-feed.ts';
+import type {FeedSnapshot,FeedState,FeedMessage,RecordPost} from '../src/lib/records-feed.ts';
 const statePath='data/discord-records.json';
+const postsPath='data/records-posts.json';
 const read=(path:string)=>JSON.parse(readFileSync(path,'utf8'));
 const write=(path:string,value:unknown)=>{writeFileSync(path+'.tmp',JSON.stringify(value,null,2)+'\n');renameSync(path+'.tmp',path);};
 async function main(){
@@ -9,7 +10,11 @@ async function main(){
  if(mode==='send'){
   if(!batch||!existsSync(batch)){console.log('No reserved Discord batch.');return;}
   const messages:FeedMessage[]=read(batch);
-  const result=await deliver(process.env.DISCORD_RECORDS_WEBHOOK??'',messages);
+  let posts:RecordPost[]=existsSync(postsPath)?read(postsPath):[];
+  const result=await deliver(process.env.DISCORD_RECORDS_WEBHOOK??'',messages,fetch,entry=>{
+   posts=appendRecordPost(posts,entry,new Date().toISOString());
+   write(postsPath,posts);
+  });
   console.log(`Discord records: ${result.sent} sent, ${result.failed} failed. Reserved events will not be sent twice.`);
   if(result.failed)process.exitCode=1;
   return;
