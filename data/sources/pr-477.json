@@ -1,0 +1,11 @@
+{
+  "number": 477,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/477",
+  "title": "Add categorized experiment log: 100 ideas, 300 trials, and recorded failures",
+  "body": "Research results and failed attempts were spread across PRs and SSD output folders, making it easy to repeat exhausted searches or mistake execution errors for mathematical failures. Add `research/experiment-log/` as a categorized index with evidence, baseline/scope notes and retry guidance.\n\n- All100 original campaign ideas, split into eight topic files;40 explicitly have no execution evidence. Original records match pinned PR368 bytes.\n- Three recent100-trial kernel batches:100 from-scratch trials found no gain; retain-and-repair had78 non-improving trials and22 gains over its batch baseline. A further100-trial factored-kernel search found no additional gain. These are local screens, not300 full certifications.\n- Fourteen additional scoped search records, including target mixing, retiming, stage counts, donor/entrance searches and solver timeouts.\n- Sixteen execution-failure attempt groups and31 original artifacts, split by storage, compiler, dependency, path, serialization, metadata, assertion and unresolved causes. Propagated wrapper errors are not counted as independent tests.\n- Completed verification receipts, preserved discovery scripts, a future-entry template, source/hash inventory and explicit instructions on when repeating an experiment is justified.\n\nValidation: archive integrity, unique100 original IDs, unique100 trial IDs in all three recent batches, relative links and pinned historical source equality passed. Historical mathematical claims are archived without claiming to rerun them. Raw historical reports, prototypes and1075 selected files remain linked at their pinned PR368 archive. This initial import records recovered evidence and does not claim every historical command was preserved.\n\nThe ongoing numerical construction remains in PR473. This PR is an independently reviewable research-log addition; it claims no new bound.\n",
+  "created_at": "2026-10-11T18:29:58Z",
+  "updated_at": "2026-10-11T19:13:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
