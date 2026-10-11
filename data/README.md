@@ -87,8 +87,14 @@ staged dependency source. The matrix challenge and allowed axioms are unchanged.
 Run 38110310511 also failed to compile. Review of controller 46aad1d on
 2026-10-11 found one explicit Finset type annotation added to the patch and
 classification of Invalid field compile errors; the trusted statement is unchanged.
-The current binding selects replacement run 38111181535 at 46aad1d. The receipt must contain
-`patches/harfe-770940dd-lean434.patch` and its exact SHA256
-`3869c0852d564563f7d29bad972c87f032a07f8dac8300f9340106815233098e`
-in `solution_dependencies`, matching the reviewed profile. Missing or different
-patch metadata cannot admit a proof. DFT keeps its b27295a controller binding.
+The current binding selects full run 38112644463 at controller e064023,
+reviewed on 2026-10-11. This replaces the partial compatibility patches with
+OpenAI's own patch, checked byte-for-byte at fd4aeeb:
+`lean/patches/fixed-point-theorems-lean4341.patch`. Its verifier path is
+`patches/openai-fd4aeeb-harfe-lean4341.patch`, SHA256
+`d70872e41e80b25191538d1659c4aa3a001349b5bd16f806c9e3833a502516e5`.
+Receipt `solution_dependencies` must match all reviewed fields, including the
+patch path, hash, upstream repository, commit and path. The original harfe pin,
+trusted challenge and allowed axioms are unchanged. The new dependency-only
+workflow and its test-only compilation artifact cannot verify a board record.
+DFT keeps its b27295a controller binding.

@@ -181,9 +181,12 @@ class MaintainerTests(unittest.TestCase):
     def test_matrix_requires_exact_patch_metadata(self):
         binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
         dep=binding['profile']['solution_dependencies'][0]
-        self.assertEqual(dep['patch_file'],'patches/harfe-770940dd-lean434.patch')
-        self.assertEqual(dep['patch_sha256'],'3869c0852d564563f7d29bad972c87f032a07f8dac8300f9340106815233098e')
-        for field in ['patch_file','patch_sha256']:
+        self.assertEqual(dep['patch_file'],'patches/openai-fd4aeeb-harfe-lean4341.patch')
+        self.assertEqual(dep['patch_sha256'],'d70872e41e80b25191538d1659c4aa3a001349b5bd16f806c9e3833a502516e5')
+        self.assertEqual(dep['patch_upstream_repo'],'https://github.com/openai/math')
+        self.assertEqual(dep['patch_upstream_commit'],'fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb')
+        self.assertEqual(dep['patch_upstream_path'],'lean/patches/fixed-point-theorems-lean4341.patch')
+        for field in ['patch_file','patch_sha256','patch_upstream_repo','patch_upstream_commit','patch_upstream_path']:
             for omit in [True,False]:
                 r,a,run,b=fixture(binding=binding)
                 if omit:r['solution_dependencies'][0].pop(field)
@@ -191,6 +194,15 @@ class MaintainerTests(unittest.TestCase):
                 with self.subTest(field=field,omit=omit),self.assertRaises(Rejected):check(r,a,run,b)
         r,a,run,b=fixture(binding=binding);r['profile']=copy.deepcopy(r['profile'])
         r['profile']['solution_dependencies'][0].pop('patch_sha256')
+        with self.assertRaises(Rejected):check(r,a,run,b)
+
+    def test_dependency_compilation_is_not_matrix_verification(self):
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths'])
+        r,a,run,b=fixture('final',binding=binding)
+        run['path']='.github/workflows/check-matrix-dependency.yml'
+        a['name']=f'dependency-compile-only-{run["id"]}-1'
+        with self.assertRaises(Rejected):check(r,a,run,b)
+        r,a,run,b=fixture('final',binding=binding);r['test_only']=True
         with self.assertRaises(Rejected):check(r,a,run,b)
 
     def test_matrix_existing_row_receives_only_its_evidence(self):
