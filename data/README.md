@@ -70,3 +70,15 @@ registers the E8 profile. Its statement matches the prior trusted DFT statement
 after changing seven names and the saving to 8762478/10^10. The vendored statement
 hash is checked at admission. This review adds these exact controller snapshots;
 it does not approve later code changes.
+
+The same review was extended on 2026-10-11 to controller 99713a3. Its matrix
+challenge is byte-for-byte OpenAI `fd4aeeb` and enables only
+`OAI.MatrixMultiplication.complex_omega_le_nine_quarters`. The bound is omega
+at most 9/4 in complex arithmetic circuits, with positive exponent slack.
+The profile stages the harfe fixed-point dependency at
+`770940ddf9878cf61952ed53d910b92bca841838` as proof source. It ignores dependency
+build files and compiled objects, rejects module collisions, and retains the
+same kernel and axiom checks. Admission checks the dependency identity in the
+receipt and the hashed staged-source manifest. The matrix binding has no run ID
+yet and remains inactive until the exact run is reviewed and assigned. DFT keeps
+its original b27295a controller binding.

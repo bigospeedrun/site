@@ -6,6 +6,7 @@ The final receipt supersedes its Lean checkpoint, including after artifact expir
 """
 import copy
 import json
+import re
 from pathlib import Path
 from direct_import import (REPOSITORY, require, sha, read_json, is_test_submission,
                            validate_kernel_receipt, canonical)
@@ -21,6 +22,7 @@ def encode(value):
 
 def validate_maintainer(raw, artifact, run, binding, config, statement):
     """API identity and exact proof inputs must agree before evidence is used."""
+    require(type(binding.get('run_id')) is int and binding['run_id'] > 0, 'Maintainer run is not bound')
     revision = binding['controller']
     require(run.get('repository', {}).get('full_name') == REPOSITORY and
             run.get('head_repository', {}).get('full_name') == REPOSITORY, 'Wrong maintainer repository')
@@ -46,7 +48,7 @@ def validate_maintainer(raw, artifact, run, binding, config, statement):
     require(receipt.get('schema_version') == 1 and receipt.get('verification_stage') == stage,
             'Wrong maintainer receipt stage')
     profile = binding['profile']
-    require(sha(statement) == profile['challenge_sha256'] and profile['saving'] == binding['score'],
+    require(sha(statement) == profile['challenge_sha256'] and profile.get('saving', profile.get('bound')) == binding['score'],
             'Reviewed maintainer statement mismatch')
     require(receipt.get('profile') == profile, 'Wrong maintainer profile')
     expected = dict(repo_url=binding['repo_url'], commit=binding['commit'],
@@ -67,6 +69,21 @@ def validate_maintainer(raw, artifact, run, binding, config, statement):
             'Missing maintainer Lean/audit logs')
     for path, digest in hashes.items():
         require(path in files and sha(files[path]) == digest, 'Maintainer log hash mismatch')
+    dependencies = profile.get('solution_dependencies', [])
+    require(receipt.get('solution_dependencies', []) == dependencies, 'Maintainer dependency pin mismatch')
+    if dependencies:
+        require('source-sha256.json' in hashes, 'Missing hashed staged-source manifest')
+        sources = read_json(files['source-sha256.json'])
+        require(isinstance(sources, dict) and bool(sources), 'Empty staged-source manifest')
+        roots = profile['source_roots'] + [root for dep in dependencies for root in dep['source_roots']]
+        require(all(re.fullmatch(r'(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean', path)
+                    and path.split('/')[0] in roots and isinstance(digest, str)
+                    and re.fullmatch('[0-9a-f]{64}', digest) for path, digest in sources.items()),
+                'Invalid staged-source hashes')
+        require(profile['solution_module'].replace('.', '/')+'.lean' in sources, 'Missing solution module hash')
+        for dep in dependencies:
+            require(all(any(path.startswith(root+'/') for path in sources) for root in dep['source_roots']),
+                    'Missing staged dependency source hashes')
     decision, reason, checked_at = validate_kernel_receipt(receipt, profile['theorem_names'])
     return dict(decision=decision, reason=reason, checked_at=checked_at, stage=stage,
                 receipt_url=url, receipt_sha256=sha(files['receipt.json']))
@@ -79,10 +96,11 @@ def apply_record(doc, binding, verdict, receipt_path, now):
             row['score'] == binding['score'] and row.get('score_relation', 'attained') == binding['score_relation'],
             'Maintainer receipt does not bind this board row')
     meta = doc['record_metadata'][row['id']]
-    require('https://github.com/'+meta.get('repo', '') == binding['repo_url'] and
+    require(row.get('source', {}).get('url', '').startswith(binding['repo_url']+'/blob/'+binding['commit']+'/') and
             meta.get('comparison_key') == binding['problem_id']+'/v1', 'Maintainer source/model mismatch')
     previous = copy.deepcopy(doc)
     passed = verdict['decision'] == 'lean-verified'
+    row['evidence']['theorem'] = '; '.join(binding['profile']['theorem_names'])
     row['tier'] = meta['site_tier'] = 'verified' if passed else 'claimed'
     row['rerun_status'] = dict(state='passed' if passed else 'failed' if verdict['decision'] == 'blocked' else 'pending',
                                checked_at=verdict['checked_at'], receipt_path=receipt_path)
@@ -111,6 +129,9 @@ def collect_maintainer(importer, files, now):
     state_path = root/STATE
     state = read_json(state_path.read_bytes()) if state_path.exists() else dict(schema_version=1, entries={})
     for key, binding in config['maintainer_bindings'].items():
+        if binding.get('run_id') is None:
+            importer.notes.append(f'Maintainer {key}: awaiting a reviewed run ID; no import attempted')
+            continue
         # Same reviewed controller tree check as direct submissions; never trust
         # a receipt just because it names an approved SHA.
         importer.trusted(binding['controller'])

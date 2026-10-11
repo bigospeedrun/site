@@ -18,8 +18,8 @@ BINDING = CONFIG['maintainer_bindings']['dft-e8']
 NOW = '2026-10-11T05:00:00Z'
 
 
-def fixture(stage='lean', nanoda=None):
-    binding = copy.deepcopy(BINDING)
+def fixture(stage='lean', nanoda=None, binding=None):
+    binding = copy.deepcopy(binding or BINDING)
     profile = binding['profile']; names = profile['theorem_names']
     run = dict(id=binding['run_id'], run_attempt=1, head_sha=binding['controller'], head_branch='main',
         repository=dict(full_name='bigospeedrun/verifier'), head_repository=dict(full_name='bigospeedrun/verifier'),
@@ -40,13 +40,20 @@ def fixture(stage='lean', nanoda=None):
         finished_unix=1791694800, checked_at=NOW,kernels=kernels,
         axiom_audit=dict(status='passed',log='audit.log',reported_axioms={n:axioms for n in names}),
         theorems={n:dict(lean_kernel='passed',nanoda_kernel=state,reported_axioms=axioms) for n in names})
+    if profile.get('solution_dependencies'):
+        receipt['solution_dependencies']=copy.deepcopy(profile['solution_dependencies'])
     artifact=dict(id=123,expired=False,name=f'verifier-receipt-and-logs-{run["id"]}-1'+('-lean' if stage=='lean' else ''),
                   workflow_run=dict(id=run['id'],head_sha=run['head_sha']))
     return receipt,artifact,run,binding
 
 
-def pack(receipt, artifact, damage=False):
+def pack(receipt, artifact, damage=False, source_manifest=None):
     logs={x:('synthetic '+x).encode() for x in ['lean.log','nanoda.log','audit.log']}
+    if receipt['profile'].get('solution_dependencies'):
+        manifest = source_manifest if source_manifest is not None else {
+            receipt['profile']['solution_module'].replace('.', '/')+'.lean':sha(b'synthetic main'),
+            'FixedPointTheorems/brouwer.lean':sha(b'synthetic dependency')}
+        logs['source-sha256.json']=encode(manifest)
     receipt['artifact_sha256']={n:sha(raw) for n,raw in logs.items()}
     if damage: logs['lean.log']=b'changed'
     output=io.BytesIO()
@@ -57,9 +64,9 @@ def pack(receipt, artifact, damage=False):
     return raw
 
 
-def check(receipt,artifact,run,binding,damage=False):
-    return validate_maintainer(pack(receipt,artifact,damage),artifact,run,binding,CONFIG,
-                              (ROOT/'direct-fixtures/UniformFourierE8.lean').read_bytes())
+def check(receipt,artifact,run,binding,damage=False,source_manifest=None):
+    return validate_maintainer(pack(receipt,artifact,damage,source_manifest),artifact,run,binding,CONFIG,
+                              (ROOT/'direct-fixtures'/Path(binding['profile']['challenge_file']).name).read_bytes())
 
 
 class MaintainerTests(unittest.TestCase):
@@ -143,10 +150,43 @@ class MaintainerTests(unittest.TestCase):
             def __init__(self,blobs):self.blobs=blobs
             def json(self,*args):return {'truncated':False,'tree':[dict(path=p,type='blob',**v) for p,v in self.blobs.items()]}
         for rev,blobs in [(CONFIG['reviewed_commit'],CONFIG['controller_blobs']),
+                          (BINDING['controller'],CONFIG['previous_controller_blobs'][BINDING['controller']]),
                           ('a1d7bae0657d2a9f32b087d09718ea4f71c10dfa',CONFIG['previous_controller_blobs']['a1d7bae0657d2a9f32b087d09718ea4f71c10dfa'])]:
             self.assertIn(rev,Importer(API(blobs)).trusted(rev))
         bad=copy.deepcopy(CONFIG['controller_blobs']);bad['scripts/verifier.py']['sha']='a'*40
         with self.assertRaises(Rejected):Importer(API(bad)).trusted(CONFIG['reviewed_commit'])
+
+
+    def test_matrix_pending_binding_never_admits_without_run(self):
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths'])
+        with self.assertRaises(Rejected):check(*fixture(binding=binding))
+
+    def test_matrix_pinned_dependency_and_target_acceptance(self):
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths'])
+        binding['run_id']=123456  # Synthetic run, never used by production.
+        for stage in ['lean','final']:
+            with self.subTest(stage=stage):self.assertEqual(check(*fixture(stage,binding=binding))['decision'],'lean-verified')
+        for change in [lambda r:r.pop('solution_dependencies'),
+                       lambda r:r['solution_dependencies'][0].update(commit='a'*40),
+                       lambda r:r['solution_dependencies'][0].update(repo_url='https://github.com/other/repo')]:
+            r,a,run,b=fixture(binding=binding);change(r)
+            with self.assertRaises(Rejected):check(r,a,run,b)
+        for sources in [{},{'OAI/LinearAlgebra/MatrixMultiplication/Main.lean':'a'*64},
+                        {'FixedPointTheorems/brouwer.lean':'a'*64},
+                        {'../brouwer.lean':'a'*64}]:
+            with self.subTest(sources=sources),self.assertRaises(Rejected):
+                check(*fixture(binding=binding),source_manifest=sources)
+
+    def test_matrix_existing_row_receives_only_its_evidence(self):
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
+        doc=json.loads((ROOT/binding['board']).read_text());old=copy.deepcopy(doc['records'][-1])
+        verdict=check(*fixture(binding=binding))
+        apply_record(doc,binding,verdict,'sources/example.json',NOW)
+        row=doc['records'][-1]
+        self.assertEqual(row['tier'],'verified')
+        self.assertEqual(row['authors'],old['authors']);self.assertEqual(row['score'],'9/4')
+        self.assertEqual(row['submitted_at'],old['submitted_at'])
+        self.assertEqual(row['evidence']['theorem'],'OAI.MatrixMultiplication.complex_omega_le_nine_quarters')
 
     def test_transaction_cache_expiry_and_repeat(self):
         with tempfile.TemporaryDirectory() as temporary:
