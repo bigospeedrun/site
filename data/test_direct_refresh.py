@@ -51,6 +51,15 @@ class RefreshTests(unittest.TestCase):
     def test_closed_issues_removed_and_non_direct_rows_retained(self):
         docs={slug:json.loads((ROOT/(slug+'.json')).read_text()) for slug in r.SLUGS.values()}
         claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
+        expected={slug:([row for row in doc['records'] if not doc['record_metadata'][row['id']].get('direct_submission')],
+                        {key:meta for key,meta in doc['record_metadata'].items() if not meta.get('direct_submission')})
+                  for slug,doc in docs.items()}
+        # Reproduce a board that already contains a direct submission, even when
+        # the checked-in snapshot does not yet contain any. Empty discovery must
+        # remove it rather than preserve it as part of the historical baseline.
+        row,meta,_=r.row_for('direct-issue-fixture',claim,'2026-10-10T00:00:00Z')
+        docs['exact-dft']['records'].append(row)
+        docs['exact-dft']['record_metadata'][row['id']]=meta
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp)
             for slug,doc in docs.items():(root/(slug+'.json')).write_bytes(r.json_bytes(doc))
@@ -61,7 +70,8 @@ class RefreshTests(unittest.TestCase):
             self.assertIn('direct-issue-5',{x['id'] for x in json.loads(first['exact-dft.json'])['records']})
             second=r.prepare(root,{}, {},'2026-10-11T01:00:00Z')
             updated=json.loads(second['exact-dft.json'])
-            self.assertEqual(updated['records'],docs['exact-dft']['records'])
+            self.assertEqual(updated['records'],expected['exact-dft'][0])
+            self.assertEqual(updated['record_metadata'],expected['exact-dft'][1])
 
     def test_transaction_failure_keeps_every_original_byte(self):
         with tempfile.TemporaryDirectory() as temp:
