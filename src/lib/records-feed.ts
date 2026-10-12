@@ -5,12 +5,12 @@ import type {Problem,RecordEntry} from './types';
 export interface FeedRecord {id:string; score:string; relation:string; evidence:string; authors:string[]; bound:string}
 export interface FeedBoard {slug:string; name:string; url:string; leader:string|null; records:FeedRecord[]}
 export interface FeedSnapshot {schema_version:1; boards:FeedBoard[]}
-export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]}
-export interface FeedMessage {key:string; content:string; x_text?:string}
-export interface RecordPost {key:string; text:string; x_text:string; posted_at:string}
+export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]; deferred?:{key:string;slug:string;authors:string[]}[]}
+export interface FeedMessage {key:string; content:string; x_text?:string; authors?:string[]}
+export interface RecordPost {key:string; text:string; x_text:string; posted_at:string; authors?:string[]}
 export function appendRecordPost(previous:RecordPost[],entry:FeedMessage,postedAt:string):RecordPost[] {
  if(previous.some(post=>post.key===entry.key))return previous.slice(-500);
- return [...previous,{key:entry.key,text:entry.content,x_text:entry.x_text??entry.content,posted_at:postedAt}].slice(-500);
+ return [...previous,{key:entry.key,text:entry.content,x_text:entry.x_text??entry.content,posted_at:postedAt,...(entry.authors?{authors:entry.authors}:{})}].slice(-500);
 }
 
 // Expand the site's scientific saving into decimal text without floating-point rounding.
@@ -73,9 +73,23 @@ function postedBoundKey(key:string):string {
  const [slug,,score,relation]=JSON.parse(key.slice(0,split)) as string[];
  return JSON.stringify([slug,score,relation,key.slice(split+1)]);
 }
-export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:Pick<RecordPost,'key'>[]=[]):{state:FeedState;messages:FeedMessage[]} {
+export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<RecordPost,'key'>&Partial<RecordPost>)[]=[],now=Date.now()):{state:FeedState;messages:FeedMessage[]} {
  const reserved=new Set(previous.reserved),messages:FeedMessage[]=[];
  const announced=new Set(posts.map(post=>postedBoundKey(post.key)));
+ const deferred=new Map((previous.deferred??[]).map(entry=>[entry.key,entry]));
+ const authorKey=(slug:string,authors:string[])=>JSON.stringify([slug,authors]);
+ const lastAccepted=new Map<string,number>();
+ for(const post of posts){
+  const at=Date.parse(post.posted_at??'');
+  if(!Number.isFinite(at))continue;
+  const [slug,id,score,relation]=JSON.parse(post.key.slice(0,post.key.lastIndexOf(':'))) as string[];
+  const oldRecord=[...previous.snapshot.boards,...snapshot.boards].filter(b=>b.slug===slug).flatMap(b=>b.records).find(r=>r.id===id&&r.score===score&&r.relation===relation);
+  const authorLine=post.x_text?.match(/^Players?: (.*)$/m)?.[1];
+  const authors=post.authors??(authorLine?authorLine.split(', '):oldRecord?.authors);
+  if(!authors)continue;
+  const group=authorKey(slug,authors);
+  lastAccepted.set(group,Math.max(lastAccepted.get(group)??-Infinity,at));
+ }
  for(const board of snapshot.boards){
   const old=previous.snapshot.boards.find(b=>b.slug===board.slug);
   for(const record of board.records){
@@ -84,16 +98,31 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:Pick<RecordP
    const newLeader=record.id===board.leader&&(!oldLeader||identity(old!,oldLeader)!==identity(board,record));
    const gainedLean=record.evidence==='Lean Verified'&&prior?.evidence!=='Lean Verified';
    const key=eventKey(board,record);
-   if((newLeader||gainedLean)&&!reserved.has(key)){
-    reserved.add(key);
+   const waiting=record.id===board.leader&&deferred.has(key);
+   if((newLeader||gainedLean||waiting)&&!reserved.has(key)){
     const boundKey=postedBoundKey(key);
-    if(announced.has(boundKey))continue;
+    if(announced.has(boundKey)){reserved.add(key);deferred.delete(key);continue;}
     const verifiedUpgrade=gainedLean&&announced.has(postedBoundKey(identity(board,record)+':record'));
-    messages.push({key,content:message(board,record,newLeader&&!verifiedUpgrade),x_text:xMessage(board,record,newLeader&&!verifiedUpgrade)});
+    const isNew=(newLeader||waiting)&&!verifiedUpgrade;
+    const group=authorKey(board.slug,record.authors);
+    if(isNew&&now-(lastAccepted.get(group)??-Infinity)<3*60*60*1000){
+     deferred.set(key,{key,slug:board.slug,authors:record.authors});continue;
+    }
+    reserved.add(key);deferred.delete(key);
+    if(!isNew){
+     const claimKey=identity(board,record)+':record';
+     if(deferred.delete(claimKey))reserved.add(claimKey);
+    }
+    if(isNew){
+     for(const [oldKey,entry] of deferred)if(authorKey(entry.slug,entry.authors)===group){
+      reserved.add(oldKey);deferred.delete(oldKey);
+     }
+    }
+    messages.push({key,content:message(board,record,isNew),x_text:xMessage(board,record,isNew),authors:record.authors});
    }
   }
  }
- return {state:{schema_version:1,snapshot,reserved:[...reserved]},messages};
+ return {state:{schema_version:1,snapshot,reserved:[...reserved],...(deferred.size?{deferred:[...deferred.values()]}:{})},messages};
 }
 
 export async function deliver(webhook:string,messages:FeedMessage[],send:typeof fetch=fetch,onAccepted?:(entry:FeedMessage)=>void):Promise<{sent:number;failed:number}> {

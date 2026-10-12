@@ -37,3 +37,15 @@ node --experimental-strip-types scripts/discord-records.ts dry-run /tmp/discord-
 This reads the baseline and generated feed and prints planned messages. It does not
 read a secret, write state or contact Discord. `npm test` tests ranking, exact bounds,
 upgrades, deduplication and transport failures with a fake HTTP sender.
+
+As of 2026-10-13, new-record announcements have a three-hour window per board
+and exact ordered author list. The clock starts at the latest accepted Discord
+post, not at planning time. Accepted posts now store their author list; older
+entries use their X player line or snapshot record. Lean verification announcements
+are exempt from the window.
+
+A throttled event is saved in the feed state's deferred list without reserving its
+key. Later plans recheck the current leader even if it has not changed. When an
+eligible leader posts, earlier deferred events for that board and author list are
+reserved as superseded, including entries removed from the snapshot. Deferred
+nonleaders do not post. X follows the accepted Discord log and inherits this limit.

@@ -256,3 +256,57 @@ test('format changes retain old event keys and accepted post text',()=>{
  const first=plan(baseline({schema_version:1,boards:[]}),snapshot(b)).messages[0];
  assert.equal(first.key,key);
 });
+
+test('three same-author leaders post first and defer to the latest after three hours',()=>{
+ const start=Date.parse('2026-10-13T00:00:00Z');
+ const a=row('a','Claimed','1/1000'),b=row('b','Claimed','1/900'),c=row('c','Claimed','1/800');
+ const first=plan(baseline({schema_version:1,boards:[]}),snapshot(board([a],'a')),[],start);
+ assert.equal(first.messages.length,1);
+ const posts=appendRecordPost([],first.messages[0],new Date(start).toISOString());
+ assert.deepEqual(posts[0].authors,['Alice']);
+ const second=plan(first.state,snapshot(board([a,b],'b')),posts,start+3600000);
+ assert.equal(second.messages.length,0);assert.equal(second.state.deferred?.length,1);
+ assert.ok(!second.state.reserved.includes(second.state.deferred![0].key));
+ const third=plan(second.state,snapshot(board([a,b,c],'c')),posts,start+7200000);
+ assert.equal(third.messages.length,0);assert.equal(third.state.deferred?.length,2);
+ assert.equal(plan(third.state,snapshot(board([a,b,c],'c')),posts,start+10800000-1).messages.length,0);
+ const later=plan(third.state,snapshot(board([a,c],'c')),posts,start+10800000);
+ assert.equal(later.messages.length,1);assert.ok(later.messages[0].key.includes('"c"'));
+ assert.ok(later.messages[0].content.startsWith('**New claim**'));assert.equal(later.state.deferred,undefined);
+ // Superseded b is reserved even though it disappeared from the snapshot.
+ assert.ok(later.state.reserved.some(key=>key.includes('"b"')));
+ assert.equal(plan(later.state,snapshot(board([a,b,c],'b')),posts,start+21600000).messages.length,0);
+});
+
+test('author lists and boards have separate clocks; only a deferred current leader may post',()=>{
+ const start=Date.parse('2026-10-13T00:00:00Z');
+ const a=row(),b=row('b','Claimed','1/900'),bob={...row('bob','Claimed','1/800'),authors:['Bob']};
+ const first=plan(baseline({schema_version:1,boards:[]}),snapshot(board([a])),[],start);
+ const posts=appendRecordPost([],first.messages[0],new Date(start).toISOString());
+ const waiting=plan(first.state,snapshot(board([a,b],'b')),posts,start+1000);
+ const interleaved=plan(waiting.state,snapshot(board([a,b,bob],'bob')),posts,start+2000);
+ assert.equal(interleaved.messages.length,1);assert.deepEqual(interleaved.messages[0].authors,['Bob']);
+ assert.equal(plan(interleaved.state,snapshot(board([a,b,bob],'bob')),posts,start+10800000).messages.length,0);
+ const team={...row('team','Claimed','1/700'),authors:['Alice','Bob']};
+ assert.equal(plan(interleaved.state,snapshot(board([team],'team')),posts,start+3000).messages.length,1);
+ const other={...board([b],'b'),slug:'integer-multiplication'};
+ assert.equal(plan(waiting.state,snapshot(other),posts,start+3000).messages.length,1);
+});
+
+test('Lean upgrades bypass the author window; legacy accepted X text supplies authors',()=>{
+ const start=Date.parse('2026-10-13T00:00:00Z');
+ const a=row();const first=plan(baseline({schema_version:1,boards:[]}),snapshot(board([a])),[],start);
+ const posts=appendRecordPost([],first.messages[0],new Date(start).toISOString());
+ const {authors,...legacy}=posts[0];assert.deepEqual(authors,['Alice']);
+ const next=snapshot(board([row('b','Claimed','1/900')],'b'));
+ assert.equal(plan(first.state,next,[legacy],start+1000).messages.length,0);
+ const verified=plan(first.state,snapshot(board([row('a','Lean Verified')])),posts,start+1000);
+ assert.equal(verified.messages.length,1);assert.ok(verified.messages[0].content.startsWith('**Record verified**'));
+ const newId=plan(first.state,snapshot(board([row('replacement','Lean Verified')],'replacement')),posts,start+1000);
+ assert.ok(newId.messages[0].content.startsWith('**Record verified**'));
+ const waiting=plan(first.state,next,posts,start+1000);
+ const upgraded=plan(waiting.state,snapshot(board([row('b','Lean Verified','1/900')],'b')),posts,start+2000);
+ assert.ok(upgraded.messages[0].content.startsWith('**Record verified**'));
+ assert.equal(upgraded.state.deferred,undefined);
+ assert.equal(plan(upgraded.state,next,posts,start+10800000).messages.length,0);
+});
