@@ -2844,7 +2844,7 @@
   "reviewed_pr_bindings": [
     {
       "row_id": "shea256-exact-dft-complex588-2026",
-      "pr_number": null,
+      "pr_number": 7,
       "package_repo": "nmamano/verifier",
       "package_head": "0a637219b43fb723f4ae7a180ec329549e7cc2aa",
       "source_subdir": "submissions/dft/nmamano-shea-c588",
@@ -2855,7 +2855,7 @@
       "upstream_commit": "9749945f0f3f7fa0edb22065c786f7106953f1db",
       "remapping_review": {
         "changed_files_sha256": "3ef93d87eae564a25b96c10b07e364611400617ea2e5dfe685775b95056c4fba",
-        "review": "2026-10-13: independently compared all 350 committed modules against shea256/fourier-transform-below-nlogn@9749945f0f3f7fa0edb22065c786f7106953f1db lean/complex588: 343 change only local import prefixes, 7 are byte-identical. All 352 added files are confined to the pinned submission folder. Reviewed Race.bound adapter selects transform_mainC588 decimal time conjunct and reduces 12331685/10^10 to 2466337/2000000000. Manifest matches. No Lean build performed; receipt validation remains required."
+        "review": "2026-10-13: independently compared all 350 committed modules against shea256/fourier-transform-below-nlogn@9749945f0f3f7fa0edb22065c786f7106953f1db lean/complex588: 343 change only local import prefixes, 7 are byte-identical. All 352 added files are confined to the pinned submission folder. Reviewed Race.bound adapter selects transform_mainC588 decimal time conjunct and reduces 12331685/10^10 to 2466337/2000000000. Manifest matches. No Lean build performed; receipt validation remains required. Lead independently checked all 350 modules: zero non-import differences; only Mathlib/Submission imports; no axiom/opaque/extern/unsafe declarations. PR 7 number, fork and head confirmed through GitHub API; controller pin matches current base and latest scheduler run 38315794408. PR-specific verification has not started at activation."
       }
     }
   ]
