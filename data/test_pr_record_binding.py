@@ -13,10 +13,17 @@ class ReviewedBindingTests(unittest.TestCase):
         self.binding=self.config['reviewed_pr_bindings'][0]
         self.binding.update(pr_number=99,package_repo='nmamano/verifier',package_head='a'*40,
             remapping_review=dict(changed_files_sha256='b'*64,review='Reviewed module remapping against pinned upstream.'))
-        self.docs={'exact-dft':json.loads((ROOT/'exact-dft.json').read_text())}
-        self.row=next(r for r in self.docs['exact-dft']['records'] if r['id']==self.binding['row_id'])
+        # A fixed Claimed fixture must not inherit the live row's verification
+        # state: CI runs this suite after refreshing that row to Verified.
+        self.row=dict(id=self.binding['row_id'],tier='claimed',score=self.binding['bound'],
+            score_relation='attained',source_commit=self.binding['upstream_commit'],
+            authors=[dict(name='Jeremy Kothe',url='https://github.com/jeremykothe2'),
+                     dict(name='Ryan Shea',url='https://github.com/shea256')],
+            source=dict(kind='repo-artifact',url='https://github.com/'+self.binding['upstream_repo']+
+                '/blob/'+self.binding['upstream_commit']+'/README.md'))
+        self.meta=dict(site_tier='claimed',comparison_key='exact-dft/uniform-exact-arithmetic/v1')
+        self.docs={'exact-dft':dict(records=[self.row],record_metadata={self.row['id']:self.meta})}
         self.original=copy.deepcopy(self.row)
-        self.meta=self.docs['exact-dft']['record_metadata'][self.row['id']]
         self.sub=dict(problem='dft',bound=self.binding['bound'],repo_url='https://github.com/bigospeedrun/verifier',
             commit='a'*40,source_subdir=self.binding['source_subdir'])
         self.proof=dict(decision='lean-verified',reason='Lean and audit passed',checked_at='2026-10-13T00:00:00Z',
