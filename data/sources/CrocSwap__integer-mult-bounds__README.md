@@ -3,58 +3,56 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: hyperplane-ended helpers
+## Current reviewed result: cold helper endpoints
 
-**Jeremy Kothe's [#596](https://github.com/CrocSwap/integer-mult-bounds/pull/596),
-composed with eumemic's [#543](https://github.com/CrocSwap/integer-mult-bounds/pull/543)** gives
+**Jeremy Kothe's [#617](https://github.com/CrocSwap/integer-mult-bounds/pull/617),
+building on DreamingOfClouds' [#604](https://github.com/CrocSwap/integer-mult-bounds/pull/604)
+and composed with eumemic's [#543](https://github.com/CrocSwap/integer-mult-bounds/pull/543)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{16127213726553}{10000000000000000}=0.0016127213726553.
+\kappa=\frac{817591864627889}{500000000000000000}=0.001635183729255778.
 $$
 
-This is **0.6517% above the previous selected saving**, approximately
-`2^-9.27629`. It compares asymptotic exponent savings, not practical runtime.
-The [#588 checkpoint](certificates/checkpoints/family588.json) is preserved.
+This is **1.3928% above the previous selected saving**, approximately
+`2^-9.25633`. It compares asymptotic exponent savings, not practical runtime.
+The [#596 checkpoint](certificates/checkpoints/hyperplane596.json) is preserved.
 
-The complex construction lets selected helpers finish at a certified
-hyperplane instead of continuing to the full frame. Their residual width
-falls from eight to seven, allowing better whole-helper packing. #591
-introduces the mechanism; #592 and #596 improve dispatch and owner allocation.
+The construction lets more helpers finish in smaller frames while restoring
+their arbitrary inputs. #601 admits commuting cleanup moves; #604 introduces
+cold helper endpoints; #615 and #617 extend the entering and cold helper sets.
+The resulting recursive calls are cheaper, and exact owner maps improve packing.
 The unchanged #543 bit supplier still has sufficient headroom.
 
-Jeremy Kothe's #593 proves the helper interface and three selected exact
-Clifford identities in Lean. DreamingOfClouds' #599 extends the interface to
-multi-gate cleanup and cold helpers. The review binds emitted wrapper recipes
-to the Lean literals. These proofs do **not** constitute a complete Lean
-multiplication theorem: all-size compilation, common-label/mutable-basis
-realization, pooled whole-call correlated-helper hosting, normalized
-residuals, precision/tape and analytic transfer remain conditional.
+Fresh finite checks cover scalar restoration, frames, global phases, owners,
+invoices, exact moments and all 47 strict assembly inequalities. The #617
+complex side is rebuilt from scratch; this review binds it to the unchanged,
+previously replayed #543 bit supplier. The public command below rebuilds both.
+Rohan Arun's #559 native-complex recurrence correction remains part of the result.
 
-Fresh finite replays check scalar columns, native frames, global phases,
-physical owners, finite invoices, both exact moment engines and all 47 strict
-outer inequalities. The conservative complex charge also passes at
-κ = 0.001612721369804261; the native complex charge credits Rohan Arun's #559
-correction and retains the separate bit surcharge. See the integration
-receipt for local execution and remote Linux CI status.
+The inherited Lean helper interfaces and entering-pair literals are checked
+against these instances; cold wrapper identities use exact finite Clifford
+checks. The round also checks 20 Lean modules from #605/#612, with their Linux
+reproduction and dependency-review requirements still open. These are scoped
+proofs, **not a complete Lean multiplication theorem**. All-size compilation,
+common-label/mutable-basis realization, pooled hosting, normalized residuals,
+precision/tape and analytic transfer remain conditional.
 
-This round also retains eumemic's #594 independent replay report,
-DreamingOfClouds' #589 bit improvement and #595 format research, and Dominik
-Scholz's #598 Leech/Turyn investigations. The construction builds on the
-cumulative work of Jonathan Capalbo, Chafik Boukhalfa, Dugongue, Rohan Arun,
-icekylinx and the wider community. [Full contributor record](CONTRIBUTORS.md).
-Parallel results and research findings keep their attribution.
+Parallel allocations, higherbeing's independent construction, eumemic's replay
+reports, Chafik Boukhalfa's portable owner checks, Dominik Scholz's Niemeier
+research and artuskg's ceiling corrections are retained with credit.
+[Full contributor record](CONTRIBUTORS.md).
 
-[Review and scope](docs/research/community-hyperplane599-review.md) ·
+[Review and scope](docs/research/community-cold617-review.md) ·
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-hyperplane599-audit/pr596/replay/ASSEMBLY.json) ·
-[Integration receipts](docs/research/community-hyperplane599-integration.json) ·
+[Exact assembly](research/community-cold617-audit/pr617/replay/ASSEMBLY.json) ·
+[Integration receipts](docs/research/community-cold617-integration.json) ·
 [PR review ledger](docs/research/pr-ledger.md)
 
 ```sh
 # Also requires a C++17 compiler and Boost headers.
 python3 -m pip install numpy sympy scipy
-make frontier596-verify
+make frontier617-verify
 ```
 
 ## Historical checkpoint: mixed complex providers
