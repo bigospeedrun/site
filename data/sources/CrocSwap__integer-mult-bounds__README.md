@@ -3,51 +3,73 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: post-center kernels and nine-stage bit hosting
+## Current reviewed result: interleaved bit sources and mixed complex providers
 
-**icekylinx's [#535](https://github.com/CrocSwap/integer-mult-bounds/pull/535),
-composed with DreamingOfClouds' [#503/#510](https://github.com/CrocSwap/integer-mult-bounds/pull/510)** gives
+**Jeremy Kothe's [#588](https://github.com/CrocSwap/integer-mult-bounds/pull/588),
+composed with eumemic's [#543](https://github.com/CrocSwap/integer-mult-bounds/pull/543)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{1584931111785787}{10^{18}}=0.001584931111785787.
+\kappa=\frac{400569730495803}{250000000000000000}=0.001602278921983212.
 $$
 
-Post-center gauges permit helpers to serve as donors for rank-four kernels,
-while mixed-width packing pays for every physical owner and remainder. The
-bit supplier places totals on dead registers and hosts its R480 word at nine
-stages. These build on the reviewed #531/#523 and #493 foundations and their
-community ancestry. The bit side now limits the composed saving.
+The preceding [#535 with #510 checkpoint](certificates/checkpoints/post-center535.json)
+is preserved. The [family review](docs/research/community-family588-review.md)
+records the 43 contributions, verification scope and integration evidence.
 
-This is **4.4256% above the previous selected exponent saving**. It is a
-conditional finite witness, not a practical runtime ratio or a complete Lean
-proof. All-size compilation, common-label/mutable-basis realization, normalized
-residual and hosting interfaces, restored rows, precision/tape and analytic
-transfer remain assumptions.
+The bit circuit delays source updates until targets have read them, reducing
+its helper count from 480 to 420. The complex construction combines cold
+kernels, entrance promotions, shared prefixes, whole-owner allocation and
+frame coalescences. Two additional commuting gate moves let #588 combine
+more rank-one calls into rank-two calls. The complex supplier now limits the
+composed saving.
 
-The maintainer replay reconstructs both changed suppliers, checks complete
-local phases, arbitrary-input columns, physical owners and finite bills, and
-binds the fresh bit result to both exact moment engines and all 47 strict
-outer inequalities. Parallel mechanisms from Chafik Boukhalfa (#533), Rohan
-Arun (#534/#536) and Dugongue (#537) are also integrated and credited.
+This is **1.0945% above the previous selected exponent saving**, approximately
+`2^-9.28566`. It compares asymptotic exponent savings, not practical runtime.
+All-size compilation, common-label/mutable-basis realization, pooled
+whole-call correlated-helper hosting, normalized residuals, precision/tape
+and analytic transfer remain conditional. This is not a complete Lean proof
+of integer multiplication.
 
-[Review and scope](docs/research/community-family533-review.md) ·
+The public replay rebuilds both suppliers, checks scalar columns, native
+frames, phase programs, physical owners and finite invoices, then binds the
+fresh bit result to the complex assembly and all 47 strict outer inequalities.
+The original conservative complex surcharge also passes, at
+κ = 0.001602278919174953; the selected native complex recurrence credits
+Rohan Arun's #559 correction and retains the separate bit surcharge.
+
+The composition builds on **Dominik Scholz**, **Jonathan Capalbo**,
+**Chafik Boukhalfa**, **Dugongue**, **DreamingOfClouds**, **Rohan Arun**, and
+the earlier community framework. All nine contributors in this review round,
+including **artuskg**'s research contribution, are listed in the
+[contributor record](CONTRIBUTORS.md). Parallel results, research notes,
+verification tools and scoped negative findings keep their credit.
+
+[Review and scope](docs/research/community-family588-review.md) ·
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-family533-audit/pr535-ASSEMBLY.json) ·
-[Integration receipts](docs/research/community-family533-integration.json) ·
-[PR review ledger](docs/research/pr-ledger.md) ·
-[Contributor record](CONTRIBUTORS.md)
-
-James Chang's #513/#528 add Lean sequential-bank and full-state endpoint
-connections to DreamingOfClouds' #509/#516 proofs. Their exact source builds
-and 147 axiom reports pass; connecting their hypotheses to every current
-physical construction remains a separate obligation.
+[Exact assembly](research/community-family588-audit/pr588/public-cold/complex/ASSEMBLY.json) ·
+[Integration receipts](docs/research/community-family588-integration.json) ·
+[PR review ledger](docs/research/pr-ledger.md)
 
 ```sh
 # Also requires a C++17 compiler and Boost headers.
 python3 -m pip install numpy sympy scipy
-make frontier535-verify
+make frontier588-verify
 ```
+
+James Chang's earlier #513/#528 connect Lean sequential-bank and full-state
+endpoint interfaces to DreamingOfClouds' #509/#516 proofs. Their 147 axiom
+reports passed in the preceding review; instantiating all hypotheses for the
+current physical construction remains a separate obligation. This round's
+finite replay does not cover the separately queued Lean proposals.
+
+## Historical checkpoint: post-center kernels and nine-stage bit hosting
+
+**icekylinx's #535 with DreamingOfClouds' #503/#510** gives
+κ = 0.001584931111785787. The complete construction and review remain available:
+[review](docs/research/community-family533-review.md),
+[checkpoint](certificates/checkpoints/post-center535.json), and
+`make frontier535-verify`.
 
 ## Historical checkpoint: direct delivery and source carriers
 
@@ -339,7 +361,7 @@ speedup. The model and general reduction are inherited from OpenAI's
 additions to allow more physical wire reuse. Combined with **eumemic's joint
 frame compiler (#57)**, this yields the strongest finite network in this batch.
 **Alejandro Zarzuelo Urdiales's exact parameter refinement and scoped Lean
-certificate (#61)** supply the selected numerical value.
+certificate (#61)** supply that historical numerical value.
 
 The bit network has m=575 and 137,151,806 physical roles; its certified recursive
 saving is 102039046058023/2000000000000000000. The complex network retains saving
@@ -358,13 +380,13 @@ split-pair recursion (#59)**. The review records the exact validation scope of e
 
 ## Attribution
 
-The current #186 construction is contributed by Dugongue, building on
+The historical #186 construction is contributed by Dugongue, building on
 Chafik Boukhalfa/chafreaky (#181/#175), eumemic (#168), and the cumulative
 framework and physical-word lineage. The [contributor ledger](CONTRIBUTORS.md)
 also credits reviewed parallel work, including Rohan Arun’s #185 bootstrap
 and Chafik’s #182 refinement, without adding their gains to this witness.
 
-Newly incorporated contributions include **DaysSky** (#150), **William Porter /
+Earlier incorporated contributions include **DaysSky** (#150), **William Porter /
 hpst3r** (#147), **Thomas Marchand / Th0rgal** (#146), and **Rohan Gupta /
 gupt1156** (#148), building on **James Chang / jamesyc** (#124) and
 **SovereignSteak** (#122). **Andrew Barnes / Bortlesboat** (#101) strengthens
