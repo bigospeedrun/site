@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-12T22:01:45Z",
+  "repo": "shea256/fourier-transform-below-nlogn",
+  "source_commit": "9749945f0f3f7fa0edb22065c786f7106953f1db",
+  "source_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/9749945f0f3f7fa0edb22065c786f7106953f1db/README.md#L17-L33",
+  "claim_date_commit": "52394849c7ecf3412d39b925d75fc7fdb98994d8",
+  "publication_date": "2026-10-12T18:43:53Z",
+  "publication_date_basis": "Committer timestamp of the first README commit stating 0.0012331685; its parent 9e2164d288fe1d30f4f6a161d2b64d9daecc4178 does not state that value.",
+  "score": "2466337/2000000000",
+  "saving": "12331685/10000000000",
+  "theorems": [
+    "OAI.PowerSaving.transform_mainC588",
+    "OAI.PowerSaving.convolution_mainC588"
+  ],
+  "model_check": "Independently compared the pinned UniformFourierChallenge.lean with verifier challenges/dft/UniformFourier233.lean: identical after removing comments/whitespace, normalizing seven C588/Y declaration suffixes, and replacing the saving numerator. RAM, DFTProgram, ConvProgram and all-length quantifiers are unchanged. This is a source comparison, not a proof rerun.",
+  "files": {
+    "sources/shea256-complex588-README.md": "5ce1789cb95463f6fd1fcd64796e2ca4400dbc0922eb42ca2901c8e849bc422c",
+    "sources/shea256-complex588-first-README.md": "5ce1789cb95463f6fd1fcd64796e2ca4400dbc0922eb42ca2901c8e849bc422c",
+    "sources/shea256-complex588-Main.lean": "dec7af02f1b81380c89d4758924af8c63b12dce7990a037f386b22f0b6c47f99",
+    "sources/shea256-complex588-UniformFourierChallenge.lean": "0bf486c0b53e926baf73c8623e2325aa01fd23dad9afa013d4a49a99afce6eb1",
+    "sources/shea256-complex588-NOTICE": "d3eccc7bf6a099aeb3d0f54d9dd1d0b4f3fca42c8c0a1cc0d8e1899e1cff10ac",
+    "sources/shea256-complex588-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "verification": "Author-supplied Lean and local reproduction claims only; no Big O Speedrun rerun for this pin. Evidence remains Claimed.",
+  "credits": "Jeremy Kothe: PR588 circuit. Ryan Shea: source-copy conversion, cyclic bank schedule and new all-length DFT instantiation. Jacob Sussman: Lean engine and checkers. Dugongue and Zhihao Chen (jacklightChen): #401/#377 geometry. Nil Mamano: published gauged Lean extension. OpenAI: exact model and all-length reduction. DominikScholz, jon314159, eumemic, Chafik Boukhalfa and earlier contributors retain the circuit-lineage credits in the source notice.",
+  "authors_basis": "Construction author Jeremy Kothe first, then Ryan Shea for the new Fourier instantiation; reusable engines, geometry and prior refinements remain in credits rather than being treated as co-authors of this new instantiation."
+}

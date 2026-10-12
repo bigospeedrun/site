@@ -482,6 +482,51 @@
         "checked_at": "2026-10-11T14:04:34.709092Z",
         "receipt_path": "sources/direct-pr-3-38142057874-1-final.json"
       }
+    },
+    {
+      "id": "shea256-exact-dft-complex588-2026",
+      "kind": "improvement",
+      "score": "2466337/2000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-12T18:43:53Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-12T18:43:53Z",
+      "site_observed_at": "2026-10-12T22:01:45Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/9749945f0f3f7fa0edb22065c786f7106953f1db/README.md#L17-L33"
+      },
+      "spec_version": "1",
+      "title": "Jeremy Kothe and Ryan Shea all-length exact DFT complex588 claim",
+      "authors": [
+        {
+          "name": "Jeremy Kothe",
+          "url": "https://github.com/jeremykothe2"
+        },
+        {
+          "name": "Ryan Shea",
+          "url": "https://github.com/shea256"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/588",
+        "https://github.com/jacobalansussman/wht-power-saving-lean",
+        "https://github.com/bigospeedrun/verifier/tree/025396033eede56e3af6e02ed2679ba828381bd5",
+        "https://github.com/openai/math"
+      ],
+      "submission_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/9749945f0f3f7fa0edb22065c786f7106953f1db/README.md#L17-L33",
+      "artifact": {
+        "path": "sources/shea256-complex588-claim.json",
+        "sha256": "67facd4c843d1e4d035a87bef22ad023679398335eb4339ea90bcd8ab9d9c7d9"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/9749945f0f3f7fa0edb22065c786f7106953f1db/README.md#L17-L33",
+        "theorem": "OAI.PowerSaving.transform_mainC588; OAI.PowerSaving.convolution_mainC588",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "9749945f0f3f7fa0edb22065c786f7106953f1db"
     }
   ],
   "record_metadata": {
@@ -717,7 +762,32 @@
       "direct_submission": true,
       "route": "pull_request",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38142057874"
+    },
+    "shea256-exact-dft-complex588-2026": {
+      "checked_at": "2026-10-12",
+      "source_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/9749945f0f3f7fa0edb22065c786f7106953f1db/README.md#L17-L33",
+      "repo": "shea256/fourier-transform-below-nlogn",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Author-supplied Lean and local reproduction claims only; no Big O Speedrun rerun for this pin. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "comparison_status": "Independently compared the pinned UniformFourierChallenge.lean with verifier challenges/dft/UniformFourier233.lean: identical after removing comments/whitespace, normalizing seven C588/Y declaration suffixes, and replacing the saving numerator. RAM, DFTProgram, ConvProgram and all-length quantifiers are unchanged. This is a source comparison, not a proof rerun.",
+      "scope": "Fixed deterministic programs for every positive n. Exact canonical DFT and full convolution over complex vectors. Root of unity supplied; unrestricted coefficients and exact complex arithmetic. Polynomially bounded integer values and indices. Cost includes root-order selection and scalar preparation. Excludes bit complexity and the separate subsequential circuit result.",
+      "exact_statement": "All positive-length exact DFT and full convolution in O(n (log n)^(1-12331685/10^10)).",
+      "score_interpretation": "Attained as claimed: saving 12331685/10^10, reduced to 2466337/2000000000. The integer-multiplication saving is a separate parameter.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "First primary-source commit stating the bound",
+      "publication_date": "2026-10-12T18:43:53Z",
+      "publication_source_url": "https://github.com/shea256/fourier-transform-below-nlogn/commit/52394849c7ecf3412d39b925d75fc7fdb98994d8",
+      "claim_date_commit": "52394849c7ecf3412d39b925d75fc7fdb98994d8",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "notes_url": "https://github.com/shea256/fourier-transform-below-nlogn/blob/9749945f0f3f7fa0edb22065c786f7106953f1db/lean/complex588/NOTICE.complex588",
+      "license_status": "Apache-2.0; source LICENSE and complex588 notice retained",
+      "credits": "Jeremy Kothe: PR588 circuit. Ryan Shea: source-copy conversion, cyclic bank schedule and new all-length DFT instantiation. Jacob Sussman: Lean engine and checkers. Dugongue and Zhihao Chen (jacklightChen): #401/#377 geometry. Nil Mamano: published gauged Lean extension. OpenAI: exact model and all-length reduction. DominikScholz, jon314159, eumemic, Chafik Boukhalfa and earlier contributors retain the circuit-lineage credits in the source notice."
     }
   },
-  "updated_at": "2026-10-12T00:19:14Z"
+  "updated_at": "2026-10-12T22:01:45Z"
 }
