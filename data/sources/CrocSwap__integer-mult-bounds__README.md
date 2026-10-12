@@ -3,57 +3,61 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: cold helper endpoints
+## Current reviewed result: K-triangle helpers and owner repair
 
-**Jeremy Kothe's [#617](https://github.com/CrocSwap/integer-mult-bounds/pull/617),
-building on DreamingOfClouds' [#604](https://github.com/CrocSwap/integer-mult-bounds/pull/604)
-and composed with eumemic's [#543](https://github.com/CrocSwap/integer-mult-bounds/pull/543)** gives
+**Chafik Boukhalfa's [#626](https://github.com/CrocSwap/integer-mult-bounds/pull/626),
+building on Jeremy Kothe's [#622/#623](https://github.com/CrocSwap/integer-mult-bounds/pull/623),
+with eumemic's [#543](https://github.com/CrocSwap/integer-mult-bounds/pull/543)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{817591864627889}{500000000000000000}=0.001635183729255778.
+\kappa=\frac{51110230636731}{31250000000000000}=0.001635527380375392.
 $$
 
-This is **1.3928% above the previous selected saving**, approximately
-`2^-9.25633`. It compares asymptotic exponent savings, not practical runtime.
-The [#596 checkpoint](certificates/checkpoints/hyperplane596.json) is preserved.
+This is **0.021016% above the previous selected saving**, approximately
+`2^-9.25603`. It compares asymptotic exponent savings, not practical runtime.
+The [#617 checkpoint](certificates/checkpoints/cold617.json) is preserved.
 
-The construction lets more helpers finish in smaller frames while restoring
-their arbitrary inputs. #601 admits commuting cleanup moves; #604 introduces
-cold helper endpoints; #615 and #617 extend the entering and cold helper sets.
-The resulting recursive calls are cheaper, and exact owner maps improve packing.
-The unchanged #543 bit supplier still has sufficient headroom.
+The K-triangle construction replaces copied packets with direct reads and
+reduces each complex provider from 504 to 492 helpers. A coordinated allocation
+then reduces unused space in the owners hosting those helpers. The unchanged
+#543 bit supplier still has sufficient headroom. DreamingOfClouds' cold-helper
+construction, Rohan Arun's #559 recurrence correction and the cumulative
+community framework remain part of the result.
 
-Fresh finite checks cover scalar restoration, frames, global phases, owners,
-invoices, exact moments and all 47 strict assembly inequalities. The #617
-complex side is rebuilt from scratch; this review binds it to the unchanged,
-previously replayed #543 bit supplier. The public command below rebuilds both.
-Rohan Arun's #559 native-complex recurrence correction remains part of the result.
+A fresh #622 replay checks scalar restoration, native frames, all global phases
+and global accounting. #626 uses the identical providers and receives a separate
+owner, invoice, exact-moment and 47-inequality assembly replay plus an independent
+owner/moment checker. The public command below rebuilds both suppliers.
 
-The inherited Lean helper interfaces and entering-pair literals are checked
-against these instances; cold wrapper identities use exact finite Clifford
-checks. The round also checks 20 Lean modules from #605/#612, with their Linux
-reproduction and dependency-review requirements still open. These are scoped
-proofs, **not a complete Lean multiplication theorem**. All-size compilation,
-common-label/mutable-basis realization, pooled hosting, normalized residuals,
-precision/tape and analytic transfer remain conditional.
+Parallel allocation work by Jeremy Diviney and Jeremy Kothe, Chafik's scoped
+#615-family ceiling, Ali Romman's analytic inverse theorem and GamingPuzzled's
+research lead retain credit. #620's broader solver/barrier claims remain partially
+reviewed. [Full contributor record](CONTRIBUTORS.md).
 
-Parallel allocations, higherbeing's independent construction, eumemic's replay
-reports, Chafik Boukhalfa's portable owner checks, Dominik Scholz's Niemeier
-research and artuskg's ceiling corrections are retained with credit.
-[Full contributor record](CONTRIBUTORS.md).
+All-size compilation, common-label/mutable-basis realization, pooled hosting,
+normalized residuals, precision/tape and analytic transfer remain conditional.
+Inherited Lean literals and exact finite Clifford checks are **not a complete
+Lean multiplication theorem**. Remote Linux CI status is recorded separately.
 
-[Review and scope](docs/research/community-cold617-review.md) ·
+[Review and scope](docs/research/community-k492-review.md) ·
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-cold617-audit/pr617/replay/ASSEMBLY.json) ·
-[Integration receipts](docs/research/community-cold617-integration.json) ·
+[Exact assembly](research/community-k492-audit/pr626/replay/ASSEMBLY.json) ·
+[Integration receipts](docs/research/community-k492-integration.json) ·
 [PR review ledger](docs/research/pr-ledger.md)
 
 ```sh
 # Also requires a C++17 compiler and Boost headers.
 python3 -m pip install numpy sympy scipy
-make frontier617-verify
+make frontier626-verify
 ```
+
+## Historical checkpoint: cold helper endpoints
+
+Jeremy Kothe's #617 with eumemic's #543 gives κ = 0.001635183729255778.
+The [review](docs/research/community-cold617-review.md),
+[checkpoint](certificates/checkpoints/cold617.json) and `make frontier617-verify`
+preserve the preceding result and its contribution record.
 
 ## Historical checkpoint: mixed complex providers
 

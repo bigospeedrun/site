@@ -1,0 +1,11 @@
+{
+  "number": 630,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/630",
+  "title": "Correct the archived E6 screen with an exact exceptional-root census",
+  "body": "PR620’s archived ADE screen labels the complement of two orthogonal E8 roots as E6. That construction has 30 root lines and type D6. This companion constructs the A2 complement, checks its 36-line E6 geometry exactly, and recomputes the exceptional-root census without external dependencies.\n\nThe certificate includes every-pair reflection closure (20,565 checks), simple-root bases, Cartan determinants and Dynkin arms, and exact rational and binary ranks. Corrected E6 has h=6, v=36, rank_F2(J+G)=7 and the original full-rank-totals proxy x=7/6. Its proxy deficit remains negative. This is a research correction, with no new κ or universal decoder exclusion claim.\n\nAll original PR620 bytes and historical review receipts are preserved. Changes are confined to `research/exact-ade-census/`; source attribution, the archived script hash, background reference and substantial OpenAI Codex assistance are recorded in its README.\n\nValidation:\n- Four regression tests pass, including rejection of incomplete, duplicate and zero-root sets and a rational-versus-binary rank control.\n- Normal and isolated optimized (`-I -O`) certificate replays pass using only Python’s standard library.\n- Replacing the E6 selector with the archived orthogonal-pair selector is rejected by the regression test (30 != 36).\n- Independent code/mathematics review found no issues; `git diff --check` passes.\n- Full `make verify` was attempted with the system Python 3.9: it passed the first two community arithmetic checks, then stopped in the unchanged `scripts/structured_bulk/complex.py` because `int.bit_count()` requires a newer interpreter. No full-suite pass is claimed.\n\nReproduce from the repository root:\n```sh\npython3 -B research/exact-ade-census/test_census.py\npython3 -B -I -O research/exact-ade-census/census.py --check research/exact-ade-census/RESULTS.json\n```\n",
+  "created_at": "2026-10-12T23:10:17Z",
+  "updated_at": "2026-10-12T23:10:17Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
