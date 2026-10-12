@@ -3,53 +3,59 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: direct delivery and source carriers
+## Current reviewed result: post-center kernels and nine-stage bit hosting
 
-**icekylinx's [#531](https://github.com/CrocSwap/integer-mult-bounds/pull/531),
-on [#523](https://github.com/CrocSwap/integer-mult-bounds/pull/523), composed
-with eumemic's [#493](https://github.com/CrocSwap/integer-mult-bounds/pull/493)** gives
+**icekylinx's [#535](https://github.com/CrocSwap/integer-mult-bounds/pull/535),
+composed with DreamingOfClouds' [#503/#510](https://github.com/CrocSwap/integer-mult-bounds/pull/510)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{1517760977820331}{10^{18}}=0.001517760977820331.
+\kappa=\frac{1584931111785787}{10^{18}}=0.001584931111785787.
 $$
 
-The complex construction delivers selected contributions directly through
-existing copies, reducing helpers from 560 to 504, and reallocates every
-helper to a complete idle physical family. The bit supplier uses source
-registers as intermediate carriers. These build on the community's Hamming/E8
-geometry, kernels, gauges, whole-owner hosting and exact verification machinery.
+Post-center gauges permit helpers to serve as donors for rank-four kernels,
+while mixed-width packing pays for every physical owner and remainder. The
+bit supplier places totals on dead registers and hosts its R480 word at nine
+stages. These build on the reviewed #531/#523 and #493 foundations and their
+community ancestry. The bit side now limits the composed saving.
 
-This is about **2.10 times the previously selected exponent saving**, or
-approximately **2^-9.36384**. It is a conditional finite witness: the all-size
-compiler, common-label/mutable-basis realization, normalized residual and
-hosting interfaces, restored rows, precision/tape and analytic transfer remain
-assumptions. It is not a practical runtime ratio or a complete Lean proof.
+This is **4.4256% above the previous selected exponent saving**. It is a
+conditional finite witness, not a practical runtime ratio or a complete Lean
+proof. All-size compilation, common-label/mutable-basis realization, normalized
+residual and hosting interfaces, restored rows, precision/tape and analytic
+transfer remain assumptions.
 
-The maintainer replay rebuilt all three supplier packages, including the
-complex predecessor, checked the literal bit program and physical ownership,
-and verified the exact dependency bindings, both moment engines and all 47
-outer inequalities. Research notes and scoped negative findings are also
-preserved; their inclusion does not promote every ancillary claim to a theorem.
+The maintainer replay reconstructs both changed suppliers, checks complete
+local phases, arbitrary-input columns, physical owners and finite bills, and
+binds the fresh bit result to both exact moment engines and all 47 strict
+outer inequalities. Parallel mechanisms from Chafik Boukhalfa (#533), Rohan
+Arun (#534/#536) and Dugongue (#537) are also integrated and credited.
 
-[Review and scope](docs/research/community-pr531-review.md) ·
+[Review and scope](docs/research/community-family533-review.md) ·
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-pr531-audit/direct-ASSEMBLY.json) ·
-[Integration receipts](docs/research/community-pr531-integration.json) ·
+[Exact assembly](research/community-family533-audit/pr535-ASSEMBLY.json) ·
+[Integration receipts](docs/research/community-family533-integration.json) ·
 [PR review ledger](docs/research/pr-ledger.md) ·
 [Contributor record](CONTRIBUTORS.md)
 
-The [formalization and tooling batch](docs/research/community-formal-20261012-review.md)
-adds DreamingOfClouds' Lean proofs of Lemmas G and A, checked against four freshly
-reconstructed historical words, and higherbeing's allocation/geometry tools.
-These scoped proofs strengthen specific interfaces; the complete multiplication
-theorem remains conditional.
+James Chang's #513/#528 add Lean sequential-bank and full-state endpoint
+connections to DreamingOfClouds' #509/#516 proofs. Their exact source builds
+and 147 axiom reports pass; connecting their hypotheses to every current
+physical construction remains a separate obligation.
 
 ```sh
 # Also requires a C++17 compiler and Boost headers.
-python3 -m pip install -r research/e8-bit-carrier-skeleton/requirements.txt
-make frontier531-verify
+python3 -m pip install numpy sympy scipy
+make frontier535-verify
 ```
+
+## Historical checkpoint: direct delivery and source carriers
+
+**icekylinx's #531 on #523, with eumemic's #493**, gives
+κ = 0.001517760977820331. Its complete construction and verification record
+remain available: [review](docs/research/community-pr531-review.md),
+[checkpoint](certificates/checkpoints/direct531.json), and
+`make frontier531-verify`.
 
 ## Historical checkpoint: gen4 circuits and common-delivery frames
 
