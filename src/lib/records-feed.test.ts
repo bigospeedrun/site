@@ -94,7 +94,7 @@ test('message contains problem, exact bound, evidence, author and link without m
 });
 test('webhook delivery disables mentions, confirms sends, and fails soft without retry',async()=>{
  const messages=[{key:'a',content:'One'},{key:'b',content:'Two'},{key:'c',content:'Three'}];let calls=0;
- const send=async(url:unknown,options:any)=>{assert.match(String(url),/\?wait=true$/);assert.equal(options.redirect,'error');assert.deepEqual(JSON.parse(options.body).allowed_mentions,{parse:[]});assert.equal(JSON.parse(options.body).flags,4);calls++;if(calls===1)return new Response('',{status:200});if(calls===2)return new Response('',{status:429});throw new Error('connection lost');};
+ const send=async(url:unknown,options:any)=>{assert.match(String(url),/\?wait=true$/);assert.equal(options.redirect,'error');assert.deepEqual(JSON.parse(options.body).allowed_mentions,{parse:[]});assert.equal(JSON.parse(options.body).flags,undefined);assert.equal(JSON.parse(options.body).content,'');assert.deepEqual(JSON.parse(options.body).embeds,[{description:messages[calls].content}]);calls++;if(calls===1)return new Response('',{status:200});if(calls===2)return new Response('',{status:429});throw new Error('connection lost');};
  assert.deepEqual(await deliver('https://discord.com/api/webhooks/123/fake',messages,send as typeof fetch),{sent:1,failed:2});assert.equal(calls,3);
  await assert.rejects(deliver('https://example.com/token',messages,send as typeof fetch),/invalid/);
 });
@@ -309,4 +309,22 @@ test('Lean upgrades bypass the author window; legacy accepted X text supplies au
  assert.ok(upgraded.messages[0].content.startsWith('**Record verified**'));
  assert.equal(upgraded.state.deferred,undefined);
  assert.equal(plan(upgraded.state,next,posts,start+10800000).messages.length,0);
+});
+
+test('all six boards send one compact colored embed and keep exact accepted and X text',async()=>{
+ const colors={'integer-multiplication':0xF59E0B,'matrix-multiplication':0x8B5CF6,'exact-dft':0x06B6D4,'3sum':0x22C55E,apsp:0xEF4444,'subset-sum':0x3B82F6};
+ for(const [slug,color] of Object.entries(colors)){
+  const b={...board(),slug,url:`https://bigospeedrun.com/${slug}`};
+  const entry=plan(baseline({schema_version:1,boards:[]}),snapshot(b)).messages[0];
+  const posts:ReturnType<typeof appendRecordPost>=[];
+  const result=await deliver('https://discord.com/api/webhooks/123/fake',[entry],(async(_url,options)=>{
+   const payload=JSON.parse(String(options?.body));
+   assert.deepEqual(payload,{content:'',embeds:[{description:message(b,b.records[0]),color}],allowed_mentions:{parse:[]}});
+   assert.doesNotMatch(payload.embeds[0].description,/\n/);
+   return new Response('',{status:200});
+  }) as typeof fetch,accepted=>posts.push(...appendRecordPost([],accepted,'2026-10-13T00:00:00.000Z')));
+  assert.deepEqual(result,{sent:1,failed:0});assert.equal(posts.length,1);
+  assert.equal(posts[0].text,entry.content);assert.equal(posts[0].x_text,xMessage(b,b.records[0]));
+  assert.equal(posts[0].key,entry.key);
+ }
 });

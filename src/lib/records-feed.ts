@@ -125,13 +125,23 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
  return {state:{schema_version:1,snapshot,reserved:[...reserved],...(deferred.size?{deferred:[...deferred.values()]}:{})},messages};
 }
 
+export const discordRecordColors:Readonly<Record<string,number>>={
+ 'integer-multiplication':0xF59E0B,
+ 'matrix-multiplication':0x8B5CF6,
+ 'exact-dft':0x06B6D4,
+ '3sum':0x22C55E,
+ 'apsp':0xEF4444,
+ 'subset-sum':0x3B82F6,
+};
 export async function deliver(webhook:string,messages:FeedMessage[],send:typeof fetch=fetch,onAccepted?:(entry:FeedMessage)=>void):Promise<{sent:number;failed:number}> {
  if(!/^https:\/\/discord\.com\/api\/webhooks\/\d+\/[A-Za-z0-9_-]+$/.test(webhook))throw new Error('Missing or invalid records webhook');
  let sent=0,failed=0,logFailed=false;
  for(const entry of messages){
   let accepted=false;
   try {
-   const response=await send(webhook+'?wait=true',{method:'POST',redirect:'error',signal:AbortSignal.timeout(15000),headers:{'Content-Type':'application/json'},body:JSON.stringify({content:entry.content,allowed_mentions:{parse:[]},flags:4})});
+   // Event keys start with the board slug. Unrecognized boards get an uncolored embed.
+   const slug=entry.key.match(/^\["([^"]+)"/)?.[1]??'';
+   const response=await send(webhook+'?wait=true',{method:'POST',redirect:'error',signal:AbortSignal.timeout(15000),headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'',embeds:[{description:entry.content,color:discordRecordColors[slug]}],allowed_mentions:{parse:[]}})});
    if(response.ok){sent++;accepted=true;}else failed++;
   }catch{failed++;} // Never log a URL, response body or exception containing a secret.
   // Keep sending the reserved batch even if the local acceptance log fails.
