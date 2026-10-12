@@ -67,8 +67,15 @@ export function baseline(snapshot:FeedSnapshot):FeedState {
  for(const board of snapshot.boards)for(const r of board.records)if(r.id===board.leader||r.evidence==='Lean Verified')reserved.push(eventKey(board,r));
  return {schema_version:1,snapshot,reserved};
 }
-export function plan(previous:FeedState,snapshot:FeedSnapshot):{state:FeedState;messages:FeedMessage[]} {
+// Accepted posts retain the original event key; omit only the submission ID for deduplication.
+function postedBoundKey(key:string):string {
+ const split=key.lastIndexOf(':');
+ const [slug,,score,relation]=JSON.parse(key.slice(0,split)) as string[];
+ return JSON.stringify([slug,score,relation,key.slice(split+1)]);
+}
+export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:Pick<RecordPost,'key'>[]=[]):{state:FeedState;messages:FeedMessage[]} {
  const reserved=new Set(previous.reserved),messages:FeedMessage[]=[];
+ const announced=new Set(posts.map(post=>postedBoundKey(post.key)));
  for(const board of snapshot.boards){
   const old=previous.snapshot.boards.find(b=>b.slug===board.slug);
   for(const record of board.records){
@@ -77,7 +84,13 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot):{state:FeedState;
    const newLeader=record.id===board.leader&&(!oldLeader||identity(old!,oldLeader)!==identity(board,record));
    const gainedLean=record.evidence==='Lean Verified'&&prior?.evidence!=='Lean Verified';
    const key=eventKey(board,record);
-   if((newLeader||gainedLean)&&!reserved.has(key)){reserved.add(key);messages.push({key,content:message(board,record,newLeader),x_text:xMessage(board,record,newLeader)});}
+   if((newLeader||gainedLean)&&!reserved.has(key)){
+    reserved.add(key);
+    const boundKey=postedBoundKey(key);
+    if(announced.has(boundKey))continue;
+    const verifiedUpgrade=gainedLean&&announced.has(postedBoundKey(identity(board,record)+':record'));
+    messages.push({key,content:message(board,record,newLeader&&!verifiedUpgrade),x_text:xMessage(board,record,newLeader&&!verifiedUpgrade)});
+   }
   }
  }
  return {state:{schema_version:1,snapshot,reserved:[...reserved]},messages};

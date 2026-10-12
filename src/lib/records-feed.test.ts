@@ -20,6 +20,36 @@ test('Lean upgrade posts once, including a nonleader; leader plus upgrade is one
  const downgraded=plan(result.state,snapshot(board([row(),row('b')])));
  assert.equal(plan(downgraded.state,upgraded).messages.length,0);
 });
+test('accepted bound suppresses a new submission ID, but later Lean verification posts',()=>{
+ const accepted=[{key:'["exact-dft","a","1/1000","attained"]:record'}];
+ const previous=baseline(snapshot());
+ const resubmitted=snapshot(board([row('b')],'b'));
+ const result=plan(previous,resubmitted,accepted);
+ assert.deepEqual(result.messages,[]);
+ assert.ok(result.state.reserved.includes('["exact-dft","b","1/1000","attained"]:record'));
+ const verified=snapshot(board([row('b','Lean Verified')],'b'));
+ const upgrade=plan(result.state,verified,accepted);
+ assert.equal(upgrade.messages.length,1);
+ assert.equal(upgrade.messages[0].key,'["exact-dft","b","1/1000","attained"]:lean');
+ assert.ok(upgrade.messages[0].content.startsWith('**Record verified**'));
+ assert.ok(upgrade.messages[0].x_text?.startsWith('Record verified!'));
+ // Also use upgrade wording if the resubmission first appears with its proof.
+ assert.ok(plan(previous,verified,accepted).messages[0].content.startsWith('**Record verified**'));
+ const posted=[...accepted,{key:upgrade.messages[0].key}];
+ assert.deepEqual(plan(upgrade.state,snapshot(board([row('c','Lean Verified')],'c')),posted).messages,[]);
+});
+test('accepted bound matching survives snapshot removal and keeps board, score and relation distinct',()=>{
+ const accepted=[{key:'["exact-dft","a","1/1000","attained"]:record'}];
+ const previous=baseline({schema_version:1,boards:[]});
+ assert.deepEqual(plan(previous,snapshot(board([row('b')],'b')),accepted).messages,[]);
+ for(const b of [
+  {...board([row('b')],'b'),slug:'integer-multiplication'},
+  board([row('b','Claimed','1/900')],'b'),
+  board([{...row('b'),relation:'strict-upper-bound'}],'b'),
+ ])assert.equal(plan(previous,snapshot(b),accepted).messages.length,1);
+ // A reservation without acceptance does not suppress a different submission ID.
+ assert.equal(plan(baseline(snapshot()),snapshot(board([row('b')],'b')),[]).messages.length,1);
+});
 test('Human Verified upgrade or author-name edit alone does not post',()=>{
  const initial=baseline(snapshot());const changed=board([row('a','Human Verified')]);changed.records[0].authors=['Alice Example'];
  assert.equal(plan(initial,snapshot(changed)).messages.length,0);
@@ -114,6 +144,28 @@ test('log failure does not retry or interrupt Discord sends',async()=>{
  assert.equal(calls,2);
 });
 
+
+test('dry-run CLI loads accepted posts to suppress a resubmission',async()=>{
+ const {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync}=await import('node:fs');
+ const {tmpdir}=await import('node:os');
+ const {join}=await import('node:path');
+ const {spawnSync}=await import('node:child_process');
+ const root=mkdtempSync(join(tmpdir(),'records-dedupe-test-'));
+ try{
+  mkdirSync(join(root,'data'));mkdirSync(join(root,'dist'));
+  const state=JSON.stringify(baseline(snapshot()));
+  const posts=JSON.stringify([{key:'["exact-dft","a","1/1000","attained"]:record',text:'Previously accepted',posted_at:'2026-10-12T00:00:00.000Z'}]);
+  writeFileSync(join(root,'data/discord-records.json'),state);
+  writeFileSync(join(root,'data/records-posts.json'),posts);
+  writeFileSync(join(root,'dist/records-feed.json'),JSON.stringify(snapshot(board([row('b')],'b'))));
+  const script=new URL('../../scripts/discord-records.ts',import.meta.url).pathname;
+  const result=spawnSync(process.execPath,['--experimental-strip-types',script,'dry-run','batch.json'],{cwd:root,encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  assert.match(result.stdout,/0 planned messages; no writes or posts/);
+  assert.equal(readFileSync(join(root,'data/discord-records.json'),'utf8'),state);
+  assert.equal(readFileSync(join(root,'data/records-posts.json'),'utf8'),posts);
+ }finally{rmSync(root,{recursive:true,force:true});}
+});
 
 test('send CLI persists accepted posts even when another Discord send fails',async()=>{
  const {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync}=await import('node:fs');

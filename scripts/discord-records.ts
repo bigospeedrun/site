@@ -27,7 +27,8 @@ async function main(){
  if(mode==='baseline'){write(statePath,baseline(snapshot));console.log('Saved initial records feed baseline; no posts.');return;}
  if(!['plan','dry-run'].includes(mode)||!batch)throw new Error('Expected baseline, plan BATCH, dry-run BATCH or send BATCH');
  const previous:FeedState=read(statePath);
- const result=plan(previous,snapshot);
+ const posts:RecordPost[]=existsSync(postsPath)?read(postsPath):[];
+ const result=plan(previous,snapshot,posts);
  if(mode==='dry-run'){for(const m of result.messages)console.log(m.content);console.log(`${result.messages.length} planned messages; no writes or posts.`);return;}
  if(!process.env.DISCORD_RECORDS_WEBHOOK){console.log('Records webhook is not configured; notification state retained.');return;}
  write(statePath,result.state);write(batch,result.messages);
