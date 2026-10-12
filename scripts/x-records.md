@@ -36,8 +36,10 @@ cause the next run to repeat an uncertain POST. Inspect unknown entries and the
 X account manually; do not delete a key merely to retry it. If a status push fails,
 the earlier remote reservation still prevents a repeat.
 
-Confirmed HTTP 429 and 5xx responses remove the reservation, leaving the entry
-pending for a later run. Other non-success responses save `failed` with the HTTP
+Confirmed HTTP 402, 429 and 5xx responses remove the reservation, leaving the entry
+pending for a later run. HTTP 403 responses that mention credits, billing, payment,
+insufficient funds/balance, or spending limits also remain pending. Billing
+responses produce a clear job-log line without exposing the response body. Other non-success responses save `failed` with the HTTP
 status in `code`. Error bodies, credentials, and authorization headers are never
 logged. No POST is retried within a run.
 

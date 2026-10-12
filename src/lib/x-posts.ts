@@ -47,6 +47,14 @@ export async function sendBatch(c:Credentials,batch:XEntry[],log:XLog,save:(log:
   try{
    response=await send(endpoint,{method:'POST',redirect:'error',signal:AbortSignal.timeout(15000),headers:{Authorization:oauthHeader(c),'Content-Type':'application/json'},body:JSON.stringify({text})});
   }catch{report('X unknown outcome; key will not be retried');continue;}
+  let billing=response.status===402;
+  if(response.status===403||response.status===429){
+   // Inspect only for classification; never print an API error body.
+   try{billing=/credit|billing|payment|insufficient[\s_-]*(?:funds|balance)|spend(?:ing)?[\s_-]*(?:cap|limit)/i.test(await response.text());}catch{}
+  }
+  if(billing){
+   delete log[entry.key];save(log);report(`X pending: credits or billing blocked HTTP ${response.status}; reservation released`);continue;
+  }
   if(response.status===429||response.status>=500){
    delete log[entry.key];save(log);report(`X pending: HTTP ${response.status}`);continue;
   }

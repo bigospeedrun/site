@@ -82,3 +82,24 @@ test('missing text and remaining links fail without a request',async()=>{
   assert.equal(log.a.status,'failed');
  }
 });
+test('402 and billing-related 403/429 release reservations for a later run',async()=>{
+ for(const [status,body] of [
+  [402,''],[402,'not JSON'],
+  [403,JSON.stringify({title:'CreditsDepleted',type:'https://api.x.com/2/problems/credits'})],
+  [403,JSON.stringify({type:'https://api.x.com/2/problems/credits-depleted'})],
+  [403,'Billing account requires payment'],[403,'Insufficient balance'],[403,'Spending limit reached'],
+  [429,JSON.stringify({detail:'Your account does not have any credits to fulfill this request.'})],
+ ] as const){
+  const {log,batch}=prepare(posts.slice(0,1),{},at);const reports:string[]=[];let calls=0;
+  await sendBatch(c,batch,log,()=>{},{send:(async()=>{calls++;return new Response(body,{status});}) as typeof fetch,report:line=>reports.push(line)});
+  assert.equal(calls,1);assert.equal(log['0'],undefined);
+  assert.equal(prepare(posts.slice(0,1),log,at).batch.length,1);
+  assert.deepEqual(reports,[`X pending: credits or billing blocked HTTP ${status}; reservation released`]);
+ }
+});
+test('non-billing 403 remains failed and response text never reaches logs',async()=>{
+ const {log,batch}=prepare(posts.slice(0,1),{},at);const reports:string[]=[];
+ await sendBatch(c,batch,log,()=>{},{send:(async()=>new Response('{"detail":"Permission denied: private-value"}',{status:403})) as typeof fetch,report:line=>reports.push(line)});
+ assert.equal(log['0'].status,'failed');assert.equal(log['0'].code,403);
+ assert.deepEqual(reports,['X failed: HTTP 403']);
+});
