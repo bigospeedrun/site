@@ -39,6 +39,12 @@ preserved; their inclusion does not promote every ancillary claim to a theorem.
 [PR review ledger](docs/research/pr-ledger.md) ·
 [Contributor record](CONTRIBUTORS.md)
 
+The [formalization and tooling batch](docs/research/community-formal-20261012-review.md)
+adds DreamingOfClouds' Lean proofs of Lemmas G and A, checked against four freshly
+reconstructed historical words, and higherbeing's allocation/geometry tools.
+These scoped proofs strengthen specific interfaces; the complete multiplication
+theorem remains conditional.
+
 ```sh
 # Also requires a C++17 compiler and Boost headers.
 python3 -m pip install -r research/e8-bit-carrier-skeleton/requirements.txt
