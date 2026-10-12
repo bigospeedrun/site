@@ -3,65 +3,66 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: interleaved bit sources and mixed complex providers
+## Current reviewed result: hyperplane-ended helpers
 
-**Jeremy Kothe's [#588](https://github.com/CrocSwap/integer-mult-bounds/pull/588),
+**Jeremy Kothe's [#596](https://github.com/CrocSwap/integer-mult-bounds/pull/596),
 composed with eumemic's [#543](https://github.com/CrocSwap/integer-mult-bounds/pull/543)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{400569730495803}{250000000000000000}=0.001602278921983212.
+\kappa=\frac{16127213726553}{10000000000000000}=0.0016127213726553.
 $$
 
-The preceding [#535 with #510 checkpoint](certificates/checkpoints/post-center535.json)
-is preserved. The [family review](docs/research/community-family588-review.md)
-records the 43 contributions, verification scope and integration evidence.
+This is **0.6517% above the previous selected saving**, approximately
+`2^-9.27629`. It compares asymptotic exponent savings, not practical runtime.
+The [#588 checkpoint](certificates/checkpoints/family588.json) is preserved.
 
-The bit circuit delays source updates until targets have read them, reducing
-its helper count from 480 to 420. The complex construction combines cold
-kernels, entrance promotions, shared prefixes, whole-owner allocation and
-frame coalescences. Two additional commuting gate moves let #588 combine
-more rank-one calls into rank-two calls. The complex supplier now limits the
-composed saving.
+The complex construction lets selected helpers finish at a certified
+hyperplane instead of continuing to the full frame. Their residual width
+falls from eight to seven, allowing better whole-helper packing. #591
+introduces the mechanism; #592 and #596 improve dispatch and owner allocation.
+The unchanged #543 bit supplier still has sufficient headroom.
 
-This is **1.0945% above the previous selected exponent saving**, approximately
-`2^-9.28566`. It compares asymptotic exponent savings, not practical runtime.
-All-size compilation, common-label/mutable-basis realization, pooled
-whole-call correlated-helper hosting, normalized residuals, precision/tape
-and analytic transfer remain conditional. This is not a complete Lean proof
-of integer multiplication.
+Jeremy Kothe's #593 proves the helper interface and three selected exact
+Clifford identities in Lean. DreamingOfClouds' #599 extends the interface to
+multi-gate cleanup and cold helpers. The review binds emitted wrapper recipes
+to the Lean literals. These proofs do **not** constitute a complete Lean
+multiplication theorem: all-size compilation, common-label/mutable-basis
+realization, pooled whole-call correlated-helper hosting, normalized
+residuals, precision/tape and analytic transfer remain conditional.
 
-The public replay rebuilds both suppliers, checks scalar columns, native
-frames, phase programs, physical owners and finite invoices, then binds the
-fresh bit result to the complex assembly and all 47 strict outer inequalities.
-The original conservative complex surcharge also passes, at
-κ = 0.001602278919174953; the selected native complex recurrence credits
-Rohan Arun's #559 correction and retains the separate bit surcharge.
+Fresh finite replays check scalar columns, native frames, global phases,
+physical owners, finite invoices, both exact moment engines and all 47 strict
+outer inequalities. The conservative complex charge also passes at
+κ = 0.001612721369804261; the native complex charge credits Rohan Arun's #559
+correction and retains the separate bit surcharge. See the integration
+receipt for local execution and remote Linux CI status.
 
-The composition builds on **Dominik Scholz**, **Jonathan Capalbo**,
-**Chafik Boukhalfa**, **Dugongue**, **DreamingOfClouds**, **Rohan Arun**, and
-the earlier community framework. All nine contributors in this review round,
-including **artuskg**'s research contribution, are listed in the
-[contributor record](CONTRIBUTORS.md). Parallel results, research notes,
-verification tools and scoped negative findings keep their credit.
+This round also retains eumemic's #594 independent replay report,
+DreamingOfClouds' #589 bit improvement and #595 format research, and Dominik
+Scholz's #598 Leech/Turyn investigations. The construction builds on the
+cumulative work of Jonathan Capalbo, Chafik Boukhalfa, Dugongue, Rohan Arun,
+icekylinx and the wider community. [Full contributor record](CONTRIBUTORS.md).
+Parallel results and research findings keep their attribution.
 
-[Review and scope](docs/research/community-family588-review.md) ·
+[Review and scope](docs/research/community-hyperplane599-review.md) ·
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-family588-audit/pr588/public-cold/complex/ASSEMBLY.json) ·
-[Integration receipts](docs/research/community-family588-integration.json) ·
+[Exact assembly](research/community-hyperplane599-audit/pr596/replay/ASSEMBLY.json) ·
+[Integration receipts](docs/research/community-hyperplane599-integration.json) ·
 [PR review ledger](docs/research/pr-ledger.md)
 
 ```sh
 # Also requires a C++17 compiler and Boost headers.
 python3 -m pip install numpy sympy scipy
-make frontier588-verify
+make frontier596-verify
 ```
 
-James Chang's earlier #513/#528 connect Lean sequential-bank and full-state
-endpoint interfaces to DreamingOfClouds' #509/#516 proofs. Their 147 axiom
-reports passed in the preceding review; instantiating all hypotheses for the
-current physical construction remains a separate obligation. This round's
-finite replay does not cover the separately queued Lean proposals.
+## Historical checkpoint: mixed complex providers
+
+**Jeremy Kothe's #588 with eumemic's #543** gives κ = 0.001602278921983212.
+The [43-contribution review](docs/research/community-family588-review.md),
+[frozen record](certificates/checkpoints/family588.json) and
+`make frontier588-verify` preserve its construction, research and attribution.
 
 ## Historical checkpoint: post-center kernels and nine-stage bit hosting
 
