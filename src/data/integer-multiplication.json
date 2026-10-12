@@ -17,7 +17,7 @@
     "minimum": "0",
     "maximum": "1"
   },
-  "checked_at": "2026-10-11",
+  "checked_at": "2026-10-12",
   "sources": [
     {
       "url": "https://github.com/CrocSwap/integer-mult-bounds",
@@ -22490,6 +22490,146 @@
         }
       ],
       "source_commit": "73d367fe754cf5921cd954221133b20ac752f932"
+    },
+    {
+      "id": "crocswap-pr-514",
+      "kind": "improvement",
+      "score": "1391523459591829/1000000000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-11T23:22:36Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-11T23:22:36Z",
+      "site_observed_at": "2026-10-12T00:17:51Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/514"
+      },
+      "spec_version": "1",
+      "title": "Conditional kappa 0.001391523459591829: partial-own factory, 92 pivots and asynchronous whole owners",
+      "authors": [
+        {
+          "name": "Dugongue",
+          "url": "https://github.com/Dugongue"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/315",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/361",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/370",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/401",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/408",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/416",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/417",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/425",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/433",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/434",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/435",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/440",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/458",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/473",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/477",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/484",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/493",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/495",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/496",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/501",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/502",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/505",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/506",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/507"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/514",
+      "artifact": {
+        "path": "sources/pr-514.json",
+        "sha256": "e1ab67a03dc78a6947b8ef6be2bec9dd46111fe377da615bc228a70b9980c998"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/514",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/514",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "246bfacd4cb4072836ae3147099f548bb728229f"
+    },
+    {
+      "id": "crocswap-pr-518",
+      "kind": "improvement",
+      "score": "1393662920776407/1000000000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-11T23:50:50Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-11T23:50:50Z",
+      "site_observed_at": "2026-10-12T00:17:51Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/518"
+      },
+      "spec_version": "1",
+      "title": "Conditional kappa 0.001393662920776407: blockwise pair exposure, 99 pivots and whole-owner allocation",
+      "authors": [
+        {
+          "name": "Dugongue",
+          "url": "https://github.com/Dugongue"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/315",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/361",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/370",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/401",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/408",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/416",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/417",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/425",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/433",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/434",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/435",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/440",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/458",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/473",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/477",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/484",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/493",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/495",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/496",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/501",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/502",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/505",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/506",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/507",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/508",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/509",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/510",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/511",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/512",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/513"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/518",
+      "artifact": {
+        "path": "sources/pr-518.json",
+        "sha256": "64a9a4058a83b625f6ed9f473e2899a71e826fefcf049fb3018026798bc312de"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/518",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/518",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "e0a071dce251eeca96d446f73147048cfebbd5c7"
     }
   ],
   "record_metadata": {
@@ -22507,7 +22647,7 @@
       "comparison_key": "integer-multiplication/multitape-tm/v1"
     },
     "crocswap-pr-1": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22539,7 +22679,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-2": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22571,7 +22711,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-3": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22603,7 +22743,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-4": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22635,7 +22775,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-5": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22667,7 +22807,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-6": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22699,7 +22839,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-7": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22731,7 +22871,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-8": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22763,7 +22903,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-9": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/9",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22795,7 +22935,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-10": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/10",
       "site_badge": false,
       "eligible_for_record": true,
@@ -22827,7 +22967,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-12": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/12",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22859,7 +22999,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-13": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/13",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22891,7 +23031,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-14": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/14",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22923,7 +23063,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-15": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/15",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22955,7 +23095,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-16": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/16",
       "site_badge": false,
       "eligible_for_record": false,
@@ -22987,7 +23127,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-17": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/17",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23019,7 +23159,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-18": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/18",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23051,7 +23191,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-19": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/19",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23083,7 +23223,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-20": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/20",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23115,7 +23255,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-21": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/21",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23147,7 +23287,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-22": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/22",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23179,7 +23319,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-23": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/23",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23211,7 +23351,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-24": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/24",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23243,7 +23383,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-25": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/25",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23275,7 +23415,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-27": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/27",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23307,7 +23447,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-28": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/28",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23339,7 +23479,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-29": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/29",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23371,7 +23511,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-30": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/30",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23403,7 +23543,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-31": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/31",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23435,7 +23575,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-32": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/32",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23467,7 +23607,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-33": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/33",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23499,7 +23639,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-34": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/34",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23531,7 +23671,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-35": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/35",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23563,7 +23703,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-36": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/36",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23595,7 +23735,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-37": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/37",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23627,7 +23767,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-38": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/38",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23659,7 +23799,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-39": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/39",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23691,7 +23831,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-40": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/40",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23723,7 +23863,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-41": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/41",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23755,7 +23895,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-42": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/42",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23787,7 +23927,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-43": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/43",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23819,7 +23959,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-44": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/44",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23851,7 +23991,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-46": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/46",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23883,7 +24023,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-47": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/47",
       "site_badge": false,
       "eligible_for_record": false,
@@ -23915,7 +24055,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-48": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/48",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23947,7 +24087,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-49": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/49",
       "site_badge": false,
       "eligible_for_record": true,
@@ -23979,7 +24119,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-50": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/50",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24011,7 +24151,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-51": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/51",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24043,7 +24183,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-52": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/52",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24075,7 +24215,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-53": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/53",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24107,7 +24247,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-54": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/54",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24139,7 +24279,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-55": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/55",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24171,7 +24311,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-56": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/56",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24203,7 +24343,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-57": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/57",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24235,7 +24375,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-58": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/58",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24267,7 +24407,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-59": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/59",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24299,7 +24439,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-60": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/60",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24331,7 +24471,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-61": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/61",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24363,7 +24503,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-62": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/62",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24395,7 +24535,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-62-stacked": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/62",
       "site_badge": false,
       "eligible_for_record": true,
@@ -24421,7 +24561,7 @@
       "updated_at": "2026-10-08T18:35:34Z"
     },
     "crocswap-pr-63": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/63",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24453,7 +24593,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-65": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/65",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24485,7 +24625,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-66": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/66",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24517,7 +24657,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-67": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/67",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24549,7 +24689,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-68": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/68",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24581,7 +24721,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-69": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/69",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24613,7 +24753,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-70": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/70",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24645,7 +24785,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-71": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/71",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24677,7 +24817,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-72": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/72",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24709,7 +24849,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-74": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/74",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24741,7 +24881,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-75": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/75",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24773,7 +24913,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-76": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/76",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24805,7 +24945,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-77": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/77",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24837,7 +24977,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-78": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/78",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24869,7 +25009,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-79": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/79",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24901,7 +25041,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-80": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/80",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24933,7 +25073,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-81": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/81",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24965,7 +25105,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-82": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/82",
       "site_badge": false,
       "eligible_for_record": false,
@@ -24997,7 +25137,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-83": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/83",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25029,7 +25169,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-84": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/84",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25061,7 +25201,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-85": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/85",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25093,7 +25233,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-86": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/86",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25125,7 +25265,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-87": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/87",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25157,7 +25297,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-88": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/88",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25605,7 +25745,7 @@
       "publication_date_precision": "unknown"
     },
     "crocswap-pr-89": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/89",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25633,7 +25773,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-91": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/91",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25661,7 +25801,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-92": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/92",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25689,7 +25829,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-93": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/93",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25717,7 +25857,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-94": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/94",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25745,7 +25885,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-95": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/95",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25773,7 +25913,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-96": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/96",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25801,7 +25941,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-98": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/98",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25829,7 +25969,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-99": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/99",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25857,7 +25997,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-100": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/100",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25885,7 +26025,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-102": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/102",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25913,7 +26053,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-103": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/103",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25941,7 +26081,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-104": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/104",
       "site_badge": false,
       "eligible_for_record": true,
@@ -25969,7 +26109,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-106": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/106",
       "site_badge": false,
       "eligible_for_record": false,
@@ -25997,7 +26137,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-107": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/107",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26025,7 +26165,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-108": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/108",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26053,7 +26193,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-109": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/109",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26081,7 +26221,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-110": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/110",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26109,7 +26249,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-111": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/111",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26137,7 +26277,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-112": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/112",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26165,7 +26305,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-113": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/113",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26193,7 +26333,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-114": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/114",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26221,7 +26361,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-115": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/115",
       "site_badge": false,
       "eligible_for_record": true,
@@ -26249,7 +26389,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-116": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/116",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26277,7 +26417,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-117": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/117",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26305,7 +26445,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-118": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/118",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26333,7 +26473,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-120": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/120",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26361,7 +26501,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-123": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/123",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26389,7 +26529,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-124": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/124",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26417,7 +26557,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-125": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/125",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26445,7 +26585,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-126": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/126",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26473,7 +26613,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-127": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/127",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26501,7 +26641,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-129": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/129",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26529,7 +26669,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-130": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/130",
       "site_badge": false,
       "eligible_for_record": true,
@@ -26557,7 +26697,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-131": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/131",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26585,7 +26725,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-132": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/132",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26613,7 +26753,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-133": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/133",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26641,7 +26781,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-134": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/134",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26669,7 +26809,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-135": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/135",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26697,7 +26837,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-136": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/136",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26725,7 +26865,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-137": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/137",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26753,7 +26893,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-138": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/138",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26781,7 +26921,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-139": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/139",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26809,7 +26949,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-140": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/140",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26837,7 +26977,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-141": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/141",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26865,7 +27005,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-142": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/142",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26893,7 +27033,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-143": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/143",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26921,7 +27061,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-144": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/144",
       "site_badge": false,
       "eligible_for_record": true,
@@ -26949,7 +27089,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-145": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/145",
       "site_badge": false,
       "eligible_for_record": false,
@@ -26977,7 +27117,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-146": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/146",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27005,7 +27145,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-147": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/147",
       "site_badge": false,
       "eligible_for_record": true,
@@ -27033,7 +27173,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-148": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/148",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27061,7 +27201,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-149": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/149",
       "site_badge": false,
       "eligible_for_record": true,
@@ -27089,7 +27229,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-150": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/150",
       "site_badge": false,
       "eligible_for_record": true,
@@ -27117,7 +27257,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-151": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/151",
       "site_badge": false,
       "eligible_for_record": true,
@@ -27145,7 +27285,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-152": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/152",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27173,7 +27313,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-153": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/153",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27201,7 +27341,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-155": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/155",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27229,7 +27369,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-157": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/157",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27257,7 +27397,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-158": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/158",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27285,7 +27425,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-159": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/159",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27313,7 +27453,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-160": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/160",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27341,7 +27481,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-161": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/161",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27369,7 +27509,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-162": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/162",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27397,7 +27537,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-163": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/163",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27425,7 +27565,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-164": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/164",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27453,7 +27593,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-165": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/165",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27481,7 +27621,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-168": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/168",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27509,7 +27649,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-169": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/169",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27537,7 +27677,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-170": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/170",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27565,7 +27705,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-171": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/171",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27593,7 +27733,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-173": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/173",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27621,7 +27761,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-176": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/176",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27649,7 +27789,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-177": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/177",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27677,7 +27817,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-178": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/178",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27705,7 +27845,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-179": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/179",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27733,7 +27873,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-181": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/181",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27761,7 +27901,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-182": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/182",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27789,7 +27929,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-184": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/184",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27817,7 +27957,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-185": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/185",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27845,7 +27985,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-186": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/186",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27873,7 +28013,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-187": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/187",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27901,7 +28041,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-188": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/188",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27929,7 +28069,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-189": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/189",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27957,7 +28097,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-191": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/191",
       "site_badge": false,
       "eligible_for_record": false,
@@ -27985,7 +28125,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-193": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/193",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28013,7 +28153,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-194": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/194",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28041,7 +28181,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-195": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/195",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28069,7 +28209,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-196": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/196",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28097,7 +28237,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-197": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/197",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28125,7 +28265,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-198": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/198",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28153,7 +28293,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-199": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/199",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28181,7 +28321,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-202": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/202",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28244,7 +28384,7 @@
       "publication_date_precision": "unknown"
     },
     "crocswap-pr-205": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/205",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28272,7 +28412,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-206": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/206",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28300,7 +28440,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-207": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/207",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28328,7 +28468,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-210": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/210",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28356,7 +28496,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-211": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/211",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28384,7 +28524,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-213": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/213",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28412,7 +28552,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-216": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/216",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28440,7 +28580,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-217": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/217",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28468,7 +28608,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-219": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/219",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28496,7 +28636,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-223": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/223",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28524,7 +28664,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-224": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/224",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28552,7 +28692,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-227": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/227",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28580,7 +28720,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-228": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/228",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28608,7 +28748,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-230": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/230",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28636,7 +28776,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-235": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/235",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28664,7 +28804,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-236": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/236",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28692,7 +28832,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-237": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/237",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28720,7 +28860,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-240": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/240",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28748,7 +28888,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-242": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/242",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28776,7 +28916,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-243": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/243",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28804,7 +28944,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-244": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/244",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28832,7 +28972,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-246": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/246",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28860,7 +29000,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-247": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/247",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28888,7 +29028,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-248": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/248",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28916,7 +29056,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-249": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/249",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28944,7 +29084,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-251": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/251",
       "site_badge": false,
       "eligible_for_record": false,
@@ -28972,7 +29112,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-252": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/252",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29000,7 +29140,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-253": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/253",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29028,7 +29168,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-254": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/254",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29056,7 +29196,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-255": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/255",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29084,7 +29224,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-257": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/257",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29112,7 +29252,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-258": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/258",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29140,7 +29280,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-259": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/259",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29168,7 +29308,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-260": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/260",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29196,7 +29336,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-261": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/261",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29224,7 +29364,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-263": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/263",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29252,7 +29392,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-264": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/264",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29280,7 +29420,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-265": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/265",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29308,7 +29448,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-267": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/267",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29336,7 +29476,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-268": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/268",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29364,7 +29504,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-269": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/269",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29392,7 +29532,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-270": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/270",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29420,7 +29560,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-271": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/271",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29448,7 +29588,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-272": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/272",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29476,7 +29616,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-273": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/273",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29504,7 +29644,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-276": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/276",
       "site_badge": false,
       "eligible_for_record": true,
@@ -29532,7 +29672,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-277": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/277",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29560,7 +29700,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-279": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/279",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29588,7 +29728,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-280": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/280",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29616,7 +29756,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-281": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/281",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29644,7 +29784,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-283": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/283",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29672,7 +29812,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-285": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/285",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29700,7 +29840,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-286": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/286",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29728,7 +29868,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-287": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/287",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29756,7 +29896,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-289": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/289",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29784,7 +29924,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-266": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/266",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29812,7 +29952,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-282": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/282",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29840,7 +29980,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-284": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/284",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29868,7 +30008,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-290": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/290",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29896,7 +30036,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-291": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/291",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29924,7 +30064,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-292": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/292",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29952,7 +30092,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-293": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/293",
       "site_badge": false,
       "eligible_for_record": false,
@@ -29980,7 +30120,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-295": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/295",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30008,7 +30148,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-296": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/296",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30036,7 +30176,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-297": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/297",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30064,7 +30204,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-298": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/298",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30092,7 +30232,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-299": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/299",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30120,7 +30260,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-300": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/300",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30170,7 +30310,7 @@
       "notes_url": "https://github.com/erayyap/integer-multiplication-kappa/blob/bf26205a9d79d563eb7966cb957cfce0bc1048c3/preprints/Improving-kappa-in-integer-multiplication-below-n-log-n-October-7-2026/build/sections/status.tex"
     },
     "crocswap-pr-303": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/303",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30198,7 +30338,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-305": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/305",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30226,7 +30366,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-306": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/306",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30254,7 +30394,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-307": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/307",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30282,7 +30422,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-308": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/308",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30310,7 +30450,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-309": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/309",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30338,7 +30478,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-310": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/310",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30366,7 +30506,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-311": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/311",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30394,7 +30534,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-312": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/312",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30422,7 +30562,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-313": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/313",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30450,7 +30590,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-314": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/314",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30478,7 +30618,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-315": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/315",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30506,7 +30646,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-316": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/316",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30534,7 +30674,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-317": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/317",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30562,7 +30702,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-319": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/319",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30590,7 +30730,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-320": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/320",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30618,7 +30758,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-321": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/321",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30646,7 +30786,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-322": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/322",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30674,7 +30814,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-323": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/323",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30702,7 +30842,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-325": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/325",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30730,7 +30870,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-326": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/326",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30758,7 +30898,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-328": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/328",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30786,7 +30926,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-329": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/329",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30814,7 +30954,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-330": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/330",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30842,7 +30982,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-331": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/331",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30870,7 +31010,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-332": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/332",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30898,7 +31038,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-334": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/334",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30926,7 +31066,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-335": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/335",
       "site_badge": false,
       "eligible_for_record": false,
@@ -30954,7 +31094,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-336": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/336",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31010,7 +31150,7 @@
       "upstream_selected": true
     },
     "crocswap-pr-337": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/337",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31038,7 +31178,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-338": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/338",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31066,7 +31206,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-339": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/339",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31094,7 +31234,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-341": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/341",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31122,7 +31262,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-342": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/342",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31150,7 +31290,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-343": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/343",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31178,7 +31318,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-344": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/344",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31206,7 +31346,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-345": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/345",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31234,7 +31374,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-346": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/346",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31262,7 +31402,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-347": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/347",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31290,7 +31430,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-348": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/348",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31318,7 +31458,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-350": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/350",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31346,7 +31486,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-351": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/351",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31374,7 +31514,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-352": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/352",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31402,7 +31542,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-353": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/353",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31430,7 +31570,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-354": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/354",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31458,7 +31598,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-355": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/355",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31486,7 +31626,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-356": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/356",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31514,7 +31654,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-357": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/357",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31542,7 +31682,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-358": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/358",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31570,7 +31710,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-359": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/359",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31598,7 +31738,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-360": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/360",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31626,7 +31766,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-361": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/361",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31654,7 +31794,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-362": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/362",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31682,7 +31822,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-364": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/364",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31710,7 +31850,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-366": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/366",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31738,7 +31878,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-369": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/369",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31766,7 +31906,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-370": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/370",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31794,7 +31934,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-372": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/372",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31822,7 +31962,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-373": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/373",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31850,7 +31990,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-374": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/374",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31878,7 +32018,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-375": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/375",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31906,7 +32046,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-376": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/376",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31934,7 +32074,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-377": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/377",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31962,7 +32102,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-378": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/378",
       "site_badge": false,
       "eligible_for_record": false,
@@ -31990,7 +32130,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-380": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/380",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32018,7 +32158,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-381": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/381",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32046,7 +32186,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-382": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/382",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32074,7 +32214,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-383": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/383",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32102,7 +32242,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-384": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/384",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32130,7 +32270,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-385": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/385",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32158,7 +32298,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-386": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/386",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32186,7 +32326,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-387": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/387",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32214,7 +32354,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-388": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/388",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32242,7 +32382,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-389": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/389",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32270,7 +32410,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-390": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/390",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32298,7 +32438,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-391": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/391",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32326,7 +32466,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-392": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/392",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32354,7 +32494,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-394": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/394",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32382,7 +32522,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-395": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/395",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32410,7 +32550,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-396": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/396",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32438,7 +32578,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-398": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/398",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32466,7 +32606,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-399": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/399",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32494,7 +32634,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-400": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/400",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32522,7 +32662,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-401": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/401",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32550,7 +32690,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-402": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/402",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32578,7 +32718,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-403": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/403",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32606,7 +32746,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-404": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/404",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32634,7 +32774,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-405": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/405",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32662,7 +32802,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-406": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/406",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32690,7 +32830,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-407": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/407",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32718,7 +32858,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-408": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/408",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32746,7 +32886,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-409": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/409",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32774,7 +32914,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-410": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/410",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32802,7 +32942,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-411": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/411",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32830,7 +32970,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-412": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/412",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32858,7 +32998,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-413": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/413",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32886,7 +33026,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-414": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/414",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32914,7 +33054,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-415": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/415",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32942,7 +33082,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-416": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/416",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32970,7 +33110,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-418": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/418",
       "site_badge": false,
       "eligible_for_record": false,
@@ -32998,7 +33138,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-419": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/419",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33026,7 +33166,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-420": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/420",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33054,7 +33194,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-421": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/421",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33082,7 +33222,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-422": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/422",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33110,7 +33250,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-423": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/423",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33138,7 +33278,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-424": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/424",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33166,7 +33306,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-425": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/425",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33194,7 +33334,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-426": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/426",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33222,7 +33362,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-427": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/427",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33250,7 +33390,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-428": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/428",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33278,7 +33418,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-429": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/429",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33306,7 +33446,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-431": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/431",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33334,7 +33474,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-432": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/432",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33362,7 +33502,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-433": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/433",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33390,7 +33530,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-434": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/434",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33418,7 +33558,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-435": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/435",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33446,7 +33586,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-436": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/436",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33474,7 +33614,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-437": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/437",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33502,7 +33642,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-438": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/438",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33530,7 +33670,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-439": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/439",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33558,7 +33698,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-440": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/440",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33586,7 +33726,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-441": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/441",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33614,7 +33754,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-443": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/443",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33642,7 +33782,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-444": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/444",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33670,7 +33810,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-445": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/445",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33698,7 +33838,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-447": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/447",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33726,7 +33866,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-448": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/448",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33754,7 +33894,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-451": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/451",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33782,7 +33922,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-450": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/450",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33810,7 +33950,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-454": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/454",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33838,7 +33978,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-455": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/455",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33866,7 +34006,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-456": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/456",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33894,7 +34034,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-457": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/457",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33922,7 +34062,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-458": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/458",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33950,7 +34090,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-459": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/459",
       "site_badge": false,
       "eligible_for_record": false,
@@ -33978,7 +34118,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-460": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/460",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34006,7 +34146,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-461": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/461",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34034,7 +34174,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-462": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/462",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34062,7 +34202,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-464": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/464",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34090,7 +34230,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-465": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/465",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34118,7 +34258,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-466": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/466",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34146,7 +34286,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-463": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/463",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34174,7 +34314,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-467": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/467",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34202,7 +34342,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-469": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/469",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34230,7 +34370,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-470": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/470",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34258,7 +34398,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-471": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/471",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34286,7 +34426,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-472": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/472",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34314,7 +34454,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-473": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/473",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34342,7 +34482,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-476": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/476",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34370,7 +34510,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-478": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/478",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34398,7 +34538,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-480": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/480",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34426,7 +34566,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-482": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/482",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34454,7 +34594,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-483": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/483",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34482,7 +34622,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-487": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/487",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34510,7 +34650,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-488": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/488",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34538,7 +34678,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-490": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/490",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34566,7 +34706,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-491": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/491",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34594,7 +34734,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-492": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/492",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34622,7 +34762,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-493": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/493",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34650,7 +34790,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-494": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/494",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34678,7 +34818,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-495": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/495",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34706,7 +34846,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-496": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/496",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34734,7 +34874,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-497": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/497",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34762,7 +34902,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-498": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/498",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34790,7 +34930,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-499": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/499",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34818,7 +34958,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-500": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/500",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34846,7 +34986,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-501": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/501",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34874,7 +35014,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-502": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/502",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34902,7 +35042,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-505": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/505",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34930,7 +35070,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-506": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/506",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34958,7 +35098,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-507": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/507",
       "site_badge": false,
       "eligible_for_record": false,
@@ -34986,7 +35126,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-508": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/508",
       "site_badge": false,
       "eligible_for_record": false,
@@ -35014,7 +35154,7 @@
       "race_event_kind": "PR creation; latest observed score"
     },
     "crocswap-pr-512": {
-      "checked_at": "2026-10-11",
+      "checked_at": "2026-10-12",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/512",
       "site_badge": false,
       "eligible_for_record": false,
@@ -35040,7 +35180,63 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-10-11T23:05:48Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-514": {
+      "checked_at": "2026-10-12",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/514",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 514,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-10-11T23:22:36Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "PR title; exact displayed value, source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-10-11T23:22:36Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/514",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-10-11T23:22:36Z",
+      "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-518": {
+      "checked_at": "2026-10-12",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/518",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 518,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-10-11T23:50:50Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "PR title; exact displayed value, source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-10-11T23:50:50Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/518",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-10-11T23:50:50Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-10-11T23:17:31Z"
+  "updated_at": "2026-10-12T00:17:51Z"
 }
