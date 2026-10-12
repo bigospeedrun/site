@@ -197,7 +197,7 @@ test('X new-record wording matches the approved template and preserves Discord t
  const b={...board(),name:'Integer Multiplication',url:'https://bigospeedrun.com/integer-multiplication'};
  const r={...row(),authors:['sreekanth nair'],bound:'O(n log^(1 - 0.00137255015936798) n)'};
  const text=xMessage(b,r);
- assert.equal(text,'New claim!\n\nProblem: Integer Multiplication\nNew value: O(n log^(1 - 0.00137255015936798) n)\nPlayer: sreekanth nair\nStatus: Claimed (not verified)\n\nhttps://bigospeedrun.com/integer-multiplication');
+ assert.equal(text,'New claim!\n\nProblem: Integer Multiplication\nNew value: O(n log^(1 - 0.00137255015936798) n)\nPlayer: sreekanth nair\nStatus: Claimed (not verified)');
  assert.ok(xPostLength(text)<=280);
  const planned=plan(baseline({schema_version:1,boards:[]}),snapshot({...b,records:[r]})).messages[0];
  assert.equal(planned.content,message(b,r));assert.equal(planned.x_text,text);
@@ -208,7 +208,7 @@ test('X new-record wording matches the approved template and preserves Discord t
 test('X verified posts use Value, the site evidence label, and comma-separated Players',()=>{
  const r={...row('a','Lean Verified'),authors:['Alice','Bob','Carol']};
  const text=xMessage(board(),r,false);
- assert.equal(text,`Record verified!\n\nProblem: Fourier Transform\nValue: ${r.bound}\nPlayers: Alice, Bob, Carol\nStatus: Lean Verified\n\nhttps://bigospeedrun.com/exact-dft`);
+ assert.equal(text,`Record verified!\n\nProblem: Fourier Transform\nValue: ${r.bound}\nPlayers: Alice, Bob, Carol\nStatus: Lean Verified`);
  assert.match(xMessage(board(),{...r,evidence:'Human Verified'},false),/Status: Human Verified/);
  const upgrade=plan(baseline(snapshot()),snapshot(board([r]))).messages[0];
  assert.equal(upgrade.x_text,text);assert.equal(upgrade.content,message(board(),r,false));

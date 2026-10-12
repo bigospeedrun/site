@@ -101,3 +101,54 @@ jobs:
           git commit -m 'Log accepted Discord record posts'
           gh auth setup-git
           git push origin "HEAD:$TARGET_BRANCH"
+      - name: Plan X record notifications
+        id: x-plan
+        continue-on-error: true
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: node --experimental-strip-types scripts/x-records.ts plan "$RUNNER_TEMP/x-records.json"
+      - name: Commit X reservations before sending
+        id: x-reserve
+        if: ${{ steps.x-plan.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if [ ! -f "$RUNNER_TEMP/x-records.json" ]; then exit 0; fi
+          git add -- data/x-posts.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Reserve X record posts before API delivery'
+          fi
+          gh auth setup-git
+          git push origin "HEAD:$TARGET_BRANCH"
+      - name: Post X record notifications
+        id: x-send
+        if: ${{ steps.x-reserve.outcome == 'success' && steps.x-plan.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: node --experimental-strip-types scripts/x-records.ts send "$RUNNER_TEMP/x-records.json"
+      - name: Commit X delivery results
+        if: ${{ always() && steps.x-send.outcome != 'skipped' && steps.x-send.outcome != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if [ ! -f data/x-posts.json ]; then exit 0; fi
+          git add -- data/x-posts.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Log X record API delivery results'
+          gh auth setup-git
+          git push origin "HEAD:$TARGET_BRANCH"

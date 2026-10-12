@@ -60,7 +60,7 @@ export function xPostLength(text:string):number {
 export function xMessage(board:FeedBoard,record:FeedRecord,newRecord=true):string {
  const names=record.authors.map(name=>name.replace(/[\r\n\t]+/g,' ').trim());
  const status=record.evidence==='Claimed'?'Claimed (not verified)':record.evidence;
- return `${headline(record,newRecord)}!\n\nProblem: ${board.name}\n${newRecord?'New value':'Value'}: ${record.bound}\n${names.length>1?'Players':'Player'}: ${names.join(', ')||'Unknown author'}\nStatus: ${status}\n\n${board.url}`;
+ return `${headline(record,newRecord)}!\n\nProblem: ${board.name}\n${newRecord?'New value':'Value'}: ${record.bound}\n${names.length>1?'Players':'Player'}: ${names.join(', ')||'Unknown author'}\nStatus: ${status}`;
 }
 export function baseline(snapshot:FeedSnapshot):FeedState {
  const reserved:string[]=[];
