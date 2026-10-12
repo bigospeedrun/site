@@ -1,0 +1,11 @@
+{
+  "number": 594,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/594",
+  "title": "Conditional κ = 0.001609915765452068: independent PR591 replay",
+  "body": "κ = 0.001609915765452068 (conditional).\n\nThis PR independently replays CrocSwap/integer-mult-bounds#591 at immutable head `e53c9973ab5b075bc0b2f748fcd2c267342eeb74` and records the resulting complex-side improvement over PR588. The clean replay rebuilt the baseline and all three provider words from the pinned PR568/569/571/575/583 source packages.\n\nEvidence:\n\n- `PASS_HPEQ1_NATIVE_COMPLEX_AND_CITED_BIT`;\n- 49 top-level stages plus 9 nested baseline stages, all exit 0;\n- 49 logs and 48 artifacts independently re-hashed against `RECEIPT.json`;\n- actual scalar words, arbitrary dirty restoration, both reflected ledgers, phase edges, wrappers, fresh invoice, owners/profile, two exact moment engines, 47 outer constraints, 147 assembly controls, and timing controls pass;\n- profile `{1:181612,2:35160,3:23384,4:14024,5:4032,6:4032,8:576,12:1,48:1949}` with dispatch `ck=66`, `jp8=1`, `atm3=5`;\n- conservative κ = `0.001609915762605935`.\n\nThe mechanism ends selected width-8 helpers on certified hyperplanes, changing their residual width to 7 and pairing them with width-9 owner slots. It is mass-neutral and leaves the rank deficit unchanged while improving the paid profile. The independent run took 272.5001600839896 seconds from a fresh baseline.\n\nThe certificate and receipt auditor are in `certificates/frontier-20261012-591.json` and `certificates/pr591-independent-replay/`. PR591's original provenance and AI disclosure are retained: Claude Opus 5.5 (Anthropic) performed the submitted construction; this independent replay and certificate were prepared with OpenAI Codex assistance.\n\nThe claim remains conditional on the inherited all-size compiler, common-label/mutable-source realization, whole-call hosting, precision/tape/exact recovery, and analytic transfer. It is not an unconditional theorem or full Lean certification.\n",
+  "created_at": "2026-10-12T14:41:40Z",
+  "updated_at": "2026-10-12T14:41:40Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

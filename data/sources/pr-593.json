@@ -1,0 +1,11 @@
+{
+  "number": 593,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/593",
+  "title": "[Lean] Hyperplane-ended helpers: Lemma A with an arbitrary terminal frame (no κ claim)",
+  "body": "## Summary\n\n**No κ claim.** This is a Lean 4 proof package for the hyperplane-end step used by PR591 and PR592.\n\n`research/hyperplane-end-lean/` proves that Lemma A's realization still holds when a dirty entering helper ends at an **arbitrary terminal frame U**, not only FULL. With the extended labels `T_(prew,j) = R_{E,U} T_E` and `T_(done,j) = L_{E,U}⁻¹ T_U`, and wrappers keyed by the pair (E, U), the exact factorization (N) `T_U T_E⁻¹ = L(C⊗id)R` implies Lemma A's hypothesis (F). Lemma A then gives the helper's stream `χ⁻¹(C⊗id)χ` of itself for any U (`hpe_streams`, `hpe_word`). The FULL-ended helpers of #484 are the instance U = ⊤.\n\n`factor_iff_pre` formalizes a review finding: (F) holds **iff** the pre wrapper is R_{E,U}. So a wrapper chosen by entrance alone, as in the original code, is wrong for U-ended helpers.\n\n## Checks\n\n- `lake build`: Build completed successfully (Lean v4.21.0, the same Mathlib pin as `e8-lemma-a-lean`, reused through Lake path dependencies; no definitions are restated).\n- `#print axioms` on all 13 results: only `propext`, `Classical.choice` and `Quot.sound`. No `sorry`, no `decide`/`native_decide`.\n- `python3 verify.py --instances`: `code/check_hpe_pairs.py` passes on the ck, atm3 and jp8 words (38 helpers and 3 (E,U) pairs each), rejects 6/6 mutants, and fails on the base word.\n\n## Scope\n\n(N) itself, the climb recipes, the unit row and (O′)/(W) are **hypotheses** here. They are checked exactly by the PR591/PR592 verifiers, not in Lean. (N) reduces to 9 small exact identities, which is the next target. This package doesn't prove a multiplier or κ theorem.\n\n**AI disclosure and authorship:** Claude Opus 5.5 (Anthropic), running in the omp coding harness, wrote this package. Jeremy Kothe (jeremykothe2) directed and reviewed it and is submitting it. It builds on the Lemma A and Lemma G Lean packages and their authors, credited in NOTICE.md.\n",
+  "created_at": "2026-10-12T14:40:55Z",
+  "updated_at": "2026-10-12T14:40:55Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
