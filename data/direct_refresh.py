@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 from direct_github import GitHub, GitHubError
 from direct_import import (REPOSITORY, PROBLEMS, Rejected, require, read_json, sha,
     canonical, parse_body, is_test_submission, validate_result)
+from pr_record_binding import apply_bindings
 from direct_pr import PREFIX, archive_members, inspect_pr, validate_pr_result
 
 ROOT=Path(__file__).resolve().parent
@@ -114,6 +115,8 @@ class Importer:
         self.files[prefix+'.json']=json_bytes(summary)
         return dict(**verdict,receipt_path=prefix+'.json',receipt_sha256=sha(self.files[prefix+'.json']),policy_hash=self.policy_hash,result_artifact_id=artifact.get('id'),
                     controller_fingerprint=sha(canonical(self.trust[run['head_sha']]['controller_blobs']).encode()) if run.get('head_sha') in self.trust else None,
+                    pr_identity=dict(number=env.get('request',{}).get('pr_number'), head=env.get('request',{}).get('head_sha'),
+                        changed_files_sha256=env.get('request',{}).get('changed_files_sha256'), controller=run.get('head_sha')) if env.get('route')=='pull_request' else None,
                     source_file=env.get('receipt',{}).get('profile',{}).get('solution_module','Submission').replace('.', '/')+'.lean')
 
     def outcome_id(self,key,submission):
@@ -240,14 +243,15 @@ def row_for(key,claim,now,old=None):
         meta['receipt_url']=proof['receipt_url']
     return row,meta,{path:raw}
 
-def prepare(root,claims,files,now,final_states=None):
+def prepare(root,claims,files,now,final_states=None,config=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
+    suppressed=apply_bindings(documents,claims,final_states or {},config or {})
     for slug,doc in documents.items():
         old={r['id']:r for r in doc['records']}
         doc['records']=[r for r in doc['records'] if not doc['record_metadata'][r['id']].get('direct_submission')]
         doc['record_metadata']={k:v for k,v in doc['record_metadata'].items() if not v.get('direct_submission')}
         for key,claim in sorted(claims.items()):
-            if SLUGS[claim['submission']['problem']]!=slug:continue
+            if key in suppressed or SLUGS[claim['submission']['problem']]!=slug:continue
             row,meta,source=row_for(key,claim,now,old.get(key));files.update(source)
             doc['records'].append(row);doc['record_metadata'][key]=meta
         prior=json.loads((root/(slug+'.json')).read_text())
@@ -286,7 +290,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--check-only',action='store_true');args=parser.parse_args()
     importer=Importer(GitHub());claims=importer.collect()
     now=datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
-    files=prepare(ROOT,claims,importer.files,now,importer.final_states)
+    files=prepare(ROOT,claims,importer.files,now,importer.final_states,importer.config)
     from maintainer_import import collect_maintainer
     files=collect_maintainer(importer,files,now)
     transaction(ROOT,files,args.check_only)
