@@ -1,0 +1,11 @@
+{
+  "number": 524,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/524",
+  "title": "Carry-graded box convolution removes exponential axis-padding overhead",
+  "body": "Replaces independent-axis padding in the recentered tensor experiment with a mixed-radix carry grade. A D-dimensional box with N entries uses four signed integer products, each occupying fewer than 4DN coefficient slots. For the previous counterfamily this changes the padding factor from exponential in D to below 4D.\n\nThe package contains the general carry proof, executable packing/extraction, signed and unequal-radix cases, independent oracles, and the earlier exact rational weighted fixtures. Rank-filtered convolution has established precedents, cited in SOURCE.json; no originality claim is made.\n\nValidation: fresh macOS Python 3.11/3.14 and Linux Python 3.14 runs produce byte-identical complete results. They execute 2,040 integer products, check 37,205 carry identities, reject 28,799 invalid flattened aliases and five arithmetic mutants. Four package controls reject optimization mode or input-integrity failures before output creation. Exact upstream source bytes are pinned and checked.\n\nNo new κ or runtime improvement is claimed. The residual dimension factor, transcendental table construction, packing/routing costs, tile interactions, Schur boundaries and outer constraints remain unpaid. The weighted fixtures are exact rational analogues, not all-size Gaussian instances.\n\nPrepared by chafreaky with OpenAI Codex assistance; Apache-2.0.\n",
+  "created_at": "2026-10-12T00:49:29Z",
+  "updated_at": "2026-10-12T00:49:29Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

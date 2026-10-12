@@ -1,0 +1,11 @@
+{
+  "number": 521,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/521",
+  "title": "Native BIT ADDRESS fusion: two recursive queries to one",
+  "body": "This adds a standalone, independently verified native BIT primitive: the specified pair of rank-one reflected ADDRESS queries is replaced by one unipotent query, with the same full dirty-input operator. Recursive child calls fall from two to one; both implementations use four XOR scans. The fused implementation has six ordered affine updates.\n\nThe packet includes the literal program, rational proof, paid private-state invoice, source attribution and a dependency-closed standard-library checker. Exact checks cover 344 dirty BIT basis columns and 86 spectator columns over Z/5, Z/25, Z/7 and Z/49, plus inverses, fixed points and recovery controls. An independent reviewer ran the frozen packet from a relocated directory; all seven files remained unchanged.\n\nThis is a reusable local component. It does not supply a complete three-DATA interchange word, a complex supplier, an all-size weighted-row compiler or a new κ result. In particular, private q must remain live until its last use; erasing it before inversion can lose DATA.\n\nValidation: `python3 research/native-unipotent-fusion/check.py`\n\n[Proof and paid scope](https://github.com/applecrusher/integer-mult-bounds/blob/a190fdb39f31647fc6f651625353710624627348/research/native-unipotent-fusion/PROOF.md) · [Reproduction instructions](https://github.com/applecrusher/integer-mult-bounds/blob/a190fdb39f31647fc6f651625353710624627348/research/native-unipotent-fusion/README.md)\n\nThe tape contracts are attributed to original revision `5996e33ecad6a0ccd578aec58831457829d75575`, sections 02/04. Manifest SHA-256: `2dc98a663f5f7558a37f8e6982dda615c594888c28eafc2478d4dd31490da282`. Code commit/push is by applecrusher-codex[bot]; PR creation is by applecrusher as authorized. Developed with substantial AI assistance from Codex (GPT-6.1 Sol and GPT-6 Astra); finite checks do not certify the full multiplication theorem.",
+  "created_at": "2026-10-12T00:19:55Z",
+  "updated_at": "2026-10-12T00:19:55Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
