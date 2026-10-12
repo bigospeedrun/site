@@ -22831,6 +22831,59 @@
         }
       ],
       "source_commit": "2080903b9e6bd01e3f64cc4c7c62ea1b3af0aa6a"
+    },
+    {
+      "id": "crocswap-pr-529",
+      "kind": "improvement",
+      "score": "734801983008651/500000000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-12T01:20:07Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-12T01:20:07Z",
+      "site_observed_at": "2026-10-12T01:20:15Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/529"
+      },
+      "spec_version": "1",
+      "title": "Conditional κ = 0.001469603966017302: rank-sector102 on112 ports, fully rebuilt",
+      "authors": [
+        {
+          "name": "chafreaky",
+          "url": "https://github.com/chafreaky"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/493",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/505",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/507",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/508",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/514",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/518",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/522",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/523",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/525",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/527"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/529",
+      "artifact": {
+        "path": "sources/pr-529.json",
+        "sha256": "582e0eaf92ad2a33ae3164622cfca47e0212aaa51383e97a9c8978c2e1cd0146"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/529",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/529",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "05fc7e332651a41860add3c217cd6f6e88758003"
     }
   ],
   "record_metadata": {
@@ -35521,7 +35574,35 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-10-12T00:55:34Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-529": {
+      "checked_at": "2026-10-12",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/529",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 529,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-10-12T01:20:07Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "PR title; exact displayed value, source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-10-12T01:20:07Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/529",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-10-12T01:20:07Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-10-12T01:17:50Z"
+  "updated_at": "2026-10-12T01:20:15Z"
 }
