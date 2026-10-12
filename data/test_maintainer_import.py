@@ -161,7 +161,8 @@ class MaintainerTests(unittest.TestCase):
                           (BINDING['controller'],CONFIG['previous_controller_blobs'][BINDING['controller']]),
                           ('a1d7bae0657d2a9f32b087d09718ea4f71c10dfa',CONFIG['previous_controller_blobs']['a1d7bae0657d2a9f32b087d09718ea4f71c10dfa']),
                           ('ed049e9b9926929df9e20bcbc6e877ee20f41e38',CONFIG['previous_controller_blobs']['ed049e9b9926929df9e20bcbc6e877ee20f41e38']),
-                          ('9b4b7bfc41c37ed37787be2e98401a952475370f',CONFIG['previous_controller_blobs']['9b4b7bfc41c37ed37787be2e98401a952475370f'])]:
+                          ('9b4b7bfc41c37ed37787be2e98401a952475370f',CONFIG['previous_controller_blobs']['9b4b7bfc41c37ed37787be2e98401a952475370f']),
+                          ('fffb4102963b08366ca790110b3939d7dbba45bb',CONFIG['previous_controller_blobs']['fffb4102963b08366ca790110b3939d7dbba45bb'])]:
             self.assertIn(rev,Importer(API(blobs)).trusted(rev))
         bad=copy.deepcopy(CONFIG['controller_blobs']);bad['scripts/verifier.py']['sha']='a'*40
         with self.assertRaises(Rejected):Importer(API(bad)).trusted(CONFIG['reviewed_commit'])
@@ -171,6 +172,16 @@ class MaintainerTests(unittest.TestCase):
             bad['scripts/live_publish.py'][field]=value
             with self.subTest(field=field),self.assertRaises(Rejected):
                 Importer(API(bad)).trusted(checkpoint_revision)
+        retry_revision='fffb4102963b08366ca790110b3939d7dbba45bb'
+        for path in ('scripts/submissions.py','scripts/pr_submissions.py'):
+            for field,value in [('sha','a'*40),('mode','100755')]:
+                bad=copy.deepcopy(CONFIG['previous_controller_blobs'][retry_revision])
+                bad[path][field]=value
+                with self.subTest(path=path,field=field),self.assertRaises(Rejected):
+                    Importer(API(bad)).trusted(retry_revision)
+        bad=copy.deepcopy(CONFIG['previous_controller_blobs'][retry_revision])
+        bad['scripts/unreviewed.py']={'sha':'a'*40,'mode':'100644'}
+        with self.assertRaises(Rejected):Importer(API(bad)).trusted(retry_revision)
 
 
     def test_matrix_pending_binding_never_admits_without_run(self):
