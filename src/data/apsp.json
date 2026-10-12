@@ -201,6 +201,42 @@
         "certificate_path": null
       },
       "dependencies": []
+    },
+    {
+      "id": "direct-pr-6",
+      "kind": "improvement",
+      "score": "2995561/1000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-12T01:30:55Z",
+      "spec_version": "1",
+      "title": "ldct direct apsp submission",
+      "authors": [
+        {
+          "name": "ldct",
+          "url": "https://github.com/ldct"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/6",
+      "source_commit": "a6e77d9a122e9e3137afbf2e1ac310b2032447f4",
+      "artifact": {
+        "path": "sources/direct-pr-6-submission.json",
+        "sha256": "c8071091ecebee57ba44ec1c2c5db9864a44f0fdf2a40d6fa0f2c09195ccb651"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/6",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-12T01:30:55Z",
+      "site_observed_at": "2026-10-12T02:18:53Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/blob/a6e77d9a122e9e3137afbf2e1ac310b2032447f4/submissions/apsp/ldct-apsp-2995561/Submission.lean"
+      }
     }
   ],
   "record_metadata": {
@@ -278,7 +314,24 @@
       "credits": "Jihoon Hyun (qawbecrdtey); source credits Claude Fable 5.1 and Claude Opus 5.5 for implementation under his direction, and Alman and Vassilevska Williams for the underlying algorithms and framework.",
       "license_status": "Apache-2.0; LICENSE and NOTICE retained",
       "notes_url": "https://github.com/qawbecrdtey/ImprovedExponents/blob/0725f2477587d67212936777b8a264c9793ac7bb/README.md"
+    },
+    "direct-pr-6": {
+      "checked_at": "2026-10-12",
+      "source_url": "https://github.com/bigospeedrun/verifier/blob/a6e77d9a122e9e3137afbf2e1ac310b2032447f4/submissions/apsp/ldct-apsp-2995561/Submission.lean",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/word-ram/v1",
+      "publication_date": "2026-10-12T01:30:55Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/6",
+      "direct_submission": true,
+      "route": "pull_request"
     }
   },
-  "updated_at": "2026-10-12T01:19:06Z"
+  "updated_at": "2026-10-12T02:18:53Z"
 }

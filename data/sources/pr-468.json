@@ -4,8 +4,8 @@
   "title": "Prove nine calls are necessary for three abelian bit registers",
   "body": "The pinned version of #288 leaves the abelian three-register bit cases with seven or eight calls open. This proves that **nine calls are necessary and sufficient** when paid frames are nonzero rational rank-one matrices and all three target frames are invertible and lower triangular.\n\nThe proof reduces the remaining span-five case to 2,276 scalar families and checks all 21,317,520 orders. Two separate exact engines agree on every family: 415,398 diagonal terminals, zero survivors. The argument covers unbounded rational frame coefficients; it is not a bounded coefficient search.\n\nThe seven-file package contains the proof, catalogue generator, two engines, controls, and a replay command. It requires Python and a C++17 compiler and includes no generated search data. Attribution and AI assistance are stated in the proof.\n\nValidation: `python3 research/bit-three-register-lower-bound/replay.py` passes. The result does not change κ and does not cover extra registers or arbitrary free address maps between paid calls.\n\nThe existing `gen4-bank-verify` target also passes. `make verify` stops at the existing `joint-dual-verify` source-hash assertion for `Makefile`; the same failure was reproduced on unchanged base `12a4934`. This PR does not change the affected files. The remaining `verify-pair` and `verify-tests` groups pass when run separately.\n",
   "created_at": "2026-10-11T17:29:22Z",
-  "updated_at": "2026-10-11T18:08:13Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-12T01:36:58Z",
+  "closed_at": "2026-10-12T01:36:58Z",
+  "merged_at": "2026-10-12T01:36:58Z",
+  "state": "closed"
 }

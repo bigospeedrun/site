@@ -3,7 +3,49 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: gen4 circuits and common-delivery frames
+## Current reviewed result: direct delivery and source carriers
+
+**icekylinx's [#531](https://github.com/CrocSwap/integer-mult-bounds/pull/531),
+on [#523](https://github.com/CrocSwap/integer-mult-bounds/pull/523), composed
+with eumemic's [#493](https://github.com/CrocSwap/integer-mult-bounds/pull/493)** gives
+
+$$
+T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
+\kappa=\frac{1517760977820331}{10^{18}}=0.001517760977820331.
+$$
+
+The complex construction delivers selected contributions directly through
+existing copies, reducing helpers from 560 to 504, and reallocates every
+helper to a complete idle physical family. The bit supplier uses source
+registers as intermediate carriers. These build on the community's Hamming/E8
+geometry, kernels, gauges, whole-owner hosting and exact verification machinery.
+
+This is about **2.10 times the previously selected exponent saving**, or
+approximately **2^-9.36384**. It is a conditional finite witness: the all-size
+compiler, common-label/mutable-basis realization, normalized residual and
+hosting interfaces, restored rows, precision/tape and analytic transfer remain
+assumptions. It is not a practical runtime ratio or a complete Lean proof.
+
+The maintainer replay rebuilt all three supplier packages, including the
+complex predecessor, checked the literal bit program and physical ownership,
+and verified the exact dependency bindings, both moment engines and all 47
+outer inequalities. Research notes and scoped negative findings are also
+preserved; their inclusion does not promote every ancillary claim to a theorem.
+
+[Review and scope](docs/research/community-pr531-review.md) ·
+[Selected record](certificates/selected-result.json) ·
+[Exact assembly](research/community-pr531-audit/direct-ASSEMBLY.json) ·
+[Integration receipts](docs/research/community-pr531-integration.json) ·
+[PR review ledger](docs/research/pr-ledger.md) ·
+[Contributor record](CONTRIBUTORS.md)
+
+```sh
+# Also requires a C++17 compiler and Boost headers.
+python3 -m pip install -r research/e8-bit-carrier-skeleton/requirements.txt
+make frontier531-verify
+```
+
+## Historical checkpoint: gen4 circuits and common-delivery frames
 
 The composition of **DreamingOfClouds' [#276](https://github.com/CrocSwap/integer-mult-bounds/pull/276)**
 and **Rohan Arun's [#279](https://github.com/CrocSwap/integer-mult-bounds/pull/279)** gives
@@ -28,7 +70,7 @@ conditional. Finite replay and written review do not prove the complete
 asymptotic theorem in Lean.
 
 [Review and validation scope](docs/research/community-pr279-review.md) ·
-[Selected record](certificates/selected-result.json) ·
+[Selected record](certificates/checkpoints/gen4-pr279.json) ·
 [Construction argument](research/five-stage-gen4-banks/PROOF.md) ·
 [Exact certificate](research/community-pr279-audit/certificate.json) ·
 [Integration checks](docs/research/community-pr279-integration.json) ·
@@ -39,6 +81,15 @@ python3 -m pip install -r research/five-stage-gen4-banks/requirements.txt
 make gen4-bank-verify
 ```
 
+## Research notes and verification contributions
+
+[The research integration index](docs/research/research-notes-20261011.md)
+records accepted experiments, scoped obstructions, verification improvements,
+and attribution. These contributions can be valuable without changing the
+selected exponent. The [experiment archive](research/experiment-log/README.md)
+distinguishes failed searches, execution errors, proposals, and reported
+verification; inclusion does not independently certify every historical claim.
+
 ## Historical audited checkpoint: 527 reused sources
 
 **eumemic's [#210](https://github.com/CrocSwap/integer-mult-bounds/pull/210)**,
@@ -46,7 +97,7 @@ pinned at `298f7c1`, gives the conditional witness
 **κ = 710046193349537 / 10¹⁸ = 0.000710046193349537**.
 This is the intermediate result announced before the gen4 update above.
 Its complete source package and audit are now preserved on main; the newer
-gen4 result remains selected.
+gen4 result is preserved as a historical checkpoint.
 
 The construction combines internal response cancellations and source reuse
 with Henry Grant and Jacob Sussman's five-stage geometry, Evan McKinney's
