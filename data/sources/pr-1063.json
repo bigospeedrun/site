@@ -1,0 +1,11 @@
+{
+  "number": 1063,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1063",
+  "title": "Conditional kappa 0.001672285678298543: neutral T16 reshuffles and whole-helper exchanges",
+  "body": "Conditional kappa **0.001672285678298543**, improving our PR1056 by **0.00107518%**. Equal-width neutral reshuffles unlock additional whole-helper exchanges; the local word, widths, call schedule and source-event times stay unchanged.\n\nPublished as a draft before full verification. The complete publication-package replay now passes the unchanged strict verifier: 69 admission controls, 12 bit controls, 15 controller mutations, six independent owner controls, exact arithmetic and all 47 outer inequalities. Frozen source archive, owner map, measured pins, precise placement differences and reproduction command are included. Reuses checked PR1018 native output and PR1005 ancestry, not a new full cold rebuild. Hosted CI remains separate.\n\n**Current comparison:** this improves PR1056, but the later-observed PR1061 claims 0.00167259071506618, so this is not the current overall record.\n\nInherited all-size/compiler, common-label/mutable-source realization, hosting, precision/tape, exact recovery, analytic transfer and PR589 bit H1-H5 assumptions remain. No unconditional theorem or Lean certification.\n\nCredits PR1056/1050, FanPUYen PR858, PR1018 including rohanarun PR987, PR1005, NewBArch PR869 and retained lineage. Prepared by Rohan Arun with substantial OpenAI Codex assistance; new material Apache-2.0.",
+  "created_at": "2026-10-13T17:28:50Z",
+  "updated_at": "2026-10-13T17:32:56Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

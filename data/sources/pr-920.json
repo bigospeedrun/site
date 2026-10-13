@@ -4,8 +4,8 @@
   "title": "Research note: certify shared parity decoder frame dimensions",
   "body": "Scoped research note / negative result; no new kappa claim. The standalone checker passes and the patch is based on 66849e1475c930fd7732b1a0067ffee7e1e95f60. Full make verify remains outstanding: frontier626-verify stops in the inherited bit543 check because regenerated and shipped gzip files differ byte-for-byte, although their decompressed contents have the same SHA-256 (e597e3885c0a8daa262afa5985ee2930443329126aece76d33159d81882bdcc2). Not marking ready pending resolution or reviewer guidance on that check.",
   "created_at": "2026-10-13T12:36:21Z",
-  "updated_at": "2026-10-13T12:36:21Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-13T17:29:47Z",
+  "closed_at": "2026-10-13T17:29:47Z",
+  "merged_at": "2026-10-13T17:29:47Z",
+  "state": "closed"
 }

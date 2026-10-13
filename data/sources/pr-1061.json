@@ -1,0 +1,11 @@
+{
+  "number": 1061,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1061",
+  "title": "Conditional κ = 0.00167259071506618: improved T16 owner packing on the seven-slot k8 word",
+  "body": "## Summary\n\nConditional κ = **0.00167259071506618**. Same construction and code as #1022; only the T16 owner map changes (exact LNS repack). Differs from the previous record only in `data/{OWNERS,PLAN,SPEC}`, README, RESULT and MANIFEST.\n\n## Verification\n\nFrom a fresh checkout of 223f581a (Windows, CPython 3.11.11): PASS package manifest: 179 files; then `verify_t16.py --local <#1018 verify_slots.py work/local>` in 49 s:\n`PASS_GAUGE44_T16_STRICT_GLOBAL_REPLAY 0.00167259071506618`\n\nCredits as in #1022. Prepared with oh-my-pi using Claude Opus 5.5.\n",
+  "created_at": "2026-10-13T17:26:20Z",
+  "updated_at": "2026-10-13T17:26:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -30,6 +30,7 @@ status in the integration receipt. All-size compilation, common-label/mutable-so
 realization, whole-call hosting, precision/tape and analytic transfer remain
 conditional. These finite checks are **not a complete Lean multiplication theorem**.
 
+[New research/audit batch](docs/research/community-batch1047-review.md) ·
 [Final interface/formal/history checkpoint: fourteen reviews](docs/research/community-batch970-interfaces-review.md) ·
 [Circuit/bound checkpoint: sixteen reviews](docs/research/community-batch970-circuits-review.md) ·
 [Verification checkpoint: nine reviews](docs/research/community-batch970-review.md) ·
