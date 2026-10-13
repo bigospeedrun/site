@@ -869,7 +869,7 @@
       "name": "Heilbronn triangle",
       "quantity": "\\eta\\text{ in }\\Delta(n)\\ge cn^{-2+\\eta}",
       "direction": "higher",
-      "statement": "The quantity is the saving \\(\\eta\\) in \\(\\Delta(n)\\ge cn^{-2+\\eta}\\). A higher saving is better. The baseline is \\(\\eta=2/(45435k+16)\\), where \\(k=T^2+1\\) and \\(T=\\binom{\\binom{163}{41}}{3}\\); the displayed approximation comes from the follow-up. The claim assumes the manuscript’s determinant/carry, conditional-digit distribution, orbit, deletion and interpolation estimates. Lean covers finite packing and selected scales only.",
+      "statement": "The quantity is the saving \\(\\eta\\) in \\(\\Delta(n)\\ge cn^{-2+\\eta}\\). A higher saving is better. The baseline is \\(\\eta=2/(45435k+16)\\), where \\(k=T^2+1\\) and \\(T=\\binom{\\binom{163}{41}}{3}\\); the displayed approximation comes from the follow-up. Each claim assumes estimates from the manuscript and states them, with its proof scope.",
       "baseline": {
         "value": "\\approx3.18\\cdot10^{-236}",
         "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-power-improvement-in-the-Heilbronn-triangle-lower-bound-September-25-2026/main.pdf",
@@ -890,7 +890,7 @@
           "lean": true,
           "leanNote": "Yes, finite packing and selected scales only.",
           "evidence": "claimed",
-          "note": "",
+          "note": "It assumes the manuscript’s determinant/carry, conditional-digit distribution, orbit, deletion and interpolation estimates.",
           "authors": [
             {
               "name": "Ivan Blinov",
@@ -899,6 +899,50 @@
           ],
           "proofScope": "Finite packing and selected scales only.",
           "bound": "\\eta>2.92\\cdot10^{-47}"
+        },
+        {
+          "author": "Ivan Blinov",
+          "handle": "littleBro",
+          "value": "1/(498\\cdot39\\cdot35^{8}+7)",
+          "display": "\\approx2.29\\cdot10^{-17}",
+          "date": "2026-10-08T17:23:00-07:00",
+          "dateSource": "https://github.com/littleBro/heilbronn-triangle-bounds/commit/c57cd750bfeca8e5144b5df1aad340b6def25275",
+          "dateKind": "first-stated",
+          "url": "https://github.com/littleBro/heilbronn-triangle-bounds/blob/f4c2a16ef93dfb42e7d87e864761fa5d2bd3dbca/README.md#L5-L12",
+          "lean": true,
+          "leanNote": "Yes; Lean covers the norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates and the full theorem are written proofs.",
+          "evidence": "claimed",
+          "note": "The bound holds for every sufficiently large \\(n\\). It assumes the pinned manuscript’s geometric estimates: slab geometry, lattice and probability estimates. Thresholds and constants are not given.",
+          "authors": [
+            {
+              "name": "Ivan Blinov",
+              "url": "https://github.com/littleBro"
+            }
+          ],
+          "proofScope": "Lean covers the norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates and the full theorem are written proofs.",
+          "bound": "\\eta>2.28\\cdot10^{-17}"
+        },
+        {
+          "author": "Ivan Blinov",
+          "handle": "littleBro",
+          "value": "1/(498\\cdot27\\cdot23^{9}+7)",
+          "display": "\\approx4.13\\cdot10^{-17}",
+          "date": "2026-10-12T20:51:00-07:00",
+          "dateSource": "https://github.com/littleBro/heilbronn-triangle-bounds/commit/a9f9bfd51be870b6b0d613c55a0812e42b33f797",
+          "dateKind": "first-stated",
+          "url": "https://github.com/littleBro/heilbronn-triangle-bounds/blob/a9f9bfd51be870b6b0d613c55a0812e42b33f797/README.md#L5-L12",
+          "lean": true,
+          "leanNote": "Yes; Lean covers the norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates and the full theorem are written proofs.",
+          "evidence": "claimed",
+          "note": "The bound holds for every sufficiently large \\(n\\). It assumes the pinned manuscript’s geometric estimates: slab geometry, lattice and probability estimates. Thresholds and constants are not given.",
+          "authors": [
+            {
+              "name": "Ivan Blinov",
+              "url": "https://github.com/littleBro"
+            }
+          ],
+          "proofScope": "Lean covers the norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates and the full theorem are written proofs.",
+          "bound": "\\eta>4.12\\cdot10^{-17}"
         }
       ],
       "repos": [],
