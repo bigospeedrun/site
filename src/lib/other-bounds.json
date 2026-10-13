@@ -136,7 +136,7 @@
           "dateKind": "first-stated",
           "url": "https://github.com/karirogg/QuasiRiemannTracker/blob/14ab1618c5133a7d12e06aa76661bbcb34e843cd/submissions/reserve-local-20261013/src/Candidate/Main.lean#L140-L142",
           "lean": true,
-          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron check was still running when we listed it; no independent rerun.",
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
           "evidence": "claimed",
           "note": "",
           "authors": [
@@ -145,8 +145,52 @@
               "url": "https://github.com/karirogg"
             }
           ],
-          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron check was still running when we listed it; no independent rerun.",
+          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
           "bound": "\\theta\\le 0.87486797"
+        },
+        {
+          "author": "Zhongpai Gao",
+          "handle": "Gaozhongpai",
+          "value": "8748673/10000000",
+          "display": "0.8748673",
+          "date": "2026-10-13T08:51:00-07:00",
+          "dateSource": "https://github.com/Gaozhongpai/QuasiRiemannTracker/commit/c5235c0c4b21e548a86b0c616fb295e2c3a00441",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/c5235c0c4b21e548a86b0c616fb295e2c3a00441/submissions/gao-asymmetric-reserves-20261013/src/Candidate/Main.lean#L146-L148",
+          "lean": true,
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Zhongpai Gao",
+              "url": "https://github.com/Gaozhongpai"
+            }
+          ],
+          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "bound": "\\theta\\le 0.8748673"
+        },
+        {
+          "author": "Hailey Collet",
+          "handle": "HaileyStorm",
+          "value": "874861/1000000",
+          "display": "0.874861",
+          "date": "2026-10-13T09:56:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/42",
+          "dateKind": "first-stated",
+          "url": "https://github.com/HaileyStorm/QuasiRiemannTracker/blob/fb6d4fd11aeaff0b37dd96bad3b274ce28a5c08b/submissions/cycle61-c0125139/src/Candidate/Main.lean#L8-L13",
+          "lean": true,
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Hailey Collet",
+              "url": "https://github.com/HaileyStorm"
+            }
+          ],
+          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "bound": "\\theta\\le 0.874861"
         }
       ],
       "repos": [
@@ -218,7 +262,7 @@
           "note": "Zero-free half-planes with thresholds \\(11/12\\) and \\(7/8\\) for the L-functions of the elliptic curves \\(y^2 = x^3 + d\\), whose Hecke characters have infinite order. This is a different family and does not improve the current leader. The \\(7/8\\) part uses OpenAI's finite-order theorem as an input. Lean covers only the last step of the \\(11/12\\) part; external review is pending."
         }
       ],
-      "bestHandle": "karirogg"
+      "bestHandle": "HaileyStorm"
     },
     {
       "family": "005",
@@ -1063,6 +1107,28 @@
           ],
           "proofScope": "Lean covers the norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates and the full theorem are written proofs.",
           "bound": "\\eta>9.24\\cdot10^{-17}"
+        },
+        {
+          "author": "Ivan Blinov",
+          "handle": "littleBro",
+          "value": "1/15{,}789{,}789{,}943",
+          "display": "\\approx6.33\\cdot10^{-11}",
+          "date": "2026-10-13T12:15:00-07:00",
+          "dateSource": "https://github.com/littleBro/heilbronn-triangle-bounds/commit/2d1bd796ce65796abd1bc73befd557ca87959d0b",
+          "dateKind": "first-stated",
+          "url": "https://github.com/littleBro/heilbronn-triangle-bounds/blob/ac098856a6dd1ecdccaa093db0dd857e6fbf252b/README.md#L5-L12",
+          "lean": true,
+          "leanNote": "Yes; Lean covers the degree-seven norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates, the new row-digit probability lemma and the full theorem are written proofs.",
+          "evidence": "claimed",
+          "note": "The bound holds for every sufficiently large \\(n\\). It assumes the pinned manuscript’s geometric estimates (slab geometry, lattice and probability estimates) and the written transfer. A new row-digit probability lemma and the prime-progression interpolation are written proofs only. Thresholds and constants are not given.",
+          "authors": [
+            {
+              "name": "Ivan Blinov",
+              "url": "https://github.com/littleBro"
+            }
+          ],
+          "proofScope": "Lean covers the degree-seven norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates, the new row-digit probability lemma and the full theorem are written proofs.",
+          "bound": "\\eta>6.33\\cdot10^{-11}"
         }
       ],
       "repos": [],
