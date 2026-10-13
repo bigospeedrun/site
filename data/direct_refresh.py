@@ -25,6 +25,11 @@ SLUGS={'dft':'exact-dft','3sum':'3sum','apsp':'apsp'}
 # These hosted smoke identities are permanently excluded, even after label edits.
 SMOKE_NUMBERS={1,2}
 
+def untrusted_path(path):
+    # No verifier script or workflow reads submissions or auto-research notes
+    # (checked at verifier c92b9b6), so changes there keep a snapshot valid.
+    return path.startswith('submissions/') or path=='auto-research.md' or path.startswith('auto-research/')
+
 def json_bytes(value):return (json.dumps(value,indent=2,ensure_ascii=False)+'\n').encode()
 
 class Importer:
@@ -38,7 +43,7 @@ class Importer:
             require(re.fullmatch('[0-9a-f]{40}',revision),'Invalid controller revision')
             tree=self.api.json(PREFIX+'git/trees/'+revision,{'recursive':1})
             require(not tree.get('truncated'),'Truncated controller tree')
-            actual={e['path']:dict(sha=e['sha'],mode=e['mode']) for e in tree['tree'] if e['type']!='tree' and not e['path'].startswith('submissions/')}
+            actual={e['path']:dict(sha=e['sha'],mode=e['mode']) for e in tree['tree'] if e['type']!='tree' and not untrusted_path(e['path'])}
             require(actual in [self.config['controller_blobs'], *self.config.get('previous_controller_blobs', {}).values()], 'Unreviewed controller content')
             policy=copy.deepcopy(self.config);policy['controller_blobs']=actual;policy['statements']={}
             for profile in policy['profiles'].values():

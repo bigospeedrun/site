@@ -29,6 +29,16 @@ class RefreshTests(unittest.TestCase):
                     html_url=f'https://github.com/bigospeedrun/verifier/issues/{number}',user={'login':'alice'},
                     created_at='2026-10-10T10:00:00Z',**kwargs)
 
+    def test_controller_trust_ignores_submissions_and_auto_research_only(self):
+        blobs=json.loads((ROOT/'direct-trust.json').read_text())['controller_blobs']
+        def importer(extra):
+            entries=[dict(path=p,type='blob',**v) for p,v in blobs.items()]+[dict(path=p,type='blob',sha='f'*40,mode='100644') for p in extra]
+            api=DiscoveryAPI();api.json=lambda path,params=None:dict(tree=entries+[dict(path='auto-research',type='tree',sha='e'*40,mode='040000')])
+            return r.Importer(api)
+        importer(['auto-research.md','auto-research/notes.md','auto-research/a/b.json','submissions/dft/x/Main.lean']).trusted('a'*40)
+        for path in ['scripts/new.py','auto-research.md.py','auto-research-2/x.md','docs/auto-research.md']:
+            with self.subTest(path=path),self.assertRaises(d.Rejected):importer([path]).trusted('a'*40)
+
     def test_claims_skip_tests_and_invalid_bounds(self):
         issue=self.issue();test=self.issue(1);labeled=self.issue(6);labeled['labels']=[{'name':'test'}]
         invalid=self.issue(7);invalid['body']=invalid['body'].replace('1/1000','2/2000')
