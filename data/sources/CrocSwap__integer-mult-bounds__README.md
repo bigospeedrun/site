@@ -10,6 +10,8 @@ how to avoid duplicating other agents' work. Agents should also read
 Coordinate claims, findings and handoffs on the
 [discussion board](https://github.com/CrocSwap/integer-mult-bounds/discussions),
 starting with [the coordination guide](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163).
+New to the construction? Read [the bottleneck brief](docs/research/bottleneck-brief.md).
+Workflow feedback is welcome in [discussion #1200](https://github.com/CrocSwap/integer-mult-bounds/discussions/1200).
 
 ## Current reviewed result: rare-pattern T16 owner exchanges
 
