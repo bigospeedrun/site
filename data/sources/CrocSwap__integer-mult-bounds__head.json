@@ -1,23 +1,23 @@
 {
-  "sha": "91a2094f2e022930069e8cfdc810a3ea1b81cd09",
-  "node_id": "C_kwDOU-508toAKDkxYTIwOTRmMmUwMjI5MzAwNjllOGNmZGM4MTBhM2VhMWI4MWNkMDk",
+  "sha": "007664306fff84fbb1c9a1b4053b69f439764034",
+  "node_id": "C_kwDOU-508toAKDAwNzY2NDMwNmZmZjg0ZmJiMWM5YTFiNDA1M2I2OWY0Mzk3NjQwMzQ",
   "commit": {
     "author": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-13T12:29:22Z"
+      "date": "2026-10-13T14:13:59Z"
     },
     "committer": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-13T12:29:22Z"
+      "date": "2026-10-13T14:13:59Z"
     },
-    "message": "Freeze eighteen-PR follow-up batch with per-claim review gates\n\nRecord the 705-open-PR snapshot, pinned heads and complete path inventories, closed #858 dependency credit, and the first two scoped admission-audit reproductions. Keep all eighteen reviews pending integration. Document shared-replay reuse, per-PR attribution, partial publication and head-drift rules. Record successful corrected Linux frontier/tooling runs from the previous batch.",
+    "message": "Preserve historical attribute pins when adding batch932 evidence rules",
     "tree": {
-      "sha": "29ba98f54784af61710001098bad0d4cd0b30c8c",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/29ba98f54784af61710001098bad0d4cd0b30c8c"
+      "sha": "e13e343713a8764d342448c124126afa2f6426a3",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/e13e343713a8764d342448c124126afa2f6426a3"
     },
-    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/91a2094f2e022930069e8cfdc810a3ea1b81cd09",
+    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/007664306fff84fbb1c9a1b4053b69f439764034",
     "comment_count": 0,
     "verification": {
       "verified": false,
@@ -27,9 +27,9 @@
       "verified_at": null
     }
   },
-  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/91a2094f2e022930069e8cfdc810a3ea1b81cd09",
-  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/91a2094f2e022930069e8cfdc810a3ea1b81cd09",
-  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/91a2094f2e022930069e8cfdc810a3ea1b81cd09/comments",
+  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/007664306fff84fbb1c9a1b4053b69f439764034",
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/007664306fff84fbb1c9a1b4053b69f439764034",
+  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/007664306fff84fbb1c9a1b4053b69f439764034/comments",
   "author": {
     "login": "Mister-Meeseeks",
     "id": 18204987,
@@ -74,104 +74,126 @@
   },
   "parents": [
     {
-      "sha": "f567884aeb8851b6e794af1184119a3bfbe1e631",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f567884aeb8851b6e794af1184119a3bfbe1e631",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/f567884aeb8851b6e794af1184119a3bfbe1e631"
+      "sha": "018418fd789ce12a8c176279fe012138713ff53d",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/018418fd789ce12a8c176279fe012138713ff53d",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/018418fd789ce12a8c176279fe012138713ff53d"
     }
   ],
   "stats": {
-    "total": 999,
-    "additions": 997,
-    "deletions": 2
+    "total": 219,
+    "additions": 199,
+    "deletions": 20
   },
   "files": [
     {
-      "sha": "00d19dddee788e092f81ac2154441ee32dc017ec",
-      "filename": "docs/research/community-frontier799-integration.json",
+      "sha": "c9d9a2e8796effdd9a1d04c5f41e7a6f02b53f97",
+      "filename": "docs/research/community-batch932-integration.json",
       "status": "modified",
       "additions": 7,
+      "deletions": 3,
+      "changes": 10,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/docs%2Fresearch%2Fcommunity-batch932-integration.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/docs%2Fresearch%2Fcommunity-batch932-integration.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fcommunity-batch932-integration.json?ref=007664306fff84fbb1c9a1b4053b69f439764034"
+    },
+    {
+      "sha": "20ff104589838ee525a8ac2e6d40f818f01b4a01",
+      "filename": "docs/research/community-family588-integration.json",
+      "status": "modified",
+      "additions": 3,
       "deletions": 2,
-      "changes": 9,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/docs%2Fresearch%2Fcommunity-frontier799-integration.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/docs%2Fresearch%2Fcommunity-frontier799-integration.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fcommunity-frontier799-integration.json?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
+      "changes": 5,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/docs%2Fresearch%2Fcommunity-family588-integration.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/docs%2Fresearch%2Fcommunity-family588-integration.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fcommunity-family588-integration.json?ref=007664306fff84fbb1c9a1b4053b69f439764034"
     },
     {
-      "sha": "189922fbaef8d0a7ffd6da1217053463db39a693",
-      "filename": "docs/research/pr-batch-review-policy.md",
-      "status": "added",
-      "additions": 61,
-      "deletions": 0,
-      "changes": 61,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/docs%2Fresearch%2Fpr-batch-review-policy.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/docs%2Fresearch%2Fpr-batch-review-policy.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-batch-review-policy.md?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
-    },
-    {
-      "sha": "abaa101dd8ab13bb2a835c3c51d21809a5159e78",
-      "filename": "research/pr-review-batches/20261013-frontier-followups/LIVE-SNAPSHOT.json.gz",
-      "status": "added",
-      "additions": 0,
-      "deletions": 0,
-      "changes": 0,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FLIVE-SNAPSHOT.json.gz",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FLIVE-SNAPSHOT.json.gz",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpr-review-batches%2F20261013-frontier-followups%2FLIVE-SNAPSHOT.json.gz?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
-    },
-    {
-      "sha": "959f8e19cd4eaac936ac0f2de1e4897f1df35e03",
-      "filename": "research/pr-review-batches/20261013-frontier-followups/PLAN.json",
-      "status": "added",
-      "additions": 846,
-      "deletions": 0,
-      "changes": 846,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FPLAN.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FPLAN.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpr-review-batches%2F20261013-frontier-followups%2FPLAN.json?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
-    },
-    {
-      "sha": "d9e38a041efceebbc2d8a233b623c0f970daa5b1",
-      "filename": "research/pr-review-batches/20261013-frontier-followups/README.md",
-      "status": "added",
-      "additions": 41,
-      "deletions": 0,
-      "changes": 41,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FREADME.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FREADME.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpr-review-batches%2F20261013-frontier-followups%2FREADME.md?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
-    },
-    {
-      "sha": "af8dfa908b48f581427272c31e4c1d0dd67a37db",
-      "filename": "research/pr-review-batches/20261013-frontier-followups/SCREENING.json",
-      "status": "added",
-      "additions": 26,
-      "deletions": 0,
-      "changes": 26,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FSCREENING.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2FSCREENING.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpr-review-batches%2F20261013-frontier-followups%2FSCREENING.json?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
-    },
-    {
-      "sha": "b249a7205c5957d2733387781633688fbbee3a08",
-      "filename": "research/pr-review-batches/20261013-frontier-followups/pr838-screen.txt",
-      "status": "added",
+      "sha": "d8383ba8d20ba11e3fe5fe9efd7df1c2800abee6",
+      "filename": "docs/research/community-hyperplane599-integration.json",
+      "status": "modified",
       "additions": 1,
-      "deletions": 0,
-      "changes": 1,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2Fpr838-screen.txt",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2Fpr838-screen.txt",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpr-review-batches%2F20261013-frontier-followups%2Fpr838-screen.txt?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/docs%2Fresearch%2Fcommunity-hyperplane599-integration.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/docs%2Fresearch%2Fcommunity-hyperplane599-integration.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fcommunity-hyperplane599-integration.json?ref=007664306fff84fbb1c9a1b4053b69f439764034"
     },
     {
-      "sha": "830c3d3c615539a6e6a4b6e70f342c0e475e03e8",
-      "filename": "research/pr-review-batches/20261013-frontier-followups/pr841-screen.txt",
+      "sha": "52f23583abe2195c35c69453bfc81f3c3345be03",
+      "filename": "research/community-batch932-audit/MAINTAINER-CHANGES.json",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 2,
+      "changes": 5,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2FMAINTAINER-CHANGES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2FMAINTAINER-CHANGES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-batch932-audit%2FMAINTAINER-CHANGES.json?ref=007664306fff84fbb1c9a1b4053b69f439764034"
+    },
+    {
+      "sha": "6b648c37d1230120e240655631ffd55201d67d6d",
+      "filename": "research/community-batch932-audit/before-integration/gitattributes",
       "status": "added",
-      "additions": 15,
+      "additions": 121,
       "deletions": 0,
-      "changes": 15,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2Fpr841-screen.txt",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/91a2094f2e022930069e8cfdc810a3ea1b81cd09/research%2Fpr-review-batches%2F20261013-frontier-followups%2Fpr841-screen.txt",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpr-review-batches%2F20261013-frontier-followups%2Fpr841-screen.txt?ref=91a2094f2e022930069e8cfdc810a3ea1b81cd09"
+      "changes": 121,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2Fbefore-integration%2Fgitattributes",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2Fbefore-integration%2Fgitattributes",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-batch932-audit%2Fbefore-integration%2Fgitattributes?ref=007664306fff84fbb1c9a1b4053b69f439764034"
+    },
+    {
+      "sha": "4e29cdd0e86e5a92cce9c0f41a7272fa13c7a313",
+      "filename": "research/community-batch932-audit/logs/publication-corrected-ledger-tests.log",
+      "status": "added",
+      "additions": 19,
+      "deletions": 0,
+      "changes": 19,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2Flogs%2Fpublication-corrected-ledger-tests.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2Flogs%2Fpublication-corrected-ledger-tests.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-batch932-audit%2Flogs%2Fpublication-corrected-ledger-tests.log?ref=007664306fff84fbb1c9a1b4053b69f439764034"
+    },
+    {
+      "sha": "7476e8a77a085f4b178224b06edb03cfcfa7c9d0",
+      "filename": "research/community-batch932-audit/logs/publication-corrected-ledger.log",
+      "status": "added",
+      "additions": 14,
+      "deletions": 0,
+      "changes": 14,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2Flogs%2Fpublication-corrected-ledger.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-batch932-audit%2Flogs%2Fpublication-corrected-ledger.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-batch932-audit%2Flogs%2Fpublication-corrected-ledger.log?ref=007664306fff84fbb1c9a1b4053b69f439764034"
+    },
+    {
+      "sha": "5a68c395b0eff5601c7d3317b88dfbb01c9ee079",
+      "filename": "research/community-family588-audit/CONTENT-COVERAGE.json",
+      "status": "modified",
+      "additions": 27,
+      "deletions": 9,
+      "changes": 36,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-family588-audit%2FCONTENT-COVERAGE.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-family588-audit%2FCONTENT-COVERAGE.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-family588-audit%2FCONTENT-COVERAGE.json?ref=007664306fff84fbb1c9a1b4053b69f439764034"
+    },
+    {
+      "sha": "64c8cc083730e9bf7c908d8955ff97dfebbbc02b",
+      "filename": "research/community-hyperplane599-audit/CONTENT-COVERAGE.json",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 2,
+      "changes": 5,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-hyperplane599-audit%2FCONTENT-COVERAGE.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/research%2Fcommunity-hyperplane599-audit%2FCONTENT-COVERAGE.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-hyperplane599-audit%2FCONTENT-COVERAGE.json?ref=007664306fff84fbb1c9a1b4053b69f439764034"
+    },
+    {
+      "sha": "5bc48c64ba03cda30b591803ed9818fc330770b0",
+      "filename": "scripts/verify_pr_reconciliation.py",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/007664306fff84fbb1c9a1b4053b69f439764034/scripts%2Fverify_pr_reconciliation.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/007664306fff84fbb1c9a1b4053b69f439764034/scripts%2Fverify_pr_reconciliation.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/scripts%2Fverify_pr_reconciliation.py?ref=007664306fff84fbb1c9a1b4053b69f439764034"
     }
   ]
 }
