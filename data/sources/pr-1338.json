@@ -1,0 +1,11 @@
+{
+  "number": 1338,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1338",
+  "title": "Tooling: exact helper-donor cold-kernel search — rediscovers #1297's kernels, census on #1305/#1324 words (no new kappa)",
+  "body": "Adds `research/helper-donor-kernel-search/`, the first published search tool for the helper-donor cold-kernel mechanism. That mechanism was introduced by #1274 (pivot 531) and extended by #1286/#1297; it is the largest local gain on the X54 line. **No new κ.**\n\n## How the search works\nFor every write `p += k·Y` that has earlier reads of p, the tool:\n- deletes a subset of those early reads;\n- cancels p through Y at a cut, with an early-cleanup tail restore;\n- computes the exact program-map change D mod 2³¹−19;\n- solves a single-donor relation `q·v_hook = −D` with dyadic q;\n- prices each candidate exactly with #1186's frame solver.\n\n## Results\n- **Positive control.** On #1218's word (no kernel yet), the tool rediscovers #1297's pivot-555 kernel exactly: delete reads 466/502/734, donor 620 with coefficient 2 at hook 112, cost −11,676, profile H1 −3, H3 +1. It also finds the five equivalent donor hooks.\n- **Census.** On #1305's final words, which #1324 (the current best claim) uses unchanged, I searched every register and write: 1,048 write instances per word, both words. **No further single-donor kernel exists.** Further local gains need two-donor relations or other cancel forms; see Open next questions.\n- **Negative control.** The already-applied pivot 555 gives no gain.\n\n## Reproduce\n```sh\npython3 -B research/helper-donor-kernel-search/verify.py --toolkit <PR1186>/research/exact-frame-toolkit   # ~1 min\n```\nOutput: `PASS_HELPER_DONOR_KERNEL_SEARCH_CONTROLS`. Inputs are vendored and pinned: #1305 `a96a5d95` and #1218 `0aa14797`.\n\nA candidate the tool finds is nomination data, not an admitted construction. All inherited conditions remain.\n\nCredit: #1274 (Jeremy Kothe), #1286/#1297 (Rohan Arun), #1186 (Marius-Paul Dumitrean), #1305/#1324 (jeremykothe2). Prepared by Wronskode with substantial AI assistance (Claude Code). Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+  "created_at": "2026-10-13T23:05:25Z",
+  "updated_at": "2026-10-13T23:05:25Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
