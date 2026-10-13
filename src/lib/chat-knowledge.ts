@@ -2,6 +2,7 @@ import type {Problem, RecordEntry} from './types.ts';
 import {ranked, boundPrecision, tableBound} from './ranking.ts';
 import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, type EvidenceLevel} from './evidence.ts';
 import {verifierUrl, verifierProblems, discordUrl, submitChannel} from './submission.ts';
+import {otherBoundLeader} from './other-leader.ts';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -43,7 +44,7 @@ export function otherBoundAliases(row: OtherBoundsData['families'][number]): str
 
 function otherBoundRows(data: OtherBoundsData) {
   return data.families.map(f => {
-    const best = f.claims.find(c => c.handle === f.bestHandle);
+    const best = otherBoundLeader(f);
     if (!best) throw new Error(`Other bounds row ${f.slug} has no current leader.`);
     return {
       path: '/other/' + f.slug, title: f.name, aliases: otherBoundAliases(f), openaiFamily: f.family,
