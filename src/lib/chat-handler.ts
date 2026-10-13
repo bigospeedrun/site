@@ -1,4 +1,4 @@
-import {buildSystemPrompt, type ChatKnowledge} from './chat-knowledge.ts';
+import {buildSystemPrompt, isKnownPage, type ChatKnowledge} from './chat-knowledge.ts';
 
 export const CHAT_MODEL = 'claude-sonnet-5-5';
 export const FALLBACK_MODEL = 'claude-sonnet-4-6';
@@ -123,7 +123,7 @@ export function createChatHandler(options: Options) {
     let knowledge: ChatKnowledge;
     try { knowledge = await options.knowledge(); }
     catch { return error(503, 'The site facts are not available. Please use the FAQ.'); }
-    const page = typeof body.page === 'string' && Object.hasOwn(knowledge.pages, body.page) ? body.page : '/';
+    const page = typeof body.page === 'string' && isKnownPage(knowledge, body.page) ? body.page : '/';
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), options.timeoutMs ?? CHAT_TIMEOUT_MS);
     const abort = () => controller.abort();

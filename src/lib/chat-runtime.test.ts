@@ -16,7 +16,7 @@ test('compiled API entry loads its JavaScript dependencies and reports keyless s
     assert.equal(parsed.errors.length, 0);
     // Emit the server dependency graph as separate files, as the function
     // runtime does. The output contains no TypeScript source to fall back to.
-    for (const path of ['api/chat.ts', 'src/lib/chat-handler.ts', 'src/lib/chat-knowledge.ts', 'src/lib/ranking.ts', 'src/lib/evidence.ts']) {
+    for (const path of ['api/chat.ts', 'src/lib/chat-handler.ts', 'src/lib/chat-knowledge.ts', 'src/lib/ranking.ts', 'src/lib/evidence.ts', 'src/lib/submission.ts']) {
       const result = ts.transpileModule(await readFile(join(root, path), 'utf8'), {
         fileName: path, compilerOptions: parsed.options,
       });

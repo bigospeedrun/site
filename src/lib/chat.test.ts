@@ -5,6 +5,7 @@ import {createChatHandler, createLimiter, validateMessages, sseData, CHAT_MODEL,
 import {buildSystemPrompt, createKnowledge, pageText} from './chat-knowledge.ts';
 import {formatReply, safeLink} from './chat-format.ts';
 import type {Problem, RecordEntry} from './types.ts';
+import otherBounds from './other-bounds.json' with {type: 'json'};
 
 const knowledge = createKnowledge([], '2026-10-10T09:00:00Z');
 knowledge.pages = {'/': 'Home', '/about': 'The FAQ explains how to submit a result.'};
@@ -198,4 +199,45 @@ test('reply renderer escapes HTML, blocks executable URLs, removes URL queries a
   assert.equal(safeLink('data:text/html,foo'), null); assert.equal(safeLink('//evil.test'), null);
   assert.equal(safeLink('https://github.com/x/y?utm_source=foo#readme'), 'https://github.com/x/y#readme');
   assert.doesNotMatch(formatReply('\\(\\href{javascript:alert(1)}{hi}\\)'), /href="javascript/);
+});
+
+test('a QRH question reaches the quasi-Riemann Other bounds row with its leader, evidence and repositories', () => {
+  const rows = createKnowledge([], '2026-10-10', undefined, otherBounds).otherBounds.rows;
+  assert.equal(rows.length, otherBounds.families.length);
+  // Find the row the way the prompt asks the model to: by name, path, alias or part of a name.
+  const find = (query: string) => rows.filter(row => [row.title, row.path, ...row.aliases]
+    .some(name => name.toLowerCase().includes(query.toLowerCase())));
+  for (const query of ['qrh', 'QRH', 'riemann', 'quasi riemann', 'quasi-Riemann'])
+    assert.deepEqual(find(query).map(row => row.path), ['/other/quasi-riemann'], query);
+  const row = find('qrh')[0];
+  assert.equal(row.title, 'Quasi-Riemann hypothesis'); assert.match(row.better, /lower value is better/);
+  assert.equal(knowledge.otherBounds.list, '/#other-bounds');
+  assert.equal(row.current.evidence, 'Claimed'); assert.deepEqual(row.current.authors, ['Hailey Collet']);
+  assert.equal(row.current.bound, '\\theta\\le 0.87488664704'); assert.equal(row.baseline.bound, '\\theta\\le 7/8');
+  assert.ok(row.relevantRepos.some(repo => repo.name === 'AxiomMath/DedekindZetaZeroFree' && repo.note));
+  // Initials are an alias only when the row's own repositories use them.
+  assert.deepEqual(rows.filter(r => r.aliases.some(a => /^[A-Z]+$/.test(a))).map(r => r.path), ['/other/quasi-riemann']);
+  const prompt = buildSystemPrompt({...knowledge, otherBounds: {...knowledge.otherBounds, rows}}, '/other/quasi-riemann', false);
+  assert.match(prompt, /reading \/other\/quasi-riemann/); assert.match(prompt, /"aliases":\["quasi riemann","quasi riemann hypothesis","QRH"\]/);
+  assert.match(prompt, /before you say the site has nothing/);
+});
+
+test('contribution routes send new results to Discord and Lean proofs to the verifier, not to GitHub issues', () => {
+  const problem = (slug: string) => ({slug, title: slug, scope: '', symbol: 'omega', direction: 'lower-is-better', lastDataCheck: '', records: [], repos: []}) as unknown as Problem;
+  const {contribute} = createKnowledge(['3sum', 'subset-sum', 'directed-sssp'].map(problem), '2026-10-10');
+  assert.match(contribute.newResult, /#submit-a-result on our Discord \(https:\/\/discord\.gg\/\w+\)/);
+  assert.deepEqual(contribute.leanProof.problems, ['/3sum']);
+  assert.equal(contribute.leanProof.repository, 'https://github.com/bigospeedrun/verifier');
+  assert.doesNotMatch(JSON.stringify(contribute), /issues/);
+  assert.match(buildSystemPrompt(knowledge, '/', false), /use the contribute facts\. They replace any GitHub issue route/);
+});
+
+test('the chat accepts an Other bounds page as the visitor page and ignores unknown pages', async () => {
+  const withRow = {...knowledge, otherBounds: {...knowledge.otherBounds, rows: createKnowledge([], '', undefined, otherBounds).otherBounds.rows}};
+  const systems: string[] = [];
+  const fetcher = (async (_url: string, init: RequestInit) => { systems.push(JSON.parse(String(init.body)).system); return fixtureStream([textEvent('ok')]); }) as typeof fetch;
+  const handler = createChatHandler({apiKey: 'test-only-placeholder', knowledge: async () => withRow, fetcher});
+  await (await handler(request({messages, page: '/other/quasi-riemann'}))).text();
+  await (await handler(request({messages, page: '/other/not-a-row'}))).text();
+  assert.match(systems[0], /reading \/other\/quasi-riemann\./); assert.match(systems[1], /reading \/\./);
 });
