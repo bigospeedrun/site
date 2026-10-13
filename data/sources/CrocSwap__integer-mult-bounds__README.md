@@ -3,55 +3,60 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: U8 deliveries and T21 owner packing
+## Current reviewed result: U8 deliveries and T37 owner packing
 
-**Chafik Boukhalfa's [#890](https://github.com/CrocSwap/integer-mult-bounds/pull/890),
-building on Jeremy Kothe's #869/#870 U8 rewrite and Hao Yan's #858 T16 owner
-construction, with DreamingOfClouds' #589 bit supplier on eumemic's #555**, gives
+**Jonathan Capalbo's [#942](https://github.com/CrocSwap/integer-mult-bounds/pull/942),
+building on Chafik Boukhalfa's #890, Jeremy Kothe's #869/#870 U8 rewrite and
+Hao Yan's #858 owner construction, with DreamingOfClouds' #589 bit supplier
+on eumemic's #555**, gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{1661957774647029}{1000000000000000000}=0.001661957774647029.
+\kappa=\frac{1661960547713947}{1000000000000000000}=0.001661960547713947.
 $$
 
-This is approximately **0.01945% above the previous selected exponent saving**,
-not a measured runtime improvement. Eight local delivery rewrites improve the
-recursive profile; a 21-replica composition packs whole helper roles more
-efficiently. The [#799 checkpoint](certificates/checkpoints/frontier799.json)
-is preserved. Earlier credit includes Chafik's #741 frames, icekylinx's source
-gauge, Rohan Arun's recurrence correction, and the cumulative community work.
-[Full contributor record](CONTRIBUTORS.md).
-The [eighteen-PR circuit and verification batch](docs/research/community-batch932-review.md)
-adds finite circuit savings, precision audits and faster checks; it leaves κ unchanged.
+This is a **0.00016686% increase in the exponent saving** over the
+[#890 checkpoint](certificates/checkpoints/frontier890.json), not a measured
+runtime improvement. The unchanged U8 word is hosted across 37 replicas;
+whole-role edits improve its residual packing. The conservative 779-bit complex
+prefix is charged at 1024 bits, with the enlarged row and bootstrap costs checked.
+An all-replica bound also closes further improvement on the same `10^-18` grid
+within the stated fixed U8/width/capacity/outer-recipe family.
 
-Fresh U8, T16 and T21 finite replays pass, including scalar/frame/phase checks,
-physical owner admission, precision accounting, two rational moment engines and
-all 47 assembly inequalities. Checked baseline reuse is explicit. Linux
-integration CI is tracked separately in the receipt.
+Fresh U8/T37 scalar, frame, phase, owner, controller and invoice checks pass,
+along with both rational moment engines and all 47 assembly inequalities.
+Complete checked baseline reuse is explicit. Hosted Linux CI has a separate
+status in the integration receipt. All-size compilation, common-label/mutable-source
+realization, whole-call hosting, precision/tape and analytic transfer remain
+conditional. These finite checks are **not a complete Lean multiplication theorem**.
 
-All-size compilation, common-label/mutable-source realization, whole-call hosting,
-precision/tape and analytic transfer remain conditional. These finite checks are
-**not a complete Lean multiplication theorem**.
-
-[Review and all eighteen contributions](docs/research/community-frontier890-review.md) ·
+[Review and individual contributions](docs/research/community-batch952-review.md) ·
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-frontier890-audit/ASSEMBLY.json) ·
-[Integration receipt](docs/research/community-frontier890-integration.json) ·
-[PR review ledger](docs/research/pr-ledger.md)
+[Exact assembly](research/community-frontier942-audit/ASSEMBLY.json) ·
+[Integration receipt](docs/research/community-batch952-integration.json) ·
+[PR review ledger](docs/research/pr-ledger.md) · [Contributors](CONTRIBUTORS.md)
 
 ```sh
 # Also requires a C++17 compiler and Boost headers.
 python3 -m pip install numpy sympy scipy
-make frontier890-verify
+make frontier942-verify
 ```
 
-**Verification and research in this batch:** Lucas Steinmetz, Chinmay Arvind,
-nightangelflowerwin-ops, Adem Vessell and Mihir Srivastava strengthen evidence
-admission and proof-pointer binding. Aaron/navinor adds opt-in parallel replay,
-frame bounds and scoped searches. SethBurkart123 contributes independent U8
-checks and bit-frame enumeration; Amnon Tamsut audits gain accounting; ToikY
-adds exhaustive binary-phase verification and a scaled-pair exclusion. Original
-and overlapping contributions retain separate credit and scope in the review.
+The eighteen-PR batch completes **17 scoped reviews** and carries #946's broad
+encoding patch pending frozen-source migration. Gareth Davidson and Ross
+Richardson extend finite bit-circuit synthesis and matching; Charles Bethin
+proves a uniform owner bound; Aaron Wang and Mihir Srivastava provide scoped
+obstructions; zeusinsight, Deftsalt-debug and CubeJerry contribute parallel
+circuit candidates. These candidates retain separate credit and are not
+silently combined into the selected bit supplier. Ross also adds an exact
+historical-verifier accelerator. Earlier cumulative credit includes Rohan
+Arun's recurrence correction, icekylinx's source gauge, the U8/T21 lineage and
+all construction and verification contributors in CONTRIBUTORS.md.
+
+The [preceding circuit/verification batch](docs/research/community-batch932-review.md)
+and [U8/T21 review](docs/research/community-frontier890-review.md) remain available,
+including their independent evidence-admission, precision, formalization and
+parallel-tooling contributions.
 
 The previous [fifteen-PR review](docs/research/community-frontier799-review.md)
 retains independent reconstruction, owner-optimality and verification-tooling
