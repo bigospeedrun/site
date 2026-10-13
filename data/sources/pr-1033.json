@@ -1,0 +1,11 @@
+{
+  "number": 1033,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1033",
+  "title": "Scoped negative result: exact short-window minima for the complex factory (no new kappa)",
+  "body": "This scoped negative result certifies exact macro minima for **27 short sections** of the PR922/924 complex factory retained by PR949. Eighteen four-macro sections also attain the primitive minimum at that length. Five additional six-macro sections have lower bound five; a five-macro replacement remains open. **No new kappa or supplier change.**\n\nThe complete census permits changed local gate topology, beyond the earlier fixed-topology scale-placement result. Exact dyadic synthesis and a separately written finite-field checker agree on all 32 sections in four orientations. The README gives the precise alphabet, finite-coverage argument, costs, source pins and exclusions.\n\nReproduce from the repository root:\n\n```sh\npython3 -I -B research/factory-window-synthesis-seed23/verify.py\npython3 -I -B research/factory-window-synthesis-seed23/independent.py\npython3 -I -O -B research/factory-window-synthesis-seed23/test_package.py\n```\n\nExpected markers: `PASS_FACTORY_WINDOW_SYNTHESIS`, `PASS_FACTORY_WINDOW_MODULAR`, `PASS_FACTORY_WINDOW_PACKAGE`.\n\nValidation passed on CPython 3.14.6 and 3.9.6/macOS arm64: full census, dirty-work boundaries, planted reductions, mathematical mutations, ten package rejections, optimized offline relocation, deterministic regeneration, Ruff and selected-record integrity. Full repository and cold supplier replays, hosted CI and Lean are unexecuted.\n\nExact base: `2921874911956718fcaaaf9396fe8267b3cfa9f0`. Only `research/factory-window-synthesis-seed23/` is added. Credit Alluri/PR681, Sagar Thakrar/PR696, CubeJerry/PR922/924, Ross Richardson/PR949/931, Jeremy Kothe, icekylinx, Chafik Boukhalfa and the retained lineage. Prepared by Hanson Sun with substantial OpenAI Codex assistance; Apache-2.0. No independent human review is claimed.\n",
+  "created_at": "2026-10-13T16:59:07Z",
+  "updated_at": "2026-10-13T16:59:07Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
