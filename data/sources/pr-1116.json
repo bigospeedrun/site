@@ -1,0 +1,11 @@
+{
+  "number": 1116,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1116",
+  "title": "Construction: restored CK helper butterflies beat the single-shear scalar floor",
+  "body": "Two restored determinant-two helper butterflies lower the fixed PR917 CK\ncompensation panel from the PR1081/PR696 single-shear comparison price 8,434 to\n8,430 component primitives. Complete scalar counts fall from 104934/104950 to\n104926/104942, with identical 15,779 macros and adapter reserve. The new local\nbound is 8,503,557,667,310. A different lower-macro historical witness still has\na better generic invoice; no overall invoice optimum is claimed.\n\nThe package checks all 32,131 helper pairs against 12 directed single-shear\nchoices each, verifies both boundaries and every residual coefficient, and\nexecutes both complete new primitive streams on all 725 arbitrary input columns.\nThe two butterflies are the only per-pair improvements in this exact class.\nDiscovery uses optional installed NetworkX; acceptance is standard-library\nonly and trusts no solver status. PR1081's exact old matching floor is credited,\nnot independently reproved.\n\nRun `python3 -I -O -B research/ck-helper-butterflies-seed38/verify.py`.\nExpected `PASS_CK_HELPER_BUTTERFLIES pairs=32131 panel=8434->8430 extra_real=8/8 columns=725 controls=10 no_new_kappa`.\n\nFive exact source pins, ten rejection controls, full decoded-certificate\ncomparison, both arbitrary-input panel checks and the complete scalar/invoice\ninventory are included. Native phase/frame, global provider/hosting/invoice and\nouter assembly were not executed. No new kappa or selected-source edit.\nPrepared for @woklerx with substantial OpenAI Codex assistance; Apache-2.0.\n",
+  "created_at": "2026-10-13T18:30:47Z",
+  "updated_at": "2026-10-13T18:30:47Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -4,8 +4,8 @@
   "title": "Scoped structural result: arbitrary complex coefficients retain the exact eight-term E8 decoder floor",
   "body": "Extend PR968's explicitly real-matrix exact eight-term decoder floor to\narbitrary complex coefficients in the same all-pairs, ordinary-transpose\nmodel: `cost >= max(72-p,56)` for every `p<=24`. Existing real attainments\nkeep the bound sharp over puncture choices of each size.\n\nThe bridge is not independent real projection. An exact Q(i) isotropic\nexample shows that cross-term nonparallelism, used in the real argument,\ncan fail over C. The written proof instead establishes nonisotropy only\nfor reduced sides at p<=15, which must be complex proportional to real\nroot or D7 directions. That is precisely enough for the counting step.\nThis is not a flaw in PR968's stated real theorem.\n\nParallel PR1071 by JosieElliston independently rederives the support floor,\ncharacterizes mixed root bases, and bounds copy-chain delivery for an\nexplicit P104 decoder. The contribution here is the arbitrary-complex\ncoefficient and restricted-nonisotropy bridge, with exact counterexamples\nto two tempting shortcuts; no delivery construction is claimed.\n\n```text\npython research/complex-decoder-field-extension-seed44/verify.py\n```\n\nExpected: `PASS_COMPLEX_DECODER_FIELD_EXTENSION_S44 p=0..24 examples=3 attaining=25 pairing=14400 controls=7`.\n\nThe source-pinned replay checks the required predecessor census and\nattainment chain, all 14,400 independently constructed pairing entries,\nexact Gaussian-rational examples and seven rejection controls. PR968's\nstandard real flat-classification premise F6 remains inherited. Finite\nexamples support the written proof; they do not enumerate complex space.\n\nNo new supplier, native circuit or kappa. Nine or more terms, masked\nidentities and p>=25 are excluded. Prepared for @woklerx with substantial\nOpenAI Codex assistance, Apache-2.0. Credit themilkman216's PR968 and\nDreamingOfClouds's PR717, with full attribution in NOTICE.md.\n",
   "created_at": "2026-10-13T17:44:19Z",
-  "updated_at": "2026-10-13T17:44:19Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-13T18:47:08Z",
+  "closed_at": "2026-10-13T18:47:08Z",
+  "merged_at": "2026-10-13T18:47:07Z",
+  "state": "closed"
 }

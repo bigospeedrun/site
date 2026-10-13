@@ -4,8 +4,8 @@
   "title": "Conditional κ = 0.001672245809535804: improved T16 owner packing on the seven-slot k8 word",
   "body": "## Summary\n\nConditional κ = **0.001672245809535804**. Same construction and code as #1022; only the T16 owner map changes (exact LNS repack). Differs from the previous record only in `data/{OWNERS,PLAN,SPEC}`, README, RESULT and MANIFEST.\n\n## Verification\n\nFrom a fresh checkout of 6f92ce88 (Windows, CPython 3.11.11): PASS package manifest: 179 files; then `verify_t16.py --local <#1018 verify_slots.py work/local>` in 39 s:\n`PASS_GAUGE44_T16_STRICT_GLOBAL_REPLAY 0.001672245809535804`\n\nCredits as in #1022. Prepared with oh-my-pi using Claude Opus 5.5.\n",
   "created_at": "2026-10-13T17:17:55Z",
-  "updated_at": "2026-10-13T17:17:55Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-13T18:47:08Z",
+  "closed_at": "2026-10-13T18:47:08Z",
+  "merged_at": "2026-10-13T18:47:08Z",
+  "state": "closed"
 }

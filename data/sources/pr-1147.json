@@ -1,0 +1,11 @@
+{
+  "number": 1147,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1147",
+  "title": "Research: a fifth joint exchange on X4 does not improve κ (complete census)",
+  "body": "## Summary\n\nThis package runs a complete census of a fifth joint read-set exchange on the selected X4 word, with X4's recipe and the eight PR741 B frames held fixed. No candidate improves or ties X4's κ of `0.001661634653669567`. No new supplier or κ is claimed.\n\n- 10144 candidates (3180 subset combinations after X4, with frame policies).\n- 1536 legal, in 12 distinct profiles. The best scores `0.001661526629932125`.\n- Rejections: 5640 target cap, 2968 duplicate frame, 0 B-segment exactness.\n- Every legal candidate replays through the pinned `build_jx.build`: 1536 accepted, 0 profile mismatches.\n- 11 positive controls and 8 negative controls pass, including a rebuild of X4's own four exchanges.\n\nAll inputs are read from commit `f567884a` and pinned by SHA-256. Nothing upstream is modified.\n\n## Reproduce\n\n```\nbash research/x4-fifth-joint-exchange-seed32/reproduce.sh\n```\n\nAttribution and AI-assistance disclosure are in `research/x4-fifth-joint-exchange-seed32/NOTICE.md`.\n",
+  "created_at": "2026-10-13T19:07:52Z",
+  "updated_at": "2026-10-13T19:07:52Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

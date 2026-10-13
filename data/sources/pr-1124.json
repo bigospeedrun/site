@@ -1,0 +1,11 @@
+{
+  "number": 1124,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1124",
+  "title": "Conditional κ = 0.001673005344598825: eighth triangle slot X54, rank-seven helper ends and T16 owner packing on the eight-slot k8 word",
+  "body": "## Summary\n\nConditional κ = **0.001673005344598825**. Adds the eighth triangle slot X54 to the rank-seven helper-end k8 construction with a new T16 owner map. The pinned composite replay rebuilds and independently controls both transformations before admitting the new locals and packing.\n\n## Verification\n\nFrom a fresh checkout of 7c0e3ee0 (Windows, CPython 3.11.11): PASS package manifest: 204 files. Full `construction/ends7/verify_ends7.py` replay rebuilt rank-seven ends and the pinned X54 slot, ran both sets of negative controls, native locals, independent local audit, leaver premise and strict T8/T16: `PASS_RANK7_ENDS_AND_X54_ON_CHECKED_SLOT_BASELINE 0.001673005344598825`. The fresh T16 receipt was bound to this release SPEC; no duplicate T16 run. Full verification in 84 s:\n`PASS_GAUGE44_T16_STRICT_GLOBAL_REPLAY 0.001673005344598825`\n\nSee `research/gauge44-ends7-x54-t16/README.md` for reproduction commands and inherited source credits. Credits include #1022 and #1030. Research direction, prioritisation and release strategy: jeremykothe2; implementation assistance: oh-my-pi (prior Claude work, resumed with user-selected GPT agents).\n",
+  "created_at": "2026-10-13T18:41:41Z",
+  "updated_at": "2026-10-13T18:41:41Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

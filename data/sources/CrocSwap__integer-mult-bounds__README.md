@@ -3,32 +3,37 @@
 **Community research maintained by Douglas Colkitt — conditional on the original
 OpenAI #109 framework.**
 
-## Current reviewed result: mutable-leaver cells, slots and T16 packing
+**Donating inference or asking an agent to contribute? Start with
+[autoresearch.md](autoresearch.md)** for task selection, current priorities and
+how to avoid duplicating other agents' work. Agents should also read
+[AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
-**Jeremy Kothe's [#1042](https://github.com/CrocSwap/integer-mult-bounds/pull/1042)**, building on his #1004/#1005/#1018 chain, **Rohan Arun's #987 slot search**, **Hao Yan's #858 T16 controller**, Chafik Boukhalfa's frame/ownership improvements and icekylinx's source gauge, gives
+## Current reviewed result: rare-pattern T16 owner exchanges
+
+**Rohan Arun's [#1094](https://github.com/CrocSwap/integer-mult-bounds/pull/1094)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{1672188119205421}{1000000000000000000}=0.001672188119205421.
+\kappa=\frac{836330098538459}{500000000000000000}=0.001672660197076918.
 $$
 
-This increases the exponent saving by **0.61539%** over [Jonathan Capalbo's T37 checkpoint](certificates/checkpoints/frontier942.json). It is not a measured runtime improvement. The construction changes the finite scalar word and helper inventory before repacking sixteen replicas. The bit supplier remains DreamingOfClouds' #589 on eumemic's #555.
+This is about **0.02823% more exponent saving** than the [#1042 checkpoint](certificates/checkpoints/frontier1042.json), not measured runtime. It follows alternating packing improvements by **Jeremy Kothe and Rohan Arun**, on Jeremy's mutable-leaver construction, Rohan's #987 slot search, **Hao Yan's #858 controller**, and the credited frame/ownership work of **Chafik Boukhalfa, icekylinx, Jonathan Capalbo** and the retained lineage. The bit supplier remains **DreamingOfClouds' #589 on eumemic's #555**.
 
-Complete local scalar, frame, phase, arbitrary-workspace, owner, controller and invoice checks pass, with both rational moment engines and all 47 strict assembly inequalities. Retained bit/ancestry reuse is explicit and source-bound. All-size compilation, common-label/mutable-source realization, whole-call hosting, precision/tape, exact recovery and analytic transfer remain conditional. These finite checks are **not a complete Lean multiplication theorem**. Linux CI is tracked separately.
+All twelve packing candidates pass complete strict local admission, controller/invoice checks, both exact moment engines and all 47 assembly inequalities. Independent owner and pricing auditors by **Josie Elliston and Sagar Thakrar** also check the final candidate. Complete prior construction/bit evidence is explicitly reused and source-bound in the local review. All-size/compiler, common-label/mutable-source realization, whole-call hosting, precision/tape, exact recovery and analytic obligations remain conditional. This is **not a complete Lean multiplication theorem**. Hosted Linux CI is separate.
 
-[Forty-PR review and individual credit](docs/research/community-batch1047-review.md) ·
+[Forty-PR review and attribution](docs/research/community-batch1099-review.md) ·
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-frontier1042-audit/ASSEMBLY.json) ·
-[Integration receipt](docs/research/community-batch1047-integration.json) ·
+[Exact assembly](research/community-frontier1094-audit/ASSEMBLY.json) ·
+[Integration receipt](docs/research/community-batch1099-integration.json) ·
 [PR ledger](docs/research/pr-ledger.md) · [Contributors](CONTRIBUTORS.md)
 
 ```sh
 # Also requires a C++17 compiler and Boost headers.
 python3 -m pip install numpy sympy scipy
-make frontier1042-verify
+make frontier1094-verify
 ```
 
-This batch also preserves independent T37 and rank-seven endpoint constructions, exact decoder and E8 structural results, local bit-circuit improvements, and faster exact verification. All contributors retain separate credit, including parallel results below the selected frontier. The local bit candidates are not silently combined or installed as its supplier. The broad encoding change in #946 remains deferred; #994 documents the historical source-pin conflicts and restoration evidence.
+The batch includes separate U10, rank-seven-end and E4 gap-filling constructions, finite bit circuits, exact decoder bounds, independent numerical and SAT-proof audits, and verification tools. These contributions retain individual credit even when they do not advance the selected κ. #1048 remains open with an exact counterexample and certification corrections documented in the review.
 
 The [preceding circuit/verification batch](docs/research/community-batch932-review.md)
 and [U8/T21 review](docs/research/community-frontier890-review.md) remain available,

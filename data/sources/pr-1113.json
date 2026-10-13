@@ -1,0 +1,11 @@
+{
+  "number": 1113,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1113",
+  "title": "Research: exclude a finite precision neighborhood of R439 matching optima",
+  "body": "PR941 leaves a one-ADD precision gap in its fixed disjoint-helper matching\nclass. Exhausting every cost-neutral replacement of two matched edges on\ntheir four endpoints, including simultaneous orientation reversals, produces\n857 distinct 11,948-ADD words from 711,624 proposals around its three frozen\noptima. All pass the local 104-bit guard; all fail the nine-stage 192-bit guard.\nThe best has F=72,467 and B=10,522,512. Larger exchanges remain open.\n\nThe package rechecks the inherited exact dual floor, all 661 dirty D columns\nfor every word, both whole-word positive bounds and all paid helper gates.\nA separate permutation/set engine checks the complete candidate inventory\nand reconstructs every literal COPY/ERASE stream, replaying 10,239,436 ADDs\nper direction. Optimized replay, relocation and 12 mathematical/package\ncontrols pass. No new circuit, supplier admission, native replay or kappa\nis claimed; the H2/K and physical/analytic obligations remain.\n\nCredit Gareth Davidson's PR941 and its retained predecessor lineage for the\nclass, optima, floor and original accounting. This is a fixed historical\nPR941/PR915 comparison at base abdc6a7; upstream selected PR1042 during the\nround. Prepared for @woklerx with substantial OpenAI Codex assistance,\nApache-2.0. Only research/r439-matching-neighborhood13 is added.\n",
+  "created_at": "2026-10-13T18:25:33Z",
+  "updated_at": "2026-10-13T18:25:33Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
