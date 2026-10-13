@@ -1,5 +1,5 @@
 // Use an installed playwright-core package, or pass its module URL as argument 1.
-// Start: ANTHROPIC_API_KEY= DISCORD_WEBHOOK_URL= npx astro dev --ignore-lock --port 4335
+// Start: ANTHROPIC_API_KEY= DISCORD_WEBHOOK_URL= DISCORD_CHAT_LOG_WEBHOOK_URL= npx astro dev --ignore-lock --port 4335
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 const {chromium, devices} = await import(process.argv[2] ?? 'playwright-core');

@@ -192,6 +192,44 @@ test('Discord server logs contain only HTTP status and delivery failures do not 
   assert.equal(output.mock.callCount(), 6);
 });
 
+test('both Discord webhooks get the same tagged entries and fail independently', async (t) => {
+  const output = t.mock.method(console, 'info', () => {});
+  const primary = 'https://discord.com/api/webhooks/private-primary', chatLog = 'https://discord.com/api/webhooks/private-chat-log';
+  const posts: {url: string; body: any}[] = [];
+  const handler = setup(async (url, init) => {
+    if (String(url).includes('anthropic')) return fixtureStream([textEvent('Reply @everyone ' + 'x'.repeat(3000))]);
+    posts.push({url: String(url), body: JSON.parse(String(init?.body))});
+    if (String(url) === primary) throw new Error('Private network details');
+    return new Response(null, {status: 204});
+  }, {webhookUrl: primary, chatLogWebhookUrl: chatLog});
+  assert.match(await (await handler(request({messages, loggingNotice: true, page: '/about'}))).text(), /\[DONE\]/);
+  const sent = (url: string) => posts.filter(p => p.url === url).map(p => p.body);
+  assert.equal(sent(primary).length, 2); assert.deepEqual(sent(chatLog), sent(primary));
+  const [visitor, bot] = sent(chatLog);
+  const header = /^\[bigospeedrun\.com\] (Visitor|Bot) ([0-9a-f]{6}):\n/;
+  assert.equal(visitor.content.match(header)?.[1], 'Visitor'); assert.equal(bot.content.match(header)?.[1], 'Bot');
+  assert.equal(visitor.content.match(header)?.[2], bot.content.match(header)?.[2]);
+  assert.equal(bot.content.length, 2000); assert.deepEqual(bot.allowed_mentions, {parse: []});
+  // The failed primary webhook prints nothing; the chat log prints only its status.
+  assert.deepEqual(output.mock.calls.map(c => c.arguments), [['Chat log Discord webhook HTTP status:', 204], ['Chat log Discord webhook HTTP status:', 204]]);
+  assert.doesNotMatch(JSON.stringify(output.mock.calls.map(c => c.arguments)), /webhooks|private/);
+  // Another exchange gets a different tag.
+  await (await handler(request({messages, loggingNotice: true}))).text();
+  assert.notEqual(sent(chatLog)[2].content.match(header)?.[2], visitor.content.match(header)?.[2]);
+});
+
+test('the chat log webhook alone turns on logging', async (t) => {
+  t.mock.method(console, 'info', () => {});
+  const urls: string[] = [];
+  const handler = setup(async (url) => { urls.push(String(url)); return String(url).includes('anthropic') ? fixtureStream([textEvent('Reply')]) : new Response(null, {status: 204}); },
+    {chatLogWebhookUrl: 'https://discord.com/api/webhooks/private-chat-log'});
+  assert.match(await (await handler(new Request('https://bigospeedrun.com/api/chat'))).text(), /"logging":true/);
+  assert.equal((await handler(request())).status, 409);
+  await (await handler(request({messages, loggingNotice: true}))).text();
+  assert.deepEqual(urls.filter(u => u.includes('discord')), Array(2).fill('https://discord.com/api/webhooks/private-chat-log'));
+  assert.match(buildSystemPrompt(knowledge, '/', true), /also sends visitor messages/);
+});
+
 test('reply renderer escapes HTML, blocks executable URLs, removes URL queries and renders safe math', () => {
   const rendered = formatReply('<img src=x onerror=alert(1)> [click](javascript:alert) **safe** \\(n^2\\)');
   assert.doesNotMatch(rendered, /<img|href="javascript:/); assert.match(rendered, /&lt;img/);

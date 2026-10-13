@@ -10,7 +10,9 @@ export const CHAT_TIMEOUT_MS = 45_000;
 const encoder = new TextEncoder();
 export type ChatMessage = {role: 'user' | 'assistant'; content: string};
 type Options = {
-  apiKey?: string; webhookUrl?: string; localStub?: boolean;
+  // webhookUrl posts to Nil's private server; chatLogWebhookUrl posts to the
+  // private chat log channel in the Big O Speedrun server.
+  apiKey?: string; webhookUrl?: string; chatLogWebhookUrl?: string; localStub?: boolean;
   knowledge: () => Promise<ChatKnowledge>;
   fetcher?: typeof fetch; now?: () => number; timeoutMs?: number;
 };
@@ -91,7 +93,10 @@ export function createChatHandler(options: Options) {
   const fetcher = options.fetcher ?? fetch;
   const limit = createLimiter(options.now);
   const stub = Boolean(options.localStub && !options.apiKey);
-  const logging = Boolean(options.webhookUrl && !stub);
+  // Server logs name a webhook by this label, never by its URL.
+  const webhooks = [{url: options.webhookUrl, label: 'Chat Discord webhook HTTP status:'}, {url: options.chatLogWebhookUrl, label: 'Chat log Discord webhook HTTP status:'}]
+    .filter((hook): hook is {url: string; label: string} => Boolean(hook.url));
+  const logging = Boolean(webhooks.length && !stub);
   return async (req: Request): Promise<Response> => {
     const url = new URL(req.url);
     if (req.method === 'GET') return json({logging, stub, available: stub || Boolean(options.apiKey)});
@@ -130,17 +135,21 @@ export function createChatHandler(options: Options) {
     req.signal.addEventListener('abort', abort, {once: true});
     if (req.signal.aborted) abort();
     const cleanup = () => { clearTimeout(timeout); req.signal.removeEventListener('abort', abort); };
+    // Each webhook gets the same entry and fails on its own.
     const log = async (text: string) => {
       if (!logging) return;
-      try {
-        const response = await fetcher(options.webhookUrl!, {
-          method: 'POST', headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({content: text.slice(0, 2000), allowed_mentions: {parse: []}}),
-          signal: AbortSignal.timeout(3_000),
-        });
-        console.info('Chat Discord webhook HTTP status:', response.status);
-      } catch { /* Logging must not make chat fail. Never print webhook URLs. */ }
+      const body = JSON.stringify({content: text.slice(0, 2000), allowed_mentions: {parse: []}});
+      await Promise.all(webhooks.map(async ({url, label}) => {
+        try {
+          const response = await fetcher(url, {
+            method: 'POST', headers: {'Content-Type': 'application/json'}, body, signal: AbortSignal.timeout(3_000),
+          });
+          console.info(label, response.status);
+        } catch { /* Logging must not make chat fail. Never print webhook URLs. */ }
+      }));
     };
+    // The tag pairs a visitor entry with its reply when several visitors chat at once.
+    const tag = exchangeTag();
     const requestModel = (model: string) => fetcher('https://api.anthropic.com/v1/messages', {
       method: 'POST', headers: {'Content-Type': 'application/json', 'x-api-key': options.apiKey!, 'anthropic-version': '2023-06-01'},
       body: JSON.stringify({model, max_tokens: 1000, stream: true, messages,
@@ -163,7 +172,7 @@ export function createChatHandler(options: Options) {
         cleanup(); return error(502, 'The chat service is unavailable. Please try again later.');
       }
     } catch { cleanup(); return error(502, 'The chat service is unavailable. Please try again later.'); }
-    const visitorLog = log(`[bigospeedrun.com] Visitor:\n${messages.at(-1)!.content}\nIP: ${ip}\nBrowser: ${(req.headers.get('user-agent') ?? '').slice(0, 100)}\nPage: ${page}`);
+    const visitorLog = log(`[bigospeedrun.com] Visitor ${tag}:\n${messages.at(-1)!.content}\nIP: ${ip}\nBrowser: ${(req.headers.get('user-agent') ?? '').slice(0, 100)}\nPage: ${page}`);
     let cancelled = false;
     return new Response(new ReadableStream<Uint8Array>({
       async start(output) {
@@ -182,7 +191,7 @@ export function createChatHandler(options: Options) {
           }
           if (!completed || !fullText.trim()) throw new Error('Incomplete response');
           await visitorLog;
-          await log(`[bigospeedrun.com] Bot:\n${fullText}`);
+          await log(`[bigospeedrun.com] Bot ${tag}:\n${fullText}`);
           send('[DONE]');
         } catch {
           controller.abort();
@@ -196,5 +205,8 @@ export function createChatHandler(options: Options) {
     }), {headers: streamHeaders});
   };
 }
+
+// Six lowercase hex characters, for example 3fa9c1.
+export const exchangeTag = () => Array.from(crypto.getRandomValues(new Uint8Array(3)), b => b.toString(16).padStart(2, '0')).join('');
 
 const streamHeaders = {'Content-Type': 'text/event-stream; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'};

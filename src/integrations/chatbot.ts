@@ -19,6 +19,7 @@ async function addPages(knowledge: ChatKnowledge, load: (path: string) => Promis
 function bridge(load: () => Promise<ChatKnowledge>) {
   const handler = createChatHandler({
     apiKey: process.env.ANTHROPIC_API_KEY, webhookUrl: process.env.DISCORD_WEBHOOK_URL,
+    chatLogWebhookUrl: process.env.DISCORD_CHAT_LOG_WEBHOOK_URL,
     localStub: process.env.VERCEL !== '1',
     knowledge: load,
   });

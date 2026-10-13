@@ -29,7 +29,7 @@ test('compiled API entry loads its JavaScript dependencies and reports keyless s
       import entry from './api/chat.js';
       const response = await entry.fetch(new Request('https://example.com/api/chat'));
       console.log(JSON.stringify({status: response.status, body: await response.json()}));
-    `], {cwd: output, encoding: 'utf8', env: {...process.env, ANTHROPIC_API_KEY: '', DISCORD_WEBHOOK_URL: ''}});
+    `], {cwd: output, encoding: 'utf8', env: {...process.env, ANTHROPIC_API_KEY: '', DISCORD_WEBHOOK_URL: '', DISCORD_CHAT_LOG_WEBHOOK_URL: ''}});
     assert.deepEqual(JSON.parse(result), {status: 200, body: {logging: false, stub: false, available: false}});
   } finally {
     await rm(output, {recursive: true, force: true});
