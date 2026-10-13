@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {initials,parseShowAvatars} from './avatars.ts';
+import {initials} from './avatars.ts';
 import {authorFromProfile} from './record-links.ts';
 
 test('initials name the first player of a credit', () => {
@@ -13,12 +13,6 @@ test('initials name the first player of a credit', () => {
  assert.equal(initials('Anthropic (Lean formalization)'),'A');
  assert.equal(initials('élise martin'),'ÉM');
  assert.equal(initials('---'),'?');
-});
-
-test('avatars are on unless the reader turned them off', () => {
- assert.equal(parseShowAvatars(null),true);
- assert.equal(parseShowAvatars('true'),true);
- assert.equal(parseShowAvatars('false'),false);
 });
 
 test('only authors with a downloaded avatar get an avatar path', () => {

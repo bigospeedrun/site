@@ -2,12 +2,11 @@
 import type {RecordEntry} from '../lib/types';
 import EvidenceFilters from './EvidenceFilters.astro';
 import TrackTable from './TrackTable.astro';
-import AvatarToggle from './AvatarToggle.astro';
 interface Props {records:RecordEntry[];direction:string;kappa:boolean;}
 const {records,direction,kappa}=Astro.props;
 ---
 <evidence-board>
-<div class="board-controls"><EvidenceFilters /><AvatarToggle /></div>
+<EvidenceFilters />
 <TrackTable records={records} direction={direction} label="Results" kappa={kappa}/>
 <p class="no-results" hidden>No results match the selected evidence levels.</p>
 <nav class="pagination" aria-label="Results pages"><button type="button" data-previous>Previous</button><span aria-live="polite" data-page></span><button type="button" data-next>Next</button></nav>
@@ -41,7 +40,7 @@ customElements.define('evidence-board',EvidenceBoard);
 </script>
 <style>
 .info-link{display:inline-flex;width:1.3rem;height:1.3rem;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;font:italic 1rem Georgia,serif;text-decoration:none}
-evidence-board{display:block;margin:1.5rem 0}.board-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 1.25rem}.pagination{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}button{font:inherit;padding:.45rem .8rem;border:1px solid var(--line);border-radius:.35rem;background:var(--surface);color:var(--fg);cursor:pointer}button:disabled{opacity:.45;cursor:default}
+evidence-board{display:block;margin:1.5rem 0}.pagination{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}button{font:inherit;padding:.45rem .8rem;border:1px solid var(--line);border-radius:.35rem;background:var(--surface);color:var(--fg);cursor:pointer}button:disabled{opacity:.45;cursor:default}
 @media(max-width:600px){
  .pagination{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.4rem;margin-top:.65rem}
  .pagination span{font-size:.9375rem;text-align:center;line-height:1.35}

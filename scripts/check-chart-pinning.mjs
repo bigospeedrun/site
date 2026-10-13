@@ -10,9 +10,8 @@ const browser = await chromium.launch({executablePath: process.argv[4] ?? '/usr/
 await mkdir('screenshots', {recursive: true});
 let checked = 0;
 try {
- for (const [width, avatars] of [[1280, true], [390, true], [1280, false], [390, false]]) {
-  const context = await browser.newContext({viewport: {width, height: 900}, isMobile: width === 390, hasTouch: width === 390, timezoneId: 'America/Los_Angeles'});
-  if (!avatars) await context.addInitScript(() => localStorage.setItem('bigospeedrun-show-avatars', 'false'));
+ for (const [width, colorScheme] of [[1280, 'light'], [390, 'light'], [1280, 'dark'], [390, 'dark']]) {
+  const context = await browser.newContext({viewport: {width, height: 900}, isMobile: width === 390, hasTouch: width === 390, timezoneId: 'America/Los_Angeles', colorScheme});
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -20,8 +19,7 @@ try {
    await page.goto(`${origin}/${slug}`, {waitUntil: 'networkidle'});
    await page.evaluate(() => document.fonts.ready);
    for (const chart of await page.locator('progress-chart').all()) {
-    // A crowded older entry shrinks under a newer avatar; pointer checks use marks that are drawn in full.
-    const points = chart.locator(avatars ? '.plot-point:has(.avatar-ring)' : '.plot-point');
+    const points = chart.locator('.plot-point');
     if (!await points.count()) continue;
     const first = points.first(), last = points.last(), tooltip = chart.locator('.plot-tooltip');
     const activate = async point => width === 390 ? point.tap() : point.click();
@@ -50,11 +48,17 @@ try {
     assert.equal(await tooltip.isVisible(), false, `${slug}: outside click unpins`);
     await activate(first);
     if (await points.count() > 1) {
+     await page.keyboard.press('Escape');
+     await first.focus(); await page.keyboard.press('ArrowRight');
+     assert.equal(await points.nth(1).evaluate(point => point === document.activeElement), true, `${slug}: ArrowRight moves to the next record`);
+     await page.keyboard.press('ArrowLeft');
+     assert.equal(await first.evaluate(point => point === document.activeElement), true, `${slug}: ArrowLeft moves back`);
+     await activate(first);
      await activate(last);
      assert.equal(await first.getAttribute('aria-pressed'), 'false');
      assert.equal(await last.getAttribute('aria-pressed'), 'true');
     }
-    for (const point of await chart.locator('.plot-point').all()) {
+    for (const point of await points.all()) {
      await page.keyboard.press('Escape');
      await point.focus(); await point.press('Enter');
      const box = await tooltip.boundingBox(), area = await chart.locator('.plot-area').boundingBox();
@@ -66,7 +70,7 @@ try {
     assert.equal(await tooltip.isVisible(), true, `${slug}: resize retains pin`);
     await page.setViewportSize({width, height: 900});
     await page.waitForTimeout(100);
-    if (slug === 'exact-dft' && avatars) {
+    if (slug === 'exact-dft' && colorScheme === 'light') {
      await page.mouse.move(0, 0);
      await chart.screenshot({path: `screenshots/chart-pinned-2026-10-11-${width}.png`});
     }
@@ -76,5 +80,5 @@ try {
   assert.deepEqual(errors, []);
   await context.close();
  }
- console.log(`PASS: pin, unpin, keyboard, touch, hover, resize, and edge checks for ${checked} charts at 1280/390px, with avatars on and off.`);
+ console.log(`PASS: pin, unpin, keyboard, touch, hover, resize, and edge checks for ${checked} charts at 1280/390px, light and dark.`);
 } finally { await browser.close(); }

@@ -1,13 +1,15 @@
 import {getEvidenceLevels} from '../../lib/evidence-filters';
 import { breakthroughLabel } from '../../lib/evidence';
-import { getShowAvatars, subscribeShowAvatars } from '../../lib/avatars';
-import { chartWindow, chartRanges, chartTimeTicks, scoreValue, type ChartEntry } from '../../lib/chart';
+import { chartWindow, chartWindowScale, chartTimeTicks, chartMaxDays, scoreValue, type ChartEntry } from '../../lib/chart';
 interface Payload {
  entries: ChartEntry[]; higher: boolean; limit: number; classic?: number;
- scales: Record<string,{log:boolean;lo:number;hi:number;ticks:{value:number;html:string}[]}>;
+ // KaTeX renders at build time; the browser looks up each tick label by its TeX.
+ tickHtml: Record<string,string>;
  levels: Record<string,string>;
 }
 const NS='http://www.w3.org/2000/svg';
+// Avatar geometry: photo radius, a level ring outside it, and a surface halo between neighbors.
+const RING=3,halo=(r:number)=>r+RING+1.5;
 const STAR='M0 -9 L2.6 -3 L8.6 -2.8 L4.2 1.4 L5.3 7.3 L0 4.5 L-5.3 7.3 L-4.2 1.4 L-8.6 -2.8 L-2.6 -3 Z';
 function svg<K extends keyof SVGElementTagNameMap>(tag:K,attrs:Record<string,string|number>={}) {
  const el=document.createElementNS(NS,tag);
@@ -17,8 +19,13 @@ function svg<K extends keyof SVGElementTagNameMap>(tag:K,attrs:Record<string,str
 class ProgressChart extends HTMLElement {
  private data!:Payload;
  private observer?:ResizeObserver;
- private range="all";
+ // 0 shows all results; N shows the last N days before the latest result.
+ private days=0;
  private pinnedId?:string;
+ private hoverId?:string;
+ // Visible marks of the last draw, in time order, for pointer hit tests and arrow keys.
+ private marks:{entry:ChartEntry;x:number;y:number;point:SVGGElement}[]=[];
+ private hitRadius=0;
  private onDocumentClick=(event:MouseEvent)=>{
   const target=event.target;
   if(!(target instanceof Element))return;
@@ -26,9 +33,8 @@ class ProgressChart extends HTMLElement {
   this.unpin();
  };
  private onDocumentKeydown=(event:KeyboardEvent)=>{if(event.key==='Escape')this.unpin()};
- private onPointerLeave=()=>{if(!this.pinnedId)this.closeTooltip()};
+ private onPointerLeave=()=>{this.setHover(undefined);if(!this.pinnedId)this.closeTooltip()};
  private levels:string[]=[];
- private unsubscribeAvatars?:()=>void;
  private onEvidenceChange=(event:Event)=>{
   const levels=(event as CustomEvent<{levels:string[]}>).detail?.levels;
   if(!Array.isArray(levels))return;
@@ -39,12 +45,17 @@ class ProgressChart extends HTMLElement {
   this.data=JSON.parse(this.dataset.chart!);
   this.levels=getEvidenceLevels();
   window.addEventListener('evidence-filter-change',this.onEvidenceChange);
-  this.unsubscribeAvatars=subscribeShowAvatars(()=>this.draw());
-  this.querySelectorAll<HTMLButtonElement>('[data-range]').forEach(button=>button.addEventListener('click',()=>{
-   this.range=button.dataset.range!;
-   this.querySelectorAll('[data-range]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-   this.draw();
-  }));
+  this.setupRange();
+  const plot=this.querySelector<SVGSVGElement>('svg.progress-svg')!;
+  // One pointer handler for the whole plot: the record nearest to the pointer wins,
+  // so a record partly under newer avatars is reachable on its visible part.
+  plot.addEventListener('pointermove',event=>{
+   const mark=this.markAt(event);
+   this.setHover(mark?.entry.id);
+   if(mark&&!this.pinnedId)this.showMark(mark);
+   else if(!mark&&!this.pinnedId)this.closeTooltip();
+  });
+  plot.addEventListener('click',event=>{const mark=this.markAt(event);if(mark)this.toggle(mark)});
   document.addEventListener('click',this.onDocumentClick);
   document.addEventListener('keydown',this.onDocumentKeydown);
   this.addEventListener('pointerleave',this.onPointerLeave);
@@ -56,7 +67,6 @@ class ProgressChart extends HTMLElement {
  disconnectedCallback(){
   this.observer?.disconnect();
   window.removeEventListener('evidence-filter-change',this.onEvidenceChange);
-  this.unsubscribeAvatars?.();
   document.removeEventListener('click',this.onDocumentClick);
   document.removeEventListener('keydown',this.onDocumentKeydown);
   this.removeEventListener('pointerleave',this.onPointerLeave);
@@ -67,12 +77,60 @@ class ProgressChart extends HTMLElement {
   this.closeTooltip();
  }
  private closeTooltip(){this.querySelector<HTMLElement>('.plot-tooltip')!.hidden=true}
+ private setupRange(){
+  const form=this.querySelector<HTMLFormElement>('[data-range-form]')!;
+  const all=form.querySelector<HTMLButtonElement>('[data-range-all]')!;
+  const label=form.querySelector<HTMLElement>('[data-range-days]')!;
+  const input=form.querySelector<HTMLInputElement>('input')!;
+  const unit=form.querySelector<HTMLElement>('[data-days-unit]')!;
+  const max=chartMaxDays(this.data.entries);
+  const render=()=>{all.setAttribute('aria-pressed',String(this.days===0));label.toggleAttribute('data-active',this.days>0)};
+  const apply=(clamp:boolean)=>{
+   const value=Number(input.value);
+   if(!Number.isInteger(value)||value<1||value>max){
+    if(!clamp)return;
+    input.value=String(Math.min(max,Math.max(1,Math.round(value)||1)));
+   }
+   const days=Number(input.value);
+   unit.textContent=days===1?'day':'days';
+   this.days=days;render();this.draw();
+  };
+  all.addEventListener('click',()=>{this.days=0;render();this.draw()});
+  input.addEventListener('input',()=>apply(false));
+  input.addEventListener('change',()=>apply(true));
+  // Enter also applies the value shown, including the initial one.
+  form.addEventListener('submit',event=>{event.preventDefault();apply(true)});
+  render();
+ }
+ private markAt(event:MouseEvent){
+  const box=this.querySelector<SVGSVGElement>('svg.progress-svg')!.getBoundingClientRect();
+  const px=event.clientX-box.left,py=event.clientY-box.top;
+  let best:(typeof this.marks)[number]|undefined,distance=this.hitRadius;
+  for(const mark of this.marks){const d=Math.hypot(mark.x-px,mark.y-py);if(d<=distance){best=mark;distance=d}}
+  return best;
+ }
+ private setHover(id?:string){
+  if(this.hoverId===id)return;
+  this.hoverId=id;
+  for(const mark of this.marks)mark.point.toggleAttribute('data-hover',mark.entry.id===id);
+ }
+ private toggle(mark:(typeof this.marks)[number]){
+  if(this.pinnedId===mark.entry.id){this.unpin();return}
+  this.pinnedId=mark.entry.id;
+  this.marks.forEach(other=>other.point.setAttribute('aria-pressed',String(other===mark)));
+  this.showMark(mark);
+ }
+ private showMark(mark:(typeof this.marks)[number]){
+  const plot=this.querySelector<SVGSVGElement>('svg.progress-svg')!;
+  this.showEntry(mark.entry,mark.x,mark.y,this.clientWidth,plot.getBoundingClientRect().height);
+ }
  private draw(){
   const {entries,higher,limit,classic}=this.data;
   const levels=new Set(this.levels);
-  const scale=this.data.scales[`${this.range}:${[...levels].sort().join(',')}`];
+  const view=chartWindow(entries,levels,higher,this.days*24);
+  const {start,end,carry,records}=view;
+  const scale=chartWindowScale(view,limit,this.days>0,classic);
   this.querySelectorAll('[data-scale-name]').forEach(label=>label.textContent=scale.log?'log':'linear');
-  const {start,end,carry,records}=chartWindow(entries,levels,higher,chartRanges.find(r=>r.id===this.range)!.hours);
   const plot=this.querySelector<SVGSVGElement>('svg.progress-svg')!;
   const labels=this.querySelector<HTMLElement>('.plot-labels')!;
   const state=this.querySelector<HTMLElement>('.plot-state')!;
@@ -84,7 +142,7 @@ class ProgressChart extends HTMLElement {
   const tickStep=mobile?Math.max(1,Math.ceil((scale.ticks.length-1)/3)):1;
   const yTicks=scale.ticks.filter((_,i)=>i%tickStep===0||i===scale.ticks.length-1);
   const tickLabels=yTicks.map(tick=>{
-   const label=document.createElement('span');label.className='axis-tick';label.innerHTML=tick.html;labels.append(label);
+   const label=document.createElement('span');label.className='axis-tick';label.innerHTML=this.data.tickHtml[tick.tex]??tick.tex;labels.append(label);
    return label;
   });
   // Reserve space for the rendered KaTeX labels, their padding, and the rotated title.
@@ -111,8 +169,8 @@ class ProgressChart extends HTMLElement {
    plot.append(svg('line',{x1:left,x2:right,y1:py,y2:py,class:'plot-grid'}));
    label.style.left=`${left}px`;label.style.top=`${py}px`;
   }
-  reference.hidden=classic!==undefined||this.range!=='all';
-  if(classic!==undefined||this.range==='all'){
+  reference.hidden=classic!==undefined||this.days>0;
+  if(classic!==undefined||this.days===0){
    const limitY=y(classic??limit);
    plot.append(svg('line',{x1:left,x2:right,y1:limitY,y2:limitY,class:'plot-limit'}));
    reference.style.left=`${left}px`;
@@ -150,60 +208,42 @@ class ProgressChart extends HTMLElement {
    const clip=svg('clipPath',{id:clipId});clip.append(svg('rect',{x:left,y:top,width:right-left,height:bottom-top}));plot.append(clip);
    plot.append(svg('path',{d:path,class:'plot-record','clip-path':`url(#${clipId})`}));
   }
-  const avatars=getShowAvatars(),radius=mobile?10:11;
+  // Every record is an avatar at its true position, drawn in date order: newer on top.
+  const radius=mobile?10:11;
+  this.hitRadius=radius+RING;
   const avatarClip=`avatar-clip-${crypto.randomUUID()}`;
-  if(avatars){const clip=svg('clipPath',{id:avatarClip,clipPathUnits:'objectBoundingBox'});clip.append(svg('circle',{cx:.5,cy:.5,r:.5}));plot.append(clip)}
-  // Records are in time order, so the current leader is drawn last, on top of older marks.
-  // Newest first, an avatar keeps full size only if no newer full avatar covers much of it.
-  // Crowded older entries shrink to their evidence-level shape, so each visible face stays readable.
-  const fullAvatars=new Set<ChartEntry>(),placed:[number,number][]=[];
-  if(avatars)for(const entry of [...records].reverse()){
-   const px=x(entry.time),py=y(scoreValue(entry.score));
-   if(placed.some(([ax,ay])=>Math.hypot(ax-px,ay-py)<radius*1.7))continue;
-   fullAvatars.add(entry);placed.push([px,py]);
-  }
-  // The legend adds the shapes only when the plot shows shrunken marks.
-  this.toggleAttribute('data-shrunk',avatars&&fullAvatars.size<records.length);
-  // Shrunken marks sit in a lower layer, so they never cover a full avatar.
-  const shapeLayer=svg('g'),avatarLayer=svg('g');plot.append(shapeLayer,avatarLayer);
-  for(const entry of records){
+  const clip=svg('clipPath',{id:avatarClip,clipPathUnits:'objectBoundingBox'});clip.append(svg('circle',{cx:.5,cy:.5,r:.5}));plot.append(clip);
+  this.marks=[];
+  records.forEach((entry,index)=>{
    const px=x(entry.time),py=y(scoreValue(entry.score)),endpoint=entry.scoreRelation==='strict-upper-bound';
    const point=svg('g',{transform:`translate(${px},${py})`,class:`plot-point ${entry.isBreakthrough?'breakthrough':entry.level}${endpoint?' endpoint':''}`,tabindex:0,role:'button','aria-pressed':String(this.pinnedId===entry.id),'aria-label':`Player: ${entry.author}, ${this.entryLevel(entry)}. Show bound and source.`, 'data-entry-id':entry.id});
-   point.append(svg('circle',{r:13,fill:'transparent'}));
-   if(fullAvatars.has(entry))this.drawAvatar(point,entry,radius,avatarClip,endpoint);
-   else if(entry.isBreakthrough)point.append(svg('path',{d:STAR,class:'mark'}));
-   else if(entry.level==='human-verified')point.append(svg('rect',{x:-5,y:-5,width:10,height:10,class:'mark'}));
-   else if(entry.level==='lean-verified')point.append(svg('path',{d:'M 0 -7 L 7 0 L 0 7 L -7 0 Z',class:'mark'}));
-   else point.append(svg('circle',{r:5.5,class:'mark'}));
-   const show=()=>this.showEntry(entry,px,py,width,height);
-   const preview=()=>{if(!this.pinnedId)show()};
-   const toggle=()=>{
-    if(this.pinnedId===entry.id){this.unpin();return}
-    this.pinnedId=entry.id;
-    this.querySelectorAll('.plot-point').forEach(mark=>mark.setAttribute('aria-pressed',String(mark===point)));
-    show();
-   };
-   point.addEventListener('pointerenter',preview);point.addEventListener('focus',preview);
-   point.addEventListener('click',toggle);
-   point.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();if(!event.repeat)toggle()}});
-   (fullAvatars.has(entry)?avatarLayer:shapeLayer).append(point);
-   if(this.pinnedId===entry.id)show();
-  }
+   this.drawAvatar(point,entry,radius,avatarClip,endpoint);
+   const mark={entry,x:px,y:py,point};
+   this.marks.push(mark);
+   point.addEventListener('focus',()=>{if(!this.pinnedId)this.showMark(mark)});
+   point.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){event.preventDefault();if(!event.repeat)this.toggle(mark)}
+    // Arrow keys reach every record, including one that newer avatars cover.
+    if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();this.marks[index+(event.key==='ArrowLeft'?-1:1)]?.point.focus()}
+   });
+   plot.append(point);
+   if(this.pinnedId===entry.id)this.showMark(mark);
+  });
+  this.hoverId=undefined;
   if(this.pinnedId&&!records.some(entry=>entry.id===this.pinnedId))this.unpin();
   state.textContent=!entries.length?'No publication dates are known for these entries. See the table for their bounds.':!records.length&&!carry?'No dated results match the selected evidence levels.':'';
  }
- // The outline encodes the evidence level, so the mark does not depend on color alone.
- // A ring in the surface color keeps overlapping avatars apart.
+ // The ring color encodes the evidence level; its lightness differs per level too.
+ // A halo in the surface color keeps overlapping avatars apart.
  private drawAvatar(point:SVGGElement,entry:ChartEntry,r:number,clipId:string,endpoint:boolean){
-  point.append(svg('circle',{r:r+6,class:'avatar-focus'}),svg('circle',{r:r+4,class:'avatar-ring'}));
-  if(entry.avatar){
-   const image=svg('image',{href:entry.avatar,x:-r,y:-r,width:2*r,height:2*r,preserveAspectRatio:'xMidYMid slice','clip-path':`url(#${clipId})`});
-   point.append(svg('circle',{r,class:'avatar-initials'}),image);
-  }else{
-   const text=svg('text',{class:'avatar-text','text-anchor':'middle','dominant-baseline':'central'});text.textContent=entry.initials??'?';
-   point.append(svg('circle',{r,class:'avatar-initials'}),text);
+  point.append(svg('circle',{r:halo(r)+2.5,class:'avatar-focus'}),svg('circle',{r:halo(r),class:'avatar-ring'}));
+  point.append(svg('circle',{r,class:'avatar-initials'}));
+  if(entry.avatar)point.append(svg('image',{href:entry.avatar,x:-r,y:-r,width:2*r,height:2*r,preserveAspectRatio:'xMidYMid slice','clip-path':`url(#${clipId})`}));
+  else{
+   const text=svg('text',{class:'avatar-text','text-anchor':'middle','dominant-baseline':'central','font-size':9});text.textContent=entry.initials??'?';
+   point.append(text);
   }
-  point.append(svg('circle',{r:r+(entry.level==='lean-verified'?2:1.5),class:`avatar-outline ${entry.level}`}));
+  point.append(svg('circle',{r:r+RING/2,class:`avatar-outline ${entry.level}`}));
   if(entry.isBreakthrough)point.append(svg('path',{d:STAR,class:'avatar-star',transform:`translate(${r*.85} ${-r*.85}) scale(.6)`}));
   if(endpoint)point.append(svg('circle',{cx:r*.85,cy:r*.85,r:4,class:`avatar-endpoint ${entry.level}`}));
  }

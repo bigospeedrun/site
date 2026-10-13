@@ -34,20 +34,21 @@ export function chartRecords(entries: ChartEntry[], levels: Set<string>, higher:
  return result;
 }
 
-export const chartRanges = [
- {id:'all', name:'All', hours:0},
- {id:'3d', name:'Last 3 days', hours:72},
- {id:'24h', name:'Last 24 h', hours:24},
-] as const;
+const DAY=86400000;
+// The largest useful "Last N days" value: N days back from the latest result reach the first one.
+export function chartMaxDays(entries: {time:number}[]): number {
+ if(!entries.length)return 1;
+ const times=entries.map(e=>e.time);
+ return Math.max(1,Math.ceil((Math.max(...times)-Math.min(...times))/DAY));
+}
 
 // Zoom preserves the record that was in force at the left edge, without moving
-// its dot to a made-up date. Presets end at the latest known result, not today.
-export function chartWindow(entries: ChartEntry[], levels: Set<string>, higher: boolean, hours=0) {
+// its mark to a made-up date. Ranges end at the latest known result, not today.
+export function chartWindow(entries: ChartEntry[], levels: Set<string>, higher: boolean, hours=0, progression=chartRecords(entries,levels,higher)) {
  const times=entries.map(e=>e.time);
  const end=times.length?Math.max(...times):0;
  const first=times.length?Math.min(...times):0;
  const start=hours?Math.max(first,end-hours*3600000):first;
- const progression=chartRecords(entries,levels,higher);
  const carry=progression.filter(e=>e.time<start).at(-1);
  const records=progression.filter(e=>e.time>=start);
  return {start,end,carry,records};

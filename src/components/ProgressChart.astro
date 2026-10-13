@@ -4,7 +4,7 @@ import type { RecordEntry } from '../lib/types';
 import { evidenceLevels, evidenceName, breakthroughLabel } from '../lib/evidence';
 import { math } from '../lib/math';
 import { initials } from '../lib/avatars';
-import { chartDate, chartWindowScale, chartWindow, chartRanges, scoreValue, type ChartEntry } from '../lib/chart';
+import { chartDate, chartWindowScale, chartWindow, chartRecords, chartMaxDays, scoreValue, type ChartEntry } from '../lib/chart';
 interface Props { records: RecordEntry[]; direction: string; label: string; slug?: string; boundLatex?: string; limit?: number; }
 const { records, direction, label, slug = direction==='higher-is-better'?'integer-multiplication':'3sum' } = Astro.props;
 const dataFiles = import.meta.glob('../data/*.json', {eager:true,import:'default'}) as Record<string,any>;
@@ -19,14 +19,20 @@ const classic = classicRecord ? scoreValue(classicRecord.score) : undefined;
 const dated = records.filter(r=>chartDate(r)!==undefined);
 const entries:ChartEntry[] = dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(r.bound),url:r.evidence[0]?.url??'#',avatar:r.authors[0]?.avatar,initials:initials(r.authors[0]?.name??r.title)}));
 const defaultLevels=evidenceLevels.map(l=>l.id);
-const scales=Object.fromEntries(chartRanges.flatMap(range=>Array.from({length:2**evidenceLevels.length},(_,mask)=>{
- const levels=evidenceLevels.filter((_,i)=>mask&(1<<i)).map(l=>l.id);
- const view=chartWindow(entries,new Set(levels),higher,range.hours);
- const scale=chartWindowScale(view,limit,range.hours>0,classic);
- return [`${range.id}:${levels.sort().join(',')}`,{...scale,ticks:scale.ticks.map(t=>({...t,html:math(t.tex)}))}];
-})));
-const scale=scales[`all:${[...defaultLevels].sort().join(',')}`];
-const payload={entries,higher,limit,classic,scales,levels:Object.fromEntries(evidenceLevels.map(l=>[l.id,l.name]))};
+const maxDays=chartMaxDays(entries);
+// The browser computes each scale itself. KaTeX runs only here, so the build
+// renders every tick label that any filter and any "Last N days" value can use.
+const tickHtml:Record<string,string>={};
+for(let mask=0;mask<2**evidenceLevels.length;mask++){
+ const levels=new Set<string>(evidenceLevels.filter((_,i)=>mask&(1<<i)).map(l=>l.id));
+ const progression=chartRecords(entries,levels,higher);
+ for(let days=0;days<=maxDays;days++){
+  for(const tick of chartWindowScale(chartWindow(entries,levels,higher,days*24,progression),limit,days>0,classic).ticks)tickHtml[tick.tex]??=math(tick.tex);
+ }
+}
+const scale=chartWindowScale(chartWindow(entries,new Set<string>(defaultLevels),higher),limit,false,classic);
+const defaultDays=Math.min(3,maxDays);
+const payload={entries,higher,limit,classic,tickHtml,levels:Object.fromEntries(evidenceLevels.map(l=>[l.id,l.name]))};
 const omitted=records.length-dated.length;
 const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
 ---
@@ -34,7 +40,7 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
  <div class="plot-heading">
   <h2><span class="desktop-heading"><span set:html={math(symbol)}/> in <span set:html={math(form)}/>, {higher?'higher':'lower'} is better</span><span class="mobile-heading"><span set:html={math(symbol)}/> in <span set:html={math(form)}/><span class="mobile-bound-form"><span data-scale-name>{scale.log?'log':'linear'}</span> scale, {higher?'higher':'lower'} is better</span></span></h2>
   <div class="plot-info"><InfoTooltip label="How to read this plot">
-    <p>The line connects only entries that improve the best dated bound at the selected evidence levels. The {breakthroughLabel.toLowerCase()} always stays in the progression, regardless of the evidence filters. Its star marks the start of the race. With avatars on, each mark shows the GitHub avatar or the initials of the first player, and its outline shows the evidence level: dashed for Claimed, solid for Human Verified and thick for Lean Verified. Where avatars crowd, older entries shrink to the shape of their evidence level, and the newest entry stays on top. With avatars off, each mark has the shape of its evidence level. Hover, focus, or tap a mark to see the entry and its source. Dates use known publication or commit dates. The Oct 6 announcements supply the day when an earlier publication date is unknown. A day without a known time has no hour in its tooltip. These dates do not establish scientific priority. Range controls end at the latest dated result. A line entering from the left shows the record already in force; its original mark stays outside the selected range.</p>
+    <p>The line connects only entries that improve the best dated bound at the selected evidence levels. The {breakthroughLabel.toLowerCase()} always stays in the progression, regardless of the evidence filters. Its star marks the start of the race. Each mark shows the GitHub avatar or the initials of the first player. The ring color shows the evidence level, as in the legend. Newer results are drawn over older ones. Hover over a group to see the result nearest to the pointer, or focus a mark and use the left and right arrow keys to move between results. Hover, focus, or tap a mark to see the entry and its source. Dates use known publication or commit dates. The Oct 6 announcements supply the day when an earlier publication date is unknown. A day without a known time has no hour in its tooltip. These dates do not establish scientific priority. Range controls end at the latest dated result. A line entering from the left shows the record already in force; its original mark stays outside the selected range.</p>
     {omitted>0&&<p>{omitted} {omitted===1?'entry has':'entries have'} no known publication date or only a publication year. They remain in the table and are left off this time axis. {slug==='integer-multiplication'&&'The CrocSwap README lists older scores without publication dates; the date we read that list is not the date of each result.'}</p>}
     {strict&&<p>A hollow circle marks a strict upper endpoint. The bound holds for each smaller fixed value, but not necessarily at the endpoint. They join the record line when the table ranks them first among the dated results available at that time.</p>}
     {classic!==undefined?<p>The vertical axis fits the dated records and the classic bound. The dashed line marks the classic bound. The trivial lower bound stays below the displayed range so small improvements remain visible. Zoomed views include the record in force at the left edge.</p>:<p>On All, the dashed reference is the problem’s limit, <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>). It is a reference, not a proved attainable bound. Zoomed views omit this reference and fit the scale to their visible marks.</p>}
@@ -42,7 +48,7 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
   </InfoTooltip></div>
  </div>
  <div class="plot-legend" hidden={!entries.length}><div class="plot-levels" role="list" aria-label="Evidence level marks">
-  {evidenceLevels.map((level,i)=><span class="level-label" role="listitem" aria-label={level.name} title={level.name}><span class:list={['plot-key',level.id]} aria-hidden="true"><span class="key-shape">{i===0?'●':i===1?'■':'◆'}</span><svg class="key-ring" viewBox="-12 -12 24 24"><circle r={i===2?8:8.5}/></svg></span><span class="level-name">{level.name}</span><span class="level-short" aria-hidden="true">{i===0?'Claimed':i===1?'Human':'Lean'}</span></span>)}
+  {evidenceLevels.map(level=><span class="level-label" role="listitem" aria-label={level.name} title={level.name}><span class:list={['plot-key',level.id]} aria-hidden="true"><svg class="key-ring" viewBox="-12 -12 24 24"><circle r="8.5"/></svg></span><span class="level-name">{level.name}</span><span class="level-short" aria-hidden="true">{level.id==='claimed'?'Claimed':level.id==='human-verified'?'Human':'Lean'}</span></span>)}
  </div><div class="plot-symbols">
  {entries.some(r=>r.isBreakthrough)&&<span class="breakthrough-key"><svg viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0 -9 L2.6 -3 L8.6 -2.8 L4.2 1.4 L5.3 7.3 L0 4.5 L-5.3 7.3 L-4.2 1.4 L-8.6 -2.8 L-2.6 -3 Z"/></svg>{breakthroughLabel}</span>}
  {strict&&<div class="endpoint-key"><span class="endpoint-full">○ strict endpoint</span><span class="endpoint-short" aria-hidden="true">○ strict</span><InfoTooltip label="About strict endpoints">A hollow circle marks a strict upper endpoint. The bound holds for each smaller fixed value, but not necessarily at the endpoint. They join the record line when the table ranks them first among the dated results available at that time.</InfoTooltip></div>}
@@ -55,9 +61,10 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
   <div class="plot-tooltip" hidden role="status"></div>
  </div>
  {classic!==undefined&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math(`O(n^{${classic}${slug==='matrix-multiplication'?'+\\varepsilon':''}})`)}/>. The trivial lower bound <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>) is below this range.</p>}
- <div class="plot-ranges" role="group" aria-label="Date range" hidden={!entries.length}>
-  {chartRanges.map(range=><button type="button" data-range={range.id} aria-pressed={range.id==='all'}>{range.name}</button>)}
- </div>
+ <form class="plot-ranges" role="group" aria-label="Date range" hidden={!entries.length||maxDays<2} data-range-form>
+  <button type="button" data-range-all aria-pressed="true">All</button>
+  <label class="range-days" data-range-days>Last <input type="number" name="days" min="1" max={maxDays} step="1" value={defaultDays} inputmode="numeric" required/> <span data-days-unit>{defaultDays===1?'day':'days'}</span></label>
+ </form>
  <p class="plot-state" aria-live="polite">{!entries.length&&'No publication dates are known for these entries. See the table for their bounds.'}</p>
  <noscript><p>Enable JavaScript to explore the plot. The table contains the bounds and their sources.</p></noscript>
 </progress-chart>
@@ -66,6 +73,11 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
 </script>
 <style>
  progress-chart [hidden]{display:none!important}
+ /* Ring colors keep the evidence hues and step in lightness, so the levels differ without color vision.
+    Checked 2026-10-13: CVD and normal-vision separation pass, each ring has at least 3:1 contrast with the surface. */
+ progress-chart{--ring-claimed:#838fa4;--ring-human-verified:#0a7a72;--ring-lean-verified:#4a2b86}
+ :global(:root[data-theme=dark]) progress-chart{--ring-claimed:#6f7c92;--ring-human-verified:#3fb5a5;--ring-lean-verified:#d6c5ff}
+ @media (prefers-color-scheme: dark){:global(:root:not([data-theme=light])) progress-chart{--ring-claimed:#6f7c92;--ring-human-verified:#3fb5a5;--ring-lean-verified:#d6c5ff}}
  progress-chart{display:block;margin:1.25rem 0 .75rem;font-family:var(--font-sans,system-ui,sans-serif);font-size:max(16px,var(--font-min,16px));color:var(--fg)}
  .mobile-heading,.level-short,.endpoint-short{display:none}
  .plot-heading{position:relative;padding-top:12px;margin-bottom:4px;text-align:center}
@@ -80,9 +92,9 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
  .plot-levels{display:flex;align-items:center;justify-content:center;gap:12px;min-width:max-content;padding:0;margin:0;border:0;font:inherit}
  .plot-levels .level-label{display:flex;align-items:center;gap:4px;min-height:28px}
  .plot-key.claimed{color:var(--claimed)}.plot-key.human-verified{color:var(--human-verified)}.plot-key.lean-verified{color:var(--lean-verified)}
- .key-ring{display:block;width:20px;height:20px;overflow:visible}.key-ring circle{fill:var(--subtle);stroke:currentColor;stroke-width:2}.claimed .key-ring circle{stroke-dasharray:3 2.2}.lean-verified .key-ring circle{stroke-width:3.5}
- .key-shape{display:none}progress-chart[data-shrunk] .key-shape,:global(html[data-avatars="off"]) .key-shape{display:inline}:global(html[data-avatars="off"]) .key-ring{display:none}
- .plot-key{display:inline-flex;align-items:center;gap:3px}
+ .key-ring{display:block;width:20px;height:20px;overflow:visible}.key-ring circle{fill:var(--subtle);stroke-width:3}
+ .claimed .key-ring circle{stroke:var(--ring-claimed)}.human-verified .key-ring circle{stroke:var(--ring-human-verified)}.lean-verified .key-ring circle{stroke:var(--ring-lean-verified)}
+ .plot-key{display:inline-flex;align-items:center}
  .plot-axis-title{position:absolute;left:14px;top:152px;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap}.endpoint-key{display:flex;align-items:center;gap:4px;margin:0;font:inherit;white-space:nowrap}
  .plot-area{position:relative;height:330px;width:100%}
  .progress-svg{display:block;width:100%;height:330px;overflow:visible}
@@ -93,10 +105,14 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
  .plot-tooltip :global(p){margin:0 0 .5rem}.plot-tooltip :global(p:last-child){margin:0}
  .plot-tooltip :global(.plot-bound){overflow-x:auto;max-width:100%}
  .plot-reference-note{margin:6px 0;font-size:16px;line-height:1.5;text-align:center}
- .plot-ranges{display:flex;justify-content:center;gap:4px;margin:3px 0 0}
- .plot-ranges button{font:inherit;font-size:var(--font-min);line-height:1.25;padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--fg);cursor:pointer}
- .plot-ranges button[aria-pressed="true"]{background:var(--link);border-color:var(--link);color:var(--bg)}
- .plot-ranges button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+ .plot-ranges{display:flex;justify-content:center;align-items:stretch;gap:4px;margin:3px 0 0}
+ .plot-ranges button,.range-days{font:inherit;font-size:var(--font-min);line-height:1.25;padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--fg)}
+ .plot-ranges button{cursor:pointer}
+ .range-days{display:inline-flex;align-items:center;gap:6px;padding-block:2px;cursor:text}
+ .range-days input{font:inherit;width:3.6em;padding:1px 4px;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--fg);text-align:right}
+ .plot-ranges button[aria-pressed="true"],.range-days[data-active]{background:var(--link);border-color:var(--link);color:var(--bg)}
+ .range-days[data-active] input{border-color:var(--surface)}
+ .plot-ranges button:focus-visible,.range-days input:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
  .plot-state{margin:.6rem 0 0;font:inherit}.plot-state:empty{display:none}
  progress-chart :global(.axis-tick){position:absolute;transform:translate(-100%,-50%);text-align:right;padding-right:12px;color:var(--fg);white-space:nowrap}
  progress-chart :global(.plot-grid){stroke:var(--line);stroke-width:1}
@@ -104,20 +120,18 @@ const strict=entries.some(r=>r.scoreRelation==='strict-upper-bound');
  progress-chart :global(.plot-limit){stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 5}
  progress-chart :global(.plot-date){font:max(16px,var(--font-min,16px)) var(--font-sans,system-ui,sans-serif);fill:var(--fg)}
  progress-chart :global(.plot-point){cursor:pointer;outline:none}
- progress-chart :global(.plot-point[aria-pressed="true"] .mark),progress-chart :global(.plot-point:focus .mark),progress-chart :global(.plot-point:hover .mark){stroke:var(--fg);stroke-width:3}
- progress-chart :global(.mark){stroke:var(--surface);stroke-width:1.5;fill:currentColor}
  progress-chart :global(.claimed){color:var(--claimed)}progress-chart :global(.human-verified){color:var(--human-verified)}progress-chart :global(.lean-verified){color:var(--lean-verified)}
- progress-chart :global(.endpoint .mark){fill:var(--surface);stroke:currentColor;stroke-width:2}
  progress-chart :global(.avatar-focus){fill:none;stroke:none}
- progress-chart :global(.plot-point[aria-pressed="true"] .avatar-focus),progress-chart :global(.plot-point:focus .avatar-focus),progress-chart :global(.plot-point:hover .avatar-focus){stroke:var(--fg);stroke-width:2}
+ progress-chart :global(.plot-point[aria-pressed="true"] .avatar-focus),progress-chart :global(.plot-point:focus .avatar-focus),progress-chart :global(.plot-point[data-hover] .avatar-focus){stroke:var(--fg);stroke-width:2}
  progress-chart :global(.avatar-ring){fill:var(--surface)}
  progress-chart :global(.avatar-initials){fill:var(--subtle)}
- progress-chart :global(.avatar-text){fill:var(--fg);font:600 9px var(--font-sans,system-ui,sans-serif);letter-spacing:normal}
- progress-chart :global(.avatar-outline){fill:none;stroke:currentColor;stroke-width:2}
- progress-chart :global(.avatar-outline.claimed){stroke-dasharray:3 2.2}
- progress-chart :global(.avatar-outline.lean-verified){stroke-width:3.5}
+ progress-chart :global(.avatar-text){fill:var(--fg);font-family:var(--font-sans,system-ui,sans-serif);font-weight:600;letter-spacing:normal}
+ progress-chart :global(.avatar-outline){fill:none;stroke-width:3}
+ progress-chart :global(.avatar-outline.claimed),progress-chart :global(.avatar-endpoint.claimed){stroke:var(--ring-claimed)}
+ progress-chart :global(.avatar-outline.human-verified),progress-chart :global(.avatar-endpoint.human-verified){stroke:var(--ring-human-verified)}
+ progress-chart :global(.avatar-outline.lean-verified),progress-chart :global(.avatar-endpoint.lean-verified){stroke:var(--ring-lean-verified)}
  progress-chart :global(.avatar-star){fill:var(--accent);stroke:var(--surface);stroke-width:1.5}
- progress-chart :global(.avatar-endpoint){fill:var(--surface);stroke:currentColor;stroke-width:1.5}
+ progress-chart :global(.avatar-endpoint){fill:var(--surface);stroke-width:1.5}
  @media(max-width:600px){
   .plot-heading h2{font-size:16px;line-height:1.35;padding:0 26px}
   .desktop-heading,.level-name,.endpoint-full,.plot-axis-title{display:none}

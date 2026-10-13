@@ -18,15 +18,17 @@ try {
       await page.evaluate(() => document.fonts.ready);
       await page.locator('progress-chart').waitFor();
       const levels = await page.locator('evidence-filters input[type=checkbox]').evaluateAll(inputs => inputs.map(input => input.value));
-      for (const range of ['all', '3d', '24h']) {
+      for (const range of ['all', 3, 1]) {
         for (const level of levels) {
           const context = `${slug}, ${range}, ${level}, ${width}px`;
           for (const candidate of levels) {
             await page.locator(`evidence-filters input[value="${candidate}"]`).setChecked(candidate === level);
           }
           // Empty charts still have a title; their range controls are hidden.
-          const rangeButton = page.locator(`[data-range="${range}"]`);
-          if (await rangeButton.isVisible()) await rangeButton.click();
+          if (await page.locator('[data-range-all]').isVisible()) {
+            if (range === 'all') await page.locator('[data-range-all]').click();
+            else { await page.locator('[data-range-days] input').fill(String(range)); await page.locator('[data-range-days] input').press('Enter'); }
+          }
           await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
           const geometry = await page.locator('progress-chart').evaluate(chart => {
             const visible = element => element && element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden';
@@ -72,7 +74,7 @@ try {
             for (const other of geometry.ticks.slice(i + 1)) assert.equal(overlaps(tick, other), false, `${context}: y ticks overlap`);
           }
           assert.equal(overlaps(geometry.axis, geometry.title), false, `${context}: axis title overlaps plot title`);
-          if (slug === 'integer-multiplication' && range === '24h' && level === 'human-verified' && width === 1280) {
+          if (slug === 'integer-multiplication' && range === 1 && level === 'human-verified' && width === 1280) {
             await page.locator('progress-chart').screenshot({path: 'screenshots/chart-human-24h-2026-10-11-desktop-dark.png'});
           }
           checked++;
@@ -82,7 +84,7 @@ try {
     assert.deepEqual(errors, [], `Browser errors at ${width}px`);
     await page.close();
   }
-  console.log(`PASS: ${checked} chart layouts; all registered problems, three ranges, each single evidence filter, 390/1280px dark.`);
+  console.log(`PASS: ${checked} chart layouts; all registered problems, All and the last 3 days and 1 day, each single evidence filter, 390/1280px dark.`);
 } finally {
   await browser.close();
 }

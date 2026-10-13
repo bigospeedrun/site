@@ -43,7 +43,7 @@ const fallbackDate = new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Ang
 <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#111925" media="(prefers-color-scheme: dark)"/>
 <script is:inline defer src="/analytics.js"></script>
-<script is:inline>try{const t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}try{if(localStorage.getItem('bigospeedrun-show-avatars')==='false')document.documentElement.dataset.avatars='off'}catch{}</script>
+<script is:inline>try{const t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><a class="brand" href="/"><img src="/icon-192.png" width="44" height="44" alt=""/><span>Big O <strong>Speedrun</strong></span></a><div class="header-actions"><ProblemsMenu /><a href="/about" aria-current={Astro.url.pathname.replace(/\/$/,'')==='/about'?'page':undefined}>About</a><button id="theme" aria-label="Switch color theme" title="Switch color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="theme-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></g><path class="theme-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div></header>
