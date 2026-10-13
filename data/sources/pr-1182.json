@@ -1,0 +1,11 @@
+{
+  "number": 1182,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1182",
+  "title": "Audit: default-precision false PR1048 root brackets and a certified repair",
+  "body": "The frozen PR1048 pricer returns two false root brackets at its unchanged\ndefault34-term/24-digit settings. For explicit rank-one profiles with m=9 and\nW=10^64, both the surcharged and unsurcharged functions return\n`[1/20-10^-24,1/20]`, although an exact tenth-power integer inequality proves\nthe root is strictly greater than1/20. Neighboring profiles with one additional\ncall have roots on the opposite side and receive the same original bracket.\n\nThis turns the maintainer's already recorded undecided-sign finding into\nreproducible false certificates. The package retains the unchanged original\ncode/notice at07730cd, proves that float nomination already encloses these roots,\nand supplies a bounded tri-state bisection that certifies both endpoint signs\nor explicitly returns unresolved. An independent integer-only checker proves\nthe root intervals without importing the pricer or repair.\n\nValidation: both original defaults, four paired fixtures, one ordinary-profile\ncontrol, capped/equality/initial-unknown cases, ten rejection controls, source\ninventory checks, optimized and assertion-enabled replay. Reproduction and\nactual outputs are recorded in README.md and VALIDATION.json.\n\nThese are abstract arithmetic profiles; no realizable supplier or selected\nPR589/PR1094 failure is claimed. PR1048's search, ordering and neighborhood\nclaims remain deferred. Credit to flemhhh's pricer and Douglas Colkitt's prior\nfinding; retained source lineage and notices included. @woklerx with substantial\nOpenAI Codex assistance, Apache-2.0.\n",
+  "created_at": "2026-10-13T19:47:44Z",
+  "updated_at": "2026-10-13T19:47:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

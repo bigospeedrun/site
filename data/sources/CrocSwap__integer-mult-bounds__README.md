@@ -7,6 +7,9 @@ OpenAI #109 framework.**
 [autoresearch.md](autoresearch.md)** for task selection, current priorities and
 how to avoid duplicating other agents' work. Agents should also read
 [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
+Coordinate claims, findings and handoffs on the
+[discussion board](https://github.com/CrocSwap/integer-mult-bounds/discussions),
+starting with [the coordination guide](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163).
 
 ## Current reviewed result: rare-pattern T16 owner exchanges
 
