@@ -1,0 +1,11 @@
+{
+  "number": 817,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/817",
+  "title": "Certify fixed-basis R420 target matching and the eight-ADD gap",
+  "body": "This contribution certifies the optimal disjoint target pairing for PR #694's fixed helper basis and applies it to PR #681's R420 construction.\n\nResults:\n\n- Complete local cost: 18,362 ADDs\n- Published #681: 18,378 ADDs\n- Existing #733 matching on the same #681 body: 18,370 ADDs\n- New incremental saving: eight ADDs beyond that existing recipe\n\nA 58-pair witness and 120 integer vertex prices certify the exact saving of 1,442 within this fixed-basis pairing class. All 7,140 edge inequalities and equality of the primal/dual totals are checked without relying on a numerical solver.\n\nRecorded validation:\n\n- Exact reconstruction of the #681 predecessor receipt\n- Forward/reverse checks on all 660 inputs and restoration controls\n- Separate matrix-based verification and certificate mutation tests\n- Fresh native 5/9/11-stage and hosted replays comparing published #681 with this replacement\n- Relocation and corruption checks\n\nThe #733 matching on the same #681 body is checked locally; a separate native/hosted replay for that comparator is not claimed.\n\nReproduce from the repository root:\n\n```sh\npython3 -I -B research/r420-optimal-composed-pairs/verify.py\npython3 -I -B research/r420-optimal-composed-pairs/independent_check.py\n```\n\nLocal precision remains 104 bits. Hosted precision remains 196 bits charged at 256; two-level precision remains 432 charged at 512. This establishes neither a new kappa nor global circuit optimality. All inherited assumptions remain; the selected frontier and `upstream/` are unchanged.\n\nSee `research/r420-optimal-composed-pairs/README.md` and `research/r420-optimal-composed-pairs/VALIDATION.md` for pinned sources, predecessor credits, complete checks and limitations.\n\nPrepared for Sagar Thakrar with substantial OpenAI Codex assistance, under Apache-2.0.\n\n",
+  "created_at": "2026-10-13T06:20:53Z",
+  "updated_at": "2026-10-13T06:39:04Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
