@@ -10,15 +10,18 @@ const browser = await chromium.launch({executablePath: process.argv[4] ?? '/usr/
 await mkdir('screenshots', {recursive: true});
 let checked = 0;
 try {
- for (const width of [1280, 390]) {
-  const page = await browser.newPage({viewport: {width, height: 900}, isMobile: width === 390, hasTouch: width === 390, timezoneId: 'America/Los_Angeles'});
+ for (const [width, avatars] of [[1280, true], [390, true], [1280, false], [390, false]]) {
+  const context = await browser.newContext({viewport: {width, height: 900}, isMobile: width === 390, hasTouch: width === 390, timezoneId: 'America/Los_Angeles'});
+  if (!avatars) await context.addInitScript(() => localStorage.setItem('bigospeedrun-show-avatars', 'false'));
+  const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   for (const slug of ['', ...registry.problems.map(problem => problem.slug)]) {
    await page.goto(`${origin}/${slug}`, {waitUntil: 'networkidle'});
    await page.evaluate(() => document.fonts.ready);
    for (const chart of await page.locator('progress-chart').all()) {
-    const points = chart.locator('.plot-point');
+    // A crowded older entry shrinks under a newer avatar; pointer checks use marks that are drawn in full.
+    const points = chart.locator(avatars ? '.plot-point:has(.avatar-ring)' : '.plot-point');
     if (!await points.count()) continue;
     const first = points.first(), last = points.last(), tooltip = chart.locator('.plot-tooltip');
     const activate = async point => width === 390 ? point.tap() : point.click();
@@ -51,7 +54,7 @@ try {
      assert.equal(await first.getAttribute('aria-pressed'), 'false');
      assert.equal(await last.getAttribute('aria-pressed'), 'true');
     }
-    for (const point of await points.all()) {
+    for (const point of await chart.locator('.plot-point').all()) {
      await page.keyboard.press('Escape');
      await point.focus(); await point.press('Enter');
      const box = await tooltip.boundingBox(), area = await chart.locator('.plot-area').boundingBox();
@@ -63,7 +66,7 @@ try {
     assert.equal(await tooltip.isVisible(), true, `${slug}: resize retains pin`);
     await page.setViewportSize({width, height: 900});
     await page.waitForTimeout(100);
-    if (slug === 'exact-dft') {
+    if (slug === 'exact-dft' && avatars) {
      await page.mouse.move(0, 0);
      await chart.screenshot({path: `screenshots/chart-pinned-2026-10-11-${width}.png`});
     }
@@ -71,7 +74,7 @@ try {
    }
   }
   assert.deepEqual(errors, []);
-  await page.close();
+  await context.close();
  }
- console.log(`PASS: pin, unpin, keyboard, touch, hover, resize, and edge checks for ${checked} charts at 1280/390px.`);
+ console.log(`PASS: pin, unpin, keyboard, touch, hover, resize, and edge checks for ${checked} charts at 1280/390px, with avatars on and off.`);
 } finally { await browser.close(); }

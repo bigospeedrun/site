@@ -70,7 +70,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TARGET_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
-          git add -- data/*.json data/sources data/manifests src/data public/sources src/lib/author-profiles.json
+          git add -- data/*.json data/sources data/manifests src/data public/sources src/lib/author-profiles.json src/lib/author-avatars.json public/avatars
           if git diff --cached --quiet; then
             echo 'Reviewed data is unchanged.'
             exit 0

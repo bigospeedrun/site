@@ -17,12 +17,12 @@ try {
       await page.goto(`${origin}/${slug}`, {waitUntil: 'networkidle'});
       await page.evaluate(() => document.fonts.ready);
       await page.locator('progress-chart').waitFor();
-      const levels = await page.locator('evidence-board input[type=checkbox]').evaluateAll(inputs => inputs.map(input => input.value));
+      const levels = await page.locator('evidence-filters input[type=checkbox]').evaluateAll(inputs => inputs.map(input => input.value));
       for (const range of ['all', '3d', '24h']) {
         for (const level of levels) {
           const context = `${slug}, ${range}, ${level}, ${width}px`;
           for (const candidate of levels) {
-            await page.locator(`evidence-board input[value="${candidate}"]`).setChecked(candidate === level);
+            await page.locator(`evidence-filters input[value="${candidate}"]`).setChecked(candidate === level);
           }
           // Empty charts still have a title; their range controls are hidden.
           const rangeButton = page.locator(`[data-range="${range}"]`);

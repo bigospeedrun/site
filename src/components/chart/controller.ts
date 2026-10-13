@@ -1,5 +1,6 @@
 import {getEvidenceLevels} from '../../lib/evidence-filters';
 import { breakthroughLabel } from '../../lib/evidence';
+import { getShowAvatars, subscribeShowAvatars } from '../../lib/avatars';
 import { chartWindow, chartRanges, chartTimeTicks, scoreValue, type ChartEntry } from '../../lib/chart';
 interface Payload {
  entries: ChartEntry[]; higher: boolean; limit: number; classic?: number;
@@ -7,6 +8,7 @@ interface Payload {
  levels: Record<string,string>;
 }
 const NS='http://www.w3.org/2000/svg';
+const STAR='M0 -9 L2.6 -3 L8.6 -2.8 L4.2 1.4 L5.3 7.3 L0 4.5 L-5.3 7.3 L-4.2 1.4 L-8.6 -2.8 L-2.6 -3 Z';
 function svg<K extends keyof SVGElementTagNameMap>(tag:K,attrs:Record<string,string|number>={}) {
  const el=document.createElementNS(NS,tag);
  for(const [key,value] of Object.entries(attrs))el.setAttribute(key,String(value));
@@ -26,6 +28,7 @@ class ProgressChart extends HTMLElement {
  private onDocumentKeydown=(event:KeyboardEvent)=>{if(event.key==='Escape')this.unpin()};
  private onPointerLeave=()=>{if(!this.pinnedId)this.closeTooltip()};
  private levels:string[]=[];
+ private unsubscribeAvatars?:()=>void;
  private onEvidenceChange=(event:Event)=>{
   const levels=(event as CustomEvent<{levels:string[]}>).detail?.levels;
   if(!Array.isArray(levels))return;
@@ -36,6 +39,7 @@ class ProgressChart extends HTMLElement {
   this.data=JSON.parse(this.dataset.chart!);
   this.levels=getEvidenceLevels();
   window.addEventListener('evidence-filter-change',this.onEvidenceChange);
+  this.unsubscribeAvatars=subscribeShowAvatars(()=>this.draw());
   this.querySelectorAll<HTMLButtonElement>('[data-range]').forEach(button=>button.addEventListener('click',()=>{
    this.range=button.dataset.range!;
    this.querySelectorAll('[data-range]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
@@ -52,6 +56,7 @@ class ProgressChart extends HTMLElement {
  disconnectedCallback(){
   this.observer?.disconnect();
   window.removeEventListener('evidence-filter-change',this.onEvidenceChange);
+  this.unsubscribeAvatars?.();
   document.removeEventListener('click',this.onDocumentClick);
   document.removeEventListener('keydown',this.onDocumentKeydown);
   this.removeEventListener('pointerleave',this.onPointerLeave);
@@ -145,11 +150,28 @@ class ProgressChart extends HTMLElement {
    const clip=svg('clipPath',{id:clipId});clip.append(svg('rect',{x:left,y:top,width:right-left,height:bottom-top}));plot.append(clip);
    plot.append(svg('path',{d:path,class:'plot-record','clip-path':`url(#${clipId})`}));
   }
+  const avatars=getShowAvatars(),radius=mobile?10:11;
+  const avatarClip=`avatar-clip-${crypto.randomUUID()}`;
+  if(avatars){const clip=svg('clipPath',{id:avatarClip,clipPathUnits:'objectBoundingBox'});clip.append(svg('circle',{cx:.5,cy:.5,r:.5}));plot.append(clip)}
+  // Records are in time order, so the current leader is drawn last, on top of older marks.
+  // Newest first, an avatar keeps full size only if no newer full avatar covers much of it.
+  // Crowded older entries shrink to their evidence-level shape, so each visible face stays readable.
+  const fullAvatars=new Set<ChartEntry>(),placed:[number,number][]=[];
+  if(avatars)for(const entry of [...records].reverse()){
+   const px=x(entry.time),py=y(scoreValue(entry.score));
+   if(placed.some(([ax,ay])=>Math.hypot(ax-px,ay-py)<radius*1.7))continue;
+   fullAvatars.add(entry);placed.push([px,py]);
+  }
+  // The legend adds the shapes only when the plot shows shrunken marks.
+  this.toggleAttribute('data-shrunk',avatars&&fullAvatars.size<records.length);
+  // Shrunken marks sit in a lower layer, so they never cover a full avatar.
+  const shapeLayer=svg('g'),avatarLayer=svg('g');plot.append(shapeLayer,avatarLayer);
   for(const entry of records){
    const px=x(entry.time),py=y(scoreValue(entry.score)),endpoint=entry.scoreRelation==='strict-upper-bound';
    const point=svg('g',{transform:`translate(${px},${py})`,class:`plot-point ${entry.isBreakthrough?'breakthrough':entry.level}${endpoint?' endpoint':''}`,tabindex:0,role:'button','aria-pressed':String(this.pinnedId===entry.id),'aria-label':`Player: ${entry.author}, ${this.entryLevel(entry)}. Show bound and source.`, 'data-entry-id':entry.id});
    point.append(svg('circle',{r:13,fill:'transparent'}));
-   if(entry.isBreakthrough)point.append(svg('path',{d:'M0 -9 L2.6 -3 L8.6 -2.8 L4.2 1.4 L5.3 7.3 L0 4.5 L-5.3 7.3 L-4.2 1.4 L-8.6 -2.8 L-2.6 -3 Z',class:'mark'}));
+   if(fullAvatars.has(entry))this.drawAvatar(point,entry,radius,avatarClip,endpoint);
+   else if(entry.isBreakthrough)point.append(svg('path',{d:STAR,class:'mark'}));
    else if(entry.level==='human-verified')point.append(svg('rect',{x:-5,y:-5,width:10,height:10,class:'mark'}));
    else if(entry.level==='lean-verified')point.append(svg('path',{d:'M 0 -7 L 7 0 L 0 7 L -7 0 Z',class:'mark'}));
    else point.append(svg('circle',{r:5.5,class:'mark'}));
@@ -164,11 +186,26 @@ class ProgressChart extends HTMLElement {
    point.addEventListener('pointerenter',preview);point.addEventListener('focus',preview);
    point.addEventListener('click',toggle);
    point.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();if(!event.repeat)toggle()}});
-   plot.append(point);
+   (fullAvatars.has(entry)?avatarLayer:shapeLayer).append(point);
    if(this.pinnedId===entry.id)show();
   }
   if(this.pinnedId&&!records.some(entry=>entry.id===this.pinnedId))this.unpin();
   state.textContent=!entries.length?'No publication dates are known for these entries. See the table for their bounds.':!records.length&&!carry?'No dated results match the selected evidence levels.':'';
+ }
+ // The outline encodes the evidence level, so the mark does not depend on color alone.
+ // A ring in the surface color keeps overlapping avatars apart.
+ private drawAvatar(point:SVGGElement,entry:ChartEntry,r:number,clipId:string,endpoint:boolean){
+  point.append(svg('circle',{r:r+6,class:'avatar-focus'}),svg('circle',{r:r+4,class:'avatar-ring'}));
+  if(entry.avatar){
+   const image=svg('image',{href:entry.avatar,x:-r,y:-r,width:2*r,height:2*r,preserveAspectRatio:'xMidYMid slice','clip-path':`url(#${clipId})`});
+   point.append(svg('circle',{r,class:'avatar-initials'}),image);
+  }else{
+   const text=svg('text',{class:'avatar-text','text-anchor':'middle','dominant-baseline':'central'});text.textContent=entry.initials??'?';
+   point.append(svg('circle',{r,class:'avatar-initials'}),text);
+  }
+  point.append(svg('circle',{r:r+(entry.level==='lean-verified'?2:1.5),class:`avatar-outline ${entry.level}`}));
+  if(entry.isBreakthrough)point.append(svg('path',{d:STAR,class:'avatar-star',transform:`translate(${r*.85} ${-r*.85}) scale(.6)`}));
+  if(endpoint)point.append(svg('circle',{cx:r*.85,cy:r*.85,r:4,class:`avatar-endpoint ${entry.level}`}));
  }
  private entryLevel(entry:ChartEntry){return entry.isBreakthrough?breakthroughLabel+(entry.level==='lean-verified'?' · Lean Verified':''):this.data.levels[entry.level]}
  private showEntry(entry:ChartEntry,x:number,y:number,width:number,height:number){

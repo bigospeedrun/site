@@ -3,6 +3,8 @@ import { ranked } from './ranking.ts';
 export interface ChartEntry {
  id: string; repoId: number; score: string; scoreRelation?: string; level: string; time: number;
  date: string; author: string; boundHtml: string; url: string; isBreakthrough?: boolean;
+ // The first author's avatar path, or initials when the author has no personal GitHub avatar.
+ avatar?: string; initials?: string;
 }
 
 export const scoreValue = (score: string): number => {

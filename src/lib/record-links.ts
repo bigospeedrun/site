@@ -2,13 +2,14 @@ import type {Author, Link} from './types';
 import type {EvidenceLevel} from './evidence';
 
 type Profile = {login: string; name: string; twitter_username: string | null};
-export function authorFromProfile(author: Link, profiles: Record<string, Profile>): Author {
+export function authorFromProfile(author: Link, profiles: Record<string, Profile>, avatars: Record<string, string> = {}): Author {
  const login = author.url?.match(/^https:\/\/github\.com\/([^/?#]+)/)?.[1];
  if (!login) return author;
  const profile = profiles[login.toLowerCase()];
+ const avatar = avatars[login.toLowerCase()];
  return {name: profile?.name || login, login: profile?.login || login,
   url: `https://github.com/${profile?.login || login}`,
-  twitterUsername: profile?.twitter_username || undefined};
+  twitterUsername: profile?.twitter_username || undefined, ...(avatar ? {avatar} : {})};
 }
 export function recordEvidenceUrl(level: EvidenceLevel, record: {submission_url?: string; rerun_status?: {receipt_path?: string | null}}, source?: string, receiptUrl?: string): string | undefined {
  if (level === 'lean-verified') {
