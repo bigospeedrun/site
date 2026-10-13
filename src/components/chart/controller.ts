@@ -156,8 +156,11 @@ class ProgressChart extends HTMLElement {
   const bottom=height-(showTimes?53:36);
   plot.setAttribute('viewBox',`0 0 ${width} ${height}`);
   const transform=(v:number)=>scale.log?Math.log10(v):v;
-  const y=(v:number)=>bottom-(transform(v)-scale.lo)/(scale.hi-scale.lo)*(bottom-top);
-  const x=(time:number)=>start===end?(left+right)/2:left+(time-start)/(end-start)*(right-left);
+  // Values map inside an inset of one avatar halo, so no avatar crosses the axes,
+  // their labels, or the top of the plot.
+  const radius=mobile?10:11,inset=halo(radius);
+  const y=(v:number)=>bottom-inset-(transform(v)-scale.lo)/(scale.hi-scale.lo)*(bottom-top-2*inset);
+  const x=(time:number)=>start===end?(left+right)/2:left+inset+(time-start)/(end-start)*(right-left-2*inset);
   let previousTickBottom=-Infinity;
   for(let index=yTicks.length-1;index>=0;index--){
    const py=y(yTicks[index].value),label=tickLabels[index];
@@ -208,7 +211,6 @@ class ProgressChart extends HTMLElement {
    plot.append(svg('path',{d:path,class:'plot-record','clip-path':`url(#${clipId})`}));
   }
   // Every record is an avatar at its true position, drawn in date order: newer on top.
-  const radius=mobile?10:11;
   this.hitRadius=radius+RING;
   const avatarClip=`avatar-clip-${crypto.randomUUID()}`;
   const clip=svg('clipPath',{id:avatarClip,clipPathUnits:'objectBoundingBox'});clip.append(svg('circle',{cx:.5,cy:.5,r:.5}));plot.append(clip);
