@@ -7,7 +7,7 @@
       "name": "Quasi-Riemann hypothesis",
       "quantity": "\\theta",
       "direction": "lower",
-      "statement": "The quantity is the zero-free half-plane threshold \\(\\theta\\) for zeta, Dirichlet functions and finite-order Eisenstein Hecke functions over \\(\\mathbb{Q}(\\sqrt{-3})\\). A lower threshold is better. The claims retain the source proof conditions.",
+      "statement": "The quantity is the zero-free half-plane threshold \\(\\theta\\) for Dirichlet \\(L\\)-functions, which include zeta. A lower threshold is better. The OpenAI paper also covers finite-order Eisenstein Hecke functions over \\(\\mathbb{Q}(\\sqrt{-3})\\); claims with Lean prove the Dirichlet theorem only. The claims retain the source proof conditions.",
       "baseline": {
         "value": "7/8",
         "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf",
@@ -81,6 +81,72 @@
           ],
           "proofScope": "Proof contribution and reported multi-kernel receipts.",
           "bound": "\\theta\\le 0.87488664704"
+        },
+        {
+          "author": "Niels Mündler-Sasahara",
+          "handle": "nielstron",
+          "value": "87487/100000",
+          "display": "0.87487",
+          "date": "2026-10-12T17:15:00-07:00",
+          "dateSource": "https://github.com/nielstron/QuasiRiemannTracker/commit/ef2ae62e99e2df364aaf4f4680e03a24216fdb22",
+          "dateKind": "first-stated",
+          "url": "https://github.com/nielstron/QuasiRiemannTracker/blob/16ce30342471344c2b2f0d383388e6f9acb9bccf/submissions/local44-20261013/src/Candidate/Main.lean#L132-L134",
+          "lean": true,
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Niels Mündler-Sasahara",
+              "url": "https://github.com/nielstron"
+            }
+          ],
+          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "bound": "\\theta\\le 0.87487"
+        },
+        {
+          "author": "Kári Rögnvaldsson",
+          "handle": "karirogg",
+          "value": "4374347/5000000",
+          "display": "0.8748694",
+          "date": "2026-10-13T04:41:00-07:00",
+          "dateSource": "https://github.com/karirogg/QuasiRiemannTracker/commit/c707738a659786b9a44a79c629bed8c801cca8f3",
+          "dateKind": "first-stated",
+          "url": "https://github.com/karirogg/QuasiRiemannTracker/blob/c707738a659786b9a44a79c629bed8c801cca8f3/submissions/affine-local-20261013/src/Candidate/Main.lean#L139-L141",
+          "lean": true,
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Kári Rögnvaldsson",
+              "url": "https://github.com/karirogg"
+            }
+          ],
+          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
+          "bound": "\\theta\\le 0.8748694"
+        },
+        {
+          "author": "Kári Rögnvaldsson",
+          "handle": "karirogg",
+          "value": "87486797/100000000",
+          "display": "0.87486797",
+          "date": "2026-10-13T06:23:00-07:00",
+          "dateSource": "https://github.com/karirogg/QuasiRiemannTracker/commit/14ab1618c5133a7d12e06aa76661bbcb34e843cd",
+          "dateKind": "first-stated",
+          "url": "https://github.com/karirogg/QuasiRiemannTracker/blob/14ab1618c5133a7d12e06aa76661bbcb34e843cd/submissions/reserve-local-20261013/src/Candidate/Main.lean#L140-L142",
+          "lean": true,
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron check was still running when we listed it; no independent rerun.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Kári Rögnvaldsson",
+              "url": "https://github.com/karirogg"
+            }
+          ],
+          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron check was still running when we listed it; no independent rerun.",
+          "bound": "\\theta\\le 0.87486797"
         }
       ],
       "repos": [
@@ -152,7 +218,7 @@
           "note": "Zero-free half-planes with thresholds \\(11/12\\) and \\(7/8\\) for the L-functions of the elliptic curves \\(y^2 = x^3 + d\\), whose Hecke characters have infinite order. This is a different family and does not improve the current leader. The \\(7/8\\) part uses OpenAI's finite-order theorem as an input. Lean covers only the last step of the \\(11/12\\) part; external review is pending."
         }
       ],
-      "bestHandle": "HaileyStorm"
+      "bestHandle": "karirogg"
     },
     {
       "family": "005",

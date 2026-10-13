@@ -6,6 +6,7 @@ import {buildSystemPrompt, createKnowledge, pageText} from './chat-knowledge.ts'
 import {formatReply, safeLink} from './chat-format.ts';
 import type {Problem, RecordEntry} from './types.ts';
 import otherBounds from './other-bounds.json' with {type: 'json'};
+import {otherBoundLeader} from './other-leader.ts';
 
 const knowledge = createKnowledge([], '2026-10-10T09:00:00Z');
 knowledge.pages = {'/': 'Home', '/about': 'The FAQ explains how to submit a result.'};
@@ -250,8 +251,10 @@ test('a QRH question reaches the quasi-Riemann Other bounds row with its leader,
   const row = find('qrh')[0];
   assert.equal(row.title, 'Quasi-Riemann hypothesis'); assert.match(row.better, /lower value is better/);
   assert.equal(knowledge.otherBounds.list, '/#other-bounds');
-  assert.equal(row.current.evidence, 'Claimed'); assert.deepEqual(row.current.authors, ['Hailey Collet']);
-  assert.equal(row.current.bound, '\\theta\\le 0.87488664704'); assert.equal(row.baseline.bound, '\\theta\\le 7/8');
+  // The leader changes with the data; compare with the shown leader, not a fixed claim.
+  const leader = otherBoundLeader(otherBounds.families.find(f => f.slug === 'quasi-riemann')!)!;
+  assert.equal(row.current.evidence, 'Claimed'); assert.deepEqual(row.current.authors, leader.authors.map(a => a.name));
+  assert.equal(row.current.bound, leader.bound); assert.equal(row.baseline.bound, '\\theta\\le 7/8');
   assert.ok(row.relevantRepos.some(repo => repo.name === 'AxiomMath/DedekindZetaZeroFree' && repo.note));
   // Initials are an alias only when the row's own repositories use them.
   assert.deepEqual(rows.filter(r => r.aliases.some(a => /^[A-Z]+$/.test(a))).map(r => r.path), ['/other/quasi-riemann']);
