@@ -81,6 +81,28 @@
           ],
           "proofScope": "Proof contribution and reported multi-kernel receipts.",
           "bound": "\\theta\\le 0.87488664704"
+        },
+        {
+          "author": "Nielstron",
+          "handle": "Nielstron",
+          "value": "87487/100000",
+          "display": "0.87487",
+          "date": "2026-10-13T00:15:44Z",
+          "dateSource": "https://github.com/nielstron/QuasiRiemannTracker/commit/ef2ae62e99e2df364aaf4f4680e03a24216fdb22",
+          "dateKind": "first-stated",
+          "url": "https://github.com/nielstron/QuasiRiemannTracker/blob/ef2ae62e99e2df364aaf4f4680e03a24216fdb22/submissions/local44-20261013/explanation.md",
+          "lean": true,
+          "leanNote": "Unconditional Lean proof supplied; author reports three standalone kernel checks. No site rerun.",
+          "evidence": "claimed",
+          "note": "The exact rational threshold applies to zeta, all Dirichlet characters and the finite-order Eisenstein Hecke family, retaining the principal-pole exclusions. The improvement uses a proved local fourth-moment estimate with prime cost 22/5.",
+          "authors": [
+            {
+              "name": "Nielstron",
+              "url": "https://github.com/Nielstron"
+            }
+          ],
+          "proofScope": "128 Lean modules supply the unconditional endpoints. The author reports that the canonical Dirichlet export passed Lean, NanoDa and con-ron. Protected verification and independent admission remain pending; no site rerun.",
+          "bound": "\\theta\\le 0.87487"
         }
       ],
       "repos": [
@@ -147,7 +169,7 @@
           "note": "The zero-free threshold 5999/6000 applies to Dedekind zeta functions over all number fields. Supplied Lean covers this theorem, but not the separate Hecke-function claim; no independent rerun."
         }
       ],
-      "bestHandle": "HaileyStorm"
+      "bestHandle": "Nielstron"
     },
     {
       "family": "005",
