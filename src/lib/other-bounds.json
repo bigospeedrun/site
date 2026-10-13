@@ -145,6 +145,11 @@
           "name": "AxiomMath/DedekindZetaZeroFree",
           "url": "https://github.com/AxiomMath/DedekindZetaZeroFree/blob/284348a4f46a7f1ed8cc20964c157d7a0e88439d/README.md#L12-L22",
           "note": "The zero-free threshold 5999/6000 applies to Dedekind zeta functions over all number fields. Supplied Lean covers this theorem, but not the separate Hecke-function claim; no independent rerun."
+        },
+        {
+          "name": "mrubinst/L-function_zero_free_strips",
+          "url": "https://github.com/mrubinst/L-function_zero_free_strips/blob/7e5d6ffb0ac60e5da45147d5973c47b96cc62c52/README.md#L6-L8",
+          "note": "Zero-free half-planes with thresholds 11/12 and 7/8 for the L-functions of the elliptic curves y² = x³ + d, whose Hecke characters have infinite order. This is a different family and does not improve the current leader. The 7/8 part uses OpenAI's finite-order theorem as an input. Lean covers only the last step of the 11/12 part; external review is pending."
         }
       ],
       "bestHandle": "HaileyStorm"
@@ -930,7 +935,7 @@
           "date": "2026-10-12T20:51:00-07:00",
           "dateSource": "https://github.com/littleBro/heilbronn-triangle-bounds/commit/a9f9bfd51be870b6b0d613c55a0812e42b33f797",
           "dateKind": "first-stated",
-          "url": "https://github.com/littleBro/heilbronn-triangle-bounds/blob/a9f9bfd51be870b6b0d613c55a0812e42b33f797/README.md#L5-L12",
+          "url": "https://github.com/littleBro/heilbronn-triangle-bounds/blob/fdf06031e3a7ab595f07368840da3a2fe24239c8/README.md#L5-L12",
           "lean": true,
           "leanNote": "Yes; Lean covers the norm decomposition, interpolation descent, finite packing and selected scales; the geometric estimates and the full theorem are written proofs.",
           "evidence": "claimed",
