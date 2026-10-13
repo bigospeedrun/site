@@ -2,7 +2,7 @@
 import {problems, boardRecords} from '../lib/data';
 import {ranked} from '../lib/ranking';
 import {problemLinks} from '../lib/navigation';
-import {submissionRoute, verifierUrl, verifierProblems} from '../lib/submission';
+import {submissionRoute, verifierUrl, verifierProblems, discordUrl, submitChannel} from '../lib/submission';
 import otherBounds from '../lib/other-bounds.json';
 import {inlineMath} from '../lib/math';
 import Layout from '../layouts/Layout.astro';
@@ -65,7 +65,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
         {verified.map(({problem, title}, index) => <>{separator(index, verified.length)}<a href={'/' + problem.slug}>{title}</a></>)}: Submit the Lean proof to <a href={verifierUrl} target="_blank" rel="noopener">bigospeedrun/verifier</a>, as a pull request or an issue. An open submission without a passing check shows as {evidenceName('claimed')}. It shows as {evidenceName('lean-verified')} when it passes. The verifier runs a proof check only if the bound matches or beats the current record. Full instructions are in the <a href={verifierUrl + '#submit'} target="_blank" rel="noopener">verifier README</a>.
       </li>}
       {unreviewed.length > 0 && <li>
-        {unreviewed.map(({problem, title}, index) => <>{separator(index, unreviewed.length)}<a href={'/' + problem.slug}>{title}</a></>)}: Publish the result in a public repository or paper and <a href={siteIssuesUrl} target="_blank" rel="noopener">open an issue on bigospeedrun/site</a> with a link to it. We list it as {evidenceName('claimed')} after we check that it states the same problem.
+        {unreviewed.map(({problem, title}, index) => <>{separator(index, unreviewed.length)}<a href={'/' + problem.slug}>{title}</a></>)}: Publish the result in a public GitHub repository and post the link in {submitChannel} on our <a href={discordUrl} target="_blank" rel="noopener">Discord</a>. We list it as {evidenceName('claimed')} after we check that it states the same problem.
       </li>}
     </ul>
     </section>
@@ -83,6 +83,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
         <p>Our verifier has no trusted Lean statement yet for {missingStatements.map(({problem, title}, index) => <>{separator(index, missingStatements.length)}<a href={'/' + problem.slug}>{title}</a></>)}. We welcome contributions for these problems.</p>
         <p>Open a pull request to <a href={verifierUrl} target="_blank" rel="noopener">bigospeedrun/verifier</a> that adds the problem under <code>challenges/</code>. Match the model on the problem page. We review the statement. Once it is merged, proofs for that problem can be submitted. Follow the <a href={verifierUrl + '/blob/main/docs/new-statements.md'} target="_blank" rel="noopener">instructions for new statements</a>.</p>
       </> : <p>Our verifier has a trusted Lean statement for every listed problem.</p>}
+      <p>To help without a new record, point your agent at our <a href="https://github.com/bigospeedrun/verifier/blob/main/auto-research.md" target="_blank" rel="noopener">auto-research guide</a>. It lists research tracks (Lean statements, formal proofs, audits and verifier tooling), and negative results are welcome.</p>
       {missingProofs.length > 0 ? <p>We need Lean proofs for the current records in {missingProofs.map(({problem, title}, index) => <>{separator(index, missingProofs.length)}<a href={'/' + problem.slug}>{title}</a></>)}. These records are not Lean Verified. Submit a proof through the <a href="#submit">normal submission route</a>.</p> : <p>The current record for every listed problem with a trusted statement is Lean Verified.</p>}
     </section>
     <section aria-labelledby="evidence-levels">
@@ -105,7 +106,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
       <h2 id="help">How else can I help?</h2>
       <ul>
         <li>Contribute a <a href="#missing-lean">missing Lean statement or proof of a current record</a>.</li>
-        <li>Report a result we missed, or an error in a listed one, through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
+        <li>Post a result we missed in {submitChannel} on our <a href={discordUrl} target="_blank" rel="noopener">Discord</a>. Report an error in a listed result through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
         <li>Suggest a new problem through <a href={siteIssuesUrl} target="_blank" rel="noopener">GitHub issues</a>.</li>
         <li>Improve the site with a pull request on <a href="https://github.com/bigospeedrun/site" target="_blank" rel="noopener">bigospeedrun/site</a>.</li>
       </ul>
@@ -116,7 +117,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     </section>
     <section aria-labelledby="other-followups">
       <h2 id="other-followups">What about other follow-ups to the October 6 release?</h2>
-      <p>These follow-ups have no number to rank, so they have no table. It is not realistic for us to stay updated on every result, but we are happy to list any update <a href={siteIssuesUrl} target="_blank" rel="noopener">sent to us</a>.</p>
+      <p>These follow-ups have no number to rank, so they have no table. It is not realistic for us to stay updated on every result, but we are happy to list any update <a href={discordUrl} target="_blank" rel="noopener">posted in {submitChannel}</a>.</p>
       <ul>{otherBounds.followups.map(f=><li><span set:html={inlineMath(f.name)}/>: {f.repos.map((r,i)=><>{i>0?', ':''}<a href={r.url} target="_blank" rel="noopener">{r.name}</a></>)}</li>)}</ul>
     </section>
     <section id="contact" aria-labelledby="contact-heading">
