@@ -10,7 +10,6 @@ interface Payload {
 const NS='http://www.w3.org/2000/svg';
 // Avatar geometry: photo radius, a level ring outside it, and a surface halo between neighbors.
 const RING=3,halo=(r:number)=>r+RING+1.5;
-const STAR='M0 -9 L2.6 -3 L8.6 -2.8 L4.2 1.4 L5.3 7.3 L0 4.5 L-5.3 7.3 L-4.2 1.4 L-8.6 -2.8 L-2.6 -3 Z';
 function svg<K extends keyof SVGElementTagNameMap>(tag:K,attrs:Record<string,string|number>={}) {
  const el=document.createElementNS(NS,tag);
  for(const [key,value] of Object.entries(attrs))el.setAttribute(key,String(value));
@@ -215,9 +214,9 @@ class ProgressChart extends HTMLElement {
   const clip=svg('clipPath',{id:avatarClip,clipPathUnits:'objectBoundingBox'});clip.append(svg('circle',{cx:.5,cy:.5,r:.5}));plot.append(clip);
   this.marks=[];
   records.forEach((entry,index)=>{
-   const px=x(entry.time),py=y(scoreValue(entry.score)),endpoint=entry.scoreRelation==='strict-upper-bound';
-   const point=svg('g',{transform:`translate(${px},${py})`,class:`plot-point ${entry.isBreakthrough?'breakthrough':entry.level}${endpoint?' endpoint':''}`,tabindex:0,role:'button','aria-pressed':String(this.pinnedId===entry.id),'aria-label':`Player: ${entry.author}, ${this.entryLevel(entry)}. Show bound and source.`, 'data-entry-id':entry.id});
-   this.drawAvatar(point,entry,radius,avatarClip,endpoint);
+   const px=x(entry.time),py=y(scoreValue(entry.score));
+   const point=svg('g',{transform:`translate(${px},${py})`,class:`plot-point ${entry.level}`,tabindex:0,role:'button','aria-pressed':String(this.pinnedId===entry.id),'aria-label':`Player: ${entry.author}, ${this.entryLevel(entry)}. Show bound and source.`, 'data-entry-id':entry.id});
+   this.drawAvatar(point,entry,radius,avatarClip);
    const mark={entry,x:px,y:py,point};
    this.marks.push(mark);
    point.addEventListener('focus',()=>{if(!this.pinnedId)this.showMark(mark)});
@@ -235,7 +234,7 @@ class ProgressChart extends HTMLElement {
  }
  // The ring color encodes the evidence level; its lightness differs per level too.
  // A halo in the surface color keeps overlapping avatars apart.
- private drawAvatar(point:SVGGElement,entry:ChartEntry,r:number,clipId:string,endpoint:boolean){
+ private drawAvatar(point:SVGGElement,entry:ChartEntry,r:number,clipId:string){
   point.append(svg('circle',{r:halo(r)+2.5,class:'avatar-focus'}),svg('circle',{r:halo(r),class:'avatar-ring'}));
   point.append(svg('circle',{r,class:'avatar-initials'}));
   if(entry.avatar)point.append(svg('image',{href:entry.avatar,x:-r,y:-r,width:2*r,height:2*r,preserveAspectRatio:'xMidYMid slice','clip-path':`url(#${clipId})`}));
@@ -244,8 +243,6 @@ class ProgressChart extends HTMLElement {
    point.append(text);
   }
   point.append(svg('circle',{r:r+RING/2,class:`avatar-outline ${entry.level}`}));
-  if(entry.isBreakthrough)point.append(svg('path',{d:STAR,class:'avatar-star',transform:`translate(${r*.85} ${-r*.85}) scale(.6)`}));
-  if(endpoint)point.append(svg('circle',{cx:r*.85,cy:r*.85,r:4,class:`avatar-endpoint ${entry.level}`}));
  }
  private entryLevel(entry:ChartEntry){return entry.isBreakthrough?breakthroughLabel+(entry.level==='lean-verified'?' · Lean Verified':''):this.data.levels[entry.level]}
  private showEntry(entry:ChartEntry,x:number,y:number,width:number,height:number){
