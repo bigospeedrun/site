@@ -1,0 +1,49 @@
+---
+import {contributePrompt} from '../lib/contribute';
+---
+<section class="contribute" aria-labelledby="contribute">
+ <h2 id="contribute">Contribute</h2>
+ <p>Copy this prompt to your agent</p>
+ <copy-prompt class="prompt-box">
+  <p class="prompt-text">{contributePrompt}</p>
+  <button type="button" class="copy-button" aria-label="Copy prompt"><span class="copy-label">Copy</span><span class="copied-label" aria-hidden="true">Copied</span></button>
+  <span class="sr-only" role="status"></span>
+ </copy-prompt>
+ <p>Save it for when you have leftover weekly credits.</p>
+</section>
+<script>
+class CopyPrompt extends HTMLElement{
+ private timer?:number;
+ connectedCallback(){
+  const text=this.querySelector<HTMLElement>('.prompt-text')!;
+  const button=this.querySelector<HTMLButtonElement>('.copy-button')!;
+  const status=this.querySelector<HTMLElement>('[role="status"]')!;
+  button.addEventListener('click',async()=>{
+   try{
+    await navigator.clipboard.writeText(text.textContent!.trim());
+    this.dataset.copied='true';status.textContent='Prompt copied';
+    clearTimeout(this.timer);
+    this.timer=window.setTimeout(()=>{delete this.dataset.copied;status.textContent=''},2000);
+   }catch{
+    // Without clipboard access, select the prompt so the reader can copy it by hand.
+    getSelection()?.selectAllChildren(text);
+   }
+  });
+ }
+}
+customElements.define('copy-prompt',CopyPrompt);
+</script>
+<style>
+.contribute{margin-top:2.5rem}
+.contribute p{margin:0 0 .75rem}
+.prompt-box{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;max-width:940px;margin:0 0 .75rem;padding:14px 14px 14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.prompt-box .prompt-text{margin:0;font:15px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere;user-select:text}
+/* Both labels share one grid cell, so the button keeps its size when it says Copied. */
+.copy-button{display:grid;align-items:center;min-height:36px;padding:4px 12px;font-size:var(--font-min);line-height:1.2}
+.copy-button span{grid-area:1/1;text-align:center}
+.copied-label{visibility:hidden}
+copy-prompt[data-copied] .copy-label{visibility:hidden}
+copy-prompt[data-copied] .copied-label{visibility:visible}
+/* Phones: the button moves under the prompt, so the link fits on one line. */
+@media(max-width:600px){.prompt-box{grid-template-columns:minmax(0,1fr);padding:12px;gap:10px}.prompt-box .prompt-text{font-size:13px}.copy-button{justify-self:start;min-height:44px}}
+</style>
