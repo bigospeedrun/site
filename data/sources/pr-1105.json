@@ -1,0 +1,11 @@
+{
+  "number": 1105,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1105",
+  "title": "Mathematical audit: raw endpoint independence does not justify target-feedback cleanup",
+  "body": "Audit a proposed weakening of PR543's retained scalar interface: replacing\nthe H1/H3 ban on target feedback with raw endpoint independence does not\njustify literal projected cleanup. The shortest three-wire counterexample\nis `h += y; y += x; h += y`; its two prescribed cleanup ADDs cancel,\nleaving the helper as `h+x`. This is not a flaw in the stated source lemma.\n\nThe package proves an exact four-block replacement criterion and checks\nthe complete finite quotient of arbitrary-length three-wire words:\n4,032 states and 24,192 transitions. Of 144 endpoint-admissible states,\n138 fail restoration. The two cleanup equations have independent near-miss\nwitnesses. A separate enumeration of all 43 shorter literal programs\nconfirms the raw three-ADD minimum; truth tables check every quotient\nrepresentative. Unchanged PR589, selected at the pinned experiment base,\npasses the full scalar criterion\non all 661 arbitrary input columns.\n\n```text\npython research/feedback-cleanup-audit-seed72/verify.py\n```\n\nExpected: `PASS_FEEDBACK_CLEANUP_AUDIT_S72 states=4032 naive=144 bad=138 minimum=3 selected_columns=661 controls=8`.\n\nBoth H1 and H3 repeat the exclusion being relaxed. Only H4's scalar\nreverse rule is retained here; frame legality is not generalized.\nNo physical circuit, native/precision/hosting admission, supplier or new\nkappa is claimed. Exact source pins, proof, certificate and validation\nare included. Prepared for @woklerx with substantial OpenAI Codex\nassistance, Apache-2.0; predecessor credit is retained in NOTICE.md.\nThe base-scoped PR942 selection is distinguished from the newer live\nPR1042 frontier in README; this note does not audit that new assembly.\n",
+  "created_at": "2026-10-13T18:17:41Z",
+  "updated_at": "2026-10-13T18:17:41Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
