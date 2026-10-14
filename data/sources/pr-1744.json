@@ -1,0 +1,11 @@
+{
+  "number": 1744,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1744",
+  "title": "Prove P112 fitting rank nine over every characteristic-two field",
+  "body": "This closes the rank-eight label premise for the fixed P112 required-zero graph: every fitting matrix has rank exactly nine over every characteristic-two field, even without symmetry. Six eight-cliques on 17 vertices give an elementary lower-bound proof; the inherited binary labels give the known matching upper bound. The same certificate gives the scoped block-rank bound r >= ceil(25d/3), not fractional minimum nine.\n\nThe package pins the repository input and includes an independently written standard-library checker. It verifies all 2,912 required-zero pairs, all 12,544 binary Gram entries, the six-clique cancellation, actual upper ranks, and seven rejected corruption controls. Registered Python 3.12 replay passed with -I -B -O; an independent mathematical review covered both proofs and the graph convention. This is AI-assisted review, not a claim of independent human review or formalization.\n\nReproduce from the repository root:\n\n    python3.12 scripts/research_package.py --package research/p112-characteristic-two-minrank\n\nThis is a scoped obstruction and supplies no circuit, supplier invoice, improved exponent or selected-frontier change. README distinguishes the required-zero graph from the usual Haemers graph convention. Credit is retained for icekylinx and the source ancestry, and for the known symplectic upper bound of Leung, Mancinska, Matthews, Ozols and Roy (following Peeters). No literature-wide novelty claim is made. Prepared for Thiago with substantial OpenAI GPT-6 Astra and Codex assistance.\n\nCoordination: https://github.com/CrocSwap/integer-mult-bounds/discussions/1713. Fresh overlap checked 418 open PRs and 371 Discussions; PR1471 is a different odd-characteristic portability audit.\n",
+  "created_at": "2026-10-14T08:28:36Z",
+  "updated_at": "2026-10-14T08:28:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
