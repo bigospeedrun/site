@@ -4,8 +4,8 @@
   "title": "Research: P112 frame subsets miss 35,232 orthogonal rank demands",
   "body": "Two nine-term P112 support layouts with binary pairing-rank bill 63 pass all 227,696 orthogonal-set demands obtained from full eight-root live frames, yet cannot be decoders. This package identifies the missing domain: 35,232 additional orthogonal cliques that extend to no full live frame, out of 262,928 nonempty cliques overall. Each fixture fails six of those demands.\n\nAdds a reusable complete-clique rank guard, two exact counterexamples, and a solver-free replay. For example, the five mutually orthogonal roots {29,38,58,65,79} meet only four terms on both factors. The required rank-five restriction cannot be built from those four rank-one terms, regardless of complex coefficients, further zero trims or whole-term transposes.\n\nValidation passed with Python 3.12.3:\n\n```sh\npython3 scripts/research_package.py --package research/p112-unextendable-cliques\n```\n\nThe replay compares bitset and set-based complete clique enumerations, separately reconstructs the E8 root set, checks two binary elimination orders, verifies the known cost-64 coordinate decoder on all 12,544 entries, and exercises five failure controls. The normal replay is read-only and uses only the standard library. Package metadata, exact source pins, overlap coverage and open next questions are included.\n\nNo new kappa, decoder, physical supplier or universal COPY floor is claimed. This extends Cinna Davis's explicitly scoped PR1347 frame relaxation; it does not allege an error in that result. The geometry is pinned at 64fd5f9e91961dedc16118fcc7ad71ee82efe28f, with its earlier lineage and notice retained. Substantial OpenAI Codex assistance was used; the separate implementations share the same AI-assisted author and are not independent human or formal verification.\n",
   "created_at": "2026-10-14T00:37:19Z",
-  "updated_at": "2026-10-14T00:37:20Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:48:03Z",
+  "closed_at": "2026-10-14T06:31:25Z",
+  "merged_at": "2026-10-14T06:31:25Z",
+  "state": "closed"
 }

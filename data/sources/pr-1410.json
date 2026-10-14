@@ -4,8 +4,8 @@
   "title": "Research: persist order-four boundary across two root echoes (no new kappa)",
   "body": "**Status: scoped recursive-interface construction. No new kappa or selected-supplier change.**\n\nAt exact base `bce54fb3f895cbe5cd4c0eb477c3afeed100190f`, OS seed 57 selected the recursive-interfaces track. For two identical five-child PR #1391 root echoes on the same source X, a joint ten-child dirty echo carries the order-four frame through the midpoint.\n\n- Complete joint word: `(1720 ADD, 184 NEG) = 1904` primitives.\n- Two separate calls: `(1840 ADD, 176 NEG) = 2016` primitives.\n- Net: 112 fewer primitives and 232 fewer data reads; 8 more NEGs.\n- Exact phase-path minimum: `g(5)=140` and `g(10)=248`, with all 1,024 and 1,048,576 paths exhaustively checked.\n- Both constructions implement `(D,X,W) -> (D + 2 sum_i R_i X, X, W)` for arbitrary dirty input vectors, checked on all 56 basis columns.\n- Prefix row-L1 peak grows from 30 to 42; no precision benefit is claimed.\n\nThe standalone package is `research/z4-persistent-pair-seed57/`. Reproduce with:\n\n```sh\npython3 -I -O -B research/z4-persistent-pair-seed57/verify.py\n```\n\nLocal verifier, focused tests, package metadata/source pins, and `make selected-record-check` pass on CPython 3.14.7. Python 3.12 is unavailable locally, so the registered Python 3.12 replay, hosted CI, and independent human review remain pending. `VALIDATION.json` records exact checks.\n\nThe predecessor certificate/verifier/README are byte-pinned to PR #1391 head `6ce8017e4c27c8b220b6c3a27a53bb18f138212a`; inherited source pins are checked at the stated base. Credit PR #1391, Ross Richardson's PR #1287, and Sagar Thakrar's PR #1227. Prepared by Cinna Davis with substantial OpenAI Codex assistance; no proof-assistant formalization or human review is claimed. The result is restricted to the pinned family, same source, and declared order-four macro alphabet. Supplier admission, precision, routing/tape costs, recursive-profile transfer, and any new kappa remain open.\n",
   "created_at": "2026-10-14T00:27:25Z",
-  "updated_at": "2026-10-14T00:27:25Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:47:44Z",
+  "closed_at": "2026-10-14T06:31:14Z",
+  "merged_at": "2026-10-14T06:31:14Z",
+  "state": "closed"
 }

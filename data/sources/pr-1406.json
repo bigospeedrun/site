@@ -4,8 +4,8 @@
   "title": "Independent verification: P112 d0=77 asymmetric unit",
   "body": "**Status: independent finite witness audit.** No global decoder theorem or κ claim is made.\n\nAt base `bce54fb3f895cbe5cd4c0eb477c3afeed100190f`, this independently checks the `research/format-limits` C.6 asymmetric P112 two-target witness at `e=line 0`, `d0=line 77`. The relaxed targets are lines 74 and 77 with sink words 378 and 389. This is the distinct d0=77 witness; PR1342 covers d0=76.\n\nThe standard-library verifier recomputes E8 Gram entries and label pairing from pinned data, checks all 12,544 rational support entries, and independently computes the F2 window and COPY ranks. It confirms 24 shared sources, rank 9, COPY cost 65, and 28+28 corrections versus 52+52 for the symmetric E8 unit. Changing a sink or omitting a shared source is rejected.\n\nReproduce with Python 3.12:\n\n```sh\npython3.12 scripts/research_package.py --package research/p112-asymmetric-unit-audit-seed43\n```\n\nExpected final line: `PASS_REGISTERED_RESEARCH_PACKAGE research/p112-asymmetric-unit-audit-seed43 outcome=completed`.\n\nCPython 3.14.7 direct verifier/tests, the registered CPython 3.12.15 package replay, package pins, and selected-result verification pass. The full format-limits SAT suite, hosted CI, full supplier invoice, and a global P112/P120 theorem were not run. Substantial OpenAI Codex assistance is disclosed in the package; Apache-2.0 attribution is retained.\n",
   "created_at": "2026-10-14T00:21:41Z",
-  "updated_at": "2026-10-14T00:22:00Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:47:39Z",
+  "closed_at": "2026-10-14T06:31:14Z",
+  "merged_at": "2026-10-14T06:31:14Z",
+  "state": "closed"
 }

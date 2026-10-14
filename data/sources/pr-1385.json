@@ -4,8 +4,8 @@
   "title": "Research: seed 32 L259 temporal gauge saves 222 complex primitives",
   "body": "## Result\n\nAdds an exact temporal gauge schedule for seed-selected helper L259 on PR1263's frozen k8 scalar word. The new schedule saves 111 real / 222 complex lowerer primitives per orientation. Both directions price 144 chronological ADDs over exact breakpoint domains: `[-12,4]` forward and `[-4,12]` backward. Entry, transition, and final restoration scales are all charged.\n\nThe complete complex invoices change from 136,002 to 135,780 forward and from 136,018 to 135,796 backward. The paid profile is unchanged, and the formal replay remains identical on all 712 input columns. The best constant additional exponent has zero change in both orientations.\n\nThis is a finite scalar circuit result. It claims no new `kappa`, native supplier admission, or whole-hosted improvement.\n\n## Reproduce\n\n```sh\npython3 -I -O -B research/k8-l259-temporal-seed32/verify.py\n```\n\nExpected: `PASS_K8_L259_TEMPORAL_SEED32` with both invoice lines shown in the package README. The verifier also checks source pins, a small brute-force DP control, zero-schedule identity, and rejection of an omitted transition scale.\n\nThe exact replay and package metadata/pin check passed on Python 3.14.7. Python 3.12 is unavailable locally, so the registered Python 3.12 replay is left to CI.\n\n## Scope and credit\n\nBase commit: `bce54fb3f895cbe5cd4c0eb477c3afeed100190f`. Seed 32 selects eligible-helper index 32, L259; it is outside PR1259's seed-37 slice `[37,53]`, distinct from PR1350/L253 and PR1353/L248, and belongs to the nonzero-static class omitted by PR1369's zero-static census. No temporal schedules are combined.\n\n`DEPENDENCIES.json` pins the vendored PR1263 blobs and the PR1263/PR1259 heads. Credit Philipp / @mightyOil (PR1263) and Sagar Thakrar / @thakrarsagar (PR1259). Contributor: Cinna Davis. Substantial OpenAI Codex assistance was used for search design, the exact DP, event transformation, verification, and writing. The repository task-card scope is explicitly marked changed because this contribution optimizes a frozen helper circuit rather than proposing a new helper inventory.\n",
   "created_at": "2026-10-13T23:54:03Z",
-  "updated_at": "2026-10-13T23:54:03Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:47:06Z",
+  "closed_at": "2026-10-14T06:31:14Z",
+  "merged_at": "2026-10-14T06:31:14Z",
+  "state": "closed"
 }

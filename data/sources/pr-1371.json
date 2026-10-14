@@ -4,8 +4,8 @@
   "title": "Independent verification: PR589 family map by exact projector algebra",
   "body": "## Status\n\nIndependent verification of one finite PR589 address-operator identity. No new kappa or supplier improvement is claimed.\n\n## Finding\n\nFor PR #1351's pinned family `(pair=1, copy=0)`, the child-0 q-perp-plus-coordinate host and six-axis remainder are orthogonal and sum to the rank-14 source projector. In child 7, three disjoint rank-8 hosts and the rank-4 remainder sum to the rank-28 source projector. The verifier checks each exact rational projector, rank, pairwise product, and sum.\n\nFor orthogonal projectors P,Q, exact block multiplication gives `D(P)D(Q)=D(P+Q)` for `D(P)=[[I-P,P],[P,I-P]]`. This proves the full 128-dimensional operator identity for both frozen intervals without repeating PR #1351's 128-column replay. It also rejects an omitted helper, a same-rank wrong-axis helper, and a duplicated helper.\n\nThis is an explicitly different-method second audit of open PR #1351. It is conditional on that PR's pinned family role map and interval axes; it does not independently regenerate the allocator, establish chronology, replay helper lowering, or admit the supplier.\n\n## Reproduce\n\n```sh\npython3 -I -O -B research/bit-family-projector-algebra-seed10/verify.py\n```\n\nExpected: `PASS_BIT_FAMILY_PROJECTOR_ALGEBRA children=0,7 factors=2+4 q_rank=7 controls=3 no_new_kappa`.\n\nLocal checks: the verifier, three-control package check, and `scripts/research_package.py --check-only` pass on CPython 3.14.7. Python 3.12 is not installed locally, so the registered Python 3.12 replay wrapper was not run here.\n\n## Pins and credit\n\n- Base: `bce54fb3f895cbe5cd4c0eb477c3afeed100190f`.\n- Selected kappa: `836330098538459/500000000000000000`; selected PR589 source commit: `a5afc8c6169ea61ba7c51dfd3cade02cc7b13b46`.\n- Target result: PR #1351 head `6060e62e9d42a16eff493aba74c8a617a12d8041`, result blob `4865d97527a9457dd28c0439ba89a1b072a64008`.\n- Credit 1337isnot1337 for the PR #1351 target, commdata2338 for PR #1307's geometric census, and DreamingOfClouds/eumemic for the selected PR589/PR555 lineage. Prepared by Cinna Davis with substantial OpenAI Codex assistance; no independent human review is claimed. Apache-2.0.\n",
   "created_at": "2026-10-13T23:36:53Z",
-  "updated_at": "2026-10-14T04:28:05Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:46:43Z",
+  "closed_at": "2026-10-14T06:27:46Z",
+  "merged_at": "2026-10-14T06:27:46Z",
+  "state": "closed"
 }

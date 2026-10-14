@@ -4,8 +4,8 @@
   "title": "Finite complex circuit: L284 temporal gauge saves 156 per orientation",
   "body": "**Status: finite scalar construction.** No new κ, native supplier admission, or hosted result is claimed.\n\nAt base `bce54fb3f895cbe5cd4c0eb477c3afeed100190f`, this adds one exact temporal gauge on helper L284 in PR1263's frozen k8 word. L284 is eligible index 53, the first helper outside PR1259's seed-37 interval `[37,53)`; the package vendors and verifies PR1259's exact slice certificate. This is distinct from PR1385's L259 schedule and PR1369's zero-static census.\n\nThe exact all-integer DP covers every exponent in `[-3,4]` at each of 86 incident ADDs forward and `[-4,3]` backward. It charges entry, all transitions, and restoration. The temporal schedule saves 78 real / 156 complex primitives per orientation, while the best constant additional exponent saves zero:\n\n- Forward: 136,002 → 135,846 complex primitives; 16 SCALE transitions, total exponent variation 22.\n- Backward: 136,018 → 135,862; 16 SCALE transitions, total exponent variation 22.\n\nThe complete paid profile is unchanged, the payload remains 192 bits, and each transformed word agrees on all 712 formal input columns. The result does not compose L284 with other helper schedules and does not assert an optimum over other helpers.\n\nReproduce with Python 3.12:\n\n```sh\npython3.12 scripts/research_package.py --package research/k8-l284-temporal-seed37\n```\n\nExpected final line: `PASS_REGISTERED_RESEARCH_PACKAGE research/k8-l284-temporal-seed37 outcome=completed`.\n\nValidation passed on CPython 3.12.15 and 3.14.7, including the repository package pin check and selected-result verifier. Repository-wide `make verify`, hosted CI, native emission, and hosted-supplier admission were not run. Credit PR1259 for the temporal-gauge method and seed-37 slice, PR1385 for the adjacent L259 application and method source, PR1263 for the frozen word, and PR1161 for the lowerer engine. Substantial OpenAI Codex assistance is disclosed in the package.\n",
   "created_at": "2026-10-14T00:13:15Z",
-  "updated_at": "2026-10-14T00:13:53Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:47:25Z",
+  "closed_at": "2026-10-14T06:31:14Z",
+  "merged_at": "2026-10-14T06:31:14Z",
+  "state": "closed"
 }

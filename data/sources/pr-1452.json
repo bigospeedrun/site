@@ -4,8 +4,8 @@
   "title": "Performance: stream research provenance through one Git process",
   "body": "Research package validation launches two Git processes per pinned source and rereads the catalogue. This streams the same bytes through one Git process while preserving every object-ID, SHA-256, live-input and original-card check, with one-blob memory and no persistent cache. Complete 33-source old/new checks return identical results: 67 processes become one; the measured Windows median is 5.996 seconds versus 0.126 seconds. This is metadata timing only. Seven batch-reader and five existing package tests pass; the original Windows process-group timeout case is handled separately by PR1298.\n\nValidation: Python 3.12 registered replay with source pins and scoped controls; selected-result integrity or baseline bindings and diff checks pass. See the [reproduction instructions, exact sources and remaining questions](https://github.com/woklerx/integer-mult-bounds/blob/f785c7a847a396d1947bb9fdf3a936af487a70ab/research/git-provenance-stream/README.md). No selected source, certificate or kappa changes; no full selected circuit replay is claimed. Prepared by woklerx with substantial OpenAI Codex assistance, with predecessor attribution retained.\n",
   "created_at": "2026-10-14T00:54:45Z",
-  "updated_at": "2026-10-14T00:54:45Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:49:02Z",
+  "closed_at": "2026-10-14T06:42:42Z",
+  "merged_at": "2026-10-14T06:42:42Z",
+  "state": "closed"
 }
