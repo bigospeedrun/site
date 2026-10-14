@@ -4,8 +4,8 @@
   "title": "Research audit: F4 alternating trace is not by itself a phase-compilation obstruction (no new kappa)",
   "body": "## Research note / exact interface audit — no new kappa\n\nHistorical #620 extension-ring notes correctly observe that F4 Hermitian trace\nforms are alternating, but use the absence of odd norms to exclude the complex\nphase calculus. This scoped note distinguishes the orthonormal-basis method\nfrom the already-documented alternating-compatible quadratic-phase normal form.\nIt does not construct an Eisenstein supplier or modify the historical report.\n\nAdds only `research/f4-alternating-interface/`:\n- elementary trace-radical and complete-square arguments;\n- independent standard-library verifier: all Hermitian F4 matrices through\n  dimension 3; all nonsingular alternating binary forms in dimensions 2 and 4\n  with all even-valued quadratic refinements;\n- explicit even-weight ambient hyperbolic residual;\n- source pins, receipts, provenance, local claim and validation.\n\nReproduce from repository root:\n```\npython -B research/f4-alternating-interface/verify.py\npython -O -B research/f4-alternating-interface/verify.py\n```\nExpected: 452 phase cases, 114752 exact kernel entries, four rejected controls.\nBoth modes give identical receipts. Standalone relocated replay and exclusive\noutput protection passed. Consulted sources are pinned by committed Git blobs,\nnot platform-dependent checkout line endings. Selected certificate unchanged.\n\nBase: 7ee02b7c96d85f22b38d28bd7ed49bb8c1aeb261; OS-random seed 42.\nCredit Joel Pulikkan / GamingPuzzled, the endpoint normal-form authors, and\nhipotures' alternating-block predecessor #41; see NOTICE.md and SOURCES.json.\nSubstantial OpenAI assistant/Penguin assistance disclosed.\n\nLimitations: no full formal proof, no supplied fitting decoder/frame schedule,\nno adapter/copy invoice, no physical owners or fresh supplier composition.\nExisting Eisenstein copy-floor results are not invalidated. Full make verify,\nselected cold replay and remote CI were not run or claimed.\n",
   "created_at": "2026-10-13T06:35:27Z",
-  "updated_at": "2026-10-13T06:36:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T04:59:10Z",
+  "closed_at": "2026-10-14T04:52:56Z",
+  "merged_at": "2026-10-14T04:52:56Z",
+  "state": "closed"
 }

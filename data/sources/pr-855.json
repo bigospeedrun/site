@@ -4,8 +4,8 @@
   "title": "Negative result: exact packing obstruction for two coded-helper embeddings",
   "body": "The coded helper from #781 survives native integration into two placements, but its complete helper cost exceeds the pinned PR626 budget. This adds four explicit circuits and a solver-free exact certificate excluding all 2,700 nonempty mixtures with the original providers. **Scoped negative result; no new exponent.**\n\nThe positive placement replaces three packet helpers with one coded helper (R490); the negative placement adds one helper to an existing expanded cell (R493). Both are carried through `ck` and `jp8`, including the necessary dirty-input corrections, native frame changes and cleanup repairs. Fresh replay checks every column in both orientations.\n\nThe cost proof drops time windows and physical-family restrictions, enumerates all 1,163 integer width patterns, and verifies 43,031 rational potential inequalities. Every mixture still exceeds the historical endpoint's moment budget; the smallest certified excess is greater than 0.023249063103. The integer correction closes the one-call case left open by the fractional bound.\n\n```sh\npython -B research/complex-coded-helper-global-screen/verify.py\n```\n\nValidation: Python 3.13.5 and optimized 3.14.4 on Windows, identical mathematical results; five native failure controls, three exact-certificate controls, and gzip recompression control. No repository-wide suite or full selected-frontier replay is claimed.\n\nScope is the four retained circuits, fixed PR626 geometry and dispatch, and whole-helper hosting. No changed-word phase/global admission, general frame optimum, or claim about the current PR799 construction. Only the new research directory is added. The README explains the distinction from #795, #850 and #815 and records the bounded search.\n\nPrepared by NeoKazuya with OpenAI Codex (GPT-6-Astra) assistance. Apache-2.0. Source pins and notices retain #781, icekylinx's packet/auditor lineage, Jeremy Kothe/AtomScout/Port480's K-triangle and transfer work, Chafik Boukhalfa's owner/frame work, DreamingOfClouds' cold-end/audit work, and their predecessors.\n",
   "created_at": "2026-10-13T07:45:42Z",
-  "updated_at": "2026-10-13T07:45:42Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T04:59:29Z",
+  "closed_at": "2026-10-14T04:52:56Z",
+  "merged_at": "2026-10-14T04:52:56Z",
+  "state": "closed"
 }

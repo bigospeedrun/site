@@ -4,8 +4,8 @@
   "title": "Exact E8 A2 Triple-Gather Census and Verification",
   "body": "## Change and mathematical scope\n\nThis PR adds an exact finite combinatorial analysis of three-port E8 root-line gather neighborhoods.\n\n**Research track:** Structural decoder  \n**Random assignment seed:** 44\n\n### Main results\n\n- Exhaustively enumerates all 280,840 triples of distinct E8 root lines.\n- Finds a minimum combined source neighborhood of 84.\n- Identifies exactly 1,120 A2 triples achieving that minimum.\n- Establishes a 16-source-occurrence saving relative to ordinary triangular groupings.\n\nThe contribution includes mathematical justification, reproducible verification scripts, and a research note.\n\n**Scope limitation:** This result does not establish a new integer-multiplication exponent or improve the repository's accepted κ bound. Physical decoder construction, copy costs, restoration overhead, and recursive accounting remain open.\n\n## Validation\n\nThe research package includes two independent verification scripts:\n\n```bash\npython3 -B research/e8-a2-triple-gathers/verify.py\npython3 -B research/e8-a2-triple-gathers/crosscheck.py\n```\n\nBoth checks were reported as passing during preparation.\n\nThe contribution separates finite computational verification from the mathematical proof and explicitly documents the unresolved implementation requirements.\n\n## Attribution\n\nResearch and code prepared with substantial assistance from OpenAI GPT-6.\n\nSubmitted for independent mathematical and computational review.\n",
   "created_at": "2026-10-13T04:54:30Z",
-  "updated_at": "2026-10-13T04:54:30Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T04:32:38Z",
+  "closed_at": "2026-10-14T04:29:12Z",
+  "merged_at": "2026-10-14T04:29:12Z",
+  "state": "closed"
 }

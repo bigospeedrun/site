@@ -4,8 +4,8 @@
   "title": "Scoped negative result: Gaussian E8 planar and incidence decoder obstructions",
   "body": "This mathematical research note closes three restricted routes toward a cheaper asymmetric decoder for the 60 Gaussian E8 lines. It does not establish the unrestricted optimum or claim a new kappa.\n\n- A general rank proof gives cost at least 60 for arbitrary mixtures of planar totals and rectangles whose pairing rank equals their smaller support size. This includes the standard orthogonal frames and all planar replacements.\n- Exact eight-line parity witnesses show that the binary span of the 30 full six-line planes cannot supply a fitting diagonal, even with arbitrary source supports. Adding individually forbidden-free controls still costs at least 60.\n- An exact coefficient identity for 960 full-hyperplane rectangle types forces all 60 symmetric rank-three terms, giving cost at least 180 in that class.\n\nThe inherited Dfc accounting gives `D/T <= -120` whenever these classes have cost at least 60. Even zero additional helper, source-access, frame, restoration, and recursive expenses cannot give a positive deficit. Partial supports and unrestricted mixtures remain open.\n\nBase: `66849e1475c930fd7732b1a0067ffee7e1e95f60`. Only the new research package changes. Predecessor credit and source pins cover PR620, PR703, and the format-limit accounting. The final overlap check identifies @thakrarsagar's concurrent PR738 general floor of 40; these are distinct, stronger subclass obstructions, not an improvement to that general bound.\n\nValidation:\n\n```sh\npython3 -B research/gaussian-e8-asymmetric-copy/verify.py\npython3 -B research/gaussian-e8-asymmetric-copy/independent_audit.py\n```\n\nThe main replay passes on Python 3.9.6 and 3.14.6. A relocated committed archive passes both commands. The independent audit imports no package geometry or verifier code. Checks include 480 independent rational rank comparisons, 120 corrupted incidence witnesses, exact cost-60 and cost-820 decompositions, and complete finite kernel certificates. Optimized Python is rejected by the main verifier. No proof-assistant formalization or independent human review is claimed.\n\nPrepared for Charles Bethin with substantial OpenAI Codex assistance. Apache-2.0.\n",
   "created_at": "2026-10-13T05:19:06Z",
-  "updated_at": "2026-10-13T05:20:12Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T04:33:29Z",
+  "closed_at": "2026-10-14T04:30:13Z",
+  "merged_at": "2026-10-14T04:30:13Z",
+  "state": "closed"
 }

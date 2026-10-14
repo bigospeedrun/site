@@ -4,8 +4,8 @@
   "title": "Tooling: prune signed-sparse coefficient enumeration with exact stream equivalence",
   "body": "Tooling improvement; no new κ. The historical signed-sparse coefficient checker scans all `4^h` coordinate words before rejecting excessive degree. This change rejects impossible prefixes while preserving the exact ordered term stream, parity filter, feature guard and expansion cap.\n\nAt h=8, seven alternating-order runs measured enumeration speedups of 574x / 52x / 3.08x for q=2 / 4 / 8. These are millisecond-scale microbenchmarks. The standard complete audit measured 0.982x: **no end-to-end speedup is claimed**. All mathematical certificate fields are identical; two regenerated certificates change only the affected source hash.\n\nValidation: exhaustive equivalence for all 13 admissible (h,q) pairs through h=8, pinned original implementation and complete audit comparison, 14 relevant tests, two deliberate factor corruptions rejected, and the 10 signed-sparse tests also passing under `python3 -O`. Reproduce with:\n\n```sh\npython3 -B research/signed-sparse-pruning/reproduce.py\n```\n\nBase: `7ee02b7c96d85f22b38d28bd7ed49bb8c1aeb261`. Seed 92, verification engineering. No pinned coordination issue; scope and candidate selection are recorded locally. Checked current PR metadata for overlap. Existing performance PRs address other routines. `upstream/` and selected frontier are unchanged; full repository verification and selected cold replay were not run for this historical helper change.\n\nEvidence, exact source pins, limits and predecessor credit: `research/signed-sparse-pruning/README.md` and `RESULT.json`. Credits the existing signed-sparse construction integrated by Douglas R. Colkitt. Contribution by anudeepadi with substantial OpenAI Codex AI assistance; Apache-2.0.\n",
   "created_at": "2026-10-13T06:40:40Z",
-  "updated_at": "2026-10-13T06:40:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T04:59:14Z",
+  "closed_at": "2026-10-14T04:52:56Z",
+  "merged_at": "2026-10-14T04:52:56Z",
+  "state": "closed"
 }

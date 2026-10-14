@@ -4,8 +4,8 @@
   "title": "Research: JP8 coefficient reuse across all scalar phases (no new kappa)",
   "body": "Finite complex-supplier circuit improvement; no new kappa.\n\nSaves 18,510 forward and 46,400 backward real-component primitives beyond PR696. Both full scalar programs, 716 logical plus nine private input columns, prefix bounds and 14 negative controls pass. Concurrent PR722 cleanup sharing is credited; this adds other forward phases and 1,088 backward precondition runs. PR739 is also credited.\n\nFull proof, accounting, source pins, certificate, validation and AI-assistance disclosure are in research/complex-coefficient-reuse/README.md.\n\nReproduce: python3 -B research/complex-coefficient-reuse/verify.py",
   "created_at": "2026-10-13T05:08:44Z",
-  "updated_at": "2026-10-13T05:08:44Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T04:33:13Z",
+  "closed_at": "2026-10-14T04:30:13Z",
+  "merged_at": "2026-10-14T04:30:13Z",
+  "state": "closed"
 }
