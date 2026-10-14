@@ -709,7 +709,7 @@
       "name": "Van der Waerden numbers",
       "quantity": "c\\text{ in }W_r(k)>k^{ck\\lfloor\\log_2r\\rfloor}",
       "direction": "higher",
-      "statement": "The quantity is the coefficient \\(c\\) in \\(W_r(k)>k^{ck\\lfloor\\log_2r\\rfloor}\\), for sufficiently large \\(k\\), uniformly in \\(r\\). A higher coefficient is better. The claim assumes the upstream geometric and counting arguments, shorter dilation, local-lemma balance and separate balancing of light positions. The sharper region allows every fixed \\(c<1/24\\); \\(1/24\\) is not an attained value.",
+      "statement": "The quantity is the coefficient \\(c\\) in \\(W_r(k)>k^{ck\\lfloor\\log_2r\\rfloor}\\), for sufficiently large \\(k\\), uniformly in \\(r\\). A higher coefficient is better. Each claim assumes the upstream OpenAI transfer and states the lemmas it adds. The current region allows every fixed \\(c<1/8\\); \\(1/8\\) is not an attained value.",
       "baseline": {
         "value": "1/100000",
         "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Quantitative-Superexponential-Bounds-for-van-der-Waerden-Numbers-September-23-2026/paper.pdf",
@@ -730,7 +730,7 @@
           "lean": false,
           "leanNote": "No.",
           "evidence": "claimed",
-          "note": "",
+          "note": "It assumes the upstream geometric and counting arguments, shorter dilation, local-lemma balance and separate balancing of light positions. Every fixed \\(c<1/24\\) is admitted.",
           "authors": [
             {
               "name": "Rohan Arun",
@@ -739,6 +739,72 @@
           ],
           "proofScope": "No Lean proof is supplied.",
           "bound": "W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/25}"
+        },
+        {
+          "author": "Artus Krohn-Grimberghe",
+          "handle": "artuskg",
+          "value": "1/19",
+          "display": "1/19",
+          "date": "2026-10-10T21:30:00-07:00",
+          "dateSource": "https://github.com/rohanarun/van-der-waerden-refinement/pull/4",
+          "dateKind": "first-stated",
+          "url": "https://github.com/artuskg/van-der-waerden-refinement/blob/4b4e80ea5e0ffec956577004905f22659af0bff5/README.md#L107-L110",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "A repeated-key certificate cover; every fixed \\(c<1/18\\) is admitted. It is conditional on the global outer-color dichotomy of the sharpened construction.",
+          "authors": [
+            {
+              "name": "Artus Krohn-Grimberghe",
+              "url": "https://github.com/artuskg"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied.",
+          "bound": "W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/19}"
+        },
+        {
+          "author": "DaysSky",
+          "handle": "DaysSky",
+          "value": "1/16",
+          "display": "1/16",
+          "date": "2026-10-12T17:59:00-07:00",
+          "dateSource": "https://github.com/DaysSky/van-der-waerden-refinement/commit/e3191497c499913f70ca43df50338646ac7d378b",
+          "dateKind": "first-stated",
+          "url": "https://github.com/DaysSky/van-der-waerden-refinement/blob/e3191497c499913f70ca43df50338646ac7d378b/README.md#L13-L17",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Splits rich events by carry rank; every fixed \\(c<1/15\\) is admitted. The new counting lemmas are written only; the exact audit checks the parameter margins.",
+          "authors": [
+            {
+              "name": "DaysSky",
+              "url": "https://github.com/DaysSky"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied.",
+          "bound": "W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/16}"
+        },
+        {
+          "author": "DaysSky",
+          "handle": "DaysSky",
+          "value": "1/9",
+          "display": "1/9",
+          "date": "2026-10-12T19:23:00-07:00",
+          "dateSource": "https://github.com/DaysSky/van-der-waerden-refinement/commit/987c96cfda59b65728ae4dcd5adc8a64ff95bab2",
+          "dateKind": "first-stated",
+          "url": "https://github.com/DaysSky/van-der-waerden-refinement/blob/987c96cfda59b65728ae4dcd5adc8a64ff95bab2/README.md#L13-L17",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Counts short-period runs instead of label words; every fixed \\(c<1/8\\) is admitted. The run lemmas and the third local-lemma family are written only; the exact audit checks the parameter margins, not these lemmas.",
+          "authors": [
+            {
+              "name": "DaysSky",
+              "url": "https://github.com/DaysSky"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied; an open pull request adds partial Lean for selected steps.",
+          "bound": "W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/9}"
         }
       ],
       "repos": [
@@ -748,7 +814,7 @@
           "note": "The sharper region gives every fixed coefficient below the stated supremum."
         }
       ],
-      "bestHandle": "rohanarun"
+      "bestHandle": "DaysSky"
     },
     {
       "family": "161",
