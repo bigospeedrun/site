@@ -1,0 +1,11 @@
+{
+  "number": 1848,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1848",
+  "title": "Characterize mixed-precision cancellation on affine lattices",
+  "body": "Extends the existing product-grid inverse-precision criterion to an unrestricted affine reachable lattice `x=x0+Bz`. For rational rounded-linear increments and `w<v`, equality on the entire lattice holds exactly when `2^w A B` is integral and the affine offset has equal coarse/fine roundings. The proof handles translated residue classes and supplies safe correlated-source examples that the product-grid criterion excludes.\n\nPython 3.12.14 registered optimized replay passes: 34,821 complete-residue scalar cases, 52,488 matrix-affine cases, 867 arbitrary-dirty inverse trials and five controls. Source pins and git diff checks pass.\n\nThis is an exact rounded-linear cancellation criterion, not a proof that a selected caller maintains the lattice or that internally rounded leaves are linear. No supplier, cold replay or kappa change. Credits and substantial OpenAI Codex assistance disclosed; Apache-2.0.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 08. The selected record is unchanged.\n",
+  "created_at": "2026-10-14T11:55:04Z",
+  "updated_at": "2026-10-14T11:55:04Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

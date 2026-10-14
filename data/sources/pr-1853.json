@@ -1,0 +1,11 @@
+{
+  "number": 1853,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1853",
+  "title": "Certify bounded mixed-precision cancellation by exact floor sums",
+  "body": "Mixed-precision inverse increments may agree on every bounded reachable scalar input even when the unrestricted integrality test fails. This package proves an exact residue criterion and uses Euclidean floor sums to count every safe input and return the least failing one without enumerating the interval.\n\nIndependent direct Fraction checks cover 7,125 intervals and 199,500 inputs; a separate period oracle checks 0..2^200. Signed ties, arbitrary target dirt and invalid-domain controls are retained. Python 3.12 registered replay and diff checks pass.\n\nFollows `mixed-precision-inverse-boundary`; exact Git/SHA256 pins, task draw, complete proof and structured next question included. Scalar bounded domains only: no production reachability, nonlinear PR628, compiler or new kappa claim. Prepared with substantial OpenAI Codex assistance; Apache-2.0.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 13. The selected record is unchanged.\n",
+  "created_at": "2026-10-14T11:55:22Z",
+  "updated_at": "2026-10-14T11:55:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

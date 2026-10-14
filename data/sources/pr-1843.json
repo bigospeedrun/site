@@ -1,0 +1,11 @@
+{
+  "number": 1843,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1843",
+  "title": "Audit all selected HPE tail omissions against helper hypotheses",
+  "body": "Audit all selected HPE tail omissions against formal helper hypotheses\n\nIndependent rational scalar replay and complete single-tail-omission atlas for the selected PR1094 local word, binding 78 proper-ended helpers to unit-row and zero-column obligations.\n\nAll 78 helper unit rows/zero columns pass; 16 omissions fail both predicates, 97 only rows, 3 only columns. Every omission has an exact rank-one syndrome and separate literal numeric input witness; complete original 704-column scalar map checked.\n\nReproduce: `python3.12 scripts/research_package.py --package research/selected-hpe-tail-fault-atlas`. Positive and meaningful failure controls run under Python 3.12.\n\nScope and remaining obligations are in the package README. No selected frontier change or new kappa. Prepared for woklerx with substantial OpenAI Codex assistance; Apache-2.0.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 03. The selected record is unchanged.\n",
+  "created_at": "2026-10-14T11:54:47Z",
+  "updated_at": "2026-10-14T11:54:47Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

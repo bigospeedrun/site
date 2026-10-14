@@ -1,0 +1,11 @@
+{
+  "number": 1845,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1845",
+  "title": "Audit injectivity of target-adaptive precision in the PR628 leaf",
+  "body": "Audit information loss from adaptive target-grid precision\n\nFalsify injectivity of a coarsest-compatible target-adaptive precision policy on the actual pinned PR628 leaf, and prove an exact residue-translation criterion for policy invertibility.\n\nActual PR628 leaf collapses targets 0 and 1/32 to -5/16. The proof gives all integer collision pairs and a general residue-permutation criterion. Verification covers 387 actual collisions, 1,161 fixed-grid inverses, 774 stored-branch inverses and 3,412 residue policies.\n\nReproduce: `python3.12 scripts/research_package.py --package research/adaptive-grid-injectivity-audit`. Positive and meaningful failure controls run under Python 3.12.\n\nScope and remaining obligations are in the package README. No selected frontier change or new kappa. Prepared for woklerx with substantial OpenAI Codex assistance; Apache-2.0.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 05. The selected record is unchanged.\n",
+  "created_at": "2026-10-14T11:54:54Z",
+  "updated_at": "2026-10-14T11:54:54Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

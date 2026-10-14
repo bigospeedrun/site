@@ -1,0 +1,11 @@
+{
+  "number": 1844,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1844",
+  "title": "Prove the complete T29 capacity projection spectrum",
+  "body": "Prove every integer in the T29 capacity projection is feasible\n\nProve that every integer 4824 <= x <= 12992 is attained as the number of capacity-16 {9,7} bins in a realization of the sharp T29 whole-helper remainder profile.\n\nFresh enumeration of 1163 legal patterns rederives the necessary bounds. A parity-split affine family attains all 8169 integer values; independent symbolic and concrete invoices plus four failure controls pass.\n\nReproduce: `python3.12 scripts/research_package.py --package research/t29-capacity-projection-spectrum`. Positive and meaningful failure controls run under Python 3.12.\n\nScope and remaining obligations are in the package README. No selected frontier change or new kappa. Prepared for woklerx with substantial OpenAI Codex assistance; Apache-2.0.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 04. The selected record is unchanged.\n",
+  "created_at": "2026-10-14T11:54:50Z",
+  "updated_at": "2026-10-14T11:54:50Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
