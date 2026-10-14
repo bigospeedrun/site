@@ -986,14 +986,36 @@
       },
       "claims": [
         {
+          "author": "Vladimir Reshetnikov",
+          "handle": "VladimirReshetnikov",
+          "value": "25",
+          "display": "5\\times 5\\text{ pattern }(25\\text{ cells})",
+          "date": "2026-10-07T14:24:00-07:00",
+          "dateSource": "https://github.com/VladimirReshetnikov/ProveIt/commit/bfbfe915186310fdf745a7a089e7dd88eeb773b1",
+          "dateKind": "first-stated",
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/bfbfe915186310fdf745a7a089e7dd88eeb773b1/Combinatorics/OrderedMatrices/Research/ordered-matrix-removal/ordered_matrix_removal.tex#L46-L50",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "OpenAI's anchor is replaced by the \\(3\\times 3\\) crown.",
+          "authors": [
+            {
+              "name": "Vladimir Reshetnikov",
+              "url": "https://github.com/VladimirReshetnikov"
+            }
+          ],
+          "proofScope": "Written proof with finite checks; no Lean proof is supplied.",
+          "bound": "5\\times 5\\text{ pattern }(25\\text{ cells})"
+        },
+        {
           "author": "erebos-labs",
           "handle": "erebos-labs",
           "value": "16",
           "display": "4\\times 4\\text{ pattern }(16\\text{ cells})",
-          "date": "2026-10-09T08:07:00-07:00",
-          "dateSource": "https://github.com/erebos-labs/ordered-matrix-removal-4x4/commit/6d21ce36e83b71d8a44015016cf3ac77e44b55ff",
+          "date": "2026-10-09T05:40:00-07:00",
+          "dateSource": "https://github.com/erebos-labs/ordered-matrix-removal-4x4/releases/tag/v1.0.0",
           "dateKind": "first-stated",
-          "url": "https://github.com/erebos-labs/ordered-matrix-removal-4x4/blob/6d21ce36e83b71d8a44015016cf3ac77e44b55ff/README.md",
+          "url": "https://github.com/erebos-labs/ordered-matrix-removal-4x4/blob/45248e57ab1c2197419981bba04e1cde050494ca/README.md",
           "lean": true,
           "leanNote": "Yes; main obstruction and later repair theorem.",
           "evidence": "claimed",
@@ -1028,6 +1050,28 @@
           ],
           "proofScope": "Source inspection only; no independent rerun. OrderedRemoval.Rectangular.no_polynomial_removal_bound states that the fixed 3×4 pattern has no polynomial removal bound, for arbitrarily small distance parameters and arbitrarily large hosts, with arbitrary binary repairs.",
           "bound": "3\\times 4\\text{ pattern }(12\\text{ cells})"
+        },
+        {
+          "author": "Ryan Shea",
+          "handle": "shea256",
+          "value": "9",
+          "display": "3\\times 3\\text{ pattern }(9\\text{ cells})",
+          "date": "2026-10-12T07:10:00-07:00",
+          "dateSource": "https://github.com/shea256/ordered-binary-matrix-removal/pull/10",
+          "dateKind": "first-stated",
+          "url": "https://github.com/shea256/ordered-binary-matrix-removal/blob/35f5784da66428f27e568ede22a9f1163403fa9a/README.md#L7-L44",
+          "lean": true,
+          "leanNote": "Author-supplied Lean theorem; source inspected, no independent rerun.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Ryan Shea",
+              "url": "https://github.com/shea256"
+            }
+          ],
+          "proofScope": "Source inspection only; no independent rerun. OrderedRemoval.Crown.no_polynomial_removal_bound states that the fixed 3×3 crown has no polynomial removal bound, for arbitrarily small distance parameters and arbitrarily large hosts, with arbitrary binary repairs. Lean uses a padded host; the exact copy count and the smaller written host are outside Lean.",
+          "bound": "3\\times 3\\text{ pattern }(9\\text{ cells})"
         }
       ],
       "repos": [
@@ -1039,7 +1083,7 @@
         {
           "name": "shea256/ordered-binary-matrix-removal",
           "url": "https://github.com/shea256/ordered-binary-matrix-removal",
-          "note": "A \\(3\\times 4\\) obstruction; author-supplied Lean theorem, no independent rerun."
+          "note": "\\(3\\times 3\\) and earlier \\(3\\times 4\\) obstructions; author-supplied Lean theorems, no independent rerun."
         },
         {
           "name": "wzn1118/h4-ordered-matrix-removal",
