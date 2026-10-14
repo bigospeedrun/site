@@ -1,0 +1,11 @@
+{
+  "number": 1891,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1891",
+  "title": "Reject noncanonical replay input paths before planning",
+  "body": "When a replay dependency is written as `./fixtures/input.txt`, metadata validation accepts it but Git reports `fixtures/input.txt` when it changes. The current planner silently returns an empty replay matrix. This patch requires one canonical repository-relative POSIX spelling both in metadata and during planning, including previously committed manifests. Deleted canonical inputs still select their consumers.\n\nThe bug is reproduced end to end in a temporary Git repository and with a fully valid provenance-only package plus an additional CI input. No existing registered input at the audited base used these aliases. The fix changes replay admission, not mathematical checking coverage or the selected result.\n\nValidation: 5 focused path tests, 6 replay-selection tests and 18 onboarding tests pass on Python 3.12. The original source fails 9 path/selection controls and independently accepts the full-metadata alias fixture. Baseline source bindings and git diff --check pass. Formatting preserved all five new source ASTs.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. Original random card: independent-moment, refined by an explicit changed-scope declaration to a prerequisite source-invalidation audit. Prepared for woklerx with substantial OpenAI Codex assistance. Apache-2.0. No full supplier replay or new kappa claim.\n\n[Exact committed audit artifact](https://github.com/woklerx/integer-mult-bounds/commit/8b93e9e1b60dc73768ddf4006fcff67708a5453b). Commit `8b93e9e1b60dc73768ddf4006fcff67708a5453b`; base `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18924424), round 04.\n",
+  "created_at": "2026-10-14T13:28:49Z",
+  "updated_at": "2026-10-14T13:28:49Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
