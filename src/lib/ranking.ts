@@ -74,22 +74,32 @@ function decimalPlaces(score:string):number|null {
  while(d%5n===0n){d/=5n;fives++}
  return d===1n?Math.max(twos,fives):null;
 }
-export function boundPrecision(scores:string[],kappa:boolean):number {
+// Display caps (Nil, 2026-10-14): the varying part of a shown bound has at most this
+// many significant digits. Exact scores stay in the data, in ranking and in each
+// row's Exact score tooltip. Scores that agree up to the cap show the same label.
+export const displayDigits={landing:10,table:20} as const;
+
+// The fewest significant digits (at least 3) that keep distinct scores apart, up to the cap.
+// Exponent boards count decimal places instead; their exponents are below 10.
+export function boundPrecision(scores:string[],kappa:boolean,cap:number=displayDigits.table):number {
  if(kappa){
   const unique=scores.filter((score,index)=>scores.findIndex(peer=>compare(score,peer)===0)===index);
-  // No precision cap: exact rational scores must never collapse to one label.
-  for(let digits=3;;digits++)if(new Set(unique.map(score=>scientificSaving(score,digits))).size===unique.length)return digits;
+  for(let digits=3;digits<cap;digits++)if(new Set(unique.map(score=>scientificSaving(score,digits))).size===unique.length)return digits;
+  return cap;
  }
- return Math.max(0,...scores.map(score=>decimalPlaces(score)??0));
+ return Math.min(cap-1,Math.max(0,...scores.map(score=>decimalPlaces(score)??0)));
 }
-function exactExponent(score:string):string {
+// Exact when short enough; otherwise rounded up, so the shown bound is never stronger.
+function exactExponent(score:string,cap:number):string {
  const places=decimalPlaces(score);
- if(places!==null)return boundExponent(score,false,places);
  const [n,d='1']=score.split('/');
- return `\\frac{${n}}{${d}}`;
+ const room=Math.max(0,cap-String(BigInt(n)/BigInt(d)).length);
+ if(places!==null&&places<=room)return boundExponent(score,false,places);
+ if(places===null&&n.length+d.length<=cap)return `\\frac{${n}}{${d}}`;
+ return boundExponent(score,false,room).replace(/\.0+$|(\.\d*?)0+$/,'$1');
 }
-export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number):string {
- const exponent=kappa?'1-'+scientificSaving(record.score,digits).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score);
+export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number,cap:number=displayDigits.table):string {
+ const exponent=kappa?'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);
  const power=exponent+(record.scoreRelation==='strict-upper-bound'||record.bound.includes('\\varepsilon')?'+\\varepsilon':'');
  if(kappa||record.bound.includes('\\log'))return `O(n \\log^{${power}} n)`;
  if(record.bound.includes('2^{'))return `O${record.bound.startsWith('O^*')?'^*':''}(2^{${power}n})`;

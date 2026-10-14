@@ -3,7 +3,7 @@ import avatars from './author-avatars.json';
 import {authorFromProfile, recordEvidenceUrl} from './record-links';
 import {classifyEvidence,isBoardEntry,isBreakthroughRecord} from './evidence';
 import type {Problem,RecordEntry,Repo} from './types';
-import {decimal,logExponent,boundPrecision,tableBound} from './ranking';
+import {decimal,logExponent,boundPrecision,tableBound,displayDigits} from './ranking';
 // This is the boundary adapter for the reviewed, data-only snapshot. No repo code runs.
 const files=import.meta.glob('../data/*.json',{eager:true,import:'default'});
 const read=(file:string):any=>files['../data/'+file];
@@ -41,7 +41,11 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  });
  const kappa=data.score.symbol==='kappa';
  const digits=boundPrecision(records.filter(r=>isBoardEntry(p.slug,r)).map(r=>r.score),kappa);
- for(const record of records)if(record.id!=='classical-baseline')record.bound=tableBound(record,kappa,digits);
+ // Desktop tables, charts and posts use the table cap; the landing page and phone tables use the landing cap.
+ for(const record of records)if(record.id!=='classical-baseline'){
+  record.shortBound=tableBound(record,kappa,digits,displayDigits.landing);
+  record.bound=tableBound(record,kappa,digits);
+ }
  return {slug:p.slug,title:titles[p.slug],model:data.model.id.replaceAll('-',' '),modelId:data.model.id,scope:data.model.description,direction:data.score.direction,symbol:data.score.symbol==='kappa'?'kappa':'exponent',repos,records,lastDataCheck:data.updated_at,lastProofCheck:records.filter(r=>r.rerunStatus?.checked_at&&['passed','failed'].includes(r.rerunStatus.state)).map(r=>r.rerunStatus!.checked_at!).filter(Boolean).sort().at(-1)??null,sourceFetch:data.checked_at,pending:'Independent checks have not run. No site proof badges.',notes:[],};
 });
 

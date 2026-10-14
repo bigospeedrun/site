@@ -21,8 +21,8 @@ const rows = [
   const problem=problems.find(p=>p.slug===row.slug)!;
   const records=boardRecords(problem);
   const breakthroughRecord=problem.records.find(record=>record.id===row.breakthroughId)!;
-  const breakthrough=breakthroughRecord.bound;
-  const latest=landingRecords(records,problem.direction).map(record=>({bound:record.bound,url:record.evidence[0]?.url??'/'+row.slug,evidenceLevel:record.evidenceLevel,date:record.date,endpoint:record.scoreRelation==='strict-upper-bound'}));
+  const breakthrough=breakthroughRecord.shortBound??breakthroughRecord.bound;
+  const latest=landingRecords(records,problem.direction).map(record=>({bound:record.shortBound??record.bound,url:record.evidence[0]?.url??'/'+row.slug,evidenceLevel:record.evidenceLevel,date:record.date,endpoint:record.scoreRelation==='strict-upper-bound'}));
   return {...row,href:'/'+row.slug,name:problemDisplayName(row.slug),breakthrough,latest,endpoint:latest.some(record=>record.endpoint)};
 });
 
