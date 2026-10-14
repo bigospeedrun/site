@@ -1,0 +1,11 @@
+{
+  "number": 2155,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2155",
+  "title": "Deferred: ExclusionCircuit.verify_embedding compile residual (~1.7× / ~23ms)",
+  "body": "## Deferred — do not merge\n\nIndependent skeptical review deferred this after publication: equivalence and pin hygiene hold, but the win is a **noisy post-#2001 micro-opt** (~56→33 ms, title 1.71×; independent rebenches ~1.5× with rounds as low as ~1.12×), not a #756-class tooling gain. Absolute wall save is ~20–30 ms on a residual path after merged #2001 already took embedding 323→59 ms.\n\nKeep the packaged evidence on `VictorLiwentao:cursor/exclusion-embedding-compile-60b9` (`research/exclusion-embedding-compile/`). Reopen only if a hotter bottleneck or clearer absolute-time story appears.\n\n**Tooling improvement; no new kappa.** Identity claim stands; significance does not meet the upstream bar.\n\nPrepared by Wentao Li ([VictorLiwentao](https://github.com/VictorLiwentao), [@Is__Victor](https://x.com/Is__Victor)) with substantial AI assistance.",
+  "created_at": "2026-10-14T21:15:01Z",
+  "updated_at": "2026-10-14T21:17:36Z",
+  "closed_at": "2026-10-14T21:17:35Z",
+  "merged_at": null,
+  "state": "closed"
+}
