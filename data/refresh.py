@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
 IMPORTER_VERSION = 3
+MAX_SCORE_CHARS = 4096  # record score maxLength in schemas/problem-v1.json
 
 def dump(root, path, data):
     p = root / path
@@ -36,11 +37,15 @@ def title_score(title):
     if len(values) != 1:
         return None
     v = values[0]
+    # Titles are untrusted. A score above the schema limit (or a huge exponent,
+    # which stalls Fraction) leaves the PR for review instead of failing refresh.
+    if len(v) > MAX_SCORE_CHARS or any(int(e) > MAX_SCORE_CHARS for e in re.findall(r'(?:e-|/10\^)(\d+)', v)):
+        return None
     if '/10^' in v:
         a, b = v.split('/10^'); q = Fraction(a) / 10**int(b)
     else:
         q = Fraction(v)
-    return str(q) if 0 < q < 1 else None
+    return str(q) if 0 < q < 1 and len(str(q)) <= MAX_SCORE_CHARS else None
 
 def refresh(stage, now):
     day = now[:10]

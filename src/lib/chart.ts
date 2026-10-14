@@ -1,4 +1,4 @@
-import { ranked } from './ranking.ts';
+import { ranked, scoreNumber } from './ranking.ts';
 
 export interface ChartEntry {
  id: string; repoId: number; score: string; scoreRelation?: string; level: string; time: number;
@@ -7,10 +7,7 @@ export interface ChartEntry {
  avatar?: string; initials?: string;
 }
 
-export const scoreValue = (score: string): number => {
- const [n, d = '1'] = score.split('/');
- return Number(n) / Number(d);
-};
+export const scoreValue = (score: string): number => scoreNumber(score);
 
 // A source or commit date is usable even when scientific priority is unknown.
 // Observation timestamps and publication years do not establish a dated result.

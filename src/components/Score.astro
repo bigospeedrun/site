@@ -1,9 +1,9 @@
 ---
 import type {ScoreRelation} from '../lib/types';
-import {decimal} from '../lib/ranking';
+import {decimal, scoreNumber} from '../lib/ranking';
 interface Props {score:string;relation?:ScoreRelation;expandable?:boolean;precision?:number;}
 const {score,relation='attained',expandable=false,precision=3}=Astro.props;
-const [a,b='1']=score.split('/');const value=Number(a)/Number(b);
+const value=scoreNumber(score);
 const scientific=value!==0&&Math.abs(value)<.001;
 const [coefficient,exponent]=value.toExponential(precision).split('e');
 ---

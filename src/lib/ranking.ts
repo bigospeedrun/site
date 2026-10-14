@@ -3,8 +3,17 @@ export function compare(a: string, b: string): number {
  const [an,ad='1']=a.split('/').map(String),[bn,bd='1']=b.split('/').map(String);
  const d=BigInt(an)*BigInt(bd)-BigInt(bn)*BigInt(ad);return d<0n?-1:d>0n?1:0;
 }
+// Number() of a part above about 309 digits is Infinity, so a long exact score
+// would become NaN. Divide with BigInt to 20 significant digits first.
+export function scoreNumber(score: string): number {
+ const [n,d='1']=score.split('/');const num=BigInt(n),den=BigInt(d);
+ if(num===0n)return 0;
+ const abs=num<0n?-num:num;const shift=20-(abs.toString().length-den.toString().length);
+ const q=shift>=0?abs*10n**BigInt(shift)/den:abs/(den*10n**BigInt(-shift));
+ return Number(`${num<0n?'-':''}${q}e${-shift}`);
+}
 export function decimal(score: string): string {
- const [n,d='1']=score.split('/');const value=Number(n)/Number(d);
+ const value=scoreNumber(score);
  return Math.abs(value)<0.000001 && value!==0?value.toExponential(6):Number(value.toPrecision(10)).toString();
 }
 // An open endpoint is distinct from an attained value at the same score.

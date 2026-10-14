@@ -1,4 +1,14 @@
-import { test } from 'node:test';import assert from 'node:assert/strict';import { compare, ranked, progression, scorePrecision } from './ranking.ts';
+import { test } from 'node:test';import assert from 'node:assert/strict';import { compare, ranked, progression, scorePrecision, scoreNumber, decimal, scientificSaving } from './ranking.ts';
+test('long exact scores give finite numbers and short decimals',()=>{
+ // CrocSwap PR 1485 (2026-10-14) and a 4096-char score: parts far above 10^308.
+ const pr1485='20960690363391523577580709653432407743905609243880940785042064888139458190150120618947308645517306787411594297629927718189245834345548007/125'+'0'.repeat(137);
+ assert.equal(pr1485.length,278);assert.equal(decimal(pr1485),'0.001676855229');assert.equal(scientificSaving(pr1485,3),'1.67\\cdot 10^{-3}');
+ const huge='3'.repeat(2046)+'/'+'1'+'0'.repeat(2048);assert.equal(huge.length,4096);
+ assert.ok(Math.abs(scoreNumber(huge)/0.0033333333333333335-1)<1e-15);
+ assert.equal(scoreNumber('-'+huge),-scoreNumber(huge));
+ for(const s of ['0','1','1/3','-7/2','330942774629799/500000000000000000','9007199254740993/9007199254740992'])
+  assert.ok(Math.abs(scoreNumber(s)-Number(s.split('/')[0])/Number(s.split('/')[1]??'1'))<=Math.abs(scoreNumber(s))*1e-15,s);
+});
 test('rational comparisons do not round large integers',()=>{assert.equal(compare('9007199254740993/9007199254740992','1'),1);assert.equal(compare('2/4','1/2'),0);assert.equal(compare('-1/2','0'),-1)});
 const rows=[{id:'a',repoId:1,date:'2026-10-01',score:'1/2'},{id:'b',repoId:2,date:'2026-10-02',score:'2/4'},{id:'c',repoId:2,date:'2026-10-03',score:'3/4'}];
 test('ties share rank and skip the next rank',()=>assert.deepEqual(ranked(rows,'lower-is-better').map(r=>r.rank),[1,1,3]));

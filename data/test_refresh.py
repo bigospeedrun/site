@@ -15,6 +15,23 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(refresh.title_score('Conditional κ = 7.44714499357628 × 10^-4'),'186178624839407/250000000000000000')
         self.assertIsNone(refresh.title_score('Conditional κ = 8.339545889388e-4 (B1 open, not a witness)'))
 
+    def test_long_exact_scores(self):
+        # CrocSwap PR 1485 (2026-10-14): a 140-digit decimal gives a 278-char exact score.
+        digits='0.00167685522907132188620645677227459261951244873951047526280336519105115665521200964951578469164138454299292754381039421745513966674764384056'
+        score=refresh.title_score(f'Conditional κ {digits}: verified outer140 witness refinement')
+        self.assertEqual(len(score),278);self.assertTrue(score.startswith('20960690363391523577'))
+        schema=json.loads((refresh.ROOT/'schemas/problem-v1.json').read_text())['properties']['records']['items']['properties']['score']
+        from jsonschema import Draft202012Validator
+        valid=Draft202012Validator(schema).is_valid
+        self.assertTrue(valid(score));self.assertTrue(valid('1/'+'1'*4094));self.assertFalse(valid('1/'+'1'*4095))
+        self.assertEqual(schema['maxLength'],refresh.MAX_SCORE_CHARS)
+        # Above the limit, or with a huge exponent, the PR stays unparsed for review.
+        self.assertIsNone(refresh.title_score('κ = 0.'+'1'*4100))
+        self.assertIsNone(refresh.title_score('κ = 0.'+'1'*2100))
+        self.assertIsNone(refresh.title_score('κ = 1e-99999999'))
+        self.assertIsNone(refresh.title_score('κ = 1/10^99999999'))
+        self.assertEqual(refresh.title_score('κ = 1/10^30'),'1/1'+'0'*30)
+
     def test_snapshot_idempotence_and_selected_record(self):
         root=refresh.ROOT
         with tempfile.TemporaryDirectory(dir=refresh.git_state_dir()) as temp:
