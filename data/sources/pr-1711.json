@@ -1,0 +1,11 @@
+{
+  "number": 1711,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1711",
+  "title": "Research: exact two-target affine AGL2 minimum",
+  "body": "## Result\n\nThis package gives an exact two-register result in the formal noncommutative algebra `F2[AGL2(F2)]`. With paid address labels limited to the two coordinate shears and two coordinate translations, each at unit price, both `diag([h],[h])` and `diag([h],[h^-1])` require exactly eight calls. Here `h(x0,x1)=(x1,x0+1)`. Every factor is `I+([g]+[1])N` for one of the six rank-one idempotents in `M2(F2)`; free scalar `GL2(F2)` mixing is retained under augmentation normalization.\n\nThe direct words cost eight calls total. The complete exact radius-three/radius-four meet-in-the-middle search covers all words through length seven and finds neither endpoint. The inherited displacement-rank floor is four, so the result certifies the stated local minima without making a supplier or selected-record claim.\n\n## Reproduce\n\n```sh\npython3 scripts/research_package.py --package research/bit-affine-generator-sharing\npython3 -B scripts/research_baseline.py\n```\n\nThe registered package runs two independently implemented exact checkers. They agree on all 6,457 radius-three and 90,859 radius-four formal states. The package also records direct-word, omitted-call, and changed-target controls, exact source and predecessor pins, the bounded stopping rule, full local cost assumptions, and substantial OpenAI Codex assistance.\n\n## Scope and overlap\n\nOpen PR #1696 studies the related three-register heterogeneous endpoint `diag([a],[b],[aba])` with only two coordinate-CNOT labels, and establishes its exact five-call minimum. This PR studies two affine targets on exactly two registers and prices the four-label alphabet including both translations. PR #1705 studies repeated linear coordinate-SWAP targets. These results are nearby but use different target tuples, register counts, and address alphabets.\n\nThis is a scoped negative result for the declared finite formal model. It does not claim a new kappa, a physical supplier improvement, or a selected-profile change.\n",
+  "created_at": "2026-10-14T07:31:40Z",
+  "updated_at": "2026-10-14T07:31:40Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
