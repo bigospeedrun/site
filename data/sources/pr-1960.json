@@ -1,0 +1,11 @@
+{
+  "number": 1960,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1960",
+  "title": "Bound mixed-rank diagonal blocks in selected provider",
+  "body": "## Result\n\nThis package tests a strict-chronology construction that consolidates consecutive rank-2/rank-3 child products into larger block-diagonal multiplication calls. The exact source-bound optimizer scans both orientations of the selected gauge44 provider and finds the best disjoint interval packing when every physical interface expense is set to zero.\n\nThe optimizer selects 162 blocks across 365 child calls and preserves the paid rank mass at 5,586. Its exact relaxed ceiling upper endpoint is `0.001764844128533`, a `4.425303%` gain over the selected fixed-word ceiling. A certified upper bound on savings over every admissible interval packing leaves the target relaxation above one at the 5% gate, so the strict chronological family cannot meet that threshold even before charging copies, frames, hosting, output routing, precision, or dirty restoration.\n\n## Verification\n\n- `python3 scripts/research_package.py --package research/complex-mixed-rank-diagonal-seed8433 --check-only`\n- `python3.12 scripts/research_package.py --package research/complex-mixed-rank-diagonal-seed8433`\n- `git diff --check`\n\nThe verifier checks exact source pins, both trace orientations, every nontrivial interval of total rank at most 16, the certified interval optimizer, the block-diagonal product identity, mass preservation, exact ceiling brackets, and four failure controls.\n\n## Scope\n\nThis is a scoped negative result for contiguous mixed rank-2/rank-3 direct-sum blocks in the pinned selected word. It does not cover commutations, nonconsecutive buffering, other child sizes, or a changed local word. No supplier admission, new `κ`, or selected-record change is claimed. The work uses substantial OpenAI Codex assistance; selected-word construction credit remains with its original authors.\n",
+  "created_at": "2026-10-14T15:11:22Z",
+  "updated_at": "2026-10-14T15:11:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
