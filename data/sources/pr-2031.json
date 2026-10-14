@@ -1,0 +1,11 @@
+{
+  "number": 2031,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2031",
+  "title": "D5 T=3 DRAT certificates for #1590: release assets, pins and replay script (no new claim)",
+  "body": "Follow-up to the merged #1590 (`research/root-unit-decoder-lemmas`). Its review recorded the D5 T = 3 UNSAT proof as \"not shipped or replayed\". This PR adds only `research/root-unit-decoder-lemmas-drat/`:\n\n- **Release assets.** The proofs are too large for repository files, so they are hosted as [release `d5-t3-drat-v1`](https://github.com/DreamingOfClouds/integer-mult-bounds/releases/tag/d5-t3-drat-v1):\n  - the D5 CNF, with the same sha256 as the merged package's pin, `f5e75d3b…7796`;\n  - a core-trimmed DRAT proof: 109 MB zstd, 895 MB raw, independently re-checked `s VERIFIED`;\n  - the original 1.71 GB kissat proof: 317 MB zstd, whose sha256 matches the merged README.\n- **`fetch_and_check.sh`.** Quick mode checks downloads, hashes and the CNF pin. `FULL=1` builds drat-trim at a pinned commit and checks the core proof (about 3–6 min). `FULL=2` also checks the original proof.\n- **`SHA256SUMS`** and a README.\n\n**Recorded check:** `FULL=1`, macOS arm64: all hashes PASS, CNF pin PASS, drat-trim `s VERIFIED` in 178 s.\n\n**Scope:** this certifies CNF unsatisfiability only. That the CNF encodes the decoder question remains the merged package's audited claim (`evidence/D5-AUDIT.md`). No change to the merged package, and no new mathematical claim.\n\nPrepared by DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code; Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-14T17:44:58Z",
+  "updated_at": "2026-10-14T17:44:58Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -4,8 +4,8 @@
   "title": "Research: exact P112 shared-gauge decoder census",
   "body": "## Result\n\nAdds a source-pinned exact census for one correlated coefficient-gauge family on the coordinate-frame-plus-root P112 decoder. The verifier exhausts all 6,561 `w in {-1,0,1}^8` shifts and finds costs 64 (2 assignments, each with an inactive term), 72 (3 active nine-term assignments), and 73 (6,556 active assignments). The exact active minimum is 72, above the known P112 comparator of 64. It verifies the five cost-at-most-72 identities on all 112^2 live pairs and rejects a one-coefficient mutation.\n\n## Scope\n\nThis is a finite obstruction for one frame, puncture, shared-shift rule, and ternary box. It does not bound independent per-root gauges, other frames, or shifts outside the box. It reports no new kappa, implementation circuit, or selected-record change. The package distinguishes this correlated family from PR #1224's per-root ratio-class search and records adjacent open work.\n\n## Reproduction and pins\n\n- Assignment: seed `655425ccd826280b13917975e2854d16`, `complex-mechanisms`, task `complex-rank-shape-decoder`, priority revision 3.\n- Exact base: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`; selected-record SHA256: `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`.\n- Local exact command passed on Python 3.14.7: `python3 -I -B research/coord-root-p112-global-gauge-seed655425/verify.py`.\n- `python3 scripts/research_package.py --package research/coord-root-p112-global-gauge-seed655425 --check-only` passed source and package metadata checks. The registered replay targets Python 3.12; Python 3.12 is not installed in the local environment.\n\nSubstantial OpenAI Codex assistance in exact search, verification, and prose; no independent human review is claimed.\n",
   "created_at": "2026-10-14T15:15:03Z",
-  "updated_at": "2026-10-14T15:15:03Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T18:06:57Z",
+  "closed_at": "2026-10-14T18:01:04Z",
+  "merged_at": "2026-10-14T18:01:04Z",
+  "state": "closed"
 }
