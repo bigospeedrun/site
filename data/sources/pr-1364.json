@@ -1,0 +1,11 @@
+{
+  "number": 1364,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1364",
+  "title": "Conditional κ = 0.001675129371412064: T37 owners on PR1148's original three-demotion word (outdated, for completeness)",
+  "body": "**Outdated, recorded for completeness. No record claim.**\n\nThis applies T37 whole-owner packing to PR1148's original three-demotion k8 word (head `98235a9c`, T16 owners, κ 0.001675121647789207). It gives conditional **κ = 0.001675129371412064**, +7.72e-9 over that head. The complex side binds, and the PR589 bit supplier is unchanged.\n\nPR1148 was later updated to joint entrances, and PR1169 (rohanarun) put T37 owners on the new word. PR1193, PR1218/PR1239 and PR1280 are all higher.\n\n**What's here**\n- **Owners:** a literal T37 owner map for the helper inventory `{4:44,5:44,7:38,8:114,9:240}`: 159,840 roles, 333 calls, under the 1024-bit charged prefix of PR942/PR962. It reaches the all-replica relaxed optimum idle `{1:834, 48:11374}`.\n- **One finding for others:** PR1129's nine-pattern chronology basis is **infeasible** for this inventory, which has 12 more width-5 helpers per call. A flow exists using all 20 tight patterns: an LP over all of them, then a MILP restricted to the LP support (`PATTERN-FLOW.json`, `SEARCH.json`).\n- **Code:** the package code and controls are PR1157/PR1129's T37 machinery, retargeted to this word. `README-TEMPLATE-PR1157.md` and `PROOF.md` are that template's documentation (same method, but PR1157's numbers).\n\n**Verification:** a fresh `git archive` of this commit passes `check.py`:\n`PASS_K8_THREE_DEMOTIONS_T37_ALL_REPLICA_OPTIMUM_AND_ATTAINING_CONSTRUCTION 0.001675129371412064`. That covers the all-replica bound with its 18 controls, the literal construction, the independent owner audit, and the finite invoice and outer assembly.\n\n**Credits:** tomdif (PR1148), aliromman (PR1129), rohanarun (PR1157, PR1169), chafreaky (PR795, PR1131/PR1152), jon314159 (PR942), and the lineage in `NOTICE.md`.\n\nAI disclosure: prepared with Claude Opus 5.5 (Anthropic) via Claude Code, directed by Joel Pulikkan (GamingPuzzled).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-13T23:27:42Z",
+  "updated_at": "2026-10-13T23:27:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

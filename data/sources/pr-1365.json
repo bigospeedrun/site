@@ -1,0 +1,11 @@
+{
+  "number": 1365,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1365",
+  "title": "[Lean] PR442 level model, phase 1: literal entrance projector has range span(q)",
+  "body": "Stacked on #1231 (itself stacked on #540). New files only: `research/lean-pr442-level-model/` and `.github/workflows/pr442-level-model.yml`. No #540 or #1231 file is changed.\n\n**What is proved** (Lean 4.21.0, Mathlib `308445d`)\n\n- `source_entrance_projector` / `source_entrance_range`: for all 120 ports, the literal source entrance projector of the selected PR442 invocation equals P_q = qqᵀ/4, and its range over ℚ is span(q). This derives from the pinned frame data the level −1 identification that #1231's `PendingDerivation.inLevel` currently fixes by definition.\n- Literal joins between the PR370/PR386 frame labels and PR442's endpoint, ownership and route data for children 1 and 2, all ports, both sides, plus schedule and recorded-level alignment (`child1_endpoints`, `child2_endpoints`, `recorded_levels_and_ranks`). Endpoints are reconstructed without `inLevel` or `pendingAxes`.\n\n**Evidence**\n\nThe axiom audit covers 84 declarations and shows only `propext`, `Quot.sound` and `Classical.choice`. Five mutated inputs are rejected: entrance frame ID, root coordinate, stage axis, reflected orientation and recorded source level. Fork CI passed, with full verification in 16m57s. No stack changes, compiler flags or environment overrides. All 38 statements are listed in `research/lean-pr442-level-model/THEOREMS.md`.\n\n**Not yet proved (phase 2)**\n\n- Interpreting the endpoint descriptors as ambient operators via the route matrices.\n- Transport to every field with 2 ≠ 0.\n- The pending-operator equality (`idle_pending_operator`).\n\n#1231's level-model boundary is therefore narrowed, not closed. JSON extraction is external Python; Lean checks the resulting literal joins.\n\n**Credits**\n\nPR370 (word and exporter), PR386 (geometry), PR442 (hosting), #540 and #1231. Prepared with substantial OpenAI Codex assistance and independently reviewed with Claude.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\n\n",
+  "created_at": "2026-10-13T23:28:42Z",
+  "updated_at": "2026-10-13T23:28:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

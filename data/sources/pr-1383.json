@@ -1,0 +1,11 @@
+{
+  "number": 1383,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1383",
+  "title": "Research: independent R420 block-4 Boolean audit",
+  "body": "**Status: independent verification.** This PR adds a bounded, reproducible Boolean audit of PR #1363's R420 phase-B block 4. It adds no circuit, supplier, or kappa claim.\n\nAt base `bce54fb3f895cbe5cd4c0eb477c3afeed100190f`, the verifier derives the 12-wire target from the frozen R420 source slice `B[313:371]` at frame 546, then exhaustively checks all 4,096 Boolean inputs of the source slice and PR #1363's candidate slice `B[313:364]`. Both implement the same source-derived map. The local positive-norm receipts replay as 1,485 and 1,227. Omitting the first candidate gate and reversing it both fail.\n\nThis uses a direct list-valued Boolean simulator, separate from PR #1363's basis-column replay. The predecessor remains open at head `2f80560e741f8255fd8023799bdfedae17a9bc12`; its reported whole-word saving of 14 scalar ADDs after literal cleanup is inherited and is not re-established here. This PR does not audit the full word, cleanup routing, hosted bill, generator search, or optimality. The selected PR #589 bit supplier and selected kappa remain unchanged.\n\nReproduce with Python 3.12:\n\n```sh\npython3.12 scripts/research_package.py --package research/r420-block4-truth-audit-seed00\n```\n\nExpected final line: `PASS_REGISTERED_RESEARCH_PACKAGE research/r420-block4-truth-audit-seed00 outcome=completed`.\n\nValidation used CPython 3.12.15 and 3.14.7, plus the selected-result verifier. Repository-wide `make verify`, hosted CI, whole-word replay, and independent human review were not run. The package credits PR #1363 and eumemic's retained R420 source, and discloses substantial OpenAI Codex assistance.\n",
+  "created_at": "2026-10-13T23:53:24Z",
+  "updated_at": "2026-10-13T23:54:01Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
