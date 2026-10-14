@@ -4,8 +4,8 @@
   "title": "Add exact five-cycle dirty echo construction",
   "body": "## Result\n\nAdds an explicit C5 dirty recursive echo construction for one five-coordinate output pentad and three workspace pentads. A five-child aligned phase path `0,1,2,3,4,0` carries the workspace frame through the children and costs 60 phase ADDs instead of 180 for eager restoration.\n\nEach child costs 41 ADDs, the inverse is fully charged, and the outer source copy and restoration cost 30 ADDs. The complete five-child echo is 560 ADDs versus 800 for eager restoration. Two optimized calls cost 1,120 ADDs; one joint ten-child echo costs 1,090, removing one 30-ADD outer wrapper. All dirty integer maps are checked on 35 basis columns, and all 3,125 five-child phase paths are enumerated.\n\nThe explicit five-cycle uses four 3-ADD signed swaps. This is exact within the declared whole-register C5 power alphabet; it is not claimed globally optimal among unrestricted ADD circuits. The prefix row-L1 peak rises from 11 to 22 for one echo and from 32 to 42 for the joint echo, so no precision or tape admission is claimed.\n\n## Pins and checks\n\n- Base: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`\n- Seed: `d937e5458b1c6e96dcdfc67cab6201d3`; track `recursive-interfaces`; card `persistent-boundary` with documented changed scope.\n- Selected record SHA256: `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`\n- `python3 -I -B research/c5-paired-frame-seed-d937e545/verify.py`\n- `python3 -B scripts/research_package.py --package research/c5-paired-frame-seed-d937e545 --check-only`\n- `make selected-record-check`\n\nAll listed checks pass under Python 3.14.7. Python 3.12 is unavailable, so the registered Python 3.12 replay could not be run.\n\nThis is a scoped frame/interface construction. It does not instantiate a selected supplier or change the selected frontier or kappa. Predecessor, selected-source and AI-assistance attribution is in the package's `NOTICE.md` and `SOURCES.json`.\n",
   "created_at": "2026-10-14T11:02:25Z",
-  "updated_at": "2026-10-14T11:03:09Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:46:04Z",
+  "closed_at": "2026-10-14T16:44:45Z",
+  "merged_at": "2026-10-14T16:44:45Z",
+  "state": "closed"
 }

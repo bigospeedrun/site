@@ -4,8 +4,8 @@
   "title": "Strengthen the fixed-route packing cap using helper indivisibility",
   "body": "The selected fixed route cannot put all idle mass in rank 48 children once existing whole-helper widths are retained. A short integer dual, exhaustively checked over 1,163 local bin patterns and independently by coin DP, forces at least 2,448 idle-rank units below 48; the minimum helper width caps those residual ranks at 44.\n\nThis answers PR1783's capacity-aware relaxation question and tightens its primitive ceiling from 0.001682094870065 to 0.001681977435447. The exact local profile, capacity inventory and helper inventory are pinned to the selected sources. No new owner map, supplier or kappa is claimed; the bound need not be sharp.\n\nPython 3.12.14 registered optimized replay, five controls, selected histogram positive fixture and git diff checks pass. SciPy nominated the dual; acceptance/reproduction use integers and rational intervals only. Credits and substantial OpenAI Codex assistance are disclosed. Apache-2.0.\n\nThe balanced planning upper cap is `1681977435447/1001681977435447` (approximately 0.001679153137758630). The selected conditional kappa divided by that upper bound is exactly `837736786892785854071719356173/840988717723500000000000000000`, approximately **99.6133205164%**. This compares the selected value with a necessary relaxed upper bound; it is not an attained relaxation optimum or a realized packing fraction.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 07. The selected record is unchanged.\n",
   "created_at": "2026-10-14T11:55:00Z",
-  "updated_at": "2026-10-14T11:55:00Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:42:24Z",
+  "closed_at": "2026-10-14T16:32:57Z",
+  "merged_at": "2026-10-14T16:32:56Z",
+  "state": "closed"
 }

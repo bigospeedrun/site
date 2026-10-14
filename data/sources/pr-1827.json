@@ -4,8 +4,8 @@
   "title": "Audit: sharp joint P112 deletion loss and full-rank two-total COPY floor 66",
   "body": "PR1787 gives valid conservative retained-loss ceilings in its P112 two-total support screen. This audit proves the exact maxima **0, 2, 3, 4** on deletion sizes **0..23, 24..35, 36..39, 40..43**, sharpening the last two bounds. All 42 minimal four-reader supports need 8 extra ports for a fifth reader and 12 for a second loss. The full-rank on-column two-total COPY floor consequently strengthens to **66** through 43 source ports. The general 64 no-saving result, support method and preceding generalized weights retain PR1787's credit.\n\nThe verifier imports no predecessor checker: it builds codes by literal pairing-row XOR closure, exhausts support joins, supplies 44 sharp witnesses checked by separate literal ranks, and certifies the 511 added-reader rational ranks using modular lower bounds plus symbolic upper bounds. PROOF.md explains coverage of every deletion set without pretending to enumerate all subsets.\n\nValidation: registered Python 3.12 replay passes; six package groups including optimized read-only relocation, source/receipt faults and 23 semantic controls pass; 18 onboarding tests (2 existing skips), five selected tests, source pins, selected integrity and whitespace pass. Reproduce with `python3.12 scripts/research_package.py --package research/p112-joint-support-loss-audit`.\n\nScope: no union >=44, cheap realizable decoder, physical supplier, selected-frontier change or new kappa. No full cold replay, proof assistant, independent human review or hosted CI success is claimed. Base `0b1cccf86e2f5132ed286a26ef0a681a495740ea`; audited PR1787 head `2b821b14a7cd5888df95531c98d18ee3797e36c3`.\n\nCredit: Josie Elliston PR1787 (Codex preparation, Claude review), Philipp / mightyOil PR1197, Mihir Srivastava #845, woklerx #998, commdata2338 PR1375, Hanson Sun / bbMisk PR1432 and the retained E8/COPY lineage. Prepared for Philipp / mightyOil with substantial OpenAI Codex GPT-6 Astra assistance; Apache-2.0. Coordinator's scoped proof review found no blocker, without claiming independent complete verification.\n",
   "created_at": "2026-10-14T11:15:46Z",
-  "updated_at": "2026-10-14T11:15:46Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:42:02Z",
+  "closed_at": "2026-10-14T16:38:48Z",
+  "merged_at": "2026-10-14T16:38:47Z",
+  "state": "closed"
 }

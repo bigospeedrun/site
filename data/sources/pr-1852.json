@@ -4,8 +4,8 @@
   "title": "Keep assertions enabled in isolated research test processes",
   "body": "An inherited `PYTHONOPTIMIZE=1` or `2` made the isolated runner report success for a test whose mathematical verifier uses a failing bare assertion. The runner now removes that variable from the child environment, matching the registered-package runner policy. Other variables, module commands, parallel scheduling and ordered output remain intact.\n\nValidation: the added subprocess regression failed both subcases before the fix; all four end-to-end tests pass afterward under normal and optimized parents. Coverage includes concurrency, failure reporting, output order and preservation of an unrelated environment variable. No frozen verifier, source pin, selected frontier or mathematical result changes.\n\nTask card: portable-replay (revision 3), nonce `517297c106bdc8433c2a7b5124c51110`, base `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. Refined from environment reproducibility to inherited optimization removing proof checks. First example: research_baseline binding check passed; gzip-payload guidance inspected, no compressed artifact change. Scope is this one child-process boundary; full historical suite/cold supplier replay not run. Credit the existing isolated runner and registered-package optimization guard. Substantial OpenAI Codex assistance; Apache-2.0.\n\nOpen next question: callers that launch their own verifiers outside either runner may inherit optimization. First inventory those entry points with one assertion-bearing fixture; no repository-wide guarantee is made here.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 12. The selected record is unchanged.\n",
   "created_at": "2026-10-14T11:55:18Z",
-  "updated_at": "2026-10-14T11:55:18Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:30:46Z",
+  "closed_at": "2026-10-14T16:29:38Z",
+  "merged_at": "2026-10-14T16:29:38Z",
+  "state": "closed"
 }

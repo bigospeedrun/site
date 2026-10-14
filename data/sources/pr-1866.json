@@ -4,8 +4,8 @@
   "title": "Research: exact heterogeneous rank-six block tensor",
   "body": "## Result\n\nThis is a partial construction package for a heterogeneous \\((3,1,1,1)\\to6\\) bilinear block. It proves a concrete five-output tensor has exact rank six, with a dirty-target inverse contract, and records an exact favorable moment-screen threshold. It does not claim a selected-source construction or a new conditional bound.\n\n## Evidence\n\n- Seed `c8d6a46c4e5419f1e2ff48d221b1e71c`; track `complex-mechanisms`; base `0b1cccf86e2f5132ed286a26ef0a681a495740ea`; selected-record SHA-256 `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`.\n- Six exact rational atoms reconstruct the map. The 5D output-slice space contains only four rank-one directions, proving rank at least six; the construction proves rank at most six.\n- The exact profile relaxation first clears a 5% ceiling margin at 135 blocks with zero assumed extra rank-one-equivalent units, or 284 with one. Two units per block cannot pass for any `k <= 432`.\n- The pinned provider archive phase A has 4,730 events and 992 climb records (936 rank one, 56 rank four, no rank three), so this direct-record block has no phase-A placement.\n- `python3 -I -B research/complex-mixed-rank6-block-seedc8d6/verify.py` passes on local Python 3.14.7. Package metadata and source pins pass with `python3 scripts/research_package.py --package research/complex-mixed-rank6-block-seedc8d6 --check-only`.\n\n## Limits\n\nThe moment profile is hypothetical. The phase-A observation does not exclude other phases or composite realizations. No actual copies, frame transitions, precision, hosting, or restoration invoice is established; the rank-one-equivalent tariff is only a parameter. No supplier admission or `kappa` change is claimed. The registered replay requires Python 3.12, unavailable in the local environment; CI should run the declared replay.\n",
   "created_at": "2026-10-14T12:17:52Z",
-  "updated_at": "2026-10-14T12:18:43Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:54:41Z",
+  "closed_at": "2026-10-14T16:50:47Z",
+  "merged_at": "2026-10-14T16:50:47Z",
+  "state": "closed"
 }

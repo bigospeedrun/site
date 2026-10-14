@@ -4,8 +4,8 @@
   "title": "Research compensated P104 null-pair shear",
   "body": "This adds an exact, source-pinned screen of a ten-term compensated null-pair shear on PR717’s P104 decoder. Across all 1,839,360 pivot/vector-pair cases in the declared two-coordinate Gaussian-unit domain, the replacement block costs at least 21 copied-rank units instead of 7; the complete decoder costs at least 70 instead of 56. The exact P104 relaxation still clears the inherited five-percent screen, but that headroom comes from the unchanged P104 port/centre profile and the null-pair adds cost. No supplier, selected κ, or theorem change is claimed.\n\nReproduce with `python3.12 -I -B research/p104-nullpair-compensated-shear-seed318bd5/verify.py`. The registered package replay passed locally. It checks both 104×104 identities, the exact F2 support-rank histogram, six rank-one setup/cleanup charges, the wrong-sign control, and exact source pins.\n\nScope: seed `318bd5e5f93c401334e29c6764720302`, base `0b1cccf86e2f5132ed286a26ef0a681a495740ea`, selected-record SHA-256 `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`. This changes the term count with an isotropic null pair, unlike the open [P104 one/two-shear screen](https://github.com/CrocSwap/integer-mult-bounds/pull/1726); it complements [the all-m residual-rank theorem](https://github.com/CrocSwap/integer-mult-bounds/pull/1633) with one concrete copy-cost search. Prepared with substantial OpenAI Codex assistance; no independent human review is claimed.",
   "created_at": "2026-10-14T09:25:09Z",
-  "updated_at": "2026-10-14T09:25:50Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:22:14Z",
+  "closed_at": "2026-10-14T16:18:32Z",
+  "merged_at": "2026-10-14T16:18:32Z",
+  "state": "closed"
 }

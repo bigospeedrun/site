@@ -4,7 +4,7 @@
   "title": "Research notes (no κ claim): E8 decoder floors are tight; extension-ring, triple and Lorentzian units lose after helpers; cold-end, dispatch and fusion-search negatives",
   "body": "**No κ claim.** Adds only `research/e8-decoder-floors-and-cold14-notes/` (README, as-run scripts, reports).\n\n- On the realised E8 units the #446 Theorem C copy floor equals the star floor: 72 (P120 bit), 63 (P111 bit; exact SAT, cost ≤ 62 UNSAT), 64 (P112 complex). The P111 9-total decoder is unique; 8 totals is UNSAT. Deeper punctures, sub-root-system units, mixed ports and asymmetric sinks (2 sinks per copy unit, net negative) are all worse.\n- Among real ADE root systems only E8 is a viable unit; X ∝ ~1/h.\n- On #615: e2 entering ends are infeasible at all three Lean pairs, cold dim-8 ends lose, jp8 has no coalescences, and the owner map/dispatch is already LP-optimal.\n- **Open lead:** #617's owner map is 119.3e-9 b below the aggregate LP bound (jp8 60.9 / atm3 11.1). A perfect packing at jp8×61/atm3×11 would give about +1.1e-7 κ. The MIP and expansion scripts are included; the packing is unsolved.\n\nSAT runs have no proof logs, and there is no verify.sh; the scripts are as-run research code. Credits: jeremykothe2, DreamingOfClouds, chafreaky, eumemic and the #446 authors (see README).\n\nPrepared by Joel Pulikkan (GamingPuzzled) with Claude Opus 5.5 (Anthropic) via Claude Code.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
   "created_at": "2026-10-12T20:29:57Z",
-  "updated_at": "2026-10-14T03:20:27Z",
+  "updated_at": "2026-10-14T17:11:58Z",
   "closed_at": null,
   "merged_at": null,
   "state": "open"

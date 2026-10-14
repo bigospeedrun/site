@@ -4,8 +4,8 @@
   "title": "Independent audit: exact rational shear-orbit interval oracle",
   "body": "An independent interval-feasibility oracle agrees with 2,268 complete rational windows, 1,001 half-grid horizons and a large-offset sharp witness. It corroborates PR1631’s K=70 radius of 18.\n\nThis is a deliberately independent audit of [PR1631](https://github.com/CrocSwap/integer-mult-bounds/pull/1631) at 1c8878b702ee74d21f8a17737c44c6474143cedd. The precise mathematical domain, separately implemented method, failure controls, exact source pins, predecessor credit and open next question are in research/shear-orbit-interval-audit/README.md. The predecessor result is credited; no defect or new original theorem is implied.\n\nValidation: Python3.12 registered replay and metadata/source checks pass; Python3.14 optimized replay produces the identical exact receipt; modified source and receipt controls reject; selected-record integrity and whitespace checks pass. No full cold/native/hosting/all-size replay or new kappa is claimed. Only this new package changes.\n\nReproduce: python3.12 scripts/research_package.py --package research/shear-orbit-interval-audit.\n\nPrepared for woklerx with substantial OpenAI Codex assistance; Apache-2.0; no independent human or formal proof-assistant review. Base 0b1cccf86e2f5132ed286a26ef0a681a495740ea. Coordination: https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18924424.\n\n[Exact committed audit artifact](https://github.com/woklerx/integer-mult-bounds/tree/bcc1b9a37460a15fb4aa611957ed9f6842eb6da2/research/shear-orbit-interval-audit). Commit `bcc1b9a37460a15fb4aa611957ed9f6842eb6da2`; base `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18924424), round 06.\n",
   "created_at": "2026-10-14T13:28:56Z",
-  "updated_at": "2026-10-14T13:28:56Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T17:01:11Z",
+  "closed_at": "2026-10-14T16:57:11Z",
+  "merged_at": "2026-10-14T16:57:11Z",
+  "state": "closed"
 }

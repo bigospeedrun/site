@@ -4,8 +4,8 @@
   "title": "Add exact rank-one center-difference sharing mechanism",
   "body": "## Summary\n\n- Add an exact local construction for two same-frame bilinear centers `F` and `F+H` when `H` has rank one: route the `rank(F)` atoms to both dirty output panels, then evaluate the correction once. If each center separately has rank `r`, the paired map has rank at most `r+1` rather than `2r` in the common-frame bilinear-rank model.\n- Give the concrete `F2^2` instance with exact joint rank 3 versus separate ranks 2+2. The output-slice flattening has rank 3, certifying minimality; an exhaustive replay checks all 1,024 dirty input, target and scratch states, with correction and fanout negative controls.\n- Add an exact selected-profile sensitivity screen. Even if all 72 candidate pairs were eligible and all other overhead were zero, the fixed-word `a` cap is `[50198000463/15625000000000, 3212672029633/10^15]`, below `1/99`. No selected occurrence, supplier change or new `kappa` is claimed.\n\nThe construction counts bilinear rank-one atoms and their output coefficient vectors. Frame changes, copies, precision, hosting and restoration are not priced at a real supplier occurrence.\n\n## Reproduction\n\n```sh\npython3.12 -B scripts/research_package.py --package research/rank1-center-delta-seeddfc2\n```\n\nOn the author’s host, Python 3.12 is unavailable. The package verifier and metadata check passed under Python 3.14.7; the registered Python 3.12 replay remains for CI/reviewer confirmation.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. Selected-record SHA-256: `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`. Exact live inputs and provenance pins are in `SOURCES.json`.\n\nRelated work: #1708 identical-center fanout, #1748 reverse shared-center phase, and #1791 selected-profile pricing. This package adds the explicitly charged rank-one difference case; it does not claim an eligible selected occurrence. The scoped claim and handoff are in [Discussion #1166 comment 18922942](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-18922942).\n\nPrepared with substantial OpenAI Codex assistance; no independent human review is claimed.\n",
   "created_at": "2026-10-14T11:48:06Z",
-  "updated_at": "2026-10-14T11:48:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:42:07Z",
+  "closed_at": "2026-10-14T16:34:42Z",
+  "merged_at": "2026-10-14T16:34:42Z",
+  "state": "closed"
 }

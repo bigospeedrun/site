@@ -4,8 +4,8 @@
   "title": "Prove a smaller sufficient packed radix under unitary premises",
   "body": "The retained Lean packed checker uses a generic 4^K component bound and a 2K+2-bit radix. Under explicitly validated unitary gate premises, scaled columns have norm 2^K, so coefficient differences are strictly below B=2^(K+2). This package proves that stronger-premise variant and replays the three frozen HPE literal pairs at both radices.\n\nFor those pairs the radix shrinks 20 to 11 bits and the largest packed input 10,221 to 5,622 bits. All 3,072 unpacked columns satisfy exact energy/equality checks. Twelve controls retain phase, input character, scaling, gate validity and strict-radix obligations, including a real identity/XOR collision at B=1. Python 3.12 registered replay and diff check pass.\n\nNo Lean source or selected checker changes; no new kernel proof, speed benchmark, supplier or kappa is claimed. Exact source pins, proof, retained draw and structured next question included. Credit Jeremy Kothe PR593, commdata2338 semantic binding and the Clifford lineage. Concurrent PR1781 uses the original radix on the selected recipe inventory and is credited, not imported. Substantial OpenAI Codex assistance; Apache-2.0.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 20. The selected record is unchanged.\n",
   "created_at": "2026-10-14T11:55:44Z",
-  "updated_at": "2026-10-14T11:55:44Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:42:50Z",
+  "closed_at": "2026-10-14T16:32:56Z",
+  "merged_at": "2026-10-14T16:32:56Z",
+  "state": "closed"
 }

@@ -1,0 +1,11 @@
+{
+  "number": 1998,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1998",
+  "title": "Derive ordered decoding for the paired-log controller",
+  "body": "The paired dirty-log local words leave a global decoding obligation when successive calls use different charts. I give an explicit ordered inverse for the nine-call controller that restores all data and independent log inputs without assuming commuting charts or inverting an aggregate route matrix.\n\nThe decoder uses final X/log outputs and four stacked Y readers. I prove that their row space is exactly the information a fixed linear decoder needs to restore the initial logs. In a finite field-linear realization its dimension is `sum_j rank([R_(2j);R_(2j+1)])`, between `4r` and `8r`. This dimension is not a count of native Fourier children.\n\nThe five-file package includes the proof, exact source pins and a registered standard-library verifier. The verifier follows the pinned controller recipe, restores 290 input columns across common, mixed and noncommuting charts, compares the complete observation row spaces, and rejects 25 corruption cases. Registered Python3.12 and direct optimized Python3.14 replays pass; metadata/source pins and diff-check pass.\n\nNative query acquisition, Y-hole injections, routed owner placement and the complete precision/recurrence invoice remain open. This result supplies scalar closure and its exact observation contract; it does not improve the multiplication exponent or change the selected frontier.\n\nCredit Zhihao Chen's retained PR377 controller implementation, Ali Romman's PR1862/1969 source preparation and ordered local query inverses, Rohan Arun's PR1931 local instances, and their predecessor lineage. Query swaps, triangular elimination and row-space observability are standard linear algebra. Jose Manuel (@jmbarrancoml) prepared this contribution with substantial OpenAI Codex assistance and read-only mathematical subagents; no independent human review.\n\nCoordination: https://github.com/CrocSwap/integer-mult-bounds/discussions/1167#discussioncomment-18929383\n",
+  "created_at": "2026-10-14T16:41:55Z",
+  "updated_at": "2026-10-14T16:41:55Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

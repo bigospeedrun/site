@@ -4,8 +4,8 @@
   "title": "Certify when inverse signs may cross half-up rounding",
   "body": "An admitted one-entry pinned PR628 leaf adds 1/16 at precision 4 and its unchanged inverse restores exactly. Moving the negative sign inside the last half-up rounding instead leaves 1/16. This is a source-bound counterexample to a proposed compiler rewrite, not a current source bug.\n\nA uniform affine-domain theorem characterizes safety exactly: after expressing scaled offset and slopes as integers over D, half-grid ties exist iff D is even and gcd(D,slopes) divides D/2-offset. Complete residue oracles cover 21,316 scalar and 21,316 two-parameter domains; 285 actual leaf trials isolate 150 tie failures and 135 off-tie positive controls. All original inverse pairs restore.\n\nPython 3.12.14 registered optimized replay and git diff checks pass. Frozen sources unchanged; no supplier or kappa claim. Credits and substantial OpenAI Codex assistance disclosed; Apache-2.0.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 09. The selected record is unchanged.\n",
   "created_at": "2026-10-14T11:55:08Z",
-  "updated_at": "2026-10-14T11:55:08Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:42:29Z",
+  "closed_at": "2026-10-14T16:32:56Z",
+  "merged_at": "2026-10-14T16:32:56Z",
+  "state": "closed"
 }

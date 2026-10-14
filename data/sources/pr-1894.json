@@ -4,8 +4,8 @@
   "title": "Independent audit: exhaust nonlinear transcript cuts through five gates",
   "body": "The independent finite checker enumerates all 66,429 words through five gates, including 282 nonlinear permutation words and 120 nonidentity endpoints. It verifies 272,172 demanded-label cuts and 2,177,376 complete assignment transcripts.\n\nThis is a deliberately independent audit of [PR1757](https://github.com/CrocSwap/integer-mult-bounds/pull/1757) at 78a1810e44bf08f845252cfe4c785ccc967c07a2. The precise mathematical domain, separately implemented method, failure controls, exact source pins, predecessor credit and open next question are in research/nonlinear-cut-exhaustive-audit/README.md. The predecessor result is credited; no defect or new original theorem is implied.\n\nValidation: Python3.12 registered replay and metadata/source checks pass; Python3.14 optimized replay produces the identical exact receipt; modified source and receipt controls reject; selected-record integrity and whitespace checks pass. No full cold/native/hosting/all-size replay or new kappa is claimed. Only this new package changes.\n\nReproduce: python3.12 scripts/research_package.py --package research/nonlinear-cut-exhaustive-audit.\n\nPrepared for woklerx with substantial OpenAI Codex assistance; Apache-2.0; no independent human or formal proof-assistant review. Base 0b1cccf86e2f5132ed286a26ef0a681a495740ea. Coordination: https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18924424.\n\n[Exact committed audit artifact](https://github.com/woklerx/integer-mult-bounds/tree/cd4d55afc5fe55369f08e67558939375ca79745f/research/nonlinear-cut-exhaustive-audit). Commit `cd4d55afc5fe55369f08e67558939375ca79745f`; base `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18924424), round 09.\n",
   "created_at": "2026-10-14T13:29:06Z",
-  "updated_at": "2026-10-14T13:29:06Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T17:01:15Z",
+  "closed_at": "2026-10-14T16:57:11Z",
+  "merged_at": "2026-10-14T16:57:11Z",
+  "state": "closed"
 }

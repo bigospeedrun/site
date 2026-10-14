@@ -4,8 +4,8 @@
   "title": "Independently audit compact agreement counts by integer-lift orbits",
   "body": "Adds an independent integer-lift orbit proof and checker for PR1823's compact dirty-control raw agreement census. All 47 counts match: 11,880,712 agreements out of 24,074,240 states, recomputed from 276,224 representatives. Checking the carry defect only modulo the observed width falsely admits 69,921 cell-representatives across the 47 source cells; this diagnostic counts each rho cell separately and records its count. A regression preserves six nonzero-defect representatives that agree after wrapping modulo the full target width.\n\nOptimized Python 3.12.14 registered replay passes, including 16,384 complete literal cases, sign/carry-defect failure controls, and the valid full-modulus wrap regression. Cross-review identified and corrected the diagnostic; all primary agreement counts are unchanged. Scope is raw agreement and target-translation symmetry; guard densities, native admission and a new kappa are not claimed. The exact upstream head 5577d53f4bc093b5e9e960387ffc5d5bea55ee6f and source bytes are pinned. Credit Aaron Wang/opencode and the predecessor guards; prepared by woklerx with substantial OpenAI Codex assistance.\n\nBase: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`. [Coordinated research batch](https://github.com/CrocSwap/integer-mult-bounds/discussions/1163#discussioncomment-18922638); round 17. The selected record is unchanged.\n",
   "created_at": "2026-10-14T11:55:33Z",
-  "updated_at": "2026-10-14T11:55:33Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T16:42:43Z",
+  "closed_at": "2026-10-14T16:32:56Z",
+  "merged_at": "2026-10-14T16:32:56Z",
+  "state": "closed"
 }

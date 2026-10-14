@@ -1,0 +1,11 @@
+{
+  "number": 2008,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2008",
+  "title": "[Lean] Fixed-width Boolean decoder injectivity",
+  "body": "## Completed reusable chunk\n\nExplicit author-checked contextual κ = 836330098538459/500000000000000000 = 0.001672660197076918. This package derives literal Boolean-list equality from equal lengths and equal PR1840 little-endian values, then paired-list equality from both decoded tracks. Empty lists are included. Equal length is essential.\n\nOne unchanged accepted source, two complete standard-only axiom probes and one full type. The exact public PR1840 prerequisite is reused by immutable head and source hash, rather than copied. Lean 4.21.0 core only. README contains bounded serial reproduction instructions using an existing installation; this publication adds no compiler replay.\n\nFinite coverage: all finite widths, with no input census. Conditional-interface coverage: explicit equal-length/value premises and the accepted decoder. Full-theorem coverage: no selected multiplication, new κ, physical initialization, allocation or runtime claim.\n\nThis is a missing generic API consequence rather than a mathematical novelty claim. Related counter and nine-bit coordinate work is credited in the README; a bounded all-state PR comparison found no matching module/theorem. James Chang with OpenAI assistance; Apache-2.0.\n\nExact candidate parent: 94e50883325b387add6891258a986f797b09cacc. Preserved author-checked context: 01a65937ece11b56d515c81f039464ae3043c1c1. Later five-critical-input continuity freshly verified at dad0d9b438820ff934d15ee716b4e54fabb3bfb1. Exact fork head: 117564f96dcf5120e1cc7daf063ae8f3903df522.\n\nSubmission main: 5e5672c14e1b10ad5131ec54bf62abb330ecb3eb. Complete dad0-to-5e5672 comparison has 15 commits and 229 changed paths; existing modifications are contributor/ledger/reconciliation tooling only. The critical inputs and accepted Lean dependencies are unchanged.\n",
+  "created_at": "2026-10-14T16:52:06Z",
+  "updated_at": "2026-10-14T16:52:06Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
