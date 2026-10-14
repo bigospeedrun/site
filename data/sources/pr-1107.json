@@ -4,7 +4,7 @@
   "title": "Conditional κ = 0.001672765980186726: rank-seven helper ends and T16 owner packing on the seven-slot k8 word",
   "body": "## Summary\n\nConditional κ = **0.001672765980186726**. Ports #1030’s rank-seven helper-end mechanism to the seven-slot k8 word, with a new T16 owner map. Changes include the local construction, its recipe and independent controls, native locals and packing.\n\n## Verification\n\nFrom a fresh checkout of 6123fc5d (Windows, CPython 3.11.11): PASS package manifest: 196 files. Full `construction/ends7/verify_ends7.py` replay (recipe, negative controls, native locals, independent local audit and leaver premise): `PASS_RANK7_ENDS_ON_CHECKED_SLOT_BASELINE 0.00167112035308811`. T16 verification used those freshly rebuilt locals. Full verification in 71 s:\n`PASS_GAUGE44_T16_STRICT_GLOBAL_REPLAY 0.001672765980186726`\n\nSee `research/gauge44-ends7-t16/README.md` for reproduction commands and inherited source credits. Credits include #1022 and #1030. Research direction, prioritisation and release strategy: jeremykothe2; implementation assistance: oh-my-pi (prior Claude work, resumed with user-selected GPT agents).\n",
   "created_at": "2026-10-13T18:19:42Z",
-  "updated_at": "2026-10-13T18:19:42Z",
+  "updated_at": "2026-10-14T05:27:41Z",
   "closed_at": null,
   "merged_at": null,
   "state": "open"

@@ -4,8 +4,8 @@
   "title": "Research: six-source universal dirty-connector boundary, f(6)=16 (no new kappa)",
   "body": "Extends merged PR943 (Ross Richardson, `research/universal-connector-boundary`) one source further. The model and alphabet are unchanged.\n\n**Result**\n- **f(6) = 16.** Two independently implemented exhaustive censuses cover every six-source restored word of length 12 (10,395 canonical) and length 14 (945,945). Their maximum coverage is 49/64 and 59/64. A 16-call Gray-cycle word covers all 64 masks.\n- **The all-63-row six-source batch has exact unit-cost optimum 142 queries** (support bound 138). With extra readouts, the shorter words floor at 150 and 168.\n- **General n:** 2^((n+1)/2) ≤ f(n) ≤ 2^⌈n/2⌉ + 2^⌊n/2⌋, so the support value 2n fails for every n ≥ 5. The construction is optimal for all n ≤ 6. For n = 7, 18 ≤ f(7) ≤ 24; the annealing failure at length 22 (126/128) is reported as a search failure only.\n\n**Reproduce** (stdlib, ~35 s): `python3 -I -B research/universal-connector-six-source/verify.py`\n→ `PASS_SIX_SOURCE_CONNECTOR f(6)=16 max14=59/64 max12=49/64 batch63=142 f(7) in [18,24]`\n\n**Checks:** both censuses agree on counts, histograms and SHA256 of the sorted records. As a positive control, both reproduce PR943's five-source histogram exactly. A dense F2 replay of the full 142-query program runs at d = 1, 2, 3, forward and reversed, on dirty states. Four mutation controls are rejected. `test_research_assignment.py` passes.\n\n**Not checked / scope:** this is a finite exclusion plus a construction inside PR943's abstract interface. It has no supplier instantiation and no new kappa. PR943's remaining obligations (common-label realization, frames, owners, full-row charging, compiler/tape, precision, analytic) are unchanged. Other alphabets are out of scope, and f(7) is open. No selected record, shared generator or upstream file changes. No discussion claim was posted. The local task card and overlap check are in `CLAIM.md`.\n\n**Credit:** Ross Richardson (PR943, PR934) and the lineage in the retained notice. This was prepared with substantial Anthropic Claude assistance; see `NOTICE.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
   "created_at": "2026-10-13T19:50:31Z",
-  "updated_at": "2026-10-13T19:50:31Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T05:30:21Z",
+  "closed_at": "2026-10-14T05:19:17Z",
+  "merged_at": "2026-10-14T05:19:17Z",
+  "state": "closed"
 }

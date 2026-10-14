@@ -4,8 +4,8 @@
   "title": "Independent verification: exact replay of one P112 asymmetric unit (no new κ)",
   "body": "## Result\n\nAdds an independent standard-library replay of the `d0=76` member of the off-pattern P112 two-sink unit recorded in `research/format-limits` C.6. It reconstructs the E8/Hamming lines and labels, checks all 12,544 entries of the decoder/pairing support identity, and recomputes the COPY ranks and correction supports.\n\nThe checked witness has window rank 9, 24 shared extra sources, coordinate COPY ranks 8 each plus extra-total rank 1 (sum 65), and correction supports 28+28 versus 52+52 for the corresponding coordinate rows. Two mutations fail exactness. The certificate records the witness parameters, source set, supports, counts and matrix hashes.\n\nThis is an exact finite audit of one supplied witness. It does not establish a complete supplier invoice, a cheaper recursive profile, or a new κ.\n\n## Reproduce\n\n```sh\npython3 -I -O -B research/p112-off-pattern-unit-audit-seed52/verify.py\n```\n\nExpected marker:\n\n```text\nPASS_P112_ASYMMETRIC_UNIT_AUDIT seed=52 d0=76 ports=112 entries=12544 window=9 extra_sources=24 copy_ranks=8x8+1 copy_cost=65 corrections=28+28 baseline=52+52 controls=2 no_new_kappa\n```\n\nThe command passed under Python 3.14.7. The research-package metadata/pin check also passed. The repository package wrapper requests Python 3.12, which is not installed in this environment.\n\n## Provenance and scope\n\nExact base: `bce54fb3f895cbe5cd4c0eb477c3afeed100190f`. The predecessor C.6 and E8 geometry sources are pinned by Git blob and SHA256 in `SOURCES.json`; the new checker verifies their working hashes. Credit DreamingOfClouds / PR #595 for C.6, PR #717 for the P112 model, and PR #446 for the inherited decoder format.\n\nThis contribution was developed by Cinna Davis with substantial OpenAI Codex assistance. The full SAT classification suite was not rerun (local `python-sat` is unavailable); the new verifier does not depend on SAT or third-party packages. The proposed next step is a full stage contract and invoice for the extra total, frame changes, source access and restoration.\n",
   "created_at": "2026-10-13T23:09:11Z",
-  "updated_at": "2026-10-13T23:09:11Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T06:13:14Z",
+  "closed_at": "2026-10-14T06:08:54Z",
+  "merged_at": "2026-10-14T06:08:54Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Recursive interface: four-way port borrowing reduces 56-factor echo from 1568 to 1088 calls",
   "body": "The exact additive port-borrowing allocator in PR1057 uses three dirty arrays\r\nwith binary/ternary echoes. This recursive-interface construction admits the\r\nknown four-way echo of PR758 while using a fixed pool of four dirty arrays at\r\nevery depth. For the same 56 ordered factors, the complete unit-price optimum\r\nfalls from1568 to1088 leaf calls, with every inverse and restoration paid.\r\n\r\nThe package includes the general restoration induction, precise restricted\r\noptimizer, all-input noncommutative replay, a sufficient integer precision bound,\r\nand complete conditional backend invoices. At a common 119-bit width, the\r\nexample uses 30464 versus 43904 primitive commands and 1428 versus 1190 data bits.\r\nIt is a space/call tradeoff, not a runtime benchmark or arbitrary-circuit optimum.\r\n\r\nOptimized Python replay checks 396550 planner candidates,1099 complete small\r\ntrees/173690 signed leaf events, both56-factor orientations, dense noncommuting\r\nmatrices, nine semantic controls and four subprocess source/receipt mutations.\r\nOne-command reproduction and exact source pins are in README.md/SOURCES.json.\r\n\r\nThis combines credited prior mechanisms; it does not claim priority for\r\nhigher-arity echoes or constant-register algebra. PR758, PR1057 and their\r\npredecessors retain explicit credit and source notices. Rounded borrowing\r\ncovered by fresh PR1135 is outside this exact additive contract. No new kappa,\r\nnative replay, fixed-tape compiler or supplier admission is claimed. The\r\nselected PR1094 frontier and upstream files are untouched. Prepared for @woklerx\r\nwith substantial OpenAI Codex assistance; Apache-2.0.\r\n",
   "created_at": "2026-10-13T19:25:41Z",
-  "updated_at": "2026-10-13T19:25:41Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T05:29:39Z",
+  "closed_at": "2026-10-14T05:19:03Z",
+  "merged_at": "2026-10-14T05:19:03Z",
+  "state": "closed"
 }

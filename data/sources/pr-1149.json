@@ -4,8 +4,8 @@
   "title": "Independent verification: complex canonical-frame rank identity on every frozen PR1042 edge",
   "body": "Independently check the exact complex canonical-frame recursive-rank obligation at frozen PR1042: all 1,004 frames, 2,896 child edges and 224 endpoint adapters pass literal P/D/C symplectic replay and a separate Lagrangian-intersection check. A written proof derives rankB = dimU + dimV -2dim(U intersectV).\n\nThe complete F2^5 census covers 374 subspaces and 139,876 ordered pairs. Absolute dimension difference undercounts 128,712 nonnested pairs; the selected edges are all nested and unaffected. This is verification of a standard rank identity, not a new algebraic formula or kappa.\n\nReproduce:\n\n```\npython -I -O -B research/complex-frame-distance-seed80/verify.py\npython -I -O -B research/complex-frame-distance-seed80/test_package.py\n```\n\nThe 15 rejection controls include missing/wrong recipes and omitted diagonal gates that remain symplectic but violate the required Lagrangian. A separate phase mutation intentionally passes the rank checker, documenting that no global-phase or operator-equality check is claimed. No native/provider/precision/outer replay.\n\nCredits: icekylinx PR425/433 compiler lineage, LeaverSAT/LeaverSAT2 and PR1004/1005/1018, Jeremy Kothe PR1042; prior PR702/712 phase and PR911 binary-interface audits are distinct. Contributor @woklerx with substantial OpenAI Codex assistance; Apache-2.0.\n",
   "created_at": "2026-10-13T19:09:48Z",
-  "updated_at": "2026-10-13T19:09:48Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T05:29:09Z",
+  "closed_at": "2026-10-14T05:19:03Z",
+  "merged_at": "2026-10-14T05:19:03Z",
+  "state": "closed"
 }
