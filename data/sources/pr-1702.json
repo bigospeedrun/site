@@ -4,8 +4,8 @@
   "title": "test: make the CP1252 overlap regression self-contained",
   "body": "The CP1252 report regression fails in a sparse checkout when neither the local research files nor the user's cache provide a kappa excerpt. It then asserts on an empty result set without exercising the encoding behavior it is intended to check.\n\nRun the current standalone script in a temporary repository containing one UTF-8 README and use an explicit fresh offline cache path. Assert both the single result and its escaped excerpt. This makes the test independent of checkout contents and user cache state while preserving the coverage introduced by #1299. Only this test changes; no new mathematical result is claimed.\n\nValidation on Windows / CPython 3.12.10, based on main `0b1cccf86e2f5132ed286a26ef0a681a495740ea`:\n\n- Before: 17 of 18 onboarding tests pass; this test fails because there are zero matches.\n- After: all 18 pass with `python -B -m unittest discover -s tests -p test_research_onboarding.py -v`.\n- Negative control: replacing `backslashreplace` with strict handling in a temporary script copy produces `UnicodeEncodeError` and makes the updated test fail.\n- `git diff --check` passes. The full test suite and mathematical replay were not run for this test-only change; hosted CI is separate.\n\nThe production encoding fix and original test remain credited to #1299 and commit `e76026571dbfa7299bf474b941c9abeb5bd556b3`. Prepared with substantial OpenAI Codex assistance.\n\nScope: `verifier-engineering / portable-replay`, refined to this test fixture. The submission overlap refresh completed at 2026-10-14 07:23 UTC, covering 389 open PR records and 346 Discussion body/comment/reply records; the matching discussion described the already-incorporated #1299 fix. Local research-note coverage was limited by the sparse checkout, and code diffs were not comprehensively searched.\n",
   "created_at": "2026-10-14T07:24:13Z",
-  "updated_at": "2026-10-14T07:24:13Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T15:58:39Z",
+  "closed_at": "2026-10-14T15:53:05Z",
+  "merged_at": "2026-10-14T15:53:04Z",
+  "state": "closed"
 }

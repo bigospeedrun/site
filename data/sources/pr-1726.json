@@ -4,8 +4,8 @@
   "title": "Bound term-basis shears on the P104 frame-pair decoder",
   "body": "## Result\n\nThis adds a source-pinned, exact finite screen of term-basis changes on PR717's P104 eight-term decoder.\n\n- All 392 one-shear support classes across the 56 ordered term pairs have six rank-7 and two rank-8 terms, so `cst=58` instead of the original 56.\n- The bounded 71,344 touching two-shear paths have cost histogram `{56:336, 58:2744, 59:32928, 60:35336}` and no `cst=57` cases. Every `cst=56` path is an inverse move on the same ordered pair and restores the original factorization.\n- Exact rank-profile dynamic programming allows any eight term ranks in `0..9`, including a zero term. At the 5% ceiling target, the best possible moment lower bound is `1.00012336...` for `cst=57`, so all larger totals fail before delivery, restoration, hosting or precision costs.\n\nThis is a bounded negative result for one elementary shear and the stated touching two-shear alphabet. It is not a physical supplier, new κ, selected-result change or universal obstruction.\n\n## Provenance and replay\n\n- Base: `0b1cccf86e2f5132ed286a26ef0a681a495740ea`.\n- Seed/task: `8be7a2eedea3e46ac14a43b092df843e`, `complex-mechanisms / complex-new-helper-inventory`, priority revision 3.\n- Selected-record SHA-256: `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`.\n- Decoder input: PR717 `P104_HIT_flip_3a.txt`, source head `4a97676294f9fa413b65986e9984fddeda71e4cc`, SHA-256 `8e0178db02c14e1b29058cdbdbd50aac22f2b55a1ba21dc82f417610c9932526`.\n- Related work: PR968's frame-pair floor; PR1071's fixed-decoder delivery bound; PR1125's broader fixed-support delivery bound; PR1240's local packing ceiling; open PR1619's port-count pricing. The term-basis change is the distinct construction attempt.\n\nReproduce with Python 3.12:\n\n```sh\npython3.12 -I -B research/p104-term-shear-seed8be7/verify.py\npython3.12 scripts/research_package.py --package research/p104-term-shear-seed8be7\n```\n\nBoth exact replay and registered package replay passed locally. The selected supplier and all prior certificates are unchanged. Prepared with substantial OpenAI Codex assistance; no independent human proof review is claimed.\n",
   "created_at": "2026-10-14T08:02:40Z",
-  "updated_at": "2026-10-14T08:03:45Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-14T15:59:37Z",
+  "closed_at": "2026-10-14T15:50:00Z",
+  "merged_at": "2026-10-14T15:50:00Z",
+  "state": "closed"
 }
