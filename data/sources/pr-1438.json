@@ -1,0 +1,11 @@
+{
+  "number": 1438,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1438",
+  "title": "Research: bound paid two-connector transfers with free source-port choice",
+  "body": "Allowing either source connector for each B operator, a second dirty connector and only two paid one-way transfers still cannot realize the five-source universal target at minimum B/A incidence. An exact 1,995,840-placement census supports the necessary four-transfer threshold; a two-source mixed-mask fixture attains four. Concurrent Discussion #1412 considers a stricter model where every B writes the same port and seeks a stronger eight-transfer bound; this submission makes no priority claim for the shared mechanism or universal four-transfer construction.\n\nValidation: Python 3.12 registered replay with source pins and scoped controls; selected-result integrity or baseline bindings and diff checks pass. See the [reproduction instructions, exact sources and remaining questions](https://github.com/woklerx/integer-mult-bounds/blob/a61170c97c9ea2c396f6d76a953b0cf74a455cdd/research/two-connector-transfer-boundary/README.md). No selected source, certificate or kappa changes; no full selected circuit replay is claimed. Prepared by woklerx with substantial OpenAI Codex assistance, with predecessor attribution retained.\n",
+  "created_at": "2026-10-14T00:51:31Z",
+  "updated_at": "2026-10-14T00:51:31Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

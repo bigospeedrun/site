@@ -1,0 +1,11 @@
+{
+  "number": 1455,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1455",
+  "title": "Research: sharpen the fixed P104 first-drop boundary to 54 copy cost",
+  "body": "For the exact PR1187 P104 decoder, two copy terms can drop at the same first boundary of 22 additional punctures. This improves its displayed 55-copy/82-port witness to 54 copies and proves 54 optimal there: 24 boundary cuts cost 54, 336 cost 55, and all others cost 56. A complete 1,792,252 cut-pair census, all 6,724 coefficient identities and single-port restoration controls support the fixed-decoder result. Its 54/82 ratio remains worse than 56/104; physical charges are unpriced.\n\nValidation: Python 3.12 registered replay with source pins and scoped controls; selected-result integrity or baseline bindings and diff checks pass. See the [reproduction instructions, exact sources and remaining questions](https://github.com/woklerx/integer-mult-bounds/blob/0ebd49c31300e67698fd812fc00f2a3b2b805a67/research/p104-two-copy-drops/README.md). No selected source, certificate or kappa changes; no full selected circuit replay is claimed. Prepared by woklerx with substantial OpenAI Codex assistance, with predecessor attribution retained.\n",
+  "created_at": "2026-10-14T00:55:54Z",
+  "updated_at": "2026-10-14T00:55:54Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
