@@ -292,6 +292,42 @@
         "checked_at": "2026-10-11T22:56:40.733523Z",
         "receipt_path": "sources/direct-issue-4-38175066816-1.json"
       }
+    },
+    {
+      "id": "direct-issue-8",
+      "kind": "improvement",
+      "score": "980307/500000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-14T12:55:58Z",
+      "spec_version": "1",
+      "title": "Anchen0823 direct 3sum submission",
+      "authors": [
+        {
+          "name": "Anchen0823",
+          "url": "https://github.com/Anchen0823"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/8",
+      "source_commit": "8c25c0325de5be4286413f39ca0c9278aad33f52",
+      "artifact": {
+        "path": "sources/direct-issue-8-submission.json",
+        "sha256": "6d47b3db265457fd3af0d7aceec5a0a14b2ffc53fcbf337468ad3169a2807737"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/8",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-14T12:55:58Z",
+      "site_observed_at": "2026-10-14T13:19:17Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/Anchen0823/three-sum-1960614/blob/8c25c0325de5be4286413f39ca0c9278aad33f52/Submission.lean"
+      }
     }
   ],
   "record_metadata": {
@@ -409,7 +445,24 @@
       "direct_submission": true,
       "route": "issue",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38175066816"
+    },
+    "direct-issue-8": {
+      "checked_at": "2026-10-14",
+      "source_url": "https://github.com/Anchen0823/three-sum-1960614/blob/8c25c0325de5be4286413f39ca0c9278aad33f52/Submission.lean",
+      "repo": "Anchen0823/three-sum-1960614",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sum/word-ram/v1",
+      "publication_date": "2026-10-14T12:55:58Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/8",
+      "direct_submission": true,
+      "route": "issue"
     }
   },
-  "updated_at": "2026-10-14T00:19:57Z"
+  "updated_at": "2026-10-14T13:19:17Z"
 }

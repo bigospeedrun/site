@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-1839",
+        "leader": "crocswap-pr-1875",
         "records": [
           {
             "id": "openai-original-109",
@@ -3248,6 +3248,16 @@
               "jeremykothe2"
             ],
             "bound": "O(n log^(1 - 0.0016797549561255445) n)"
+          },
+          {
+            "id": "crocswap-pr-1875",
+            "score": "16797549561255445213356709939207025769983114385025802954603275201628645482603256388263056561/10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "rohanarun"
+            ],
+            "bound": "O(n log^(1 - 0.0016797549561255445213356709939207025769983114385025802954603275201628645482603256388263056561) n)"
           }
         ]
       },
@@ -3383,7 +3393,7 @@
         "slug": "3sum",
         "name": "3SUM",
         "url": "https://bigospeedrun.com/3sum",
-        "leader": "direct-issue-4",
+        "leader": "direct-issue-8",
         "records": [
           {
             "id": "anthropic-2026",
@@ -3425,6 +3435,16 @@
               "c0ldzy17"
             ],
             "bound": "O(n^1.962)"
+          },
+          {
+            "id": "direct-issue-8",
+            "score": "980307/500000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Anchen0823"
+            ],
+            "bound": "O(n^1.960614)"
           }
         ]
       },
@@ -3598,7 +3618,9 @@
     "[\"integer-multiplication\",\"crocswap-pr-1800\",\"209969369515693/125000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-1712\",\"3355283462686709/2000000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-1731\",\"1678123830633547/1000000000000000000\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-1758\",\"1679745508802299/1000000000000000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-1758\",\"1679745508802299/1000000000000000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-1875\",\"16797549561255445213356709939207025769983114385025802954603275201628645482603256388263056561/10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
+    "[\"3sum\",\"direct-issue-8\",\"980307/500000\",\"attained\"]:record"
   ],
   "deferred": [
     {
