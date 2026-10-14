@@ -4,8 +4,8 @@
   "title": "Conditional κ = 0.001654108529511355: joint two-call owner map on the PR655 gauge44-layered word",
   "body": "## Summary\n\nConditional κ = **0.001654108529511355** (conservative 0.001654108526615491). This is +1.54×10⁻⁷ over PR655 (0.00165395497190225).\n\n**Change: owner map only.** The word, construction, all code and the PR589 bit supplier are exactly PR655's; every code and construction file is byte-identical, so PR655's independent review signatures apply unchanged. The new map comes from a joint two-call search (an implementation of jaymosley07's PR653 nomination: release two calls together, accept only exact integer-majorization improvements). It made 44 moves over 4 passes, starting from PR655's map.\n\n## Verification\n\nFrom a fresh clone of commit 0805e78f, with no reused artifacts (Windows, CPython 3.11.11):\n- `verify_manifest.py`: PASS, 97 files\n- `reproduce.py --until word`: rebuilt PR645's word from PR635\n- `reproduce_layers.py`: rebuilt the layered word and locals; **PASS layer-end-controls**\n- `audit_local.py`: PASS_INDEPENDENT_EXACT_FORWARD_AND_DUAL_ENDPOINT_FRAMES_ENTRANCES_CONES\n- `verify_global.py`: PASS invoice, assembly, admission-controls and bit-supplier-controls; **PASS_GAUGE44_NATIVE_EXACT_GLOBAL_ASSEMBLY 0.001654108529511355**\n\nThe exact commands are in `research/gauge44-layered-b/README.md`.\n\n## Scope\n\nConditional on PR645's premises and on PR589's bit-supplier assumptions in place of PR543's. No unconditional theorem or Lean certification is claimed.\n\n## Credits\n\n- **icekylinx** (PR645): gauge44 construction, package and verifier.\n- PR589 lineage: the bit supplier.\n- PR601/604/617/627 and PR635/637 lineage (DreamingOfClouds, jeremydiviney, CarrierBypass and our earlier PRs): the end constructions these layers port.\n- **vectorsss / Chi Zhao** (PR638) and **jaymosley07** (PR653): owner-search methods our packers build on.\n\nPrepared with Claude Code (Anthropic).\n",
   "created_at": "2026-10-13T02:15:12Z",
-  "updated_at": "2026-10-13T02:15:12Z",
-  "closed_at": null,
+  "updated_at": "2026-10-14T02:56:32Z",
+  "closed_at": "2026-10-14T02:56:32Z",
   "merged_at": null,
-  "state": "open"
+  "state": "closed"
 }

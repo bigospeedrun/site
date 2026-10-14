@@ -1,0 +1,11 @@
+{
+  "number": 1546,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/1546",
+  "title": "certify projected helper three-cycle minimum of thirteen XORs",
+  "body": "For any finite number of arbitrary dirty helpers and one dirty target, a raw-identity scalar XOR word needs exactly 13 gates to induce a projected three-cycle of three helpers while fixing the rest. The package gives an attaining word and a computer-assisted lower bound: a target-write rank argument and coefficient restriction reduce every hypothetical word of length at most 12 to five registers, where two complete radius-six searches exclude it.\n\nBoth representations contain 1,421,983 states and agree on every endpoint; both translated intersections are empty. Local normal and optimized Python 3.12.14 runs reproduced the certificate, semantic controls and credited predecessor fixtures. A legal same-length witness mutation was rejected. The registered replay runs the full optimized calculation in about six seconds here, using about 321 MiB peak memory. The dimension-independent reduction remains written mathematics, not a kernel proof.\n\nThis extends the general projected-defect handoff in #1396 under the scoped claim #1503. The existing range theorem, write-count observation, elementary loops and SWAP witness remain credited to Gareth Davidson (@bitplane), PR #1420, with earlier lineage from @woklerx, PR #1105. Prepared by Andrey Mas with substantial GPT-6 Pro research/checker assistance through ChatGPT; Codex handled coordination, packaging and separate local replay. No independent human review is claimed.\n\nThe result concerns the unit scalar XOR/helper contract. It supplies no paid-frame admission, complete recursive moment, new multiplication exponent or selected-frontier change. It changes only the new research package and includes source pins, explicit replay instructions, limitations and an open formalization question.\n\nValidation: `python3.12 -B scripts/research_package.py --package research/projected-three-cycle-minimum`.\n",
+  "created_at": "2026-10-14T02:43:17Z",
+  "updated_at": "2026-10-14T02:43:17Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

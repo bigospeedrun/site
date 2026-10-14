@@ -4,8 +4,8 @@
   "title": "Fix CI dependency path for frozen PR323; construction unchanged",
   "body": "κ = 7.69557449978832e-4\n\nThis is a CI repair for frozen #323, with exactly the same conditional construction and κ claim. The original workflow tried to install `research/p10-presink-three-quads/requirements.txt`, but the pinned SymPy requirement is provided at `research/p10-presink-three-quads/vendor/predecessor/requirements.txt`. The job failed before it started the verifier.\n\nThe only change relative to #323 at `e51f5ffee8ab574e5b8249a4612411b2ca5f100d` is the workflow's dependency-file path. Every proof-package byte and its manifest `8d9f047a99e5d6f3affd6a241c94baa713d1db2988e0101fcd92ecb71e7b0963` are unchanged, as is the publication audit. The two complete local immutable replays and separate literal-word audit therefore remain applicable. CI now installs the pinned dependency from its actual location and runs the same full offline verifier.\n\n```sh\npython -m pip install -r research/p10-presink-three-quads/vendor/predecessor/requirements.txt\npython -B research/p10-presink-three-quads/verify.py --output /tmp/p10-three-quads-proof --cxx g++ --boost-include /usr/include\n```\n\nThis separate branch and PR preserve #323's published head and claim. The full construction, conditional scope, provenance and original AI disclosures are in #323 and the unchanged package. The one-line workflow repair was prepared with OpenAI Codex assistance.\n",
   "created_at": "2026-10-10T18:14:36Z",
-  "updated_at": "2026-10-10T18:14:36Z",
-  "closed_at": null,
+  "updated_at": "2026-10-14T01:20:43Z",
+  "closed_at": "2026-10-14T01:20:43Z",
   "merged_at": null,
-  "state": "open"
+  "state": "closed"
 }

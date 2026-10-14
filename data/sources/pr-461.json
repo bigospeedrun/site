@@ -4,7 +4,7 @@
   "title": "Conditional kappa = 0.001274032592088050: sharper bit bad-class charge on #458",
   "body": "## Summary\n- Reprices the binding bit moment of #458. The bit histogram, the complex root, and the six-level balanced assembly stay as published there.\n- The source theorem charges each bad edge at most `(2 m^3 / 2^80) * (6 N (N - 1) + 3 N + 6 (N - 1))` rank-one children, with `N = 2 m`. At `m = 78` that is strictly below the round `10^-16 * 32 m^2` envelope.\n- Replaying the inherited envelope reproduces #458's kappa `1274032589159993/10^18`. The sharp charge gives kappa `25480651841761/20000000000000000` (`0.001274032592088050`), a gain of `2928057/10^18`. The assembly remains bit-bound. Both moment engines certify the new root, all 47 outer inequalities hold, and the next `10^-18` grid point is rejected.\n- No residual is split across families.\n\n## Test plan\n- [ ] `python research/sharp-bit-bad-fraction/prove.py` prints `PASS` and the kappa above\n- [ ] The cited complex root from #458 stays strictly above the new bit root\n- [ ] The diff does not import the cross-family residual split\n",
   "created_at": "2026-10-11T16:50:06Z",
-  "updated_at": "2026-10-11T16:50:06Z",
+  "updated_at": "2026-10-14T02:58:47Z",
   "closed_at": null,
   "merged_at": null,
   "state": "open"

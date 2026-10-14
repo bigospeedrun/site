@@ -4,8 +4,8 @@
   "title": "Independent replay: κ = 0.00162128508944984 for PR604 cold_end",
   "body": "κ = 0.00162128508944984 (conservative κ = 0.001621285086572193)\n\nThis PR independently replays the exact head of CrocSwap/integer-mult-bounds#604, a new cold_end architecture that lets 14 factory-scratch helpers per provider call finish at dimension-4 frames after an exact premix and guarded multi-gate cleanup. It records the fresh evidence without changing any published upstream head.\n\nEvidence:\n\n- 55/55 top-level stages passed from the pinned PR604 head in 601.33 seconds, with no reused local outputs.\n- The audit independently checked all 55 stage-log hashes and all 54 receipt-artifact hashes, then checked the package manifest and SPEC hash.\n- ck×44, atm3×22 and jp8×6 providers pass actual scalar words, arbitrary dirty restoration in both orientations, both reflected ledgers, native frames, wrappers, phase edges, owners, fresh invoice, both moment engines, exact assembly and negative controls.\n- The fresh profile is {1:185792, 2:32576, 3:23600, 4:14128, 5:5040, 6:2016, 8:576, 32:1, 48:2094}.\n\nThe full receipt, result, assembly controls, phase controls, owner/profile audit and independent audit summary are in certificates/pr604-independent-replay/. The replay remains conditional on the inherited all-size compiler, common-label/mutable-source realization, whole-call hosting, precision/tape/exact recovery, analytic transfer and bit H1–H5 assumptions. No Lean replay or unconditional theorem is claimed.\n\nProvenance and AI disclosure: the upstream cold_end construction is credited to DreamingOfClouds with Claude Opus 5.5 assistance and its inherited contributors. This independent replay and certificate packaging were prepared with OpenAI Codex assistance.\n",
   "created_at": "2026-10-12T18:20:14Z",
-  "updated_at": "2026-10-12T18:20:14Z",
-  "closed_at": null,
+  "updated_at": "2026-10-14T02:37:02Z",
+  "closed_at": "2026-10-14T02:37:02Z",
   "merged_at": null,
-  "state": "open"
+  "state": "closed"
 }
