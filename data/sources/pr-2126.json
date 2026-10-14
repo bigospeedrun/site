@@ -1,0 +1,11 @@
+{
+  "number": 2126,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2126",
+  "title": "Construct exact scalar identity fit for paired planes",
+  "body": "## Contribution\n\nThis adds an exact scalar endpoint fit for the selected 112 ports while keeping PR1825's 56 matched planes fixed. For each pair, source and target columns are the two port basis vectors and the plane coefficient is `I_2`. Summing the 56 terms gives `K = I_112`, satisfying every diagonal and every forbidden cross-entry of the plane endpoint mask.\n\nThe exact B14 support-pairing invoice is 112 (56 rank-two terms), 14 below the published F2-derived invoice of 126. The verifier checks all 12,544 scalar entries, 11,560 off-diagonal nonorthogonal-plane entries, 224 dirty scalar columns, and all 28,672 local plane-correction basis cases. Four negative controls reject.\n\nThe changed-word favorable two-unpaid ceiling is `a_hi = 4078546959/10^12 = 0.004078546959` at centre charge 112, against `0.003447203501` for the published paired-plane profile at charge 126. This is a local favorable screen, not an admitted supplier or a new κ.\n\n## Scope and limits\n\nThe source pins, cycle seed, task scope, exact predecessor heads and overlap record are in `research/paired-plane-identity-fit-seed21ef98/`. Native route/frame transitions, hosted application frequency, full restoration, recursive precision, a bit-side endpoint and joint assembly remain open. The selected record and κ are unchanged.\n\nCredit PR1825 for the fixed matching and plane translations; PR1889 identifies why its F2 matrix alone is not the scalar endpoint. Prepared by Cinna Davis with substantial OpenAI Codex assistance. No independent human or formal proof-assistant review is claimed.\n\n## Reproduce\n\n```sh\npython3 -I -O -B research/paired-plane-identity-fit-seed21ef98/verify.py\npython3 scripts/research_package.py --package research/paired-plane-identity-fit-seed21ef98 --check-only\n```\n\nThe verifier passed locally on Python 3.14.7. The repository's generic replay requests Python 3.12, which is not installed in this environment; hosted registered-package CI remains a separate check.",
+  "created_at": "2026-10-14T20:12:22Z",
+  "updated_at": "2026-10-14T20:12:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

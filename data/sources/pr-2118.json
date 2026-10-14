@@ -1,0 +1,11 @@
+{
+  "number": 2118,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2118",
+  "title": "Lower paired-plane matching copy charge by exact local rematch",
+  "body": "## Summary\n\nThis adds an exact local optimization for the selected 112-port paired-plane factorization. Replacing predecessor matching edges `(90,42)` and `(87,44)` with `(87,90)` and `(42,44)` lowers its exact B14 support-pairing invoice from 126 to 96.\n\nThe package enumerates the full two-edge-switch neighborhood: 3,080 reconnection descriptions, 666 legal matchings, no inconsistent factorization systems, and a unique minimum at 96. It reconstructs the F2 identity, exact support ranks, and all 28,672 dirty-basis plane-endpoint states. Its selected-complex relaxation is explicitly screening evidence only; the F2 factorization is not a scalar masked-plane decoder, and no supplier, assembly, or selected-kappa improvement is claimed.\n\n## Reproduction\n\n```sh\npython3.12 -B research/paired-plane-local-swap-seed9c65a5/verify.py\n```\n\nExpected first line: `PASS_PAIRED_PLANE_LOCAL_TWO_EDGE_SWITCH`.\n\nThe verifier and `scripts/research_package.py --check-only` passed locally. The direct verifier ran under Python 3.14.7; Python 3.12 is unavailable in this environment, so the registered Python 3.12 replay remains for CI.\n\nPredecessor attribution and remaining questions are recorded in the package README and TASK metadata. Substantial OpenAI Codex assistance was used; no independent human review or formal proof assistant is claimed.\n",
+  "created_at": "2026-10-14T19:51:05Z",
+  "updated_at": "2026-10-14T19:51:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
