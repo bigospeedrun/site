@@ -1,0 +1,11 @@
+{
+  "number": 2225,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2225",
+  "title": "Research: complementary even-subset dyadic kernels and exact support spans (no new kappa)",
+  "body": "## Result and scope\n\nAlgebraic component only; **no supplier or new κ**. Adds `research/even-subset-dyadic-kernels/` without changing selected files.\n\nFor every odd n and even `2 ≤ k < n`, label k-subsets by their complements and use `K(S,T)=binomial(|S∩T|/2,k/2)`. The proof gives norm-one labels, unit diagonal, forbidden-pair zeros, a dyadic incidence factorization and exact feature support dimension `n−j` at degree j.\n\nAt `(n,k)=(25,6)`, there are 177,100 ports and 2,625 features, with algebraic support-rank sum 58,100. This is not a physical copy invoice. No paid side program for `I−K`, opposite native orientation, ownership, precision or bit supplier is supplied.\n\n## Verification\n\n```sh\npython3 scripts/research_package.py --package research/even-subset-dyadic-kernels\n```\n\nPassed locally on Python 3.12, standard library only, including the registered optimized entry point: 256,545 complete ordered-pair checks, all 837 actual feature supports in three small families, 15 larger cases, dyadic coefficient controls through k=24 and three mathematical mutations. Normal verification writes nothing. Hosted CI is separate.\n\n## Relation to existing work\n\nZhihao Chen's five-subset motif and its compiler lineage are credited. Open PR172's Boolean-lattice zeta family computes disjointness and leaves its identity fitting condition open; this package proves the stated complementary-shell fitting kernel and support spans, while leaving its side program open. Binomial interpolation and incidence factorization are standard, not claimed as new techniques. `OVERLAP.md` records the complete open-PR metadata review and its limits.\n\nPrepared by Cinna Davis (@1337isnot1337), with substantial OpenAI Codex assistance. Apache-2.0; no independent human review or full theorem formalization is claimed.\n",
+  "created_at": "2026-10-15T00:28:54Z",
+  "updated_at": "2026-10-15T00:28:54Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-2044",
+        "leader": "crocswap-pr-2220",
         "records": [
           {
             "id": "openai-original-109",
@@ -3318,6 +3318,16 @@
               "philippeVV"
             ],
             "bound": "O(n log^(1 - 0.001672684510394236) n)"
+          },
+          {
+            "id": "crocswap-pr-2220",
+            "score": "419938739031386130333917748480175644249577859625645073865081880040716137065081409706576414033211/250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "jeremykothe2"
+            ],
+            "bound": "O(n log^(1 - 0.0016797549561255445213) n)"
           }
         ]
       },
@@ -3561,7 +3571,7 @@
         "slug": "subset-sum",
         "name": "Subset Sum",
         "url": "https://bigospeedrun.com/subset-sum",
-        "leader": "subset-sum-2026",
+        "leader": "a-kapila-subset-sum-0-4877-2026",
         "records": [
           {
             "id": "subset-sum-2026",
@@ -3572,6 +3582,16 @@
               "OpenAI"
             ],
             "bound": "O(2^(0.49n))"
+          },
+          {
+            "id": "a-kapila-subset-sum-0-4877-2026",
+            "score": "4877/10000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Annanay Kapila"
+            ],
+            "bound": "O(2^(0.4877n))"
           }
         ]
       }
@@ -3685,6 +3705,8 @@
     "[\"integer-multiplication\",\"crocswap-pr-1839\",\"3359509912251089/2000000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-1905\",\"419938739031386130333917748480175644249577859625645073865081880040716137065081409706576414033/250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
     "[\"3sum\",\"direct-issue-8\",\"980307/500000\",\"attained\"]:lean",
-    "[\"integer-multiplication\",\"crocswap-pr-2044\",\"41993873903138613033391774848017564424957785962564507386508188004071613706508140970657641403321/25000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-2044\",\"41993873903138613033391774848017564424957785962564507386508188004071613706508140970657641403321/25000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-2220\",\"419938739031386130333917748480175644249577859625645073865081880040716137065081409706576414033211/250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
+    "[\"subset-sum\",\"a-kapila-subset-sum-0-4877-2026\",\"4877/10000\",\"attained\"]:record"
   ]
 }
