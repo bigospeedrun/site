@@ -7,7 +7,8 @@
 #
 # Networks: the site container is only on `egress`, an internal network (no route out),
 # shared with the allowlist proxy. Caddy on the host reaches the site through the Unix
-# socket in /run/bigospeedrun (bigospeedrun.tmpfiles.conf), so no port is published.
+# socket in /run/bigospeedrun (bigospeedrun.tmpfiles.conf: 0755, the socket is 0666), so
+# no port is published.
 # Only the proxy is also on `outbound`, and it opens tunnels only to EGRESS_ALLOW.
 name: bigospeedrun
 
@@ -44,7 +45,8 @@ services:
       egress:
         condition: service_healthy
     cpus: 0.5
-    mem_limit: 512m
+    mem_limit: 384m
+    memswap_limit: 384m
     pids_limit: 128
     # The image's HEALTHCHECK fetches /robots.txt on 127.0.0.1:3000 inside the container.
 

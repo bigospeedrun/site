@@ -124,8 +124,8 @@ export function siteServer(handle: (request: Request) => Promise<Response>) {
 }
 
 // Self-hosted, Caddy on the host reaches the site through a Unix socket in a shared
-// directory: the container's network is internal, so it publishes no port. The directory's
-// owner and mode decide who may connect; the socket itself is open to them.
+// directory: the container's network is internal, so it publishes no port. The socket is
+// open to every local user (mode 0666): it serves only what the public site serves.
 export async function startSocketServer(options: SiteOptions & {socket: string}, handle = createSiteHandler(options)) {
   const server = siteServer(handle);
   await unlink(options.socket).catch(() => {});

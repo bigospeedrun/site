@@ -99,6 +99,21 @@ test('Accept: text/markdown routes pages to the markdown view, as vercel.json do
  assert.equal(await (await get('/api/markdown?agentPath=about')).text(), '<main>About</main>');
 });
 
+test('without the Anthropic key (staging) the chat answers 503 and calls nothing', async () => {
+ // A staging site.env with empty values, as with a file that names the keys but sets none.
+ let outbound = 0;
+ const staging = await startSiteServer({root, env: {ANTHROPIC_API_KEY: '', DISCORD_WEBHOOK_URL: '', DISCORD_CHAT_LOG_WEBHOOK_URL: ''}, fetcher: (async () => { outbound++; return new Response(); }) as typeof fetch, port: 0, host: '127.0.0.1'});
+ try {
+  const url = `http://127.0.0.1:${(staging.address() as AddressInfo).port}/api/chat`;
+  assert.deepEqual(await (await fetch(url)).json(), {logging: false, stub: false, available: false});
+  const post = await fetch(url, {method: 'POST', headers: {'content-type': 'application/json', 'x-forwarded-for': '203.0.113.7'}, body: JSON.stringify({messages: [{role: 'user', content: 'Hi'}], loggingNotice: true})});
+  assert.equal(post.status, 503);
+  assert.equal(post.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await post.json(), {error: {message: 'The chat is not available yet. Please use the FAQ.'}});
+  assert.equal(outbound, 0);
+ } finally { staging.close(); }
+});
+
 test('chat status, origin check, streamed reply and the per-IP rate limit', async () => {
  const status = await (await fetch(keylessBase + '/api/chat')).json();
  assert.deepEqual(status, {logging: false, stub: false, available: false});

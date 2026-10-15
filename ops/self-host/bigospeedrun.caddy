@@ -45,11 +45,19 @@ bigospeedrun.com, www.bigospeedrun.com {
 			response_header_timeout 70s
 		}
 	}
+	# wg-caddy runs with ProtectSystem=strict and may write only /var/log/wg-caddy. The
+	# filter drops the request (client address, headers), as Wall Game's log does.
 	log {
-		output file /var/log/caddy/bigospeedrun.log {
+		output file /var/log/wg-caddy/bigospeedrun-access.json {
 			roll_size 10MiB
 			roll_keep 5
+			roll_keep_for 168h
 		}
-		format json
+		format filter {
+			wrap json
+			fields {
+				request delete
+			}
+		}
 	}
 }
