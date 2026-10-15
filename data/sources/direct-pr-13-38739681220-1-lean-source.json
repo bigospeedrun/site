@@ -3,9 +3,9 @@
     "disposition": "merge",
     "importable": true,
     "merge_commit": "318f794adac7d6f87f6974c6e1aab49ca982a622",
-    "publisher_commit": "51489ee2ac82596a41375e92ea8108814f931242",
+    "publisher_commit": "318f794adac7d6f87f6974c6e1aab49ca982a622",
     "publisher_run_attempt": "1",
-    "publisher_run_id": "38739741373",
+    "publisher_run_id": "38761785435",
     "reason": "lean_and_axiom_passed_nanoda_pending",
     "receipt": {
       "artifact_sha256": {
@@ -2961,7 +2961,7 @@
     "test_only": false,
     "verification_stage": "lean",
     "verifier_commit": "51489ee2ac82596a41375e92ea8108814f931242",
-    "workflow_conclusion": null,
+    "workflow_conclusion": "success",
     "workflow_path": ".github/workflows/submissions.yml"
   },
   "verification_run": {
@@ -2974,8 +2974,8 @@
     "display_title": "[Lean submission] 3SUM: deterministic O(n^1.921), complete Lean proof",
     "run_number": 221,
     "event": "issues",
-    "status": "in_progress",
-    "conclusion": null,
+    "status": "completed",
+    "conclusion": "success",
     "workflow_id": 380847968,
     "check_suite_id": 104979897906,
     "check_suite_node_id": "CS_kwDOVDiv6M8AAAAYcUoeMg",
@@ -2983,7 +2983,7 @@
     "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
     "pull_requests": [],
     "created_at": "2026-10-15T13:04:44Z",
-    "updated_at": "2026-10-15T13:05:53Z",
+    "updated_at": "2026-10-15T15:36:19Z",
     "actor": {
       "login": "c0ldzy17",
       "id": 119072140,
@@ -3195,23 +3195,23 @@
     }
   },
   "result_artifact": {
-    "id": 11984087897,
-    "node_id": "MDg6QXJ0aWZhY3QxMTk4NDA4Nzg5Nw==",
-    "name": "pr-submission-38739681220-1-publisher-38739741373-1",
-    "size_in_bytes": 26193,
-    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11984087897",
-    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11984087897/zip",
+    "id": 11986521117,
+    "node_id": "MDg6QXJ0aWZhY3QxMTk4NjUyMTExNw==",
+    "name": "pr-submission-38739681220-1-publisher-38761785435-1",
+    "size_in_bytes": 20922,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11986521117",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11986521117/zip",
     "expired": false,
-    "digest": "sha256:6d6f3d3507545b4f55d91ec27b507badb56c194fd955d38be9284c04b789608e",
-    "created_at": "2026-10-15T15:14:00Z",
-    "updated_at": "2026-10-15T15:14:00Z",
-    "expires_at": "2027-01-13T13:05:10Z",
+    "digest": "sha256:6d26f9b21de1b4bbfa8b1771ec4322c27625acd764e74b51bcebb373bb8a856f",
+    "created_at": "2026-10-15T15:36:41Z",
+    "updated_at": "2026-10-15T15:36:41Z",
+    "expires_at": "2027-01-13T15:36:14Z",
     "workflow_run": {
-      "id": 38739741373,
+      "id": 38761785435,
       "repository_id": 1413001192,
       "head_repository_id": 1413001192,
       "head_branch": "main",
-      "head_sha": "51489ee2ac82596a41375e92ea8108814f931242"
+      "head_sha": "318f794adac7d6f87f6974c6e1aab49ca982a622"
     }
   },
   "proof_artifact": {
@@ -3235,25 +3235,25 @@
     }
   },
   "publisher_run": {
-    "id": 38739741373,
+    "id": 38761785435,
     "name": "Publish submission PR result",
-    "node_id": "WFR_kwLOVDiv6M8AAAAJBRGKvQ",
+    "node_id": "WFR_kwLOVDiv6M8AAAAJBmHoWw",
     "head_branch": "main",
-    "head_sha": "51489ee2ac82596a41375e92ea8108814f931242",
+    "head_sha": "318f794adac7d6f87f6974c6e1aab49ca982a622",
     "path": ".github/workflows/pr-publish.yml",
     "display_title": "Publish submission PR result",
-    "run_number": 453,
+    "run_number": 467,
     "event": "workflow_run",
     "status": "completed",
     "conclusion": "success",
     "workflow_id": 380847965,
-    "check_suite_id": 104980064460,
-    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAYcUyozA",
-    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739741373",
-    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739741373",
+    "check_suite_id": 105043343716,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAYdRI5ZA",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761785435",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/38761785435",
     "pull_requests": [],
-    "created_at": "2026-10-15T13:05:10Z",
-    "updated_at": "2026-10-15T15:14:03Z",
+    "created_at": "2026-10-15T15:36:13Z",
+    "updated_at": "2026-10-15T15:36:44Z",
     "actor": {
       "login": "c0ldzy17",
       "id": 119072140,
@@ -3277,7 +3277,7 @@
     },
     "run_attempt": 1,
     "referenced_workflows": [],
-    "run_started_at": "2026-10-15T13:05:10Z",
+    "run_started_at": "2026-10-15T15:36:13Z",
     "triggering_actor": {
       "login": "c0ldzy17",
       "id": 119072140,
@@ -3299,26 +3299,26 @@
       "user_view_type": "public",
       "site_admin": false
     },
-    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739741373/jobs",
-    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739741373/logs",
-    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/104980064460",
-    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739741373/artifacts",
-    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739741373/cancel",
-    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739741373/rerun",
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761785435/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761785435/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/105043343716",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761785435/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761785435/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761785435/rerun",
     "previous_attempt_url": null,
     "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847965",
     "head_commit": {
-      "id": "51489ee2ac82596a41375e92ea8108814f931242",
-      "tree_id": "9e4a94bf4edc416e67250e4a92864ac22337e29d",
-      "message": "Skip PRs that touch no submissions/ path in the proof scheduler\n\nStatement PRs under challenges/ and auto-research PRs failed the proof\nlayout check, so the publisher closed them. The scheduler now ignores a\nPR whose complete file list has no submissions/ path (filename or\nrename source); maintainers review it by hand. Mixed, renamed and\noversized PRs still go through the layout check.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
-      "timestamp": "2026-10-13T18:38:06Z",
+      "id": "318f794adac7d6f87f6974c6e1aab49ca982a622",
+      "tree_id": "d336bc01743ca789f5c0d59a0ba69015559f68d7",
+      "message": "APSP: exponent 59911217/20000000 (#13)\n\nLi Xuanji's APSP proof (PR #6) with a sharper numerical certificate of its unchanged parameters: Gamma(20, 56569/500000) > 0.0660254 and q(56569/500000) < 0.4339741, and the absorption constants lowered from 2.995561 to 2.99556085. No algorithmic change; credits retained in Submission.lean.\n\nCo-authored-by: Hrishik Sai Bojnal <hrishik@gb-497.netbird.selfhosted>",
+      "timestamp": "2026-10-15T13:34:18Z",
       "author": {
-        "name": "nil",
-        "email": "nil.mamano@gmail.com"
+        "name": "Hrishik Sai Bojnal",
+        "email": "hrishiksaibm@gmail.com"
       },
       "committer": {
-        "name": "nil",
-        "email": "nil.mamano@gmail.com"
+        "name": "GitHub",
+        "email": "noreply@github.com"
       }
     },
     "repository": {

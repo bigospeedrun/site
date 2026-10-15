@@ -13,7 +13,7 @@
       },
       "verification": {
         "decision": "lean-verified",
-        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
         "id": "direct-14-52ef7e8444728cf3680b0ec292e3cda8da33dfa19d7d6b08dcf436e41b311ef1",
         "problem_id": "3sum/word-ram",
         "score": "1921/1000",
@@ -21,22 +21,22 @@
         "source_commit": "dd4bce5575effbf32c672b12a1a31e004492f2ec",
         "source_url": "https://github.com/c0ldzy17/three-sum-lean",
         "authors": [],
-        "workflow_conclusion": null,
+        "workflow_conclusion": "success",
         "issue_submitter": "c0ldzy17",
         "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
-        "checked_at": "2026-10-15T15:13:34.408419Z",
+        "checked_at": "2026-10-15T15:35:58.909974Z",
         "issue_created_at": "2026-10-15T13:04:41Z",
         "issue_updated_at_at_verification": "2026-10-15T13:04:41Z",
-        "issue_updated_at_at_import": "2026-10-15T15:13:58Z",
+        "issue_updated_at_at_import": "2026-10-15T15:36:16Z",
         "review_required": [
           "authorship",
           "first publication date",
           "historical record eligibility"
         ],
-        "receipt_path": "sources/direct-issue-14-38739681220-1-lean.json",
-        "receipt_sha256": "727362412b41ffa7c879a65449952f6c4491c73d586db5e5e3e239642072a69e",
+        "receipt_path": "sources/direct-issue-14-38739681220-1.json",
+        "receipt_sha256": "4e4f6865a54c300739eb300ec091b5a38e1c60806132273e260b584621f2c55c",
         "policy_hash": "83904ea2830247600725134668dc08e18b479a45c470ec45d656cd0ae3e2f340",
-        "result_artifact_id": 11984247506,
+        "result_artifact_id": 11985583391,
         "controller_fingerprint": "677eeec33b37b2fee985519e11cf46ed541dd8ac93e37da3d27ec8e88723a399",
         "pr_identity": null,
         "source_file": "Submission.lean"
@@ -136,13 +136,13 @@
       },
       "verification": {
         "decision": "lean-verified",
-        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
-        "checked_at": "2026-10-15T13:33:54.473061Z",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-10-15T13:41:59.187493Z",
         "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
-        "receipt_path": "sources/direct-pr-13-38739681220-1-lean.json",
-        "receipt_sha256": "f153fa321d2c8a98658f0bc8bdd509ed2454b107169505ae6d8ada653de8ee02",
+        "receipt_path": "sources/direct-pr-13-38739681220-1-final.json",
+        "receipt_sha256": "8ba75aaf98a3f57f9ba94cbe19469f556ee718e5b1a61b27e660ae6fcad116ef",
         "policy_hash": "83904ea2830247600725134668dc08e18b479a45c470ec45d656cd0ae3e2f340",
-        "result_artifact_id": 11984087897,
+        "result_artifact_id": 11985348534,
         "controller_fingerprint": "677eeec33b37b2fee985519e11cf46ed541dd8ac93e37da3d27ec8e88723a399",
         "pr_identity": {
           "number": 13,
@@ -404,6 +404,79 @@
         "receipt_sha256": "e161ee306c75288fef7eafeb25cddfe716c71cbdb2bc908fc254398f33b0a76d",
         "policy_hash": "83904ea2830247600725134668dc08e18b479a45c470ec45d656cd0ae3e2f340",
         "result_artifact_id": 11904123271,
+        "controller_fingerprint": "677eeec33b37b2fee985519e11cf46ed541dd8ac93e37da3d27ec8e88723a399",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-pr-13:67c4b249c7de87106eb1e743a90512f55987db3303ca0e3b5c0026a28ecc8d8a": {
+      "key": "direct-pr-13",
+      "submission": {
+        "schema_version": 1,
+        "problem": "apsp",
+        "bound": "59911217/20000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+        "authors": [],
+        "source_subdir": "submissions/apsp/fringewidth-apsp-299556085"
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-10-15T13:41:59.187493Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
+        "receipt_path": "sources/direct-pr-13-38739681220-1-final.json",
+        "receipt_sha256": "8ba75aaf98a3f57f9ba94cbe19469f556ee718e5b1a61b27e660ae6fcad116ef",
+        "policy_hash": "83904ea2830247600725134668dc08e18b479a45c470ec45d656cd0ae3e2f340",
+        "result_artifact_id": 11985348534,
+        "controller_fingerprint": "677eeec33b37b2fee985519e11cf46ed541dd8ac93e37da3d27ec8e88723a399",
+        "pr_identity": {
+          "number": 13,
+          "head": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+          "changed_files_sha256": "2f1806496493674470a99f9240d09cdf22a9518331c9647ea5fea21af38b6592",
+          "controller": "51489ee2ac82596a41375e92ea8108814f931242"
+        },
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-14:52ef7e8444728cf3680b0ec292e3cda8da33dfa19d7d6b08dcf436e41b311ef1": {
+      "key": "direct-issue-14",
+      "submission": {
+        "schema_version": 1,
+        "problem": "3sum",
+        "repo_url": "https://github.com/c0ldzy17/three-sum-lean",
+        "commit": "dd4bce5575effbf32c672b12a1a31e004492f2ec",
+        "bound": "1921/1000",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-14-52ef7e8444728cf3680b0ec292e3cda8da33dfa19d7d6b08dcf436e41b311ef1",
+        "problem_id": "3sum/word-ram",
+        "score": "1921/1000",
+        "score_relation": "attained",
+        "source_commit": "dd4bce5575effbf32c672b12a1a31e004492f2ec",
+        "source_url": "https://github.com/c0ldzy17/three-sum-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "c0ldzy17",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
+        "checked_at": "2026-10-15T15:35:58.909974Z",
+        "issue_created_at": "2026-10-15T13:04:41Z",
+        "issue_updated_at_at_verification": "2026-10-15T13:04:41Z",
+        "issue_updated_at_at_import": "2026-10-15T15:36:16Z",
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-14-38739681220-1.json",
+        "receipt_sha256": "4e4f6865a54c300739eb300ec091b5a38e1c60806132273e260b584621f2c55c",
+        "policy_hash": "83904ea2830247600725134668dc08e18b479a45c470ec45d656cd0ae3e2f340",
+        "result_artifact_id": 11985583391,
         "controller_fingerprint": "677eeec33b37b2fee985519e11cf46ed541dd8ac93e37da3d27ec8e88723a399",
         "pr_identity": null,
         "source_file": "Submission.lean"

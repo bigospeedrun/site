@@ -1,0 +1,3500 @@
+{
+  "envelope": {
+    "disposition": "merge",
+    "importable": true,
+    "merge_commit": "318f794adac7d6f87f6974c6e1aab49ca982a622",
+    "publisher_commit": "318f794adac7d6f87f6974c6e1aab49ca982a622",
+    "publisher_run_attempt": "1",
+    "publisher_run_id": "38761805071",
+    "reason": "lean_and_axiom_passed",
+    "receipt": {
+      "artifact_sha256": {
+        "apt-tools.log": "f6390615a17d667cd67fe9ad8d721194f3932230460acc849656a3e101b4893c",
+        "apt-update.log": "17d6fe5a1b85fcae97928ea6ae300f82a72fe82a3ed032b808a0ee6a429fd77c",
+        "audit.log": "1e3b22e5c4aedba46c6eb539307ed3f889dac3dcb4411445c1cc4e3647a60d41",
+        "build-comparator.log": "65fec7e6872fe50bed7af3bc59b6e995a0a6719f8364027685b10a8c179c0e5b",
+        "build-lake-adapter.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build-landrun.log": "5e09e7add5ffb69e6ec818cd8417bef048ede8025e5a71a6dc067b62b9776191",
+        "build-nanoda.log": "1e8495b18de9f36843019052f16cb9b9d44bd588b339f5c2bcb64d3d63dc1f80",
+        "bwrap-apparmor-policy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cache-hash-metadata.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dependency-Cli-checkout.log": "5f9a80e11f4afc464a5e54e2dafc4876c0d747773da1e2f9b8583a38ff64c07c",
+        "dependency-Cli-fetch.log": "0a247c2401eac884074c4626041c7fb91ff513f532334cb03f4edb7910737f5f",
+        "dependency-Cli-init.log": "806fb9690dbeea89238e99f8dd297b5af2e0e0f565af71af6f5626a6d61faf3e",
+        "dependency-LeanSearchClient-checkout.log": "e41add07a44049fb8733c7006631e003a204f0a358c54c1fdc44bbadf3672461",
+        "dependency-LeanSearchClient-fetch.log": "da12e1a4e139a7ef73ec1d485f03ddefc150e2d0b1b84086a16036c0c821e856",
+        "dependency-LeanSearchClient-init.log": "7da5337a0fc32514d71481e6bd805dea2161c22056ea299c1b9ad45e663240a9",
+        "dependency-Qq-checkout.log": "46982568d82481327c1a20e4c1099af735f36f0ccd7655f70d020f8a9caca35f",
+        "dependency-Qq-fetch.log": "c05301ccb6aafb55d26996ad4a0ae6072c19749883886dbfcdbdfe22ac941800",
+        "dependency-Qq-init.log": "ffa3697aed5c4505fa7b759ea58199632d47708e338d7c844267b2c5754d61e1",
+        "dependency-aesop-checkout.log": "0c62bec7a7cdbab6974ee4f08afb36f3270c1e436419061aa725379b2fe5112e",
+        "dependency-aesop-fetch.log": "10d4e0d957564142f860089514d4c768ab0fe9052d44a6f30cb82e35f144ccb4",
+        "dependency-aesop-init.log": "ddfe172f4b698d0ac102ac2178f4280b00372368ef06591a3952fcc668834fc3",
+        "dependency-batteries-checkout.log": "fb9416f52b3f781e340ec0f32439da3853010679067385dfc08f5207a644aa7a",
+        "dependency-batteries-fetch.log": "38c9fcd43d238fbc18a5563c3d2a4da8e2db3a4e31686cfa4eb52e83c114d87a",
+        "dependency-batteries-init.log": "2aba402bb7545f350f21c752a73448002dc8b209f4963bde1df90ea8266b5a91",
+        "dependency-importGraph-checkout.log": "bafcbf34e1d8c14bc3cde5dd9be4a3f71a64ad3c3d8d0600be81e21a1850f913",
+        "dependency-importGraph-fetch.log": "9002082d5d2c05916036aaac93dd319d7cd1ec5cb4c090298d9811ec97f154b3",
+        "dependency-importGraph-init.log": "a48fa1c744a9cebca87074efdb8cfbcb7d6cbaae8af8d46f504f4223c9a551bc",
+        "dependency-mathlib-checkout.log": "59cb781070d46da902adef8704dbe885efdef5a4727b48348154064f9554c421",
+        "dependency-mathlib-fetch.log": "14467991b60bcb5ac2624066cef08d772209d07d06c6e490fd40acf0f132dac0",
+        "dependency-mathlib-init.log": "2bcb292b69734b9db2ced338b6ac726cedc20827a6780104169f95f2d66c1b73",
+        "dependency-plausible-checkout.log": "97a9da65eec54523f2cf944afaf48b4c8ac5d52f40a145156407d9af81cef368",
+        "dependency-plausible-fetch.log": "68ffcdb88d722dc91d24ced7854a369a4762d9932118b56f1da06058ec5c34f1",
+        "dependency-plausible-init.log": "4077b7e1977b1b77945885d54ad3705e70446164adda8a0c5d8844827b97eb72",
+        "dependency-proofwidgets-checkout.log": "de826f20845a91c765748f932243143f1b26f196b5bf82b5c7a13c3556f19420",
+        "dependency-proofwidgets-fetch.log": "0a623796ef5e7db5c2bd7493063f5de0dadae427eb16ad689f947352d8601e11",
+        "dependency-proofwidgets-init.log": "4c883bd1450aa7a672b32e14df04922d40e349467c3d76da18d2643ce6e1a397",
+        "elan-download.log": "cc101ae57de2dcf8188bb4d848e9affda146081541507b4037bf3be78ae574aa",
+        "elan-install.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elan-unpack.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lean-install.log": "6c9f52055eb83646f479a4034f7a4e9734ebdaebc542da835db9eb5c6fefc2a5",
+        "lean.log": "bc56d9f4d8114d5de75e4d202853336887b7d7a8a49fcb0b06905116676bcdfb",
+        "mathlib-cache.log": "e7df298398d348517848e281a0d3fd598d4639ee5606201b35cd90369f8af472",
+        "nanoda-swap-allocate.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "nanoda-swap-enable.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "nanoda-swap-format.log": "9b461d0d0cd1d42c59f5d5312b41df9fb52511751a55fa69beb9bdec56eb39cb",
+        "nanoda-swap-permissions.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "nanoda.log": "eff0c462e9462ad06153d9455d7478ec08067e307405daa6bfc5f7eeb9aa90a8",
+        "pr-request.json": "cd27821068fa6478938247e23a9e89a7ecadfcae96acc3b1833190b86277abcf",
+        "runner-sdk-space.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sandbox-preflight.log": "41648742f98aab2171f9eb88297548170de3f3b760e7c07ef9fcc94aedd69355",
+        "source-sha256.json": "68a8e0d2555def27f8722d27d06112d7045d786b4af8033fc31de0a4b4a328a6",
+        "submission-checkout.log": "b4d9ab9b78f405d942fa5c76367efc4ae257069b6fdf0e8d3681d93dd5c9e195",
+        "submission-fetch.log": "97fef8bda873122217c276a2dc9aaee3716938f183417a4634e7ef04fa386b22",
+        "submission-init.log": "b0cb466a875c47cba4ca64cba0f001ef50a616dc50516bac9b66fd30769c2e1c",
+        "tool-comparator-checkout.log": "eb2f51d7ccc0df410d8f62abfd635b429bda92b2c7e57d37c8af786607d7fc18",
+        "tool-comparator-fetch.log": "d97f802ec663a6e2904f729b083b0a1f7abc9757aed15b7a8ebb35ea01d3bf5c",
+        "tool-comparator-init.log": "8e15416f568c947d6b68e42b7ac7e7d538a5d80d8cf6cdd58d2dde6fc25a880d",
+        "tool-exporter-checkout.log": "bf62a767eb8db1b91df05a613df37c7d74acd3a71bb8e204934b82c64a586bc9",
+        "tool-exporter-fetch.log": "114008cb89e1fd908977a3e1f6f1e2c9d60a0c2b367bb462cf19705ea1293de3",
+        "tool-exporter-init.log": "018b405fedf95d297837cdacc99659adb689b297c8717951de499143b20a5b6b",
+        "tool-landrun-checkout.log": "d79c67290ceb531c3a58de807a7fa90ffb38fef022cb06beb789045ad1150093",
+        "tool-landrun-fetch.log": "5236b9fb8cd4e085ff194e356bb8f7235b824d3598b30e372ba59a226fc326e8",
+        "tool-landrun-init.log": "a9eb19dc8f9948571af0e040de262ccf9b0afad041ed34b8a563ba78daac7eda",
+        "tool-nanoda-checkout.log": "000d4b6dbb65d8336c4d3b4f2cd3cb6a8afe417db3ac3e9d3822002d7e8db822",
+        "tool-nanoda-fetch.log": "552cb6d19400093c52a70dcbedcf542affd7d15ca22ade89b76553f1de38bd86",
+        "tool-nanoda-init.log": "0823fe50f87fc13c0edb7540c3847aa4be35620dabf31ab1809f8abaa36ccc6d",
+        "tool-sha256.json": "34c7a7453842127869882b3781c966877dbfd98c798915b22fad93080b24fe30",
+        "trusted-lake-config.log": "487b1fa6ac945590437d69397065a65ddf5a090b3b0a3cc4ea3abcd0af5b6804"
+      },
+      "axiom_audit": {
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "audit.log",
+        "memory_limit_bytes": 15032385536,
+        "reported_axioms": {
+          "Race.bound": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "sampled_peak_cgroup_bytes": 361992192,
+        "sampled_peak_swap_bytes": 0,
+        "status": "passed",
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "wall_seconds": 3.01
+      },
+      "checked_at": "2026-10-15T13:41:59.187493Z",
+      "finished_unix": 1792071719.1874933,
+      "generated_challenge_sha256": "ea7ce5bb09804970f99cc668c2fa55795e6bafc6e2264478cc941257dd31f7f6",
+      "kernels": {
+        "lean": {
+          "exit_code": 0,
+          "guard_stop": null,
+          "log": "lean.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "comparator_acceptance",
+          "sampled_peak_cgroup_bytes": 4545855488,
+          "sampled_peak_swap_bytes": 0,
+          "status": "passed",
+          "swap_limit_bytes": 0,
+          "systemd_result": "success",
+          "wall_seconds": 1390.52
+        },
+        "nanoda": {
+          "exit_code": 0,
+          "guard_stop": null,
+          "log": "nanoda.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "comparator_acceptance",
+          "sampled_peak_cgroup_bytes": 3334004736,
+          "sampled_peak_swap_bytes": 0,
+          "status": "passed",
+          "swap_limit_bytes": 17179869184,
+          "systemd_result": "success",
+          "wall_seconds": 483.172
+        }
+      },
+      "profile": {
+        "bound_kind": "exponent",
+        "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+        "challenge_sha256": "4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987",
+        "lean_toolchain": "leanprover/lean4:v4.33.1",
+        "manifest_file": "profiles/anthropic-lake-manifest.json",
+        "maximum": "3",
+        "solution_module": "Submission",
+        "source_roots": [
+          "Submission"
+        ],
+        "theorem_names": [
+          "Race.bound"
+        ],
+        "tools_file": "profiles/anthropic-tools.json",
+        "upstream_commit": "e1a4e6508154ea59f030480661590a9fe3018011"
+      },
+      "request": {
+        "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+        "commit": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+        "direct_submission": {
+          "authors": [],
+          "bound": "59911217/20000000",
+          "commit": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+          "problem": "apsp",
+          "repo_url": "https://github.com/bigospeedrun/verifier",
+          "schema_version": 1,
+          "source_subdir": "submissions/apsp/fringewidth-apsp-299556085"
+        },
+        "lean_toolchain": "leanprover/lean4:v4.33.1",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "source_subdir": "submissions/apsp/fringewidth-apsp-299556085",
+        "theorem_names": "Race.bound"
+      },
+      "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
+      "schema_version": 1,
+      "solution_dependencies": [],
+      "source_file_count": 401,
+      "started_unix": 1792069570.0289326,
+      "status": "passed",
+      "steps": [
+        {
+          "exit_code": 0,
+          "name": "submission-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-fetch",
+          "wall_seconds": 1.18
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-checkout",
+          "wall_seconds": 0.092
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-update",
+          "wall_seconds": 5.618
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-tools",
+          "wall_seconds": 96.158
+        },
+        {
+          "exit_code": 0,
+          "name": "bwrap-apparmor-policy",
+          "wall_seconds": 0.01
+        },
+        {
+          "exit_code": 0,
+          "name": "runner-sdk-space",
+          "wall_seconds": 59.888
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-download",
+          "wall_seconds": 0.246
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-unpack",
+          "wall_seconds": 0.067
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-install",
+          "wall_seconds": 0.26
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-install",
+          "wall_seconds": 11.474
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-init",
+          "wall_seconds": 0.121
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-fetch",
+          "wall_seconds": 0.489
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-checkout",
+          "wall_seconds": 0.082
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-init",
+          "wall_seconds": 0.188
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-fetch",
+          "wall_seconds": 0.469
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-checkout",
+          "wall_seconds": 0.111
+        },
+        {
+          "exit_code": 0,
+          "name": "build-comparator",
+          "wall_seconds": 5.871
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-init",
+          "wall_seconds": 0.151
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-fetch",
+          "wall_seconds": 0.548
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-checkout",
+          "wall_seconds": 0.073
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nanoda",
+          "wall_seconds": 14.238
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-fetch",
+          "wall_seconds": 0.509
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "build-landrun",
+          "wall_seconds": 8.773
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-fetch",
+          "wall_seconds": 7.919
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-checkout",
+          "wall_seconds": 0.51
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-fetch",
+          "wall_seconds": 0.512
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-fetch",
+          "wall_seconds": 0.457
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-checkout",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-fetch",
+          "wall_seconds": 0.497
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-checkout",
+          "wall_seconds": 0.006
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-fetch",
+          "wall_seconds": 1.001
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-checkout",
+          "wall_seconds": 0.029
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-fetch",
+          "wall_seconds": 0.634
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-checkout",
+          "wall_seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-fetch",
+          "wall_seconds": 0.476
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-fetch",
+          "wall_seconds": 0.7
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-checkout",
+          "wall_seconds": 0.014
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-fetch",
+          "wall_seconds": 0.442
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-checkout",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "mathlib-cache",
+          "wall_seconds": 45.296
+        },
+        {
+          "exit_code": 0,
+          "name": "cache-hash-metadata",
+          "wall_seconds": 0.349
+        },
+        {
+          "exit_code": 0,
+          "name": "build-lake-adapter",
+          "wall_seconds": 0.102
+        },
+        {
+          "exit_code": 0,
+          "name": "trusted-lake-config",
+          "wall_seconds": 1.437
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.021
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.022
+        },
+        {
+          "exit_code": 0,
+          "name": "nanoda-swap-allocate",
+          "wall_seconds": 0.02
+        },
+        {
+          "exit_code": 0,
+          "name": "nanoda-swap-permissions",
+          "wall_seconds": 0.006
+        },
+        {
+          "exit_code": 0,
+          "name": "nanoda-swap-format",
+          "wall_seconds": 0.007
+        },
+        {
+          "exit_code": 0,
+          "name": "nanoda-swap-enable",
+          "wall_seconds": 0.008
+        }
+      ],
+      "test_only": false,
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "theorems": {
+        "Race.bound": {
+          "lean_kernel": "passed",
+          "nanoda_kernel": "passed",
+          "reported_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "timing_group": "shared theorem closure"
+        }
+      },
+      "tool_pins": {
+        "comparator": "3927ad383f208ae977c340a91c48ac9b497d2097",
+        "elan_tar_sha256": "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63",
+        "elan_version": "v4.2.4",
+        "landrun": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+        "lean4export": "15f6055e299ad5b89345e533cc2192f4cc00f659",
+        "nanoda": "3a2407216ee84a75f9e1aead6803d0578be06ae7"
+      },
+      "total_wall_seconds": 2149.159,
+      "verification_stage": "final",
+      "verifier_commit": "51489ee2ac82596a41375e92ea8108814f931242"
+    },
+    "receipt_artifact": {
+      "digest": "sha256:61f6cabd5aa4cfae0c50150c0dc4c63ad7bdabf5287e24d61cddb61420cd0546",
+      "id": 11977452603,
+      "name": "pr-verification-38739681220-1-13",
+      "url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220/artifacts/11977452603"
+    },
+    "receipt_sha256": "1fdc983a76dbc9427984edbbb11948dc7c7002951219238357e9e78b6d4e728f",
+    "request": {
+      "base_sha": "51489ee2ac82596a41375e92ea8108814f931242",
+      "changed_files": [
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission.lean",
+          "sha": "0e30e4c8cc67a6a560654c0e4958cb4e2ddad92e",
+          "size": 1600
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/EndStatement.lean",
+          "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+          "size": 7255
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/PaperStatements.lean",
+          "sha": "a5cde2ab34a7fd225a3bdd45e8ca320d4639a417",
+          "size": 237988
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Chain.lean",
+          "sha": "3906630eda7c14fb54a1f11394a0505ca7344656",
+          "size": 5967
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Claim.lean",
+          "sha": "443a7c9991d2052211b3da3bef6da945bbc1b8a5",
+          "size": 16869
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Data.lean",
+          "sha": "eb8a9fd5feb62703e8b997678aef38e893b5204d",
+          "size": 5166
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Host.lean",
+          "sha": "c9476d0033106b9174403fc3c8c8f103760e8451",
+          "size": 24352
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Loop.lean",
+          "sha": "7a976bd3afff456b21ddd47643647c26ef75d4e9",
+          "size": 20429
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Pairs.lean",
+          "sha": "38dc9be7dfe8e71a93dc2d6a3bff0353307653d9",
+          "size": 30544
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/PairsSpec.lean",
+          "sha": "b5721e9b18c8d27e0485d31bd4ad532bb4106003",
+          "size": 6115
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Passes.lean",
+          "sha": "790481fd50194ceb8edb4bedba6438cc9fa3514b",
+          "size": 10495
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/ScanPairs.lean",
+          "sha": "25004a3bcbc7cfc2b5d021e162a76b96b6559b66",
+          "size": 19177
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Task.lean",
+          "sha": "4cafb92a983d666aeafd864e32aa4e4cd270cbd1",
+          "size": 13915
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/AllEdges/Uniform.lean",
+          "sha": "c04ce893d4a1c7237fd5d95bda539900392d1d2c",
+          "size": 4750
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/BandArrayB.lean",
+          "sha": "0ee922bb17de0bd128a0b6633f5d5f311f1fa91a",
+          "size": 26020
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/Final.lean",
+          "sha": "21122b6dab01a0afb485cad95add1dec75efa606",
+          "size": 3122
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/Lift.lean",
+          "sha": "cc16ec59b1e4d505a622f55d6a5c494369f18ba6",
+          "size": 14560
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/Numbers.lean",
+          "sha": "261cd46a54e62994d843581b3bd3193cad9473c2",
+          "size": 4556
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OBound.lean",
+          "sha": "b0a4376483e416d82b9e7a390af04e955140e6b8",
+          "size": 40345
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OMath.lean",
+          "sha": "7ad1124425d01559855e85b98e6f47a5e82c7e7a",
+          "size": 6672
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/ONeedPoly.lean",
+          "sha": "5aa018d95fd6c6c68f622f12ac241564a05fa122",
+          "size": 14429
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OParams.lean",
+          "sha": "b9825dc502a38e1f31e28ff725923fa9be5a2f8e",
+          "size": 3057
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OProg.lean",
+          "sha": "c5b193e6a6f9db11fcc9fd9d831f611d64342d05",
+          "size": 13467
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OQuery.lean",
+          "sha": "02f17f5d7fa2bb3170404eaa239b4b74cff8e62a",
+          "size": 23041
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/ORunBatch.lean",
+          "sha": "7dda20ec891327a92ac53f6e9127e859caa17533",
+          "size": 19172
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/ORunOracle.lean",
+          "sha": "37757d5481b58347830ac24e0ddf05160925ce77",
+          "size": 12191
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/ORunParams.lean",
+          "sha": "99d64ce50930145a165909b29777484416e3c1d5",
+          "size": 11884
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/ORunTables.lean",
+          "sha": "1eb3ebca3dd20fe02bf5056899b18764bb51b8a5",
+          "size": 17512
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OSetup.lean",
+          "sha": "5128b9b1834a0032a13b4805d756b370ebb5471f",
+          "size": 6309
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OSpecs.lean",
+          "sha": "15981be4454f7f845350066328ce4c1cbf2b2e2a",
+          "size": 6693
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OSrc.lean",
+          "sha": "e1a80cbd4470ebfd56ebb5a07eed047d596d284b",
+          "size": 7231
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OTables.lean",
+          "sha": "0923d77ef2936c7f1909e03589a08a0fa4650c09",
+          "size": 15070
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/OWrite.lean",
+          "sha": "8b4c04cf5e33d30d0231be655446b4c5ebee9ff3",
+          "size": 37755
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/PreCoreA.lean",
+          "sha": "9b388e43e4245e039801729c68cb8c20d971dc1e",
+          "size": 4737
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/Program.lean",
+          "sha": "23810ac1d7f0dece95bdc8e6112d9e0125e18646",
+          "size": 6948
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/QueryA.lean",
+          "sha": "6e766e0d5b4ef6b193c940dd94c22ac35fcddc57",
+          "size": 15306
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/Ready.lean",
+          "sha": "8ffb4eff28cafcd967927700472f357e9917d588",
+          "size": 8016
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/SharedB.lean",
+          "sha": "d11b203497e47d3d0ad19208ad0d25ddfde66499",
+          "size": 17803
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/SpecArrays.lean",
+          "sha": "191df31826df58b9dbed1ad4c1cc5a05c9176b68",
+          "size": 5808
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Batch/Tiling.lean",
+          "sha": "aa6bb5e845272c432b5724f87a3102d8b7693376",
+          "size": 7251
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/Asymp.lean",
+          "sha": "f6232843971185564b6da5276e85a461b29e4c76",
+          "size": 21554
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/Chain.lean",
+          "sha": "e0d7de2597b8f67eaf60ff068b4c57448cdd41ed",
+          "size": 4538
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/Defs.lean",
+          "sha": "f80607d10ce8356c364700a284a4af2def6cc309",
+          "size": 5558
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/Final.lean",
+          "sha": "0271305f47f31245d12e36b84bf2bc257ff10292",
+          "size": 11986
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostAssemble.lean",
+          "sha": "347f0c59a53832b9c21aa4549033f53e2e0e424f",
+          "size": 6548
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostCore.lean",
+          "sha": "8600a45f08ca7a7bde0bdcfc48d6e8cd7835c429",
+          "size": 11076
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostFinal.lean",
+          "sha": "30ac581926c4928c2476a4b2652e7191ebbfa724",
+          "size": 20688
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostMain.lean",
+          "sha": "040640ce4fa0decceac0b31c4e3b9d01ba33559d",
+          "size": 12808
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostMath.lean",
+          "sha": "0aa705af2118b7d9120153f2ed0d69060d6a11b5",
+          "size": 16085
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostProcs.lean",
+          "sha": "6555e1cdbb8b0ee8aaf6ed12e4cf4dff243980e2",
+          "size": 36491
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostRound.lean",
+          "sha": "e660e9dc5c41daecd7321dc14e989da608d24889",
+          "size": 10582
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostStep.lean",
+          "sha": "bee4c334e1dbf1640dd1b4db3abe0c415b38b94d",
+          "size": 24560
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostTime.lean",
+          "sha": "0ffbb5b49c1ccc38f506e79e6d5cc14d708d963d",
+          "size": 7507
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/HostTop.lean",
+          "sha": "8df77e526b40e21da891ceef4a3197aa9520ce8c",
+          "size": 11981
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Filter2/Mass.lean",
+          "sha": "882a09b012228b0e58fc35c82e5cc3a413f1e06a",
+          "size": 10539
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Assigns.lean",
+          "sha": "03e3cf0f3b80560beab7aae1f6b9a6df5a1c0d6b",
+          "size": 2990
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Calls.lean",
+          "sha": "c9c79f1eaaad1f8883b6a003cc4a072a7c1d7e14",
+          "size": 6264
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/CallFrames.lean",
+          "sha": "d230586089b3f4f503ee45ad409775b839f24703",
+          "size": 7588
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/Cells.lean",
+          "sha": "8e92ab10adf975277fbec515702976f137e62324",
+          "size": 16318
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/Conditions.lean",
+          "sha": "fec8b01f84374d4b307976ab63d112974305b59e",
+          "size": 7288
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/Dispatcher.lean",
+          "sha": "032c95a2761c8b399ef4177ab601e80b83f822d8",
+          "size": 4582
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/Expressions.lean",
+          "sha": "006bce0d126e229ae27a9b66a1fae3683340406e",
+          "size": 7740
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/ProgramCode.lean",
+          "sha": "af9b25f736d7c59d0b0003c8cb455b9ec22c8e8d",
+          "size": 11893
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/Simulation.lean",
+          "sha": "5943c8438fa2811c932b520ce908e0c80338fec8",
+          "size": 25974
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/StartUp.lean",
+          "sha": "8ece67f040c4b68e5aeaf6b4bff917516f71bc32",
+          "size": 12363
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/StatementCode.lean",
+          "sha": "610195ae49233b43a36fd8db07d48cfd0acfefad",
+          "size": 16621
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Compiler/WholeProgram.lean",
+          "sha": "2abca7d090bb996d75de1c326fb89265f104d950",
+          "size": 12975
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Frames.lean",
+          "sha": "fdeb362a923fc5b32ba0ce3932fd601a8999d82c",
+          "size": 19342
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/ArrayAt.lean",
+          "sha": "0dcc4e7f729789644aa86c1a7dc007b3f9ba5a3a",
+          "size": 5559
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Copy.lean",
+          "sha": "8ca2e893e1297abf263d9961175a8dbd89ad2571",
+          "size": 3240
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/CountSort.lean",
+          "sha": "68c65e7eba326d1cacd1dafca2cc400fd25f0a6e",
+          "size": 23626
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Emod.lean",
+          "sha": "274823c35f6aa74388e181e63039d37e1da42754",
+          "size": 11980
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Logs.lean",
+          "sha": "fac4a6dc5fa7dc753eda23a81379a6990a745667",
+          "size": 10552
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Merge.lean",
+          "sha": "372ee44a420a893219db37eb380581ce66b06c96",
+          "size": 8730
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/MergeSort.lean",
+          "sha": "dac37b7414ae5de7e41087577cdb6287c12231d8",
+          "size": 10847
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/NextPair.lean",
+          "sha": "3c1fdedfae96073f8bc26463f7d20c17fdd8da7d",
+          "size": 2927
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Pass.lean",
+          "sha": "ce7a94dafaa7b0b883a5ccbcaf2907cff127bba2",
+          "size": 3403
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/PowTable.lean",
+          "sha": "66657f390876c354d9134b17a45d163592fb0451",
+          "size": 4732
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/RadixPass.lean",
+          "sha": "dfa767060cd40d945891a48a7fed808f51c6a72b",
+          "size": 8593
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Seg.lean",
+          "sha": "8cb62894fb6abdad0ebeca1e6787eec0a624e12c",
+          "size": 10789
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Sieve.lean",
+          "sha": "0d06b3a4969745e87aa0ffda09a9804fd4dd96d6",
+          "size": 18545
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Lib/Sqrt.lean",
+          "sha": "ed80809a657570df095788b5219095549dcd0508",
+          "size": 2685
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Logic.lean",
+          "sha": "794ad7fa8eac2c550410d7cb94f9417f972e056e",
+          "size": 14001
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/PolyBounded.lean",
+          "sha": "d686418a89bea3105c43d60be88fa0c0ba09396d",
+          "size": 6668
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Regions.lean",
+          "sha": "ed100706e32d2bd547a68f601e7fdcb789f5a60b",
+          "size": 9809
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Renumber.lean",
+          "sha": "e222a6f0b83699e6a26aaa12ccd5dbe95debf14d",
+          "size": 3307
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/RowMajor.lean",
+          "sha": "cec9f17f28dc96382083f7389dfb497f1b3fdc8c",
+          "size": 4327
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Rules.lean",
+          "sha": "42bb69ae86225ca6fb53d4eafbc566baaa76742a",
+          "size": 19496
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/RunsStayInLimits.lean",
+          "sha": "59d86992a148e8a0952fcfcc45c6a4286644abd6",
+          "size": 4200
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Syntax.lean",
+          "sha": "8ece794b8dc795fc913d84ce756b5e04f1427800",
+          "size": 6748
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Tactics.lean",
+          "sha": "41b149ea0605e67df56928546c008258eda71877",
+          "size": 9213
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/Tasks.lean",
+          "sha": "cbd1e03e493a8e3cc0d73e4a6dd560a00b4c7479",
+          "size": 12996
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/ToMachine.lean",
+          "sha": "093612a77cff38957738f0420339c12044ec1f3a",
+          "size": 21979
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/TopProcedure.lean",
+          "sha": "2a9d2ffca9f5d666c070b7c7de4bfcf53d722852",
+          "size": 18601
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Lang/WordSize.lean",
+          "sha": "859af2261a3af84957dfdc286525584785bc480d",
+          "size": 5988
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Machine/PolylogIsLittleO.lean",
+          "sha": "d3cfd61070db55a29a77ab79ff936eb1ae6e289d",
+          "size": 2479
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Machine/Realized.lean",
+          "sha": "55b5e619c9c4c99af6ac2ea919b834a8921fdb88",
+          "size": 2003
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Machine/Solving.lean",
+          "sha": "25db31e10a8debdb93c87156d46a7f9989e74869",
+          "size": 10072
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Machine/Steps.lean",
+          "sha": "ce42a2d6fff52ce6d3f91e262e416032f1afd487",
+          "size": 18316
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/LightModel.lean",
+          "sha": "dc7741335d791ce5262440d92dbd0e68caae97f1",
+          "size": 1579
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/PrunedEnc/AllBands.lean",
+          "sha": "671b179ebde04f7f39792aade59f7ff056c50fb0",
+          "size": 10072
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/PrunedEnc/Contracts.lean",
+          "sha": "6cd95026a9e0d7318aa7ba67d9521e3954c8a88c",
+          "size": 6580
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/PrunedEnc/Entry.lean",
+          "sha": "e3f414dc241dedc087bb207f2e0130f0e16aa278",
+          "size": 9248
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/PrunedEnc/Recursion.lean",
+          "sha": "d45c6e25ea15685aae97a73472fe3de76b6c414f",
+          "size": 20677
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/PrunedEnc/SharedStage.lean",
+          "sha": "bf60e039e3dbc1a0561b96ecb128f1d6c42bdbe8",
+          "size": 15129
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/AllInstances/BruteForce.lean",
+          "sha": "869d58507dacbfd4da842e840cc04f4c91b654eb",
+          "size": 11450
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/AllInstances/Program.lean",
+          "sha": "cb07ea7236f6c9978f8faa0873b12da6238f566d",
+          "size": 1337
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/AllInstances/RegimeTest.lean",
+          "sha": "488830b0e5c42b7939c69defbda48f2c0e369967",
+          "size": 15373
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/AllInstances/Solver.lean",
+          "sha": "d1e89b4a840289983805d722c0b1dd98f3663e51",
+          "size": 18239
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/CellDependencies.lean",
+          "sha": "302d0763ea959fc89cacdc6d0df070bcb4987c32",
+          "size": 5893
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Contracts.lean",
+          "sha": "a4959ee205dc2f687f17bafd303799df74a92314",
+          "size": 28576
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Encode/AllBands.lean",
+          "sha": "ccf6bb9c1c28f8ab6b5d591e2115beaea0861333",
+          "size": 15175
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Encode/BandArray.lean",
+          "sha": "4475ebadebaa111336343e669e6a965c128696cf",
+          "size": 37757
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Encode/BandArrayFacts.lean",
+          "sha": "de2c02d41333275fee097d882eb515a5dbd67a99",
+          "size": 9405
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Encode/Contract.lean",
+          "sha": "485792f4b49fb539d8d129d692e995deece407f7",
+          "size": 4485
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Encode/Meaning.lean",
+          "sha": "265217cf4d18b9c63473f30d040cadc271fd1eb6",
+          "size": 6586
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Encode/Recursion.lean",
+          "sha": "be2949d16465d3ef33823472c2a03266ded7fa26",
+          "size": 18009
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Encode/Step.lean",
+          "sha": "8cc13dce9a6f53fca2c610c8bd6c2d8b135d0035",
+          "size": 9806
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Instance.lean",
+          "sha": "68e0a53de84a1eea4aefba8daa6a2e74bce98dd4",
+          "size": 7462
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/LibraryContracts.lean",
+          "sha": "26a8bfc5929e360b3c46ff353ed0c3b1f672cb48",
+          "size": 2518
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Places.lean",
+          "sha": "3c4dc3cf2d9ce9460a3f1a0d777f114a4e296c8c",
+          "size": 10260
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Program.lean",
+          "sha": "5b349b15b0d133fdbcf4ac4c4a2b87917733cb52",
+          "size": 4533
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/AllTiles.lean",
+          "sha": "ad85f721c71f157275eb3ee2d67177ca51a34926",
+          "size": 22059
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/Contract.lean",
+          "sha": "663658e75997ab6a8d4f2e59257cc7256440fe51",
+          "size": 2012
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/Memory.lean",
+          "sha": "cefdd0b8aab1c1f2a7f37b4e8ab5d305c273ba72",
+          "size": 18070
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/Recursion.lean",
+          "sha": "19233ee3082375389198694c68de1043b7994d3a",
+          "size": 18110
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/Restrict.lean",
+          "sha": "e655ce3d95ba4bca740724b22a4129cb90128c22",
+          "size": 16371
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/SliceFacts.lean",
+          "sha": "d9b005a927b7ffcfd19f133a35b44a61293be30e",
+          "size": 16842
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/Slices.lean",
+          "sha": "a02677c343df2962b89a9f0a122224b8712cb557",
+          "size": 17890
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Pruned/Union.lean",
+          "sha": "a0b44bad8ca99f8662aa3d2c35453b820f81ff11",
+          "size": 13166
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/SharedStage.lean",
+          "sha": "40e06cfcaf74d1621c5fad7f3f26537fc751d2f8",
+          "size": 32379
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Solver.lean",
+          "sha": "414eef7d739e11e23344f01823a3241acf547d7a",
+          "size": 9926
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Stages.lean",
+          "sha": "92d5cc77c653e39978d1101dced983ed5d40c525",
+          "size": 24119
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Tables/BandCounters.lean",
+          "sha": "5ddf48d63bda9e9b62b99d4a4f54eb9975595f01",
+          "size": 7377
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Tables/Binomials.lean",
+          "sha": "3749a4ffcfc621b93f01b48a4168a7d89b4c3b3d",
+          "size": 10648
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Tables/Coefficients.lean",
+          "sha": "0d9f2089106e65595bfba1604e887fd75ac254bb",
+          "size": 4302
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Tables/Digits.lean",
+          "sha": "c4654fe1ecf223355c40f7a71929bcc62b534f80",
+          "size": 16727
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Tables/Subsets.lean",
+          "sha": "e96d91b3686bca4660ff602bc263f59f2d4f085d",
+          "size": 16495
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Time.lean",
+          "sha": "649f2702ebedd6760e0210129a976ae698c175f5",
+          "size": 15325
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Wanted/Codes.lean",
+          "sha": "acd657a83a372bd4d71ac015c215aad73b4f66fe",
+          "size": 32669
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Wanted/Gather.lean",
+          "sha": "2ca23fa6b6bd4d0d53e8e9c64804c3c661c299fa",
+          "size": 3358
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Wanted/Report.lean",
+          "sha": "7f6e675cfb1b683bf12ccbb17f3dc50a4a182962",
+          "size": 4921
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Wanted/Sort.lean",
+          "sha": "0f389a388ad3fbd0517f1efafa1c636889c1c115",
+          "size": 16268
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/Wanted/SortedFacts.lean",
+          "sha": "a8bc34e06ad88ea48035de96765f17fe4cb05435",
+          "size": 18039
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec2/Theorem5/WordSize.lean",
+          "sha": "6d7e332c85ec237b72fff45cb9adafeaf1c58140",
+          "size": 9099
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Corollary15_16/CountAndDetect.lean",
+          "sha": "a595b8a9ad1bf1d6d40c672da9fa3c75edbfd604",
+          "size": 8805
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Corollary15_16/Split.lean",
+          "sha": "eecc35dc7a93dfa2c20fd05d3deaa765951aa653",
+          "size": 25229
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Claim.lean",
+          "sha": "2cd117650303a724da6c5274f898bdd30cab0eb5",
+          "size": 3569
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/ClaimAtParameters.lean",
+          "sha": "782c79644d6a2312c9ac1cfbe2f4567b05849ae5",
+          "size": 11514
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/ChoosePrime.lean",
+          "sha": "a343c456c7d92413632a3c604d48c2aac2384c1f",
+          "size": 17605
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/Count.lean",
+          "sha": "2b7f76ef2a899cf90be810e039e85ff4464e933e",
+          "size": 10699
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/CountPrime.lean",
+          "sha": "d7381c9a001b2b6f2608eb37729ba77e46ce7a3b",
+          "size": 23797
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/RingOps.lean",
+          "sha": "944457cde25bf02deeb8820394144379c048d871",
+          "size": 14606
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/SizeTable.lean",
+          "sha": "71096031dd6a12211c28a5320b91cca4b2109d91",
+          "size": 4479
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/Strassen.lean",
+          "sha": "4fc2fb9d041d36040bc587a2b62b74db497d84b7",
+          "size": 32828
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/StrassenFacts.lean",
+          "sha": "43211e3fe695c326e99c6fb6a23064d3d6a38a89",
+          "size": 14894
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/StrassenTime.lean",
+          "sha": "f727bb6e7b20501dd1c20d52f00263db33edb98a",
+          "size": 1728
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/ZOrder.lean",
+          "sha": "f4681a479a857817c47c2aaf25ce42cec4ce0bcc",
+          "size": 25644
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Hashing/ZOrderFacts.lean",
+          "sha": "dd5e855a6bfabde0c9b7dda817ed86db70ec3862",
+          "size": 2076
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/Arrays.lean",
+          "sha": "e88953508c1ad0bf7448548bb6dc4ab98af1e7dc",
+          "size": 16724
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/Correct.lean",
+          "sha": "26f515cb90df1e4849db23a284390dbcdfd8dacf",
+          "size": 3278
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/FailedScans.lean",
+          "sha": "31bcff0240ebfd92de886fbbf12db50fe901cc7a",
+          "size": 6291
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/InstanceCount.lean",
+          "sha": "faba8fec46cc2289d70d0072ad540ac7a25226b8",
+          "size": 2231
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/InstanceData.lean",
+          "sha": "885632e04306a5f98d20ef0468f073066d7f3032",
+          "size": 5226
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/InstanceFacts.lean",
+          "sha": "97fd43ab2b2d4c83386a8d7a5177cdf71f1634c6",
+          "size": 22606
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/Loop.lean",
+          "sha": "5835b28e44633dc39fd2dc95c6f297bee39a919a",
+          "size": 29592
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/Need.lean",
+          "sha": "bf96d1edbd83e36ccaf7741d065afd8c591d6757",
+          "size": 7404
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/NeedPolynomial.lean",
+          "sha": "79423c81d9912cf1d98115f4e85bc86d621a302c",
+          "size": 6945
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/ParametersStage.lean",
+          "sha": "ed52be32470d6caac1bc8141099c24020368d3dc",
+          "size": 3580
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/PrimeStage.lean",
+          "sha": "c53c15e6411960f82b84eec0042564d5f2fb2668",
+          "size": 5993
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/Program.lean",
+          "sha": "b11632cd366b83ce211832bdd3b2639a985c8695",
+          "size": 6559
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/Text.lean",
+          "sha": "6f8809c6a0db4530edacf6fc03ebdd9288e6d980",
+          "size": 21622
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Host/Time.lean",
+          "sha": "c1a6b6ca1af170668408977494ffdc0f1b4dba2b",
+          "size": 6455
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Instances/Chunks.lean",
+          "sha": "852a2cb322798c9cd519d4f2a5989cd54e07cda8",
+          "size": 17079
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Instances/Classes.lean",
+          "sha": "2f7e9da3079a0544bd30c78cd266811585a78ba6",
+          "size": 24376
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Instances/WriteMatrices.lean",
+          "sha": "5bfa29c2e661a035b1b6356b242cfe4ff599d799",
+          "size": 27394
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Parameters/Primes.lean",
+          "sha": "3c8d4bc06fb82274f8f4337f8e1ac0a0c5cc8352",
+          "size": 12370
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Parameters/Residues.lean",
+          "sha": "92cbbd01e1a3f8e3bd22eab34b6bce037c95f998",
+          "size": 16856
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Parameters/Sizes.lean",
+          "sha": "e938503a94a8d9707b67a8941059c1c631bf020f",
+          "size": 21904
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/TimeBound/Terms.lean",
+          "sha": "316226c73e28c71e5e94a6374f348fdde479d876",
+          "size": 22754
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/TimeBound/Total.lean",
+          "sha": "a3c130969a1e5bf0ea1b3e4391f232670f294ae5",
+          "size": 12838
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Witnesses/BruteForce.lean",
+          "sha": "d5d9acc91caf067775abe2b3ebcd6d0f38de8db4",
+          "size": 9554
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Witnesses/Scan.lean",
+          "sha": "7c67a77632ee73b59b7462f82eb4f4d8bb9b512f",
+          "size": 7678
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem17/Witnesses/ScanPairs.lean",
+          "sha": "22b46522ea4af477a16d74ae5cfa1f4cf16a600d",
+          "size": 10738
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem19/BruteForceClaim.lean",
+          "sha": "fea294644a233b731bab180104a0271573586f5e",
+          "size": 1825
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem19/ChooseBySize.lean",
+          "sha": "52751ea7da982b78f7692418ca35b6643c5cbd87",
+          "size": 6200
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Bits.lean",
+          "sha": "1af96fda762bff2a3ae1237457ac4723ddf23645",
+          "size": 21640
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Buckets.lean",
+          "sha": "cf5904cf038857d65261609a1a5a55d8df1e5831",
+          "size": 33206
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Contracts.lean",
+          "sha": "2089c9424b3ef9dc664a0e8c4eda2a82cbc6ef6a",
+          "size": 27963
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Distinct.lean",
+          "sha": "f7ad515e990a4c7136acc096121344f9bc59261e",
+          "size": 18780
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/FrontFacts.lean",
+          "sha": "8397769e267b2f787f32f0f9e21fe545a108ac92",
+          "size": 10434
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Grid.lean",
+          "sha": "6c1bbec0744231206a8a41ca76bc1a4c3b3577e1",
+          "size": 12336
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/GridContracts.lean",
+          "sha": "cb92630db6abd155ac8114e55b6e8a72e1fc58bf",
+          "size": 6290
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Host.lean",
+          "sha": "2f461b38c56661d8e778baabeaddbca946b75961",
+          "size": 6004
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/HostContracts.lean",
+          "sha": "26c0ce62a4a67e7d211edebcde26b336a5f28eb7",
+          "size": 6332
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/LibraryContracts.lean",
+          "sha": "6ef1cbaff531b5691bfb4dd1e022f954f2544b1d",
+          "size": 3569
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Modulus.lean",
+          "sha": "6f30c49659b389a00516004215af66461386f90a",
+          "size": 32293
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/NodeArray.lean",
+          "sha": "d8688fdd73007a27ea7f7715f404f9987ee20cf7",
+          "size": 41420
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/NodeMemory.lean",
+          "sha": "ea0944d9378a611eaf7704f2440ec8c236f83e95",
+          "size": 9239
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Nodes.lean",
+          "sha": "a88edb80e5f2332ddac8967a216a400f214dffcf",
+          "size": 35844
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Parameters.lean",
+          "sha": "1cf37ef513352712608fa4273b45deda671defc2",
+          "size": 5861
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Prepare.lean",
+          "sha": "ae9e247ce407e6d3c1db07ea0996f72052edcd4c",
+          "size": 21598
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Program.lean",
+          "sha": "aa7344e7f0468189be0de308eb40f7457cc237ed",
+          "size": 7458
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Reduction.lean",
+          "sha": "cd455db548c5e5ac34d119f0b7714d16a94feabb",
+          "size": 32012
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Round.lean",
+          "sha": "6c53294ad32d3daf4ce1b28595f3dd52ff8eb53c",
+          "size": 13312
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/Time.lean",
+          "sha": "cb630f757b012ad94413ea5302ae507fb1e944c7",
+          "size": 3999
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/ChanHe/TimeBound.lean",
+          "sha": "89e9a068d6f0af7654d1edeb897ecac233283fa1",
+          "size": 8245
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/Convolution/Fill.lean",
+          "sha": "e712576d69e3310c73974e0f51e81e0306eed8e8",
+          "size": 17399
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/Convolution/Host.lean",
+          "sha": "0579c0120fde39f9d0da4dfbf14f6f314aefdad7",
+          "size": 14455
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21a/Convolution/TimeBound.lean",
+          "sha": "e9113b5ad60dd85436fa1d9c4ca64d767a0654f9",
+          "size": 5060
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/Apsp/Host.lean",
+          "sha": "a4f49e1ece95d93f493b1a5fbc9633365e2ba530",
+          "size": 14025
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/Apsp/Passes.lean",
+          "sha": "621df8283a8fb3cf7c3e3eade0ab3297691d34fa",
+          "size": 19092
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/Apsp/TimeBound.lean",
+          "sha": "b2b998ffe2d8f88208c24f326ab06376f6874788",
+          "size": 2624
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/MinPlus/AllPairs.lean",
+          "sha": "44034a59b01bc11dcc1f780e488a9f4b2f82b82d",
+          "size": 38898
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/MinPlus/BitSearch.lean",
+          "sha": "9e93e22fdf433ef52e8e31c96498c8d089f37e99",
+          "size": 22879
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/MinPlus/CopyBlock.lean",
+          "sha": "d0ad0c188ecfc3a6f89abd1dc664f3bb15b995b7",
+          "size": 5951
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/MinPlus/FindNegativeTriangle.lean",
+          "sha": "3c30eb8c503953b733f29107199209a094ca2f5f",
+          "size": 27411
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/MinPlus/Passes.lean",
+          "sha": "597256afc6cfe443c79f5b84062e2683ef333f56",
+          "size": 5052
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/MinPlus/Tasks.lean",
+          "sha": "8e5ec75491f0e96bcd08d665b44ef5a0dfdd91b5",
+          "size": 4958
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/MinPlus/TimeBound.lean",
+          "sha": "4c92a5d40cb446ac5a7b02c344cfda3f5df42828",
+          "size": 14648
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/NegativeTriangle/Host.lean",
+          "sha": "2c092ceb25b0d754b5b83879b8c86bdea6a66e31",
+          "size": 30958
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/NegativeTriangle/Passes.lean",
+          "sha": "be3ba5bdda2ea8bda3065ff91f94ace351865af2",
+          "size": 12730
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec3/Theorem21b/NegativeTriangle/TimeBound.lean",
+          "sha": "454a96e442eec6c33fcbd276118ff7eb78cdf95e",
+          "size": 3499
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Ceiling.lean",
+          "sha": "437b70343e259430f6662be5ae787897c612d1a6",
+          "size": 3263
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Contracts.lean",
+          "sha": "a5aa8b3efaa639db1ea514bd8febbe9e8c140291",
+          "size": 7172
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Costs.lean",
+          "sha": "5c011067efab14a7dd2b082255728dbaa37a496b",
+          "size": 14466
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/InnerProduct.lean",
+          "sha": "aa178f608ef6b724171a38199c26b5f9b4e5891a",
+          "size": 6107
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Layout.lean",
+          "sha": "66cb330fa4ec49166f625b550b06689071834db0",
+          "size": 6694
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Limits.lean",
+          "sha": "f86e1927c434437ecb853bfaa515170fa28a1d08",
+          "size": 15131
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Offline.lean",
+          "sha": "51bf9bd749c247bff0e4a12a92245f7320e3b6ec",
+          "size": 11334
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/OfflineLayout.lean",
+          "sha": "7f37183ef6a7d2ec20f795b752154bc60fb6c9e1",
+          "size": 7900
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/OfflineStatement.lean",
+          "sha": "30036b523f4b8dd7d00cf4f9e1eff2b654195167",
+          "size": 3693
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Pad.lean",
+          "sha": "f5d2b17cd423e3de8b6b438256d6698d5f6da51a",
+          "size": 5561
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Parameters.lean",
+          "sha": "7617be22da17af5ab19fe2de5ef7b5a958fcdf28",
+          "size": 16933
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Preprocessing.lean",
+          "sha": "851e5bbff7394d88fdd7d63675a284587acfecb5",
+          "size": 13637
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Program.lean",
+          "sha": "851d6542a2d951ea3eb08ee54b121127b580594d",
+          "size": 8258
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Setup.lean",
+          "sha": "5c7024ae795cb22ce479148dcc32707fd3b78116",
+          "size": 3468
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/ChoosingParameters/Statement.lean",
+          "sha": "78464fb64c4670459a3f15168e4a184f9db2d906",
+          "size": 6028
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Corollary26/AllInstances.lean",
+          "sha": "87bcede3eb21b70b8a75c53f9d744fc36a840d5f",
+          "size": 18876
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Corollary26/Claim.lean",
+          "sha": "8b74726102311763e290509e316f8937993283ab",
+          "size": 3421
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Corollary26/Program.lean",
+          "sha": "d320760e1edccdfd4a202739062282086a11d540",
+          "size": 8397
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Corollary26/Regime.lean",
+          "sha": "4bd3e0b7e303b1c4673ffee37921dd47b79467af",
+          "size": 6550
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/AllTiles.lean",
+          "sha": "8feb5ad9bce5017d38dde1bf33b26b8aab4503d2",
+          "size": 13646
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Areas.lean",
+          "sha": "96212ef743a668854bae61d60baeb68d14f0bc64",
+          "size": 2907
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Contracts.lean",
+          "sha": "0ec64e48a42ec2d58b54b16ea89f4227ab705cd1",
+          "size": 30859
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Directory.lean",
+          "sha": "c885789875cf0ce9ca36f0384b76139bf339a844",
+          "size": 2700
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/FillList.lean",
+          "sha": "2768746cd8766eeab995bdc9eddd78db542cc6b3",
+          "size": 24821
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Horner.lean",
+          "sha": "aad22405f7ca218829e23f34f049e0bf2db83152",
+          "size": 3834
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Insert.lean",
+          "sha": "d2e5efe9bf6895b96609fa97361fe0dc6a0d34ae",
+          "size": 17469
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Layout.lean",
+          "sha": "9c54d2e65ab436c1851df4e98888a60959fdbb85",
+          "size": 14164
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Lookup.lean",
+          "sha": "e9832c8d3d2e10a679f134fbcf02a345a04daefb",
+          "size": 4848
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Memory.lean",
+          "sha": "bf36fd65a4a24a4365906bc8d2f8fdfbe27da2eb",
+          "size": 14238
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/NineFirst.lean",
+          "sha": "38aff6bfafd33c8e8ca7519c07a46cfffe56caf0",
+          "size": 6915
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/NineNext.lean",
+          "sha": "d282de282706f4926129d4ec19bd232ea4fcc1b3",
+          "size": 12533
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Offline.lean",
+          "sha": "f8c0e0e27c28381cbde354d0559b743b48becdf1",
+          "size": 11250
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/OfflineLayout.lean",
+          "sha": "f6be89369aad60864bb616b94a4748316f4ef213",
+          "size": 5524
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/OfflineStatement.lean",
+          "sha": "9b1b40e545a1470b9aa0be06ab3e1c7b639748e6",
+          "size": 7526
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/OutDigits.lean",
+          "sha": "294b2d994bf52391a933fe5ace6e5a0501e563bc",
+          "size": 10637
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Preprocessing.lean",
+          "sha": "701b526053dd6a5c0781b1ed27e9faf03a8935b8",
+          "size": 11563
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Program.lean",
+          "sha": "513b8df6296d73899bd8e0d734f4b94fe3d5816b",
+          "size": 5082
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Query.lean",
+          "sha": "816d2f1a0d2017a5f8802b2da9cce7ea52f40f4f",
+          "size": 22936
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/QuerySum.lean",
+          "sha": "043bca1adde57622c7caadfbb73af0c76e7dd890",
+          "size": 22281
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/RoutineFacts.lean",
+          "sha": "5237316fb9d53b7c305763d1f2146a7c8d21e439",
+          "size": 1160
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Routines.lean",
+          "sha": "6f1358f1e0c069ecc0633827d8bf17bc43eddee1",
+          "size": 6029
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Scatter.lean",
+          "sha": "1c139793b1443b5ce1fdd277d5b53eb0764bbf80",
+          "size": 10068
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/SharedP.lean",
+          "sha": "19dd7e78bd2250b1faf46d36aa938748d93811e8",
+          "size": 7121
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/StarFirst.lean",
+          "sha": "dff1be6153e0e885696305123adcbb988825ac91",
+          "size": 8386
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/SumTen.lean",
+          "sha": "1b9cd23567c652f6b1de6b00d850d4c3b53e6a19",
+          "size": 7190
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/ThinLayout.lean",
+          "sha": "b73b0aeb9635b6723b35f4da9ae35ce253cfcf78",
+          "size": 6845
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Tile.lean",
+          "sha": "85f21fda372095330668c86e81b921ceb730dee4",
+          "size": 9449
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/Time.lean",
+          "sha": "8cc40ac1ea3764447f73a624d5976e13ecae93a6",
+          "size": 11480
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/TimeOfBlock.lean",
+          "sha": "578f112bc827515ea320a3b10a0f796f9893abc4",
+          "size": 15648
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Sec4/Theorem30/WordSize.lean",
+          "sha": "58326e6bd4c20d1f125487031753140cf5f37112",
+          "size": 11339
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Programs/Tasks.lean",
+          "sha": "26e9db74466d5bd395badd6ec28431f7befd2ac1",
+          "size": 13514
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Pruned/Costs.lean",
+          "sha": "6926bd305f2c616083cf0c67bc57fd1a124ef9aa",
+          "size": 32978
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Pruned/CostsAux.lean",
+          "sha": "e973e3335db0493c77e9c91333efd9aaf2a0d6bb",
+          "size": 9856
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Pruned/Within8p.lean",
+          "sha": "a6be5b8a654243e82aa02e690a0fcd9f9ac3b085",
+          "size": 16248
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/FromClaims.lean",
+          "sha": "031dcf8c66b3d2bcf699fead804d99a4581b0d3e",
+          "size": 5843
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/FromClaims/Bounds.lean",
+          "sha": "4cee9e9fafc69daa55d1f2b8d2bd046937ff1f69",
+          "size": 8400
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Corollary15_16.lean",
+          "sha": "8609a09ca015d59b3851e2ec84a0ff1e845a1fa9",
+          "size": 2757
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Corollary15_16/Layout.lean",
+          "sha": "faed9c179120dc9b48fd3c14f5b130a07d8a5133",
+          "size": 28004
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Theorem19.lean",
+          "sha": "cbc4ebdb6f052ca509e6b0ae2ea0c297072b89cf",
+          "size": 3846
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Theorem19/Layout.lean",
+          "sha": "bd944eaa6e02150546495aa70927b5f653585914",
+          "size": 5358
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Theorem22.lean",
+          "sha": "433bd1470c7f279955bf97298221e7fa3ce6bfaa",
+          "size": 7481
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Theorem22/ApspLayout.lean",
+          "sha": "dbdaaf9994b726f515be36fc0e8cb33a9512a058",
+          "size": 5893
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Theorem22/MinPlusLayout.lean",
+          "sha": "adc327c5b352dc83923ce6219323155760c73dda",
+          "size": 6109
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Theorem22/ThreeSumLayout.lean",
+          "sha": "6bff41340d20d30406200e6ce53a6a5ca5375344",
+          "size": 3507
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/RunningTimes/Sec3/Theorem22/ThreeSumPolylog.lean",
+          "sha": "1ca294eb4b227c962fe377401a6d9a2d52d1d21b",
+          "size": 5512
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Lemma10.lean",
+          "sha": "3c9164335eb08390fa9cf22b14052fa5bf889bc4",
+          "size": 31266
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Lemma11.lean",
+          "sha": "0b5dfd56cd95fa95a15d426d802887ac69ce1f9b",
+          "size": 15175
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Lemma6.lean",
+          "sha": "37e5a6fd212a6fbe08ca21f037dca24944691982",
+          "size": 11221
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Lemma7_8.lean",
+          "sha": "ecd651ac76b616a363be3896c84f74f390e7a611",
+          "size": 9871
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Lemma9.lean",
+          "sha": "5468f4645c5a8754bee8f10417eb38656799f2fa",
+          "size": 13461
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Levels.lean",
+          "sha": "94f1a97f4193ab3fc49503f256458d8556d8f0a5",
+          "size": 17445
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Orders.lean",
+          "sha": "90bd2a69509b20b42371d07034533f633e0c8b23",
+          "size": 16598
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Recursion.lean",
+          "sha": "9ff9a141a816cda9a4a4493cb8be9a5f704ccb43",
+          "size": 3334
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Theorem5.lean",
+          "sha": "ac06d5dfdf4ef53ad17639ec5b12a4694e886f8e",
+          "size": 10772
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Theorem5/Equation6.lean",
+          "sha": "49cee87eaee0a1185bebdae8a9b72e8130a4424a",
+          "size": 6135
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Theorem5/WordSize.lean",
+          "sha": "4e370541bc25e36696fa168f14cdc40cf719a09d",
+          "size": 12169
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Tiling.lean",
+          "sha": "3fd6ad4fbbc5088705c82ce7e9d4710e8773316b",
+          "size": 12128
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec2/Tiling/Definitions.lean",
+          "sha": "a539d0f45274001e8958125246eceeb08b6c74dc",
+          "size": 6860
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Chunks.lean",
+          "sha": "b49797687676e26054df0be9d355faa43a857799",
+          "size": 4234
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Corollary15_16.lean",
+          "sha": "4873478bb252240c5fd6350dd36dfc7c87f343a9",
+          "size": 8567
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/MatrixLanguage.lean",
+          "sha": "0527a64d3df012f92f8c2b0a41f5699ca77b03e5",
+          "size": 18324
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Parameters.lean",
+          "sha": "8846d2595e349e10626d19b39decbee1d3337c09",
+          "size": 4929
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem17/Hashing.lean",
+          "sha": "a2129eef6b4cc8312dd0b4d64402e703a7a59457",
+          "size": 22952
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem17/Instances.lean",
+          "sha": "fd84471e25ea23eb7965b28ce73f23e334e99b74",
+          "size": 22765
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem17/Witnesses.lean",
+          "sha": "9f7cb2f51b0886365109c07680b24ccf0d0a29ca",
+          "size": 14915
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem19.lean",
+          "sha": "d8b45c616ee446903ce900ea8cf0bbf3971c2f35",
+          "size": 10868
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem19/Choice.lean",
+          "sha": "a315bdc2a3762c00dca01eda7dbe2f8e0afe6ba1",
+          "size": 14169
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21.lean",
+          "sha": "e94da613b123b5b12de759ad33d56ae98f73055d",
+          "size": 6237
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21a/ChanHe/Collisions.lean",
+          "sha": "b8139a77fa2ec9e91563ac46b3c54f5af271783d",
+          "size": 13664
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21a/ChanHe/Definitions.lean",
+          "sha": "5a7f74ea030c65144f39d6ec04a89e9fb2f83595",
+          "size": 2013
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21a/ChanHe/FromNumbers.lean",
+          "sha": "73f4adbb27678795106459f621c3b238e6782344",
+          "size": 24237
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21a/ChanHe/Recursion.lean",
+          "sha": "cdddbf8dc854581984679969e9c1a1f54f61e9be",
+          "size": 22163
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21a/ChanHe/Sizes.lean",
+          "sha": "f8e1ac7bc3697dc042a2c5a7f5aa2a529cd62e76",
+          "size": 6655
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21a/Convolution.lean",
+          "sha": "9c7e1ecc0ded974cd4dee87ff2367a7cc3a2f590",
+          "size": 8316
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21b/NegativeTriangle.lean",
+          "sha": "b43c91f017c5e74553f5ea140c59e44527938f07",
+          "size": 11749
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21b/PathsAndWalks.lean",
+          "sha": "fabee968203bc41f5fbd2a5512aed5855a4694cc",
+          "size": 5639
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec3/Theorem21b/RepeatedSquaring.lean",
+          "sha": "f389ea66f03c3ab846fced72e4f1625a493e4747",
+          "size": 11233
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Boxes.lean",
+          "sha": "f9c450995bb7770f5ed0135db91eda00cc5dbd89",
+          "size": 19516
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/BoxesFromLeaves.lean",
+          "sha": "f5e49097c2ce11768433c12ce222447ea5410cb2",
+          "size": 5478
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/ChoosingParameters.lean",
+          "sha": "4ec3a155bdd4308ecf76256ca2451e3a4c7be91e",
+          "size": 15629
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Corollary26.lean",
+          "sha": "74397286ca1fb2ca2d40a28b5bdbafcadcec2372",
+          "size": 28854
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Corollary31.lean",
+          "sha": "3add7c6596ca9d6b38734df7d1d18033d52cb053",
+          "size": 27047
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Corollary31/RationalParameters.lean",
+          "sha": "88b02e784991d044a3d594c7dda31c493c85b21a",
+          "size": 6680
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Lemma27_28.lean",
+          "sha": "c8695e0700232f901f40219f226090c67bd7436a",
+          "size": 30782
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Lemma29.lean",
+          "sha": "87045286b105dc5a5bea178375d579c295c27ece",
+          "size": 9911
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/ParameterSteps.lean",
+          "sha": "507bb4ae95c0b84019bb0d6824380ea37fa3aaa7",
+          "size": 12662
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Table2.lean",
+          "sha": "4ac8b41097513daf632cb9143b9195d638c9873e",
+          "size": 10620
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Table2/LogBounds.lean",
+          "sha": "a79f65507613a2cfe64b5f680ac2fa9eb3a97b92",
+          "size": 17278
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Sec4/Theorem30.lean",
+          "sha": "ba2d99e6af2035a5bd2b8bcd7b63d1fa1018c0bc",
+          "size": 24377
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/Alphabets.lean",
+          "sha": "bae66dbca9eda20007d4d0e24e008aec3138ae1d",
+          "size": 11193
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/Arrays.lean",
+          "sha": "9c23566c798496df31ceb653f389c16ccad277bb",
+          "size": 4111
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/Counters.lean",
+          "sha": "b5e948b412fd5eed5135d14065c503b662cd9400",
+          "size": 2566
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/Layout.lean",
+          "sha": "abab791be7a9a2a66ddbdb83112695c8b7fe24bb",
+          "size": 21400
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/PrunedList.lean",
+          "sha": "898969597219f17432cbc40e5e15f7d243fb9803",
+          "size": 15842
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/SortedSets.lean",
+          "sha": "79ef4b3c33ea2095953d66bcb3986b6ca8276c27",
+          "size": 14511
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/SubsetTable.lean",
+          "sha": "04b0aae52e503241465f6b65976ee5380de0d470",
+          "size": 7711
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec2/Theorem5/Subsets.lean",
+          "sha": "519a691577aa62b728c2edeba75bfa6cb91b3141",
+          "size": 10005
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Problems.lean",
+          "sha": "c2d4cb6ec4949071bde295cfa75a5899af6d661d",
+          "size": 6599
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Choice.lean",
+          "sha": "f03088357d033b8a65373b19304b016fb3d2e1fe",
+          "size": 7916
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Chunks.lean",
+          "sha": "f628dd69f642f0475ca18fbcea62c206c7f0da02",
+          "size": 13316
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/ClassStarts.lean",
+          "sha": "6cb50b7425ea100e548431acab94d74be97777bf",
+          "size": 2036
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Classes.lean",
+          "sha": "3b3cb3d8f71c90b7378dc43923b29034956bab8d",
+          "size": 2869
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Cyclic.lean",
+          "sha": "7a267c4bd85d911cd87fa6e1c68ff498f8b64394",
+          "size": 6463
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Hashing.lean",
+          "sha": "a300494583589270956f3833f0bf87b82ac1ac8f",
+          "size": 6416
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Instances.lean",
+          "sha": "5e574935d2dcedee7e5291232949f9c675f17e2e",
+          "size": 2471
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Parameters.lean",
+          "sha": "95a661839887c64ad2e4747b6a444e08752c6a3a",
+          "size": 12431
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/Strassen.lean",
+          "sha": "a4159bd9b0c75a806a026b2890fa550b66fb81d8",
+          "size": 11055
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem17/ZOrder.lean",
+          "sha": "a6b9bb9a6f8413f452941968c46953d50b584e8a",
+          "size": 9224
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21a/Convolution.lean",
+          "sha": "9efde2320ae98ec4b23c032f4e00d9fcad03dc1f",
+          "size": 6287
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21a/NodeArray.lean",
+          "sha": "88def75921a939df6823a383551b76a35c1251d4",
+          "size": 5029
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21a/Passes.lean",
+          "sha": "1d21a6d7f5736195a6f88c18ca864b8bc99a4e2f",
+          "size": 7554
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21b/AllPairs.lean",
+          "sha": "c080bb51e90bd03fc7f681724af29f877aa1abab",
+          "size": 12291
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21b/BitSearch.lean",
+          "sha": "b7e15ac1a9eae2c4c46e86b8490183be73fffa3c",
+          "size": 4636
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21b/FindNegativeTriangle.lean",
+          "sha": "41769396492c100b424e4fc36328313907d60f72",
+          "size": 7430
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21b/NegativeTriangle.lean",
+          "sha": "0483dec105a16f8bf44e48b884e3ee814a0be319",
+          "size": 6201
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec3/Theorem21b/RepeatedSquaring.lean",
+          "sha": "58aa275f90c7df0f43dfaf23c6c594a7141f4c46",
+          "size": 10825
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/Cubes.lean",
+          "sha": "ace6e3cec25de688934bad0a3e49ada9730f0adb",
+          "size": 17212
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/NineScan.lean",
+          "sha": "60b84d4e64a87584399be81f618a50adb612caf5",
+          "size": 9661
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/NineStrings.lean",
+          "sha": "f1692b09a703481db7060579aa54e87a4b01b42c",
+          "size": 19303
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/PartialSums.lean",
+          "sha": "4750321f728d5fce172e222a0ab3377ff5aa65b4",
+          "size": 5631
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/QueryLists.lean",
+          "sha": "b076e0d8c174a7362e9b3f48b27f3155b71f106a",
+          "size": 20233
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/Retained.lean",
+          "sha": "f2c8b1ccd2efb80a7896dd2f402ef803b1ccb41d",
+          "size": 9120
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/StarBoxes.lean",
+          "sha": "3acd241744a42717f6422fc2b13033439b6520f6",
+          "size": 8667
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/TileTries.lean",
+          "sha": "1e787e78bbcc5303e8f3536fc16af2f3aaf88d88",
+          "size": 24738
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Spec/Sec4/Theorem30/Trie.lean",
+          "sha": "04b650b64b2276d9e184841ae5d861bbbe4aef68",
+          "size": 26642
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Statements/Exponents.lean",
+          "sha": "083915df589859f3d6510634e2f8dc5de94d2d7e",
+          "size": 4303
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/TimeClaims/Sec3/Arithmetic.lean",
+          "sha": "07f22b51ff99c5d704d31ce0d27b18c92395e3ac",
+          "size": 6572
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/TimeClaims/Sec3/Corollary15_16.lean",
+          "sha": "d908cf144351d09686558e0a77a4972a5176419d",
+          "size": 8795
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/TimeClaims/Sec3/Definitions.lean",
+          "sha": "168ccb9759ebf1369970470a599165e318d2b68e",
+          "size": 25980
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/TimeClaims/Sec3/Theorem19.lean",
+          "sha": "77cf9bba06d6622fa7c97d4cd1b6da08e808d235",
+          "size": 15326
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/TimeClaims/Sec3/Theorem21_22.lean",
+          "sha": "c29faa2b6f4006bf948bf23aa231ecc25effa56e",
+          "size": 16720
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/Dominated.lean",
+          "sha": "dd5d678b1e86c8155ddd2b11c27d3641954ec14a",
+          "size": 15910
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/LogExponent.lean",
+          "sha": "166b875a0ae604bec87be5ba50896b8e51abe642",
+          "size": 2996
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/LogU.lean",
+          "sha": "83a47c08fb973d8f4e3bb81555171f9d2897c72e",
+          "size": 5244
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/Logarithms.lean",
+          "sha": "a832651a04e7267858c4518ef3fe3408716bfa72",
+          "size": 4110
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/PowLittleO.lean",
+          "sha": "108fc1bb8410455ff8139f92bd5b02f096e74e50",
+          "size": 6886
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/PowPolylog.lean",
+          "sha": "e57e802d4454b8fa36f00b3b05809073455508d0",
+          "size": 16778
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/Powers.lean",
+          "sha": "9ae9625cd32dae6b39a53d47cabc205c7d0202d4",
+          "size": 5751
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/Scale.lean",
+          "sha": "64c40530bbacc6c32dc6af4b1920ca4ef86bed35",
+          "size": 14790
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/SoftOSqrtPow.lean",
+          "sha": "d9cfd080d9c05c8243a11f7ebb03f49b89dff67a",
+          "size": 5411
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Asymptotics/UpperBounds.lean",
+          "sha": "440e82898b6f166c6b77c00a90c285e4ed79163d",
+          "size": 7683
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Average.lean",
+          "sha": "7777955b3b94b27c3dc3575fc93fcadbabaa0260",
+          "size": 3033
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Basic.lean",
+          "sha": "195f682797b3274de17ff971a87f62f39978a747",
+          "size": 742
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/BinaryPrefixes.lean",
+          "sha": "4c267180507aad86a8f309e0f2aca5fd5ec9fff0",
+          "size": 6229
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Ceil.lean",
+          "sha": "da63318bbd56dcfff781f050a1e7dd0afc84b5d8",
+          "size": 4579
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Choose.lean",
+          "sha": "73039dd3565c9eb7565b54a92b60e41ff13247fd",
+          "size": 6096
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Counting.lean",
+          "sha": "7bf9d6a8c2cacba8ad7211e5091a1fa8e24e0aec",
+          "size": 8938
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/CountingSort.lean",
+          "sha": "74c61ba6cdbff315412d9c37768db9e889aa5720",
+          "size": 5422
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Digits.lean",
+          "sha": "200a807f18ba42c83cf2944c9ba6b7a22f477c86",
+          "size": 15907
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Flag.lean",
+          "sha": "0336275ff41317e873029023c969f0eb2e17ae42",
+          "size": 1318
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Index.lean",
+          "sha": "41271afcec4ffe663bab3decf7db5ca3530a4639",
+          "size": 4956
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/List.lean",
+          "sha": "d28a6877d5760c08d7fbde1915e2c708a200a50b",
+          "size": 22827
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Log.lean",
+          "sha": "4286f476628babe2ae3bba440d709836f45d52d5",
+          "size": 4309
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/PrimeCounting.lean",
+          "sha": "ea5a0cd03dcc809b543140297c640f4f5b31f585",
+          "size": 2977
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/PrimesInWindow.lean",
+          "sha": "cd3010596f2b84050259f00aed9787d73c381c9b",
+          "size": 19284
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/StablePass.lean",
+          "sha": "eae1f5c44141e52320b5b72bff6e37627e0dd2f7",
+          "size": 4826
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Sum.lean",
+          "sha": "e22309557cf4c1128cae800ac77de2630fa77cf3",
+          "size": 3273
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/Submission/ThreeSumApsp/Util/Weave.lean",
+          "sha": "15ad09ee74c93cc674293825dea366a791e4c316",
+          "size": 3291
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/apsp/fringewidth-apsp-299556085/manifest.json",
+          "sha": "e7996313d0f05ce42fd94955105df560e8590bc9",
+          "size": 47
+        }
+      ],
+      "changed_files_sha256": "2f1806496493674470a99f9240d09cdf22a9518331c9647ea5fea21af38b6592",
+      "gate": "ready",
+      "head_sha": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+      "inputs": {
+        "challenge_file": "challenges/3sum-apsp/EndStatement.lean",
+        "commit": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+        "direct_submission": {
+          "authors": [],
+          "bound": "59911217/20000000",
+          "commit": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+          "problem": "apsp",
+          "repo_url": "https://github.com/bigospeedrun/verifier",
+          "schema_version": 1,
+          "source_subdir": "submissions/apsp/fringewidth-apsp-299556085"
+        },
+        "lean_toolchain": "leanprover/lean4:v4.33.1",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "source_subdir": "submissions/apsp/fringewidth-apsp-299556085",
+        "theorem_names": "Race.bound"
+      },
+      "manifest_sha256": "2e24b06cf78ed62a08574e5400a7c2a491b4a827fb36113c6ba2c428386e6ec4",
+      "manifest_utf8": "{\"problem\":\"apsp\",\"bound\":\"59911217/20000000\"}\n",
+      "pr_created_at": "2026-10-15T13:04:04Z",
+      "pr_number": 13,
+      "pr_submitter_login": "fringewidth",
+      "pr_url": "https://github.com/bigospeedrun/verifier/pull/13",
+      "reason": "record_gate",
+      "record_gate": {
+        "any_lean_verified_at_bound": true,
+        "checked_at": "2026-10-15T13:06:09.728947Z",
+        "data_sha256": "77dbd33929f6c17f7d981b06325055a84eb409c672e344dabe59029c2d604e2f",
+        "leader_ids": [
+          "direct-pr-6"
+        ],
+        "problem_id": "apsp/word-ram",
+        "schema_version": 1,
+        "score": "2995561/1000000",
+        "score_relation": "attained",
+        "site_commit": "6a29abd79887b73a0972fbc3c1a5dce117689f82"
+      },
+      "route": "pull_request",
+      "schema_version": 2,
+      "source_subdir": "submissions/apsp/fringewidth-apsp-299556085",
+      "submission": {
+        "authors": [],
+        "bound": "59911217/20000000",
+        "commit": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+        "problem": "apsp",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "schema_version": 1,
+        "source_subdir": "submissions/apsp/fringewidth-apsp-299556085"
+      },
+      "submission_sha256": "67c4b249c7de87106eb1e743a90512f55987db3303ca0e3b5c0026a28ecc8d8a",
+      "test_only": false,
+      "verifier_commit": "51489ee2ac82596a41375e92ea8108814f931242"
+    },
+    "route": "pull_request",
+    "run_attempt": "1",
+    "run_id": "38739681220",
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
+    "schema_version": 2,
+    "test_only": false,
+    "verification_stage": "final",
+    "verifier_commit": "51489ee2ac82596a41375e92ea8108814f931242",
+    "workflow_conclusion": "success",
+    "workflow_path": ".github/workflows/submissions.yml"
+  },
+  "verification_run": {
+    "id": 38739681220,
+    "name": "Verify direct submissions",
+    "node_id": "WFR_kwLOVDiv6M8AAAAJBRCfxA",
+    "head_branch": "main",
+    "head_sha": "51489ee2ac82596a41375e92ea8108814f931242",
+    "path": ".github/workflows/submissions.yml",
+    "display_title": "[Lean submission] 3SUM: deterministic O(n^1.921), complete Lean proof",
+    "run_number": 221,
+    "event": "issues",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847968,
+    "check_suite_id": 104979897906,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAYcUoeMg",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739681220",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220",
+    "pull_requests": [],
+    "created_at": "2026-10-15T13:04:44Z",
+    "updated_at": "2026-10-15T15:36:19Z",
+    "actor": {
+      "login": "c0ldzy17",
+      "id": 119072140,
+      "node_id": "U_kgDOBxjljA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/119072140?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/c0ldzy17",
+      "html_url": "https://github.com/c0ldzy17",
+      "followers_url": "https://api.github.com/users/c0ldzy17/followers",
+      "following_url": "https://api.github.com/users/c0ldzy17/following{/other_user}",
+      "gists_url": "https://api.github.com/users/c0ldzy17/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/c0ldzy17/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/c0ldzy17/subscriptions",
+      "organizations_url": "https://api.github.com/users/c0ldzy17/orgs",
+      "repos_url": "https://api.github.com/users/c0ldzy17/repos",
+      "events_url": "https://api.github.com/users/c0ldzy17/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/c0ldzy17/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [
+      {
+        "path": "bigospeedrun/verifier/.github/workflows/submission-check.yml@51489ee2ac82596a41375e92ea8108814f931242",
+        "sha": "51489ee2ac82596a41375e92ea8108814f931242",
+        "ref": "refs/heads/main"
+      }
+    ],
+    "run_started_at": "2026-10-15T13:04:44Z",
+    "triggering_actor": {
+      "login": "c0ldzy17",
+      "id": 119072140,
+      "node_id": "U_kgDOBxjljA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/119072140?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/c0ldzy17",
+      "html_url": "https://github.com/c0ldzy17",
+      "followers_url": "https://api.github.com/users/c0ldzy17/followers",
+      "following_url": "https://api.github.com/users/c0ldzy17/following{/other_user}",
+      "gists_url": "https://api.github.com/users/c0ldzy17/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/c0ldzy17/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/c0ldzy17/subscriptions",
+      "organizations_url": "https://api.github.com/users/c0ldzy17/orgs",
+      "repos_url": "https://api.github.com/users/c0ldzy17/repos",
+      "events_url": "https://api.github.com/users/c0ldzy17/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/c0ldzy17/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739681220/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739681220/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/104979897906",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739681220/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739681220/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38739681220/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847968",
+    "head_commit": {
+      "id": "51489ee2ac82596a41375e92ea8108814f931242",
+      "tree_id": "9e4a94bf4edc416e67250e4a92864ac22337e29d",
+      "message": "Skip PRs that touch no submissions/ path in the proof scheduler\n\nStatement PRs under challenges/ and auto-research PRs failed the proof\nlayout check, so the publisher closed them. The scheduler now ignores a\nPR whose complete file list has no submissions/ path (filename or\nrename source); maintainers review it by hand. Mixed, renamed and\noversized PRs still go through the layout check.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "timestamp": "2026-10-13T18:38:06Z",
+      "author": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      },
+      "committer": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  },
+  "result_artifact": {
+    "id": 11985348534,
+    "node_id": "MDg6QXJ0aWZhY3QxMTk4NTM0ODUzNA==",
+    "name": "pr-submission-38739681220-1-publisher-38761805071-1",
+    "size_in_bytes": 21068,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11985348534",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11985348534/zip",
+    "expired": false,
+    "digest": "sha256:771f37f92f65011c476a86a9d9bd4cf3cf79404f6e8988693a015e3fb8e5e689",
+    "created_at": "2026-10-15T15:36:42Z",
+    "updated_at": "2026-10-15T15:36:42Z",
+    "expires_at": "2027-01-13T15:36:22Z",
+    "workflow_run": {
+      "id": 38761805071,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "318f794adac7d6f87f6974c6e1aab49ca982a622"
+    }
+  },
+  "proof_artifact": {
+    "id": 11977452603,
+    "node_id": "MDg6QXJ0aWZhY3QxMTk3NzQ1MjYwMw==",
+    "name": "pr-verification-38739681220-1-13",
+    "size_in_bytes": 82628,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11977452603",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/11977452603/zip",
+    "expired": false,
+    "digest": "sha256:61f6cabd5aa4cfae0c50150c0dc4c63ad7bdabf5287e24d61cddb61420cd0546",
+    "created_at": "2026-10-15T13:42:00Z",
+    "updated_at": "2026-10-15T13:42:00Z",
+    "expires_at": "2027-01-13T13:04:44Z",
+    "workflow_run": {
+      "id": 38739681220,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "51489ee2ac82596a41375e92ea8108814f931242"
+    }
+  },
+  "publisher_run": {
+    "id": 38761805071,
+    "name": "Publish submission PR result",
+    "node_id": "WFR_kwLOVDiv6M8AAAAJBmI1Dw",
+    "head_branch": "main",
+    "head_sha": "318f794adac7d6f87f6974c6e1aab49ca982a622",
+    "path": ".github/workflows/pr-publish.yml",
+    "display_title": "Publish submission PR result",
+    "run_number": 468,
+    "event": "workflow_run",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847965,
+    "check_suite_id": 105043401875,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAYdRMckw",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761805071",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/38761805071",
+    "pull_requests": [],
+    "created_at": "2026-10-15T15:36:22Z",
+    "updated_at": "2026-10-15T15:36:45Z",
+    "actor": {
+      "login": "c0ldzy17",
+      "id": 119072140,
+      "node_id": "U_kgDOBxjljA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/119072140?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/c0ldzy17",
+      "html_url": "https://github.com/c0ldzy17",
+      "followers_url": "https://api.github.com/users/c0ldzy17/followers",
+      "following_url": "https://api.github.com/users/c0ldzy17/following{/other_user}",
+      "gists_url": "https://api.github.com/users/c0ldzy17/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/c0ldzy17/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/c0ldzy17/subscriptions",
+      "organizations_url": "https://api.github.com/users/c0ldzy17/orgs",
+      "repos_url": "https://api.github.com/users/c0ldzy17/repos",
+      "events_url": "https://api.github.com/users/c0ldzy17/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/c0ldzy17/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-10-15T15:36:22Z",
+    "triggering_actor": {
+      "login": "c0ldzy17",
+      "id": 119072140,
+      "node_id": "U_kgDOBxjljA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/119072140?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/c0ldzy17",
+      "html_url": "https://github.com/c0ldzy17",
+      "followers_url": "https://api.github.com/users/c0ldzy17/followers",
+      "following_url": "https://api.github.com/users/c0ldzy17/following{/other_user}",
+      "gists_url": "https://api.github.com/users/c0ldzy17/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/c0ldzy17/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/c0ldzy17/subscriptions",
+      "organizations_url": "https://api.github.com/users/c0ldzy17/orgs",
+      "repos_url": "https://api.github.com/users/c0ldzy17/repos",
+      "events_url": "https://api.github.com/users/c0ldzy17/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/c0ldzy17/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761805071/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761805071/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/105043401875",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761805071/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761805071/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/38761805071/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847965",
+    "head_commit": {
+      "id": "318f794adac7d6f87f6974c6e1aab49ca982a622",
+      "tree_id": "d336bc01743ca789f5c0d59a0ba69015559f68d7",
+      "message": "APSP: exponent 59911217/20000000 (#13)\n\nLi Xuanji's APSP proof (PR #6) with a sharper numerical certificate of its unchanged parameters: Gamma(20, 56569/500000) > 0.0660254 and q(56569/500000) < 0.4339741, and the absorption constants lowered from 2.995561 to 2.99556085. No algorithmic change; credits retained in Submission.lean.\n\nCo-authored-by: Hrishik Sai Bojnal <hrishik@gb-497.netbird.selfhosted>",
+      "timestamp": "2026-10-15T13:34:18Z",
+      "author": {
+        "name": "Hrishik Sai Bojnal",
+        "email": "hrishiksaibm@gmail.com"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "number": 2625,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2625",
+  "title": "Stop isolated test trees when the controlling thread cancels",
+  "body": "Cancelling the controlling thread previously waited for every active and queued isolated test module; a blocked child could prevent the runner from returning indefinitely. Register module processes under a launch lock, stop their ordinary process trees on controlling exceptions, cancel queued launches, and preserve the original exception with bounded cleanup diagnostics.\n\nThe real Windows before/after fixture detects both a surviving solver and an unwanted queued start. Six focused tests pass on optimized Python 3.12.14 and 3.14.5, including parent-only cleanup and native-command timeout controls, injected cleanup denial, and 200 KB output preservation. The four existing runner behavior tests pass. Root review addressed cleanup failure and unbounded waiting. Linux execution and hosted CI were not run.\n\nThe ownership guarantee covers active module leaders and ordinary descendants; native Windows orphan containment remains an explicit follow-up. This is separate from pending PR2579 completion receipts and PR2377/2469 research-package lifetime handling. Main, selected result, and mathematical acceptance rules are unchanged. See docs/research/isolated-test-cancellation.md for the reproduction, overlap coverage, selection detour, and limits.\n\nPrepared by ywz65 with OpenAI Codex assistance. Apache-2.0.",
+  "created_at": "2026-10-15T16:17:06Z",
+  "updated_at": "2026-10-15T16:17:06Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
