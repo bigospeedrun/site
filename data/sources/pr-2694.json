@@ -1,0 +1,11 @@
+{
+  "number": 2694,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2694",
+  "title": "Formalize the overcomplete rank and one-extra coupling interface",
+  "body": "PR2277 explicitly leaves the rank statements and one-extra consequence of Lemma OC as written proofs. This package completes those forward obligations in Lean: from actual XY^T=I, derive rank(Y^T X)=T, complementary rank m-T, and for m=T+1 a normalized outer product I-Y^T X=ab^T with b^T a=1 and the exact entry formulas. It works over arbitrary fields and does not infer rank from trace.\n\nThe exact predecessor README/formal/environment files are retained with Git blob and SHA256 pins; DreamingOfClouds retains credit for Lemma OC. The converse, prescribed-direction criterion, geometry tables and physical cost/supplier claims remain outside scope.\n\nValidation: pinned Lean4.33.0-rc1 / Mathlib55b791 compiled six audited roots using only propext, Classical.choice and Quot.sound; four altered contracts failed elaboration. Separate registered Python3.12 replay passed448 exact Q/F2/F3/F5 fixtures,112 one-extra cases, semantic boundary controls and optimized Git-free read-only/source-corruption/output controls. Generic Python replay does not claim to invoke Lean; the README gives the explicit pinned formal replay. No hosted CI run is claimed.\n\nTask selection: priority-five P104 picker nonce ad89b619e94d237299b77316f1d1a534, baseline passed, changed to the named unformalized coupling obligation. Branch started from canonical main1884c509; pre-submission mainb5ea56e0 leaves guidance and pinned sources unchanged. Overlap used the bounded complete PR/Discussion cache plus fresh recent PRs and source head. Prepared for ywz65 with substantial OpenAI Codex assistance. Apache-2.0.",
+  "created_at": "2026-10-15T17:38:11Z",
+  "updated_at": "2026-10-15T17:38:11Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

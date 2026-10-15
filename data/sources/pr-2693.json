@@ -1,0 +1,11 @@
+{
+  "number": 2693,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2693",
+  "title": "Speed up strict payload comparison with paired traversal",
+  "body": "PR2040's strict comparator builds two full tagged JSON trees for nonidentical payloads. This opt-in, source-authenticated successor compares positive cases by paired traversal and delegates every negative/invalid case to the unchanged original comparator, preserving complete diagnostics. Duplicate keys, exact numeric types, injective path tags, unknown fields, array order and both original timing paths remain checked.\n\nOn the five largest frozen compressed JSON payloads, three alternating-order CPython3.12.14 Windows trials reduced the sum of per-file median full-call times from16.111s to6.584s (2.447x). This includes decompression/parsing, is machine-dependent, and is not a speed threshold. Negative comparisons can be slower; peak memory was not measured.\n\nValidation:1,012 exact full-result differential calls, including the retained105-file/39-adverse audit,625 additional semantic cases and22 large reformats; all15 control groups; registered3.12 replay; optimized3.14 Git-free/read-only export and actual Boolean-receipt rejection; separate code review clear; all25 committed package/input byte streams match tested files. Reproduce with `python3 scripts/research_package.py --package research/strict-payload-paired-walk`.\n\nStarted on current main8513ab11 and checked/fast-forwarded to b5ea56e0 before submission; guidance and all live inputs unchanged. Originating source pins remain8513. Final overlap covers786 open PRs at17:34UTC and1,239 Discussion records at15:22UTC; Discussion freshness is limited by exhausted GraphQL quota. Claim:https://github.com/CrocSwap/integer-mult-bounds/pull/2040#issuecomment-6198042519.\n\nCredit:commdata2338 for PR2040, Josie Elliston for the predecessor portability comparator, Rohan Arun and retained supplier authors for the corpus. Prepared by ywz65 with substantial OpenAI Codex assistance. No supplier cold replay, hosted-CI result, selected-frontier change or new kappa is claimed. PR2344 Windows-root adaptation remains separate.",
+  "created_at": "2026-10-15T17:38:05Z",
+  "updated_at": "2026-10-15T17:38:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

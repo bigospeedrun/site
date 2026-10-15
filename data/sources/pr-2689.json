@@ -1,0 +1,11 @@
+{
+  "number": 2689,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2689",
+  "title": "Bound rounded QQ16 transcript capacity and one-ulp recovery",
+  "body": "PR2384 leaves rounded/nonlinear observations outside its exact 66-port obstruction. This binds its actual integral hidden line to the entire declared19-event observation tuple and proves a finite transcript-capacity obstruction for arbitrary nonlinear rounded observations and decoders. With m=39888W real slots on a(p+g)-grid, uniform error R(p)2^-p and at mostD_p additional metadata states, capacity is at mostD_p(2floor(R(p)2^g)+1)^m. Exact recovery needs2^(p-1)+1 states; one-ulp approximate recovery already needs2^(p-3)+1 via four-ulp packing.\n\nThis is a conditional precision-interface result. Fixed-depth subexponential capacity fails eventually; no useful small-p threshold, native error bound, physical cost floor or new kappa is claimed. Fine output grids, sufficient growing-depth capacity, extra metadata and PR2540/2651's early records remain explicit escapes.\n\nThe package replays the byte-pinned PR2384 verifier and all-owner receipt, then checks normalization, the complete observation ledger,180 rational grid counts, packing, a sharp toy boundary and explicit escapes. Python3.12.14 registered replay and optimized3.14.5 Git-free/read-only replay pass. Typed receipt, external/vendor source corruption, overwrite and CLI controls pass. Independent model-assisted proof/source review found no actionable issue; no human/formal-kernel/CI or selected full-replay claim.\n\nStart/provenance1884c509, priority5; prepublication main8513ab11 adds unrelated reviewed packages with unchanged guidance/selected record. Canonical claim: https://github.com/CrocSwap/integer-mult-bounds/pull/2384#issuecomment-6197610619 . Exact sources, bounded overlap coverage, credit, remaining hypotheses and Open next questions are retained in the package. By ywz65 with substantial OpenAI Codex assistance; Apache-2.0.",
+  "created_at": "2026-10-15T17:28:03Z",
+  "updated_at": "2026-10-15T17:28:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -4,8 +4,8 @@
   "title": "[Research] Extend common-A broadcast to rank-one residuals (no new kappa)",
   "body": "## Summary\n\nExtends the common-A broadcast readout from identical output maps to one rank-one deviation: `A0 = C`, `A1 = C + D`, with `rank(D) = 1`. At two connector-prefix boundaries, a paid broadcast applies `Cz` to both dirty targets, and an ordinary `D` readout corrects the second target. The dirty connector cancels and both source calls restore it.\n\nThis is a scoped recursive-interface construction. It does not claim a selected supplier, a new conditional kappa, or an integer-multiplication bound.\n\n## Exact evidence\n\n- `verify.py` checks the full `L=2` fixture over all 1,024 combinations of source, dirty connector, two dirty targets, and arbitrary two-bit scratch.\n- `C` and `C+D` are both full rank; `D` is nonzero rank one.\n- Four negative controls reject a missing correction, a missing broadcast destination, one-prefix-only readout, and omitted source restoration.\n- The verifier independently implements the schedules and imports no predecessor checker.\n\n## Complete tariff condition\n\nWith complete one-target call costs `c_M`, extra target-write cost `w`, and per-broadcast routing/dispatch `r`, the two-boundary saving is\n\n`2(c_(C+D) - c_D - w - r) + D_separate - D_broadcast`.\n\nThe declared fixture charges all terms and gives 23 units for separate readouts versus 21 for broadcast plus residual. These are illustrative complete tariffs, not measured supplier costs; actual admission requires the displayed inequality after routing, restoration, precision and schedule costs.\n\n## Reproduction and limitations\n\n```sh\npython3 -I -O -B research/lowrank-common-readout-seed726b/verify.py\npython3 scripts/research_package.py --package research/lowrank-common-readout-seed726b --check-only\n```\n\nBoth pass locally on Python 3.14.7. The registered Python 3.12 package replay was not run locally because Python 3.12 is unavailable; the package is registered for CI.\n\nThe accepted selected result and source dependencies remain unchanged. No full supplier integration or kappa calculation is claimed. The coordination claim and exact provenance are in the package. Substantial OpenAI Codex assistance is disclosed in `TASK.json`.\n",
   "created_at": "2026-10-14T20:56:15Z",
-  "updated_at": "2026-10-14T20:56:15Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T17:46:40Z",
+  "closed_at": "2026-10-15T17:46:40Z",
+  "merged_at": "2026-10-15T17:46:40Z",
+  "state": "closed"
 }
