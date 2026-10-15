@@ -268,7 +268,7 @@
           "dateKind": "first-stated",
           "url": "https://github.com/DaysSky/QuasiRiemannTracker/blob/b84b5dd3dd489cffc3c0d62d9cf22e60f1caab56/submissions/detector-affine-c0125154/src/Candidate/Main.lean#L8-L12",
           "lean": true,
-          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the author reports a local build with only the standard axioms; the tracker has not checked the proof (its admission failed on a file-layout rule); no independent rerun.",
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
           "evidence": "claimed",
           "note": "",
           "authors": [
@@ -277,8 +277,30 @@
               "url": "https://github.com/DaysSky"
             }
           ],
-          "proofScope": "Lean proves the all-Dirichlet theorem; the author reports a local build with only the standard axioms; the tracker has not checked the proof (its admission failed on a file-layout rule); no independent rerun.",
+          "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
           "bound": "\\theta\\le 0.874846"
+        },
+        {
+          "author": "Zhongpai Gao",
+          "handle": "Gaozhongpai",
+          "value": "21871/25000",
+          "display": "0.874840",
+          "date": "2026-10-14T20:51:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/60",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/74643447f52a2df4d05cbb23f50b9e6f2959beaa/submissions/gao-affine-asymmetric-20261015/src/Candidate/Main.lean#L9-L13",
+          "lean": true,
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the author reports a local Comparator, Lean, nanoda and con-ron pass; the tracker's check was still running when we listed it; no independent rerun.",
+          "evidence": "claimed",
+          "note": "Combines timbalud's asymmetric marked counting (PR #50) with DaysSky's affine detector construction (PR #56).",
+          "authors": [
+            {
+              "name": "Zhongpai Gao",
+              "url": "https://github.com/Gaozhongpai"
+            }
+          ],
+          "proofScope": "Lean proves the all-Dirichlet theorem; the author reports a local Comparator, Lean, nanoda and con-ron pass; the tracker's check was still running when we listed it; no independent rerun.",
+          "bound": "\\theta\\le 0.874840"
         }
       ],
       "repos": [
@@ -350,7 +372,7 @@
           "note": "Zero-free half-planes with thresholds \\(11/12\\) and \\(7/8\\) for the L-functions of the elliptic curves \\(y^2 = x^3 + d\\), whose Hecke characters have infinite order. This is a different family and does not improve the current leader. The \\(7/8\\) part uses OpenAI's finite-order theorem as an input. Lean covers only the last step of the \\(11/12\\) part; external review is pending."
         }
       ],
-      "bestHandle": "DaysSky"
+      "bestHandle": "Gaozhongpai"
     },
     {
       "family": "005",
