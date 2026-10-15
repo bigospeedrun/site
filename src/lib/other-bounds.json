@@ -1064,6 +1064,28 @@
           ],
           "proofScope": "Strategy-checker formalization.",
           "bound": "\\text{Maker moves}\\le 20"
+        },
+        {
+          "author": "shjvandekamp",
+          "handle": "shjvandekamp",
+          "value": "19",
+          "display": "19",
+          "date": "2026-10-15T05:55:00-07:00",
+          "dateSource": "https://github.com/shjvandekamp/math/pull/1",
+          "dateKind": "first-stated",
+          "url": "https://github.com/shjvandekamp/math/blob/db6e1d89a0637b013a86464bd766c0a5120e454e/README.md#L32-L48",
+          "lean": true,
+          "leanNote": "Yes; author-run Lean audit of the infinite-board and 17×17 theorems.",
+          "evidence": "claimed",
+          "note": "Extends Sieben's 20-move strategy with tactics from Trevor Morris's 15×15 work; also wins on \\(17\\times 17\\).",
+          "authors": [
+            {
+              "name": "shjvandekamp",
+              "url": "https://github.com/shjvandekamp"
+            }
+          ],
+          "proofScope": "Author-run Lean 4.34.1 audit: Snaky.snaky_wins_plane_in_19 (every legal Breaker reply on the infinite board) and the 17×17 theorem use only the standard axioms; no independent rerun.",
+          "bound": "\\text{Maker moves}\\le 19"
         }
       ],
       "repos": [
@@ -1077,7 +1099,7 @@
           "url": "https://github.com/KaiaSage/snaky-demo"
         }
       ],
-      "bestHandle": "gotrevor"
+      "bestHandle": "shjvandekamp"
     },
     {
       "family": "190",
