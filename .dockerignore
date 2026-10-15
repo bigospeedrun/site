@@ -1,0 +1,8 @@
+# Only what the site container needs: the prebuilt dist and the server's TypeScript.
+*
+!dist
+!server/package.json
+!server/package-lock.json
+!server/site-server.ts
+!src/lib/*.ts
+src/lib/*.test.ts
