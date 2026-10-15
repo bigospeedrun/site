@@ -20,6 +20,9 @@
 #   BOS_IMAGE           ghcr.io/bigospeedrun/site
 #   BOS_GITHUB_REPO     bigospeedrun/site
 #   BOS_IMAGE_WORKFLOW  site-image.yml
+#   BOS_TAG             the tag to follow; optional, default main. A rehearsal follows
+#                       rehearsal-good or rehearsal-bad (site-image-rehearsal.yml), which
+#                       never move main.
 # For a local run and the tests: BOS_ROOT, BOS_ENV_DIR, BOS_UNIT_DIR, BOS_SYSTEMCTL,
 # BOS_DOCKER, BOS_REGISTRY (registry base URL), BOS_GITHUB_API, BOS_PROBE (a command that
 # prints the running image digest, instead of asking Docker), BOS_SOCKET.
@@ -91,7 +94,7 @@ config() {
     say "FAIL $file must be a file owned by this user, mode 0600"
     return 1
   }
-  image="" repo="" workflow=""
+  image="" repo="" workflow="" tag=main
   while IFS= read -r line || [[ -n $line ]]; do
     [[ -z $line || $line == \#* ]] && continue
     key=${line%%=*} value=${line#*=}
@@ -99,11 +102,12 @@ config() {
     BOS_IMAGE) image=$value ;;
     BOS_GITHUB_REPO) repo=$value ;;
     BOS_IMAGE_WORKFLOW) workflow=$value ;;
+    BOS_TAG) tag=$value ;;
     esac
   done <"$file"
-  [[ $image =~ ^[a-z0-9.-]+(:[0-9]+)?/[a-z0-9._/-]+$ && $repo =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ && $workflow =~ ^[A-Za-z0-9_.-]+\.ya?ml$ ]] || {
+  [[ $image =~ ^[a-z0-9.-]+(:[0-9]+)?/[a-z0-9._/-]+$ && $repo =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ && $workflow =~ ^[A-Za-z0-9_.-]+\.ya?ml$ && $tag =~ ^[A-Za-z0-9_][A-Za-z0-9_.-]{0,127}$ ]] || {
     phase=config
-    say "FAIL $file must name BOS_IMAGE (registry/path), BOS_GITHUB_REPO (owner/repo) and BOS_IMAGE_WORKFLOW (file name)"
+    say "FAIL $file must name BOS_IMAGE (registry/path), BOS_GITHUB_REPO (owner/repo) and BOS_IMAGE_WORKFLOW (file name); BOS_TAG must be a tag"
     return 1
   }
   image_path=${image#*/}
@@ -181,14 +185,15 @@ image_run_status() {
   python3 -c 'import json,sys; runs=json.load(open(sys.argv[1])).get("workflow_runs") or [{}]; print(runs[0].get("status") or "none")' "$state/github.json"
 }
 
-# The digest the registry's `main` tag points to (a HEAD request; anonymous pull token).
+# The digest the followed tag (BOS_TAG, default main) points to (a HEAD request; anonymous
+# pull token).
 main_digest() {
   local token digest
   token=$(curl -sS --max-time 20 "$registry/token?scope=repository:$image_path:pull" |
     python3 -c 'import json,sys; print(json.load(sys.stdin)["token"])') || return 1
   digest=$(curl -sS -I --max-time 20 -H "Authorization: Bearer $token" \
     -H 'Accept: application/vnd.oci.image.index.v1+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.docker.distribution.manifest.v2+json' \
-    "$registry/v2/$image_path/manifests/main" | tr -d '\r' | sed -n 's/^[Dd]ocker-[Cc]ontent-[Dd]igest: *\(sha256:[0-9a-f]\{64\}\)$/\1/p') || return 1
+    "$registry/v2/$image_path/manifests/$tag" | tr -d '\r' | sed -n 's/^[Dd]ocker-[Cc]ontent-[Dd]igest: *\(sha256:[0-9a-f]\{64\}\)$/\1/p') || return 1
   [[ -n $digest ]] || return 1
   echo "$digest"
 }
@@ -200,7 +205,7 @@ select_target() {
     return 1
   fi
   if ! digest=$(main_digest); then
-    tick_error registry "the registry's main tag could not be read"
+    tick_error registry "the registry's $tag tag could not be read"
     return 1
   fi
   rm -f "$state/tick-error-since"

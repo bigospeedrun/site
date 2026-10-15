@@ -61,6 +61,7 @@ services:
     networks: [egress, outbound]
     cpus: 0.25
     mem_limit: 128m
+    memswap_limit: 128m
     pids_limit: 64
     healthcheck:
       test: ["CMD", "node", "-e", "require('node:net').connect(3128, '127.0.0.1').on('connect', () => process.exit(0)).on('error', () => process.exit(1))"]

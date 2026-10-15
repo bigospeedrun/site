@@ -60,7 +60,7 @@ test('the egress proxy tunnels only to allowed hosts and refuses plain HTTP', as
 
 test('registry steps: exists, retag by copying the manifest, and prune keeps main and recent images', async () => {
  const calls: string[] = [];
- const manifests: Record<string, {body: string; digest: string}> = {'inputs-a': {body: '{"m":"a"}', digest: 'sha256:aaa'}, main: {body: '{"m":"b"}', digest: 'sha256:bbb'}};
+ const manifests: Record<string, {body: string; digest: string}> = {'inputs-a': {body: '{"m":"a"}', digest: 'sha256:aaa'}, main: {body: '{"m":"b"}', digest: 'sha256:' + 'b'.repeat(64)}};
  const versions = Array.from({length: 35}, (_, i) => ({id: i, created_at: new Date(Date.UTC(2026, 9, 16, 0, 0) - i * 3_600_000).toISOString(), metadata: {container: {tags: i === 34 ? ['main'] : [`sha-${i}`]}}}));
  versions.push({id: 99, created_at: new Date(Date.UTC(2026, 9, 1)).toISOString(), metadata: {container: {tags: []}}});
  const fetcher = (async (url: string, init: RequestInit = {}) => {
@@ -80,6 +80,7 @@ test('registry steps: exists, retag by copying the manifest, and prune keeps mai
  }) as typeof fetch;
  const client = registryClient({registry: 'https://registry.test', api: 'https://api.test', owner: 'bigospeedrun', name: 'site', user: 'u', token: 't', fetcher});
  assert.equal(await client.exists('inputs-a'), true);
+ assert.equal(await client.digest('main'), 'sha256:bbb'.padEnd(71, 'b'));
  assert.equal(await client.exists('inputs-zzz'), false);
  assert.equal(await client.retag('inputs-a', 'main'), 'moved');
  assert.equal(manifests.main.body, '{"m":"a"}');

@@ -1,5 +1,6 @@
 // Registry steps of .github/workflows/site-image.yml. Vercel does not use this file.
 //   node scripts/site-image-registry.mjs exists <tag>        exit 0 if the tag exists, 1 if not
+//   node scripts/site-image-registry.mjs digest <tag>        print the tag's manifest digest
 //   node scripts/site-image-registry.mjs retag <from> <to>   point <to> at <from>'s manifest
 //   node scripts/site-image-registry.mjs prune <keep>        delete all but the newest <keep> images
 // Environment: GHCR_TOKEN (the workflow's GITHUB_TOKEN), GHCR_USER, IMAGE_OWNER, IMAGE_NAME;
@@ -26,6 +27,12 @@ export function registryClient({registry = 'https://ghcr.io', api = 'https://api
    if (response.status === 404) return false;
    if (!response.ok) throw new Error(`manifest ${tag}: HTTP ${response.status}`);
    return true;
+  },
+  async digest(tag) {
+   const response = await manifest(tag, {method: 'HEAD'});
+   const digest = response.headers.get('docker-content-digest');
+   if (!response.ok || !/^sha256:[0-9a-f]{64}$/.test(digest ?? '')) throw new Error(`manifest ${tag}: HTTP ${response.status}`);
+   return digest;
   },
   // Copy the manifest bytes, so <to> gets exactly <from>'s digest (no rebuild, no re-wrap).
   async retag(from, to) {
@@ -74,8 +81,9 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
  const client = registryClient({registry: env.REGISTRY, api: env.GITHUB_API, owner: env.IMAGE_OWNER, name: env.IMAGE_NAME, user: env.GHCR_USER, token: env.GHCR_TOKEN});
  try {
   if (command === 'exists') process.exitCode = await client.exists(args[0]) ? 0 : 1;
+  else if (command === 'digest') console.log(await client.digest(args[0]));
   else if (command === 'retag') console.log(`${args[1]}: ${await client.retag(args[0], args[1])}`);
   else if (command === 'prune') console.log(`pruned ${(await client.prune(Number(args[0]))).length} old image versions`);
-  else throw new Error('usage: exists <tag> | retag <from> <to> | prune <keep>');
+  else throw new Error('usage: exists <tag> | digest <tag> | retag <from> <to> | prune <keep>');
  } catch (error) { console.error(String(error.message ?? error)); process.exitCode = 2; }
 }

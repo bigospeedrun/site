@@ -49,6 +49,7 @@ before(async () => {
   const url = new URL(req.url ?? '/', 'http://stub');
   if (url.pathname === '/token') return res.end(JSON.stringify({token: 'stub'}));
   if (url.pathname === '/v2/bigospeedrun/site/manifests/main') { res.writeHead(200, {'Docker-Content-Digest': mainDigest}); return res.end(); }
+  if (url.pathname === '/v2/bigospeedrun/site/manifests/rehearsal-bad') { res.writeHead(200, {'Docker-Content-Digest': digest(6)}); return res.end(); }
   if (url.pathname === '/repos/bigospeedrun/site/actions/workflows/site-image.yml/runs') {
    if (apiFails) { res.writeHead(500); return res.end(); }
    const etag = `W/"${runStatus}"`;
@@ -159,4 +160,18 @@ test('a failed rollback stops every later tick until the marker is deleted', asy
  assert.equal(status.result, 'stopped');
  assert.equal(status.phase, 'marker');
  assert.equal(spawnSync('test', ['-e', join(root, 'auto-deploy/stopped')]).status, 0);
+});
+
+test('BOS_TAG follows a rehearsal tag, and an unhealthy rehearsal rolls back', async () => {
+ rmSync(join(root, 'auto-deploy/stopped'), {force: true});
+ writeFileSync(join(fake, 'unhealthy'), digest(6) + '\n');
+ writeFileSync(join(fake, 'labels', digest(6)), commit(5));
+ writeFileSync(join(envDir, 'auto-deploy.env'), 'BOS_IMAGE=ghcr.io/bigospeedrun/site\nBOS_GITHUB_REPO=bigospeedrun/site\nBOS_IMAGE_WORKFLOW=site-image.yml\nBOS_TAG=rehearsal-bad\n', {mode: 0o600});
+ const running = readFileSync(join(fake, 'running'), 'utf8').trim();
+ const {status} = await tick();
+ assert.equal(status.result, 'rolled_back');
+ assert.equal(readFileSync(join(fake, 'running'), 'utf8').trim(), running);
+ assert.ok(failed().includes(digest(6)));
+ writeFileSync(join(envDir, 'auto-deploy.env'), 'BOS_IMAGE=ghcr.io/bigospeedrun/site\nBOS_GITHUB_REPO=bigospeedrun/site\nBOS_IMAGE_WORKFLOW=site-image.yml\nBOS_TAG=bad tag\n', {mode: 0o600});
+ assert.equal((await tick()).status.phase, 'config');
 });
