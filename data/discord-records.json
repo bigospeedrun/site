@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-2322",
+        "leader": "crocswap-pr-2349",
         "records": [
           {
             "id": "openai-original-109",
@@ -3408,6 +3408,16 @@
               "Vlado-V"
             ],
             "bound": "O(n log^(1 - 0.001697060296258836) n)"
+          },
+          {
+            "id": "crocswap-pr-2349",
+            "score": "21213324926361/12500000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "jeremykothe2"
+            ],
+            "bound": "O(n log^(1 - 0.00169706599410888) n)"
           }
         ]
       },
@@ -3802,5 +3812,14 @@
     "[\"integer-multiplication\",\"crocswap-pr-2302\",\"1696395766736081/1000000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-2322\",\"424265074064709/250000000000000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-pr-10\",\"20099/16000000\",\"attained\"]:record"
+  ],
+  "deferred": [
+    {
+      "key": "[\"integer-multiplication\",\"crocswap-pr-2349\",\"21213324926361/12500000000000000\",\"attained\"]:record",
+      "slug": "integer-multiplication",
+      "authors": [
+        "jeremykothe2"
+      ]
+    }
   ]
 }
