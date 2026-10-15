@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-2526",
+        "leader": "crocswap-pr-2575",
         "records": [
           {
             "id": "openai-original-109",
@@ -3488,6 +3488,36 @@
               "jeremykothe2"
             ],
             "bound": "O(n log^(1 - 0.001703713039257905) n)"
+          },
+          {
+            "id": "crocswap-pr-2559",
+            "score": "17044322370702051/10000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "philippeVV"
+            ],
+            "bound": "O(n log^(1 - 0.0017044322370702051) n)"
+          },
+          {
+            "id": "crocswap-pr-2571",
+            "score": "17137844912361143/10000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "rohanarun"
+            ],
+            "bound": "O(n log^(1 - 0.0017137844912361143) n)"
+          },
+          {
+            "id": "crocswap-pr-2575",
+            "score": "1713879320009017/1000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "jeremykothe2"
+            ],
+            "bound": "O(n log^(1 - 0.001713879320009017) n)"
           }
         ]
       },
@@ -3670,7 +3700,7 @@
             "id": "direct-issue-14",
             "score": "1921/1000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "c0ldzy17"
             ],
@@ -3739,7 +3769,7 @@
             "id": "direct-pr-13",
             "score": "59911217/20000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "Hrishik Sai Bojnal"
             ],
@@ -3908,15 +3938,10 @@
     "[\"integer-multiplication\",\"crocswap-pr-2474\",\"425919096998419/250000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-2435\",\"1698511343697629/1000000000000000000\",\"attained\"]:record",
     "[\"3sum\",\"direct-issue-14\",\"1921/1000\",\"attained\"]:record",
-    "[\"apsp\",\"direct-pr-13\",\"59911217/20000000\",\"attained\"]:record"
-  ],
-  "deferred": [
-    {
-      "key": "[\"integer-multiplication\",\"crocswap-pr-2526\",\"340742607851581/200000000000000000\",\"attained\"]:record",
-      "slug": "integer-multiplication",
-      "authors": [
-        "jeremykothe2"
-      ]
-    }
+    "[\"apsp\",\"direct-pr-13\",\"59911217/20000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-2575\",\"1713879320009017/1000000000000000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-2526\",\"340742607851581/200000000000000000\",\"attained\"]:record",
+    "[\"3sum\",\"direct-issue-14\",\"1921/1000\",\"attained\"]:lean",
+    "[\"apsp\",\"direct-pr-13\",\"59911217/20000000\",\"attained\"]:lean"
   ]
 }

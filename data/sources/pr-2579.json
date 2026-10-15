@@ -1,0 +1,11 @@
+{
+  "number": 2579,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2579",
+  "title": "Require unittest completion before isolated module success",
+  "body": "A unittest `load_tests` hook can raise `SystemExit(0)` before discovery finishes. The isolated runner previously treated that zero process exit as a pass and printed `PASS all 2 test modules` in the reproduced two-module fixture, although only the healthy module completed.\n\nRequire a per-child completion token written only after `unittest.main(..., exit=False)` returns a successful result, together with exit status zero. Preserve the original discovery arguments seen through `sys.argv`, ordered captured output, independent interpreters, concurrent scheduling and assertion protection. Completed empty and skipped suites retain their existing behavior. This is a guard against premature termination, not hostile test code forging the token.\n\nValidation: all eight focused end-to-end tests pass under `-I -O -B` on Windows/Python 3.12.14 and 3.14.5 with workspace TEMP/TMP. Controls include discovery-time `SystemExit(0)`, execution-time `os._exit(0)`, exact child argv, valid empty/skipped suites, ordinary failures, concurrency and optimized-parent assertion coverage. The actual before/after witness changes from false PASS/exit0 to identified incomplete module/exit1. No full selected-frontier replay or speed claim.\n\nStarted from canonical main `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`, priority revision 4; the prescribed baseline binding check passed. The documentation records the changed verifier-engineering scope and credits the inherited isolated scheduler and assertion guard. No frozen inputs or selected frontier change. Prepared by ywz65 with OpenAI Codex assistance.\n",
+  "created_at": "2026-10-15T15:12:00Z",
+  "updated_at": "2026-10-15T15:12:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

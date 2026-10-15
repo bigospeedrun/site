@@ -1,0 +1,11 @@
+{
+  "number": 2557,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2557",
+  "title": "Reject duplicate or invalid identities before writing review packets",
+  "body": "The offline PR review-packet command keys each output file by metadata.number. Passing two snapshots of one PR silently overwrites the first packet while the index and success message report two. Malformed IDs such as ../escaped are also used as output paths.\n\nCapture each metadata file once, validate that PR numbers are positive integers and unique across the batch before creating output, and bind metadata_sha256 to those same parsed bytes. Duplicate snapshots reject even when their heads agree, so a successful batch has one packet per declared PR identity. Complete Git diffs and source-identity-only semantics remain unchanged.\n\nValidation: the actual CLI reproduced both duplicate cases on main and accepted all six malformed-ID controls, including writing escaped.json outside its disposable output directory. After the fix, all five focused tests pass on Windows CPython 3.12.14. Tests cover duplicate same/different heads; bool, zero, negative, string and path-like IDs; two distinct PRs with complete Git diffs despite empty GitHub file lists; exact per-file metadata hashes; a file changed immediately after its captured read; and the original mode/deletion/source-identity checks. git diff --check passes. This does not authenticate supplied GitHub metadata or make scientific approval decisions.\n\nTask selection: reassigned adversarial-audit nonce d5fab81a0f8f93d84f28302226d5f600, preserved without reroll; scope changed to a reproducible review-evidence identity failure. Source-bound orientation passed. Canonical main 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority revision 4, and complete live PR/Discussion/local-note overlap refreshed before submission. Credit Douglas Colkitt and the retained community-pilot20 review-packet tooling contributors. New work by ywz65 with substantial OpenAI Codex assistance, Apache-2.0. No selected-frontier or frozen scientific evidence changes.",
+  "created_at": "2026-10-15T14:18:53Z",
+  "updated_at": "2026-10-15T14:18:53Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
