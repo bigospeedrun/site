@@ -1,23 +1,23 @@
 {
-  "sha": "7b39515117fe26e75d16c268877391f1bdaa5640",
-  "node_id": "C_kwDOU-508toAKDdiMzk1MTUxMTdmZTI2ZTc1ZDE2YzI2ODg3NzM5MWYxYmRhYTU2NDA",
+  "sha": "e93f2ebd9c60b79e564b07acffdbbb99b477c28c",
+  "node_id": "C_kwDOU-508toAKGU5M2YyZWJkOWM2MGI3OWU1NjRiMDdhY2ZmZGJiYjk5YjQ3N2MyOGM",
   "commit": {
     "author": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-15T19:10:48Z"
+      "date": "2026-10-15T20:18:17Z"
     },
     "committer": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-15T19:10:48Z"
+      "date": "2026-10-15T20:18:17Z"
     },
-    "message": "Record high-precision oracle pass and seventy-eight merged PRs",
+    "message": "Integrate reviewed research PRs #2305, #2337, #2345\n\nOriginal authors and predecessor credit retained. Exact-head finite checks and claim limits are recorded in research/community-efficient1300-audit. No selected frontier change.",
     "tree": {
-      "sha": "56bdced40b94c802b7dbe3ebafa6f7bdcd6066d1",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/56bdced40b94c802b7dbe3ebafa6f7bdcd6066d1"
+      "sha": "9b49d2893bc636e11312dee581c174ec1de7f9c5",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/9b49d2893bc636e11312dee581c174ec1de7f9c5"
     },
-    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/7b39515117fe26e75d16c268877391f1bdaa5640",
+    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/e93f2ebd9c60b79e564b07acffdbbb99b477c28c",
     "comment_count": 0,
     "verification": {
       "verified": false,
@@ -27,9 +27,9 @@
       "verified_at": null
     }
   },
-  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/7b39515117fe26e75d16c268877391f1bdaa5640",
-  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/7b39515117fe26e75d16c268877391f1bdaa5640",
-  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/7b39515117fe26e75d16c268877391f1bdaa5640/comments",
+  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/e93f2ebd9c60b79e564b07acffdbbb99b477c28c",
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/e93f2ebd9c60b79e564b07acffdbbb99b477c28c",
+  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/comments",
   "author": {
     "login": "Mister-Meeseeks",
     "id": 18204987,
@@ -74,159 +74,383 @@
   },
   "parents": [
     {
-      "sha": "e83348b06435e995cd6709d9a55c90ff594da928",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/e83348b06435e995cd6709d9a55c90ff594da928",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/e83348b06435e995cd6709d9a55c90ff594da928"
+      "sha": "2d3af1ba7e28b74248b47381768e5b116078ba1c",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/2d3af1ba7e28b74248b47381768e5b116078ba1c",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/2d3af1ba7e28b74248b47381768e5b116078ba1c"
+    },
+    {
+      "sha": "335e78619a17b7c418e11306f86a72fd366de35b",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/335e78619a17b7c418e11306f86a72fd366de35b",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/335e78619a17b7c418e11306f86a72fd366de35b"
+    },
+    {
+      "sha": "b2653c1bcf8fefa474b8d5c8508bbacbbcfd42c7",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/b2653c1bcf8fefa474b8d5c8508bbacbbcfd42c7",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/b2653c1bcf8fefa474b8d5c8508bbacbbcfd42c7"
+    },
+    {
+      "sha": "2a5fa34a967e7567abf01611f92a6ab69e8c901a",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/2a5fa34a967e7567abf01611f92a6ab69e8c901a",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/2a5fa34a967e7567abf01611f92a6ab69e8c901a"
     }
   ],
   "stats": {
-    "total": 55474,
-    "additions": 55441,
-    "deletions": 33
+    "total": 6300,
+    "additions": 6300,
+    "deletions": 0
   },
   "files": [
     {
-      "sha": "b00b8ec21bd89dd5cda4ca208fe6d075978084bb",
-      "filename": "docs/research/community-efficient1200-review.md",
-      "status": "modified",
-      "additions": 1,
-      "deletions": 1,
-      "changes": 2,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/docs%2Fresearch%2Fcommunity-efficient1200-review.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/docs%2Fresearch%2Fcommunity-efficient1200-review.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fcommunity-efficient1200-review.md?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "016cbed10ae97430f19de1a0082db2f9e6489a40",
-      "filename": "docs/research/pr-ledger.json",
-      "status": "modified",
-      "additions": 14,
-      "deletions": 10,
-      "changes": 24,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/docs%2Fresearch%2Fpr-ledger.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/docs%2Fresearch%2Fpr-ledger.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-ledger.json?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "21e21de7a39411be6647349dba87f5a59f974a0c",
-      "filename": "docs/research/pr-ledger.md",
-      "status": "modified",
-      "additions": 3,
-      "deletions": 3,
-      "changes": 6,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/docs%2Fresearch%2Fpr-ledger.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/docs%2Fresearch%2Fpr-ledger.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-ledger.md?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "1407037fd1c126b2445aebcc45ca041659201de1",
-      "filename": "research/community-efficient1200-audit/DISPOSITIONS.json",
-      "status": "modified",
-      "additions": 9,
-      "deletions": 5,
-      "changes": 14,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2FDISPOSITIONS.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2FDISPOSITIONS.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2FDISPOSITIONS.json?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "69f866a15e95ae5bedddad6d106d1fa638f37a62",
-      "filename": "research/community-efficient1200-audit/METRICS.json",
-      "status": "modified",
-      "additions": 3,
-      "deletions": 3,
-      "changes": 6,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2FMETRICS.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2FMETRICS.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2FMETRICS.json?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "b00b8ec21bd89dd5cda4ca208fe6d075978084bb",
-      "filename": "research/community-efficient1200-audit/README.md",
-      "status": "modified",
-      "additions": 1,
-      "deletions": 1,
-      "changes": 2,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2FREADME.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2FREADME.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2FREADME.md?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "fa17f368549bf785fd8b283c09bdeee1044bb558",
-      "filename": "research/community-efficient1200-audit/checks/check-962.json",
-      "status": "modified",
-      "additions": 17002,
-      "deletions": 5,
-      "changes": 17007,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fchecks%2Fcheck-962.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fchecks%2Fcheck-962.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2Fchecks%2Fcheck-962.json?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "7cc47e0958e069024ba34ce78f181898931dcb57",
-      "filename": "research/community-efficient1200-audit/checks/check-962.log",
-      "status": "modified",
-      "additions": 31,
-      "deletions": 0,
-      "changes": 31,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fchecks%2Fcheck-962.log",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fchecks%2Fcheck-962.log",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2Fchecks%2Fcheck-962.log?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "2a68de1abc6ba74dc1ed2df694f12f89eb20879b",
-      "filename": "research/community-efficient1200-audit/combined-962-complete-fixture.json",
+      "sha": "d7fd1ac18e641dd9f58768b58733e6992e79c65e",
+      "filename": "research/p104-coalesced-private-reuse-audit/.gitattributes",
       "status": "added",
-      "additions": 17003,
+      "additions": 4,
       "deletions": 0,
-      "changes": 17003,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fcombined-962-complete-fixture.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fcombined-962-complete-fixture.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2Fcombined-962-complete-fixture.json?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
+      "changes": 4,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2F.gitattributes",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2F.gitattributes",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2F.gitattributes?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
     },
     {
-      "sha": "fa17f368549bf785fd8b283c09bdeee1044bb558",
-      "filename": "research/community-efficient1200-audit/prior-revisions/long-replay-962/check-962.json",
-      "status": "modified",
-      "additions": 17002,
-      "deletions": 5,
-      "changes": 17007,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Flong-replay-962%2Fcheck-962.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Flong-replay-962%2Fcheck-962.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Flong-replay-962%2Fcheck-962.json?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "7cc47e0958e069024ba34ce78f181898931dcb57",
-      "filename": "research/community-efficient1200-audit/prior-revisions/long-replay-962/check-962.log",
-      "status": "modified",
-      "additions": 31,
-      "deletions": 0,
-      "changes": 31,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Flong-replay-962%2Fcheck-962.log",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Flong-replay-962%2Fcheck-962.log",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Flong-replay-962%2Fcheck-962.log?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
-    },
-    {
-      "sha": "cf69167dd80835a039e2acb03c9c21dd809e29e6",
-      "filename": "research/community-efficient1200-audit/prior-revisions/missing-complex741-962/check-962.json",
+      "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "filename": "research/p104-coalesced-private-reuse-audit/LICENSE",
       "status": "added",
-      "additions": 4298,
+      "additions": 201,
       "deletions": 0,
-      "changes": 4298,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Fmissing-complex741-962%2Fcheck-962.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Fmissing-complex741-962%2Fcheck-962.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Fmissing-complex741-962%2Fcheck-962.json?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
+      "changes": 201,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FLICENSE",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FLICENSE",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2FLICENSE?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
     },
     {
-      "sha": "7cc47e0958e069024ba34ce78f181898931dcb57",
-      "filename": "research/community-efficient1200-audit/prior-revisions/missing-complex741-962/check-962.log",
+      "sha": "64af63d17b1653c66b0cdcc4514130e33cdb7ff0",
+      "filename": "research/p104-coalesced-private-reuse-audit/README.md",
       "status": "added",
-      "additions": 43,
+      "additions": 132,
       "deletions": 0,
-      "changes": 43,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Fmissing-complex741-962%2Fcheck-962.log",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/7b39515117fe26e75d16c268877391f1bdaa5640/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Fmissing-complex741-962%2Fcheck-962.log",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1200-audit%2Fprior-revisions%2Fmissing-complex741-962%2Fcheck-962.log?ref=7b39515117fe26e75d16c268877391f1bdaa5640"
+      "changes": 132,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2FREADME.md?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "3b6fee6d4a67ba3b898afc9cb29ff325adc075f6",
+      "filename": "research/p104-coalesced-private-reuse-audit/RESULT.json",
+      "status": "added",
+      "additions": 507,
+      "deletions": 0,
+      "changes": 507,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2FRESULT.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "392737aa2a56443a56e52d4542b909aae9f65890",
+      "filename": "research/p104-coalesced-private-reuse-audit/SOURCES.json",
+      "status": "added",
+      "additions": 18,
+      "deletions": 0,
+      "changes": 18,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2FSOURCES.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "7b9bf3d76266eb0566dd777a1ad03a4f81c91605",
+      "filename": "research/p104-coalesced-private-reuse-audit/TASK.json",
+      "status": "added",
+      "additions": 286,
+      "deletions": 0,
+      "changes": 286,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2FTASK.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "9512943e13482fb6977ea993ddf0910473680f84",
+      "filename": "research/p104-coalesced-private-reuse-audit/VALIDATION.json",
+      "status": "added",
+      "additions": 96,
+      "deletions": 0,
+      "changes": 96,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FVALIDATION.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FVALIDATION.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2FVALIDATION.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "342c8718bc7daef2673489d64741e0db4912c97a",
+      "filename": "research/p104-coalesced-private-reuse-audit/VERIFY.json",
+      "status": "added",
+      "additions": 20,
+      "deletions": 0,
+      "changes": 20,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2FVERIFY.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "28a7f685029a2c151a106ff81e0d56f75633ef1d",
+      "filename": "research/p104-coalesced-private-reuse-audit/construction.py",
+      "status": "added",
+      "additions": 236,
+      "deletions": 0,
+      "changes": 236,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Fconstruction.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Fconstruction.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2Fconstruction.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "fbc0f263668b8797281ea4446fba0fa7bf8ddaa0",
+      "filename": "research/p104-coalesced-private-reuse-audit/inputs/PR2219-fanout-helper-reuse.patch",
+      "status": "added",
+      "additions": 213,
+      "deletions": 0,
+      "changes": 213,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2FPR2219-fanout-helper-reuse.patch",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2FPR2219-fanout-helper-reuse.patch",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2FPR2219-fanout-helper-reuse.patch?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "ff52e2680a587a266222b111b4bdcfab0d5124b1",
+      "filename": "research/p104-coalesced-private-reuse-audit/inputs/SOURCE-EXPORT.json",
+      "status": "added",
+      "additions": 51,
+      "deletions": 0,
+      "changes": 51,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2FSOURCE-EXPORT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2FSOURCE-EXPORT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2FSOURCE-EXPORT.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "34fa173f9f004853774c1833ebb3c74912084068",
+      "filename": "research/p104-coalesced-private-reuse-audit/inputs/pr2152-source.tar.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2Fpr2152-source.tar.gz",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2Fpr2152-source.tar.gz",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2Finputs%2Fpr2152-source.tar.gz?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "5d604594bc55971f384a4d6a76c1fb49e7a85017",
+      "filename": "research/p104-coalesced-private-reuse-audit/verify.py",
+      "status": "added",
+      "additions": 200,
+      "deletions": 0,
+      "changes": 200,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse-audit%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse-audit%2Fverify.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "0ef79bfc5d978b8784b2d66cde113ffaf573c602",
+      "filename": "research/p104-coalesced-private-reuse/README.md",
+      "status": "added",
+      "additions": 154,
+      "deletions": 0,
+      "changes": 154,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2FREADME.md?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "f4cb528c2cc413f34e2ac83c42225c7a1cf11bd3",
+      "filename": "research/p104-coalesced-private-reuse/RESULT.json",
+      "status": "added",
+      "additions": 1779,
+      "deletions": 0,
+      "changes": 1779,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2FRESULT.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "58f245e194b794b7bacd8ea88f9814d373ed91c3",
+      "filename": "research/p104-coalesced-private-reuse/SOURCES.json",
+      "status": "added",
+      "additions": 182,
+      "deletions": 0,
+      "changes": 182,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2FSOURCES.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "7f0712c64b13785b955eeeedd306bc23cd7a7fdb",
+      "filename": "research/p104-coalesced-private-reuse/TASK.json",
+      "status": "added",
+      "additions": 175,
+      "deletions": 0,
+      "changes": 175,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2FTASK.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "ea8139bd691d54be1f8de8c84a223a13068a08de",
+      "filename": "research/p104-coalesced-private-reuse/VERIFY.json",
+      "status": "added",
+      "additions": 34,
+      "deletions": 0,
+      "changes": 34,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2FVERIFY.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "402e0ff402bc9822288e1bf069f0b5712069c11e",
+      "filename": "research/p104-coalesced-private-reuse/compose.py",
+      "status": "added",
+      "additions": 216,
+      "deletions": 0,
+      "changes": 216,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fcompose.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fcompose.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2Fcompose.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "cc1a5cb5735ee489388004c27b709a825faf59d1",
+      "filename": "research/p104-coalesced-private-reuse/predecessor2152.tar.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fpredecessor2152.tar.gz",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fpredecessor2152.tar.gz",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2Fpredecessor2152.tar.gz?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "eb406fed9427d6a97c27deb7383f05dd4380fb84",
+      "filename": "research/p104-coalesced-private-reuse/price.py",
+      "status": "added",
+      "additions": 109,
+      "deletions": 0,
+      "changes": 109,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fprice.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fprice.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2Fprice.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "0fb431218766365f9aac20519ae039955b546653",
+      "filename": "research/p104-coalesced-private-reuse/sources.py",
+      "status": "added",
+      "additions": 65,
+      "deletions": 0,
+      "changes": 65,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fsources.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fsources.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2Fsources.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "2c9bf71dc049f660310aaea58f473d6e82dc2945",
+      "filename": "research/p104-coalesced-private-reuse/verify.py",
+      "status": "added",
+      "additions": 109,
+      "deletions": 0,
+      "changes": 109,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-coalesced-private-reuse%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-coalesced-private-reuse%2Fverify.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "f9ce345f3e9938d06790ebb6eea6576dee878e54",
+      "filename": "research/p104-prefix-minrank/README.md",
+      "status": "added",
+      "additions": 203,
+      "deletions": 0,
+      "changes": 203,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2FREADME.md?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "fa5fcbd4da118c5c462623fd657243eed44d18f2",
+      "filename": "research/p104-prefix-minrank/RESULT.json",
+      "status": "added",
+      "additions": 68,
+      "deletions": 0,
+      "changes": 68,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2FRESULT.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "3bb245158175af6f49a7a7c55cf8ade4cb5bb986",
+      "filename": "research/p104-prefix-minrank/SOURCES.json",
+      "status": "added",
+      "additions": 30,
+      "deletions": 0,
+      "changes": 30,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2FSOURCES.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "727d7e6130082b8bbc732d93ebac09bd0a93cc8d",
+      "filename": "research/p104-prefix-minrank/TASK.json",
+      "status": "added",
+      "additions": 145,
+      "deletions": 0,
+      "changes": 145,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2FTASK.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "ba5fe45f7ca870f6837a7ec0a00ee8c0e94f3986",
+      "filename": "research/p104-prefix-minrank/VERIFY.json",
+      "status": "added",
+      "additions": 34,
+      "deletions": 0,
+      "changes": 34,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2FVERIFY.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "5f7b90f6c5c551b147e7455910bbf651163cdd3f",
+      "filename": "research/p104-prefix-minrank/WITNESS.json",
+      "status": "added",
+      "additions": 288,
+      "deletions": 0,
+      "changes": 288,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FWITNESS.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2FWITNESS.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2FWITNESS.json?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "9410d525f2114cf2d89145ffe5946c7361efca5a",
+      "filename": "research/p104-prefix-minrank/build.py",
+      "status": "added",
+      "additions": 230,
+      "deletions": 0,
+      "changes": 230,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2Fbuild.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2Fbuild.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2Fbuild.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "5615b68b1c0d4c34b216f8426e9c54867c27580c",
+      "filename": "research/p104-prefix-minrank/test_verify.py",
+      "status": "added",
+      "additions": 228,
+      "deletions": 0,
+      "changes": 228,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2Ftest_verify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2Ftest_verify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2Ftest_verify.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
+    },
+    {
+      "sha": "71cc7df145769163a89252227e94bce98db9001d",
+      "filename": "research/p104-prefix-minrank/verify.py",
+      "status": "added",
+      "additions": 287,
+      "deletions": 0,
+      "changes": 287,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/e93f2ebd9c60b79e564b07acffdbbb99b477c28c/research%2Fp104-prefix-minrank%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-prefix-minrank%2Fverify.py?ref=e93f2ebd9c60b79e564b07acffdbbb99b477c28c"
     }
   ]
 }

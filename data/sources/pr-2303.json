@@ -4,8 +4,8 @@
   "title": "Research exact Q8 mixed-unit register minimum",
   "body": "## Result\n\nThis adds an exact finite minimum for the target `diag(i,j,k)` over the abstract noncommutative register alphabet `F2[Q8]`, with factors `D_N(g)=I+(g+1)N`, all 28 binary rank-one idempotents, and every nonidentity Q8 label. The one-factor census covers 196 words and the ordered two-factor census covers 38,416; neither contains the target. A direct three-factor word realizes it, so the minimum is three under the stated unit-per-factor convention. The nearest two-factor outputs have coefficient Hamming distance two, attained by six words.\n\nThis is scoped finite evidence only. It does not identify a physical supplier, charge an all-size interface, or change the selected conditional bound or kappa.\n\n## Relationship to open Q8 work\n\nOpen [PR #2248](https://github.com/CrocSwap/integer-mult-bounds/pull/2248) studies `diag(-1,-1,i/j)` and `diag(-1,-1,-1)` using paid labels `{i,j}`. This package studies the distinct target `diag(i,j,k)` and exhausts lengths one and two with all seven nonidentity Q8 labels.\n\n## Pins and reproduction\n\n- Seed `189ad74f7eb7b99d43830c0ed0f15958`, track `bit-mechanisms`, task `bit-new-register-model`, priority revision 4.\n- Base `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`; selected-record SHA-256 `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`.\n- `python3 -I -O -B research/bit-q8-three-register-two-call-seed189ad74/search.py`\n- `python3 -I -O -B research/bit-q8-three-register-two-call-seed189ad74/verify.py`\n- `python3 scripts/research_package.py --package research/bit-q8-three-register-two-call-seed189ad74 --check-only`\n\nThe exact search and independent set-based replay pass on CPython 3.14.7; the package metadata and source pins pass. The registered package replay targets Python 3.12, which is unavailable locally; hosted replay remains pending.\n\nThe original scope claim is [Discussion #2300](https://github.com/CrocSwap/integer-mult-bounds/discussions/2300). Prepared with substantial OpenAI Codex assistance.\n",
   "created_at": "2026-10-15T04:18:50Z",
-  "updated_at": "2026-10-15T04:18:50Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T19:37:17Z",
+  "closed_at": "2026-10-15T19:37:16Z",
+  "merged_at": "2026-10-15T19:37:16Z",
+  "state": "closed"
 }
