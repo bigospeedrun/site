@@ -1,9 +1,12 @@
 ---
+import {tooltipId} from '../lib/tooltip-id';
 interface Props {label:string;}
 const {label}=Astro.props;
-const id='info-'+crypto.randomUUID();
+const content=await Astro.slots.render('default');
+// Stable across builds (the same page gives the same HTML), unique within the page.
+const id=tooltipId(Astro.request,label,content);
 ---
-<info-tooltip><button type="button" aria-label={label} aria-describedby={id} aria-expanded="false">i</button><div id={id} role="tooltip" hidden><slot/></div></info-tooltip>
+<info-tooltip><button type="button" aria-label={label} aria-describedby={id} aria-expanded="false">i</button><div id={id} role="tooltip" hidden><Fragment set:html={content}/></div></info-tooltip>
 <script>
 class InfoTooltip extends HTMLElement {
  connectedCallback(){

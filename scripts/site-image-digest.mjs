@@ -7,10 +7,8 @@ import {readFileSync, readdirSync, statSync} from 'node:fs';
 import {join, relative, sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
 
-// InfoTooltip.astro gives each tooltip a random id, so two builds of one commit differ
-// only there (checked 2026-10-16). Mask it, or every build would look new.
-const randomIds = /info-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g;
-const textFile = /\.(?:html|json|md|txt|xml)$/;
+// Two builds of one commit give identical files (tooltip ids come from their content,
+// src/lib/tooltip-id.ts), so the files are hashed as they are.
 
 function files(dir) {
  return readdirSync(dir, {withFileTypes: true}).flatMap(entry => {
@@ -29,8 +27,7 @@ export function imageInputs(root) {
 export function imageDigest(root) {
  const hash = createHash('sha256');
  for (const path of imageInputs(root)) {
-  let body = readFileSync(join(root, path));
-  if (path.startsWith('dist/') && textFile.test(path)) body = Buffer.from(body.toString('utf8').replace(randomIds, 'info-id'));
+  const body = readFileSync(join(root, path));
   hash.update(`${path}\0${statSync(join(root, path)).mode & 0o111 ? 'x' : '-'}\0${createHash('sha256').update(body).digest('hex')}\n`);
  }
  return hash.digest('hex');

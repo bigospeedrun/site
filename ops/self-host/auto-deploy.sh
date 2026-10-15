@@ -271,7 +271,11 @@ deploy_target() {
   date -u +%FT%TZ >"$state/attempt-at"
   echo "$target" >"$state/attempt-target"
   cp "$root/release.env" "$root/previous.env"
-  printf 'BOS_SITE_IMAGE=%s@%s\n' "$image" "$digest" >"$root/release.env.tmp"
+  # Keep the other lines (BOS_UID, BOS_GID); replace only the image.
+  {
+    grep -v '^BOS_SITE_IMAGE=' "$root/release.env" || true
+    printf 'BOS_SITE_IMAGE=%s@%s\n' "$image" "$digest"
+  } >"$root/release.env.tmp"
   mv "$root/release.env.tmp" "$root/release.env"
 
   if compose up -d --wait --wait-timeout 120 >/dev/null 2>&1 && running=$(running_digest) && [[ $running == "$digest" ]]; then

@@ -19,13 +19,12 @@ function fixtureRoot() {
  return {root, write};
 }
 
-test('the image digest ignores random tooltip ids and follows every image input', () => {
+test('the image digest follows every image input and nothing else', () => {
  const {root, write} = fixtureRoot();
  try {
   assert.ok(!imageInputs(root).includes('src/lib/ranking.test.ts'));
   assert.ok(imageInputs(root).includes('server/site-server.ts'));
   const first = imageDigest(root);
-  write('dist/index.html', '<button aria-describedby="info-2ec6f347-5949-41d2-b117-e4f4a7c44e41">i</button><div id="info-2ec6f347-5949-41d2-b117-e4f4a7c44e41"></div>');
   assert.equal(imageDigest(root), first);
   write('dist/index.html', '<p>new data</p>');
   const second = imageDigest(root);

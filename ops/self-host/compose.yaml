@@ -1,7 +1,9 @@
 # bigospeedrun.com on the VPS (phase C draft; not installed). Vercel does not use this file.
 # auto-deploy.sh runs it as:
 #   docker compose -p bigospeedrun -f /opt/bigospeedrun/compose.yaml --env-file /opt/bigospeedrun/release.env up -d --wait
-# release.env holds one line, BOS_SITE_IMAGE=ghcr.io/bigospeedrun/site@sha256:<digest>.
+# release.env holds BOS_SITE_IMAGE=ghcr.io/bigospeedrun/site@sha256:<digest> (auto-deploy.sh
+# rewrites it) and BOS_UID / BOS_GID, the dedicated system user both containers run as (set
+# once by hand; auto-deploy.sh keeps them). Compose refuses to start without them.
 #
 # Networks: the site container is only on `egress`, an internal network (no route out),
 # shared with the allowlist proxy. Caddy on the host reaches the site through the Unix
@@ -13,7 +15,7 @@ x-hardening: &hardening
   read_only: true
   cap_drop: [ALL]
   security_opt: [no-new-privileges:true]
-  user: "1000:1000"
+  user: "${BOS_UID:?set in release.env}:${BOS_GID:?set in release.env}"
   restart: unless-stopped
   logging:
     driver: local

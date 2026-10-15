@@ -19,7 +19,7 @@ const digest = (n: number) => 'sha256:' + String(n).repeat(64).slice(0, 64);
 const commit = (n: number) => String(n).repeat(40).slice(0, 40);
 for (const n of [1, 2, 3, 4]) writeFileSync(join(fake, 'labels', digest(n)), commit(n));
 writeFileSync(join(root, 'compose.yaml'), 'services: {}\n');
-writeFileSync(join(root, 'release.env'), `BOS_SITE_IMAGE=ghcr.io/bigospeedrun/site@${digest(1)}\n`);
+writeFileSync(join(root, 'release.env'), `BOS_UID=990\nBOS_GID=990\nBOS_SITE_IMAGE=ghcr.io/bigospeedrun/site@${digest(1)}\n`);
 writeFileSync(join(root, 'release.commit'), commit(1) + '\n');
 writeFileSync(join(fake, 'running'), digest(1));
 writeFileSync(join(fake, 'unhealthy'), '');
@@ -100,7 +100,8 @@ test('a running image workflow is waiting; a new main digest deploys', async () 
  assert.equal(status.deployed, commit(2));
  assert.equal(status.waiting, false);
  assert.deepEqual(status.last_attempt, {at: (status.last_attempt as {at: string}).at, target: commit(2), result: 'deployed'});
- assert.match(readFileSync(join(root, 'release.env'), 'utf8'), new RegExp(digest(2)));
+ // The image line changes; the dedicated uid and gid stay.
+ assert.equal(readFileSync(join(root, 'release.env'), 'utf8'), `BOS_UID=990\nBOS_GID=990\nBOS_SITE_IMAGE=ghcr.io/bigospeedrun/site@${digest(2)}\n`);
 });
 
 test('an unhealthy image rolls back by itself and is not tried again', async () => {
