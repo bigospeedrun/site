@@ -1,0 +1,11 @@
+{
+  "number": 2489,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2489",
+  "title": "Guard physical inputs to the reusable complex packing ceiling",
+  "body": "The reusable packing ceiling calculator accepts a negative centre charge and returns plausible numerical headroom (a≈0.00475813 versus the physical selected cap a≈0.00169005). This source-pinned, opt-in adapter validates the exact physical input domain without editing the frozen calculator. It preserves rational per-call relaxations and the selected exact bracket; it does not establish coverage applicability, realizability, supplier admission or a new kappa.\n\nValidation: direct replay and registered metadata/source-pin checks passed on CPython 3.14.5; selected baseline binding check also passed. The replay reproduces the negative-charge example, both original bracket endpoints, 29 malformed rejections and valid rational-domain controls. Registered package replay also passed on Python 3.12.14. Full selected cold replay was not run.\n\nTask: selected-packing changed explicitly to a verifier-domain audit; picker seed 7fc5c5e4f7fe091e79bb0b3c20111a84. Base/main rechecked at 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority revision 4. Live overlap includes complete open PR titles/bodies; Discussion API is rate-limited, so public start-here/handoff snapshots supplement partial coverage. No novelty guarantee.\n\nCredits: Douglas Colkitt's ceiling implementation with Claude assistance, PR1012 coverage identity, and static44/PR525/PR643 lineage. New work by ywz65 with substantial OpenAI Codex assistance; Apache-2.0. Open next questions are in the package README/TASK.\n",
+  "created_at": "2026-10-15T12:36:09Z",
+  "updated_at": "2026-10-15T12:40:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

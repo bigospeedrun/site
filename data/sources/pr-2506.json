@@ -1,0 +1,11 @@
+{
+  "number": 2506,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2506",
+  "title": "Cache full P104 native replay matrix-vector work without dropping checks",
+  "body": "The full retained P104 native replay repeats millions of pure binary matrix-vector products. This opt-in wrapper adds a bounded 32,768-entry process-local cache keyed by the complete immutable matrix and address, authenticates all nine declared inputs before importing code, and runs the original checker unchanged. Three alternating fresh-process pairs reduced median wall time from 25.367s to 21.911s on this CPython3.12 Windows host (13.6%); contention is disclosed and no universal speedup is claimed.\n\nValidation preserves the entire original receipt, all 4,096 private-drop Gaussian columns and all five original semantic controls. Independent checks cover 109 matrices x512 addresses, real eviction, key-omission counterexamples and clearing; four source-drift probes reject before changed code executes. The Git-free export remains byte-identical. Registered optimized Python3.12 checks and metadata/pin checks passed. Timings are evidence, not a test gate; hosted CI has not been claimed.\n\nStarted from and rechecked canonical main `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`, revision4. Fresh default picker selected verifier-engineering/replay-runtime. Live overlap scan covered 701 open PRs and 1,204 Discussion records with complete pagination; search limitations remain recorded. Frozen mathematical sources and the selected result are unchanged. No new construction, native identity, supplier or kappa is claimed.\n\nPrepared for ywz65 with substantial OpenAI Codex assistance. Original checker/interpreter credit remains with Chafik Boukhalfa, Ali Romman, Rohan Arun and the cited retained lineage. No independent human review is claimed.\r\n",
+  "created_at": "2026-10-15T13:04:20Z",
+  "updated_at": "2026-10-15T13:04:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

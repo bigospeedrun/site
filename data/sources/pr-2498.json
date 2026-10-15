@@ -1,0 +1,11 @@
+{
+  "number": 2498,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2498",
+  "title": "Repair Windows parallel snapshot cleanup and cancellation",
+  "body": "Native Windows Git snapshots contain read-only object files. The existing snapshot runner raises PermissionError during cleanup before it can report a successful group; its interruption handler also unconditionally calls os.killpg, which Windows does not provide. This change gives owned snapshots a narrow read-only retry and terminates active verifier trees with taskkill on Windows (process groups on POSIX), closing log handles before cleanup.\n\nThree focused real-process tests pass on native Windows / CPython 3.12.14: a genuine temporary Git snapshot completes and is removed; cancellation preserves KeyboardInterrupt, reaps the worker, and removes the snapshot; a read-only object is removed while an outside sibling remains unchanged. The exact pre-change read-only failure was reproduced during the preceding parallel-entrypoint regression. No tests regenerate mathematical artifacts or remove user checkouts. This is separate from PR2495's assertion-environment repair and PR2035's Windows memory-budget work.\n\nTask: portable-replay, refined to one Windows snapshot lifecycle failure. Expertise override of random complex-mechanisms seed fe81ab985c4395f26bc1956df6af9de9 after reproducing the platform defect; retrieved portable-replay card seed e5d8258b17eb21479ab42e430a467fa9. Source main 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority revision 4. Live overlap fully paginated 694 open PRs and 1,202 Discussions; refreshed public board handoffs were also read. Full make suite, POSIX execution and selected cold replay are not claimed.\n\nCredit eumemic's PR154 parallel runner lineage. New work by ywz65 with substantial OpenAI Codex assistance; Apache-2.0. No numerical certificate, source pin, frontier or mathematical claim changes.",
+  "created_at": "2026-10-15T12:48:17Z",
+  "updated_at": "2026-10-15T12:48:17Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
