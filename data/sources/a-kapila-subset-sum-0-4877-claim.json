@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-15T00:56:36Z",
+  "repo": "a-kapila/maths-proofs",
+  "source_commit": "44c34961b56784c220a6e913cc068d57dc37c5a3",
+  "source_url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66",
+  "claim_date_commit": "44c34961b56784c220a6e913cc068d57dc37c5a3",
+  "publication_date": "2026-10-14T14:55:32Z",
+  "publication_date_basis": "The repository was created 2026-10-14T13:31:04Z, but its first and only push (branch main with commit 44c3496) was at 2026-10-14T14:55:32Z per the GitHub event log. The paper is dated 12 October 2026 but was not public before that push.",
+  "score": "4877/10000",
+  "theorem": "Theorem 1 (PROOF_0.4877.tex L56-L66)",
+  "model_check": "Theorem 1 matches the board model clause by clause: word length ceil(4(n+b+log(n+2))), halts on every run, success probability at least 2/3, every random outcome costs O(2^(0.4877n)) for every fixed c and b <= n^c, and the program does not depend on c. The (LD) inequality is a case split inside the proof, not an assumption. Source comparison, not a proof check.",
+  "files_not_copied": "The repository has no license file, so its files are not copied here. SHA-256 and Git blob ids of the files at the pinned commit:",
+  "files": {
+    "README.md": {
+      "sha256": "6087f2e1e0a954d1d8206773f1443b451ec14dfc48adf329f78af98237e83caf",
+      "git_blob": "7453d0bb3db3a507f04438d1f980f27232f9e385"
+    },
+    "subset-sum/PROOF_0.4877.tex": {
+      "sha256": "b397531cc5997e88c439d5290774861b46a34aa32d9cd71fa7dcced130359298",
+      "git_blob": "526c2622038a633cbc1bef9ef5e3f4514843cd91"
+    },
+    "subset-sum/PROOF_0.4877.pdf": {
+      "sha256": "ad63ff62cb66774c7877c4c4888b5036a45811ccb3e0c5accbe0254c68cc1ba4",
+      "git_blob": "b1f7061c96fc56c1bbfe83574ab705cead49d608"
+    }
+  },
+  "verification": "Written proof only, AI-assisted; no Lean. It uses the OpenAI paper's results as restated in its Appendix B; its numerical checks cover the parameter inequalities only. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Annanay Kapila (AI-assisted, per the repository README). Builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n))."
+}

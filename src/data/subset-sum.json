@@ -101,6 +101,44 @@
       },
       "dependencies": [],
       "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    },
+    {
+      "id": "a-kapila-subset-sum-0-4877-2026",
+      "kind": "improvement",
+      "score": "4877/10000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-14T14:55:32Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-14T14:55:32Z",
+      "site_observed_at": "2026-10-15T00:56:36Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66"
+      },
+      "spec_version": "1",
+      "title": "Annanay Kapila Subset Sum in time O(2^(0.4877n))",
+      "authors": [
+        {
+          "name": "Annanay Kapila",
+          "url": "https://github.com/a-kapila"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/README.md"
+      ],
+      "submission_url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66",
+      "artifact": {
+        "path": "sources/a-kapila-subset-sum-0-4877-claim.json",
+        "sha256": "2db5a255be93f4d55c1475aaa3b7dd43d18587b355ab33d9bdd28da287cf977b"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.pdf",
+        "theorem": "Theorem 1",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "44c34961b56784c220a6e913cc068d57dc37c5a3"
     }
   ],
   "record_metadata": {
@@ -128,7 +166,31 @@
       "site_tier": "claimed",
       "comparison_key": "subset-sum/randomized-word-ram/v1",
       "publication_date_precision": "unknown"
+    },
+    "a-kapila-subset-sum-0-4877-2026": {
+      "checked_at": "2026-10-15",
+      "source_url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66",
+      "repo": "a-kapila/maths-proofs",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof only, AI-assisted; no Lean. It uses the OpenAI paper's results as restated in its Appendix B; its numerical checks cover the parameter inequalities only. No Big O Speedrun proof check. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "subset-sum/randomized-word-ram/v1",
+      "comparison_status": "Theorem 1 matches the board model clause by clause: word length ceil(4(n+b+log(n+2))), halts on every run, success probability at least 2/3, every random outcome costs O(2^(0.4877n)) for every fixed c and b <= n^c, and the program does not depend on c. The (LD) inequality is a case split inside the proof, not an assumption. Source comparison, not a proof check.",
+      "scope": "Randomized classical word-RAM algorithm of the OpenAI paper's model; correct with probability at least 2/3; worst case over random outcomes; inputs with b <= n^c for every fixed c.",
+      "exact_statement": "Subset Sum in at most C_c 2^(0.4877n) word operations on every random outcome, for every fixed c and b <= n^c.",
+      "score_interpretation": "Attained exponent 0.4877; the proof's internal exponent is 0.4876902 plus lower-order factors.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "First public push of the repository stating the bound",
+      "publication_date": "2026-10-14T14:55:32Z",
+      "publication_source_url": "https://github.com/a-kapila/maths-proofs/commit/44c34961b56784c220a6e913cc068d57dc37c5a3",
+      "claim_date_commit": "44c34961b56784c220a6e913cc068d57dc37c5a3",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "No license file; source files are not copied, only their hashes",
+      "credits": "Annanay Kapila (AI-assisted, per the repository README). Builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n))."
     }
   },
-  "updated_at": "2026-10-08T21:41:48Z"
+  "updated_at": "2026-10-15T00:56:36Z"
 }
