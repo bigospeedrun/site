@@ -1,0 +1,96 @@
+# Self-hosting (phase C): test, build dist and the site image, and push it to GHCR, only
+# when the site changed. The VPS deploys the image the `main` tag points to
+# (ops/self-host/auto-deploy.sh). This workflow does not touch Vercel.
+name: Build site image
+on:
+  push:
+    branches: [main]
+  # The hourly refresh pushes with GITHUB_TOKEN, which starts no push workflow: run after it.
+  workflow_run:
+    workflows: [Refresh reviewed data]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: site-image
+  cancel-in-progress: false
+env:
+  IMAGE_OWNER: bigospeedrun
+  IMAGE_NAME: site
+jobs:
+  image:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      # Always the newest main: a queued run after a refresh builds what main holds now.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Check, test, and build
+        run: |
+          npm run check
+          npm test
+          npm run build
+      - name: Digest the image inputs
+        id: inputs
+        run: |
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "digest=$(node scripts/site-image-digest.mjs)" >> "$GITHUB_OUTPUT"
+      - name: Find an image with the same inputs
+        id: existing
+        env:
+          GHCR_TOKEN: ${{ github.token }}
+          GHCR_USER: ${{ github.actor }}
+          TAG: inputs-${{ steps.inputs.outputs.digest }}
+        run: |
+          code=0
+          node scripts/site-image-registry.mjs exists "$TAG" || code=$?
+          case $code in
+            0) echo "exists=true" >> "$GITHUB_OUTPUT"; echo "The site is unchanged: no new image." ;;
+            1) echo "exists=false" >> "$GITHUB_OUTPUT" ;;
+            *) exit 1 ;;
+          esac
+      - name: Point main at the existing image
+        if: steps.existing.outputs.exists == 'true'
+        env:
+          GHCR_TOKEN: ${{ github.token }}
+          GHCR_USER: ${{ github.actor }}
+        run: node scripts/site-image-registry.mjs retag "inputs-${{ steps.inputs.outputs.digest }}" main
+      - name: Build and push the image
+        if: steps.existing.outputs.exists == 'false'
+        env:
+          GHCR_TOKEN: ${{ github.token }}
+          COMMIT: ${{ steps.inputs.outputs.commit }}
+          INPUTS: ${{ steps.inputs.outputs.digest }}
+        run: |
+          echo "$GHCR_TOKEN" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          image="ghcr.io/$IMAGE_OWNER/$IMAGE_NAME"
+          # One plain linux/amd64 manifest (the VPS), no attestation index.
+          docker buildx build --platform linux/amd64 --provenance=false --sbom=false \
+            --label "org.opencontainers.image.revision=$COMMIT" \
+            --label "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
+            --label "dev.bigospeedrun.inputs=$INPUTS" \
+            -t "$image:sha-$COMMIT" -t "$image:inputs-$INPUTS" -t "$image:main" --push .
+          docker logout ghcr.io
+      - name: Keep the newest 30 images
+        if: steps.existing.outputs.exists == 'false'
+        continue-on-error: true
+        env:
+          GHCR_TOKEN: ${{ github.token }}
+          GHCR_USER: ${{ github.actor }}
+        # The VPS keeps the running and the previous image locally, so a pruned tag never
+        # breaks what runs or its rollback. Tags main and keep-* are never pruned.
+        run: node scripts/site-image-registry.mjs prune 30

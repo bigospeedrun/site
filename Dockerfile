@@ -19,6 +19,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY server/package.json ./package.json
 COPY server/site-server.ts ./server/site-server.ts
+# The egress allowlist proxy runs from this same image (ops/self-host/compose.yaml).
+COPY ops/self-host/egress-proxy.mjs ./ops/self-host/egress-proxy.mjs
 COPY src/lib ./src/lib
 COPY dist ./dist
 USER node

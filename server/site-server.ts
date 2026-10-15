@@ -5,7 +5,7 @@
 // It expects a proxy (Caddy) in front that terminates TLS, redirects http to https and sets
 // X-Forwarded-For to the client IP and X-Forwarded-Proto to https.
 import {createServer, type IncomingMessage, type ServerResponse} from 'node:http';
-import {readFile, stat} from 'node:fs/promises';
+import {readFile, stat, unlink, chmod} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {resolve, extname, sep} from 'node:path';
 import {Readable} from 'node:stream';
@@ -109,20 +109,40 @@ export async function send(response: Response, res: ServerResponse): Promise<voi
   await new Promise<void>((done, fail) => Readable.fromWeb(response.body as never).on('error', fail).pipe(res).on('finish', done).on('error', fail));
 }
 
-export function startSiteServer(options: SiteOptions & {port: number; host: string}) {
-  const handle = createSiteHandler(options);
+export function startSiteServer(options: SiteOptions & {port: number; host: string}, handle = createSiteHandler(options)) {
+  const server = siteServer(handle);
+  return new Promise<typeof server>(done => server.listen(options.port, options.host, () => done(server)));
+}
+
+export function siteServer(handle: (request: Request) => Promise<Response>) {
   const server = createServer((req, res) => {
     handle(toRequest(req)).then(response => send(response, res)).catch(() => { if (!res.headersSent) res.writeHead(500); res.end(); });
   });
   // Chat replies can take up to 45 s (CHAT_TIMEOUT_MS); keep a margin, as Vercel's maxDuration 60.
   server.requestTimeout = 65_000;
-  return new Promise<typeof server>(done => server.listen(options.port, options.host, () => done(server)));
+  return server;
+}
+
+// Self-hosted, Caddy on the host reaches the site through a Unix socket in a shared
+// directory: the container's network is internal, so it publishes no port. The directory's
+// owner and mode decide who may connect; the socket itself is open to them.
+export async function startSocketServer(options: SiteOptions & {socket: string}, handle = createSiteHandler(options)) {
+  const server = siteServer(handle);
+  await unlink(options.socket).catch(() => {});
+  await new Promise<void>(done => server.listen(options.socket, () => done()));
+  await chmod(options.socket, 0o666);
+  return server;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const option = (name: string, fallback: string) => { const i = process.argv.lastIndexOf(name); return i < 0 ? fallback : process.argv[i + 1]; };
-  const server = await startSiteServer({root: option('--root', 'dist'), port: Number(option('--port', process.env.PORT ?? '3000')), host: option('--host', process.env.HOST ?? '127.0.0.1')});
-  console.log(`bigospeedrun site server listening on ${JSON.stringify(server.address())}`);
-  const stop = () => server.close(() => process.exit(0));
+  const root = option('--root', 'dist'), socket = option('--socket', process.env.SITE_SOCKET ?? '');
+  // TCP serves the container's health check; the socket, when set, serves Caddy. One
+  // handler serves both, so the chat rate limit is one per process.
+  const handle = createSiteHandler({root});
+  const server = await startSiteServer({root, port: Number(option('--port', process.env.PORT ?? '3000')), host: option('--host', process.env.HOST ?? '127.0.0.1')}, handle);
+  const socketServer = socket ? await startSocketServer({root, socket}, handle) : undefined;
+  console.log(`bigospeedrun site server listening on ${JSON.stringify(server.address())}${socket ? ` and ${socket}` : ''}`);
+  const stop = () => { socketServer?.close(); server.close(() => process.exit(0)); };
   process.on('SIGTERM', stop); process.on('SIGINT', stop);
 }

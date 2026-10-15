@@ -1,0 +1,55 @@
+# bigospeedrun.com site block (phase C draft; not installed). To import from the host's
+# Caddyfile (/etc/wg-caddy/Caddyfile) beside the Wall Game and Hosted Isomux blocks.
+#
+# Needs these global options, which the Wall Game Caddyfile already has for wallgame.io
+# (check before import):
+#	servers {
+#		trusted_proxies static <Cloudflare's published IPv4 and IPv6 ranges>
+#		client_ip_headers CF-Connecting-IP
+#		timeouts {
+#			read_body 10s
+#			read_header 10s
+#			idle 2m
+#		}
+#	}
+# Without trusted_proxies, {client_ip} is a Cloudflare address and every visitor shares
+# one chat rate limit. Keep write timeouts off (or above 70s): chat replies stream for up to
+# 45 s. Behind Cloudflare, ACME's TLS-ALPN challenge cannot reach Caddy, so the site uses
+# HTTP-01. After the 24 h soak, add the host's cloudflare_only gate (phase D).
+#
+# Serve the same site on both names, as Vercel does today (www is not redirected).
+bigospeedrun.com, www.bigospeedrun.com {
+	tls {
+		issuer acme {
+			disable_tlsalpn_challenge
+		}
+	}
+	encode zstd gzip
+	# /api/chat accepts at most 32 KiB; nothing else takes a body.
+	request_body {
+		max_size 1MiB
+	}
+	reverse_proxy unix//run/bigospeedrun/site.sock {
+		# The chat rate limit keys on the first X-Forwarded-For address: replace whatever the
+		# client or Cloudflare sent with the one address Caddy resolved.
+		header_up X-Forwarded-For {client_ip}
+		header_up X-Forwarded-Proto https
+		# Stream chat replies (text/event-stream) as they arrive.
+		flush_interval -1
+		# A deploy recreates the one site container (a few seconds, about once an hour);
+		# retry the socket meanwhile instead of answering 502.
+		lb_try_duration 15s
+		lb_try_interval 250ms
+		transport http {
+			dial_timeout 5s
+			response_header_timeout 70s
+		}
+	}
+	log {
+		output file /var/log/caddy/bigospeedrun.log {
+			roll_size 10MiB
+			roll_keep 5
+		}
+		format json
+	}
+}
