@@ -73,9 +73,17 @@ function postedBoundKey(key:string):string {
  const [slug,,score,relation]=JSON.parse(key.slice(0,split)) as string[];
  return JSON.stringify([slug,score,relation,key.slice(split+1)]);
 }
+// The value a post showed: its X 'New value' or 'Value' line, else the bound in the Discord text.
+function postedValue(post:Partial<RecordPost>):string|undefined {
+ return post.x_text?.match(/^(?:New value|Value): (.*)$/m)?.[1]??post.text?.match(/`([^`]*)`/)?.[1];
+}
 export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<RecordPost,'key'>&Partial<RecordPost>)[]=[],now=Date.now()):{state:FeedState;messages:FeedMessage[]} {
  const reserved=new Set(previous.reserved),messages:FeedMessage[]=[];
  const announced=new Set(posts.map(post=>postedBoundKey(post.key)));
+ // Shown values have a display cap, so a new leader can show the same value as the last
+ // post for its board. That post would say nothing new, and X refuses it as a duplicate.
+ const lastValue=new Map<string,string>();
+ for(const post of posts){const value=postedValue(post);if(value)lastValue.set(JSON.parse(post.key.slice(0,post.key.lastIndexOf(':')))[0],value)}
  const deferred=new Map((previous.deferred??[]).map(entry=>[entry.key,entry]));
  const authorKey=(slug:string,authors:string[])=>JSON.stringify([slug,authors]);
  const lastAccepted=new Map<string,number>();
@@ -104,6 +112,7 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
     if(announced.has(boundKey)){reserved.add(key);deferred.delete(key);continue;}
     const verifiedUpgrade=gainedLean&&announced.has(postedBoundKey(identity(board,record)+':record'));
     const isNew=(newLeader||waiting)&&!verifiedUpgrade;
+    if(isNew&&lastValue.get(board.slug)===record.bound){reserved.add(key);deferred.delete(key);continue;}
     const group=authorKey(board.slug,record.authors);
     if(isNew&&now-(lastAccepted.get(group)??-Infinity)<3*60*60*1000){
      deferred.set(key,{key,slug:board.slug,authors:record.authors});continue;
