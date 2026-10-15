@@ -3,11 +3,9 @@ import assert from 'node:assert/strict';
 import {mkdtempSync, mkdirSync, writeFileSync, rmSync, existsSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {connect, createServer as createTcpServer, type AddressInfo} from 'node:net';
 import {request} from 'node:http';
 import {imageDigest, imageInputs} from '../../scripts/site-image-digest.mjs';
 import {registryClient} from '../../scripts/site-image-registry.mjs';
-import {createEgressProxy} from '../../ops/self-host/egress-proxy.mjs';
 import {startSocketServer} from '../../server/site-server.ts';
 
 function fixtureRoot() {
@@ -36,27 +34,7 @@ test('the image digest follows every image input and nothing else', () => {
  } finally { rmSync(root, {recursive: true, force: true}); }
 });
 
-test('the egress proxy tunnels only to allowed hosts and refuses plain HTTP', async () => {
- const upstream = createTcpServer(socket => socket.on('data', data => socket.end('echo:' + data)));
- await new Promise<void>(done => upstream.listen(0, '127.0.0.1', done));
- const port = (upstream.address() as AddressInfo).port;
- const proxy = createEgressProxy(`127.0.0.1:${port}`, () => {});
- await new Promise<void>(done => proxy.listen(0, '127.0.0.1', done));
- const proxyPort = (proxy.address() as AddressInfo).port;
- const tunnel = (target: string) => new Promise<string>(done => {
-  const socket = connect(proxyPort, '127.0.0.1', () => socket.write(`CONNECT ${target} HTTP/1.1\r\nHost: ${target}\r\n\r\n`));
-  let text = '';
-  socket.on('data', chunk => { text += chunk; if (text.includes('200 Connection Established\r\n\r\n') && !text.includes('echo:')) socket.write('ping'); });
-  socket.on('close', () => done(text));
- });
- try {
-  assert.match(await tunnel(`127.0.0.1:${port}`), /200 Connection Established[\s\S]*echo:ping/);
-  assert.match(await tunnel('example.com:443'), /^HTTP\/1\.1 403/);
-  assert.match(await tunnel(`127.0.0.1:${port + 1}`), /^HTTP\/1\.1 403/);
-  const plain = await new Promise<number>(done => request({host: '127.0.0.1', port: proxyPort, path: 'http://example.com/'}, res => { res.resume(); done(res.statusCode!); }).end());
-  assert.equal(plain, 405);
- } finally { proxy.close(); upstream.close(); }
-});
+// The egress proxy has its own tests in egress-proxy.test.ts.
 
 test('registry steps: exists, retag by copying the manifest, and prune keeps main and recent images', async () => {
  const calls: string[] = [];
