@@ -1,0 +1,11 @@
+{
+  "number": 2280,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2280",
+  "title": "Research: bound two-center R439 defect relay",
+  "body": "## Summary\n\nAdds a pinned, reproducible scoped obstruction for a two-center in-flight defect relay on the 11,500-ADD PR1062 R439 word. It checks all three reciprocal singleton first-read pairs and all four paired terminal-restoration omissions.\n\nFor each omission case the complete 661-column forward residual has rank two. Exact support factorization yields 20 candidate distinct-gate pairs and 40 interaction orientations. The verifier inventories source-tap removal, addition, and replacement over every register label, including frame-illegal labels. With two D taps removed, strict scalar saving requires the two A edits to cost at most +1 ADD; no such map-preserving action pair exists.\n\nPR #1937 leaves cross-center in-flight intermediate defect vectors outside its census. This contribution covers only the stated four cases and two-tap budget. It claims no new supplier or kappa.\n\n## Reproduction\n\nThe package metadata and source pins pass. The manifest-equivalent isolated optimized replay passes locally under Python 3.14.7. Python 3.12 is not installed in this environment, so the registered Python 3.12 runner could not be invoked locally; CI can run the declared command.\n\n```sh\npython3.12 scripts/research_package.py --package research/r439-two-center-defect-relay-seed63e9 --check-only\npython3.12 scripts/research_package.py --package research/r439-two-center-defect-relay-seed63e9\n```\n\nExpected verifier marker:\n\n```text\nPASS_R439_TWO_CENTER_DEFECT_RELAY cases=4 rank2=4 gate_pairs=20 factorizations=40 admissible_pairs=0 positive_control=1 no_new_kappa\n```\n\nThe package credits the PR1062 parent word and PR1937 positive control, pins the selected-record chain and task catalogue at base `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`, and discloses substantial OpenAI Codex assistance.\n",
+  "created_at": "2026-10-15T03:19:18Z",
+  "updated_at": "2026-10-15T03:19:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
