@@ -4,8 +4,8 @@
   "title": "P104 shared correction-space dimension is 96–97",
   "body": "## Result\n\nFor the fixed pooled spans in the pinned P104 fixture, this package proves an arbitrary-shared-space lower bound of 96 and gives an exact 97-dimensional witness. Therefore the minimum lies in {96, 97}.\n\nThe witness uses 97 natural correction rows and is checked over the rationals against all 104 original pooled spans. A local screen found 121 covering candidates among 686 nearby 97-row spaces. Deleting each of the 97 rows from the witness gives at most 102 covered targets; this is only a local screen and does not rule out other 96-dimensional spaces.\n\n## Scope\n\nThis is an algebraic result for fixed pooled spans. It does not give a chronological producer, a circuit or paid-cost improvement, a new multiplication theorem, or a selected-frontier change. The remaining question is whether dimension 96 is attainable.\n\n## Verification\n\n- `python3 research/p104-side-correction-rank-obstruction/verify_existing_delivery_span.py` — exact rational replay and pooled-span checks passed.\n- The recorded 97-row witness has direct coverage 104; the projected-coset lower-bound certificate has rank data 8 and 104 for its 96-target subset.\n- `git diff --check` passed for the submitted commit.\n",
   "created_at": "2026-10-14T22:02:10Z",
-  "updated_at": "2026-10-14T22:02:10Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T18:56:25Z",
+  "closed_at": "2026-10-15T18:56:25Z",
+  "merged_at": "2026-10-15T18:56:25Z",
+  "state": "closed"
 }
