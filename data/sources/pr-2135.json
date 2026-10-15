@@ -4,8 +4,8 @@
   "title": "Research: bound D8 inverse pair with third role",
   "body": "## Result\n\nThis package settles one exact three-role formal group-algebra question. For\n`D8=<r,s | r^4=s^2=1, srs=r^-1>`, `t=r^-1s`, and paid rank-one factors\n`F_g(N)=I+([g]+1)N` with `g in {s,t}`, the endpoint\n`diag([r],[r^-1],1)` has minimum paid length four on three arbitrary dirty\nroles, even with interspersed free `GL3(F2)` scalar maps. It does not give a\nsupplier or `kappa` improvement.\n\n## Evidence\n\n- The regular-representation displacement rank is 12 for the endpoint and 4\n  per paid factor, so lengths zero through two are impossible.\n- The complete exact length-three census checks all 175,616 ordered words over\n  the 56 generators and finds zero hits.\n- The explicit four-call word reaches the endpoint. A separate tuple-valued\n  verifier replays the whole census, positive control, omitted-call control,\n  and rank control.\n\n## Reproduction\n\n```sh\npython3 -I -B research/d8-inverse-pair-third-role-seeddf1e67/search.py\npython3 -I -B research/d8-inverse-pair-third-role-seeddf1e67/verify.py\npython3 scripts/research_package.py --package research/d8-inverse-pair-third-role-seeddf1e67 --check-only\n```\n\nThe scientific base is `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`.\nPredecessors are the two-role inverse-pair result (#1881, commit\n`5a51deaaab2746d42eddb454bbb968bda3af02cc`) and the distinct three-role\ncentral-pair result (#1742). The model excludes native third-role hosting,\nrecursive charges and supplier admission; no selected frontier changes.\n\nSubstantial OpenAI Codex assistance in derivation, implementation, verification,\nand packaging. No independent human review is claimed.\n",
   "created_at": "2026-10-14T20:30:59Z",
-  "updated_at": "2026-10-14T20:30:59Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T17:07:18Z",
+  "closed_at": "2026-10-15T17:07:18Z",
+  "merged_at": "2026-10-15T17:07:18Z",
+  "state": "closed"
 }

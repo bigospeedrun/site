@@ -1,0 +1,11 @@
+{
+  "number": 2676,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2676",
+  "title": "Stop direct script trees on scheduler exceptions",
+  "body": "Cancelling the direct script scheduler previously waited for active and queued subprocesses. Register owned processes, stop their ordinary trees on controlling exceptions, cancel queued launches, and preserve the original exception with bounded cleanup diagnostics. Normal output blocks and failure labels are unchanged.\n\nThis adapts the credited PR2625 unittest-scheduler pattern to `run_parallel.run_all`, adding real command-iterator, launch and output-read failure regressions. Review caught and fixed lost ownership after a communication error; the same finding was handed back to PR2625 without another contribution count.\n\nValidation: nine native Windows process/semantic tests pass on Python3.12.14 and3.14.5; two existing direct-runner checks pass. The original cancellation and communication-error regressions fail before their fixes. POSIX execution and CI are not claimed. The attempted unrelated snapshot tests require unavailable make and retain their known cleanup failure; full details and exact source/overlap pins are in `docs/research/script-runner-cancellation.md`.\n\nStarted at current main b4560d9e and fast-forwarded to1884c509 after its review integration; priority5 and all runner inputs are unchanged. Submitted by ywz65 with substantial OpenAI Codex assistance. Apache-2.0; no scientific result or supplier claim.",
+  "created_at": "2026-10-15T17:00:10Z",
+  "updated_at": "2026-10-15T17:00:10Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

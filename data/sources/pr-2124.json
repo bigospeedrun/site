@@ -4,8 +4,8 @@
   "title": "Research: Phase B mixed rank-six block envelope",
   "body": "## Result\n\nThis package screens the `(3,1,1,1)->6` block from merged PR #1866 against the complete selected provider Phase B trace. Both orientations contain 3,870 phase events and the same 12 disjoint four-child-order candidates after scalar events are optimistically projected away. There are no raw-event-contiguous four-child windows.\n\nEven granting every scalar move, frame, copy, hosting, precision, and restoration expense for free, 12 blocks give the exact ceiling bracket `[169728852851/100000000000000, 1697288528511/1000000000000000]`, about 0.4281% above the selected lower endpoint. The exact zero-extra-cost threshold is 135 blocks; 134 fails.\n\nThe package records every candidate's event/register/frame IDs, exact GF(2) frame-union dimensions, and intervening scalar payload digests. It does not establish a frame-compatible placement or a complete caller-level implementation.\n\n## Scope and limits\n\nThis closes only the consecutive four-child Phase B candidate envelope for the inherited tensor. It does not rule out a nonconsecutive buffered schedule, another phase, or another source word. No supplier, conditional bound, or new κ is claimed. The adjacent live claim #1693 concerns rank-one-to-rank-two retiming and is a distinct profile change.\n\n## Reproduction and validation\n\n- `python3 -B research/complex-rank6-phaseb-seedb43a017f/verify.py` — passed locally on Python 3.14.7.\n- `python3 scripts/research_package.py --package research/complex-rank6-phaseb-seedb43a017f --check-only` — metadata and pinned source checks passed.\n- The registered package replay requires Python 3.12, which is unavailable in this environment.\n\nSelected-record SHA-256: `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`. Exact base: `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`.\n",
   "created_at": "2026-10-14T20:11:18Z",
-  "updated_at": "2026-10-14T20:11:18Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T17:07:18Z",
+  "closed_at": "2026-10-15T17:07:18Z",
+  "merged_at": "2026-10-15T17:07:18Z",
+  "state": "closed"
 }

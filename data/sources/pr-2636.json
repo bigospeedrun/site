@@ -1,0 +1,11 @@
+{
+  "number": 2636,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2636",
+  "title": "Implement linear aggregate padding on fixed bit tapes",
+  "body": "PR2457 explicitly assumes a linear charged scan for aggregate binary padding and restriction. This contribution implements that scan with17fixed bit tapes, one-cell read/write/move primitives, two countdown counters per coordinate, and unchanged canonical descriptors. A written amortized proof gives1024*N+128*sum(L_i)+128 steps per complete scan, including head rewinds and owned-counter cleanup.\n\nThe result closes this scan premise only. Fresh owned output/counter intervals and aggregate descriptors are explicit inputs; fast completed exchange, caller parking, descriptor construction, joined physical supplier and stock/kappa admission remain external. The indexed exchange used by tests is a semantic oracle.\n\nValidation: registered optimized CPython3.12 replay;256shapes/49247padded rows;4096Boolean payloads;267counter cases including257-bit carry chains; translated confinement, immutability and cleanup;5semantic controls. Git-free empty-PATH public replay is read-only and rejects actual reset removal, typed receipt corruption and output overwrite. Independent agent machine/proof review found no issue. All9committed files match tested bytes.\n\nStarted from current canonical main0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority4; prescribed selected baseline passed. The stock/depth/later-stage candidates were already covered, so TASK explicitly records the changed uniform-transfer scan scope. Main and PR2457head03625347 refreshed unchanged;817openPRs16:31UTC and1239Discussionrecords15:22UTC searched, with bounded Discussion freshness.\n\nCredit PR2457's aggregate reduction, commdata2338/PR2399, Jose Manuel/PR2234, Adam Gall/PR2087 and retained descriptor/parking/supplier lineage. Prepared for ywz65 with substantial OpenAI Codex assistance, Apache-2.0; no human or formal-kernel review. Claim: https://github.com/CrocSwap/integer-mult-bounds/pull/2457#issuecomment-6196912013",
+  "created_at": "2026-10-15T16:33:03Z",
+  "updated_at": "2026-10-15T16:33:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

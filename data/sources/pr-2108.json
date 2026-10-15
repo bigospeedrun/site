@@ -4,8 +4,8 @@
   "title": "Prove a two-register cost bound for three scalar mixing blocks",
   "body": "An m=3 two-register circuit with five rank-one calls must use at least four nonmonomial scalar mixing blocks, counting terminal scalar cleanup. I prove this by reducing any two-register group-algebra word with at most three such blocks to separate unary routes without increasing a subadditive unary bill. The proof allows arbitrary noncommuting unary maps and arbitrary invertible scalar coefficients.\n\nThe package includes the all-group proof, a tensor-power justification, and exact controls. The Python 3.12 registered replay passes 692,064 S3 middle-layer cases over F2/F3/F5, noncommuting reductions, coefficient-rank failure controls, a four-block positive loop, and tensor-separation checks. Metadata and source pins pass.\n\nI credit eumemic's PR288 model and window constraints, littleBro's PR680 coefficient-rank/partial-matching method, and the neighboring PR705/800/836 scopes. I started from canonical main `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2` and read priority revision 4. The final live overlap refresh at 19:28:41 UTC covered 371 open PRs, 762 Discussion records and 1,538 local records with complete pagination and no warnings. I checked the remaining scalar-cost match and found a different cost model.\n\nThe theorem leaves four or more mixing blocks, extra-register contracts and the full five-call question open. It provides no cheaper supplier or exponent improvement and changes no selected or frozen artifact.\n\nAuthor: Jose Manuel (@jmbarrancoml). Substantial OpenAI Codex assistance in proof, implementation and prose; no independent human review.\n",
   "created_at": "2026-10-14T19:30:11Z",
-  "updated_at": "2026-10-14T19:30:11Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T17:06:23Z",
+  "closed_at": "2026-10-15T17:06:23Z",
+  "merged_at": "2026-10-15T17:06:23Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Research: exact UT5(Z) four-role minimum is five",
   "body": "## Result\n\nThis is a scoped exact negative result, not a new kappa. In `F2[UT5(Z)]` on four arbitrary dirty scalar roles, the fixed target `diag([g1*g2],[g2],[g3],[g4])` has exact minimum paid length five for the eight signed simple-root labels and all 120 binary rank-one idempotents.\n\nThe direct five-factor word replays exactly. The first-superdiagonal character forces every realization to have odd length; one factor cannot support the four distinct nonidentity target addresses. An exact full-formal-algebra meet-in-the-middle covers all `960^3 = 884,736,000` ordered three-factor words and finds zero matches. It checks all 960 right-query formulas against direct matrix multiplication and records deterministic transcript hashes. The work does not establish a supplier transfer or affect the selected frontier.\n\n## Reproduction\n\nFrom the repository root:\n\n```sh\npython3.12 -I -B scripts/research_package.py --package research/ut5-four-role-mixed-root-seede2a8\n```\n\nLocal evidence: `verify.py` and `scripts/research_package.py --check-only` pass under Python 3.14.7; this host has no Python 3.12 interpreter, so I did not claim a local registered Python 3.12 replay. The package uses only the standard library.\n\n## Scope and overlap\n\nThe nearest completed count match is the finite `F2[D8]` result in Discussion #1773 / `research/d8-mixed-target-seeda97c8e`: that endpoint has three nonidentity roles, one identity role, and two involutory labels. This package pins and distinguishes it. Here the address group is infinite and torsion-free `UT5(Z)`, every role has a nonidentity target, and each signed root difference has rational rank one. Recent active UT5(F2) and A4 claims were also compared in `TASK.json`; the fresh overlap search found no other exact UT5(Z) height-two claim.\n\nClaim: https://github.com/CrocSwap/integer-mult-bounds/discussions/2094\n\nSeed `e2a8beab166c91810bbb606f6aca593f`; task `bit-new-register-model`; priority revision 4; exact base `564148b82ae9df72163f22106f15e73efca8aff2`; selected-record SHA-256 `10b9e340fd8e354a37a0c4813c90e5de1dd42044b5f6aca4a3fc5a42b685fa32`.\n",
   "created_at": "2026-10-14T19:24:47Z",
-  "updated_at": "2026-10-14T19:24:47Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T17:06:23Z",
+  "closed_at": "2026-10-15T17:06:23Z",
+  "merged_at": "2026-10-15T17:06:23Z",
+  "state": "closed"
 }

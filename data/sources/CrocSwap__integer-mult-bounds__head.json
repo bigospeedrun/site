@@ -1,23 +1,23 @@
 {
-  "sha": "0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2",
-  "node_id": "C_kwDOU-508toAKDBmZGQ3ZDgyZGUwM2U0M2M5ZTVhMTAwMGRmYmNkMzgwZDFiNjg3ZDI",
+  "sha": "8513ab11936831dc45305170357ce6d33098e4e5",
+  "node_id": "C_kwDOU-508toAKDg1MTNhYjExOTM2ODMxZGM0NTMwNTE3MDM1N2NlNmQzMzA5OGU0ZTU",
   "commit": {
     "author": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-14T18:56:18Z"
+      "date": "2026-10-15T17:07:15Z"
     },
     "committer": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-14T18:56:18Z"
+      "date": "2026-10-15T17:07:15Z"
     },
-    "message": "Clarify discussion status and retrievable research handoffs",
+    "message": "Integrate reviewed research PRs #2124, #2126, #2127, #2129, #2132, #2135\n\nOriginal authors and predecessor credit retained. Exact-head finite checks and claim limits are recorded in research/community-efficient1100-audit. No selected frontier change.",
     "tree": {
-      "sha": "09f3b04439214a67fe6ec7b21d6012d94cd4b0d0",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/09f3b04439214a67fe6ec7b21d6012d94cd4b0d0"
+      "sha": "bebf72541a46321a6febdc599c8d155479231ecf",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/bebf72541a46321a6febdc599c8d155479231ecf"
     },
-    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2",
+    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/8513ab11936831dc45305170357ce6d33098e4e5",
     "comment_count": 0,
     "verification": {
       "verified": false,
@@ -27,9 +27,9 @@
       "verified_at": null
     }
   },
-  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2",
-  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2",
-  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2/comments",
+  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/8513ab11936831dc45305170357ce6d33098e4e5",
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/8513ab11936831dc45305170357ce6d33098e4e5",
+  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/8513ab11936831dc45305170357ce6d33098e4e5/comments",
   "author": {
     "login": "Mister-Meeseeks",
     "id": 18204987,
@@ -74,49 +74,596 @@
   },
   "parents": [
     {
-      "sha": "564148b82ae9df72163f22106f15e73efca8aff2",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/564148b82ae9df72163f22106f15e73efca8aff2",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/564148b82ae9df72163f22106f15e73efca8aff2"
+      "sha": "bd0f96670d18440cdbd88d6d0cea6b08d735cab3",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/bd0f96670d18440cdbd88d6d0cea6b08d735cab3",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/bd0f96670d18440cdbd88d6d0cea6b08d735cab3"
+    },
+    {
+      "sha": "4473fe4128f2fac104265b7512f736d63811ccd5",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/4473fe4128f2fac104265b7512f736d63811ccd5",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/4473fe4128f2fac104265b7512f736d63811ccd5"
+    },
+    {
+      "sha": "06be72298adf84f3eef0e36f54ac31c357956417",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/06be72298adf84f3eef0e36f54ac31c357956417",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/06be72298adf84f3eef0e36f54ac31c357956417"
+    },
+    {
+      "sha": "befebf0f4ae7a3f69fe9c5e136262559dcac125f",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/befebf0f4ae7a3f69fe9c5e136262559dcac125f",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/befebf0f4ae7a3f69fe9c5e136262559dcac125f"
+    },
+    {
+      "sha": "6bee3902924324ecb86eb3f17d97616e0f80045d",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/6bee3902924324ecb86eb3f17d97616e0f80045d",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/6bee3902924324ecb86eb3f17d97616e0f80045d"
+    },
+    {
+      "sha": "3aeb63fb1f2933fef907f4f7cc6e27c41d4f8edb",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/3aeb63fb1f2933fef907f4f7cc6e27c41d4f8edb",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/3aeb63fb1f2933fef907f4f7cc6e27c41d4f8edb"
+    },
+    {
+      "sha": "862c3a844c55c134c43ba874a10c3c3e0b036e00",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/862c3a844c55c134c43ba874a10c3c3e0b036e00",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/862c3a844c55c134c43ba874a10c3c3e0b036e00"
     }
   ],
   "stats": {
-    "total": 86,
-    "additions": 85,
-    "deletions": 1
+    "total": 11245,
+    "additions": 11245,
+    "deletions": 0
   },
   "files": [
     {
-      "sha": "1dce1b16a687a5d1a507ef64b9d4da19dd9e43f9",
-      "filename": "AGENTS.md",
-      "status": "modified",
-      "additions": 4,
-      "deletions": 1,
-      "changes": 5,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2/AGENTS.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2/AGENTS.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/AGENTS.md?ref=0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2"
+      "sha": "c83d543ccd9928a577b43b5d68bfac8359b43039",
+      "filename": "research/complex-rank6-phaseb-seedb43a017f/README.md",
+      "status": "added",
+      "additions": 78,
+      "deletions": 0,
+      "changes": 78,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FREADME.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
     },
     {
-      "sha": "9b6cbfef0fb725f28c177038d32f482706e12c94",
-      "filename": "autoresearch.md",
-      "status": "modified",
+      "sha": "eba51d70b19ad7ca74e80c1072105332af796497",
+      "filename": "research/complex-rank6-phaseb-seedb43a017f/RESULT.json",
+      "status": "added",
+      "additions": 763,
+      "deletions": 0,
+      "changes": 763,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FRESULT.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "79872c82fa3d20dfd7bd4dff42429a4e39ca4c54",
+      "filename": "research/complex-rank6-phaseb-seedb43a017f/SOURCES.json",
+      "status": "added",
       "additions": 48,
       "deletions": 0,
       "changes": 48,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2/autoresearch.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2/autoresearch.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/autoresearch.md?ref=0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2"
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FSOURCES.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
     },
     {
-      "sha": "457b6c703cbc2436c224945f4d9c4cf97911261e",
-      "filename": "docs/research/research-priority-log.md",
-      "status": "modified",
-      "additions": 33,
+      "sha": "da349c1ff4e0f6500f8170ded8971a7170302a68",
+      "filename": "research/complex-rank6-phaseb-seedb43a017f/TASK.json",
+      "status": "added",
+      "additions": 91,
       "deletions": 0,
-      "changes": 33,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2/docs%2Fresearch%2Fresearch-priority-log.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2/docs%2Fresearch%2Fresearch-priority-log.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fresearch-priority-log.md?ref=0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2"
+      "changes": 91,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FTASK.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "a7e863e1b3277250e7326172275bd7d64199cfe4",
+      "filename": "research/complex-rank6-phaseb-seedb43a017f/VERIFY.json",
+      "status": "added",
+      "additions": 26,
+      "deletions": 0,
+      "changes": 26,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcomplex-rank6-phaseb-seedb43a017f%2FVERIFY.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "4fd89d15dd11a1e72f23223969b4f1837f56a7fa",
+      "filename": "research/complex-rank6-phaseb-seedb43a017f/verify.py",
+      "status": "added",
+      "additions": 338,
+      "deletions": 0,
+      "changes": 338,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fcomplex-rank6-phaseb-seedb43a017f%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcomplex-rank6-phaseb-seedb43a017f%2Fverify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "00f8b1a252ec94acdadbfa07b77588d04c315d77",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/CERTIFICATE.json",
+      "status": "added",
+      "additions": 45,
+      "deletions": 0,
+      "changes": 45,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FCERTIFICATE.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FCERTIFICATE.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FCERTIFICATE.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "e8caf78944069bcbc316a527c5c945ee1ebbe1b1",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/OVERLAP.json",
+      "status": "added",
+      "additions": 36,
+      "deletions": 0,
+      "changes": 36,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FOVERLAP.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FOVERLAP.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FOVERLAP.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "f04d6c127fb06e07212929f6dfd084e464c82341",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/PR-BODY.md",
+      "status": "added",
+      "additions": 35,
+      "deletions": 0,
+      "changes": 35,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FPR-BODY.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FPR-BODY.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FPR-BODY.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "93ba64e018b3b6c680c9d3209ed742008146853e",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/README.md",
+      "status": "added",
+      "additions": 117,
+      "deletions": 0,
+      "changes": 117,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FREADME.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "bff3ecb39b7d8a8478e3cdc811781c6b84d1f6e7",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/RESULT.json",
+      "status": "added",
+      "additions": 35,
+      "deletions": 0,
+      "changes": 35,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FRESULT.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "12b90f83a8da0881f201673f998b32345193111d",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/SOURCES.json",
+      "status": "added",
+      "additions": 43,
+      "deletions": 0,
+      "changes": 43,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FSOURCES.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "8aa266e700cca748eda8d3d4eec232d0242a625a",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/TASK.json",
+      "status": "added",
+      "additions": 84,
+      "deletions": 0,
+      "changes": 84,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FTASK.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "8f487e0ebd67b106af2ad6ebbdbec4bb984057f8",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/TASK.md",
+      "status": "added",
+      "additions": 23,
+      "deletions": 0,
+      "changes": 23,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FTASK.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FTASK.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FTASK.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "2c97b8b2d11ed6e84c2815c37bfb322341233e38",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/VERIFY.json",
+      "status": "added",
+      "additions": 19,
+      "deletions": 0,
+      "changes": 19,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2FVERIFY.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "48133ec3d0ac280f074c7c2b91fa1040677bcb7c",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/search.py",
+      "status": "added",
+      "additions": 148,
+      "deletions": 0,
+      "changes": 148,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2Fsearch.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2Fsearch.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2Fsearch.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "7568ccbdb0790eedfd2bd6af38d07f72b4cc7baa",
+      "filename": "research/d8-inverse-pair-third-role-seeddf1e67/verify.py",
+      "status": "added",
+      "additions": 217,
+      "deletions": 0,
+      "changes": 217,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fd8-inverse-pair-third-role-seeddf1e67%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fd8-inverse-pair-third-role-seeddf1e67%2Fverify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "fa9984b6d6245002ec3ec79d212dbe580761d258",
+      "filename": "research/k8-commutation-ceiling-seed26/LAMBDA-1007.json",
+      "status": "added",
+      "additions": 971,
+      "deletions": 0,
+      "changes": 971,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FLAMBDA-1007.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FLAMBDA-1007.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FLAMBDA-1007.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "59f2ba2b7fb4bcb1126e8ed2957854d826b55743",
+      "filename": "research/k8-commutation-ceiling-seed26/LAMBDA.json",
+      "status": "added",
+      "additions": 1017,
+      "deletions": 0,
+      "changes": 1017,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FLAMBDA.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FLAMBDA.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FLAMBDA.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "1509ff86358b7a4f2086a6d96cf1f35d70a4dbf3",
+      "filename": "research/k8-commutation-ceiling-seed26/PROOF.md",
+      "status": "added",
+      "additions": 82,
+      "deletions": 0,
+      "changes": 82,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FPROOF.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FPROOF.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FPROOF.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "42d808d580fcf4678d32abbd90b36a89ddfc46e0",
+      "filename": "research/k8-commutation-ceiling-seed26/README.md",
+      "status": "added",
+      "additions": 142,
+      "deletions": 0,
+      "changes": 142,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FREADME.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "b21a09f8153341a44391029521267e52a2b3a26a",
+      "filename": "research/k8-commutation-ceiling-seed26/RESULT.json",
+      "status": "added",
+      "additions": 66,
+      "deletions": 0,
+      "changes": 66,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FRESULT.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "bfbef06c73554ad77664ddd6312bb549404a889a",
+      "filename": "research/k8-commutation-ceiling-seed26/SOURCES.json",
+      "status": "added",
+      "additions": 72,
+      "deletions": 0,
+      "changes": 72,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FSOURCES.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "24ae747260f00b65fb0c5eda402b57f06cbcb929",
+      "filename": "research/k8-commutation-ceiling-seed26/TASK.json",
+      "status": "added",
+      "additions": 82,
+      "deletions": 0,
+      "changes": 82,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FTASK.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "5d0fd1f22ea22110f99c84b6e82548956dd40029",
+      "filename": "research/k8-commutation-ceiling-seed26/VERIFY.json",
+      "status": "added",
+      "additions": 43,
+      "deletions": 0,
+      "changes": 43,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2FVERIFY.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "86a4cbffeddda40946dc426a2dff3d5f6f7bb4c5",
+      "filename": "research/k8-commutation-ceiling-seed26/discover.py",
+      "status": "added",
+      "additions": 122,
+      "deletions": 0,
+      "changes": 122,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Fdiscover.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Fdiscover.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2Fdiscover.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "2e8d67b88a3580a37e8644f10d837451d8d49766",
+      "filename": "research/k8-commutation-ceiling-seed26/model.py",
+      "status": "added",
+      "additions": 375,
+      "deletions": 0,
+      "changes": 375,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Fmodel.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Fmodel.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2Fmodel.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "21f5861d3391127d6d0330d32ef693087138e0ef",
+      "filename": "research/k8-commutation-ceiling-seed26/test_package.py",
+      "status": "added",
+      "additions": 110,
+      "deletions": 0,
+      "changes": 110,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Ftest_package.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Ftest_package.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2Ftest_package.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "2744486bbddc9a9922cf4e10a6e09904eb293dcc",
+      "filename": "research/k8-commutation-ceiling-seed26/toy.py",
+      "status": "added",
+      "additions": 155,
+      "deletions": 0,
+      "changes": 155,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Ftoy.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Ftoy.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2Ftoy.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "67f6bac04b095c521f091fb1dd1f73ac97c8b12e",
+      "filename": "research/k8-commutation-ceiling-seed26/verify.py",
+      "status": "added",
+      "additions": 195,
+      "deletions": 0,
+      "changes": 195,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fk8-commutation-ceiling-seed26%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fk8-commutation-ceiling-seed26%2Fverify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "ab39612ed4f4d5c887a5fcf5e6af219da5a1c859",
+      "filename": "research/p104-storage-cut/README.md",
+      "status": "added",
+      "additions": 229,
+      "deletions": 0,
+      "changes": 229,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2FREADME.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "494458a6bc6edea5f00f340fb35107e66922cfc9",
+      "filename": "research/p104-storage-cut/RESULT.json",
+      "status": "added",
+      "additions": 3043,
+      "deletions": 0,
+      "changes": 3043,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2FRESULT.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "aba51f10025eb85fbebb4a35c0b02db15aa1a958",
+      "filename": "research/p104-storage-cut/SOURCES.json",
+      "status": "added",
+      "additions": 62,
+      "deletions": 0,
+      "changes": 62,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2FSOURCES.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "ffea97b34d3deb7e1272ac332eb783cdbf042374",
+      "filename": "research/p104-storage-cut/TASK.json",
+      "status": "added",
+      "additions": 138,
+      "deletions": 0,
+      "changes": 138,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2FTASK.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "f457f2399483e7af354b9e2fa9473bc6582cb82b",
+      "filename": "research/p104-storage-cut/VERIFY.json",
+      "status": "added",
+      "additions": 31,
+      "deletions": 0,
+      "changes": 31,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2FVERIFY.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "e1cb49bc0691162fc81014841214fbac8f1705ce",
+      "filename": "research/p104-storage-cut/oracle.py",
+      "status": "added",
+      "additions": 236,
+      "deletions": 0,
+      "changes": 236,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2Foracle.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2Foracle.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2Foracle.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "953e0244dedb3aed3b10be1b2c04d38d8869b9d7",
+      "filename": "research/p104-storage-cut/test_verify.py",
+      "status": "added",
+      "additions": 129,
+      "deletions": 0,
+      "changes": 129,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2Ftest_verify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2Ftest_verify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2Ftest_verify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "3725ef5bc87b523f315d5e68dca53b984078ce26",
+      "filename": "research/p104-storage-cut/verify.py",
+      "status": "added",
+      "additions": 281,
+      "deletions": 0,
+      "changes": 281,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fp104-storage-cut%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fp104-storage-cut%2Fverify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "cc94f24c074beeb7d3dec4157a34ffd2b0d7ef8a",
+      "filename": "research/paired-plane-identity-fit-seed21ef98/README.md",
+      "status": "added",
+      "additions": 133,
+      "deletions": 0,
+      "changes": 133,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpaired-plane-identity-fit-seed21ef98%2FREADME.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "76cea0e26be17de7bae4b11fb5d351cde531a7af",
+      "filename": "research/paired-plane-identity-fit-seed21ef98/SOURCES.json",
+      "status": "added",
+      "additions": 42,
+      "deletions": 0,
+      "changes": 42,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpaired-plane-identity-fit-seed21ef98%2FSOURCES.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "6fcc64c570bbf7f382b3ca25c61279f4fd818393",
+      "filename": "research/paired-plane-identity-fit-seed21ef98/TASK.json",
+      "status": "added",
+      "additions": 128,
+      "deletions": 0,
+      "changes": 128,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpaired-plane-identity-fit-seed21ef98%2FTASK.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "29560bc244c37f418a844f42e53af6f9a07f7029",
+      "filename": "research/paired-plane-identity-fit-seed21ef98/VERIFY.json",
+      "status": "added",
+      "additions": 25,
+      "deletions": 0,
+      "changes": 25,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpaired-plane-identity-fit-seed21ef98%2FVERIFY.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "f53bb12c046656774b7546b0ce8a4f16a8126de7",
+      "filename": "research/paired-plane-identity-fit-seed21ef98/verify.py",
+      "status": "added",
+      "additions": 327,
+      "deletions": 0,
+      "changes": 327,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fpaired-plane-identity-fit-seed21ef98%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fpaired-plane-identity-fit-seed21ef98%2Fverify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "28526ec86ed833f345247c67718fa151fe2a039f",
+      "filename": "research/ut3-concave-rank-tariff/README.md",
+      "status": "added",
+      "additions": 262,
+      "deletions": 0,
+      "changes": 262,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FREADME.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fut3-concave-rank-tariff%2FREADME.md?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "e6151b0627064ddcc8b2e3f3563e94f50169838f",
+      "filename": "research/ut3-concave-rank-tariff/RESULT.json",
+      "status": "added",
+      "additions": 18,
+      "deletions": 0,
+      "changes": 18,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FRESULT.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FRESULT.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fut3-concave-rank-tariff%2FRESULT.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "816618f71ff1f88259cbbc8c30f0ce4d0a815295",
+      "filename": "research/ut3-concave-rank-tariff/SOURCES.json",
+      "status": "added",
+      "additions": 30,
+      "deletions": 0,
+      "changes": 30,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fut3-concave-rank-tariff%2FSOURCES.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "5287fd5221d3d0b37421f5c17b78ec24981ecb3b",
+      "filename": "research/ut3-concave-rank-tariff/TASK.json",
+      "status": "added",
+      "additions": 149,
+      "deletions": 0,
+      "changes": 149,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FTASK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FTASK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fut3-concave-rank-tariff%2FTASK.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "43d8d7bd2946feb2fbdc13ccf402ff986b7e2e6f",
+      "filename": "research/ut3-concave-rank-tariff/VERIFY.json",
+      "status": "added",
+      "additions": 36,
+      "deletions": 0,
+      "changes": 36,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FVERIFY.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2FVERIFY.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fut3-concave-rank-tariff%2FVERIFY.json?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "244fe78a3d164a80640ab415ce186d039340f1dc",
+      "filename": "research/ut3-concave-rank-tariff/test_verify.py",
+      "status": "added",
+      "additions": 119,
+      "deletions": 0,
+      "changes": 119,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2Ftest_verify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2Ftest_verify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fut3-concave-rank-tariff%2Ftest_verify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
+    },
+    {
+      "sha": "8e1e7e4ed6f4763465dcaa8aeca58e0cd9d09d5c",
+      "filename": "research/ut3-concave-rank-tariff/verify.py",
+      "status": "added",
+      "additions": 249,
+      "deletions": 0,
+      "changes": 249,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2Fverify.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/8513ab11936831dc45305170357ce6d33098e4e5/research%2Fut3-concave-rank-tariff%2Fverify.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fut3-concave-rank-tariff%2Fverify.py?ref=8513ab11936831dc45305170357ce6d33098e4e5"
     }
   ]
 }
