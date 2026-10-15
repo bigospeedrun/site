@@ -1,0 +1,11 @@
+{
+  "number": 2321,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2321",
+  "title": "Prove the sharp COPY cost of the fixed P112 two-column completion",
+  "body": "PR2021 leaves open whether changing all nine factors of its displayed P112 two-column completion can improve COPY65. This package proves the sharp separate COPY-power minimum is `7*8^q + 7^q + 1` for every `0 < q <= 1`, and supplies an exact rational factorization attaining COPY64. For `q < 1` the optimum remains strictly worse than the original eight-rank-8 power bill; this is a fixed-completion result, with no κ or native-supplier claim.\n\nThe proof uses a complete, source-bound character-kernel classification and dual-basis compensation cases. The standalone standard-library package includes deterministic certificates, the attaining witness, an optimized read-only verifier and failure controls. Credit: commdata2338/PR2021, Arham Tahir/PR1591, bitplane/PR1652 and the retained root/decoder lineage.\n\nValidation: the written proof and exact witness received independent AI-agent review. The final 12-file patch applies cleanly to the original base and freshly fetched canonical main (both `0fdd7d82`); the registered package replay passes with Git 2.47.1 / Python 3.12.13, including optimized `-I -O -B` verification, 15 reason-specific rejection controls, detached read-only replay, invalid-write/no-output checks and a nonvacuous kernel-membership mutation. Certificate and witness hashes stayed unchanged through final corrections. No independent human review, proof-assistant formalization or hosted-CI result is claimed.\n\nReproduce: `python3 scripts/research_package.py --package research/p112-two-column-copy-optimum`.\n\nCanonical investigation: https://github.com/CrocSwap/integer-mult-bounds/discussions/2006#discussioncomment-18940755\n\nPrepared for Hanhong Zhao (@Hope7Happiness) with substantial OpenAI Codex, Claude Code and Gemini assistance.",
+  "created_at": "2026-10-15T05:14:48Z",
+  "updated_at": "2026-10-15T05:14:48Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
