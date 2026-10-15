@@ -4,8 +4,8 @@
   "title": "Research: one-skip Phase B rank-six census (no kappa change)",
   "body": "## Summary\n\nAdds an exact, source-pinned census of one-skipped-child rank-six block candidates in both Phase B orientations of the selected PR1087 provider.\n\n- For the PR #1866 `(3,1,1,1)->6` tensor, 67 raw five-child windows per orientation meet the rank/register conditions. Every raw window has intervening scalar events touching selected registers, so none satisfy the claimed no-buffer commutation rule.\n- Records exact GF(2) source and target frame-union bases for all raw candidates.\n- Even granting all 67 one-skip and 12 consecutive rank/register windows at zero added cost, the exact moment ceiling at 79 blocks stays below the five-percent target. The 134-fail/135-pass boundary controls are replayed.\n- This is a scoped Phase B result. It does not claim a selected-word construction, supplier, or new kappa.\n\n## Reproduction and checks\n\n- `python3 -I -O -B research/complex-rank6-one-skip-phaseb-seed21fe1e/verify.py` — passed locally on Python 3.14.7.\n- `python3 scripts/research_package.py --package research/complex-rank6-one-skip-phaseb-seed21fe1e --check-only` — passed.\n- The registered package replay requires Python 3.12, which is unavailable in this local environment; the package is registered for the repository's Python 3.12 CI replay.\n\nBase and all proof-relevant source pins are in `research/complex-rank6-one-skip-phaseb-seed21fe1e/SOURCES.json`. The live overlap refresh found this complementary to open PR #2124, which covers consecutive windows and leaves one-skip schedules open. Claim: https://github.com/CrocSwap/integer-mult-bounds/discussions/2119#discussioncomment-18937481.\n",
   "created_at": "2026-10-15T01:15:31Z",
-  "updated_at": "2026-10-15T01:15:31Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T18:20:48Z",
+  "closed_at": "2026-10-15T18:20:48Z",
+  "merged_at": "2026-10-15T18:20:48Z",
+  "state": "closed"
 }

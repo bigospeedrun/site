@@ -4,8 +4,8 @@
   "title": "Research: dyadic norm-six lattice decoder and 49-bit chart (no new kappa)",
   "body": "## Result and scope\n\nAlgebraic component only; **no new supplier or κ**. Adds `research/norm6-dyadic-decoder/` without changing the selected construction.\n\nFor the 26,208,000 minimum-vector lines of an extremal 48-dimensional even unimodular lattice, this proves:\n\n- a norm-one binary chart in dimension 49, with the correct forbidden-pair identity;\n- the fitting kernel `((x·y)^3−4(x·y))/192`;\n- an explicit 19,648-term dyadic factorization and an algebraic support-rank bill at most 962,752.\n\nMinimum six and the full shell cardinality remain published dependencies from Nebe / the Nebe–Sloane P48p catalogue. The package checks the exact Gram and positive LDL factorization; it does not enumerate the full shell. The missing side program, bit rail, physical copying, hosting and precision remain explicit open obligations.\n\n## Verification\n\n```sh\npython3 scripts/research_package.py --package research/norm6-dyadic-decoder\n```\n\nPassed locally on Python 3.12 / NumPy 1.26.4 / SymPy 1.12, including the registered optimized entry point: full symbolic coefficient comparison, binary chart, 676 sampled pairings and three mathematical mutations. Normal verification writes nothing. Hosted CI is separate and is not claimed green here.\n\n## Prior work and review\n\nThe incorporated Leech/PR598 and Niemeier investigations retain credit for polynomial-lattice kernels, dyadic integer features and the lattice direction. The addition is the explicit minimum-six construction and 49-bit chart, not a claim to originate polynomial kernels. `OVERLAP.md` records the complete open-PR metadata screen (453 initially, refreshed to 457), detailed related submissions, discussion coverage and limits. No matching norm-six/P48 package appeared in that screen; this is not a universal novelty guarantee.\n\nPrepared by Cinna Davis (@1337isnot1337) with substantial OpenAI Codex assistance. Apache-2.0; original mathematical/data attribution retained. No independent human review or full multiplication theorem formalization is claimed.\n",
   "created_at": "2026-10-15T00:28:32Z",
-  "updated_at": "2026-10-15T00:28:32Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T18:20:48Z",
+  "closed_at": "2026-10-15T18:20:48Z",
+  "merged_at": "2026-10-15T18:20:48Z",
+  "state": "closed"
 }
