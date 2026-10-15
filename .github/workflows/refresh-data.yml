@@ -79,7 +79,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Refresh reviewed leaderboard data'
           gh auth setup-git
-          git push origin "HEAD:$TARGET_BRANCH"
+          scripts/push-bot-commit.sh "$TARGET_BRANCH"
       - name: Post Discord record notifications
         id: records-send
         continue-on-error: true
@@ -100,7 +100,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Log accepted Discord record posts'
           gh auth setup-git
-          git push origin "HEAD:$TARGET_BRANCH"
+          scripts/push-bot-commit.sh "$TARGET_BRANCH"
       - name: Plan X record notifications
         id: x-plan
         continue-on-error: true
@@ -126,7 +126,7 @@ jobs:
             git commit -m 'Reserve X record posts before API delivery'
           fi
           gh auth setup-git
-          git push origin "HEAD:$TARGET_BRANCH"
+          scripts/push-bot-commit.sh "$TARGET_BRANCH"
       - name: Post X record notifications
         id: x-send
         if: ${{ steps.x-reserve.outcome == 'success' && steps.x-plan.outcome == 'success' }}
@@ -151,4 +151,4 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Log X record API delivery results'
           gh auth setup-git
-          git push origin "HEAD:$TARGET_BRANCH"
+          scripts/push-bot-commit.sh "$TARGET_BRANCH"
