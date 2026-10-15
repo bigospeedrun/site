@@ -1,0 +1,11 @@
+{
+  "number": 2208,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2208",
+  "title": "Research: all-word dirty-connector bounds and signed triangle",
+  "body": "Adds a scoped package proving all-word one- and two-root query-tariff lower bounds, including source-locality corrections, with matching 4M/3M asymptotics in F2 and characteristic zero under b~sqrt(2M), a=1, equal port tariffs and fixed finite transfer prices: a conditional 25% query-tariff saving.\n\nThe signed zero-sum triangle matches the F2 palette's source/read counts plus four paid transfers, with supporting minimum-source bounds, a minimum-read walk compiler whose transfer bill depends on its decomposition, signed dirty-cache constructions, exact receipts, independent replay and source-bound RAM benchmarks.\n\nCredits the six-transfer endpoint in [PR2065](https://github.com/CrocSwap/integer-mult-bounds/pull/2065) and the distinct fixed-port/two-call boundaries in [PR2182](https://github.com/CrocSwap/integer-mult-bounds/pull/2182) as supporting baselines rather than new claims, with the scientific work and review corrections archived in [Math PR9](https://github.com/conorholds/math/pull/9) and [Math PR11](https://github.com/conorholds/math/pull/11); substantial OpenAI Codex assistance and Apache-2.0 licensing are disclosed in the package.\n\nValidation passes all eight registered commands and 27 regression groups on Python 3.12.11, a fresh native census reproduces 71,856,432 assignments, and current-main metadata/pin checks pass; hosted CI and physical caller/stock/precision/tape admission remain unverified, with no multiplication-runtime or new-kappa claim.\n\n```sh\npython3.12 -B scripts/research_package.py --package research/bidirectional-connector\n```\n",
+  "created_at": "2026-10-14T23:54:03Z",
+  "updated_at": "2026-10-14T23:54:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
