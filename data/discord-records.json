@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-2474",
+        "leader": "crocswap-pr-2526",
         "records": [
           {
             "id": "openai-original-109",
@@ -3310,16 +3310,6 @@
             "bound": "O(n log^(1 - 0.0016797549561255445213) n)"
           },
           {
-            "id": "crocswap-pr-2169",
-            "score": "1673341928508063/1000000000000000000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "philippeVV"
-            ],
-            "bound": "O(n log^(1 - 0.001673341928508063) n)"
-          },
-          {
             "id": "crocswap-pr-2220",
             "score": "419938739031386130333917748480175644249577859625645073865081880040716137065081409706576414033211/250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
             "relation": "attained",
@@ -3488,6 +3478,16 @@
               "jeremykothe2"
             ],
             "bound": "O(n log^(1 - 0.001703676387993676) n)"
+          },
+          {
+            "id": "crocswap-pr-2526",
+            "score": "340742607851581/200000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "jeremykothe2"
+            ],
+            "bound": "O(n log^(1 - 0.001703713039257905) n)"
           }
         ]
       },
@@ -3909,5 +3909,14 @@
     "[\"integer-multiplication\",\"crocswap-pr-2435\",\"1698511343697629/1000000000000000000\",\"attained\"]:record",
     "[\"3sum\",\"direct-issue-14\",\"1921/1000\",\"attained\"]:record",
     "[\"apsp\",\"direct-pr-13\",\"59911217/20000000\",\"attained\"]:record"
+  ],
+  "deferred": [
+    {
+      "key": "[\"integer-multiplication\",\"crocswap-pr-2526\",\"340742607851581/200000000000000000\",\"attained\"]:record",
+      "slug": "integer-multiplication",
+      "authors": [
+        "jeremykothe2"
+      ]
+    }
   ]
 }

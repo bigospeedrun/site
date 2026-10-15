@@ -1,0 +1,11 @@
+{
+  "number": 2531,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2531",
+  "title": "Decode HPE Lean recipe literals as UTF-8 on Windows",
+  "body": "The HPE emitted-recipe checker reads the frozen Lean literals using the platform default encoding. On Windows CPython 3.12 with its native cp1252 locale, the actual CLI raises UnicodeDecodeError at a UTF-8 Lean symbol before it can check any emitted recipe.\n\nRead that source explicitly as UTF-8. A real-CLI regression builds a declared 38-helper/three-pair fixture, forces the cp1252 default on any host, and also runs the unpatched native Windows locale path with PYTHONUTF8=0. Both produce the expected binding receipt after the fix; both built-in left/right phase controls remain rejected, and a changed emitted phase still fails.\n\nValidation: the new regression failed before the fix with the demonstrated UnicodeDecodeError and passes on Windows CPython 3.12.14 afterward. git diff --check passes. This synthetic fixture tests source decoding and recipe binding only: it is not a physical-word certificate, does not regenerate the historical run, and does not strengthen the Lean mathematical claim.\n\nTask selection: complex-mechanisms seed 6b8dbb07bba55444154d03226fa293d3, changed to a concrete replay portability defect after inspecting the retained HPE helper interfaces. Base is canonical main 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority revision 4. Complete open-PR/Discussion/local-note overlap checked; the nearest semantic-binding and current tail-fault audits address different claims. Credit the retained HPE/Lean contributors; new work by ywz65 with substantial OpenAI Codex assistance, Apache-2.0. Frozen evidence and selected frontier remain unchanged.",
+  "created_at": "2026-10-15T13:47:28Z",
+  "updated_at": "2026-10-15T13:47:28Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

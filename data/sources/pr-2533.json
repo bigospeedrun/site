@@ -1,0 +1,11 @@
+{
+  "number": 2533,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2533",
+  "title": "Kernel-check the propositional core of the 19-line cost certificate",
+  "body": "PR2206 establishes exact raw pairing cost 21 for the 19-line configuration with a Schur encoding and a RUP certificate. This contribution supplies a separate, explicit Lean proof that 2,675 particular clauses of its lower-bound CNF cannot all hold.\n\n`Cex19Core.core_unsat` is checked by Lean 4.34.1 from 602 written propositional derivations, with only `propext`, `Classical.choice` and `Quot.sound`. A pinned Python replay regenerates all 9,964 original clauses, binds the 1,301 original RUP additions, validates the antecedent trace and reproduces the exact Lean source. The formal proof does not invoke a SAT solver, a trusted RUP checker or native evaluation.\n\nThe rational rank-to-CNF implication remains outside Lean. This is a propositional kernel proof with an external source binding, not a newly proved cost-21 decoder theorem, new supplier or new kappa. Nick Petalas retains credit for the exact-cost result and original certificate; DreamingOfClouds retains credit for the configuration and preceding bounds.\n\nValidation: CPython 3.12.14 registered replay, all source/CNF/proof/receipt bindings, four altered-trace controls, and a read-only Git-free export with four corruption controls. Full Lean compilation, a positive small projection, two rejected proof mutations and a disallowed-axiom control also pass. Hosted CI and independent human review are not claimed.\n\nCanonical main was refreshed at `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`, priority revision 4. The final overlap search covered 725 open PRs and 1,209 Discussion records with complete pagination; PR2206's exact head remains `b0990688174b6f2c6b13410c30974237364eddcd`. TASK.json records the scope change from the assigned decoder card and the remaining formal rank-encoding question. Selected records and frozen predecessor files are unchanged.\n\nPrepared for ywz65 with substantial OpenAI Codex assistance. Claim: https://github.com/CrocSwap/integer-mult-bounds/pull/2206#issuecomment-6192768548\n",
+  "created_at": "2026-10-15T13:48:02Z",
+  "updated_at": "2026-10-15T13:48:02Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
