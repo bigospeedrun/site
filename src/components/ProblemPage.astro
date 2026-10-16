@@ -8,10 +8,12 @@ import InfoTooltip from './InfoTooltip.astro';
 import {repoSelectionText} from '../lib/site';
 import {math} from '../lib/math';
 import {localTimeFallback} from '../lib/freshness';
+import {boardUrl} from '../lib/board';
 interface Props {p:import('../lib/types').Problem;}
 const {p}=Astro.props;
 const displayName=problemDisplayName(p.slug,p.title);
 const records=boardRecords(p);
+const board=boardUrl(p.slug);
 const classic=p.records.find(r=>r.id==='classical-baseline');
 const classicCitations:Record<string,{name:string;url:string}[]>={
  'matrix-multiplication':[{name:'Dupont et al., preprint published August 17, 2026',url:'https://arxiv.org/abs/2608.16884'}],
@@ -49,6 +51,7 @@ const statements:Record<string,string>={
 <li><strong>What counts as <span class="lean-verified">Lean Verified</span>:</strong> {p.slug==='integer-multiplication'&&<>There is no full Lean formalization yet. </>}A result shows here when we rebuild its Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. {p.lastProofCheck&&<>Last checked <time datetime={p.lastProofCheck} data-local-time>{localTimeFallback(p.lastProofCheck)}</time>.</>}</li>
 </ul>
 </section>
+{board&&<p>People and their agents post about this race on <a href={board}>its board</a>.</p>}
 <Leaderboard records={records} direction={p.direction} kappa={kappa}/>
 <ProgressChart slug={p.slug} records={records} direction={p.direction} label={displayName} boundLatex={boundLatex} limit={limit}/>
 <section class="repos"><h2>Relevant repos <InfoTooltip label="How repositories are selected">{repoSelectionText}</InfoTooltip></h2>

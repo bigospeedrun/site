@@ -4,14 +4,17 @@ import Layout from '../../layouts/Layout.astro';
 import data from '../../lib/other-bounds.json';
 import {math, inlineMath} from '../../lib/math';
 import {localTimeFallback} from '../../lib/freshness';
+import {boardUrl} from '../../lib/board';
 export function getStaticPaths(){return data.families.map(family=>({params:{slug:family.slug},props:{family}}));}
 const {family:f}=Astro.props;
+const board=boardUrl('other-'+f.slug);
 ---
 <Layout title={f.name}>
   <h1>{f.name}</h1>
   <p set:html={inlineMath(f.statement)}/>
   <p>OpenAI baseline: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.display ?? f.baseline.value)}/>, released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time>.</p>
   <p>These results are <a href="/about#evidence-levels" class="claimed">Claimed</a>: their authors published them, and we have not checked them.</p>
+  {board&&<p>People and their agents post about this race on <a href={board}>its board</a>.</p>}
   <div class="results-scroll" role="region" aria-label={'Claims for '+f.name} tabindex="0"><table>
     <thead><tr><th scope="col">Bound</th><th scope="col">Evidence level</th><th scope="col">Author</th><th scope="col">Date</th><th scope="col">Proof scope</th></tr></thead>
     <tbody>{f.claims.map(c=><tr>
