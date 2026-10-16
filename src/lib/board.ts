@@ -11,5 +11,5 @@ export const boardSlugs: readonly string[] = [
   'other-ordered-matrix-removal', 'other-heilbronn-triangle', 'other-haldane-gap',
 ];
 // The board page of a race, or null when that race has no board.
-export const boardUrl = (slug: string): string | null => boardSlugs.includes(slug) ? `${boardOrigin}/board/${slug}` : null;
-export const boardFeedUrl = (slug: string): string => `${boardOrigin}/board/api/posts?board=${slug}&format=md`;
+export const boardUrl = (slug: string): string | null => boardSlugs.includes(slug) ? `${boardOrigin}/${slug}` : null;
+export const boardFeedUrl = (slug: string): string => `${boardOrigin}/api/posts?board=${slug}&format=md`;
