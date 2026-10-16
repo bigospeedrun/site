@@ -1,23 +1,23 @@
 {
-  "sha": "3761b031e437ff18010773ecd518cbce9db746e8",
-  "node_id": "C_kwDOU-508toAKDM3NjFiMDMxZTQzN2ZmMTgwMTA3NzNlY2Q1MThjYmNlOWRiNzQ2ZTg",
+  "sha": "4b82082f901945f8d0314f143576c7ad31e021fc",
+  "node_id": "C_kwDOU-508toAKDRiODIwODJmOTAxOTQ1ZjhkMDMxNGYxNDM1NzZjN2FkMzFlMDIxZmM",
   "commit": {
     "author": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-16T05:49:54Z"
+      "date": "2026-10-16T06:16:40Z"
     },
     "committer": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-16T05:49:54Z"
+      "date": "2026-10-16T06:16:40Z"
     },
-    "message": "Integrate reviewed research PRs #2805, #2808, #2815\n\nOriginal authors and predecessor credit retained. Exact-head finite checks and claim limits are recorded in research/community-efficient1700-audit. No selected frontier change.",
+    "message": "Verify retained author heads and integration resolutions after tooling merge",
     "tree": {
-      "sha": "7f8db13670797f3f215ddaf6d630b896e92f5a4d",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/7f8db13670797f3f215ddaf6d630b896e92f5a4d"
+      "sha": "44a6b4a4883b7e4c44c122cb4b787d98a15b92b7",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/44a6b4a4883b7e4c44c122cb4b787d98a15b92b7"
     },
-    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/3761b031e437ff18010773ecd518cbce9db746e8",
+    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/4b82082f901945f8d0314f143576c7ad31e021fc",
     "comment_count": 0,
     "verification": {
       "verified": false,
@@ -27,9 +27,9 @@
       "verified_at": null
     }
   },
-  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/3761b031e437ff18010773ecd518cbce9db746e8",
-  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/3761b031e437ff18010773ecd518cbce9db746e8",
-  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/3761b031e437ff18010773ecd518cbce9db746e8/comments",
+  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/4b82082f901945f8d0314f143576c7ad31e021fc",
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/4b82082f901945f8d0314f143576c7ad31e021fc",
+  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/4b82082f901945f8d0314f143576c7ad31e021fc/comments",
   "author": {
     "login": "Mister-Meeseeks",
     "id": 18204987,
@@ -74,647 +74,38 @@
   },
   "parents": [
     {
-      "sha": "42552c97d1b0048360e48bf0257d5d21b64e2628",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/42552c97d1b0048360e48bf0257d5d21b64e2628",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/42552c97d1b0048360e48bf0257d5d21b64e2628"
-    },
-    {
-      "sha": "65da5e0c269346b00c2f389debfcb3a34d7590c6",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/65da5e0c269346b00c2f389debfcb3a34d7590c6",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/65da5e0c269346b00c2f389debfcb3a34d7590c6"
-    },
-    {
-      "sha": "b00b58e0db823643364f705b530faac254e7b05b",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/b00b58e0db823643364f705b530faac254e7b05b",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/b00b58e0db823643364f705b530faac254e7b05b"
-    },
-    {
-      "sha": "ea10ca564948033cc79105ba2a7c280ede5177c3",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/ea10ca564948033cc79105ba2a7c280ede5177c3",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/ea10ca564948033cc79105ba2a7c280ede5177c3"
+      "sha": "2d6bacd7f5969bc06171f0aa9cdfd1a703a80805",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/2d6bacd7f5969bc06171f0aa9cdfd1a703a80805",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/2d6bacd7f5969bc06171f0aa9cdfd1a703a80805"
     }
   ],
   "stats": {
-    "total": 8879,
-    "additions": 8879,
-    "deletions": 0
+    "total": 8,
+    "additions": 4,
+    "deletions": 4
   },
   "files": [
     {
-      "sha": "e7f06d19f45f8db8a041e712522a9551636fd7c5",
-      "filename": "research/covariant-transported-shear/README.md",
-      "status": "added",
-      "additions": 102,
-      "deletions": 0,
-      "changes": 102,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FREADME.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FREADME.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2FREADME.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
+      "sha": "0ccb4231b45dcbec696e3ba72cc5daa636a8b43e",
+      "filename": "research/community-efficient1600-audit/combined-source-integrity.json",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 3,
+      "changes": 6,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/4b82082f901945f8d0314f143576c7ad31e021fc/research%2Fcommunity-efficient1600-audit%2Fcombined-source-integrity.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/4b82082f901945f8d0314f143576c7ad31e021fc/research%2Fcommunity-efficient1600-audit%2Fcombined-source-integrity.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1600-audit%2Fcombined-source-integrity.json?ref=4b82082f901945f8d0314f143576c7ad31e021fc"
     },
     {
-      "sha": "5fd575f4fb4a26b15a3fdc353ea814cc81992433",
-      "filename": "research/covariant-transported-shear/RESULT.json",
-      "status": "added",
-      "additions": 475,
-      "deletions": 0,
-      "changes": 475,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FRESULT.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FRESULT.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2FRESULT.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "78b84270d528918711e9662d298754e9e9e499f6",
-      "filename": "research/covariant-transported-shear/SOURCES.json",
-      "status": "added",
-      "additions": 36,
-      "deletions": 0,
-      "changes": 36,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FSOURCES.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FSOURCES.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2FSOURCES.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "5fa3125b28d34ad59d5ffa05668d21b7d78f6870",
-      "filename": "research/covariant-transported-shear/TASK.json",
-      "status": "added",
-      "additions": 120,
-      "deletions": 0,
-      "changes": 120,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FTASK.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FTASK.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2FTASK.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "35af751d204ba58015baee1248c8a0b74c9f41eb",
-      "filename": "research/covariant-transported-shear/VALIDATION.json",
-      "status": "added",
-      "additions": 27,
-      "deletions": 0,
-      "changes": 27,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FVALIDATION.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FVALIDATION.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2FVALIDATION.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "9b46f522c739ace1d4ee2c3ec2e574a08b390f97",
-      "filename": "research/covariant-transported-shear/VENDOR.json",
-      "status": "added",
-      "additions": 36,
-      "deletions": 0,
-      "changes": 36,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FVENDOR.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FVENDOR.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2FVENDOR.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "348b8472b839f68826bb937f5fdbfa33d757474b",
-      "filename": "research/covariant-transported-shear/VERIFY.json",
-      "status": "added",
-      "additions": 43,
-      "deletions": 0,
-      "changes": 43,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FVERIFY.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2FVERIFY.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2FVERIFY.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "d6a4d106b734c2799db826cb56527c2266d98077",
-      "filename": "research/covariant-transported-shear/core.py",
-      "status": "added",
-      "additions": 231,
-      "deletions": 0,
-      "changes": 231,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fcore.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fcore.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fcore.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "724ddc8d784bf1a2efd5f08120a1c7d4228ede21",
-      "filename": "research/covariant-transported-shear/independent.py",
-      "status": "added",
-      "additions": 172,
-      "deletions": 0,
-      "changes": 172,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Findependent.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Findependent.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Findependent.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "f852780e476194a5312a596d2a21fe846873bd0d",
-      "filename": "research/covariant-transported-shear/test_contract.py",
-      "status": "added",
-      "additions": 102,
-      "deletions": 0,
-      "changes": 102,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Ftest_contract.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Ftest_contract.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Ftest_contract.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "55e435654c2405efedd4395136778c6f9c9fc671",
-      "filename": "research/covariant-transported-shear/vendor/pr2742/NOTICE.md",
-      "status": "added",
-      "additions": 39,
-      "deletions": 0,
-      "changes": 39,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2FNOTICE.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2FNOTICE.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2FNOTICE.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "fc5db4333a86a27548be80ec573bab1c45e8ef2d",
-      "filename": "research/covariant-transported-shear/vendor/pr2742/PROOF.md",
-      "status": "added",
-      "additions": 256,
-      "deletions": 0,
-      "changes": 256,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2FPROOF.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2FPROOF.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2FPROOF.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "29fb16f77455f2947c57b89f758fda240766492a",
-      "filename": "research/covariant-transported-shear/vendor/pr2742/algebra.py",
-      "status": "added",
-      "additions": 70,
-      "deletions": 0,
-      "changes": 70,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Falgebra.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Falgebra.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Falgebra.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "9aae1bbba8737e3f157122e226a68dc50c60d2a6",
-      "filename": "research/covariant-transported-shear/vendor/pr2742/circuit.py",
-      "status": "added",
-      "additions": 92,
-      "deletions": 0,
-      "changes": 92,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fcircuit.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fcircuit.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fcircuit.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "68479bcb7e149afe4ea6a8c025cb07e53df77c4b",
-      "filename": "research/covariant-transported-shear/vendor/pr2742/native_check.py",
-      "status": "added",
-      "additions": 91,
-      "deletions": 0,
-      "changes": 91,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fnative_check.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fnative_check.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fnative_check.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "057f6aad0d663df3a3f61e054c9ca3ac0391098b",
-      "filename": "research/covariant-transported-shear/vendor/pr2742/source.py",
-      "status": "added",
-      "additions": 154,
-      "deletions": 0,
-      "changes": 154,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fsource.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fsource.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fvendor%2Fpr2742%2Fsource.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "5228f51b6e19229c3131dbc628da250b089e053c",
-      "filename": "research/covariant-transported-shear/verify.py",
-      "status": "added",
-      "additions": 162,
-      "deletions": 0,
-      "changes": 162,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fverify.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fcovariant-transported-shear%2Fverify.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcovariant-transported-shear%2Fverify.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "b987247a1d33101924f7e882acc44d80af3f419f",
-      "filename": "research/selected-layout-numerical-lifetime/PROOF.md",
-      "status": "added",
-      "additions": 153,
-      "deletions": 0,
-      "changes": 153,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FPROOF.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FPROOF.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FPROOF.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "cb282cf25f8c6d0d771f8645414032f83d2016ed",
-      "filename": "research/selected-layout-numerical-lifetime/README.md",
-      "status": "added",
-      "additions": 113,
-      "deletions": 0,
-      "changes": 113,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FREADME.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FREADME.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FREADME.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "a4b7779661b9d729a725f6f805470d6809651072",
-      "filename": "research/selected-layout-numerical-lifetime/RESULT.json",
-      "status": "added",
-      "additions": 1268,
-      "deletions": 0,
-      "changes": 1268,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FRESULT.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FRESULT.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FRESULT.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "93c16649c6a4e190348c939e61f915f3c65cf207",
-      "filename": "research/selected-layout-numerical-lifetime/SNAPSHOT.json",
-      "status": "added",
-      "additions": 86,
-      "deletions": 0,
-      "changes": 86,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FSNAPSHOT.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FSNAPSHOT.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FSNAPSHOT.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "853ce1d5306e420d9b3acdce4cec44395ddb4623",
-      "filename": "research/selected-layout-numerical-lifetime/SOURCES.json",
-      "status": "added",
-      "additions": 18,
-      "deletions": 0,
-      "changes": 18,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FSOURCES.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FSOURCES.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FSOURCES.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "d5a399429ea1d476f70fd962e070c1016f5de3ba",
-      "filename": "research/selected-layout-numerical-lifetime/TASK.json",
-      "status": "added",
-      "additions": 145,
-      "deletions": 0,
-      "changes": 145,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FTASK.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FTASK.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FTASK.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "c3e4ea18c5c7cc99c09035ad3eb35052625310b3",
-      "filename": "research/selected-layout-numerical-lifetime/VALIDATION.md",
-      "status": "added",
-      "additions": 93,
-      "deletions": 0,
-      "changes": 93,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FVALIDATION.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FVALIDATION.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FVALIDATION.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "d705030a1af99845584fad38395b0f14664f0a6f",
-      "filename": "research/selected-layout-numerical-lifetime/VERIFY.json",
-      "status": "added",
-      "additions": 32,
-      "deletions": 0,
-      "changes": 32,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FVERIFY.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2FVERIFY.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2FVERIFY.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "8c0abd1a639176783011f544a18557fcd28415b1",
-      "filename": "research/selected-layout-numerical-lifetime/evidence/CALLER-ENTRY.md",
-      "status": "added",
-      "additions": 241,
-      "deletions": 0,
-      "changes": 241,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fevidence%2FCALLER-ENTRY.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fevidence%2FCALLER-ENTRY.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fevidence%2FCALLER-ENTRY.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "54f7df6288c2f09ba671b6fcc2d7deef4d9b59b3",
-      "filename": "research/selected-layout-numerical-lifetime/test_verify.py",
-      "status": "added",
-      "additions": 116,
-      "deletions": 0,
-      "changes": 116,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Ftest_verify.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Ftest_verify.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Ftest_verify.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "ef9f81510db86eaf2f0a7191d85e92a6db30ddc0",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/NOTICE.md",
-      "status": "added",
-      "additions": 49,
-      "deletions": 0,
-      "changes": 49,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2FNOTICE.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2FNOTICE.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2FNOTICE.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "6a14feac45094ae9156e8c2c982d6727544f180e",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/cardinal_counts.py",
-      "status": "added",
-      "additions": 55,
-      "deletions": 0,
-      "changes": 55,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcardinal_counts.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcardinal_counts.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcardinal_counts.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "b8ba857e32c5903408e1e61ff916300848b4a208",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/cardinality.py",
-      "status": "added",
-      "additions": 136,
-      "deletions": 0,
-      "changes": 136,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcardinality.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcardinality.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcardinality.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "81b48940ce222290a40d4fb349ce827f4788469d",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/counts.py",
-      "status": "added",
-      "additions": 57,
-      "deletions": 0,
-      "changes": 57,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcounts.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcounts.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fcounts.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "267d5ab98cd013ee82ba75e6d41609f1778af25f",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/layout.py",
-      "status": "added",
-      "additions": 63,
-      "deletions": 0,
-      "changes": 63,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Flayout.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Flayout.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Flayout.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "6d4ebca8398008375b8f4762d1a9f1514e8c2611",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/numeric.py",
-      "status": "added",
-      "additions": 189,
-      "deletions": 0,
-      "changes": 189,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fnumeric.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fnumeric.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fnumeric.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "4f00467a0ff580954ad2fd0c7380240c753ddef3",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/records.py",
-      "status": "added",
-      "additions": 271,
-      "deletions": 0,
-      "changes": 271,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Frecords.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Frecords.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Frecords.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "5e5a4bb0f98971447043e25d4dd6991bfc070389",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/stream.py",
-      "status": "added",
-      "additions": 163,
-      "deletions": 0,
-      "changes": 163,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fstream.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fstream.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fstream.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "efff281d4c4be5c1378e31404fbcc634fe4ade59",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/stream_runner.py",
-      "status": "added",
-      "additions": 112,
-      "deletions": 0,
-      "changes": 112,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fstream_runner.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fstream_runner.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fstream_runner.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "8d4ba37e2778acb35b34e0719df2caf138fbeb50",
-      "filename": "research/selected-layout-numerical-lifetime/vendor/words.py",
-      "status": "added",
-      "additions": 415,
-      "deletions": 0,
-      "changes": 415,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fwords.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fwords.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fvendor%2Fwords.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "0719ec054d1420e9a2bf2d84287a2efaef9fdf57",
-      "filename": "research/selected-layout-numerical-lifetime/verify.py",
-      "status": "added",
-      "additions": 350,
-      "deletions": 0,
-      "changes": 350,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fverify.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-layout-numerical-lifetime%2Fverify.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-layout-numerical-lifetime%2Fverify.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "2bddb5740bd791e54dfbfdf79e4796fca10da800",
-      "filename": "research/selected-outer-borrowing-wrapper/README.md",
-      "status": "added",
-      "additions": 112,
-      "deletions": 0,
-      "changes": 112,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FREADME.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FREADME.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2FREADME.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "6a0d962555bafc2a6ebd97216f288cec35ccefdb",
-      "filename": "research/selected-outer-borrowing-wrapper/RESULT.json",
-      "status": "added",
-      "additions": 283,
-      "deletions": 0,
-      "changes": 283,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FRESULT.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FRESULT.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2FRESULT.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "dd8b28f09d7c0539c02f25ebb4aebb328c22f661",
-      "filename": "research/selected-outer-borrowing-wrapper/SOURCES.json",
-      "status": "added",
-      "additions": 30,
-      "deletions": 0,
-      "changes": 30,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FSOURCES.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FSOURCES.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2FSOURCES.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "ada9c2f9f2ec9ed571a464cd3cf60c4c138a9095",
-      "filename": "research/selected-outer-borrowing-wrapper/TASK.json",
-      "status": "added",
-      "additions": 137,
-      "deletions": 0,
-      "changes": 137,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FTASK.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FTASK.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2FTASK.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "ea9573783e70eb3387240612921e9bc77bd34c53",
-      "filename": "research/selected-outer-borrowing-wrapper/VENDOR.json",
-      "status": "added",
-      "additions": 37,
-      "deletions": 0,
-      "changes": 37,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FVENDOR.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FVENDOR.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2FVENDOR.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "ec596c9a6f624922580346bea3635137272b3a1c",
-      "filename": "research/selected-outer-borrowing-wrapper/VERIFY.json",
-      "status": "added",
-      "additions": 32,
-      "deletions": 0,
-      "changes": 32,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FVERIFY.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2FVERIFY.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2FVERIFY.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "087189aed8f2f8c746307b330862c85bd3d0dcb4",
-      "filename": "research/selected-outer-borrowing-wrapper/checks.py",
-      "status": "added",
-      "additions": 350,
-      "deletions": 0,
-      "changes": 350,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fchecks.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fchecks.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fchecks.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "3da5d88c2a60f13c62375a45546db4fdafe75120",
-      "filename": "research/selected-outer-borrowing-wrapper/controls.py",
-      "status": "added",
-      "additions": 136,
-      "deletions": 0,
-      "changes": 136,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fcontrols.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fcontrols.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fcontrols.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "534309e47b6a43e5196ae6ff52cd8cb275bd112f",
-      "filename": "research/selected-outer-borrowing-wrapper/integration.py",
-      "status": "added",
-      "additions": 71,
-      "deletions": 0,
-      "changes": 71,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fintegration.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fintegration.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fintegration.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "1341d394481fb13beb826b944409b11083d8e7f8",
-      "filename": "research/selected-outer-borrowing-wrapper/outer.py",
-      "status": "added",
-      "additions": 233,
-      "deletions": 0,
-      "changes": 233,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fouter.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fouter.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fouter.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "84d0e8711efdbcd099825cae0dca08e30031b403",
-      "filename": "research/selected-outer-borrowing-wrapper/predecessor.py",
-      "status": "added",
-      "additions": 73,
-      "deletions": 0,
-      "changes": 73,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fpredecessor.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fpredecessor.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fpredecessor.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "ff5b01a48010ea5ac413ab7a533b0aae5c4dffa1",
-      "filename": "research/selected-outer-borrowing-wrapper/test_verify.py",
-      "status": "added",
-      "additions": 154,
-      "deletions": 0,
-      "changes": 154,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Ftest_verify.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Ftest_verify.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Ftest_verify.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "251a4c2f799946c3bcbbbbc09a7dc69b7a872269",
-      "filename": "research/selected-outer-borrowing-wrapper/vendor/pr2786/PREDECESSOR.json",
-      "status": "added",
-      "additions": 512,
-      "deletions": 0,
-      "changes": 512,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2FPREDECESSOR.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2FPREDECESSOR.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2FPREDECESSOR.json?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "ba471c87582947b4a4baf3ba917be872e5c919d7",
-      "filename": "research/selected-outer-borrowing-wrapper/vendor/pr2786/README.md",
-      "status": "added",
-      "additions": 94,
-      "deletions": 0,
-      "changes": 94,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2FREADME.md",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2FREADME.md",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2FREADME.md?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "0229304638de6c78ebc519b33a6ce34b1d396ca7",
-      "filename": "research/selected-outer-borrowing-wrapper/vendor/pr2786/padding.py",
-      "status": "added",
-      "additions": 135,
-      "deletions": 0,
-      "changes": 135,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fpadding.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fpadding.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fpadding.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "ef2d3434dd1bb4b63aba2b89d8c921bef634686c",
-      "filename": "research/selected-outer-borrowing-wrapper/vendor/pr2786/predecessor.tar.gz",
-      "status": "added",
-      "additions": 0,
-      "deletions": 0,
-      "changes": 0,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fpredecessor.tar.gz",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fpredecessor.tar.gz",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fpredecessor.tar.gz?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "6ae9fa66339757070150ca04b116edd1628f7904",
-      "filename": "research/selected-outer-borrowing-wrapper/vendor/pr2786/source.py",
-      "status": "added",
-      "additions": 97,
-      "deletions": 0,
-      "changes": 97,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fsource.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fsource.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fvendor%2Fpr2786%2Fsource.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
-    },
-    {
-      "sha": "d8234e19b69ef11b3f8ed8b498af18ac47b73496",
-      "filename": "research/selected-outer-borrowing-wrapper/verify.py",
-      "status": "added",
-      "additions": 60,
-      "deletions": 0,
-      "changes": 60,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fverify.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/3761b031e437ff18010773ecd518cbce9db746e8/research%2Fselected-outer-borrowing-wrapper%2Fverify.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fselected-outer-borrowing-wrapper%2Fverify.py?ref=3761b031e437ff18010773ecd518cbce9db746e8"
+      "sha": "48cc92e299780f6ecbadf31bafe0db6f8730b6d1",
+      "filename": "research/community-efficient1700-audit/combined-source-integrity.json",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/4b82082f901945f8d0314f143576c7ad31e021fc/research%2Fcommunity-efficient1700-audit%2Fcombined-source-integrity.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/4b82082f901945f8d0314f143576c7ad31e021fc/research%2Fcommunity-efficient1700-audit%2Fcombined-source-integrity.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/research%2Fcommunity-efficient1700-audit%2Fcombined-source-integrity.json?ref=4b82082f901945f8d0314f143576c7ad31e021fc"
     }
   ]
 }

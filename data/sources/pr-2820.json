@@ -4,8 +4,8 @@
   "title": "Research audit: exact widths for all 255 P104 survivor projections (seed 67, no new kappa)",
   "body": "## Status\nMathematical audit and finite proof extension, with no new kappa. This contribution builds on merged PR #1125 and its term-preserving terminal-read interface. It does not change the selected frontier.\n\n## Result\nClassifies all 255 nonempty survivor masks in 21 exact cube-automorphism orbits using antichain and chain-cover dual certificates. Removing two opposite cube vertices yields width 20; other two-vertex removals yield width 18. For three through seven removed terms, the widths are 10, 6, 3, 2, 1. The inherited inequality L >= q + 2 max(0, width(F_K) - P_K) now has exact width inputs for all deletion counts.\n\n## Verification\nRun from repository root:\npython3 -I -B research/p104-all-projections-seed67/verify.py\nExpected PASS_P104_ALL_PROJECTIONS orbits=21 subsets=255 negative_controls=10 no_new_kappa\n\nOptional SciPy independent matching checker:\npython3 -I -B research/p104-all-projections-seed67/independent_scipy.py\nExpected PASS_SCIPY_INDEPENDENT_MATCHING subsets=255 antipodal_pairs=4 no_new_kappa\n\n## Provenance, scope and credit\nSource certificate fixed to merged PR #1125 head 9f7c0679d64bab954b7161d8586dc626a59b92ee and blob 9a2cd574df48361579167e39aa6198f39059f70c. Research branch based on ce7ad1b6ab09452c3478723a2e96ed5ff212dc08; source snapshot is not an all-size proof. No changes to upstream/ or selected frontier. Prepared for @Chrisbryan17 with substantial GPT-6 assistance. Ali Romman authored the precursor #1125 theorem; earlier related work is #1071 and #968. Apache-2.0. Detailed proof, certificates, controls, and original PR body are in research/p104-all-projections-seed67/.",
   "created_at": "2026-10-15T23:42:57Z",
-  "updated_at": "2026-10-15T23:42:57Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T05:58:15Z",
+  "closed_at": "2026-10-16T05:58:14Z",
+  "merged_at": "2026-10-16T05:58:14Z",
+  "state": "closed"
 }
