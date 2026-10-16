@@ -4,8 +4,8 @@
   "title": "Bind T74 width-cap arithmetic execution to authenticated source bytes",
   "body": "The merged PR #2360 width-cap verifier authenticates `vendor/fine_moment.py`, but `SourceFileLoader.exec_module()` can execute a preexisting bytecode cache instead. A temporary export with unchanged pinned source and a matching timestamp `.pyc` executed a harmless sentinel under both normal and optimized `-I -B` Python. `-B` suppresses cache writes, not reads.\n\nRetain the bytes actually hashed and compile those same bytes into the arithmetic module. This covers direct and registered verifier calls and avoids reopening the source between authentication and execution.\n\nFour new regression controls exercise timestamp and unchecked-hash caches under normal and optimized Python. Each must reproduce the existing receipt and leave the source and cached bytes unchanged. The existing read-only export, no-clobber and source/receipt tamper controls remain.\n\nValidation on CPython 3.12.3: registered replay and a fresh committed archive outside Git both pass, including optimized execution and all eight export controls. Immutable inputs, vendored arithmetic, `DUAL.json` and `EXPECTED.json` are unchanged. The existing **b < 0.0016870** result is unchanged; this is not a higher κ or a selected-frontier change.\n\n```sh\npython3 scripts/research_package.py --package research/t74-low-alias-width-cap\n```\n\nCredit to ywz65's #2553 for general registered-runner cache isolation and David Arias C.'s #2766 for a related exact-source loader control. #2553 explicitly excludes direct verifier invocation and custom loaders; this fix closes that boundary for this certificate. The same correction is being applied to the open variable-frame certificate in #2406.\n\nPrepared by Jeremy Diviney with substantial OpenAI Codex assistance. No independent human review is claimed.\n",
   "created_at": "2026-10-15T21:56:31Z",
-  "updated_at": "2026-10-15T21:56:31Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T05:34:32Z",
+  "closed_at": "2026-10-16T05:34:31Z",
+  "merged_at": "2026-10-16T05:34:31Z",
+  "state": "closed"
 }
