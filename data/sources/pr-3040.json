@@ -1,0 +1,11 @@
+{
+  "number": 3040,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3040",
+  "title": "Rank-8 rigidity of the E8 pattern with arbitrary extra zeros after deleting any at most 8 lines (hypothesis (1) of Lemma RIGD; no kappa claim)",
+  "body": "Scope: pure matrix classification on the E8 unit; no kappa claim, no decoder cost. Extends #2864 Theorem RK (deleted set a clique) to every deleted set D with |D| <= 8: a rank <= 8 matrix on E8 \\ D with the forced orthogonality zeros, nonzero diagonal and all other entries free has no extra zero and equals D1 G D2 with D1, D2 invertible. This is hypothesis (1) of Lemma RIGD for |D| <= 8.\n\nMethod: restriction to ten local cores (27 to 38 lines) whose zero-pattern models are UNSAT (kissat, drat-trim VERIFIED); W(E8) is transitive on ordered non-orthogonal pairs (6720) so the pair is fixed and W(E6) (order 51840) acts on the cores; an exhaustive search shows no D with |D| <= 8 meets every image. A second exhaustive search shows no D with |D| <= 8 spoils all 2025 frames (needed for the iff-pattern-implies-Gram step). Both searches exist in two independent implementations, with controls.\n\nVerification: `bash research/e8-rank8-rigidity-small-deletions/verify.sh` (default about 15 CPU-minutes; FULL=1 adds the complete independent searches in chunks under 20 minutes). `PROOF_MAP.md` maps every claim to its check.\n\nNot claimed: R1 for an arbitrary number of extra zeros stays open (the P/A/Sigma/S steps without the per-line budget of #2864). The zero-pattern model's soundness is inherited from #2864 and not re-proved here.\n\nCredit: philippeVV (R1/R2/R3, Discussion #1587); #1212 (rank-8 rigidity, iff pattern); #2864 and #2819 (model and frame calculus).\n\nPrepared by DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code; Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-16T20:14:52Z",
+  "updated_at": "2026-10-16T20:14:52Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
