@@ -7,6 +7,7 @@ import {formatReply, safeLink} from './chat-format.ts';
 import type {Problem, RecordEntry} from './types.ts';
 import otherBounds from './other-bounds.json' with {type: 'json'};
 import {otherBoundLeader} from './other-leader.ts';
+import {problemLinks} from './navigation.ts';
 
 const knowledge = createKnowledge([], '2026-10-10T09:00:00Z');
 knowledge.pages = {'/': 'Home', '/about': 'The FAQ explains how to submit a result.'};
@@ -281,4 +282,11 @@ test('the chat accepts an Other bounds page as the visitor page and ignores unkn
   await (await handler(request({messages, page: '/other/quasi-riemann'}))).text();
   await (await handler(request({messages, page: '/other/not-a-row'}))).text();
   assert.match(systems[0], /reading \/other\/quasi-riemann\./); assert.match(systems[1], /reading \/\./);
+});
+
+test('knowledge lists the problems in the order of the Problems menu (the race board copies it)', () => {
+  const problem = (slug: string) => ({slug, title: slug, scope: '', symbol: 'exponent', direction: 'lower-is-better', lastDataCheck: '2026-10-16', records: []}) as unknown as Problem;
+  const shuffled = ['3sum', 'unlisted', 'subset-sum', 'integer-multiplication', 'directed-sssp', 'apsp', 'exact-dft', 'matrix-multiplication'].map(problem);
+  assert.deepEqual(createKnowledge(shuffled, '2026-10-16').problems.map(p => p.path),
+    [...problemLinks.map(([slug]) => '/' + slug), '/unlisted']);
 });

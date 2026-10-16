@@ -3,6 +3,7 @@ import {ranked, boundPrecision, tableBound} from './ranking.ts';
 import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, type EvidenceLevel} from './evidence.ts';
 import {verifierUrl, verifierProblems, discordUrl, submitChannel} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
+import {problemLinks} from './navigation.ts';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -74,7 +75,10 @@ function contributeRoutes(problems: Problem[]) {
 export function createKnowledge(problems: Problem[], updatedAt: string,
   boardRecords = (p: Problem) => p.records.filter(r => isBoardEntry(p.slug, r)),
   otherBounds: OtherBoundsData = {checkedAt: updatedAt, families: []}): ChatKnowledge {
-  const boards = problems.filter(p => p.slug !== 'directed-sssp');
+  // In the site's order (the Problems menu); a problem not in that menu goes last. The race
+  // board (bigospeedrun/board scripts/sync-boards.ts) lists its boards in this order.
+  const rank = (p: Problem) => { const i = problemLinks.findIndex(([slug]) => slug === p.slug); return i < 0 ? problemLinks.length : i; };
+  const boards = problems.filter(p => p.slug !== 'directed-sssp').sort((a, b) => rank(a) - rank(b));
   return {
     updatedAt, pages: {}, evidence: evidenceLevels,
     otherBounds: {
