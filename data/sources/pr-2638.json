@@ -4,8 +4,8 @@
   "title": "Reuse authenticated gate tables in the packed selected checker",
   "body": "The independent PR1781 packed checker repeatedly rebuilds 512-entry P/D gate tables. This opt-in adapter reuses Charles Bethin's existing PR662 table recurrences in that packed kernel, while leaving frozen source files unchanged and retaining the full 2,896-child / 224-adapter / 512-column checker, global phases, source bindings, calibrations and semantic controls. PR2329 already integrates these tables into the production state evaluator; this is the distinct packed all-column path, not a new table algorithm.\n\nAll 14 runtime inputs are authenticated before predecessor code executes, then replayed from captured bytes in a private snapshot. Exactly three checked source edits substitute table values; caches hold at most 64 immutable tables each and no state or acceptance results. A companion receipt binds the transformed kernel explicitly. The unchanged legacy header names the original kernel source and is retained only for exact comparison.\n\nValidation: the complete audit compares every entry of 5,140 distinct P tables and 3,721 distinct D tables with the original scalar formulas (4,536,832 exact comparisons). Four fresh serial native CPython3.12.7 runs reproduce byte-identical legacy result/receipt bytes: baseline68.905/84.857s and candidate31.266/31.677s, a2.44x median wall-time ratio on this shared Windows host. Individual runs and scope limits are retained in BENCHMARK.json; no portable performance guarantee or speed acceptance threshold is claimed. Registered optimized replay, eight source/cache/fault control groups, Git-free export/non-overwrite checks and independent AI review are recorded with exact source pins.\n\nNo selected result, production interpreter, default command, supplier, executor bridge or multiplication-theorem obligation is changed. Scope, recurrence equivalence, source/receipt boundary, reproduction commands, attribution and open questions are in research/packed-clifford-gate-tables. Prepared by ywz65 with substantial OpenAI Codex assistance, including separate agent review.\n",
   "created_at": "2026-10-15T16:35:33Z",
-  "updated_at": "2026-10-15T16:35:33Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T03:22:12Z",
+  "closed_at": "2026-10-16T03:22:12Z",
+  "merged_at": "2026-10-16T03:22:12Z",
+  "state": "closed"
 }
