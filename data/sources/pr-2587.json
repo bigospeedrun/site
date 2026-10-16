@@ -4,8 +4,8 @@
   "title": "Prove exact mixed Q8 tariff with arbitrary dirty workspace",
   "body": "PR #2248 leaves open whether arbitrary restored dirty workspace can beat its three-role Q8 minima. This contribution proves a uniform sharp tariff for every finite role count and every diagonal target drawn from `{1,i,j,z=-1}`: with `t` central targets and `s_i,s_j` generator targets, the exact paid count is `2t+s_i+s_j`. At positive label prices `alpha,beta`, the exact bill is `alpha*s_i+beta*s_j+2t*min(alpha,beta)`.\n\nThe proof combines full group-algebra coefficient image/row support with a separate first-order quotient and Sylvester's inequality. Coordinate calls attain the lower bound. It credits Cinna Davis's existing #2248 finite 5/6 minima and #2047 arbitrary-register one-central result, Aaron Wang's Q8 model, the related #1573 rank-nullity method, and the retained scalar-span lineage. Exact predecessor texts and source hashes are included.\n\nValidation: registered CPython3.12.7 replay and three behavioral test groups pass. A separate agent reviewed the proof/code and replayed under optimized CPython3.12.14. The certificate checks 1,047 fixtures and all39,448 input columns through both formal eight-coefficient matrices and independent faithful regular matrices,448 arbitrary word prefixes,270,759 Sylvester matrix pairs, and six semantic controls. Tests reject changed endpoints, dirty leakage, false weighted optimality, source drift, missing evidence, incomplete fixtures, typed receipt changes, and overwrite attempts.\n\nScope is scalar free `GL_r(F2)` mixing and paid rank-one idempotent calls labeled only `i,j`, with arbitrary dirty inputs and complete identity restoration. This is a written formal-model theorem, not a native supplier, selected cold replay, or new kappa. Canonical main remains `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`; complete overlap snapshots and the15:27UTC bounded pre-submission refresh are recorded in `TASK.json`. Prepared by ywz65 with substantial OpenAI Codex assistance; Apache-2.0. No independent human review claimed.\n",
   "created_at": "2026-10-15T15:32:12Z",
-  "updated_at": "2026-10-15T15:32:12Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T00:56:17Z",
+  "closed_at": "2026-10-16T00:56:17Z",
+  "merged_at": "2026-10-16T00:56:17Z",
+  "state": "closed"
 }

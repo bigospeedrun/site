@@ -4,8 +4,8 @@
   "title": "Preserve assertion checks across parallel verifier entry points",
   "body": "The script and snapshot parallel verification entry points inherited PYTHONOPTIMIZE. With level 1 or 2, a direct assertion failure and a nested interpreter assertion failure were silently accepted as successful workers. Remove only that variable from their child environments, preserving explicit -O controls and the parent environment.\n\nThe repair covers scripts/run_parallel.py and the make descendant environment in scripts/verify_parallel.py together. It also replaces the self-disabling assert __debug__ gate in scripts/verify_complex741_parallel.py with an explicit pre-source-read rejection of -O/-OO. It extends PR1299's registered-replay protection and PR1852's isolated-test protection to the remaining parallel entry points; neither predecessor repaired these two boundaries. PR2035's separate Windows memory-budget scope does not overlap this change.\n\nValidation on CPython 3.12.14: four new real-process regression tests pass, including the actual snapshot/process/failure path (Python substitutes for make); four nearest existing worker/snapshot/input-validation tests and all 15 complex741 scheduler/receipt tests pass. Before the repair the direct/nested failure test failed at both optimization levels because no failures were reported. The fixture delegates cleanup to TemporaryDirectory to isolate a pre-existing Windows read-only Git-object cleanup problem. Full make group suites and selected cold replay were not run.\n\nTask selection: independent-verification / independent-moment, seed 0d5b0c8905ab1ef28729a70870516597, changed explicitly to a verifier failure-propagation audit. Base/current main 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority revision 4. Fresh open PR title/body overlap checked; Discussion API remains rate-limited, with partial public start-here/handoff snapshots read. No mathematical result or selected-frontier change.\n\nCredit eumemic's PR154 parallel runner lineage, cbethin's PR1299, and woklerx's PR1852. New work by ywz65 with substantial OpenAI Codex assistance, Apache-2.0.",
   "created_at": "2026-10-15T12:42:09Z",
-  "updated_at": "2026-10-15T12:51:09Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T00:56:17Z",
+  "closed_at": "2026-10-16T00:56:17Z",
+  "merged_at": "2026-10-16T00:56:17Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Supply a norm-preserving unit-phase product with a uniform error bound",
   "body": "PR2298 section 6 uses a unit-phase product that preserves operand norm with error below 4h; PR2413 notes that this contract is not explicitly tied to the cited analytic lemma. This package supplies a sufficient executable integer kernel and uniform proof: inward phase extraction from a certified dyadic rectangle of component width at most h/2, followed by exact integer multiplication and inward product rounding. For every p>=1 and disk input, norm does not increase and error is below sqrt(25/2)h<4h.\n\nMason Hale's PR2313 inward quantizer and phase enclosure code are retained byte-for-byte with credit. The new composition proof and exact <4h interface are distinct. Phase containment is an explicit mathematical input contract; narrow width alone does not authenticate the intended phase. Linear projection cost is restricted to dyadic endpoints; arbitrary rational conversion, fast phase generation, physical tapes and outer complexity remain separate. No source defect, supplier admission or kappa is claimed.\n\nValidation on CPython3.12.14: registered optimized replay, 50,064 exhaustive rational-phase products, 1,581 actual root enclosures / 12,648 products, five semantic controls, Git-free relocation and three actual source/receipt/rounding corruptions pass. A separate AI proof review confirmed the norm/error proof; its dyadic-encoding cost clarification is incorporated. No independent human or hosted CI pass is claimed.\n\nMain 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2 and exact PR2298/2313 heads rechecked unchanged. Priority revision 4; OS nonce c9c074d0ef1f2471d750251b45b22056, adversarial-audit / uniform-transfer-audit. Complete overlap cache 710 PRs and 1207 Discussion records checked exact mechanism terms with no warnings. Only research/inward-unit-phase-contract is added. Credit Jose Manuel, Sagar Thakrar, Mason Hale, Harvey and van der Hoeven and the retained source07/08 lineage. Prepared for ywz65 with substantial OpenAI Codex assistance, Apache-2.0.\n",
   "created_at": "2026-10-15T13:39:30Z",
-  "updated_at": "2026-10-15T13:39:30Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T00:56:17Z",
+  "closed_at": "2026-10-16T00:56:17Z",
+  "merged_at": "2026-10-16T00:56:17Z",
+  "state": "closed"
 }

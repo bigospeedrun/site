@@ -4,8 +4,8 @@
   "title": "Keep Unicode coverage labels from aborting registered replay on legacy consoles",
   "body": "Valid UTF-8 `VERIFY.json` coverage text such as `Verify κ → ∑ and café 🚀` aborts the registered runner at its `CHECK` print under strict cp1252/ASCII output, before the verifier runs. Apply the existing overlap helper's display policy to the runner's own stdout: escape unrepresentable characters while retaining its encoding. Child encoding/environment, commands, source pins and mathematical checks remain unchanged.\n\nThe new real-Git public-CLI regression fails on the unmodified runner for cp1252 and ASCII, and passes after the fix. It checks UTF-8 preservation, child strict-output policy, success markers, child exit7, pin-drift rejection and a Unicode missing-path diagnostic. CPython3.12.14: all67 research-tool tests pass, with3 existing Linux/proc-only tests skipped on Windows. Separate AI patch review found no actionable issue; no hosted CI or full scientific replay is claimed.\n\nStarts from refreshed canonical main `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`, priority4. Picker nonce `bddca01f5ef217509065498948a8a64a`, portable-replay scope `831cc1a3c8f9ff01b197`, refined to this reproduced output failure. The task, exact repro and provenance are in `docs/research/replay-console-portability.md`. Claim: https://github.com/CrocSwap/integer-mult-bounds/discussions/1200#discussioncomment-18950766. Substantial OpenAI Codex assistance; no selected frontier or frozen-source change.\n\nFinal overlap: 751 open PRs and 1,216 Discussion records, complete pagination and no warnings at 2026-10-15 14:10:12 UTC. Prior PR1298/1834 decoding and overlap-report fixes remain credited; this is the execution coverage-label output boundary.\n",
   "created_at": "2026-10-15T14:11:37Z",
-  "updated_at": "2026-10-15T14:11:37Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T00:56:18Z",
+  "closed_at": "2026-10-16T00:56:18Z",
+  "merged_at": "2026-10-16T00:56:17Z",
+  "state": "closed"
 }

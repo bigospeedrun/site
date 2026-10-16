@@ -4,8 +4,8 @@
   "title": "Keep dependency validation and registered replay consistent",
   "body": "Metadata validation treats an omitted requirements list as empty, but replay indexes the absent key and raises KeyError before executing a valid package. Validation also accepts two exact versions of the same distribution, an environment contract that cannot be satisfied.\n\nNormalize the accepted empty default in the in-memory validated manifest and reject conflicting per-distribution pins. Contributor manifest bytes are not rewritten. Existing exact-version installation/checking and child failure propagation stay in place.\n\nValidation: before the fix, omitted lists raise KeyError with and without installation enabled, and both conflicting-version controls are accepted. Afterward, generated pinned-package fixtures replay successfully with omitted/empty lists in both install modes; failing children still reject. Distinct-distribution pins remain accepted. Required research tooling suite passes 67 tests with 3 pre-existing Linux-only skips on Windows CPython 3.12.14. All 450 current ready manifests were scanned; none has conflicting per-distribution pins. git diff --check passes. No full mathematical replay or dependency installation was performed.\n\nTask selection: recursive-interfaces seed 60fc06b8f8417be93f0978cec9e0f702, changed to a concrete replay-contract defect. Current canonical main 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority revision 4; complete PR/Discussion/local-note overlap checked. Credit Douglas Colkitt and retained research-package runner contributors. New work by ywz65 with substantial OpenAI Codex assistance, Apache-2.0. No frozen scientific evidence or selected frontier changes.",
   "created_at": "2026-10-15T13:41:15Z",
-  "updated_at": "2026-10-15T13:41:15Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T00:56:17Z",
+  "closed_at": "2026-10-16T00:56:17Z",
+  "merged_at": "2026-10-16T00:56:17Z",
+  "state": "closed"
 }
