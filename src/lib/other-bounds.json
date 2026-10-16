@@ -1028,6 +1028,28 @@
           ],
           "proofScope": "No Lean proof is supplied.",
           "bound": "\\mathrm{AS}(f)\\le 3.83d\\sqrt n"
+        },
+        {
+          "author": "Anchen0823",
+          "handle": "Anchen0823",
+          "value": "1881/500",
+          "display": "3.762",
+          "date": "2026-10-16T12:50:15Z",
+          "dateSource": "https://github.com/Anchen0823/average-sensitivity-lean/commit/b2e634415548e050c115f6f12732d8b6b4a5d27f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Anchen0823/average-sensitivity-lean/blob/a0d88dedd8e56f371e40bf1dfcd533afb51e3d04/README.md",
+          "lean": true,
+          "leanNote": "A Lean statement and proof are supplied; no site rerun.",
+          "evidence": "claimed",
+          "note": "The one-sided coupling refinement is due to Lagdive, Aglave and Damre (the 3.83 result). This repository proves it in Lean and extracts the sharper coefficient \\(1881/500=3.762\\). The author states that OpenAI Codex assisted the proof development.",
+          "authors": [
+            {
+              "name": "Anchen0823",
+              "url": "https://github.com/Anchen0823"
+            }
+          ],
+          "proofScope": "The supplied Lean theorem polynomial_bound_3762_general proves \\(\\mathrm{AS}(\\operatorname{sign}p)\\le\\frac{1881}{500}d\\sqrt n\\) for every real polynomial \\(p\\) of total degree at most \\(d\\) in \\(n\\) variables, with \\(n\\ge1\\), \\(d\\ge1\\) and \\(\\operatorname{sign}(0)=1\\), on the definitions of OpenAI’s challenge file; it needs neither \\(d\\le n\\) nor a multilinear \\(p\\). The author’s CI built it and printed only the standard axioms. No site rerun.",
+          "bound": "\\mathrm{AS}(f)\\le 3.762d\\sqrt n"
         }
       ],
       "repos": [
@@ -1037,7 +1059,7 @@
           "note": "The dimension-dependent refinements are separate."
         }
       ],
-      "bestHandle": "log-prathm"
+      "bestHandle": "Anchen0823"
     },
     {
       "family": "160",
