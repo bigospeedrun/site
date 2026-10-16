@@ -4,8 +4,8 @@
   "title": "Research: certified format ceilings for Eisenstein/Gaussian/Hurwitz E8 copy floors (no κ claim)",
   "body": "**Research note and tooling. No κ claim and no word.** Contributed by Rohan Guliani (@Rohansguliani), with substantial AI assistance.\n\nBuilds on the extension-ring E8 floors already proved: #620 (screen), #703 (Hurwitz cost exactly 10), #738/#770/#767 (Gaussian floor 40), #798 (Eisenstein cost ≥22, open in [22,40]) and #765. It does not re-prove them. It turns them into **certified B_K format ceilings** using the unchanged `research/format-limits-corrected` engine.\n\n## Findings\n- **The outer assembly is saturated.** The selected κ equals a/(1+a) for the binding complex supplier to a relative 1.4e-16. So ring, transform length, resampling and Fürer/SS/HvdH-type outer changes can gain at most a factor 1+a ≈ 1.0016.\n- **Eisenstein bit side.** A decoder of cost ≤24 would give a ceiling above 1/99 (cost 24: X ≤ 1.150e-2; cost 25: X ≤ 1.0053e-2). Cost ≤28 still beats the realised E8 bit unit (6.000e-3). Coordinate-total decoders cost at least 28 (new exact clique bound), so only non-coordinate decoders inside #798's open interval could matter.\n- **Gaussian floor 40** gives X ≤ 7.688e-3. **Hurwitz** gives no positive saving for s ≤ 13.\n- **Complex side (argued).** An Eisenstein complex unit has an F₄ window of at least ω = 7, which gives X ≤ 8.07e-3 even at cost 22. The current complex unit caps at 5.19e-3. So the label-field route cannot give κ > 0.01 in the B_K format, though it could still give a several-fold ceiling rise if a cost ≤24 bit decoder exists.\n\n## Reproduce\n`python3 -B research/label-field-census/census.py --json out.json` runs in about 4 minutes with numpy only and reproduces `RESULT.json`. Not covered: s ≥ 15, non-coordinate decoders in the clique table, realisability of Q(ω) frames, and helper/hosting/analytic obligations.\n",
   "created_at": "2026-10-13T05:55:43Z",
-  "updated_at": "2026-10-14T04:34:06Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T09:08:59Z",
+  "closed_at": "2026-10-16T09:08:58Z",
+  "merged_at": "2026-10-16T09:08:58Z",
+  "state": "closed"
 }
