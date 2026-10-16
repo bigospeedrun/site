@@ -1,0 +1,11 @@
+{
+  "number": 3087,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3087",
+  "title": "Implement encoded physical Gaussian monomial phases",
+  "body": "I implement the physical Gaussian phase/monomial boundary left open by #3055. I accumulate repeated phases from encoded addresses, traverse each fixed-width signed coefficient field, and compose affine gates through one reusable Compact inventory. I preserve borrowed input, enforce the phase-specific signed guard and return owned work blank.\n\nI give a quantified source-relative endpoint and cost argument in `research/physical-gaussian-monomial/PROOF.md`. I charge phase preparation, complete component traversal, Compact repair and returned-port disposal, with separate bounds for borrowed descriptors and retained backing storage. At one column I avoid scanning the unused G descriptor.\n\nI passed all eight registered cold commands on Python 3.12.13/macOS arm64 at 23:04 UTC: 1,344 signed pairs, 580 encoded phase cases, complete generic and selected packets, the 2,048-record K=2/rho=1 rectangle, later-field rejection/reuse and eight failure controls. Arithmetic and rejection controls also passed with assertions disabled. Reproduce with Python 3.12:\n\n```sh\npython3.12 scripts/research_package.py --package research/physical-gaussian-monomial\n```\n\nI retain #2250's affine/Compact work, AAAmirinu's #2378 signed/coordinate refinement, Gareth Davidson/bitplane's #2422 record composition, ywz65's #2534 selected-child fixture, and the physical ordinary/Compact sources in #2899/#3055. I preserve their frozen archives and notices and pin 20 live inputs. Jose Manuel (`jmbarrancoml`), with substantial OpenAI Codex assistance, including analysis subagents.\n\nScope: I provide this physical primitive under its named predecessor contracts. I leave complete recursive coefficient arithmetic, child/private lifetimes, root precision admission and formal machine refinement open. I claim no new exponent or independent verification and retain the selected frontier.\n\nCanonical coordination: https://github.com/CrocSwap/integer-mult-bounds/discussions/2238#discussioncomment-18984090\n",
+  "created_at": "2026-10-16T23:05:07Z",
+  "updated_at": "2026-10-16T23:05:07Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
