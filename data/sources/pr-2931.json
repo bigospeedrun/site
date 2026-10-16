@@ -4,8 +4,8 @@
   "title": "Audit: native stage 3 lands in stage 2's stopped range",
   "body": "## Summary\n- For the selected native receipt, `s*L3 - L2 > 1015784602045963452130`. A width `w >= e^s` at `e >= 2^L3` therefore sits above stage 2's cutoff.\n- The same `s` reproduces the published stage-2 integer `floor(s*L2 - L1) = 2851485324488315`. Replacing `L3` by `L2` makes the difference negative.\n- The stock coefficient stays null. An external factor of 1 and a hoisted routing factor are not separated. `ceil(log2(8*8194)) = 17` is only a comparison with the recorded stage-3 headroom.\n\nNo new kappa and no selected-frontier change. Seed `7eb97eef6bda950f3a69b03c7259617f`, scope key `eee4a5467dd91c47ef45`, base `8c8bcecb03def61bca701dd3b045932d39c48022`. Claim: https://github.com/CrocSwap/integer-mult-bounds/discussions/2929\n\nThe native stage-2 handoff is https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-18949652. Overlap on 2026-10-16 covered 469 open PRs and 1609 discussions. This is the next cutoff pair named there, not another first-stage BIT coefficient.\n\n## Test plan\n- [x] `python3 -B research/stage3-stock-margin/verify.py` prints `PASS_STAGE3_STOCK_MARGIN stage=3 margin=1015784602045963452130 routing_room=1701909188404384116 coefficient=unresolved stage2_margin_reproduced=true`\n- [x] `python3 -B scripts/research_package.py --package research/stage3-stock-margin --check-only`\n- [x] Python 3.12 registered replay: `PASS_REGISTERED_RESEARCH_PACKAGE research/stage3-stock-margin outcome=negative-result`\n- [ ] Selected baseline was not rerun: this sparse checkout does not contain the assembly roots that check needs. Selected kappa is unchanged. The selected-record sha256 on this main is `bb2eaa58647b353f88d0aec2eafb9d30df1be53589231b23e12ceef3e4bad129`.\n\n## Limits\nThe margin does not choose a coefficient. The complex `m=73` supplier and stages 4–7 are untouched. Predecessor credit for the stage-2 split stays with that handoff.\n\nPrepared by Riquelme Soares (@hevlyo) with substantial AI assistance. Apache-2.0.\n",
   "created_at": "2026-10-16T12:19:58Z",
-  "updated_at": "2026-10-16T12:20:40Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T13:54:38Z",
+  "closed_at": "2026-10-16T13:54:38Z",
+  "merged_at": "2026-10-16T13:54:37Z",
+  "state": "closed"
 }

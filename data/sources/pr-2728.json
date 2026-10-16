@@ -4,8 +4,8 @@
   "title": "Formalize the selected BIT split-residual retractions and conjugation interface",
   "body": "PR2195 supplies the written split-rank factorization for selected BIT local-ring residuals. This contribution kernel-checks the explicit block formula, its left/right retractions, image correspondence and injectivity, plus involution and additive coordinate-conjugation behavior.\n\nThe abstract proof requires additive maps and VB=id; only involution additionally requires C²=id. Concrete selected matrices, scalar-linearity instantiation, determinant-unit lifting and a dimension/rank-library theorem remain external. The formal result is retractions and image correspondence, not a claim that the full supplier or every selected matrix is certified.\n\nValidation: Lean 4.34.1 compiles the full source with warnings-as-errors and audits 14 roots against standard axioms; four material proof mutations and a genuinely compiled forbidden-axiom declaration are rejected. Registered Python 3.12 checks 252 exact ring cases (42 positive-rank/zero-trace cases), conjugated identities, five premise/boundary controls and four Git-free CLI groups. The generic Python hook does not automatically run Lean; the explicit live command is documented and was run. Independent agent review found no issue; no human review claimed.\n\nCredits Jose Manuel/jmbarrancoml PR2195, original head 3a1cf78a1ba6322129e42d80c50d21765524d612, and its retained lineage. Source PROOF.md is byte-identical to that head. Scientific base 21ec98bf; current diff base ab4fcd39, unchanged guidance. Claim: https://github.com/CrocSwap/integer-mult-bounds/pull/2195#issuecomment-6199233287. Bounded live/local overlap and stale Discussion coverage are recorded in TASK.json.\n\nOnly research/lean-split-residual is added. No selected cold replay, hosted CI, new supplier or kappa. Substantial OpenAI Codex assistance. Reproduce: python3.12 scripts/research_package.py --package research/lean-split-residual; add the documented verifier --lean executable command for the kernel audit.\n",
   "created_at": "2026-10-15T18:34:28Z",
-  "updated_at": "2026-10-15T18:34:28Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T13:54:38Z",
+  "closed_at": "2026-10-16T13:54:37Z",
+  "merged_at": "2026-10-16T13:54:37Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Conditional κ = 0.001676855229071321886144: finer 1e-24 kappa grid on PR1319's 74-replica exact-fill construction (same construction, only the final grid is refined)",
   "body": "## Summary\n\nConditional κ = **0.001676855229071321886144**. PR1319's construction is unchanged (same provider words, owners, dispatch, plan, admission engines and controls). The strict outer assembler's final kappa grid is refined from 1e-18 to 1e-24 (the three grid expressions in code/assemble.py, as in the merged PR1019). With the same exact margin the 47 strict outer inequalities hold at the finer floor and the next grid point is rejected, so kappa moves from 0.001676855229071321 to 0.001676855229071321886144. No construction improvement is claimed.\n\n## Verification\n\nFresh checkout of `7b6b538212812e01c45a51966837598a197a799b`. Manifest: `f1f755c1ca745fc222fbb2627fe4cae8f6ff1d050b4c425b1e66da410f4347c6`.\nPASS package manifest: 152 files\n\nThe package's own unchanged `verify.py` (retained PR1297 provider and parent admission, owner reconstruction, parent lift, strict T74 admission with the 1e-24 outer kappa grid, geometry controls): `PASS_T74_EXACT_FILL_COMPLETE_FINITE_ADMISSION 0.001676855229071321886144`; native reuse {'base': 'e8e6e78ff7422275c38324499e1f33fb2ecd30de9503aef2b8f1ee80d8c4df8e', 'extra': '7b0e9fbda32749aabc7e156d9fe09bceb0624a178628fe69e5dfea783462f905'}\n\nFull package-owned verification passed in 380.78 seconds. The fresh receipt binds the exact package manifest and score.\n\nSee `research/gmx-t74-grid24/README.md` for reproduction commands and proof qualifications.\n\n## Credits\n\nPR1319 (rohanarun, 74-replica exact fill) and PR1297 (rohanarun, four cold kernels 531/543/555/567); the finer-grid assembler refinement follows the merged PR1019. Builds on PR1286/PR1274 (helper-donor cold kernels), PR1193 (jeremydiviney, mixed-provider flow), PR1148 (Thomas DiFiore) and the retained lineage named in PR1319. Research direction, prioritisation and release strategy: jeremykothe2. Implementation assistance: oh-my-pi.\n",
   "created_at": "2026-10-13T23:46:56Z",
-  "updated_at": "2026-10-14T06:46:56Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T14:06:50Z",
+  "closed_at": "2026-10-16T14:06:50Z",
+  "merged_at": "2026-10-16T14:06:50Z",
+  "state": "closed"
 }

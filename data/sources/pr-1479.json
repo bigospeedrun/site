@@ -4,8 +4,8 @@
   "title": "Conditional κ = 0.001676855229071321: finer certified endpoints (1e-120) and deeper outer witness on PR1424 (46 bootstrap steps, eta=beta=1e-124, kappa grid 1e-67); construction unchanged",
   "body": "## Summary\n\nConditional κ = **0.001676855229071321886206456772274592619512448739510475262803365191**. PR1424's construction is unchanged. The certified complex endpoints (native and conservative) are refined from the inherited 1e-24 bracket to 1e-120: the retained engines still certify the 1e-24 bracket, and finer-constant copies of both rational engines certify accept at the endpoint and reject at endpoint+1e-120. The outer witness settings are deepened (bootstrap steps 46, eta = beta = 1e-124, backoff 1e-127, final kappa grid 1e-67) and the decimal fields are exact. kappa moves from 0.001676855229071321886206381217337893 to 0.001676855229071321886206456772274592619512448739510475262803365191.\n\n## Verification\n\nFresh checkout of `0a211a4608d2c3d295f8bb94b12ca446714186ab`. Manifest: `a82029f4b6410de6bebd156b16d92395d662b9411d564808d92195d70552b124`.\nPASS package manifest: 159 files\n\nThe package's own unchanged `verify.py` (retained PR1297 provider and parent admission, owner reconstruction, parent lift, strict T74 admission with the 1e-24 outer kappa grid, geometry controls): `PASS_T74_EXACT_FILL_COMPLETE_FINITE_ADMISSION 0.001676855229071321886206456772274592619512448739510475262803365191`; native reuse {'base': 'e8e6e78ff7422275c38324499e1f33fb2ecd30de9503aef2b8f1ee80d8c4df8e', 'extra': '7b0e9fbda32749aabc7e156d9fe09bceb0624a178628fe69e5dfea783462f905'}\n\nFull package-owned verification passed in 138.44 seconds. The fresh receipt binds the exact package manifest and score.\n\nSee `research/gmx-t74-ep120/README.md` for reproduction commands and proof qualifications.\n\n## Credits\n\nPR1424, PR1319 and PR1297 (rohanarun: outer witness refinement, 74-replica exact fill, four cold kernels 531/543/555/567); PR1377 finer kappa grid and PR1274 helper-donor kernel (jeremykothe2); PR1286, PR1193 (jeremydiviney), PR1148 (Thomas DiFiore), PR1195/1196 and the retained lineage named in those packages. Research direction, prioritisation and release strategy: jeremykothe2. Implementation assistance: oh-my-pi.\n",
   "created_at": "2026-10-14T01:26:06Z",
-  "updated_at": "2026-10-14T15:28:07Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T14:06:50Z",
+  "closed_at": "2026-10-16T14:06:50Z",
+  "merged_at": "2026-10-16T14:06:50Z",
+  "state": "closed"
 }
