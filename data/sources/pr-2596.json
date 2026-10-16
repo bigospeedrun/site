@@ -4,8 +4,8 @@
   "title": "Research: bound dirty endpoint error through frozen rounded powers",
   "body": "Prove a uniform endpoint error bound for the actual PR628 classical rounded dirty-array leaves. Freezing their rounded coefficient powers gives a linear shadow with global additive defect; the four-subword commutator cancels the linear contribution of arbitrary borrowed values. For n factors, L=4R/betaÂ², the shadow defect is at most n L^(nâˆ’1)Â·8R u/betaÂ², and comparison with the exact ordered product adds the explicitly bounded coefficient-power perturbation.\n\nThe README proves the all-length/all-ordered-tree statement. An exact checker authenticates and executes unchanged PR628 source bytes, then compares an independent Fraction shadow and the source's dense inverse oracle. Python 3.12 registered replay and optimized Python 3.12/3.14 runs pass 216 leaf cases, 180 complete compositions and 6 controls, with huge helper/input values, restoration and inverse checks. Controls retain actual dirt-dependent output and the failure of using ideal powers as a uniform shadow. Git-free relocation, read-only verification, source mutation and receipt mutation checks are documented.\n\nThis concerns endpoint data rounding with immutable parameters and unbounded integers. It does not remove coefficient preparation, integer magnitude, overflow, phase nonaliasing or bit-reversible implementation obligations; no supplier or Îº claim. Credit remains with chafreaky's PR628, the PR663/Lean nonlinear identity, and the earlier generic fanout and cubic-precision notes.\n\nStarted from current canonical main 0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2, priority 4, and passed the prescribed binding baseline. Task draw, exact source pins, overlap coverage/limitations and open next questions are retained in the package. Prepared by ywz65 with OpenAI Codex assistance. Root and a second worker independently reviewed the proof/source; no hosted CI result is claimed.\n",
   "created_at": "2026-10-15T15:41:45Z",
-  "updated_at": "2026-10-15T16:13:49Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T02:19:19Z",
+  "closed_at": "2026-10-16T02:19:19Z",
+  "merged_at": "2026-10-16T02:19:19Z",
+  "state": "closed"
 }

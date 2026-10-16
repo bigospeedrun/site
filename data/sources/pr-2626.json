@@ -4,8 +4,8 @@
   "title": "Research: prove exact fixed-reader typed-window fusion costs",
   "body": "## Summary\n\nProve the exact fixed-reader typed-window fusion tariff for arbitrary finite call words. PR2595's gross 48-record window saving does not give the same net saving under both reader contracts.\n\n```text\nrepeated word (0,1,2,0,1)\n  fixed readers:         1,616 separate -> 1,672 joint, 56 extra\n  phase-indexed readers: 1,456 separate -> 1,408 joint, 48 saved\n```\n\nThe formula charges the extra cross-boundary frame alignment. It agrees with PR2595's pinned machine receipt, preserves its valid legal per-call k=2 schedules, and states the missing native and recursive interfaces explicitly. Credit Aaron Wang's PR2595/2464, Cinna Davis's PR1391/1410 and phase-indexed family, Ross Richardson's PR1287/2500, and Sagar Thakrar's PR1227.\n\nCanonical investigation and handoff: https://github.com/CrocSwap/integer-mult-bounds/discussions/2610. Base canonical main `0fdd7d82`, priority revision 4. Only `research/typed-window-fusion-audit/` changes.\n\n## Evidence\n\n- Before: PR2595's prose describes the same 48-record residual in both families; its own receipt reports the fixed-reader joint cost as 1,672.\n- After: an all-length proof gives `saving = 16*shared_octets - 2*cross_boundary_alignment`. A separate four-state DP checks 3,279 words, the fusion identity checks 14,400 ordered pairs, and a code-disjoint integer interpreter reproduces seven complete invoices on all 56 dirty columns with per-call boundaries and literal inverses. Seven behavioral groups include semantic corruption and invalid-mode controls.\n- Registered CPython 3.12 replay, CPython 3.14 development/optimized runs, Ruff diagnostics and whitespace checks pass. Reproduce with `python3.12 -B scripts/research_package.py --package research/typed-window-fusion-audit`.\n\n## Merge Danger\n\n**Door:** two-way.\n\n**Blast Radius:** research.\n\nScoped to the declared literal canonical macro tariff. No native embedding, supplier admission, physical-cost optimum or new kappa is claimed. Selected frontier, frozen predecessors and upstream sources are unchanged; their cold replay was not run.\n",
   "created_at": "2026-10-15T16:17:51Z",
-  "updated_at": "2026-10-15T16:17:51Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T02:19:19Z",
+  "closed_at": "2026-10-16T02:19:18Z",
+  "merged_at": "2026-10-16T02:19:18Z",
+  "state": "closed"
 }
