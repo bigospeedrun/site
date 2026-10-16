@@ -301,6 +301,28 @@
           ],
           "proofScope": "Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
           "bound": "\\theta\\le 0.874840"
+        },
+        {
+          "author": "Zhongpai Gao",
+          "handle": "Gaozhongpai",
+          "value": "218709/250000",
+          "display": "0.874836",
+          "date": "2026-10-16T06:08:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/62",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/b5e69ce575f43a72ec49ed690f1afb76d919f925/submissions/gao-directional-affine-20261016/src/Candidate/Main.lean#L8-L12",
+          "lean": true,
+          "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it while the PR was still open; no independent rerun.",
+          "evidence": "claimed",
+          "note": "Open PR #62 when listed. It uses the accepted 0.874840 bound (PR #60) for one range of the argument.",
+          "authors": [
+            {
+              "name": "Zhongpai Gao",
+              "url": "https://github.com/Gaozhongpai"
+            }
+          ],
+          "proofScope": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it while the PR was still open; no independent rerun.",
+          "bound": "\\theta\\le 0.874836"
         }
       ],
       "repos": [
@@ -696,6 +718,28 @@
           ],
           "proofScope": "The supplied Lean code proves the rational-approximation bounds for all sufficiently large natural denominators and all integer numerators, with exponents 878 and 2632. The author reports that both pass Lean’s main kernel and the standard-axiom audits; the independent-kernel and comparator checks are pending. No site rerun. The author’s CI did not run for this commit.",
           "bound": "\\mu(G)\\le 878"
+        },
+        {
+          "author": "S. Litsey",
+          "handle": "slitsey",
+          "value": "759",
+          "display": "759",
+          "date": "2026-10-16T08:12:01Z",
+          "dateSource": "https://github.com/slitsey/catalan-irrationality-measure/commit/d7b66aef1525f4177c6dd99df359f7a82d8222ec",
+          "dateKind": "first-stated",
+          "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/d7b66aef1525f4177c6dd99df359f7a82d8222ec/README.md",
+          "lean": true,
+          "leanNote": "Lean statements and proofs are supplied for both exponents; no site rerun.",
+          "evidence": "claimed",
+          "note": "The prime-number-theorem argument gives the exponent \\(373706640/492599\\approx 758.64\\), so \\(\\mu(G)\\le 759\\). With Chebyshev bounds in the last step, the argument gives \\(\\mu(G)\\le 2276\\), but that version still uses the prime number theorem in two other steps. The README credits the new lemma to Claude (Anthropic) working with Sean Litsey.",
+          "authors": [
+            {
+              "name": "S. Litsey",
+              "url": "https://github.com/slitsey"
+            }
+          ],
+          "proofScope": "The supplied Lean code proves the rational-approximation bounds for all sufficiently large natural denominators and all integer numerators, with exponents 759 and 2276. The author reports that both pass Lean’s main kernel and the standard-axiom audits; the independent-kernel and comparator checks are pending. No site rerun. The author’s CI had not finished for this commit when we listed it.",
+          "bound": "\\mu(G)\\le 759"
         }
       ],
       "repos": [
