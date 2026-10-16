@@ -3,7 +3,7 @@ import {ranked, boundPrecision, tableBound} from './ranking.ts';
 import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, type EvidenceLevel} from './evidence.ts';
 import {verifierUrl, verifierProblems, discordUrl, submitChannel} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
-import {problemLinks} from './navigation.ts';
+import {problemLinks, problemDisplayName} from './navigation.ts';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -20,7 +20,7 @@ export interface OtherBoundsData {
 export interface ChatKnowledge {
   updatedAt: string;
   pages: Record<string, string>;
-  problems: {path: string; title: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string}[];
+  problems: {path: string; title: string; name: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string}[];
   otherBounds: {about: string; list: string; checkedAt: string; rows: ReturnType<typeof otherBoundRows>};
   contribute: ReturnType<typeof contributeRoutes>;
   evidence: typeof evidenceLevels;
@@ -98,7 +98,8 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
           sources: r.evidence,
         }));
       return ({
-      path: '/' + p.slug, title: p.title, scope: p.scope, updatedAt: p.lastDataCheck,
+      // name: the short name of the landing table and the Problems menu (the race board uses it).
+      path: '/' + p.slug, title: p.title, name: problemDisplayName(p.slug, p.title), scope: p.scope, updatedAt: p.lastDataCheck,
       baseline: p.records.find(r => r.id === 'classical-baseline')?.bound ?? null,
       current: leaders(records),
       currentByEvidence: Object.fromEntries(evidenceLevels.map(level => [level.name, leaders(records.filter(r => r.evidenceLevel === level.id))])),

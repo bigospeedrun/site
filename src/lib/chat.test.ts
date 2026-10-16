@@ -289,4 +289,6 @@ test('knowledge lists the problems in the order of the Problems menu (the race b
   const shuffled = ['3sum', 'unlisted', 'subset-sum', 'integer-multiplication', 'directed-sssp', 'apsp', 'exact-dft', 'matrix-multiplication'].map(problem);
   assert.deepEqual(createKnowledge(shuffled, '2026-10-16').problems.map(p => p.path),
     [...problemLinks.map(([slug]) => '/' + slug), '/unlisted']);
+  // name: the landing table's name (the race board's title); a problem off the menu keeps its title.
+  assert.deepEqual(createKnowledge(shuffled, '2026-10-16').problems.map(p => p.name), [...problemLinks.map(([, label]) => label), 'unlisted']);
 });
