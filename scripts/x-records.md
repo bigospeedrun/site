@@ -50,3 +50,6 @@ live. The API log is separate from the browser poster's state.
 Signing reference and public test fixture:
 https://docs.x.com/fundamentals/authentication/oauth-1-0a/creating-a-signature
 JSON body fields are excluded from OAuth signature parameters.
+
+As of 2026-10-16, accepted Discord entries of both tables reach X, so Other bounds leaders
+post too, with the Discord planner's limit of one post per race every three hours.

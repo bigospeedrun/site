@@ -1,6 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength} from './records-feed.ts';
+import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength,otherFeedBoard,plainTex} from './records-feed.ts';
+import type {OtherClaim,OtherRow} from './records-feed.ts';
 import type {FeedSnapshot,FeedBoard,FeedRecord} from './records-feed.ts';
 const row=(id='a',evidence='Claimed',score='1/1000'):FeedRecord=>({id,evidence,score,relation:'attained',authors:['Alice'],bound:plainBound('exact-dft',score)});
 const board=(records=[row()],leader='a'):FeedBoard=>({slug:'exact-dft',name:'Fourier Transform',url:'https://bigospeedrun.com/exact-dft',leader,records});
@@ -327,4 +328,57 @@ test('all six boards send one compact colored embed and keep exact accepted and 
   assert.equal(posts[0].text,entry.content);assert.equal(posts[0].x_text,xMessage(b,b.records[0]));
   assert.equal(posts[0].key,entry.key);
  }
+});
+
+// Other bounds rows (the landing page's second table).
+const claim=(handle:string,value:string,name=handle):OtherClaim=>({handle,value,display:value,bound:`\\theta\\le ${value}`,evidence:'claimed',date:'2026-10-16T00:00:00Z',authors:[{name}]});
+const otherRow=(claims:OtherClaim[],best:string):OtherRow=>({slug:'quasi-riemann',name:'Quasi-Riemann hypothesis',bestHandle:best,claims});
+const both=(...boards:FeedBoard[]):FeedSnapshot=>({schema_version:1,boards});
+test('an Other bounds row becomes a feed board with its own slug, table, leader and plain bound',()=>{
+ const b=otherFeedBoard(otherRow([claim('alice','0.8749'),claim('bob','0.8748')],'bob'));
+ assert.equal(b.slug,'other-quasi-riemann');assert.equal(b.table,'other-bounds');assert.equal(b.url,'https://bigospeedrun.com/other/quasi-riemann');
+ assert.equal(b.leader,'bob:0.8748');assert.equal(b.records[1].bound,'θ ≤ 0.8748');assert.equal(b.records[1].evidence,'Claimed');
+ assert.equal(plainTex('W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/9}'),'W_r(k) > k^(k floor(log_2r)/9)');
+ assert.equal(plainTex('\\mathbb{E}[R]\\ge \\frac{1}{2}\\mathbb{E}[\\mathrm{OPT}]'),'E[R] ≥ 1/2 E[OPT]');
+ assert.equal(plainTex('\\mathrm{AS}(f)\\le 3.762d\\sqrt n'),'AS(f) ≤ 3.762d sqrt(n)');
+});
+test('Other bounds boards are seeded on first sight: old leaders never post, a later leader posts to its table',()=>{
+ const main=board();const start=Date.parse('2026-10-16T00:00:00Z');
+ const before=baseline(both(main));   // the state before this deploy has no Other bounds boards
+ const seeded=plan(before,both(main,otherFeedBoard(otherRow([claim('alice','0.8749')],'alice'))),[],start);
+ assert.deepEqual(seeded.messages,[]);
+ assert.ok(seeded.state.reserved.includes('["other-quasi-riemann","alice:0.8749","0.8749","attained"]:record'));
+ const next=both(main,otherFeedBoard(otherRow([claim('alice','0.8749'),claim('bob','0.8748')],'bob')));
+ const result=plan(seeded.state,next,[],start+60000);
+ assert.equal(result.messages.length,1);assert.equal(result.messages[0].table,'other-bounds');
+ assert.match(result.messages[0].content,/\*\*Quasi-Riemann hypothesis\*\* \| `θ ≤ 0\.8748` \| by bob \| Claimed \| \[bigospeedrun\.com\/other\/quasi-riemann\]/);
+ assert.match(result.messages[0].x_text!,/Problem: Quasi-Riemann hypothesis\nNew value: θ ≤ 0\.8748\nPlayer: bob/);
+ assert.equal(plan(result.state,next,[],start+120000).messages.length,0);
+ // Big O boards keep posting their first leader as before (no seeding).
+ assert.equal(plan(baseline(both()),both(main)).messages.length,1);
+});
+test('Other bounds: at most one post per race every 3 hours, whoever leads; a deferred leader posts later',()=>{
+ const start=Date.parse('2026-10-16T00:00:00Z');
+ const a=claim('alice','0.8749'),b=claim('bob','0.8748'),c=claim('carol','0.8747');
+ const seeded=plan(baseline(both()),both(otherFeedBoard(otherRow([a],'alice'))),[],start).state;
+ const first=plan(seeded,both(otherFeedBoard(otherRow([a,b],'bob'))),[],start);
+ assert.equal(first.messages.length,1);
+ const posts=appendRecordPost([],first.messages[0],new Date(start).toISOString());
+ // A different author within 3 hours is deferred (on Big O boards, author lists have separate clocks).
+ const second=plan(first.state,both(otherFeedBoard(otherRow([a,b,c],'carol'))),posts,start+3600000);
+ assert.equal(second.messages.length,0);assert.equal(second.state.deferred?.length,1);
+ assert.equal(plan(second.state,both(otherFeedBoard(otherRow([a,b,c],'carol'))),posts,start+10800000-1).messages.length,0);
+ const later=plan(second.state,both(otherFeedBoard(otherRow([a,b,c],'carol'))),posts,start+10800000);
+ assert.equal(later.messages.length,1);assert.ok(later.messages[0].key.includes('carol'));assert.equal(later.state.deferred,undefined);
+ // A deferred leader that lost the lead does not post.
+ const lost=plan(second.state,both(otherFeedBoard(otherRow([a,b,c],'bob'))),posts,start+10800000);
+ assert.equal(lost.messages.length,0);
+});
+test('delivery sends each table to its own channel webhook and needs the second one only for Other bounds',async()=>{
+ const urls:string[]=[];const send=async(url:unknown,options:any)=>{urls.push(String(url));assert.equal(JSON.parse(options.body).embeds[0].color,String(url).includes('/2/')?0x64748B:0x06B6D4);return new Response('',{status:200});};
+ const messages=[{key:'["exact-dft","a","1","attained"]:record',content:'A'},{key:'["other-quasi-riemann","b","1","attained"]:record',content:'B',table:'other-bounds' as const}];
+ assert.deepEqual(await deliver('https://discord.com/api/webhooks/1/main',messages,send as typeof fetch,undefined,'https://discord.com/api/webhooks/2/other'),{sent:2,failed:0});
+ assert.deepEqual(urls,['https://discord.com/api/webhooks/1/main?wait=true','https://discord.com/api/webhooks/2/other?wait=true']);
+ await assert.rejects(deliver('https://discord.com/api/webhooks/1/main',messages,send as typeof fetch),/Other bounds/);
+ assert.deepEqual(await deliver('https://discord.com/api/webhooks/1/main',[messages[0]],send as typeof fetch),{sent:1,failed:0});
 });

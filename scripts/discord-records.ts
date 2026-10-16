@@ -18,15 +18,19 @@ async function main(){
   const result=await deliver(process.env.DISCORD_RECORDS_WEBHOOK??'',messages,fetch,entry=>{
    posts=appendRecordPost(posts,entry,new Date().toISOString());
    write(postsPath,posts);
-  });
+  },process.env.DISCORD_RECORDS_OTHER_WEBHOOK);
   console.log(`Discord records: ${result.sent} sent, ${result.failed} failed. Reserved events will not be sent twice.`);
   if(result.failed)process.exitCode=1;
   return;
  }
- const snapshot:FeedSnapshot=read('dist/records-feed.json');
+ let snapshot:FeedSnapshot=read('dist/records-feed.json');
  if(mode==='baseline'){write(statePath,baseline(snapshot));console.log('Saved initial records feed baseline; no posts.');return;}
  if(!['plan','dry-run'].includes(mode)||!batch)throw new Error('Expected baseline, plan BATCH, dry-run BATCH or send BATCH');
  const previous:FeedState=read(statePath);
+ // Without the #records-other-bounds webhook, the Other bounds boards keep their previous
+ // state: nothing is reserved for them, and they are planned once the webhook exists.
+ if(mode==='plan'&&!process.env.DISCORD_RECORDS_OTHER_WEBHOOK)snapshot={...snapshot,boards:[
+  ...snapshot.boards.filter(b=>b.table!=='other-bounds'),...previous.snapshot.boards.filter(b=>b.table==='other-bounds')]};
  const posts:RecordPost[]=existsSync(postsPath)?read(postsPath):[];
  const result=plan(previous,snapshot,posts);
  if(mode==='dry-run'){for(const m of result.messages)console.log(m.content);console.log(`${result.messages.length} planned messages; no writes or posts.`);return;}

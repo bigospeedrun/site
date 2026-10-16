@@ -64,6 +64,7 @@ jobs:
         continue-on-error: true
         env:
           DISCORD_RECORDS_WEBHOOK: ${{ secrets.DISCORD_RECORDS_WEBHOOK }}
+          DISCORD_RECORDS_OTHER_WEBHOOK: ${{ secrets.DISCORD_RECORDS_OTHER_WEBHOOK }}
         run: node --experimental-strip-types scripts/discord-records.ts plan "$RUNNER_TEMP/discord-records.json"
       - name: Commit changed data only
         env:
@@ -86,6 +87,7 @@ jobs:
         timeout-minutes: 3
         env:
           DISCORD_RECORDS_WEBHOOK: ${{ secrets.DISCORD_RECORDS_WEBHOOK }}
+          DISCORD_RECORDS_OTHER_WEBHOOK: ${{ secrets.DISCORD_RECORDS_OTHER_WEBHOOK }}
         run: node --experimental-strip-types scripts/discord-records.ts send "$RUNNER_TEMP/discord-records.json"
       - name: Commit accepted record posts
         if: ${{ always() && steps.records-send.outcome != 'skipped' && steps.records-send.outcome != '' }}

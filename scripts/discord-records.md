@@ -49,3 +49,17 @@ key. Later plans recheck the current leader even if it has not changed. When an
 eligible leader posts, earlier deferred events for that board and author list are
 reserved as superseded, including entries removed from the snapshot. Deferred
 nonleaders do not post. X follows the accepted Discord log and inherits this limit.
+
+As of 2026-10-16, the feed has both landing-page tables. The six Big O boards post to
+#records-big-o (the old #records, renamed; webhook secret `DISCORD_RECORDS_WEBHOOK`). The
+Other bounds rows of `src/lib/other-bounds.json` post to #records-other-bounds (webhook
+secret `DISCORD_RECORDS_OTHER_WEBHOOK`). Both channels are read-only for members. The
+per-race channels get no automatic posts. An Other bounds board has the slug
+`other-<slug>`, the leader of the row (the newest claim by its best author) and a plain-text
+bound made from the site's KaTeX source. A claim's id is its author handle and exact value.
+An Other bounds board that is new to the saved state is seeded: its current leader is
+reserved and nothing posts, so only leaders after that run post. Other bounds boards post
+at most once per race every three hours, whoever leads; a later leader is deferred and posts
+when the window ends if it still leads. Big O boards keep the per-author window above.
+Without `DISCORD_RECORDS_OTHER_WEBHOOK`, a plan keeps the previous state of the Other
+bounds boards and reserves nothing for them.
