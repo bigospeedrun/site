@@ -4,8 +4,8 @@
   "title": "Bracket the fixed paired-plane scalar fitting rank between 48 and 50",
   "body": "For PR1825's fixed 56 matched planes under the strict scalar mask used by PR1889, this gives **48 <= scalar minrank <= 50 over every field**. A source-bound 24-plane nonorthogonality clique forces an I48 principal submatrix in every fitting matrix. An explicit partition into 25 orthogonality classes gives 50 disjoint scalar channels and an I50 minor. Arbitrary coefficients and free mask entries are allowed by the lower bound.\n\nPR1889 excludes parity-preserving lifts; PR2126 already constructs I112. This result removes the parity restriction for the channel floor and supplies a smaller-rank scalar fit. PR2203's native payload pricing remains a separate obligation: no native copy saving, new coverage law, supplier, or kappa is claimed. The exact minimum within 48..50 remains open.\n\nValidation passed on Windows CPython 3.12.7: registered package replay, independent nine-coordinate reconstruction of 11,672 required entries, 120 dirty scalar updates, four algebraic rejecting controls, optimized relocated replay, and source/certificate/receipt corruption rejection. A separate AI reviewer replayed the main and independent verifiers with -I -O and found no blocking issue. No hosted CI, human review or formal-kernel proof is claimed.\n\nBase is current canonical main 0fdd7d82, priority revision 4, picker seed 4eed961cd4d4e3d196bec5537e03e069. The final overlap refresh covered 665 open PRs and 1,191 Discussion records with complete pagination and no warnings; nearest heads remained unchanged. Only research/paired-plane-scalar-rank-floor is added. Exact inputs, source pins, task refinement, proof, witnesses, replay hooks and open next questions are included.\n\nCredit Cinna Davis/PR1825 and PR2126, Adam Gall/PR1889, JeremyDiviney/PR2203, Philippe Van Velzen's Discussion1587 work, and the selected construction authors. Prepared by ywz65 with substantial OpenAI Codex assistance.\n\nReproduce:\n```sh\npython3.12 scripts/research_package.py --package research/paired-plane-scalar-rank-floor\n```\n",
   "created_at": "2026-10-15T11:52:36Z",
-  "updated_at": "2026-10-15T11:52:36Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T23:35:57Z",
+  "closed_at": "2026-10-15T23:35:57Z",
+  "merged_at": "2026-10-15T23:35:57Z",
+  "state": "closed"
 }

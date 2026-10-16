@@ -4,8 +4,8 @@
   "title": "Prove eight source XORs are necessary at the six-query endpoint",
   "body": "PR1898 and Discussion1579 leave open whether the known five-source `6 Q / 96 R / 8 X` mutable-source connector uses the minimum possible source XORs. This package proves **eight are necessary at exactly six queries**, even with unrestricted readouts, so its existing complete-call tariff `6b + 96a + 8x` is sharp on that fixed-query slice.\n\nThe proof shows that an X-interaction graph with c components forces at least `5+c` queries. Six queries therefore require a connected restored source-shear word. A complete GL5(F2) meet-in-the-middle census excludes all such words through seven XORs. A separate column-image implementation directly enumerates all 168,421 half-words and agrees on every restored-graph result. The known eight-XOR witness is credited and replayed on arbitrary dirty formal rows, with 900 corroborating dense forward/inverse executions and source-restoration failure controls.\n\nValidation on CPython3.12.7: the registered package replay, optimized column check, optimized relocated read-only replay, exact source/provenance checks, source/receipt corruption rejection and deterministic regeneration pass. Reproduce with `python3 -I -B scripts/research_package.py --package research/mutable-source-six-query-xor`. The task card records exact base `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`, priority revision4, scoped refinement, overlap coverage and remaining questions.\n\nThis closes one predecessor obligation; it does not improve the attained construction, prove the global unequal-price optimum, admit a physical supplier or change the selected kappa. Credit Arham Tahir's PR1898/1340/1370, TennisBowling's PR1524, Ross Richardson's PR943/934 and the retained batching/commutator lineage. Prepared for ywz65 with substantial OpenAI Codex assistance in proof, code, checks and writing; no independent human review is claimed. New material is Apache-2.0.\n",
   "created_at": "2026-10-15T11:14:32Z",
-  "updated_at": "2026-10-15T11:14:32Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-15T23:35:57Z",
+  "closed_at": "2026-10-15T23:35:57Z",
+  "merged_at": "2026-10-15T23:35:57Z",
+  "state": "closed"
 }
