@@ -4,8 +4,8 @@
   "title": "Fix exact claim binding in assembly-domain diagnostic receipts",
   "body": "The assembly-domain diagnostic's `--check` compared parsed JSON using Python equality. Its actual CLI accepted a rejection flag changed from `true` to `1`, a constraint count changed from `47` to `47.0000000000000000000001`, and contradictory duplicate claims discarded by the JSON decoder. Require exact recursive types and values and reject duplicate object keys while preserving key-order, whitespace and CRLF flexibility.\n\nThis changes only saved diagnostic receipt verification: the arithmetic, four frozen source pins, existing receipt and `--write` generator are unchanged. It is not a production assembly acceptance or frontier change. The note credits the original diagnostic and PR #2040's prior typed-comparison findings; the new work repairs this separate maintained consumer.\n\nValidation: all 10 focused tests pass on Windows/Python 3.12.14 under `-I -O -B`, including four previously accepted mutations through the real CLI in both normal and optimized mode, valid reformatted receipts, and the existing arithmetic/source controls. Before/after CLI replay confirms the three reported false accepts now reject. Full selected-frontier replay was not run for this diagnostic-only change.\n\nStarted and rechecked against canonical main `0fdd7d82de03e43c9e5a1000dfbcd380d1b687d2`, priority revision 4. Task selection refined `portable-replay` to the receipt's omitted type/duplicate-field distinctions. Overlap searched complete cached open-PR and Discussion snapshots and local notes; code diffs and unpublished work are outside that coverage. Prepared by ywz65 with OpenAI Codex assistance.\n",
   "created_at": "2026-10-15T14:23:44Z",
-  "updated_at": "2026-10-15T14:23:44Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T01:53:57Z",
+  "closed_at": "2026-10-16T01:53:56Z",
+  "merged_at": "2026-10-16T01:53:56Z",
+  "state": "closed"
 }
