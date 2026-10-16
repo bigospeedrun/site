@@ -1,0 +1,11 @@
+{
+  "number": 3068,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3068",
+  "title": "Certify a common invariant period lattice for P104 lifting",
+  "body": "The forward P104 lifting period lattice is not preserved by a complete ideal transform. This package constructs the common entrance Lambda = Gamma intersect U Gamma, proves it is maximal among U-invariant sublattices contained in the inherited period group, and independently computes its rank-seven index as 2^401 (58 more index bits than the forward domain).\n\nBoth literal directions are ideal on this entrance, and a source-preserving local shear uses two completed transforms and one array ADD. Structured address-dependent phase and integral quarter-ADD witnesses show why this interface cannot yet replace the full caller. Rank-one larger exactness provides a control against overgeneralizing maximality. No complete codec/backend/consumer bill, recursive-cost improvement, supplier admission or new kappa is claimed.\n\nValidation: standard-library CPython 3.12 registered replay; independent congruence-image/Smith calculation versus the primary parity-kernel construction; seven behavioral groups with source/receipt/cleanup controls; optimized Git-free replay; signed dirty macros through 4,001-bit coefficients. Exact source pins and predecessor credit are retained, including Tekalign PR3025/3033, Nick Petalas PR3035/3037, Arham Tahir PR3046 and the P104 lineage. Ross Richardson with substantial OpenAI Codex assistance and a separate automated mathematical reviewer; no independent human or formal-kernel review.\n\nCanonical scope/claim: https://github.com/CrocSwap/integer-mult-bounds/discussions/2750#discussioncomment-18983457\n\nReproduce: `python3.12 -I -Werror -B scripts/research_package.py --package research/p104-invariant-lifting-lattice`.\n",
+  "created_at": "2026-10-16T21:41:29Z",
+  "updated_at": "2026-10-16T21:41:29Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3074,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3074",
+  "title": "One-sided padding lemma: P112 to P120 at cost exactly +8 (L120 suffices for Delta >= n_nf)",
+  "body": "Adds `research/one-sided-padding-lemma/`. No kappa claim.\n\n- Padding: any one-sided P112 decoder of cost c becomes a one-sided P120 decoder of cost exactly c + 8 (merge corrected terms per i, then add (delta_{f_j}, y = 2e_j) on each frame line f_j with j not in I; q = C_E 2e_j is the E8 frame codeword).\n- Lift form: cost_w(S+) <= cost_w(S) + 8 - |I|.\n- Consequence (sufficiency only): L120 (every lift S containing C(E8) has cost_w >= 72) suffices for the one-sided P112 floor 64 + |I| for every I, i.e. Delta >= n_nf for all Delta, via the #2816 section 7 identity. The converse is not claimed. This makes #3029 conditional only on L120.\n- Remark: delta delta^T padding is two-sided (delta is not a codeword; codewords have |Off| >= 53).\n- OPEN: L120 itself. Residue: the 38 OPEN rows of the #3049 ledger, the 7 prior-only rows, the 7 E6-slack rows, and the d=0 sliver Z = ker rho cap S nonzero (kappa <= 6).\n- Checks: `bash verify.sh` (needs sympy) runs two self-contained implementations (`pad.py`, `pad_audit.py`), 12+ decoders, exact over Q, one-sided, cost +8 by two independent cost computations. ALL PASS. The two scripts share one standard E8 root/label construction; the decoders and the two cost computations (direct F2 rank of B[R,A], and subspace algebra) are independent.\n\nCites #2816, #2826, #2862, #2985, #3049, #3029.\n\nPrepared by DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code; Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-16T21:46:23Z",
+  "updated_at": "2026-10-16T21:46:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
