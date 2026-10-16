@@ -1,0 +1,11 @@
+{
+  "number": 3049,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3049",
+  "title": "Research: one-sided residue closures, part 2 — Lemma Q4, count lemma + E6 dim-cover and rerunnable span passes close 78 more of the 116 open residues (38 open; no kappa claim)",
+  "body": "Follow-up to #2985 (`research/one-sided-residue-closures`), which builds on #2816, #2826, #2862 and `research/one-sided-excess-three` (all ours; CARRIER / RRC notation as in #2985). Adds only `research/one-sided-residue-closures-2/`. **No kappa claim, no window, no supplier word.**\n\n## What is added (only independently re-checked kills)\n* **Lemma Q4** (two-7-flat leftover fact; `C(|P|,2)` bounds): 15 rows (18, 582-595). The leftover facts are recomputed by three implementations (A, B, audit).\n* **Count lemma** (rows 448, 449) and **Dim-Cover E6** ((6,6,5,5,5,4) cannot cover the 84 lines outside E6; two implementations): rows 168, 324, 325, 328, 457. Seven further E6-slack rows (169, 332, 333, 464, 424, 426, 427) rest on one implementation and are listed as CONDITIONAL, not claimed.\n* **Span passes** `s3z.c` (from k2-class-c-help): 56 rows via (6,6,2)@T4, (7,4,3)@T6, (7,5,1)@T6, (7,5,2)@T7. The first driver ran only `JREM=0` of the JMOD=2 configs; all J>1 configs were rerun for the other slice and no CRACK occurred. Config-to-row dominance is inherited (CONDITIONAL).\n* **Ledger** (603 rows, `data/ledger2_consolidated.csv`): 480 + 78 KILLED, 7 KILLED(prior-only), **38 OPEN**.\n\n`PROOF_MAP.md` maps every claim to its check; `bash verify.sh` (default, at most 3 busy processes, every process under timeout; numpy, networkx, C compiler) recomputes the ledger; `FULL=1` reruns every chunk of the (7,4,3) and (6,6,2) passes.\n\nPrepared by DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code; Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-16T20:41:39Z",
+  "updated_at": "2026-10-16T20:41:39Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
