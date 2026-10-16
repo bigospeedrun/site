@@ -1,0 +1,11 @@
+{
+  "number": 3027,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3027",
+  "title": "Record that the selected-grammar root rejects the unit tape",
+  "body": "## Summary\n- The published selected-grammar root at q=3 completes only from fixture (256, 2, 0), with coefficients (0, 2) and a checker-written child body. The same check then asserts the extended root (256, 2, 1).\n- Substituting unit 1 writes the root triple (256, 1, 0). The child coefficient becomes 1, and the check rejects before that body is written. No returned row is compared with the position reversal.\n- No selected frontier change and no new exponent. This is separate from the open unit-weight machine check.\n\n## Test plan\n- [x] `python3.12 -B research/selected-unit-root-tape-boundary/verify.py`\n- [x] `python3.12 -B research/selected-unit-root-tape-boundary/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/selected-unit-root-tape-boundary`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-16T19:06:17Z",
+  "updated_at": "2026-10-16T19:06:17Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
