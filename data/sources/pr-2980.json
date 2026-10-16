@@ -1,0 +1,11 @@
+{
+  "number": 2980,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/2980",
+  "title": "Record the odd-prime depth-zero unit root as a weight, not a padded-row reversal",
+  "body": "## Summary\n- Executes the fitted callee's depth-zero unit ROOT at odd prime q=3 on a 64-atom body over F_3. All 64 incoming coordinates are the ring unit, and the parsed record is (64, 1, 0) with no STEP.\n- The weight arm returns that unit and does not read the reverse flag or a row count, so this does not restore a padded row. The selected odd-prime machine check still uses the different root (256, 2, 1).\n- No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/selected-odd-prime-unit-root/verify.py`\n- [x] `python3.12 -B research/selected-odd-prime-unit-root/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/selected-odd-prime-unit-root`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-16T16:02:27Z",
+  "updated_at": "2026-10-16T16:05:08Z",
+  "closed_at": "2026-10-16T16:05:08Z",
+  "merged_at": "2026-10-16T16:05:08Z",
+  "state": "closed"
+}
