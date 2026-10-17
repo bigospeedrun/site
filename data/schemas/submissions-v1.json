@@ -67,6 +67,12 @@
           "claim_text": {
             "type": "string",
             "pattern": "^[0-9a-f]{64}$"
+          },
+          "claim_retry": {
+            "const": true
+          },
+          "claim_decided": {
+            "const": true
           }
         }
       }

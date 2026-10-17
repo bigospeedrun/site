@@ -60,6 +60,49 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(index['head'],{'sha':full['head']['sha']})
         self.assertEqual(refresh.pull_index(index|{'body':'x'}),index)
 
+    def test_touched_claim_with_kappa_goes_to_review(self):
+        other='research/rank7-restore-carrier-skips/CLAIM.json'
+        # No title kappa, no own package, but it changes a package that states a kappa.
+        self.assertIsNotNone(self.claim({other:'modified'},{'kappa':'1/1000'},title='Fix a checker')[2])
+        self.assertEqual(self.claim({other:'modified'},{'status':'tooling'},title='Fix a checker'),(None,None,None))
+        self.assertEqual(self.claim({other:'removed'},{'kappa':'1/1000'},title='Fix a checker'),(None,None,None))
+
+    def test_names_kappa_routing(self):
+        for t in ['κ = 0.0017','Kappa 0.1 budget screens','kappa from 0.00172 to 0.00173','kappa>=0.1','kappa ≥ 0.1',
+                  'raise kappa of 0.0017','New record 0.001729','new best: 0.0017','research: κ = 0.001729737950064278551242895823']:
+            self.assertTrue(refresh.NAMES_KAPPA.search(t),t)
+        for t in ['Implement aligned bit circuits','Kappa-preserving refactor','rank-seven restore block']:
+            self.assertFalse(refresh.NAMES_KAPPA.search(t),t)
+
+    def test_claim_state(self):
+        head='h'*40
+        p={'number':3200,'title':'Conditional κ = 0.0018','body':'b','head':{'sha':head}}
+        text=refresh.hashlib.sha256(b'Conditional \xce\xba = 0.0018\nb').hexdigest()
+        calls=[]
+        def evaluate(result):
+            return lambda:(calls.append(1),result)[1]
+        listed=('9/5000','research/x/CLAIM.json',None)
+        # First read lists the package; the next run reuses it with no request.
+        state=refresh.claim_state(p,{},{},evaluate(listed))
+        self.assertEqual(state[:5],('9/5000',None,'research/x/CLAIM.json',head,text));self.assertFalse(state[5])
+        prior={'pr_number':3200,'source_commit':head,'claimed_score':'9/5000','claim_path':'research/x/CLAIM.json','claim_head':head,'claim_text':text}
+        self.assertEqual(refresh.claim_state(p,prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),1)
+        # A judge failure does not stick: the next run reads the PR again.
+        failed=(None,'research/x/CLAIM.json',refresh.claim_judge.Retry('The Claude check failed (TimeoutError).'))
+        state=refresh.claim_state(p,prior|{'claim_text':'old'},{},evaluate(failed))
+        self.assertTrue(state[5]);self.assertIsNone(state[0])
+        retry_prior=prior|{'claimed_score':None,'review_reason':state[1],'claim_retry':True}
+        self.assertEqual(refresh.claim_state(p,retry_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),3)
+        # A decision applies; deleting it revokes it (the PR is read again).
+        decided=refresh.claim_state(p,{},{(3200,head):{'score':None}},evaluate(listed))
+        self.assertIsNone(decided[0]);self.assertTrue(decided[6])
+        decided_prior=prior|{'claimed_score':'1/2','claim_decided':True}
+        self.assertEqual(refresh.claim_state(p,decided_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),5)
+        # Title-parsed rows up to #3114 keep their scores; later ones are read again.
+        old_p=p|{'number':3051}
+        self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')
+        self.assertEqual(refresh.claim_state(p|{'number':3115},{'source_commit':head,'claimed_score':'1/7'},{},evaluate((None,None,'no package')))[:2],(None,'no package'))
+
     def test_score_limit_matches_schema(self):
         schema=json.loads((refresh.ROOT/'schemas/problem-v1.json').read_text())['properties']['records']['items']['properties']['score']
         self.assertEqual(schema['maxLength'],refresh.MAX_SCORE_CHARS)

@@ -16,7 +16,17 @@ MODEL = 'claude-haiku-5-5'
 CACHE = 'claim-judgments.json'
 MAX_INPUT_CHARS = 40000  # Largest CrocSwap PR title + body on 2026-10-17: 33,516 characters.
 MIN_SIGNIFICANT_DIGITS = 6  # A coarse value such as 0.1 never agrees with a package kappa.
-TIMEOUT_SECONDS = 60
+TIMEOUT_SECONDS = 30
+MAX_RETRIES = 1  # Worst case per call: 2 x 30 s.
+CALLS_PER_RUN = 5  # Later PRs wait for the next run, uncached (refresh.py resets the budget).
+calls_left = CALLS_PER_RUN
+
+class Retry(str):
+    """A review reason that is no verdict on the PR (an API failure, a missing key,
+    the call budget): refresh.py reads the PR again in the next run."""
+
+class Deferred(Retry):
+    """The call budget for this run is used up. Not a failure: no lead alert."""
 
 SYSTEM = """You read one pull request to the CrocSwap/integer-mult-bounds research repository.
 The repository races to improve kappa, a saving in the bound O(n (log n)^(1 - kappa)) for integer multiplication.
@@ -47,7 +57,7 @@ def cache_key(pr, head, title, body):
 def ask_claude(title, body):
     """One Messages API call. Returns the parsed JSON answer; raises on any failure."""
     import anthropic  # Installed in the refresh workflow; unit tests replace this function.
-    client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'], timeout=TIMEOUT_SECONDS, max_retries=2)
+    client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'], timeout=TIMEOUT_SECONDS, max_retries=MAX_RETRIES)
     response = client.messages.create(
         model=MODEL,
         max_tokens=2000,
@@ -90,7 +100,10 @@ def agrees(value, kappa):
     return abs(v - Fraction(kappa)) <= unit
 
 def check(root, pr, head, title, body, kappa, ask=ask_claude):
-    """None when the reading agrees with the package kappa, else the lead review reason."""
+    """None when the reading agrees with the package kappa, else the lead review reason.
+
+    A Retry reason means the check did not give a verdict and runs again later."""
+    global calls_left
     if len(title) + len(body or '') > MAX_INPUT_CHARS:
         return f'The PR text is longer than {MAX_INPUT_CHARS} characters, so the Claude check did not run.'
     path = root / CACHE
@@ -99,13 +112,16 @@ def check(root, pr, head, title, body, kappa, ask=ask_claude):
     answer = cache.get(key)
     if answer is None:
         if not os.environ.get('ANTHROPIC_API_KEY') and ask is ask_claude:
-            return 'The Claude check did not run (no API key).'
+            return Retry('The Claude check did not run (no API key).')
+        if calls_left <= 0:
+            return Deferred(f'The Claude check waits for the next run ({CALLS_PER_RUN} calls per run).')
+        calls_left -= 1
         try:
             answer = ask(title, body)
         except Exception as error:  # Fail closed. Never log the key or the response body.
-            return f'The Claude check failed ({type(error).__name__}).'
+            return Retry(f'The Claude check failed ({type(error).__name__}).')
         if not valid(answer):
-            return 'The Claude check returned an invalid answer.'
+            return Retry('The Claude check returned an invalid answer.')
         cache[key] = answer
         path.write_text(json.dumps(cache, indent=2, sort_keys=True, ensure_ascii=False) + '\n')
     if not answer['claims_new_kappa'] or answer['value'] is None:

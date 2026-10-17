@@ -10,6 +10,7 @@ class ClaimJudgeTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.root = Path(self.temp.name)
         self.calls = 0
+        budget = patch.object(claim_judge, 'calls_left', 1000); budget.start(); self.addCleanup(budget.stop)
 
     def tearDown(self):
         self.temp.cleanup()
@@ -44,6 +45,21 @@ class ClaimJudgeTests(unittest.TestCase):
         self.assertIsNotNone(self.run_check(None, body='x' * claim_judge.MAX_INPUT_CHARS))
         with patch.dict('os.environ', {}, clear=True):
             self.assertEqual(claim_judge.check(self.root, 1, 'c' * 40, 't', 'b', EXACT), 'The Claude check did not run (no API key).')
+
+    def test_failures_retry_and_budget(self):
+        yes = {'claims_new_kappa': True, 'value': '0.001729737950064279', 'confidence': 'high'}
+        self.assertIsInstance(self.run_check(TimeoutError()), claim_judge.Retry)
+        self.assertIsInstance(self.run_check(['bad']), claim_judge.Retry)
+        self.assertNotIsInstance(self.run_check({'claims_new_kappa': False, 'value': None, 'confidence': 'high'}), claim_judge.Retry)
+        self.assertNotIsInstance(self.run_check(None, body='x' * claim_judge.MAX_INPUT_CHARS), claim_judge.Retry)
+        with patch.object(claim_judge, 'calls_left', 2):
+            self.assertIsNone(self.run_check(yes, head='1' * 40))
+            self.assertIsNone(self.run_check(yes, head='2' * 40))
+            deferred = self.run_check(yes, head='3' * 40)
+            self.assertIsInstance(deferred, claim_judge.Deferred)
+            self.assertIsNone(self.run_check(yes, head='1' * 40))  # A cached answer needs no call.
+        calls = self.calls
+        self.assertEqual(calls, 2 + 3)
 
     def test_cache_by_pr_head_and_text(self):
         yes = {'claims_new_kappa': True, 'value': '0.001729737950064279', 'confidence': 'high'}

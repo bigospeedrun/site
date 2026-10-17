@@ -17,8 +17,11 @@ IMPORTER_VERSION = 7
 # exact decimal, 2 as text, 2026-10-17). A package whose status says 'no new kappa' has no
 # kappa field (all 15 such packages on main, 2026-10-17).
 CLAIM_PATH = re.compile(r'research/[^/]+/CLAIM\.json')
-# A title that names a kappa value, without a structured claim, goes to the lead.
-NAMES_KAPPA = re.compile(r'(?:κ|kappa)\s*(?:=|≈|:|to)?\s*\d', re.I)
+# A title that names a kappa value, without a structured claim, goes to the lead:
+# 'κ = 0.0017', 'kappa 0.1', 'kappa from 0.00172 to 0.00173', 'kappa>=0.1',
+# 'kappa of 0.0017', 'new record 0.0017'. The title only routes to review; it never lists.
+NAMES_KAPPA = re.compile(r'(?:κ|kappa)\s*(?:=|≈|:|>=|≥|<=|≤|>|<|\b(?:of|from|to|at|is|now|reaches|becomes)\b)?\s*[-−]?\d'
+                         r'|\bnew (?:record|best|bound|leader)\b\D{0,20}\d*\.\d', re.I)
 # Packages of PRs listed from their titles before 2026-10-17 (surveyed that day: every
 # scored PR since #2850). Another PR that adds one of these paths does not own it.
 LEGACY_CLAIM_PATHS = {f'research/{d}/CLAIM.json': n for n, d in {
@@ -79,9 +82,20 @@ def package_claim(stage, p, main_sha, owners):
     reason is None when the PR is listed, or when it names no kappa at all."""
     n = p['number']; head = p['head']['sha']
     names = bool(NAMES_KAPPA.search(p['title']))
-    added = [f['filename'] for f in pages(f'repos/{CROC}/pulls/{n}/files') if f['status'] == 'added' and CLAIM_PATH.fullmatch(f['filename'])]
+    files = [f for f in pages(f'repos/{CROC}/pulls/{n}/files') if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
+    added = [f['filename'] for f in files if f['status'] == 'added']
     if len(added) != 1:
-        return None, None, ('The PR adds no single research package CLAIM.json.' if names else None)
+        if names:
+            return None, None, 'The PR adds no single research package CLAIM.json.'
+        # A PR that adds or changes a CLAIM.json with a kappa field goes to the lead,
+        # whatever its title says (first 5 such files read).
+        for f in files[:5]:
+            try:
+                if 'kappa' in json.loads(content(CROC, f['filename'], head)):
+                    return None, None, f"The PR touches {f['filename']}, which has a kappa field, but adds no single own package."
+            except (ValueError, TypeError):
+                continue
+        return None, None, None
     path = added[0]
     if path in owners:
         return None, path, f'{path} belongs to PR #{owners[path]}.'
@@ -95,6 +109,7 @@ def package_claim(stage, p, main_sha, owners):
         return None, path, f'{path} is not a JSON object.'
     if kappa is None:
         return None, path, (f'{path} has no kappa field.' if names else None)
+    # From here on the package states a kappa, so every failure goes to the lead.
     if not isinstance(kappa, str) or len(kappa) > MAX_SCORE_CHARS or not re.fullmatch(r'\d+(?:/\d+)?|\d*\.\d+', kappa):
         return None, path, f'{path} kappa is not an exact rational.'
     q = Fraction(kappa)
@@ -107,8 +122,37 @@ def package_claim(stage, p, main_sha, owners):
     (stage / f'sources/pr-{n}-claim.json').write_bytes(raw)
     return str(q), path, None
 
+def claim_state(p, prior, decisions, evaluate):
+    """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
+    retry, decision). evaluate() reads the PR's package and runs the Claude check."""
+    n = p['number']; head_sha = p['head']['sha']
+    text_sha = hashlib.sha256((p['title'] + '\n' + (p['body'] or '')).encode()).hexdigest()
+    score, reason = None, None
+    claim_path, claim_head, claim_text = prior.get('claim_path'), prior.get('claim_head'), prior.get('claim_text')
+    if n in NOT_CLAIMS:
+        pass
+    elif claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided'):
+        # Already read at this head and text: reuse the result, with no request. A
+        # decided PR is read again, so that deleting its decision revokes it.
+        score, reason = prior['claimed_score'], prior.get('review_reason')
+    elif prior.get('claimed_score') is not None and not claim_head and n <= LAST_TITLE_PARSED_PR:
+        # Listed from its title before 2026-10-17: it keeps its score and identity.
+        score = prior['claimed_score']
+    elif prior and not claim_head and prior['source_commit'] == head_sha and n <= LAST_TITLE_PARSED_PR:
+        pass  # Unchanged since before structured claims: not a claim.
+    else:
+        score, claim_path, reason = evaluate()
+        claim_head, claim_text = head_sha, text_sha
+    # A check without a verdict (API failure, no key, call budget) runs again next time.
+    retry = isinstance(reason, claim_judge.Retry)
+    decision = decisions.get((n, head_sha))
+    if decision:
+        score, reason, retry = decision['score'], None, False
+    return score, reason, claim_path, claim_head, claim_text, retry, decision
+
 def refresh(stage, now):
     day = now[:10]
+    claim_judge.calls_left = claim_judge.CALLS_PER_RUN
     problem = load(stage, 'integer-multiplication.json')
     before = copy.deepcopy(problem)
     subs = load(stage, 'submissions.json')
@@ -132,7 +176,8 @@ def refresh(stage, now):
         repo_meta[repo] = meta
     decisions = {(d['pr'], d['head']): d for d in (load(stage, DECISIONS) if (stage / DECISIONS).exists() else {}).get('claims', [])}
     fingerprint = hashlib.sha256(json.dumps({'importer_version':IMPORTER_VERSION,'decisions':sorted(map(list, decisions)),'heads': {repo: h['sha'] for repo,h in heads.items()}, 'pulls': [{k:p[k] for k in ('number','title','body','updated_at','merged_at','closed_at','state')} | {'head_sha':p['head']['sha']} for p in pulls]}, sort_keys=True).encode()).hexdigest()
-    if load(stage, 'sources/intake.json').get('fingerprint') == fingerprint:
+    # A PR whose Claude check gave no verdict is read again even when nothing changed.
+    if load(stage, 'sources/intake.json').get('fingerprint') == fingerprint and not any(s.get('claim_retry') for s in subs['items']):
         return dict(checked_at=now,new_prs=[],new_merged_records=[],previous_record=best(before),current_record=best(before),new_current_record=False,unparsed_new_prs=[])
     dump(stage, 'sources/crocswap-pulls.json', [pull_index(p) for p in pulls])
     for repo, head in heads.items():
@@ -146,29 +191,12 @@ def refresh(stage, now):
     owners = LEGACY_CLAIM_PATHS | {s['claim_path']: s['pr_number'] for s in subs['items'] if s.get('claim_path') and s['claimed_score']}
     for p in pulls:
         n = p['number']; prior = old.get(n) or {}; head_sha = p['head']['sha']
-        text_sha = hashlib.sha256((p['title'] + '\n' + (p['body'] or '')).encode()).hexdigest()
         status = 'merged' if p['merged_at'] else 'open' if p['state'] == 'open' else 'closed-unmerged'
-        score, reason = None, None
-        claim_path, claim_head, claim_text = prior.get('claim_path'), prior.get('claim_head'), prior.get('claim_text')
-        if n in NOT_CLAIMS:
-            pass
-        elif claim_head == head_sha and prior.get('claim_text') == text_sha:
-            # Already read at this head and text: reuse the result, with no request.
-            score, reason = prior['claimed_score'], prior.get('review_reason')
-        elif prior.get('claimed_score') is not None and not claim_head and n <= LAST_TITLE_PARSED_PR:
-            # Listed from its title before 2026-10-17: it keeps its score and identity.
-            score = prior['claimed_score']
-        elif prior and not claim_head and prior['source_commit'] == head_sha and n <= LAST_TITLE_PARSED_PR:
-            pass  # Unchanged since before structured claims: not a claim.
-        else:
-            others = {path: pr for path, pr in owners.items() if pr != n}
-            score, claim_path, reason = package_claim(stage, p, heads[CROC]['sha'], others)
-            claim_head, claim_text = head_sha, text_sha
-            if claim_path and score:
-                owners[claim_path] = n
-        decision = decisions.get((n, head_sha))
-        if decision:
-            score, reason = decision['score'], None
+        others = {path: pr for path, pr in owners.items() if pr != n}
+        score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
+            p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others))
+        if claim_path and score and claim_head == head_sha and not decision:
+            owners[claim_path] = n
         prior = prior or None
         ids = list(prior['record_ids']) if prior and prior['record_ids'] and score else ([f'crocswap-pr-{n}'] if score else [])
         ap = f'sources/pr-{n}.json'
@@ -177,6 +205,8 @@ def refresh(stage, now):
         if claim_path: item['claim_path'] = claim_path
         if claim_head: item['claim_head'] = claim_head
         if claim_text: item['claim_text'] = claim_text
+        if retry: item['claim_retry'] = True
+        if decision: item['claim_decided'] = True
         if reason: item['review_reason'] = reason
         items.append(item)
         if status == 'merged' and ids and (not prior or prior['upstream_status'] != 'merged'):
@@ -253,7 +283,7 @@ def refresh(stage, now):
                 listing['manifest_source']['path']=path
             dump(stage,path,manifest);listing['rules_url']=manifest['rules_url'];listing['manifest_source']['revision']='sha256:'+artifact(stage,path)['sha256']
     dump(stage,'registry.json',reg)
-    queue=[dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason']) for s in items if s.get('review_reason')]
+    queue=[dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason']) for s in items if s.get('review_reason') and s['upstream_status'] != 'closed-unmerged' and not isinstance(s['review_reason'], claim_judge.Deferred)]
     dump(stage,CLAIM_QUEUE,{'queue':queue})
     dump(stage,'sources/intake.json',dict(checked_at=day,assembled_at=now,pulls_source=f'https://api.github.com/repos/{CROC}/pulls',count=len(pulls),fingerprint=fingerprint))
     return dict(checked_at=now,new_prs=[p['number'] for p in pulls if p['number'] not in old],new_merged_records=new_merged,previous_record=best(before),current_record=best(problem),new_current_record=best(before)!=best(problem),unparsed_new_prs=[s['pr_number'] for s in items if s['pr_number'] not in old and s['claimed_score'] is None])
