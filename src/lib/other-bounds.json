@@ -1133,6 +1133,47 @@
       "bestHandle": "Anchen0823"
     },
     {
+      "family": "132",
+      "slug": "block-sensitivity",
+      "name": "Block sensitivity separation",
+      "quantity": "\\alpha\\text{ in }\\mathrm{bs}(f)\\ge s(f)^{\\alpha-o(1)}",
+      "direction": "higher",
+      "statement": "The quantity is the exponent \\(\\alpha\\) in \\(\\mathrm{bs}(f)\\ge s(f)^{\\alpha-o(1)}\\), for a family of total Boolean functions \\(f\\) with \\(s(f)\\to\\infty\\). A higher exponent is better. The sensitivity \\(s(f)\\) is the largest number of single bits that change the value of \\(f\\) when flipped at one input. The block sensitivity \\(\\mathrm{bs}(f)\\) is the largest number of disjoint sets of bits that each change the value of \\(f\\) when flipped at one input. Rubinstein’s 1995 construction gives \\(\\alpha=2\\). Huang’s 2019 theorem, with Tal’s refinement, gives \\(\\mathrm{bs}(f)\\le s(f)^4\\), so \\(\\alpha\\le4\\). The OpenAI baseline builds one seed function \\(f\\) with \\(s(f)\\le A\\) and block sensitivity \\(\\mathrm{bs}(f,0)\\ge B\\) at the all-zero input, and composes it with itself, which gives \\(\\alpha=\\log B/\\log A\\). OpenAI’s Lean proof uses the seed with recursion depth \\(d=9\\) and size parameter \\(M=9^{10}\\).",
+      "baseline": {
+        "value": "\\approx2.000252",
+        "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-superquadratic-separation-between-sensitivity-and-block-sensitivity-September-25-2026/paper.pdf",
+        "date": "2026-10-06T14:58:00-07:00",
+        "exactValue": "\\log B/\\log A,\\quad A=22\\cdot9^{100},\\quad B=9^{20}(2\\cdot9^{20}+1)^{9}",
+        "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.000252}"
+      },
+      "claims": [
+        {
+          "author": "robinkothari",
+          "handle": "robinkothari",
+          "value": "\\log B/\\log A,\\quad A=44\\cdot9^{441},\\quad B=9^{42}(2\\cdot9^{42}+1)^{20}",
+          "display": "\\approx2.00647",
+          "date": "2026-10-15T00:52:00-07:00",
+          "dateSource": "https://github.com/bigospeedrun/site/issues/2",
+          "dateKind": "first-stated",
+          "url": "https://github.com/bigospeedrun/site/issues/2",
+          "lean": false,
+          "leanNote": "No; OpenAI’s Lean seed theorem covers these parameters, but no Lean theorem states this exponent.",
+          "evidence": "claimed",
+          "note": "This is OpenAI’s construction with other parameters: the seed with \\(d=20\\) and \\(M=9^{21}\\), so \\(s(f)\\le2(d+2)M^{d+1}=A\\) and \\(\\mathrm{bs}(f,0)\\ge M^2(2M^2+1)^d=B\\). Among seeds with the smallest allowed \\(M=9^{d+1}\\), \\(d=20\\) gives the highest exponent.",
+          "authors": [
+            {
+              "name": "robinkothari",
+              "url": "https://github.com/robinkothari"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied. The claim applies OpenAI’s Lean theorems exists_constructed_seed and power_amplification, which hold for all allowed seed parameters, to the parameters in the note.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.00647}"
+        }
+      ],
+      "repos": [],
+      "bestHandle": "robinkothari"
+    },
+    {
       "family": "160",
       "slug": "van-der-waerden",
       "name": "Van der Waerden numbers",
