@@ -41,6 +41,7 @@ NOT_CLAIMS = {
     3107: 'Kappa 0.1 budget screens; the PR claims no kappa improvement.',
     3111: 'Shows the selected bit profile exceeds the kappa = 0.1 budget; the PR claims no kappa improvement.',
 }
+PULL_PAGES = 100  # pages of 100 PRs in the CrocSwap listing
 MAX_SCORE_CHARS = 4096  # record score maxLength in schemas/problem-v1.json
 
 def dump(root, path, data):
@@ -253,7 +254,9 @@ def refresh(stage, now):
     template = copy.deepcopy(records['crocswap-pr-61'])
     metadata = problem['record_metadata']
     mt = copy.deepcopy(metadata['crocswap-pr-61'])
-    pulls = sorted(pages(f'repos/{CROC}/pulls', {'state': 'all', 'sort': 'created', 'direction': 'asc'}), key=lambda p: p['number'])
+    # CrocSwap passed 3,000 PRs on 2026-10-17 (#3340), beyond the default 30 pages of 100;
+    # the 22:17Z refresh failed on 'pagination limit reached'. 100 pages = 10,000 PRs.
+    pulls = sorted(pages(f'repos/{CROC}/pulls', {'state': 'all', 'sort': 'created', 'direction': 'asc'}, limit=PULL_PAGES), key=lambda p: p['number'])
     assert len({p['number'] for p in pulls}) == len(pulls)
     assert set(old) <= {p['number'] for p in pulls}, 'PR coverage regressed'
     heads = {}

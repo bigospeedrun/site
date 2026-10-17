@@ -213,6 +213,11 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')
         self.assertEqual(refresh.claim_state(p|{'number':3115},{'source_commit':head,'claimed_score':'1/7'},{},evaluate((None,None,'no package')))[:2],(None,'no package'))
 
+    def test_pull_listing_has_room(self):
+        # 2026-10-17: CrocSwap passed 3,000 PRs and the 30-page default failed the refresh.
+        count=len(refresh.load(refresh.ROOT,'sources/crocswap-pulls.json'))
+        self.assertGreaterEqual(refresh.PULL_PAGES*100,2*count)
+
     def test_score_limit_matches_schema(self):
         schema=json.loads((refresh.ROOT/'schemas/problem-v1.json').read_text())['properties']['records']['items']['properties']['score']
         self.assertEqual(schema['maxLength'],refresh.MAX_SCORE_CHARS)
@@ -245,7 +250,7 @@ class RefreshTests(unittest.TestCase):
             registry['repositories'].append(alias);refresh.dump(stage,'registry.json',registry)
             pinned=dict(alias['manifest_source']);pinned_bytes=(stage/pinned['path']).read_bytes()
             pulls=refresh.load(stage,'sources/crocswap-pulls.json')
-            with patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a:pulls if path.endswith('/pulls') else []):
+            with patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []):
                 first=refresh.refresh(stage,'2026-10-09T15:00:00Z')
                 updated=refresh.load(stage,'registry.json')['repositories']
                 updated_swap=next(r for r in updated if r['repo']==refresh.SWAP)
@@ -296,7 +301,7 @@ class RefreshTests(unittest.TestCase):
                 if nested:
                     (repo/'unrelated.json').write_text('preserve me')
                     git('add','unrelated.json')
-                with patch.object(refresh,'ROOT',data),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
+                with patch.object(refresh,'ROOT',data),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
                     refresh.main()
                     summary=json.loads((repo/'.git/refresh-summary.json').read_text())
                     self.assertIn('registry.json',summary['changed_files'])
