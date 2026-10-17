@@ -213,20 +213,25 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')
         self.assertEqual(refresh.claim_state(p|{'number':3115},{'source_commit':head,'claimed_score':'1/7'},{},evaluate((None,None,'no package')))[:2],(None,'no package'))
 
-    def listing(self,stored,intake,full=None,updated=(),now='2026-10-18T05:17:00Z',fail=None):
+    def listing(self,stored,intake,full=None,updated=(),now='2026-10-18T05:17:00Z',fail=None,deleted=None,drop_body=None):
         """Run list_pulls on a temp stage: stored PR index, intake, the full API list, and
         the PRs the updated-desc listing returns (newest first)."""
         with tempfile.TemporaryDirectory() as temp:
             stage=Path(temp);(stage/'sources').mkdir()
             refresh.dump(stage,'sources/crocswap-pulls.json',[refresh.pull_index(p) for p in stored])
             refresh.dump(stage,'sources/intake.json',intake)
-            for p in stored:refresh.dump(stage,f"sources/pr-{p['number']}.json",{'body':p['body']})
+            for p in stored:
+                if p['number']!=drop_body:refresh.dump(stage,f"sources/pr-{p['number']}.json",{'body':p['body']})
             calls=[]
             def pages(path,params=None,limit=30):
                 calls.append(('full',limit))
                 if fail:raise RuntimeError('GitHub pagination limit reached')
                 return list(full)
-            def api(path,params):
+            def api(path,params=None):
+                if path.split('/')[-2]=='pulls':  # one PR: deleted ones answer 404
+                    calls.append(('pr',int(path.split('/')[-1])))
+                    if int(path.split('/')[-1]) in (deleted or ()):raise RuntimeError(f'GitHub GET failed: {path} (HTTP 404)')
+                    return {}
                 calls.append(('page',params['page']));self.assertEqual((params['sort'],params['direction']),('updated','desc'))
                 return list(updated)[(params['page']-1)*100:params['page']*100]
             with patch.object(refresh,'pages',pages),patch.object(refresh,'api',api):
@@ -268,6 +273,20 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(info['pulls_full_at'],'2026-10-17T00:17:00Z')  # tried again next run
         pulls,info,calls=self.listing(stored,intake,fail=True)
         self.assertIn('page limit',info['pulls_incomplete']);self.assertEqual(len(pulls),100);self.assertEqual(calls[-1],('page',1))
+
+    def test_deleted_pr_and_missing_body(self):
+        # Worker 1 review: a PR GitHub deleted is recorded once, not flagged forever.
+        stored=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,101)]
+        intake={'pulls_watermark':'2026-10-18T05:00:00Z','pulls_full_at':'2026-10-17T00:17:00Z'}
+        pulls,info,calls=self.listing(stored,intake,full=stored[:-1],deleted={100})
+        self.assertEqual((info['pulls_incomplete'],info['pulls_deleted'],len(pulls)),(None,[100],100))
+        self.assertIn(('pr',100),calls)
+        pulls,info,calls=self.listing(stored,intake|{'pulls_deleted':[100]},full=stored[:-1])
+        self.assertNotIn(('pr',100),calls);self.assertIsNone(info['pulls_incomplete'])
+        # A stored PR without its body file makes the incremental run read the full list.
+        same_day={'pulls_watermark':'2026-10-18T05:00:00Z','pulls_full_at':'2026-10-18T00:17:00Z'}
+        pulls,info,calls=self.listing(stored,same_day,full=stored,updated=[],drop_body=50)
+        self.assertEqual(calls[-1][0],'full');self.assertEqual(len(pulls),100)
 
     def test_incremental_equals_full_on_a_replay(self):
         base=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,151)]

@@ -250,20 +250,36 @@ def claim_state(p, prior, decisions, evaluate):
 def stamp(text):
     return datetime.fromisoformat(text.replace('Z', '+00:00')).timestamp()
 
-def list_pulls(stage, now):
+def deleted_pr(n):
+    """True when GitHub answers 404 for PR n (deleted, for example in a spam cleanup)."""
+    try:
+        api(f'repos/{CROC}/pulls/{n}')
+        return False
+    except RuntimeError as error:
+        return '(HTTP 404)' in str(error)
+
+def list_pulls(stage, now, force_full=False):
     """(pulls, listing): every CrocSwap PR, sorted by number, with body; listing holds the
-    new intake fields (pulls_watermark, pulls_full_at, pulls_incomplete)."""
+    new intake fields (pulls_watermark, pulls_full_at, pulls_incomplete, pulls_deleted)."""
     intake = load(stage, 'sources/intake.json')
     stored = {p['number']: p for p in load(stage, 'sources/crocswap-pulls.json')}
     watermark = intake.get('pulls_watermark')
-    full = not watermark or (intake.get('pulls_full_at') or '')[:10] != now[:10]
-    listing = dict(pulls_watermark=watermark, pulls_full_at=intake.get('pulls_full_at'), pulls_incomplete=None)
+    full = force_full or not watermark or (intake.get('pulls_full_at') or '')[:10] != now[:10]
+    deleted = set(intake.get('pulls_deleted') or [])
+    listing = dict(pulls_watermark=watermark, pulls_full_at=intake.get('pulls_full_at'), pulls_incomplete=None,
+                   pulls_deleted=sorted(deleted))
     fresh = []
     if full:
         limit = 2 * len(stored) // 100 + FULL_MARGIN_PAGES
         try:
             fresh = pages(f'repos/{CROC}/pulls', {'state': 'all', 'sort': 'created', 'direction': 'asc'}, limit=limit)
-            missing = sorted(set(stored) - {p['number'] for p in fresh})
+            missing = sorted(set(stored) - {p['number'] for p in fresh} - deleted)
+            # A PR that GitHub deleted is missing from every full list: record it once
+            # (the stored entry stays) instead of flagging the list forever.
+            gone = [n for n in missing[:20] if deleted_pr(n)]
+            deleted |= set(gone)
+            listing['pulls_deleted'] = sorted(deleted)
+            missing = [n for n in missing if n not in deleted]
             if missing:
                 listing['pulls_incomplete'] = f'full PR list misses {len(missing)} stored PRs (first #{missing[0]})'
         except RuntimeError as error:
@@ -284,7 +300,12 @@ def list_pulls(stage, now):
     merged.update({p['number']: p for p in fresh})
     for n, p in merged.items():
         if 'body' not in p:  # A stored PR not in this listing: its body is in sources/pr-<n>.json.
-            merged[n] = p | {'body': load(stage, f'sources/pr-{n}.json')['body']}
+            try:
+                merged[n] = p | {'body': load(stage, f'sources/pr-{n}.json')['body']}
+            except (FileNotFoundError, KeyError, ValueError):
+                if full:
+                    raise RuntimeError(f'Stored PR #{n} has no readable sources/pr-{n}.json and is not in the full list') from None
+                return list_pulls(stage, now, force_full=True)  # Rebuild from the full list.
     listing['pulls_watermark'] = max([p['updated_at'] for p in fresh] + ([watermark] if watermark else []), default=None)
     return sorted(merged.values(), key=lambda p: p['number']), listing
 
