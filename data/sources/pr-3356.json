@@ -1,0 +1,11 @@
+{
+  "number": 3356,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3356",
+  "title": "Research: exhibit thirteen disjoint P112 binary frames",
+  "body": "## Summary\n\nExhibit thirteen disjoint orthonormal 8-frames on the literal P112 binary labels, answering PR3335 open question 1. Its previous best was twelve; thirteen is now constructive and fourteen remains open.\n\n```diff\n-best exhibited packing: 12 frames\n+checked packing: 13 frames on 104 distinct ports\n+packing number: 13 <= nu <= 14\n```\n\nThe new matching has an explicit rank-34 scalar fit and a verified 32-to-34 minimum-rank bracket over every field. No smaller fitting-rank upper bound, native COPY invoice or new kappa is claimed. The proof, exact certificate, two separate checkers, optional bounded discovery, source pins and open next questions are in `research/paired-plane-frame-packing/`.\n\n## Evidence\n\n- Before: PR3335 `1d46df8b5aeac49d165cae58c1dd1036666bb789` reported twelve frames and asked whether twelve was maximal.\n- After: all thirteen Gram-I8 blocks and the 112-port partition pass exact checks. Both implementations check all 11,360 forced scalar entries. The independent dense implementation obtains rank 34 modulo 2, 3 and 1,000,003. Six primary rejection controls and a dense same-plane-zero mutation pass.\n- Registered Python 3.12 replay passes: `python3.12 -B scripts/research_package.py --package research/paired-plane-frame-packing`.\n- Committed-byte/source-history preflight, Git-free committed-export replay, optimized direct replay, Ruff and diff checks pass. The full selected supplier replay and native implementation are outside scope.\n\nCredit PR3335/Matarener/Mark for the question and previous packing, with the retained PR2471/2484/1825/1889/2118 and plane-port lineage detailed in the README. Canonical base is `6f100d4bb5083f8c35d96fd95a539811c62f245c`, priority revision 6. Final overlap refresh found the separate literal-support tariff and block-rank audits, whose scope is preserved.\n\n## Merge Danger\n\n**Door:** two-way\n\n**Blast Radius:** research\n\nNine new files in one package. No selected record, supplier, shared checker or frozen source is changed.\n",
+  "created_at": "2026-10-17T22:51:06Z",
+  "updated_at": "2026-10-17T22:51:06Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

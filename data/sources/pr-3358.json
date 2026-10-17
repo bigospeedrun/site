@@ -1,0 +1,11 @@
+{
+  "number": 3358,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3358",
+  "title": "Research: record isolated test worker-width evidence",
+  "body": "## Scope\n\nReport-only investigation for the `replay-runtime` task card, pinned to current main `6f100d4bb5083f8c35d96fd95a539811c62f245c`. No runner, test, selected-construction, or κ source changed.\n\n## Result\n\nThe same 178 sorted test modules were attempted at both worker widths. One 12-worker run took 265.109 s and exited 1, with `test_historical_check.py`, `test_isolated_test_deadlines.py`, and `test_pr_reconciliation.py` failing. One six-worker run took 286.056 s and exited 1, with only the historical-check and PR-reconciliation modules failing. The six-worker run was 7.90% slower in this single uncontrolled pair, while the short-deadline module passed instead of timing out under full-suite load. This is numerical evidence on one shared host, not a general runtime bound, guaranteed reliability improvement, or speedup.\n\nThe source-level coverage argument is limited to a fixed discovered file list and unchanged source tree: only executor width changes; `map` receives every enumerated module once, with unchanged arguments and completion receipts. Targeted runner controls passed 10/10 and deadline controls passed 7/7. `scripts/research_baseline.py` passed with `PASS_RESEARCH_BASELINE_BINDINGS_ONLY` (this is not a full scientific replay).\n\n## Remaining gaps\n\nBoth full runs still fail the historical accepted-live-hash check and PR/family-ledger reconciliation controls. The exact errors are documented in the report. An open PR #3348 separately updates child-process bytecode-cache policy in the same runner; these measurements are pinned to the pre-change base and should be repeated after that patch lands. No new mathematical bound is proved and selected κ is unchanged.\n\nThe full report and reproduction instructions are in `docs/research/isolated-test-worker-width-2026-10-17.md`.\n",
+  "created_at": "2026-10-17T22:54:56Z",
+  "updated_at": "2026-10-17T22:54:56Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

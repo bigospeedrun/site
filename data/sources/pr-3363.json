@@ -1,0 +1,11 @@
+{
+  "number": 3363,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3363",
+  "title": "Record the relay that carries each matched source into its target",
+  "body": "## Summary\n- Under the channel's addition rule, all 208 published flags deliver their source value into the matched target. The final coefficient is 1/2 for 153 flags and -1/2 for 55. Every delivery is at or after that source's first event.\n- X0 is first touched at event 591. Its value reaches Y34 at event 2815 with coefficient 1/2, through G0, Q0, C and D17.\n- The Gram identity for that coefficient is not recomputed, and there is no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/p104-flag-relay/verify.py`\n- [x] `python3.12 -B research/p104-flag-relay/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-flag-relay`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T23:13:30Z",
+  "updated_at": "2026-10-17T23:13:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
