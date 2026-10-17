@@ -4,8 +4,8 @@
   "title": "Correct the mixed-profile inference in the block-climb screen",
   "body": "PR3039 correctly shows that an isolated charged block group loses, but its inference that every group in a passing call must be free does not follow for a mixture of free and charged groups.\n\nThis package gives an explicit complete cost-alphabet counterexample. Replacing all 2,412 unit payloads by 150 free rank-16 groups, a free rank-10 group and one rank-2 payload with a paid rank-2 transport has moment below `0.998883185907234` at PR1605's exact target. All other local children and the full old idle bill remain; overhead receives no idle credit. A seven-member remainder family admits five charged pairs and rejects six, with a written monotonicity proof and exact adjacent signs.\n\nThe uniform per-group obstruction and PR1605's existing overhead budgets retain their scope and credit. This supplies no physical decoder, native batching contract, dirty-state restoration construction, supplier admission or new kappa. PR679's direct-sum/tensor-child obstruction is unaffected.\n\nValidation: registered Python 3.12 replay, normal/optimized Python 3.12 and optimized Python 3.14 checks, a separate 175-check rational interval implementation, source/receipt corruption controls, and optimized read-only Git-free replay pass locally. Hosted checks are separate; no rerun or dispatch was requested.\n\nScientific base: `d8e0f83f00191df62174b641e9fff055c357f641`, priority 6. PR3039 is audited at `f0d6a48245e44fc29cfe077d21ca2521c2a8d941`. Credit: Aaron Wang (PR3039), Arham Tahir (PR1605), Douglas Colkitt (PR1240), Ali Romman (PR1429), Greer Guthrie (PR679), and the retained selected construction lineage. Prepared by Ross Richardson with substantial OpenAI Codex assistance, including independent internal mathematical review; no independent human or formal-kernel proof review is claimed.\n\n[Canonical investigation and scope](https://github.com/CrocSwap/integer-mult-bounds/discussions/1596#discussioncomment-18983443).\n",
   "created_at": "2026-10-16T21:38:47Z",
-  "updated_at": "2026-10-16T21:38:47Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T23:51:01Z",
+  "closed_at": "2026-10-16T23:51:01Z",
+  "merged_at": "2026-10-16T23:51:01Z",
+  "state": "closed"
 }

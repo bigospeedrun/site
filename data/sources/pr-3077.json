@@ -4,8 +4,8 @@
   "title": "Research: dirty-output anchor; no selected kappa improvement",
   "body": "## Claim\n\nThis contribution does **not** improve the selected κ, which remains `0.001672660197076918`. It proves a local dirty-output identity and gives a conditional profile screen, but does not embed a matching product block in the selected supplier. This is not a claim that no future implementation can improve κ.\n\n## Result and evidence\n\nFor arbitrary dirty targets, the reversible temporary-sum schedule realizes `A0 += P`, `A1 += Q`, and `Ai += P + Q + Ri`. At width 112 it uses 112 recursive children and 224 affine additions, versus 332 direct rank-one children. The symbolic map and inverse pass for every width 3 through 112; the output-slice rank is exact, 588,500 finite F2/F3 assignments pass, and five mutation controls fail as intended. The pinned selected endpoint retains independent entry dirt in all 112 targets.\n\nSeven hypothetical blocks would lower the local rank-one count from 2,412 to 872 and give a conditional complex κ ceiling of `0.002368554974`. That ceiling is not an achieved supplier bound: a bounded inspection of the pinned source artifacts did not extract the required common product group or a complete chronological invoice. This representation mismatch is not a nonexistence proof. The selected κ and bit endpoint therefore remain unchanged.\n\n## Reproduction\n\n```sh\npython3.12 -I -O -B research/complex-dirty-output-temporary-sum-anchor/verify.py\npython3.12 scripts/research_package.py --package research/complex-dirty-output-temporary-sum-anchor\npython3.12 scripts/check_research_commit.py --package research/complex-dirty-output-temporary-sum-anchor\n```\n\nAll three commands passed locally on commit `9e52b244e07b1d981dd945bba7ac6c16fa7fdd43`.\n\n## Scope\n\nOnly a new research package is added. The selected result, frozen sources, and shared implementation are unchanged. The package retains predecessor credit and lists the source-alignment and full-invoice questions still open.\n\nMerge Danger: door two-way; blast radius isolated.\n",
   "created_at": "2026-10-16T21:56:57Z",
-  "updated_at": "2026-10-16T21:56:57Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-16T23:51:01Z",
+  "closed_at": "2026-10-16T23:51:01Z",
+  "merged_at": "2026-10-16T23:51:01Z",
+  "state": "closed"
 }

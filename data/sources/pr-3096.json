@@ -1,0 +1,11 @@
+{
+  "number": 3096,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3096",
+  "title": "Record the bit-0 census false prune on 01021323",
+  "body": "## Summary\n- The pinned #2542 length-18 census groups prefix states by bit 0 and prunes them with the balanced weight-parity budget. On the universal word `01021323` the weight walk stays at collision count 0, while the bit-0 walk reaches 8 and crosses budget 5.\n- The same rule rejects 6 of the 22 simple canonical universal words at four labels and length 8. The two three-label domains have no such simple false prune.\n- No seven-label census, no `f(7)` decision, and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/f7-bit0-false-prune/verify.py`\n- [x] `python3.12 -B research/f7-bit0-false-prune/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/f7-bit0-false-prune`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T00:14:03Z",
+  "updated_at": "2026-10-17T00:14:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
