@@ -202,7 +202,9 @@ class DirectImportTests(unittest.TestCase):
         with self.assertRaises(gate.Rejected):self.check(extra_file=True)
 
     def test_exact_issue_bytes_and_version_bound(self):
-        for change in [{'body':self.issue['body']+'\n'},{'user':{'login':'other'}},{'state':'closed'},
+        # The verifier closes the issue after its final comment; the result still binds.
+        self.assertEqual(self.check(issue={**self.issue,'state':'closed'})['decision'],'lean-verified')
+        for change in [{'body':self.issue['body']+'\n'},{'user':{'login':'other'}},{'state':'locked'},
                        {'created_at':'2026-10-10T11:00:00Z'},{'pull_request':{}}]:
             with self.subTest(change=change),self.assertRaises(gate.Rejected):self.check(issue={**self.issue,**change})
         for field in ['issue_body_sha256','issue_submitter_login','submission_sha256']:

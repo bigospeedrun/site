@@ -65,7 +65,10 @@ class Importer:
 
     def discover(self):
         claims={}
-        issues=self.api.pages(PREFIX+'issues',{'state':'open'})
+        # Closed issues too: the verifier closes an issue after its final result (Nil
+        # rule 2026-10-17). verify() lists a closed issue only with a final Lean
+        # Verified outcome; on 2026-10-17 an open-only read dropped the 3SUM leader.
+        issues=self.api.pages(PREFIX+'issues',{'state':'all'})
         prs=self.api.pages(PREFIX+'pulls',{'state':'all'})
         for item in issues:
             if 'pull_request' in item:continue
@@ -77,7 +80,7 @@ class Importer:
                 owner_repo=sub['repo_url'].removeprefix('https://github.com/')
                 commit=self.api.json(f'repos/{owner_repo}/commits/{sub["commit"]}')
                 require(commit['sha']==sub['commit'],'Issue source pin mismatch')
-                claims['direct-issue-'+str(item['number'])]=dict(route='issue',item=item,submission=sub)
+                claims['direct-issue-'+str(item['number'])]=dict(route='issue',item=item,submission=sub,closed=item.get('state')!='open')
             except GitHubError as error:
                 if error.status != 404: raise
                 self.notes.append(f'Ignored unavailable source for issue #{item["number"]}')
@@ -149,7 +152,7 @@ class Importer:
     def verify(self,claims,previous):
         self.final_states=copy.deepcopy(previous.get('final_states',{}))
         # Keep a validated receipt across GitHub artifact expiry, but never across
-        # changed submission bytes, test labels, closure, or changed trust policy.
+        # changed submission bytes, test labels, or changed trust policy.
         for key,claim in claims.items():
             prior=previous.get('entries',{}).get(key,{})
             same=claim['submission']==prior.get('submission')
@@ -215,7 +218,18 @@ class Importer:
                     self.retain_outcome(key,claim,env.get('verification_stage','final'),verdict,evidence)
                 except (Rejected,ValueError,KeyError,TypeError,zipfile.BadZipFile) as error:
                     self.notes.append(key+': receipt not admitted ('+type(error).__name__+')')
-        return {k:c for k,c in claims.items() if c.get('submission') and not c.get('exclude')}
+        kept={}
+        for key,claim in claims.items():
+            if not claim.get('submission') or claim.get('exclude'):continue
+            if claim.get('closed') and not self.final_verified(key,claim):
+                self.notes.append(key+': closed without a final Lean Verified result; not listed');continue
+            kept[key]=claim
+        return kept
+
+    def final_verified(self,key,claim):
+        # The final outcome for these exact submission bytes (an edited body is a new source).
+        state=self.final_states.get(self.outcome_id(key,claim['submission']))
+        return bool(state and state['decision']=='lean-verified')
 
     def collect(self):
         path=self.root/'direct-submissions.json'

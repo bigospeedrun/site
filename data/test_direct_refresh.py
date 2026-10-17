@@ -50,6 +50,36 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(row['tier'],'claimed');self.assertEqual(row['authors'],[dict(name='alice',url='https://github.com/alice')])
         self.assertEqual(meta['publication_date_role'],'Submission opened')
 
+    def test_closed_issue_stays_listed_only_with_a_final_verified_result(self):
+        # 2026-10-17: closing verifier issues #4/#8/#14 dropped the 3SUM leader.
+        sub=d.parse_body(self.issue()['body'])
+        def outcome(number,decision):
+            importer=r.Importer(DiscoveryAPI())
+            key=f'direct-issue-{number}'
+            return importer.outcome_id(key,sub),dict(key=key,submission=sub,decision=decision,evidence={})
+        previous=dict(final_states=dict([outcome(5,'lean-verified'),outcome(6,'blocked')]))
+        closed=lambda number:dict(self.issue(number),state='closed')
+        issues=[closed(5),closed(6),closed(7),self.issue(9)]
+        api=DiscoveryAPI(issues);seen=[]
+        pages=api.pages
+        def record(path,params=None,key=None):
+            seen.append((path,params));return pages(path,params,key)
+        api.pages=record
+        importer=r.Importer(api)
+        claims=importer.verify(importer.discover(),previous)
+        # Verified and closed stays; blocked, never-finished and closed stay off; open stays.
+        self.assertEqual(set(claims),{'direct-issue-5','direct-issue-9'})
+        self.assertIn((r.PREFIX+'issues',{'state':'all'}),seen)
+        self.assertTrue(any('direct-issue-7: closed without a final Lean Verified result' in n for n in importer.notes))
+        # A closed issue's row is the same row it had while open.
+        open_claim=dict(route='issue',item=self.issue(5),submission=sub)
+        self.assertEqual(r.row_for('direct-issue-5',claims['direct-issue-5'],'2026-10-11T00:00:00Z')[:2],
+                         r.row_for('direct-issue-5',open_claim,'2026-10-11T00:00:00Z')[:2])
+        # An edited body after closing is a new source without a final result.
+        edited=closed(5);edited['body']=edited['body'].replace('1/1000','1/1001')
+        importer=r.Importer(DiscoveryAPI([edited]))
+        self.assertEqual(importer.verify(importer.discover(),previous),{})
+
     def test_open_pr_claim_and_closed_unmerged_drop(self):
         pr=dict(number=6,state='open',merged=False,labels=[],head={'sha':'a'*40},user={'login':'alice'},created_at='2026-10-10T12:00:00Z',html_url='https://github.com/bigospeedrun/verifier/pull/6')
         sub=dict(d.parse_body(self.issue()['body']),source_subdir='submissions/dft/alice-proof')

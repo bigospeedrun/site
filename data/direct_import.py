@@ -185,7 +185,9 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
     require(isinstance(receipt, dict) and env.get('test_only') is False and env.get('importable') is True and env.get('status') != 'fixture_only' and not receipt.get('test_only'), 'Test replay is not importable')
     receipt = checked_receipt(receipt_archive, receipt_artifact, env, run, revision)
     require(env.get('run_id') == run_id and env.get('run_attempt') == attempt and env.get('run_url') == run_url and env.get('verifier_commit') == revision, 'Envelope run mismatch')
-    require('pull_request' not in issue and issue.get('state') == 'open' and issue.get('title', '').startswith('[Lean submission]'), 'Issue is not an open submission')
+    # A closed issue keeps its result: the verifier closes an issue after its final
+    # comment (Nil rule 2026-10-17). The body hash and identity below bind the input.
+    require('pull_request' not in issue and issue.get('state') in ('open', 'closed') and issue.get('title', '').startswith('[Lean submission]'), 'Issue is not a submission')
     require(env.get('issue_number') == issue.get('number') and env.get('issue_url') == issue.get('html_url') == f'https://github.com/{REPOSITORY}/issues/{issue["number"]}', 'Issue identity mismatch')
     body = issue.get('body')
     require(isinstance(body, str) and len(body.encode()) <= 16000, 'Invalid issue body')
