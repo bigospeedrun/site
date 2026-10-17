@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-3093",
+        "leader": "crocswap-pr-3051",
         "records": [
           {
             "id": "openai-original-109",
@@ -3720,34 +3720,14 @@
             "bound": "O(n log^(1 - 0.001729737950064279) n)"
           },
           {
-            "id": "crocswap-pr-3093",
-            "score": "1/10",
-            "relation": "attained",
-            "evidence": "Human Verified",
-            "authors": [
-              "Gonzalo Mier"
-            ],
-            "bound": "O(n log^(1 - 0.1) n)"
-          },
-          {
-            "id": "crocswap-pr-3107",
-            "score": "1/10",
-            "relation": "attained",
-            "evidence": "Human Verified",
-            "authors": [
-              "Gonzalo Mier"
-            ],
-            "bound": "O(n log^(1 - 0.1) n)"
-          },
-          {
-            "id": "crocswap-pr-3111",
-            "score": "1/10",
+            "id": "crocswap-pr-3115",
+            "score": "1729737950064278551242895823/1000000000000000000000000000000",
             "relation": "attained",
             "evidence": "Claimed",
             "authors": [
-              "Gonzalo Mier"
+              "dataisfire"
             ],
-            "bound": "O(n log^(1 - 0.1) n)"
+            "bound": "O(n log^(1 - 0.0017297379500642785512) n)"
           }
         ],
         "table": "big-o"
@@ -3920,6 +3900,36 @@
             "bound": "O(n^1.99896)"
           },
           {
+            "id": "prove2me-3sum-1-99913",
+            "score": "199913/100000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "marwahaha"
+            ],
+            "bound": "O(n^1.99913)"
+          },
+          {
+            "id": "prove2me-3sum-1-999112",
+            "score": "249889/125000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "marwahaha"
+            ],
+            "bound": "O(n^1.999112)"
+          },
+          {
+            "id": "prove2me-3sum-1-999074",
+            "score": "999537/500000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "xuanji"
+            ],
+            "bound": "O(n^1.999074)"
+          },
+          {
             "id": "direct-issue-14",
             "score": "1921/1000",
             "relation": "attained",
@@ -3948,36 +3958,6 @@
               "Anchen0823"
             ],
             "bound": "O(n^1.960614)"
-          },
-          {
-            "id": "prove2me-3sum-1-99913",
-            "score": "199913/100000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "marwahaha"
-            ],
-            "bound": "O(n^1.99913)"
-          },
-          {
-            "id": "prove2me-3sum-1-999112",
-            "score": "249889/125000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "marwahaha"
-            ],
-            "bound": "O(n^1.999112)"
-          },
-          {
-            "id": "prove2me-3sum-1-999074",
-            "score": "999537/500000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "xuanji"
-            ],
-            "bound": "O(n^1.999074)"
           }
         ],
         "table": "big-o"
@@ -4020,6 +4000,36 @@
             "bound": "O(n^2.99791)"
           },
           {
+            "id": "prove2me-apsp-2-9983",
+            "score": "29983/10000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "wurtle"
+            ],
+            "bound": "O(n^2.9983)"
+          },
+          {
+            "id": "prove2me-apsp-2-99791",
+            "score": "299791/100000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "xuanji"
+            ],
+            "bound": "O(n^2.99791)"
+          },
+          {
+            "id": "prove2me-apsp-2-996001",
+            "score": "2996001/1000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "xuanji"
+            ],
+            "bound": "O(n^2.996001)"
+          },
+          {
             "id": "direct-pr-13",
             "score": "59911217/20000000",
             "relation": "attained",
@@ -4038,36 +4048,6 @@
               "Li Xuanji"
             ],
             "bound": "O(n^2.995561)"
-          },
-          {
-            "id": "prove2me-apsp-2-9983",
-            "score": "29983/10000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "wurtle"
-            ],
-            "bound": "O(n^2.9983)"
-          },
-          {
-            "id": "prove2me-apsp-2-99791",
-            "score": "299791/100000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "xuanji"
-            ],
-            "bound": "O(n^2.99791)"
-          },
-          {
-            "id": "prove2me-apsp-2-996001",
-            "score": "2996001/1000000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "xuanji"
-            ],
-            "bound": "O(n^2.996001)"
           }
         ],
         "table": "big-o"
@@ -4998,7 +4978,13 @@
     "[\"other-heilbronn-triangle\",\"littleBro:1/50{,}893{,}237\",\"1/50{,}893{,}237\",\"attained\"]:record",
     "[\"other-haldane-gap\",\"amachino:0.1515\",\"0.1515\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-3093\",\"1/10\",\"attained\"]:record",
-    "[\"other-catalan\",\"slitsey:740\",\"740\",\"attained\"]:record"
+    "[\"other-catalan\",\"slitsey:740\",\"740\",\"attained\"]:record",
+    "[\"3sum\",\"prove2me-3sum-1-99913\",\"199913/100000\",\"attained\"]:lean",
+    "[\"3sum\",\"prove2me-3sum-1-999112\",\"249889/125000\",\"attained\"]:lean",
+    "[\"3sum\",\"prove2me-3sum-1-999074\",\"999537/500000\",\"attained\"]:lean",
+    "[\"apsp\",\"prove2me-apsp-2-9983\",\"29983/10000\",\"attained\"]:lean",
+    "[\"apsp\",\"prove2me-apsp-2-99791\",\"299791/100000\",\"attained\"]:lean",
+    "[\"apsp\",\"prove2me-apsp-2-996001\",\"2996001/1000000\",\"attained\"]:lean"
   ],
   "deferred": [
     {

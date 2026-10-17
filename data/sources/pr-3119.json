@@ -1,0 +1,11 @@
+{
+  "number": 3119,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3119",
+  "title": "Record V45 in the shipped words and cap brackets",
+  "body": "## Summary\n- Both shipped words end helpers 249, 251, 265 and 267 on the rank-7 subspace. The parent already contains those helpers, on a rank-8 frame.\n- Private buffers go from 86 to 91. The five new keys are the later extractions 226, 228, 230, 363 and 395, so V45 adds none.\n- The recorded fixed-capacity brackets rise from the parent through stage 1, stage 2 and the final certificate. The cap basis is not re-solved, and there is no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/rank7-v45-shipped-invoice/verify.py`\n- [x] `python3.12 -B research/rank7-v45-shipped-invoice/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank7-v45-shipped-invoice`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T03:08:45Z",
+  "updated_at": "2026-10-17T03:08:45Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

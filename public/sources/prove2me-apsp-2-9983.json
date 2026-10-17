@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "slug": "apsp-exponent",
+    "id": "fea9d876-b692-4a25-8437-cf9ebec627d8",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "upper",
+    "value_direction": "lower"
+  },
+  "mission_id": "e19faecc-7aeb-4fa4-b81f-d8f756166e78",
+  "mission_url": "https://prove2.me/missions/e19faecc-7aeb-4fa4-b81f-d8f756166e78",
+  "attested_value": "2.9983",
+  "solved_at": "2026-10-06T16:59:46.422995+00:00",
+  "statement_form": "TrulySubcubicAPSP.APSP.SolvedInTime v. Def_TrulySubcubicAPSP_WordRAM and Def_TrulySubcubicAPSP_Problems copy EndStatement.lean (anthropics/formal-math e1a4e65) with the namespace renamed and the unused Theorem_* and ZeroWeightKClique definitions left out (diff checked 2026-10-17).",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "APSPExponentImprovement.apsp",
+    "url": "https://prove2.me/theorems/9c4150fb-2e87-4412-bdd9-52c25d6283eb",
+    "statement_path": "envs/0df444a/Theorems/Thm_APSPExponentImprovement_apsp.lean",
+    "statement_sha256": "abf2ce3842aac69d463631ad10ddc1c1594ac126dc1df6384f5a28dbdeb574f7",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean",
+      "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_APSPExponentImprovement_apsp.lean",
+    "sha256": "e22f29caeeaab4ceea18a7aee65c4ac0185ddef21d773a3dd144c157bf88341f",
+    "author": "@wurtle"
+  },
+  "definitions": {
+    "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean": "a5a11539bd2b7e76493d88fec93859e08067060ef6892b6f49446efc92cb40b1",
+    "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean": "5c48187ec56cf367db0b881d811e0a9ccae6d59bb49e159cd769a0a466ce8d0b"
+  },
+  "lean_verified": true
+}
