@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-3051",
+        "leader": "crocswap-pr-3133",
         "records": [
           {
             "id": "openai-original-109",
@@ -3718,6 +3718,16 @@
               "jeremydiviney"
             ],
             "bound": "O(n log^(1 - 0.001729737950064279) n)"
+          },
+          {
+            "id": "crocswap-pr-3133",
+            "score": "17297760894051203342379999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "dcharb78"
+            ],
+            "bound": "O(n log^(1 - 0.0017297760894051203342) n)"
           }
         ],
         "table": "big-o"
@@ -4028,6 +4038,16 @@
               "shresh"
             ],
             "bound": "O(n^2.99294792)"
+          },
+          {
+            "id": "majdoddin-apsp-2026",
+            "score": "5989/2000",
+            "relation": "strict-upper-bound",
+            "evidence": "Claimed",
+            "authors": [
+              "Ruhollah Majdoddin"
+            ],
+            "bound": "O(n^(2.9945 + epsilon)), for every fixed epsilon > 0"
           },
           {
             "id": "direct-pr-13",
@@ -5016,7 +5036,8 @@
     "[\"apsp\",\"prove2me-apsp-2-996001\",\"2996001/1000000\",\"attained\"]:lean",
     "[\"other-quasi-riemann\",\"Gaozhongpai:87483/100000\",\"87483/100000\",\"attained\"]:record",
     "[\"other-block-sensitivity\",\"robinkothari:\\\\log B/\\\\log A,\\\\quad A=44\\\\cdot9^{441},\\\\quad B=9^{42}(2\\\\cdot9^{42}+1)^{20}\",\"\\\\log B/\\\\log A,\\\\quad A=44\\\\cdot9^{441},\\\\quad B=9^{42}(2\\\\cdot9^{42}+1)^{20}\",\"attained\"]:record",
-    "[\"apsp\",\"shreshth-s-apsp-2026\",\"37411849/12500000\",\"attained\"]:record"
+    "[\"apsp\",\"shreshth-s-apsp-2026\",\"37411849/12500000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-3133\",\"17297760894051203342379999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {

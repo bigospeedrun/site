@@ -369,6 +369,50 @@
       "source_commit": "8a21eaae81599913dba562727e03a9b48c36a5b9"
     },
     {
+      "id": "majdoddin-apsp-2026",
+      "kind": "improvement",
+      "score": "5989/2000",
+      "score_relation": "strict-upper-bound",
+      "tier": "claimed",
+      "submitted_at": "2026-10-12T21:34:07Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-12T21:34:07Z",
+      "site_observed_at": "2026-10-17T07:44:01Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.17420v1"
+      },
+      "spec_version": "1",
+      "title": "Ruhollah Majdoddin deterministic APSP in time n^(2.9945+o(1))",
+      "authors": [
+        {
+          "name": "Ruhollah Majdoddin",
+          "url": "https://arxiv.org/abs/2610.17420v1"
+        }
+      ],
+      "predecessors": [
+        "https://arxiv.org/abs/2610.06783"
+      ],
+      "submission_url": "https://arxiv.org/abs/2610.17420v1",
+      "artifact": {
+        "path": "sources/majdoddin-apsp-2-9945-claim.json",
+        "sha256": "b7c30aeed28193284a70a105bc81adf6612e0c1ecfa1746ade3ea6e61fb32f2f"
+      },
+      "evidence": {
+        "paper_url": "https://arxiv.org/pdf/2610.17420v1",
+        "theorem": "Corollary 16.1(d)",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The running-time bound rests on the written proof; the companion Lean projects do not formalise running times. No site rerun.",
+          "source_url": "https://arxiv.org/abs/2610.17420v1",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
       "id": "direct-pr-13",
       "kind": "improvement",
       "score": "59911217/20000000",
@@ -449,50 +493,6 @@
         "checked_at": "2026-10-12T02:37:20.122516Z",
         "receipt_path": "sources/direct-pr-6-38193262568-1-final.json"
       }
-    },
-    {
-      "id": "majdoddin-apsp-2026",
-      "kind": "improvement",
-      "score": "5989/2000",
-      "score_relation": "strict-upper-bound",
-      "tier": "claimed",
-      "submitted_at": "2026-10-12T21:34:07Z",
-      "upstream_status": "not-applicable",
-      "upstream_status_at": "2026-10-12T21:34:07Z",
-      "site_observed_at": "2026-10-17T07:44:01Z",
-      "source": {
-        "kind": "paper",
-        "url": "https://arxiv.org/abs/2610.17420v1"
-      },
-      "spec_version": "1",
-      "title": "Ruhollah Majdoddin deterministic APSP in time n^(2.9945+o(1))",
-      "authors": [
-        {
-          "name": "Ruhollah Majdoddin",
-          "url": "https://arxiv.org/abs/2610.17420v1"
-        }
-      ],
-      "predecessors": [
-        "https://arxiv.org/abs/2610.06783"
-      ],
-      "submission_url": "https://arxiv.org/abs/2610.17420v1",
-      "artifact": {
-        "path": "sources/majdoddin-apsp-2-9945-claim.json",
-        "sha256": "b7c30aeed28193284a70a105bc81adf6612e0c1ecfa1746ade3ea6e61fb32f2f"
-      },
-      "evidence": {
-        "paper_url": "https://arxiv.org/pdf/2610.17420v1",
-        "theorem": "Corollary 16.1(d)",
-        "certificate_path": null
-      },
-      "dependencies": [
-        {
-          "id": "written-proof-running-time",
-          "statement": "The running-time bound rests on the written proof; the companion Lean projects do not formalise running times. No site rerun.",
-          "source_url": "https://arxiv.org/abs/2610.17420v1",
-          "status": "unverified"
-        }
-      ]
     }
   ],
   "record_metadata": {
@@ -637,6 +637,29 @@
       "license_status": "No license file; source files are not copied, only their hashes",
       "credits": "shresh (shreshth-s). Builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Majdoddin's five-term tensor (arXiv:2610.17420)."
     },
+    "majdoddin-apsp-2026": {
+      "checked_at": "2026-10-17",
+      "source_url": "https://arxiv.org/abs/2610.17420v1",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof (130-page arXiv paper). Its Lean projects check identities, counts, reduction correctness and constant arithmetic, but do not formalise running times; results of the Alman and Vassilevska Williams preprint enter as hypotheses. No Big O Speedrun proof check. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/word-ram/v1",
+      "comparison_status": "Corollary 16.1(d): APSP on directed graphs with integer weights of absolute value at most n^nu and no negative cycles in n^(3-0.0055+o(1)) = n^(2.99450+o(1)) time, deterministically, on a word RAM with O(log N)-bit words (definition of H(epsilon, gamma)). Theorem C gives O(n^(3-epsilon*gamma+epsilon/(2r)) (log n)^(r+5)) for every fixed r, with H(1/14, 0.077) from Corollary 9.1(b), so every exponent above 2.9945 is proved, not 2.9945 itself. The fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+      "scope": "Directed integer weights of polynomial magnitude, no negative cycles, all-pairs distances; deterministic worst case.",
+      "exact_statement": "Exact Triangle (also all-edges), the (min,+)-product and APSP take n^(3-0.0055+o(1)) = n^(2.99450+o(1)) time, deterministically.",
+      "score_interpretation": "Open endpoint 2.9945: O(n^(2.9945+epsilon)) for every fixed epsilon > 0, not O(n^2.9945).",
+      "publication_date_precision": "date-time",
+      "publication_date": "2026-10-12T21:34:07Z",
+      "publication_source_url": "https://arxiv.org/abs/2610.17420v1",
+      "publication_date_role": "arXiv v1 paper submission",
+      "date_precision": "Exact arXiv v1 submission timestamp in UTC; observation time separate.",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "arXiv non-exclusive license; the paper is not copied, only its hash",
+      "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Schönhage's five-term partial-product tensor."
+    },
     "direct-pr-13": {
       "checked_at": "2026-10-17",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/319252b348e254a4257cdc69805fd6eec3f5cd94/submissions/apsp/fringewidth-apsp-299556085/Submission.lean",
@@ -672,30 +695,7 @@
       "direct_submission": true,
       "route": "pull_request",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38193262568"
-    },
-    "majdoddin-apsp-2026": {
-      "checked_at": "2026-10-17",
-      "source_url": "https://arxiv.org/abs/2610.17420v1",
-      "site_badge": false,
-      "eligible_for_record": true,
-      "proof_status": "Written proof (130-page arXiv paper). Its Lean projects check identities, counts, reduction correctness and constant arithmetic, but do not formalise running times; results of the Alman and Vassilevska Williams preprint enter as hypotheses. No Big O Speedrun proof check. Evidence remains Claimed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
-      "comparison_key": "apsp/word-ram/v1",
-      "comparison_status": "Corollary 16.1(d): APSP on directed graphs with integer weights of absolute value at most n^nu and no negative cycles in n^(3-0.0055+o(1)) = n^(2.99450+o(1)) time, deterministically, on a word RAM with O(log N)-bit words (definition of H(epsilon, gamma)). Theorem C gives O(n^(3-epsilon*gamma+epsilon/(2r)) (log n)^(r+5)) for every fixed r, with H(1/14, 0.077) from Corollary 9.1(b), so every exponent above 2.9945 is proved, not 2.9945 itself. The fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
-      "scope": "Directed integer weights of polynomial magnitude, no negative cycles, all-pairs distances; deterministic worst case.",
-      "exact_statement": "Exact Triangle (also all-edges), the (min,+)-product and APSP take n^(3-0.0055+o(1)) = n^(2.99450+o(1)) time, deterministically.",
-      "score_interpretation": "Open endpoint 2.9945: O(n^(2.9945+epsilon)) for every fixed epsilon > 0, not O(n^2.9945).",
-      "publication_date_precision": "date-time",
-      "publication_date": "2026-10-12T21:34:07Z",
-      "publication_source_url": "https://arxiv.org/abs/2610.17420v1",
-      "publication_date_role": "arXiv v1 paper submission",
-      "date_precision": "Exact arXiv v1 submission timestamp in UTC; observation time separate.",
-      "listing_status": "research-draft",
-      "open_race": false,
-      "license_status": "arXiv non-exclusive license; the paper is not copied, only its hash",
-      "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Schönhage's five-term partial-product tensor."
     }
   },
-  "updated_at": "2026-10-17T07:44:01Z"
+  "updated_at": "2026-10-17T07:58:03Z"
 }

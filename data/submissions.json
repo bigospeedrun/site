@@ -46419,14 +46419,15 @@
       "upstream_status": "open",
       "upstream_status_at": "2026-10-17T06:55:07Z",
       "checked_at": "2026-10-17",
-      "claimed_score": null,
-      "record_ids": [],
+      "claimed_score": "17297760894051203342379999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
+      "record_ids": [
+        "crocswap-pr-3133"
+      ],
       "note": "The Claude check failed (BadRequestError).",
       "claim_path": "research/rank7-coupled-586-588-carrier-fold/CLAIM.json",
       "claim_head": "51eb9c4ee9e4722010d308aa3309e039d3940cc2",
       "claim_text": "f0d40dd0d6edbf14b16f4f5e2731aed260a5fa69a650d295c63a03fcf4d2f94f",
-      "claim_retry": true,
-      "review_reason": "The Claude check failed (BadRequestError)."
+      "claim_decided": true
     },
     {
       "pr_number": 3134,
@@ -46453,7 +46454,7 @@
       "title": "research: release T740 precision35 kappa refinement",
       "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3135",
       "submitted_at": "2026-10-17T07:15:09Z",
-      "updated_at": "2026-10-17T07:15:09Z",
+      "updated_at": "2026-10-17T07:28:22Z",
       "source_commit": "776ae75d640e6a5672e8ea798677a2cd3ae2d53c",
       "upstream_status": "open",
       "upstream_status_at": "2026-10-17T07:15:09Z",
@@ -46462,7 +46463,7 @@
       "record_ids": [],
       "note": "No research package kappa claim.",
       "claim_head": "776ae75d640e6a5672e8ea798677a2cd3ae2d53c",
-      "claim_text": "4ebf24958666afa5c1d71809d1b8568a43232300827e51e52c55661a192fb80c"
+      "claim_text": "742b6b800acc77998bee90e43ed18f7636ba9e0db380a84177218b8bf6456559"
     },
     {
       "pr_number": 3136,
@@ -46517,6 +46518,78 @@
       "note": "No research package kappa claim.",
       "claim_head": "2a4a17457e21de2de684bd8ad19938e9aef2319f",
       "claim_text": "c8c16e2ed356af67eeefb316d044fd1d7c1c1f6b73dc21daaa27469c05a00f0e"
+    },
+    {
+      "pr_number": 3139,
+      "author": "tekuuu",
+      "author_url": "https://github.com/tekuuu",
+      "title": "Tooling: bound hung isolated test modules without dropping coverage",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3139",
+      "submitted_at": "2026-10-17T07:28:22Z",
+      "updated_at": "2026-10-17T07:28:22Z",
+      "source_commit": "54bbb81cc884819154776900830eeb4d9db4dc5e",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-17T07:28:22Z",
+      "checked_at": "2026-10-17",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "54bbb81cc884819154776900830eeb4d9db4dc5e",
+      "claim_text": "183b1e05cc46f5c18bcd75dc97ae100d5bd77357e19796cc0612fd00341794ca"
+    },
+    {
+      "pr_number": 3140,
+      "author": "tekuuu",
+      "author_url": "https://github.com/tekuuu",
+      "title": "Tooling: explain every registered replay selection",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3140",
+      "submitted_at": "2026-10-17T07:33:00Z",
+      "updated_at": "2026-10-17T07:33:00Z",
+      "source_commit": "495f4b924596a4c78eaae32ae91872940ca0d9d8",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-17T07:33:00Z",
+      "checked_at": "2026-10-17",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "495f4b924596a4c78eaae32ae91872940ca0d9d8",
+      "claim_text": "9fd29ad6868c36d1c57b99f3cac76bb385fe71fcd3011d33947657015ec71650"
+    },
+    {
+      "pr_number": 3141,
+      "author": "tekuuu",
+      "author_url": "https://github.com/tekuuu",
+      "title": "Tooling: reject changed-base mixtures in PR file overlap snapshots",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3141",
+      "submitted_at": "2026-10-17T07:37:44Z",
+      "updated_at": "2026-10-17T07:37:44Z",
+      "source_commit": "6c8d1615f94c3615b2d23a424d3bf72ebe6009e4",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-17T07:37:44Z",
+      "checked_at": "2026-10-17",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "6c8d1615f94c3615b2d23a424d3bf72ebe6009e4",
+      "claim_text": "90bfa78cbb0cefc01136120bb54c948ab004d66fdb670632b6cdd11d99cfc8a2"
+    },
+    {
+      "pr_number": 3142,
+      "author": "tekuuu",
+      "author_url": "https://github.com/tekuuu",
+      "title": "Tooling: preserve complete replay selection in sparse checkouts",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3142",
+      "submitted_at": "2026-10-17T07:49:32Z",
+      "updated_at": "2026-10-17T07:49:32Z",
+      "source_commit": "c28ab1decefe9be591cb30894d6bf15216ec2979",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-17T07:49:32Z",
+      "checked_at": "2026-10-17",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "c28ab1decefe9be591cb30894d6bf15216ec2979",
+      "claim_text": "a085bcfaaa49e9894a783f3713929e13d7e91ec390d66918947a558d827a035a"
     }
   ]
 }
