@@ -70,6 +70,24 @@ class ClaimJudgeTests(unittest.TestCase):
         self.assertTrue(text.isascii()); self.assertNotIn('\n', text)
         self.assertEqual(claim_judge.error_summary(TimeoutError()), 'TimeoutError status=None type=None message=None')
 
+    def test_prompt_version_is_part_of_the_cache_key(self):
+        yes = {'claims_new_kappa': True, 'value': '0.001729737950064279', 'confidence': 'high'}
+        self.run_check(yes)
+        cache = json.loads((self.root / claim_judge.CACHE).read_text())
+        self.assertTrue(all(k.startswith(f'v{claim_judge.PROMPT_VERSION}:3051:') for k in cache))
+        # An answer from an older prompt is not reused: the PR is asked again.
+        old = {k.split(':', 1)[1]: v for k, v in cache.items()}
+        (self.root / claim_judge.CACHE).write_text(json.dumps(old))
+        with patch.object(claim_judge, 'PROMPT_VERSION', claim_judge.PROMPT_VERSION + 1):
+            self.run_check(yes)
+        self.assertEqual(self.calls, 2)
+
+    def test_prompt_counts_a_value_equal_to_another_cap_as_a_claim(self):
+        # #3190 (2026-10-17): kappa equals the #589 bit cap; prompt version 1 answered false.
+        self.assertIn('capped by the bit side', claim_judge.SYSTEM)
+        self.assertNotIn("repeats another pull request's value", claim_judge.SYSTEM)
+        self.assertGreaterEqual(claim_judge.PROMPT_VERSION, 2)
+
     def test_cache_by_pr_head_and_text(self):
         yes = {'claims_new_kappa': True, 'value': '0.001729737950064279', 'confidence': 'high'}
         self.run_check(yes); self.run_check(yes)

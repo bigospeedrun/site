@@ -175,7 +175,7 @@ def refresh(stage, now):
         heads[repo] = head
         repo_meta[repo] = meta
     decisions = {(d['pr'], d['head']): d for d in (load(stage, DECISIONS) if (stage / DECISIONS).exists() else {}).get('claims', [])}
-    fingerprint = hashlib.sha256(json.dumps({'importer_version':IMPORTER_VERSION,'decisions':sorted(map(list, decisions)),'heads': {repo: h['sha'] for repo,h in heads.items()}, 'pulls': [{k:p[k] for k in ('number','title','body','updated_at','merged_at','closed_at','state')} | {'head_sha':p['head']['sha']} for p in pulls]}, sort_keys=True).encode()).hexdigest()
+    fingerprint = hashlib.sha256(json.dumps({'importer_version':IMPORTER_VERSION,'prompt_version':claim_judge.PROMPT_VERSION,'decisions':sorted(map(list, decisions)),'heads': {repo: h['sha'] for repo,h in heads.items()}, 'pulls': [{k:p[k] for k in ('number','title','body','updated_at','merged_at','closed_at','state')} | {'head_sha':p['head']['sha']} for p in pulls]}, sort_keys=True).encode()).hexdigest()
     # A PR whose Claude check gave no verdict is read again even when nothing changed.
     if load(stage, 'sources/intake.json').get('fingerprint') == fingerprint and not any(s.get('claim_retry') for s in subs['items']):
         return dict(checked_at=now,new_prs=[],new_merged_records=[],previous_record=best(before),current_record=best(before),new_current_record=False,unparsed_new_prs=[])
