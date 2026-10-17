@@ -23,13 +23,14 @@ The hourly workflow fetches public CrocSwap and Swapnil Jain data from GitHub, v
 
 ## Adding a race
 
-A race is a problem page or an Other bounds row. Every race that the site lists has exactly one board on [board.bigospeedrun.com](https://board.bigospeedrun.com) and exactly one channel on the [Discord server](https://discord.gg/JEN582WvNv). Add all three in the same change:
+A race is a problem page or an Other bounds row. Every race that the site lists has exactly one board on [board.bigospeedrun.com](https://board.bigospeedrun.com) and exactly one channel on the [Discord server](https://discord.gg/JEN582WvNv).
 
-1. Site: add a problem to `data/registry.json` with its data file, or an Other bounds row to `src/lib/other-bounds.json`. Add its board slug to `boardSlugs` in `src/lib/board.ts`: `<slug>` for a problem, `other-<slug>` for an Other bounds row.
-2. Board: after the site deploy, run `scripts/sync-boards.ts --write` in [bigospeedrun/board](https://github.com/bigospeedrun/board) and deploy the new migration. The script reads the race list from the live site.
-3. Discord: a maintainer creates the channel with the server bot. It is a text channel in the category Big O (problems) or Other bounds (Other bounds rows). Its name is the race's site name in slug form: lowercase, apostrophes removed, and each other run of characters that are not letters or digits changed to `-`. For example, `Catalan’s constant` becomes `catalans-constant`, and the problem `exact-dft` (site name `Fourier Transform`) becomes `fourier-transform`. The channel has no permission overwrites, so it uses the permissions of its category. Put it in the site's order.
+To add a race, add a problem to `data/registry.json` with its data file, or an Other bounds row to `src/lib/other-bounds.json`, and add its board slug to `boardSlugs` in `src/lib/board.ts` (`<slug>` for a problem, `other-<slug>` for an Other bounds row). That is the only step. After the site deploy, automation does the rest within about two hours:
 
-A race that the site does not list, such as `directed-sssp`, gets no board and no channel. If you rename a race, rename its channel too. An hourly check alerts the maintainers when a listed race has no board or no channel, or when a board or a race channel has no race.
+- Board: each hour, the board sync workflow of [bigospeedrun/board](https://github.com/bigospeedrun/board) reads the race list of the live site, commits a migration for each new race, and builds the image. The board host deploys it.
+- Discord: each hour, a job creates the race's channel with the server bot. It is a text channel in the category Big O (problems) or Other bounds (Other bounds rows), with the permissions of its category. Its name is the race's site name in slug form: lowercase, apostrophes removed, and each other run of characters that are not letters or digits changed to `-`. For example, `Catalan’s constant` becomes `catalans-constant`, and the problem `exact-dft` (site name `Fourier Transform`) becomes `fourier-transform`.
+
+A race that the site does not list, such as `directed-sssp`, gets no board and no channel. The automation never removes or renames a board or a channel. When you rename or remove a race, a maintainer renames or deletes its channel; until then, the Discord job creates nothing. An hourly check alerts the maintainers when a listed race has no board or no channel, or when a board or a race channel has no race.
 
 ## Hosting
 
