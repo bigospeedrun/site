@@ -9,6 +9,19 @@ import Layout from '../layouts/Layout.astro';
 import {siteIssuesUrl, repoSelectionText} from '../lib/site';
 import {evidenceName, evidenceLevels, breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
 import {boardOrigin, boardFeedUrl} from '../lib/board';
+import PlayerAvatar from '../components/PlayerAvatar.astro';
+import supportersFile from '../lib/supporters.json';
+import authorAvatarsFile from '../lib/author-avatars.json';
+// Kept by hand in src/lib/supporters.json: {login, name, since}. Avatars come from the local
+// copies in src/lib/author-avatars.json, which scripts/refresh-authors.mjs downloads.
+interface Supporter {login: string; name: string}
+const authorAvatars = authorAvatarsFile as Record<string, string | undefined>;
+const supporters = (supportersFile.supporters as unknown as Supporter[]).map(supporter => ({
+  name: supporter.name,
+  url: `https://github.com/${supporter.login}`,
+  avatar: authorAvatars[supporter.login.toLowerCase()],
+}));
+const sponsorUrl = 'https://github.com/sponsors/bigospeedrun';
 const entries = problemLinks.map(([slug, title]) => ({problem: problems.find(p => p.slug === slug)!, title}));
 const reviewed = entries.filter(({problem}) => submissionRoute(problem) === 'review');
 const verified = entries.filter(({problem}) => submissionRoute(problem) === 'verifier');
@@ -137,6 +150,21 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
         <li>Improve the site with a pull request on <a href="https://github.com/bigospeedrun/site" target="_blank" rel="noopener">bigospeedrun/site</a>.</li>
       </ul>
     </section>
+    <section aria-labelledby="support">
+      <h2 id="support">How can I support the site?</h2>
+      <p><a href={sponsorUrl} target="_blank" rel="noopener">Sponsor Big O Speedrun on GitHub</a>.</p>
+      {supporters.length > 0 && <>
+        <p>Every sponsor gets a shoutout on X. Their name and avatar show below and in the repository README.</p>
+        <ul class="supporters">
+          {supporters.map(supporter => (
+            <li>
+              <PlayerAvatar author={supporter}/>
+              <a href={supporter.url} target="_blank" rel="noopener">{supporter.name}</a>
+            </li>
+          ))}
+        </ul>
+      </>}
+    </section>
     <section aria-labelledby="repos">
       <h2 id="repos">How are relevant repos selected?</h2>
       <p>{repoSelectionText}</p>
@@ -169,6 +197,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
           <li><a href="#add-problem">Can I add a problem?</a></li>
           <li><a href="#latest-results">How do we keep track of the latest results?</a></li>
           <li><a href="#help">How else can I help?</a></li>
+          <li><a href="#support">How can I support the site?</a></li>
           <li><a href="#repos">How are relevant repos selected?</a></li>
           <li><a href="#other-followups">What about other follow-ups to the October 6 release?</a></li>
           <li><a href="#contact-heading">Contact</a></li>
@@ -193,6 +222,8 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     .about-nav a:hover { background: var(--subtle); }
     .about-nav a[aria-current="location"] { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
   }
+  .supporters { list-style: none; padding: 0; margin: 0; }
+  .supporters li { display: flex; align-items: center; margin-top: 8px; }
 </style>
 
 <script>

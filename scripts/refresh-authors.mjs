@@ -41,6 +41,9 @@ async function refreshAvatar(key, profile) {
  avatars[key] = path;
 }
 const logins = new Set(['dugongue']);
+// Supporters are kept by hand in src/lib/supporters.json; their avatars self-host like the others.
+const supporters = existsSync('src/lib/supporters.json') ? JSON.parse(readFileSync('src/lib/supporters.json', 'utf8')) : {supporters: []};
+for (const supporter of supporters.supporters) logins.add(supporter.login.toLowerCase());
 for (const problem of registry.problems) {
   const data = JSON.parse(readFileSync(`src/data/${problem.data_file}`, 'utf8'));
   for (const record of data.records) for (const author of record.authors) {

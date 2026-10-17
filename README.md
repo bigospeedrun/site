@@ -36,6 +36,12 @@ A race that the site does not list, such as `directed-sssp`, gets no board and n
 
 The site runs from a container image on our own VPS, behind Cloudflare. A GitHub workflow tests and builds the site, pushes the image to GHCR when main changes, and the VPS pulls the image the `main` tag points to and serves it with `server/site-server.ts`, with Caddy in front; see [ops/self-host](ops/self-host). Chat is part of the same server. It needs a server-side `ANTHROPIC_API_KEY`; `DISCORD_WEBHOOK_URL` is optional. Never commit these values. The static site can build without either value.
 
+## Support
+
+[Sponsor Big O Speedrun on GitHub](https://github.com/sponsors/bigospeedrun). Every sponsor gets a shoutout on X, and their name and avatar on the [about page](https://bigospeedrun.com/about) and in this README.
+
+Supporters are kept by hand in `src/lib/supporters.json`: one object per supporter with `login`, `name` and `since` (ISO date). Add an entry and commit it. `scripts/refresh-authors.mjs` then downloads the GitHub avatar to `public/avatars/`, so the site serves its own copy and never requests GitHub images at runtime.
+
 ## License
 
 Code is licensed under the [MIT License](LICENSE). [CC0 1.0](data/LICENSE) covers the data files we wrote, including the registry, problem files, schemas and our receipts. It does not cover `data/sources/`: third-party material there keeps its original license, with LICENSE/NOTICE copies beside the sources where available. See the [source license inventory](data/README.md#licenses) for missing copies. These terms also apply to copies distributed by the site.
