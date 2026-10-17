@@ -1,0 +1,11 @@
+{
+  "number": 3329,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3329",
+  "title": "research: audit centre triangle-count lower bound",
+  "body": "## Result\n\nAdds `research/centre-braid-triangle-audit`, an exact audit of the distance-2 triangle proxy used in the degree-capacity screen in [PR #3147](https://github.com/CrocSwap/integer-mult-bounds/pull/3147).\n\nFor `B = D = Z/13`, join `D_j` to `B_j`, `B_(j+1)`, and `B_(j+3)` modulo 13. This is a 3-regular C4-free incidence graph. Its distance-2 graph has 39 triangles, of which 13 are incidence claws and 26 correspond to six-cycles. The audited formula gives 52 triangles and, after subtracting claws, a value of 39 for the six-cycle lower bound. The complement has 13 triangles; the exact identity including that term gives 39 and 26 respectively.\n\n## Scope and limits\n\nThis graph exceeds the degree-3 braid-cycle capacity of four six-cycles, so it is **not** a feasible braid-labelled graph and does not refute the block-floor conclusion. It shows that this proxy is not a valid general lower bound on the stated C4-free incidence class, so it cannot be extended to `|B| = 13` without a repaired argument. This example does not by itself disprove the reported `7 <= |B| <= 12` result. No labelled `m = 13` CSP is solved and no new `κ` bound is claimed.\n\n## Verification\n\n- `python3.12 scripts/research_package.py --package research/centre-braid-triangle-audit` — passed on Python 3.12.15.\n- The registered verifier exactly checks all incidence, C4, triangle, claw, six-cycle, wedge, and complement-triangle counts; the package uses only the Python standard library.\n",
+  "created_at": "2026-10-17T21:49:16Z",
+  "updated_at": "2026-10-17T21:58:38Z",
+  "closed_at": "2026-10-17T21:58:37Z",
+  "merged_at": "2026-10-17T21:58:37Z",
+  "state": "closed"
+}

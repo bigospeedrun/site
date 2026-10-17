@@ -1,0 +1,11 @@
+{
+  "number": 3317,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3317",
+  "title": "Research: prove conditional Q8 regular-action bit-cell rank floor",
+  "body": "## Result\n\nFor the regular left action of Q8 on eight equal-width binary address blocks of width B, with r dirty roles and a rank-one idempotent coupling N = u v^T over F2 (v^T u = 1), the full operator has displacement rank 0 for identity, 4B for the central label -1, and 6B for each order-four label. Therefore any implementation factored into m invertible linear instructions with rank(M_j - I) <= 1 on the combined data cells needs at least 4B or 6B instructions, respectively. This is proved for every finite r,B >= 1 and every legal coupling.\n\nThe proof and exact assumptions are in `research/q8-regular-cell-rank-bound/PROOF.md`. This bit-cell model is distinct from the predecessor compiler's whole-array XOR/swap invoice and from its affine-rank measure on encoded address labels.\n\n## Verification\n\n- `python3 -I -B research/q8-regular-cell-rank-bound/verify.py` — PASS under CPython 3.14.8; 560 coupled matrix fixtures (`r <= 3`, `B <= 2`) and 256 rank-subadditivity pairs.\n- `python3 -I -B research/q8-regular-cell-rank-bound/test_verify.py` — 4 tests passed.\n- `python3 scripts/research_package.py --package research/q8-regular-cell-rank-bound --check-only` — PASS.\n- `python3 scripts/check_research_commit.py --package research/q8-regular-cell-rank-bound` — PASS for commit `99356fa46f6451af0fdb145c9d1c5186bcae07b3`.\n- The registered package replay is pinned to Python 3.12; this host lacks that interpreter, so the registered replay was not run locally. The finite verifier and tests were run directly on 3.14.8.\n\n## Limits\n\nThis is a necessary instruction count only for the declared rank-one bit-cell alphabet. It is not a floor on block swaps, whole-array XORs, routing, wider native operations, or selected multiplication calls. The selected-source document audit found no named Q8 caller, but that bounded search does not prove global nonexistence. No physical hosting/cost contract, supplier saving, new kappa, or selected-result change is claimed.\n",
+  "created_at": "2026-10-17T21:40:38Z",
+  "updated_at": "2026-10-17T21:58:38Z",
+  "closed_at": "2026-10-17T21:58:38Z",
+  "merged_at": "2026-10-17T21:58:38Z",
+  "state": "closed"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3332,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3332",
+  "title": "Simplify the F-star box obstruction and prove a sharp four-line floor",
+  "body": "PR3031's five-line box-floor proof lacked an independent audit. This package checks its finite premise with two new raw-coordinate algorithms and replaces the anchor screen and six million-scale zero-arc scans with an explicit two-bit witness. It credits PR3105's existing seven triple orbits and makes their arbitrary-size consequence explicit: with three totals, nonzero diagonal and tau >= 1 everywhere, box >= 3 for every v >= 4. A rational four-line example, obtained by duplicating a line of the credited PR2978 core, attains three.\n\nThe independent algorithms agree on all 9,139 raw triples and recover the same 33 exceptional five-line families; one also checks all 749,398 five-multisets without pruning. CPython 3.12.15 registered replay passes under isolated, optimized, warnings-as-errors execution, including 13 control groups and 1,980 missing-arc witness cases. Metadata, publication bytes and the new optional source-history preflight pass after the final rebase onto canonical main `6f100d4bb5083f8c35d96fd95a539811c62f245c`; the fork is synchronized. The package also records the earlier `b0186c6b7` submission checkpoint; the later archive-only update was read and the registered replay rerun.\n\nThis is a scoped algebraic proof audit. It does not establish the six-line threshold, a physical implementation, supplier admission or a new kappa. The selected result and frozen predecessor bytes are unchanged. Credit Aaron Wang/navinor, Arham Tahir/Arham-Tahir64 and the retained F-star lineage. Substantial OpenAI Codex assistance; separate AI executions are not independent human review.\n\nCanonical investigation: https://github.com/CrocSwap/integer-mult-bounds/discussions/1317#discussioncomment-19005931\n\nReproduce: `python3.12 -B scripts/research_package.py --package research/fstar-v5-independent-proof`.\n",
+  "created_at": "2026-10-17T22:02:06Z",
+  "updated_at": "2026-10-17T22:03:41Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3311,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3311",
+  "title": "Research: independently audit PR #3190 port-0 operator witness",
+  "body": "## Result\n\nAdds an independent exact replay of PR #3296's owner-replica-0, port-0 witness for PR #3190's two literal remainder transfers. At Fourier character 2^72, the baseline is iI8; transfers 14→8 and 15→10 separately change five entries each, and the joint change is their disjoint ten-entry union.\n\nThe verifier reconstructs and hashes the canonical 2,717,280-row fill, checks the two source-pinned moves against the stated per-axis rule, then composes the 8×8 operator using dense Gaussian-integer matrix products. It imports neither PR #3187's algebra.py/source.py nor PR #3296's obstruction.py.\n\n## Verification\n\n- PASS: python3 -I -B research/pr3190-independent-operator-audit/verify.py\n- PASS: python3 scripts/research_package.py --package research/pr3190-independent-operator-audit --check-only\n- The registered package runner requires Python 3.12. This environment only has Python 3.14.8, so its wrapper invocation could not run; the verifier itself passed directly under 3.14.8.\n- Exact inputs, assumptions, and open questions are recorded in the package README, TASK.json, SOURCES.json, and VERIFY.json.\n\n## Scope\n\nThis confirms one finite counterexample under the pinned completed local-invocation contract: owner replica 0, port 0, character 2^72, and the two committed transfers. It does not independently verify the full port census, every replica, simultaneous or repaired transfers, other schedules, or a theorem excluding the broader transfer mechanism. It adds no κ bound and does not change the selected result.\n\nThe task picker initially suggested independent-moment work, which has active #2979 overlap; this package records its changed scope and reason. Substantial AI assistance is disclosed in TASK.json. No human or formal mathematical review is claimed.\n",
+  "created_at": "2026-10-17T21:31:52Z",
+  "updated_at": "2026-10-17T21:58:38Z",
+  "closed_at": "2026-10-17T21:58:38Z",
+  "merged_at": "2026-10-17T21:58:38Z",
+  "state": "closed"
+}

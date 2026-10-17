@@ -1,0 +1,11 @@
+{
+  "number": 3316,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3316",
+  "title": "Research: prove the repeated-root UT5 target needs five calls",
+  "body": "## Result\n\nAdds an exact scoped minimum for the four-role endpoint `diag([g1],[g1],[g2],[g1*g2])` over the full formal group algebra `F2[UT5(Z)]`. With the eight signed simple-root labels and all 120 binary rank-one idempotents, the minimum is five paid factors, equal to the direct word. A determinant character and a support obstruction reduce any shorter word to length three; a complete exact join covers all `960^3 = 884,736,000` words and finds none.\n\nThe fixed endpoint is the first repeated-simple-root / height-two case suggested by the open next question in merged PR #2103 (original claim thread: Discussion #2094). The other UT5 target in that PR is distinct.\n\n## Verification\n\n- `python3.12 scripts/research_package.py --package research/ut5-repeated-root-height-two-20261017` — PASS on Python 3.12.15.\n- `python3.12 scripts/check_research_commit.py --package research/ut5-repeated-root-height-two-20261017` — PASS, committed bytes checked.\n- `python3.12 scripts/research_package.py --package research/ut5-repeated-root-height-two-20261017 --check-only` — PASS.\n\nThe exact verifier replays the five-call word, all 921,600 ordered two-factor states, all 960 right-factor queries and their full-group-algebra products, the 16 pair-formula controls, and pinned input hashes. The search uses actual integer `UT5(Z)` support elements; it does not sample a finite address set.\n\n## Scope\n\nThe result is only for this endpoint, four dirty roles, and the specified paid alphabet. It establishes no saving, no supplier mapping, no selected-exponent change, and no general tariff. The exact verifier is computer-assisted, not proof-assistant verified. No selected record or `upstream/` file changes.\n\nPrepared with substantial OpenAI Codex assistance; no independent human review is claimed.\n",
+  "created_at": "2026-10-17T21:39:13Z",
+  "updated_at": "2026-10-17T21:58:38Z",
+  "closed_at": "2026-10-17T21:58:38Z",
+  "merged_at": "2026-10-17T21:58:37Z",
+  "state": "closed"
+}

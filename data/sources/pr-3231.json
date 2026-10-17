@@ -4,8 +4,8 @@
   "title": "Separate the four V45 widths in the idle histogram",
   "body": "## Summary\n- A direct simplex recovers the parent idle histogram and the stage-1 idle histogram from the pinned stage certificate.\n- Moving only the four V45 roles from width 8 to width 7 produces idle counts 234, 387/5, 75 and 1853/5. The idle rank mass rises by 36, one width on each of the nine calls.\n- That vertex is the same at the recorded parent cap and the recorded stage-1 cap. The exact reduced-cost enclosure is not rebuilt, and there is no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/rank7-v45-width-idle/verify.py`\n- [x] `python3.12 -B research/rank7-v45-width-idle/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank7-v45-width-idle`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-17T18:44:08Z",
-  "updated_at": "2026-10-17T18:44:08Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-17T21:56:19Z",
+  "closed_at": "2026-10-17T21:56:19Z",
+  "merged_at": "2026-10-17T21:56:19Z",
+  "state": "closed"
 }

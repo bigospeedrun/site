@@ -1,0 +1,11 @@
+{
+  "number": 3331,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3331",
+  "title": "Add exact scalar-shadow row update lemma",
+  "body": "## Result\n\nAdds `StreamShadowRowUpdate.S_append_event`, a kernel-checked recurrence for one row of Lemma G's scalar-shadow matrix after appending any one event. It covers all five constructors: relabel (unchanged), add (target row plus the scaled source row), scale (scaled target row), copy (source row), and clear (zero row). `scalRun_append` proves the event-order composition used in the recurrence.\n\n## Exact scope\n\nThe theorem holds for every finite event prefix, event, row and column, with `[DecidableEq ι]` and `[Semiring K]`. It does not assume a field, commutative coefficients, finite registers, label admissibility, exact recipes, or a selected-word hypothesis.\n\nThis is an interface lemma only. It proves no unit-row certificate `hS` for an emitted helper and changes no selected exponent `κ`.\n\n## Verification\n\nFrom `research/stream-shadow-row-update/`:\n\n```sh\npython3 verify.py\n```\n\nA clean replay with Lean 4.21.0, Mathlib v4.21.0 and a fresh cache completed `lake exe cache get`, `lake build`, and `lake env lean PrintAxioms.lean`. The axiom probe reports that `scalRun_append` depends on no axioms and `S_append_event` depends only on `propext` and `Quot.sound`, both allowed by the repository policy. The package metadata and commit-byte checks also pass. No numerical evidence is used.\n\n## Remaining gap\n\nTo obtain a concrete `hS`, bind one complete, source-pinned emitted helper's serialized events and ordering to Lean `Event` values, then fold this recurrence and prove the final row is the basis row. The serializer-to-Lean binding and the helper's recipe/footprint obligations are not established here; the global multiplication bound remains open.\n\n## Provenance\n\nThe scalar-shadow semantics are from Lemma G in [PR #484](https://github.com/CrocSwap/integer-mult-bounds/pull/484). The relevant source and selected-result inputs are pinned in `SOURCES.json`. Prepared by 1337isnot1337 with OpenAI Codex assistance; no independent human review is claimed.\n",
+  "created_at": "2026-10-17T21:59:11Z",
+  "updated_at": "2026-10-17T22:01:06Z",
+  "closed_at": "2026-10-17T22:01:06Z",
+  "merged_at": "2026-10-17T22:01:06Z",
+  "state": "closed"
+}

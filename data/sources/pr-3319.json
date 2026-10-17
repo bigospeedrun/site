@@ -1,0 +1,11 @@
+{
+  "number": 3319,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3319",
+  "title": "Add explicit prime-source selector transfer proof",
+  "body": "## Result\n\nAdds a registered research package isolating the all-size prime-source-length selector in the pinned Section 08 assembly.\n\nFor the source parameters epsilon = 2^-75, d = floor(b^epsilon), p = 6b, and T in [4n/b, 8n/b), the proof gives a sufficient explicit cutoff b >= 5^(2^75). Conditional on the Rosser-Schoenfeld Chebyshev theta estimate, each required interval contains more than d primes. This yields distinct odd s_i with (1-2 eta)t_i < s_i <= (1-eta)t_i, T/2 < product(s_i) < T, 1/8 > t_i/s_i - 1 > 1/(4d), and alpha^4(t_i/s_i - 1) > p. The deterministic trial-division search is bounded by O(d r^(3/2) poly(p)) = n^o(1) = o(n).\n\n## Verification\n\nFrom the repository root:\n\n~~~sh\npython3.12 scripts/research_package.py --package research/prime-source-selector-transfer --check-only\npython3.12 scripts/research_package.py --package research/prime-source-selector-transfer\n~~~\n\nThe registered replay passes. The verifier checks source identity, rational parameter reductions, finite exact geometry controls, and negative controls. It does not numerically search at the enormous cutoff and does not prove the analytic premise.\n\n## Scope and remaining gap\n\nThe proof derives the interval-count estimate from the stated Rosser-Schoenfeld theta inequalities, but does not prove those inequalities. The bit-cost analysis assumes ordinary binary trial division and polynomial cost per arithmetic operation on O(p)-bit candidates; exact selected-compiler tape accounting remains open. This package does not change selected kappa or establish the full multiplication theorem.\n",
+  "created_at": "2026-10-17T21:41:29Z",
+  "updated_at": "2026-10-17T21:58:38Z",
+  "closed_at": "2026-10-17T21:58:38Z",
+  "merged_at": "2026-10-17T21:58:38Z",
+  "state": "closed"
+}
