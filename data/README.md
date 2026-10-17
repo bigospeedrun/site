@@ -15,6 +15,13 @@ without such a package, or whose Claude reading does not agree, goes to
 `claim-review.json` for the lead, who decides in
 `review-decisions.json` under `claims` (pr, head, score or null).
 
+Run `python3 data/platypii_lean.py` to update the platypii Lean note on the
+integer multiplication OpenAI row (monitor only, the row stays Claimed). At each new
+head of platypii/integer-mult-bounds-lean it requires the reviewed Statement.lean
+(sha256 pinned in the script), reads the mulInTime saving from Theorem.lean, and
+rejects sorry, admit or axiom in any .lean file. A failed check keeps the last good
+note and marks `platypii-lean.json` held, which fails `review_hold.py --check`.
+
 Run `python3 data/review_hold.py` after the imports. A new result more than twice
 the published best kappa, or more than 1% below the published best exponent,
 leaves its board and waits in `review-holds.json` until the lead approves or

@@ -52,6 +52,14 @@ jobs:
         continue-on-error: true
         timeout-minutes: 5
         run: .refresh-venv/bin/python data/prove2me_import.py
+      # The platypii Lean note on the IM OpenAI row (data/platypii_lean.py, GET only). A
+      # network failure keeps the last state; a held check fails the review step.
+      - name: Check the platypii Lean note
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: .refresh-venv/bin/python data/platypii_lean.py
       # A new result that jumps implausibly past the published best leaves its board
       # until the lead approves it in data/review-decisions.json (data/review_hold.py).
       - name: Hold implausible new results for lead review

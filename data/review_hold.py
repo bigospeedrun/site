@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parent
 HOLDS = 'review-holds.json'
 DECISIONS = 'review-decisions.json'
 CLAIM_QUEUE = 'claim-review.json'  # written by refresh.py
+PLATYPII = 'platypii-lean.json'  # written by platypii_lean.py
 KAPPA_FACTOR = 2
 EXPONENT_DROP = Fraction(1, 100)
 
@@ -131,11 +132,14 @@ def main():
     if sys.argv[1:] == ['--check']:
         holds = load(ROOT, HOLDS, {'holds': []})['holds']
         queue = load(ROOT, CLAIM_QUEUE, {'queue': []})['queue']
+        platypii = load(ROOT, PLATYPII, {}) or {}
         for h in holds:
             print(f"Held for lead review: {h['board']} {h['id']} score {h['score']} ({h['rule']}, published best {h['published_best']['score']}). Decide in data/{DECISIONS} under approved or rejected.")
         for q in queue:
             print(f"CrocSwap PR #{q['pr']} waits for lead review: {q['reason']} Decide in data/{DECISIONS} under claims (pr, head, score or null).")
-        sys.exit(1 if holds or queue else 0)
+        if platypii.get('status') == 'held':
+            print(f"platypii Lean note held: {platypii.get('reason')}. Review the change; a new Statement.lean needs a new STATEMENT_SHA256 in data/platypii_lean.py.")
+        sys.exit(1 if holds or queue or platypii.get('status') == 'held' else 0)
     now = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
     holds = review(ROOT, now)
     print(f'{len(holds)} result(s) held for lead review.')
