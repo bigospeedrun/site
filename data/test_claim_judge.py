@@ -61,6 +61,15 @@ class ClaimJudgeTests(unittest.TestCase):
         calls = self.calls
         self.assertEqual(calls, 2 + 3)
 
+    def test_error_summary_for_the_run_log(self):
+        class BadRequestError(Exception):
+            status_code = 400
+            body = {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low.\n::error::x'}}
+        text = claim_judge.error_summary(BadRequestError('raw'))
+        self.assertEqual(text, 'BadRequestError status=400 type=invalid_request_error message=Your credit balance is too low.\\n::error::x')
+        self.assertTrue(text.isascii()); self.assertNotIn('\n', text)
+        self.assertEqual(claim_judge.error_summary(TimeoutError()), 'TimeoutError status=None type=None message=None')
+
     def test_cache_by_pr_head_and_text(self):
         yes = {'claims_new_kappa': True, 'value': '0.001729737950064279', 'confidence': 'high'}
         self.run_check(yes); self.run_check(yes)

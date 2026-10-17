@@ -9,7 +9,7 @@ the answer must match a strict JSON schema.
 Each result is cached in claim-judgments.json by PR number, head commit and a hash of
 the title and body, so a PR is judged once per version of its text.
 """
-import hashlib, json, os, re
+import hashlib, json, os, re, sys
 from fractions import Fraction
 
 MODEL = 'claude-haiku-5-5'
@@ -99,6 +99,19 @@ def agrees(value, kappa):
         return False
     return abs(v - Fraction(kappa)) <= unit
 
+def error_summary(error):
+    """Status, API error type and message of a failed call, for the run log only:
+    ASCII, one line, capped. The API error message names the cause (credit, model,
+    request field) and holds no key."""
+    status = getattr(error, 'status_code', None)
+    detail = getattr(error, 'body', None)
+    detail = detail.get('error', detail) if isinstance(detail, dict) else None
+    kind = detail.get('type') if isinstance(detail, dict) else None
+    message = detail.get('message') if isinstance(detail, dict) else None
+    text = f'{type(error).__name__} status={status} type={kind} message={message}'
+    text = ' '.join(ascii(text)[1:-1].split())
+    return text[:300]
+
 def check(root, pr, head, title, body, kappa, ask=ask_claude):
     """None when the reading agrees with the package kappa, else the lead review reason.
 
@@ -119,6 +132,7 @@ def check(root, pr, head, title, body, kappa, ask=ask_claude):
         try:
             answer = ask(title, body)
         except Exception as error:  # Fail closed. Never log the key or the response body.
+            print(f'Claude check for PR #{pr} failed: {error_summary(error)}', file=sys.stderr)
             return Retry(f'The Claude check failed ({type(error).__name__}).')
         if not valid(answer):
             return Retry('The Claude check returned an invalid answer.')
