@@ -87,17 +87,27 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(state[:5],('9/5000',None,'research/x/CLAIM.json',head,text));self.assertFalse(state[5])
         prior={'pr_number':3200,'source_commit':head,'claimed_score':'9/5000','claim_path':'research/x/CLAIM.json','claim_head':head,'claim_text':text}
         self.assertEqual(refresh.claim_state(p,prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),1)
-        # A judge failure does not stick: the next run reads the PR again.
+        # A judge failure does not stick: the next run reads the PR again. Meanwhile a
+        # row listed by an earlier agreement keeps its score (it does not leave the board).
         failed=(None,'research/x/CLAIM.json',refresh.claim_judge.Retry('The Claude check failed (TimeoutError).'))
         state=refresh.claim_state(p,prior|{'claim_text':'old'},{},evaluate(failed))
-        self.assertTrue(state[5]);self.assertIsNone(state[0])
-        retry_prior=prior|{'claimed_score':None,'review_reason':state[1],'claim_retry':True}
-        self.assertEqual(refresh.claim_state(p,retry_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),3)
-        # A decision applies; deleting it revokes it (the PR is read again).
+        self.assertTrue(state[5]);self.assertEqual(state[0],'9/5000')
+        deferred=(None,'research/x/CLAIM.json',refresh.claim_judge.Deferred('The Claude check waits for the next run (5 calls per run).'))
+        self.assertEqual(refresh.claim_state(p,prior|{'claim_text':'old'},{},evaluate(deferred))[0],'9/5000')
+        # A PR never listed gets no row while its check waits.
+        self.assertIsNone(refresh.claim_state(p,{},{},evaluate(failed))[0])
+        retry_prior=prior|{'review_reason':state[1],'claim_retry':True}
+        self.assertEqual(refresh.claim_state(p,retry_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),5)
+        # A decided head gets no package read and no Claude call.
         decided=refresh.claim_state(p,{},{(3200,head):{'score':None}},evaluate(listed))
-        self.assertIsNone(decided[0]);self.assertTrue(decided[6])
+        self.assertIsNone(decided[0]);self.assertTrue(decided[6]);self.assertEqual(len(calls),5)
+        approved=refresh.claim_state(p,prior|{'claim_decided':True},{(3200,head):{'score':'1/2'}},evaluate(listed))
+        self.assertEqual(approved[0],'1/2');self.assertEqual(len(calls),5)
+        # Deleting a decision revokes it: the PR is read again, and a judge failure then
+        # does not keep the decided score.
         decided_prior=prior|{'claimed_score':'1/2','claim_decided':True}
-        self.assertEqual(refresh.claim_state(p,decided_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),5)
+        self.assertEqual(refresh.claim_state(p,decided_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),6)
+        self.assertIsNone(refresh.claim_state(p,decided_prior,{},evaluate(failed))[0])
         # Title-parsed rows up to #3114 keep their scores; later ones are read again.
         old_p=p|{'number':3051}
         self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')

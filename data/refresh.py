@@ -129,11 +129,15 @@ def claim_state(p, prior, decisions, evaluate):
     text_sha = hashlib.sha256((p['title'] + '\n' + (p['body'] or '')).encode()).hexdigest()
     score, reason = None, None
     claim_path, claim_head, claim_text = prior.get('claim_path'), prior.get('claim_head'), prior.get('claim_text')
+    decision = decisions.get((n, head_sha))
+    if decision:
+        # The lead decided this head: no package read and no Claude call. The PR keeps
+        # claim_decided, so deleting the decision makes the next run read it again.
+        return decision['score'], None, claim_path, head_sha, text_sha, False, decision
     if n in NOT_CLAIMS:
         pass
     elif claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided'):
-        # Already read at this head and text: reuse the result, with no request. A
-        # decided PR is read again, so that deleting its decision revokes it.
+        # Already read at this head and text: reuse the result, with no request.
         score, reason = prior['claimed_score'], prior.get('review_reason')
     elif prior.get('claimed_score') is not None and not claim_head and n <= LAST_TITLE_PARSED_PR:
         # Listed from its title before 2026-10-17: it keeps its score and identity.
@@ -143,11 +147,13 @@ def claim_state(p, prior, decisions, evaluate):
     else:
         score, claim_path, reason = evaluate()
         claim_head, claim_text = head_sha, text_sha
-    # A check without a verdict (API failure, no key, call budget) runs again next time.
+        # A check without a verdict (API failure, no key, call budget) runs again next
+        # run. Meanwhile a row listed by an earlier agreement keeps its last agreed score,
+        # so it does not leave the board and come back. A row listed by a deleted
+        # decision does not: the revocation stands.
+        if isinstance(reason, claim_judge.Retry) and score is None and prior.get('claimed_score') is not None and not prior.get('claim_decided'):
+            score, claim_path = prior['claimed_score'], prior.get('claim_path')
     retry = isinstance(reason, claim_judge.Retry)
-    decision = decisions.get((n, head_sha))
-    if decision:
-        score, reason, retry = decision['score'], None, False
     return score, reason, claim_path, claim_head, claim_text, retry, decision
 
 def refresh(stage, now):
