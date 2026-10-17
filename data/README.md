@@ -4,6 +4,15 @@ Run `python3 data/refresh.py` to read CrocSwap and Swapnil Jain sources through
 GitHub REST GET requests, stage the changes, and validate before replacing files.
 Set `GITHUB_TOKEN` for authenticated API limits. No upstream code is executed.
 Other research claims and evidence require a separate reviewed import.
+A CrocSwap PR gets a row only when it adds one research/<dir>/CLAIM.json with a
+`kappa` field; the row shows that exact kappa. A PR whose title names a kappa
+without such a package goes to `claim-review.json` for the lead, who decides in
+`review-decisions.json` under `claims` (pr, head, score or null).
+
+Run `python3 data/review_hold.py` after the imports. A new result more than twice
+the published best kappa, or more than 1% below the published best exponent,
+leaves its board and waits in `review-holds.json` until the lead approves or
+rejects it in `review-decisions.json`. `--check` exits 1 while anything waits.
 
 Run `python3 data/prove2me_import.py` to import reviewed prove2.me campaign
 results. It reads the public campaign pages and the prove2me/formalpedia export

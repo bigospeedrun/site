@@ -48,6 +48,10 @@ jobs:
         continue-on-error: true
         timeout-minutes: 5
         run: .refresh-venv/bin/python data/prove2me_import.py
+      # A new result that jumps implausibly past the published best leaves its board
+      # until the lead approves it in data/review-decisions.json (data/review_hold.py).
+      - name: Hold implausible new results for lead review
+        run: .refresh-venv/bin/python data/review_hold.py
       - name: Validate refreshed bundle
         run: .refresh-venv/bin/python data/validate.py
       - name: Test data tooling
@@ -166,3 +170,6 @@ jobs:
         run: |
           echo "::error::prove2.me import held or failed. Read the 'Import reviewed prove2.me results' step and data/prove2me.json, then review data/prove2me-trust.json."
           exit 1
+      - name: Fail the run while a result waits for lead review
+        if: ${{ !cancelled() }}
+        run: .refresh-venv/bin/python data/review_hold.py --check

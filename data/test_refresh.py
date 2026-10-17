@@ -5,32 +5,54 @@ from unittest.mock import patch
 import refresh
 
 class RefreshTests(unittest.TestCase):
-    def test_claim_filter(self):
-        self.assertIsNone(refresh.title_score('A κ ceiling of 2.5592e-3 (no new κ)'))
-        self.assertIsNone(refresh.title_score('effective bit saving 6.7734e-4'))
-        self.assertIsNone(refresh.title_score('κ = 8.032517e-5 complex-only / 8.800233e-5 joint'))
-        self.assertEqual(refresh.title_score('conditional κ = 6.61885549259598e-4'),'330942774629799/500000000000000000')
-        self.assertEqual(refresh.title_score('conditional kappa = 0.000472154791'),'472154791/1000000000000')
-        self.assertEqual(refresh.title_score('Conditional κ = 7.44714499357628·10⁻⁴: new construction'),'186178624839407/250000000000000000')
-        self.assertEqual(refresh.title_score('Conditional κ = 7.44714499357628 × 10^-4'),'186178624839407/250000000000000000')
-        self.assertIsNone(refresh.title_score('Conditional κ = 8.339545889388e-4 (B1 open, not a witness)'))
+    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None):
+        """Run package_claim on a fake PR. files: {path: status}; claim: CLAIM.json object."""
+        pr={'number':3200,'title':title,'state':state,'head':{'sha':'c'*40}}
+        def pages(path,*a):
+            self.assertEqual(path,f'repos/{refresh.CROC}/pulls/3200/files')
+            return [{'filename':f,'status':st} for f,st in files.items()]
+        def content(repo,path,sha):
+            if sha=='m'*40:
+                if on_main:return b'{}'
+                raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')
+            self.assertEqual(sha,'c'*40)
+            return json.dumps(claim).encode()
+        with tempfile.TemporaryDirectory() as temp,patch.object(refresh,'pages',pages),patch.object(refresh,'content',content):
+            stage=Path(temp);(stage/'sources').mkdir()
+            result=refresh.package_claim(stage,pr,'m'*40,owners or {})
+            saved=(stage/'sources/pr-3200-claim.json').exists()
+        self.assertEqual(saved,result[0] is not None)
+        return result
 
-    def test_long_exact_scores(self):
-        # CrocSwap PR 1485 (2026-10-14): a 140-digit decimal gives a 278-char exact score.
-        digits='0.00167685522907132188620645677227459261951244873951047526280336519105115665521200964951578469164138454299292754381039421745513966674764384056'
-        score=refresh.title_score(f'Conditional κ {digits}: verified outer140 witness refinement')
-        self.assertEqual(len(score),278);self.assertTrue(score.startswith('20960690363391523577'))
+    def test_package_claim(self):
+        own='research/rank7-six-skip-cap-release/CLAIM.json'
+        exact='17297379500642785512419999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000'
+        files={own:'added',own.replace('CLAIM.json','vendor/PR3042-CLAIM.json'):'added','research/other/CLAIM.json':'modified'}
+        # The PR's own package states the exact kappa (#3051, 2026-10-16).
+        score,path,reason=self.claim(files,{'kappa':exact,'status':'PASS'})
+        self.assertEqual((path,reason),(own,None));self.assertEqual(score,str(refresh.Fraction(exact)))
+        self.assertEqual(self.claim({own:'added'},{'kappa':'0.001672780159952542'})[0],'836390079976271/500000000000000000')
+        # #3093 added #3042's package, already on main while #3093 was open.
+        self.assertEqual(self.claim({own:'added'},{'kappa':exact},on_main=True)[:2],(None,own))
+        self.assertIsNotNone(self.claim({own:'added'},{'kappa':exact},on_main=True)[2])
+        # When first seen merged, ownership comes from the submissions that list the path.
+        self.assertEqual(self.claim({own:'added'},{'kappa':exact},state='closed',owners={own:3051})[2],f'{own} belongs to PR #3051.')
+        # #3107/#3111: no package. A title with a kappa value goes to the lead; others do not.
+        self.assertEqual(self.claim({},title='Kappa 0.1 budget screens')[:2],(None,None))
+        self.assertIsNotNone(self.claim({},title='Selected bit profile alone exceeds the κ=0.1 moment budget')[2])
+        self.assertEqual(self.claim({},title='Implement aligned bit circuits'),(None,None,None))
+        self.assertIsNone(self.claim({own:'added'},{'status':'no new kappa'},title='Audit restore skips')[2])
+        self.assertIsNotNone(self.claim({own:'added'},{'status':'no new kappa'})[2])
+        two={own:'added','research/second/CLAIM.json':'added'}
+        self.assertEqual(self.claim(two,{'kappa':exact})[:2],(None,None))
+        for bad in ['unchanged','No selected exponent change is claimed.',3,'1/1','0','2/3e5','1/'+'1'*4095]:
+            score,path,reason=self.claim({own:'added'},{'kappa':bad})
+            self.assertIsNone(score,bad);self.assertIsNotNone(reason,bad)
+        self.assertEqual(self.claim({own:'added'},{'kappa':'1/'+'1'*4094})[0],'1/'+'1'*4094)
+
+    def test_score_limit_matches_schema(self):
         schema=json.loads((refresh.ROOT/'schemas/problem-v1.json').read_text())['properties']['records']['items']['properties']['score']
-        from jsonschema import Draft202012Validator
-        valid=Draft202012Validator(schema).is_valid
-        self.assertTrue(valid(score));self.assertTrue(valid('1/'+'1'*4094));self.assertFalse(valid('1/'+'1'*4095))
         self.assertEqual(schema['maxLength'],refresh.MAX_SCORE_CHARS)
-        # Above the limit, or with a huge exponent, the PR stays unparsed for review.
-        self.assertIsNone(refresh.title_score('κ = 0.'+'1'*4100))
-        self.assertIsNone(refresh.title_score('κ = 0.'+'1'*2100))
-        self.assertIsNone(refresh.title_score('κ = 1e-99999999'))
-        self.assertIsNone(refresh.title_score('κ = 1/10^99999999'))
-        self.assertEqual(refresh.title_score('κ = 1/10^30'),'1/1'+'0'*30)
 
     def test_snapshot_idempotence_and_selected_record(self):
         root=refresh.ROOT
@@ -60,7 +82,7 @@ class RefreshTests(unittest.TestCase):
             registry['repositories'].append(alias);refresh.dump(stage,'registry.json',registry)
             pinned=dict(alias['manifest_source']);pinned_bytes=(stage/pinned['path']).read_bytes()
             pulls=refresh.load(stage,'sources/crocswap-pulls.json')
-            with patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda *a:pulls):
+            with patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a:pulls if path.endswith('/pulls') else []):
                 first=refresh.refresh(stage,'2026-10-09T15:00:00Z')
                 updated=refresh.load(stage,'registry.json')['repositories']
                 updated_swap=next(r for r in updated if r['repo']==refresh.SWAP)
@@ -109,7 +131,7 @@ class RefreshTests(unittest.TestCase):
                 if nested:
                     (repo/'unrelated.json').write_text('preserve me')
                     git('add','unrelated.json')
-                with patch.object(refresh,'ROOT',data),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda *a:pulls),contextlib.redirect_stdout(io.StringIO()):
+                with patch.object(refresh,'ROOT',data),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
                     refresh.main()
                     summary=json.loads((repo/'.git/refresh-summary.json').read_text())
                     self.assertIn('registry.json',summary['changed_files'])

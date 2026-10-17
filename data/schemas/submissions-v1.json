@@ -51,7 +51,19 @@
           "checked_at": {},
           "claimed_score": {},
           "record_ids": {},
-          "note": {}
+          "note": {},
+          "claim_path": {
+            "type": "string",
+            "pattern": "^research/[^/]+/CLAIM\\.json$"
+          },
+          "claim_head": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "review_reason": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }
