@@ -22,7 +22,7 @@ const board=boardUrl('other-'+f.slug);
       <td><a class="claimed" href="/about#evidence-levels">Claimed</a></td>
       <td><AuthorList authors={c.authors}/></td>
       <td><a href={c.dateSource} target="_blank" rel="noopener"><time datetime={c.date} data-local-datetime>{localTimeFallback(c.date)}</time></a>{c.dateKind==='snapshot'&&<span> (Snapshot)</span>}</td>
-      <td><details><summary>Proof scope</summary><p>{c.proofScope}</p></details></td>
+      <td><details><summary>Proof scope</summary><p set:html={inlineMath(c.proofScope)}/></details></td>
     </tr>)}</tbody>
   </table></div>
   {f.repos.length>0&&<section class="repos"><h2>Relevant repos</h2><ul>{f.repos.map(r=><li><a href={r.url} target="_blank" rel="noopener">{r.name}</a>{'note' in r&&r.note&&<>: <span set:html={inlineMath(r.note)}/></>}</li>)}</ul></section>}

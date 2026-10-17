@@ -7,7 +7,7 @@ import data from './other-bounds.json' with {type: 'json'};
 export const unsafeOutsideMath = (text: string) =>
   text.replace(/\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g, '').match(/[<>&]/g) ?? [];
 
-test('notes and statements hold no <, > or & outside math', () => {
+test('notes, proof scopes and statements hold no <, > or & outside math', () => {
   assert.deepEqual(unsafeOutsideMath('\\(\\mu(G)<2715\\) and \\[a>b\\]'), []);
   assert.deepEqual(unsafeOutsideMath('a < b \\(c\\) & d'), ['<', '&']);
   assert.deepEqual(unsafeOutsideMath('\\(open < math'), ['<']);
@@ -15,6 +15,7 @@ test('notes and statements hold no <, > or & outside math', () => {
     const texts: [string, string][] = [
       [`${row.slug} statement`, row.statement],
       ...row.claims.map((c): [string, string] => [`${row.slug} claim ${c.handle} ${c.date} note`, c.note]),
+      ...row.claims.map((c): [string, string] => [`${row.slug} claim ${c.handle} ${c.date} proof scope`, c.proofScope]),
       ...row.repos.map((r): [string, string] => [`${row.slug} repo ${r.name} note`, 'note' in r ? String(r.note ?? '') : '']),
     ];
     for (const [where, text] of texts) assert.deepEqual(unsafeOutsideMath(text), [], where);
