@@ -21,6 +21,16 @@ test('Lean upgrade posts once, including a nonleader; leader plus upgrade is one
  const downgraded=plan(result.state,snapshot(board([row(),row('b')])));
  assert.equal(plan(downgraded.state,upgraded).messages.length,0);
 });
+test('a prove2.me switch flip posts nothing for nonleader imported rows, and normally for a leader',()=>{
+ const initial=baseline(snapshot(board([row(),row('prove2me-exact-dft-0-001','Claimed','1/1100'),row('prove2me-exact-dft-0-002','Claimed','1/500')],'a')));
+ const flipped=snapshot(board([row(),row('prove2me-exact-dft-0-001','Lean Verified','1/1100'),row('prove2me-exact-dft-0-002','Lean Verified','1/500')],'a'));
+ const result=plan(initial,flipped);assert.equal(result.messages.length,0);
+ assert.equal(plan(result.state,flipped).messages.length,0);
+ const leading=baseline(snapshot(board([row(),row('prove2me-exact-dft-0-002','Claimed','1/500')],'prove2me-exact-dft-0-002')));
+ const flippedLeader=plan(leading,snapshot(board([row(),row('prove2me-exact-dft-0-002','Lean Verified','1/500')],'prove2me-exact-dft-0-002')));
+ assert.equal(flippedLeader.messages.length,1);
+ assert.match(flippedLeader.messages[0].content,/Record verified/);
+});
 test('accepted bound suppresses a new submission ID, but later Lean verification posts',()=>{
  const accepted=[{key:'["exact-dft","a","1/1000","attained"]:record'}];
  const previous=baseline(snapshot());

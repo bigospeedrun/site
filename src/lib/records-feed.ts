@@ -150,6 +150,9 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
    const gainedLean=record.evidence==='Lean Verified'&&prior?.evidence!=='Lean Verified';
    const key=eventKey(board,record);
    const waiting=record.id===board.leader&&deferred.has(key);
+   // Rows imported from prove2.me (data/prove2me_import.py) are old results. When its
+   // LEAN_VERIFIED switch flips, a row that does not lead its board posts nothing.
+   if(gainedLean&&!newLeader&&!waiting&&record.id.startsWith('prove2me-')&&record.id!==board.leader){reserved.add(key);continue;}
    if((newLeader||gainedLean||waiting)&&!reserved.has(key)){
     const boundKey=postedBoundKey(key);
     if(announced.has(boundKey)){reserved.add(key);deferred.delete(key);continue;}

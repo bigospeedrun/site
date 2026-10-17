@@ -13,8 +13,9 @@ prove2me-trust.json is the hand-reviewed list of campaign entries per board. A
 board imports only when every check passes: the campaign rules, every proved
 entry, and the sha256 of every listed file are as reviewed. On any difference
 the board is held: its last imported rows and links stay as they were, and the
-script exits with code 3. The workflow then fails the run at its end, so the
-dead-man check alerts the lead.
+script exits with code 3. The workflow then fails the run at its end, and the
+dead-man check (prove2me-import item in ~/nil/bigospeedrun-data/deadman.py)
+alerts the lead with the reason.
 
 An entry with action "link" adds a prove2.me link to an existing board row
 (data/prove2me.json, read by the site). A link needs the same proof: the
