@@ -97,6 +97,22 @@ class RefreshTests(unittest.TestCase):
         score,path,reason=self.claim({t740:'added'},claims=k,lower={3190:{t740:'added'}},owners={t740:3190})
         self.assertEqual((score,path),(None,t740));self.assertIn('belongs to PR #3190',reason)
 
+    def test_a_decided_pr_owns_the_package_with_the_decided_kappa(self):
+        # #3251 (2026-10-17) carries #3200's and #3198's packages; both were listed by
+        # decision, so refresh had no claim_path for them.
+        p={'number':3200,'head':{'sha':'c'*40}}
+        files=[['added','research/a/CLAIM.json'],['added','research/b/CLAIM.json'],['modified','research/c/CLAIM.json']]
+        kappas={'research/a/CLAIM.json':'1/1000','research/b/CLAIM.json':'0.0017348','research/c/CLAIM.json':'0.0017348'}
+        with patch.object(refresh,'content',lambda repo,path,sha:json.dumps({'kappa':kappas[path]}).encode()):
+            self.assertEqual(refresh.decided_package(p,'8674/5000000',lambda m:files),'research/b/CLAIM.json')
+            self.assertIsNone(refresh.decided_package(p,'1/7',lambda m:files))
+        head='h'*40
+        decided={'pr_number':3200,'claim_path':'research/b/CLAIM.json','claim_head':head}
+        q={'number':3200,'title':'t','body':'','head':{'sha':head}}
+        self.assertEqual(refresh.claim_state(q,decided,{(3200,head):{'score':'1/2'}},lambda:self.fail('no read'))[2],'research/b/CLAIM.json')
+        # A new head drops the old path; the next lookup finds the package again.
+        self.assertIsNone(refresh.claim_state(q,decided|{'claim_head':'o'*40},{(3200,head):{'score':'1/2'}},lambda:self.fail('no read'))[2])
+
     def test_claim_files_are_read_once_per_head(self):
         pulls_by_number={7:{'number':7,'head':{'sha':'a'*40}}}
         prior={7:{'claim_files':[['added','research/x/CLAIM.json']],'claim_files_head':'a'*40}}
@@ -157,11 +173,11 @@ class RefreshTests(unittest.TestCase):
         decided_prior=prior|{'claimed_score':'1/2','claim_decided':True}
         self.assertEqual(refresh.claim_state(p,decided_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),6)
         self.assertIsNone(refresh.claim_state(p,decided_prior,{},evaluate(failed))[0])
-        # A queued PR read before stacked ownership (no claim_files_head) is read once more.
+        # A queued PR is read again each run (its file lists are cached).
         queued=prior|{'claimed_score':None,'review_reason':'The PR adds no single research package CLAIM.json.'}
         n_calls=len(calls)
         self.assertEqual(refresh.claim_state(p,queued,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),n_calls+1)
-        self.assertIsNone(refresh.claim_state(p,queued|{'claim_files_head':head},{},evaluate(listed))[0]);self.assertEqual(len(calls),n_calls+1)
+        self.assertEqual(refresh.claim_state(p,queued|{'claim_files_head':head},{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),n_calls+2)
         # Title-parsed rows up to #3114 keep their scores; later ones are read again.
         old_p=p|{'number':3051}
         self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')
@@ -234,6 +250,7 @@ class RefreshTests(unittest.TestCase):
         def content(repo,path,sha):
             if path=='README.md':return (source/('sources/'+repo.replace('/','__')+'__README.md')).read_bytes()
             if path=='certificates/selected-result.json':return (source/f'sources/crocswap-selected-{sha}.json').read_bytes()
+            if path.endswith('/CLAIM.json'):raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')  # offline
             return (source/f'sources/crocswap-certificate-{sha}.json').read_bytes()
         # The index omits PR bodies; the API returns them, so add them back from pr-<n>.json.
         pulls=[p|{'body':refresh.load(source,f"sources/pr-{p['number']}.json")['body']} for p in refresh.load(source,'sources/crocswap-pulls.json')]

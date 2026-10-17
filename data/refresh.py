@@ -98,6 +98,21 @@ def claim_files(m, pulls_by_number, old, fetched):
                       if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
     return fetched[m]
 
+def decided_package(p, score, files_of):
+    """The package a lead approval refers to: the added CLAIM.json whose kappa equals the
+    decided score. It makes a decided PR own its package (stacked children such as
+    #3251 carry it)."""
+    for status, path in files_of(p['number']):
+        if status != 'added':
+            continue
+        try:
+            kappa = json.loads(content(CROC, path, p['head']['sha'])).get('kappa')
+        except (ValueError, AttributeError, RuntimeError):
+            continue
+        if isinstance(kappa, str) and len(kappa) <= MAX_SCORE_CHARS and re.fullmatch(r'\d+(?:/\d+)?|\d*\.\d+', kappa) and Fraction(kappa) == Fraction(score):
+            return path
+    return None
+
 def package_claim(stage, p, main_sha, owners, files_of, lower_prs):
     """(score, claim_path, reason): the kappa that the PR's own research package states.
 
@@ -171,13 +186,14 @@ def claim_state(p, prior, decisions, evaluate):
     if decision:
         # The lead decided this head: no package read and no Claude call. The PR keeps
         # claim_decided, so deleting the decision makes the next run read it again.
-        return decision['score'], None, claim_path, head_sha, text_sha, False, decision
+        return decision['score'], None, claim_path if claim_head == head_sha else None, head_sha, text_sha, False, decision
     if n in NOT_CLAIMS:
         pass
     elif (claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided')
-          and (not prior.get('review_reason') or prior.get('claim_files_head') == head_sha)):
-        # Already read at this head and text: reuse the result, with no request. A PR the
-        # lead must review that was read before stacked ownership is read once more.
+          and not prior.get('review_reason')):
+        # Already read at this head and text: reuse the result, with no request. A PR in
+        # the lead's queue is read again each run (its file lists are cached), so it lists
+        # as soon as its parents own their packages (#3251 on decided #3198 and #3200).
         score, reason = prior['claimed_score'], prior.get('review_reason')
     elif prior.get('claimed_score') is not None and not claim_head and n <= LAST_TITLE_PARSED_PR:
         # Listed from its title before 2026-10-17: it keeps its score and identity.
@@ -246,7 +262,9 @@ def refresh(stage, now):
         score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
             p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others, files_of,
                                                        [m for m in reversed(numbers) if m < n]))
-        if claim_path and score and claim_head == head_sha and not decision:
+        if decision and score and not claim_path:
+            claim_path = decided_package(p, score, files_of)
+        if claim_path and score and claim_head == head_sha:
             owners[claim_path] = n
         prior = prior or None
         ids = list(prior['record_ids']) if prior and prior['record_ids'] and score else ([f'crocswap-pr-{n}'] if score else [])
