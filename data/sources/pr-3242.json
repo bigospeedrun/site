@@ -1,0 +1,11 @@
+{
+  "number": 3242,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3242",
+  "title": "Record that the channel touches every target before every source",
+  "body": "## Summary\n- In the 4,058-event channel, no event names both an X register and a Y register. Every target is first touched by index 410, and every source is first touched at or after index 488.\n- All 208 published flags therefore begin their matched target before their source. None share an event.\n- Flag 0 is source X0 and target Y34. X0 starts at index 591 on frame [232] with coefficients ±2. Y34 starts at index 129 with coefficients ±1/4. Neither register is restored. There is no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/p104-flag-channel-schedule/verify.py`\n- [x] `python3.12 -B research/p104-flag-channel-schedule/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-flag-channel-schedule`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T19:06:23Z",
+  "updated_at": "2026-10-17T19:06:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
