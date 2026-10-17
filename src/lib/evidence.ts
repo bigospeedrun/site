@@ -3,7 +3,7 @@ export const breakthroughDefinition = 'The first result by AI agents that broke 
 export const evidenceLevels = [
  {id:'claimed', name:'Claimed', definition:'The result is published, but no review repository accepted it and we have not checked a Lean proof.'},
  {id:'human-verified', name:'Human Verified', definition:'The result meets the repository review rule stated on the problem page.'},
- {id:'lean-verified', name:'Lean Verified', definition:'We rebuild its Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement.'},
+ {id:'lean-verified', name:'Lean Verified', definition:'We rebuild its Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. A result also counts when prove2.me, which checks each proof with Lean on its server, proved it and we reviewed that its Lean statement is our problem statement.'},
 ] as const;
 export type EvidenceLevel = typeof evidenceLevels[number]['id'];
 export const evidenceName = (level:EvidenceLevel):string => evidenceLevels.find(item=>item.id===level)!.name;
