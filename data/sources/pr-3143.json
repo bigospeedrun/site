@@ -1,0 +1,11 @@
+{
+  "number": 3143,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3143",
+  "title": "research(rank7): certify precision-40 κ above PR3133",
+  "body": "## Result\n\nRefine the reported rational endpoint for PR #3133's unchanged coupled 586/588 words and literal T74 allocation. The 40-digit certified root endpoint is\n\n- `C40 = 0.0017297760894051203342384678198935738683`\n- `κ = C40 - 10^-86 - 10^-62 = 0.00172977608940512033423846781989357386829999999999999999999998999999999999999999999999`\n\nThis is strictly above PR #3133's public claim (`C24 - 10^-70 - 10^-46`) by the exact rational `46781989357386830000009999999999999999000000009999999999999999/10^86` (about `4.6782e-25`). The words, T74 fill, paid profile, and construction are unchanged; this PR tightens only the certified endpoint and its exact comparisons.\n\nPR #3136 is an open finite local audit of the same parent words. It reports no new κ and does not contain this endpoint refinement. The official selected frontier on `main` is unchanged; this remains a conditional finite candidate and makes no all-size theorem or independent-human-review claim. The fixed-inventory T74 allocation gap and inherited supplier/compiler/analytic obligations remain.\n\n## Validation\n\n- Both rational moment engines certify the 40-digit lower endpoint; adjacent-grid and negative controls reject.\n- The complete pinned-source replay passes `PASS_RANK7_EDITS_COMPLETE_REPLAY`; candidate admission and outer release pass and bind the exact κ and package manifest.\n- The full run generated fresh native chains for both changed words and fresh candidate admission/release. It reused only the authenticated retained bootstrap/cache, whose receipt and tree are hash-checked and included in `evidence/`.\n- The registered package replay, allocation/cap checks, edit review, and package/commit integrity checks are recorded in the package evidence.\n\nReproduction instructions and exact evidence are in `research/rank7-coupled-586-588-carrier-fold-precision40/README.md`.\n",
+  "created_at": "2026-10-17T08:05:57Z",
+  "updated_at": "2026-10-17T08:05:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
