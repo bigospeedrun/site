@@ -9,7 +9,7 @@ import claim_judge
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
-IMPORTER_VERSION = 5
+IMPORTER_VERSION = 6
 # A CrocSwap PR is listed only when its own research package states a kappa (Nil,
 # 2026-10-17, after #3093 was listed from its title 'audit ... against kappa=0.1').
 # The package is the one research/<dir>/CLAIM.json that the PR adds; its 'kappa'
@@ -26,6 +26,10 @@ LEGACY_CLAIM_PATHS = {f'research/{d}/CLAIM.json': n for n, d in {
     2948: 'paired-extension-cap-fill-rewrites', 2957: 'paired-extension-cap-fill-swaps',
     2966: 'paired-extension-normal45-rewrites', 3015: 'rank7-joint-endframes-restore-edit',
     3042: 'rank7-restore-carrier-skips', 3051: 'rank7-six-skip-cap-release'}.items()}
+# The last PR that the title parser listed before the structured rule was ruled
+# (2026-10-17). A later title-parsed row (#3115, listed by the 03:17Z run of the old
+# code) is read again under the structured rule.
+LAST_TITLE_PARSED_PR = 3114
 DECISIONS = 'review-decisions.json'
 CLAIM_QUEUE = 'claim-review.json'
 # PRs whose title names a kappa value that the PR does not claim (lead review).
@@ -143,10 +147,10 @@ def refresh(stage, now):
         elif claim_head == head_sha and prior.get('claim_text') == text_sha:
             # Already read at this head and text: reuse the result, with no request.
             score, reason = prior['claimed_score'], prior.get('review_reason')
-        elif prior.get('claimed_score') is not None and not claim_head:
+        elif prior.get('claimed_score') is not None and not claim_head and n <= LAST_TITLE_PARSED_PR:
             # Listed from its title before 2026-10-17: it keeps its score and identity.
             score = prior['claimed_score']
-        elif prior and not claim_head and prior['source_commit'] == head_sha:
+        elif prior and not claim_head and prior['source_commit'] == head_sha and n <= LAST_TITLE_PARSED_PR:
             pass  # Unchanged since before structured claims: not a claim.
         else:
             others = {path: pr for path, pr in owners.items() if pr != n}
