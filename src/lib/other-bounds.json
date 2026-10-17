@@ -745,6 +745,28 @@
           ],
           "proofScope": "The supplied Lean code proves the rational-approximation bounds for all sufficiently large natural denominators and all integer numerators, with exponents 759 and 2276. The author reports that both pass Lean’s main kernel and the standard-axiom audits; the independent-kernel and comparator checks are pending. No site rerun. The author’s CI had not finished for this commit when we listed it.",
           "bound": "\\mu(G)\\le 759"
+        },
+        {
+          "author": "S. Litsey",
+          "handle": "slitsey",
+          "value": "740",
+          "display": "740",
+          "date": "2026-10-17T00:58:22Z",
+          "dateSource": "https://github.com/slitsey/catalan-irrationality-measure/commit/50672b810873d8371b2b6bdd0057bb6cb2e3da24",
+          "dateKind": "first-stated",
+          "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/50672b810873d8371b2b6bdd0057bb6cb2e3da24/README.md",
+          "lean": true,
+          "leanNote": "Lean statements and proofs are supplied for both exponents; no site rerun.",
+          "evidence": "claimed",
+          "note": "The prime-number-theorem argument gives the exponent \\(373706640/505079\\approx 739.90\\), so \\(\\mu(G)\\le 740\\). With Chebyshev bounds in the last step, the argument gives \\(\\mu(G)\\le 2220\\), but that version still uses the prime number theorem in two other steps. The README credits the new lemma to Claude (Anthropic) working with Sean Litsey.",
+          "authors": [
+            {
+              "name": "S. Litsey",
+              "url": "https://github.com/slitsey"
+            }
+          ],
+          "proofScope": "The supplied Lean code proves the rational-approximation bounds for all sufficiently large natural denominators and all integer numerators, with exponents 740 and 2220. The author reports that both pass Lean’s main kernel and the standard-axiom audits; the independent-kernel and comparator checks are pending. No site rerun. The author’s CI had not finished for this commit when we listed it.",
+          "bound": "\\mu(G)\\le 740"
         }
       ],
       "repos": [
