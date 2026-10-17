@@ -15,6 +15,8 @@ export function recordEvidenceUrl(level: EvidenceLevel, record: {submission_url?
  if (level === 'lean-verified') {
   const run = receiptUrl;
   if (run?.startsWith('https://github.com/bigospeedrun/verifier/actions/runs/')) return run;
+  // A prove2.me result links its prove2.me theorem page (statement, Proved, proofs), not our JSON receipt.
+  if (run?.startsWith('https://prove2.me/theorems/')) return run;
   const receipt = record.rerun_status?.receipt_path;
   return receipt ? '/' + receipt.replace(/^\//, '') : undefined;
  }

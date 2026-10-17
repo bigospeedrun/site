@@ -13,4 +13,7 @@ test('evidence links distinguish publication, accepted review and verifier recei
  assert.equal(recordEvidenceUrl('lean-verified',record),'/sources/receipt.json');
  assert.equal(recordEvidenceUrl('lean-verified',{}),undefined);
  assert.equal(recordEvidenceUrl('lean-verified',record,undefined,'https://github.com/bigospeedrun/verifier/actions/runs/123'),'https://github.com/bigospeedrun/verifier/actions/runs/123');
+ // prove2.me rows link the human-readable theorem page; other hosts still fall back to the receipt.
+ assert.equal(recordEvidenceUrl('lean-verified',record,undefined,'https://prove2.me/theorems/abc'),'https://prove2.me/theorems/abc');
+ assert.equal(recordEvidenceUrl('lean-verified',record,undefined,'https://example.org/run'),'/sources/receipt.json');
 });
