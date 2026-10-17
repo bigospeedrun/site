@@ -97,6 +97,10 @@
           },
           "claim_files_base": {
             "type": "string"
+          },
+          "claim_path_head": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
           }
         }
       }

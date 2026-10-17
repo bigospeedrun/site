@@ -106,6 +106,8 @@ class RefreshTests(unittest.TestCase):
         with patch.object(refresh,'content',lambda repo,path,sha:json.dumps({'kappa':kappas[path]}).encode()):
             self.assertEqual(refresh.decided_package(p,'8674/5000000',lambda m:files),'research/b/CLAIM.json')
             self.assertIsNone(refresh.decided_package(p,'1/7',lambda m:files))
+            # A child approved at its parent's kappa does not take the parent's path.
+            self.assertIsNone(refresh.decided_package(p,'8674/5000000',lambda m:files,{'research/b/CLAIM.json':3198}))
         head='h'*40
         decided={'pr_number':3200,'claim_path':'research/b/CLAIM.json','claim_head':head}
         q={'number':3200,'title':'t','body':'','head':{'sha':head}}
@@ -173,6 +175,10 @@ class RefreshTests(unittest.TestCase):
         decided_prior=prior|{'claimed_score':'1/2','claim_decided':True}
         self.assertEqual(refresh.claim_state(p,decided_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),6)
         self.assertIsNone(refresh.claim_state(p,decided_prior,{},evaluate(failed))[0])
+        # A closed unmerged queued PR is not read again (the queue hides it).
+        n_calls=len(calls)
+        closed=prior|{'claimed_score':None,'review_reason':'r','upstream_status':'closed-unmerged'}
+        self.assertEqual(refresh.claim_state(p,closed,{},evaluate(listed))[1],'r');self.assertEqual(len(calls),n_calls)
         # A queued PR is read again each run (its file lists are cached).
         queued=prior|{'claimed_score':None,'review_reason':'The PR adds no single research package CLAIM.json.'}
         n_calls=len(calls)

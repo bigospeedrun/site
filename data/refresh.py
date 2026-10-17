@@ -98,12 +98,12 @@ def claim_files(m, pulls_by_number, old, fetched):
                       if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
     return fetched[m]
 
-def decided_package(p, score, files_of):
+def decided_package(p, score, files_of, others=()):
     """The package a lead approval refers to: the added CLAIM.json whose kappa equals the
     decided score. It makes a decided PR own its package (stacked children such as
     #3251 carry it)."""
-    for status, path in files_of(p['number']):
-        if status != 'added':
+    for status, path in files_of(p['number'])[:5]:
+        if status != 'added' or path in others:
             continue
         try:
             kappa = json.loads(content(CROC, path, p['head']['sha'])).get('kappa')
@@ -190,7 +190,7 @@ def claim_state(p, prior, decisions, evaluate):
     if n in NOT_CLAIMS:
         pass
     elif (claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided')
-          and not prior.get('review_reason')):
+          and (not prior.get('review_reason') or prior.get('upstream_status') == 'closed-unmerged')):
         # Already read at this head and text: reuse the result, with no request. A PR in
         # the lead's queue is read again each run (its file lists are cached), so it lists
         # as soon as its parents own their packages (#3251 on decided #3198 and #3200).
@@ -262,8 +262,9 @@ def refresh(stage, now):
         score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
             p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others, files_of,
                                                        [m for m in reversed(numbers) if m < n]))
-        if decision and score and not claim_path:
-            claim_path = decided_package(p, score, files_of)
+        # One lookup per decided head: claim_path_head records it, found or not.
+        if decision and score and not claim_path and prior.get('claim_path_head') != head_sha:
+            claim_path = decided_package(p, score, files_of, others)
         if claim_path and score and claim_head == head_sha:
             owners[claim_path] = n
         prior = prior or None
@@ -274,6 +275,7 @@ def refresh(stage, now):
         if claim_path: item['claim_path'] = claim_path
         if claim_head: item['claim_head'] = claim_head
         if claim_text: item['claim_text'] = claim_text
+        if decision and score: item['claim_path_head'] = head_sha
         if retry: item['claim_retry'] = True
         if decision: item['claim_decided'] = True
         if reason: item['review_reason'] = reason
