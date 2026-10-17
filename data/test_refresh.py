@@ -5,23 +5,31 @@ from unittest.mock import patch
 import refresh
 
 class RefreshTests(unittest.TestCase):
-    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None, judge=None):
-        """Run package_claim on a fake PR. files: {path: status}; claim: CLAIM.json object."""
+    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None, judge=None, lower=None, claims=None):
+        """Run package_claim on a fake PR 3200. files: {path: status}; claim: CLAIM.json object
+        (claims: {path: object} when several differ); lower: {pr: {path: status}} of lower PRs;
+        on_main: True, or the set of paths on main."""
         pr={'number':3200,'title':title,'body':'','state':state,'head':{'sha':'c'*40}}
+        prs={3200:files,**(lower or {})}
+        pulls_by_number={m:{'number':m,'head':{'sha':str(m)*10}} for m in prs}
+        reads=[]
         def pages(path,*a):
-            self.assertEqual(path,f'repos/{refresh.CROC}/pulls/3200/files')
-            return [{'filename':f,'status':st} for f,st in files.items()]
+            m=int(path.split('/')[-2]);reads.append(m)
+            return [{'filename':f,'status':st} for f,st in prs[m].items()]
         def content(repo,path,sha):
             if sha=='m'*40:
-                if on_main:return b'{}'
+                if on_main is True or (on_main and path in on_main):return b'{}'
                 raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')
             self.assertEqual(sha,'c'*40)
-            return json.dumps(claim).encode()
+            return json.dumps((claims or {}).get(path,claim)).encode()
+        fetched={}
+        files_of=lambda m:refresh.claim_files(m,pulls_by_number,{},fetched)
         with tempfile.TemporaryDirectory() as temp,patch.object(refresh,'pages',pages),patch.object(refresh,'content',content),patch.object(refresh.claim_judge,'check',lambda *a:judge):
             stage=Path(temp);(stage/'sources').mkdir()
-            result=refresh.package_claim(stage,pr,'m'*40,owners or {})
+            result=refresh.package_claim(stage,pr,'m'*40,owners or {},files_of,sorted((m for m in prs if m<3200),reverse=True))
             saved=(stage/'sources/pr-3200-claim.json').exists()
         self.assertEqual(saved,result[0] is not None)
+        self.reads=reads
         return result
 
     def test_package_claim(self):
@@ -59,6 +67,38 @@ class RefreshTests(unittest.TestCase):
         self.assertNotIn('body',index);self.assertNotIn('base',index)
         self.assertEqual(index['head'],{'sha':full['head']['sha']})
         self.assertEqual(refresh.pull_index(index|{'body':'x'}),index)
+
+    def test_stacked_pr_owns_the_one_package_its_parents_do_not_add(self):
+        # The 2026-10-17 stack: #3190 adds t740; #3198 adds r438-bit on top of it; #3200 adds
+        # greedy-r438 on top of both. Each PR owns exactly one package.
+        t740='research/rank7-idle-remainder-donors-t740/CLAIM.json'
+        bit='research/rank7-idle-donors-r438-bit/CLAIM.json'
+        greedy='research/rank7-idle-donors-greedy-r438/CLAIM.json'
+        k={t740:{'kappa':'1733427/1000000000'},bit:{'kappa':'1734770/1000000000'},greedy:{'kappa':'1734807/1000000000'}}
+        stack={t740:'added',bit:'added',greedy:'added'}
+        score,path,reason=self.claim(stack,claims=k,lower={3198:{t740:'added',bit:'added'},3190:{t740:'added'},3150:{}})
+        self.assertEqual((score,path,reason),('1734807/1000000000',greedy,None))
+        # A listed parent counts through owners without a scan.
+        self.assertEqual(self.claim(stack,claims=k,owners={t740:3190,bit:3198})[:2],('1734807/1000000000',greedy))
+        # A merged parent's package is on main.
+        self.assertEqual(self.claim({t740:'added',bit:'added'},claims=k,on_main={t740},lower={3190:{}})[:2],('173477/100000000',bit))
+        # The scan stops at STACK_SCAN lower PRs; an unattributed second package goes to the lead.
+        far={m:{} for m in range(3150,3200)}|{3100:{t740:'added'}}
+        score,path,reason=self.claim({t740:'added',bit:'added'},claims=k,lower=far)
+        self.assertEqual((score,path),(None,None));self.assertIn('no single own',reason)
+        self.assertEqual(len(self.reads),1+refresh.STACK_SCAN)
+        # A PR that only re-adds other PRs' packages (#3093) is not a claim of theirs.
+        score,path,reason=self.claim({t740:'added'},claims=k,lower={3190:{t740:'added'}},owners={t740:3190})
+        self.assertEqual((score,path),(None,t740));self.assertIn('belongs to PR #3190',reason)
+
+    def test_claim_files_are_read_once_per_head(self):
+        pulls_by_number={7:{'number':7,'head':{'sha':'a'*40}}}
+        prior={7:{'claim_files':[['added','research/x/CLAIM.json']],'claim_files_head':'a'*40}}
+        with patch.object(refresh,'pages',lambda *a:self.fail('no read for a cached head')):
+            self.assertEqual(refresh.claim_files(7,pulls_by_number,prior,{}),[['added','research/x/CLAIM.json']])
+        pulls_by_number[7]['head']['sha']='b'*40
+        with patch.object(refresh,'pages',lambda *a:[{'filename':'research/y/CLAIM.json','status':'added'},{'filename':'research/y/README.md','status':'added'}]):
+            self.assertEqual(refresh.claim_files(7,pulls_by_number,prior,{}),[['added','research/y/CLAIM.json']])
 
     def test_touched_claim_with_kappa_goes_to_review(self):
         other='research/rank7-restore-carrier-skips/CLAIM.json'
@@ -108,6 +148,11 @@ class RefreshTests(unittest.TestCase):
         decided_prior=prior|{'claimed_score':'1/2','claim_decided':True}
         self.assertEqual(refresh.claim_state(p,decided_prior,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),6)
         self.assertIsNone(refresh.claim_state(p,decided_prior,{},evaluate(failed))[0])
+        # A queued PR read before stacked ownership (no claim_files_head) is read once more.
+        queued=prior|{'claimed_score':None,'review_reason':'The PR adds no single research package CLAIM.json.'}
+        n_calls=len(calls)
+        self.assertEqual(refresh.claim_state(p,queued,{},evaluate(listed))[0],'9/5000');self.assertEqual(len(calls),n_calls+1)
+        self.assertIsNone(refresh.claim_state(p,queued|{'claim_files_head':head},{},evaluate(listed))[0]);self.assertEqual(len(calls),n_calls+1)
         # Title-parsed rows up to #3114 keep their scores; later ones are read again.
         old_p=p|{'number':3051}
         self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')

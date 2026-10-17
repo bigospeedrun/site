@@ -73,6 +73,27 @@
           },
           "claim_decided": {
             "const": true
+          },
+          "claim_files": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^research/[^/]+/CLAIM\\.json$"
+                }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "claim_files_head": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
           }
         }
       }

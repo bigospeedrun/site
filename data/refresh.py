@@ -76,32 +76,62 @@ def exists(repo, path, sha):
             return False
         raise
 
-def package_claim(stage, p, main_sha, owners):
+# A stacked PR carries its parents' packages too (#3200 adds its own package plus
+# those of #3198 and #3190, 2026-10-17). A package belongs to the lowest-numbered PR
+# among the STACK_SCAN nearest lower PRs that adds it.
+STACK_SCAN = 30
+
+def claim_files(m, pulls_by_number, old, fetched):
+    """[[status, path], ...] of the research/*/CLAIM.json files PR m adds or changes at its
+    head; cached in submissions (claim_files, claim_files_head), so each head is read once."""
+    p = pulls_by_number[m]; prior = old.get(m) or {}
+    if prior.get('claim_files_head') == p['head']['sha'] and 'claim_files' in prior:
+        return prior['claim_files']
+    if m not in fetched:
+        fetched[m] = [[f['status'], f['filename']] for f in pages(f'repos/{CROC}/pulls/{m}/files')
+                      if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
+    return fetched[m]
+
+def package_claim(stage, p, main_sha, owners, files_of, lower_prs):
     """(score, claim_path, reason): the kappa that the PR's own research package states.
 
-    reason is None when the PR is listed, or when it names no kappa at all."""
+    files_of(m) gives the CLAIM.json files of PR m; lower_prs are the PR numbers below
+    this one, nearest first. reason is None when the PR is listed, or when it names
+    no kappa at all."""
     n = p['number']; head = p['head']['sha']
     names = bool(NAMES_KAPPA.search(p['title']))
-    files = [f for f in pages(f'repos/{CROC}/pulls/{n}/files') if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
-    added = [f['filename'] for f in files if f['status'] == 'added']
-    if len(added) != 1:
+    files = files_of(n)
+    added = [path for status, path in files if status == 'added']
+    own = [path for path in added if path not in owners]
+    # A package already on main while the PR is open is another PR's package (#3093).
+    if p['state'] == 'open':
+        own = [path for path in own if not exists(CROC, path, main_sha)]
+    if len(own) > 1:
+        unowned = set(own)
+        for m in lower_prs[:STACK_SCAN]:
+            unowned -= {path for status, path in files_of(m) if status == 'added'}
+            if len(unowned) <= 1:
+                break
+        own = [path for path in own if path in unowned]
+    if len(added) == 1 and not own:
+        path = added[0]
+        if path in owners:
+            return None, path, f'{path} belongs to PR #{owners[path]}.'
+        return None, path, f'{path} is already on main.'
+    if len(own) != 1:
         if names:
-            return None, None, 'The PR adds no single research package CLAIM.json.'
+            return None, None, ('The PR adds no single own research package CLAIM.json.' if own or not added
+                                else 'Every research package CLAIM.json this PR adds belongs to another PR.')
         # A PR that adds or changes a CLAIM.json with a kappa field goes to the lead,
         # whatever its title says (first 5 such files read).
-        for f in files[:5]:
+        for status, path in files[:5]:
             try:
-                if 'kappa' in json.loads(content(CROC, f['filename'], head)):
-                    return None, None, f"The PR touches {f['filename']}, which has a kappa field, but adds no single own package."
+                if 'kappa' in json.loads(content(CROC, path, head)):
+                    return None, None, f"The PR touches {path}, which has a kappa field, but adds no single own package."
             except (ValueError, TypeError):
                 continue
         return None, None, None
-    path = added[0]
-    if path in owners:
-        return None, path, f'{path} belongs to PR #{owners[path]}.'
-    # A package already on main while the PR is open is another PR's package (#3093).
-    if p['state'] == 'open' and exists(CROC, path, main_sha):
-        return None, path, f'{path} is already on main.'
+    path = own[0]
     raw = content(CROC, path, head)
     try:
         kappa = json.loads(raw).get('kappa')
@@ -136,8 +166,10 @@ def claim_state(p, prior, decisions, evaluate):
         return decision['score'], None, claim_path, head_sha, text_sha, False, decision
     if n in NOT_CLAIMS:
         pass
-    elif claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided'):
-        # Already read at this head and text: reuse the result, with no request.
+    elif (claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided')
+          and (not prior.get('review_reason') or prior.get('claim_files_head') == head_sha)):
+        # Already read at this head and text: reuse the result, with no request. A PR the
+        # lead must review that was read before stacked ownership is read once more.
         score, reason = prior['claimed_score'], prior.get('review_reason')
     elif prior.get('claimed_score') is not None and not claim_head and n <= LAST_TITLE_PARSED_PR:
         # Listed from its title before 2026-10-17: it keeps its score and identity.
@@ -195,12 +227,17 @@ def refresh(stage, now):
     items = []
     new_merged = []
     owners = LEGACY_CLAIM_PATHS | {s['claim_path']: s['pr_number'] for s in subs['items'] if s.get('claim_path') and s['claimed_score']}
+    pulls_by_number = {p['number']: p for p in pulls}
+    numbers = sorted(pulls_by_number)
+    fetched = {}
+    files_of = lambda m: claim_files(m, pulls_by_number, old, fetched)
     for p in pulls:
         n = p['number']; prior = old.get(n) or {}; head_sha = p['head']['sha']
         status = 'merged' if p['merged_at'] else 'open' if p['state'] == 'open' else 'closed-unmerged'
         others = {path: pr for path, pr in owners.items() if pr != n}
         score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
-            p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others))
+            p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others, files_of,
+                                                       [m for m in reversed(numbers) if m < n]))
         if claim_path and score and claim_head == head_sha and not decision:
             owners[claim_path] = n
         prior = prior or None
@@ -272,6 +309,13 @@ def refresh(stage, now):
         m.update(checked_at=day,source_url=url,eligible_for_record=False,date_precision='Snapshot commit timestamp; not scientific priority')
         records[rid]=r;metadata[rid]=m
     problem.update(records=list(records.values()),checked_at=day,updated_at=now)
+    # Cache each PR's CLAIM.json file list per head (stacked ownership, see package_claim).
+    for item in items:
+        m = item['pr_number']; prior = old.get(m) or {}
+        if m in fetched:
+            item['claim_files'], item['claim_files_head'] = fetched[m], item['source_commit']
+        elif prior.get('claim_files_head') == item['source_commit'] and 'claim_files' in prior:
+            item['claim_files'], item['claim_files_head'] = prior['claim_files'], prior['claim_files_head']
     subs.update(items=items,checked_at=day)
     dump(stage,'integer-multiplication.json',problem);dump(stage,'submissions.json',subs)
     reg=load(stage,'registry.json');reg['checked_at']=day;reg['updated_at']=now
