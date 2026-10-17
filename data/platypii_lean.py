@@ -33,6 +33,7 @@ THEOREM = 'IntegerMultBounds/MathlibTM2/Theorem.lean'
 # Reviewed 2026-10-17: the same file at 9f18143 and a8e85a1.
 STATEMENT_SHA256 = 'fdefddb6fe2870e6c2c5f45dd4ac02ef93dee3171ebaaa86e3d059cf0a57c0d5'
 MAX_TARBALL = 64 * 1024 * 1024
+MAX_LEAN_BYTES = 256 * 1024 * 1024  # decompressed .lean total (9 MB on 2026-10-15)
 NOTE = re.compile(r'A Lean proof of a (?:stronger )?saving, kappa = .*?we have not rerun it\.')
 CI_TEXT = {'success': "the author's CI on that commit passed",
            'failure': "the author's CI on that commit failed",
@@ -88,10 +89,13 @@ def lean_files(sha):
         raise
     if len(raw) > MAX_TARBALL:
         raise ValueError('tarball over the size cap')
-    out = []
+    out = []; total = 0
     with tarfile.open(fileobj=io.BytesIO(raw), mode='r:gz') as tf:
         for m in tf:
             if m.isfile() and m.name.endswith('.lean'):
+                total += m.size
+                if total > MAX_LEAN_BYTES:
+                    raise ValueError('Lean sources over the size cap')
                 out.append((m.name.split('/', 1)[1] if '/' in m.name else m.name, tf.extractfile(m).read().decode('utf-8', 'replace')))
     return out
 
@@ -158,6 +162,8 @@ def check(root, now, get=api, read=content, files_at=lean_files):
         if bad:
             raise ValueError('sorry, admit or axiom in ' + ', '.join(bad[:5]))
         value_text, value = found
+        if not 0 < value < 1:
+            raise ValueError(f'saving {value_text} is not between 0 and 1')
         ci = ci_text(head, get)
         write_note(root, value_text, value, head, ci, day)
         if value_text != state.get('value'):

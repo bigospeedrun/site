@@ -1,5 +1,5 @@
 """Offline checks for the platypii Lean note (GitHub mocked)."""
-import hashlib, json, shutil, subprocess, sys, tempfile, unittest
+import hashlib, io, json, shutil, subprocess, sys, tarfile, tempfile, unittest
 from fractions import Fraction
 from pathlib import Path
 import platypii_lean as pl
@@ -130,6 +130,25 @@ class PlatypiiTests(unittest.TestCase):
         state = self.run_check()
         self.assertEqual(state['status'], 'held'); self.assertIn('failed 3 runs in a row', state['reason'])
         self.assertEqual(self.note(), OLD_NOTE)
+
+    def test_saving_outside_zero_one_holds(self):
+        self.hub.theorem = 'theorem mulInTime : MulInTime (5 / 2 ^ 2 : ℝ) :='
+        state = self.run_check()
+        self.assertEqual(state['status'], 'held'); self.assertIn('not between 0 and 1', state['reason']); self.assertEqual(self.note(), OLD_NOTE)
+
+    def test_lean_size_cap(self):
+        raw = io.BytesIO()
+        with tarfile.open(fileobj=raw, mode='w:gz') as tf:
+            for i in range(3):
+                data = b'-- x\n' * 10
+                info = tarfile.TarInfo(f'repo-sha/F{i}.lean'); info.size = len(data); tf.addfile(info, io.BytesIO(data))
+        class Response(io.BytesIO):
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+        with unittest.mock.patch.object(pl.urllib.request, 'urlopen', lambda *a, **k: Response(raw.getvalue())):
+            self.assertEqual([n for n, _ in pl.lean_files('s')], ['F0.lean', 'F1.lean', 'F2.lean'])
+            with unittest.mock.patch.object(pl, 'MAX_LEAN_BYTES', 100):
+                with self.assertRaises(ValueError): pl.lean_files('s')
 
     def test_review_check_fails_while_held(self):
         import review_hold
