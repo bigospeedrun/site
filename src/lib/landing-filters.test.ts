@@ -34,5 +34,6 @@ test('landing keeps publication rules and lower-is-better endpoint ranking',()=>
   record('open','1/2','human-verified',undefined,{scoreRelation:'strict-upper-bound'}),
   record('lean','3/5','lean-verified'),
  ],'lower-is-better');
- assert.deepEqual(choices.map(record=>record.id),['open','closed','lean']);
+ // An endpoint n^(1/2+o(1)) is weaker than an attained O(n^(1/2)) at the same exponent.
+ assert.deepEqual(choices.map(record=>record.id),['closed','open','lean']);
 });

@@ -16,17 +16,20 @@ export function decimal(score: string): string {
  const value=scoreNumber(score);
  return Math.abs(value)<0.000001 && value!==0?value.toExponential(6):Number(value.toPrecision(10)).toString();
 }
-// An open endpoint is distinct from an attained value at the same score.
-function compareEntries(a:{score:string;scoreRelation?:string},b:{score:string;scoreRelation?:string}):number {
- return compare(a.score,b.score)||(a.scoreRelation==='strict-upper-bound'?-1:0)-(b.scoreRelation==='strict-upper-bound'?-1:0);
+// Positive when a beats b. An open endpoint is weaker than an attained value at the same
+// score in both directions: a kappa endpoint gives every saving below it, an exponent
+// endpoint every exponent above it (n^(a+o(1)) is weaker than O(n^a)).
+function better(a:{score:string;scoreRelation?:string},b:{score:string;scoreRelation?:string},direction:string):number {
+ const open=(r:{scoreRelation?:string})=>r.scoreRelation==='strict-upper-bound'?1:0;
+ return (direction==='higher-is-better'?1:-1)*compare(a.score,b.score)||open(b)-open(a);
 }
 export function ranked<T extends {score:string;scoreRelation?:string;date:string;repoId:number;id:string}>(records:T[], direction:string) {
- const sorted=[...records].sort((a,b)=>(direction==='higher-is-better'?-1:1)*compareEntries(a,b)||a.date.localeCompare(b.date)||a.repoId-b.repoId||a.id.localeCompare(b.id));
- let rank=1;return sorted.map((record,i)=>{if(i&&compareEntries(record,sorted[i-1])!==0)rank=i+1;return {record,rank,tie:i>0&&compareEntries(record,sorted[i-1])===0}});
+ const sorted=[...records].sort((a,b)=>better(b,a,direction)||a.date.localeCompare(b.date)||a.repoId-b.repoId||a.id.localeCompare(b.id));
+ let rank=1;return sorted.map((record,i)=>{if(i&&better(record,sorted[i-1],direction)!==0)rank=i+1;return {record,rank,tie:i>0&&better(record,sorted[i-1],direction)===0}});
 }
 export function progression<T extends {score:string;scoreRelation?:string;date:string;repoId:number;id:string}>(records:T[], direction:string):T[]{
  const ordered=[...records].sort((a,b)=>a.date.localeCompare(b.date)||a.repoId-b.repoId||a.id.localeCompare(b.id));
- const best:T[]=[];for(const r of ordered){const prev=best.at(-1);if(!prev||(direction==='higher-is-better'?compareEntries(r,prev)>0:compareEntries(r,prev)<0))best.push(r)}return best;
+ const best:T[]=[];for(const r of ordered){const prev=best.at(-1);if(!prev||better(r,prev,direction)>0)best.push(r)}return best;
 }
 
 // Increase display precision only when rounding would hide a distinct nearby score.

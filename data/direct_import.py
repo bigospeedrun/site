@@ -274,6 +274,11 @@ def validate_kernel_receipt(receipt, names):
     return decision, reason, checked_at
 
 
+def open_rank(problem):
+    """Second key of an open endpoint: below an attained score on dft, above it elsewhere."""
+    return -1 if problem == 'dft' else 1
+
+
 def current_record_gate(problem, data_bytes, site_commit, checked_at, exclude_issue_url=None):
     """Pure reference selector matching the site's board, for reviewed API snapshots."""
     require(problem in PROBLEMS and re.fullmatch(r'[0-9a-f]{40}', site_commit), 'Invalid board identity')
@@ -290,7 +295,9 @@ def current_record_gate(problem, data_bytes, site_commit, checked_at, exclude_is
             continue
         relation = record.get('score_relation', 'attained')
         require(relation in ('attained', 'strict-upper-bound'), 'Invalid board relation')
-        key = (Fraction(record['score']), -1 if relation == 'strict-upper-bound' else 0)
+        # An open endpoint is weaker than an attained value at the same score: it sorts below on
+        # dft (max wins) and above on the exponent boards (min wins).
+        key = (Fraction(record['score']), open_rank(problem) if relation == 'strict-upper-bound' else 0)
         verified = (meta.get('site_tier') == 'verified' and record.get('rerun_status', {}).get('state') == 'passed'
                     and bool(record['rerun_status'].get('receipt_path')))
         candidates.append((key, record['id'], verified))
@@ -299,7 +306,7 @@ def current_record_gate(problem, data_bytes, site_commit, checked_at, exclude_is
     leaders = [row for row in candidates if row[0] == leader_key]
     return dict(schema_version=1, problem_id=data['problem_id'], site_commit=site_commit,
                 data_sha256=sha(data_bytes), checked_at=checked_at, direction=direction,
-                score=str(leader_key[0]), score_relation='strict-upper-bound' if leader_key[1] == -1 else 'attained',
+                score=str(leader_key[0]), score_relation='strict-upper-bound' if leader_key[1] != 0 else 'attained',
                 leader_ids=sorted(row[1] for row in leaders), any_lean_verified_at_bound=any(row[2] for row in leaders))
 
 
@@ -308,7 +315,7 @@ def qualifies_for_run(submission, record_gate):
     require(record_gate.get('schema_version') == 1 and record_gate.get('problem_id') == PROBLEMS[submission['problem']][0], 'Record gate model mismatch')
     require(type(record_gate.get('any_lean_verified_at_bound')) is bool, 'Missing leader evidence')
     candidate = (Fraction(submission['bound']), 0)
-    current = (Fraction(record_gate['score']), -1 if record_gate['score_relation'] == 'strict-upper-bound' else 0)
+    current = (Fraction(record_gate['score']), open_rank(submission['problem']) if record_gate['score_relation'] == 'strict-upper-bound' else 0)
     if candidate == current:
         return not record_gate['any_lean_verified_at_bound']
     return candidate > current if submission['problem'] == 'dft' else candidate < current

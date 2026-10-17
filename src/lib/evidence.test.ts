@@ -37,6 +37,7 @@ test('table bounds keep conservative rounding and strict endpoint notation',asyn
  assert.equal(boundPrecision(['1/10000000000000','1/50000000000','0'],true),3);
  assert.equal(boundExponent('0',true,8),'1.00000000');
  assert.equal(tableBound({score:'1/50000000000',scoreRelation:'strict-upper-bound',bound:''},true,1),'O(n \\log^{1-2\\cdot 10^{\\scriptstyle -11}+\\varepsilon} n)');
+ assert.equal(tableBound({score:'5989/2000',scoreRelation:'strict-upper-bound',bound:'O(n^{2.9945+\\varepsilon})'},false,4),'O(n^{2.9945+\\varepsilon})');
 });
 
 test('scientific savings round down, preserve tiny improvements, and separate close records',async()=>{

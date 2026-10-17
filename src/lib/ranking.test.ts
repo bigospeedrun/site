@@ -80,3 +80,16 @@ test('pinned problem fixtures keep distinct scores visible and never overstate a
   }
  }
 });
+
+test('on a lower-is-better board an exponent endpoint is weaker than O(n^a) at the same a',()=>{
+ const base={date:'2026-10-12',repoId:1,score:'5989/2000'};
+ const endpoint={...base,id:'endpoint',scoreRelation:'strict-upper-bound'};
+ const attained={...base,id:'attained',date:'2026-10-13'};
+ const worse={...base,id:'worse',score:'2995561/1000000',date:'2026-10-11'};
+ const result=ranked([endpoint,attained,worse],'lower-is-better');
+ assert.deepEqual(result.map(r=>[r.record.id,r.rank,r.tie]),[['attained',1,false],['endpoint',2,false],['worse',3,false]]);
+ // n^(2.9945+o(1)) beats an attained 2.995561 at its time, and a later attained 2.9945 beats it.
+ assert.deepEqual(progression([worse,endpoint,attained],'lower-is-better').map(r=>r.id),['worse','endpoint','attained']);
+ // A later endpoint at an already attained exponent is no improvement.
+ assert.deepEqual(progression([{...attained,date:'2026-10-11'},endpoint],'lower-is-better').map(r=>r.id),['attained']);
+});

@@ -66,6 +66,9 @@ test('Human Verified upgrade or author-name edit alone does not post',()=>{
  assert.equal(plan(initial,snapshot(changed)).messages.length,0);
 });
 test('decimal plain bounds preserve site precision and strict endpoints for all six problems',()=>{
+ assert.equal(plainBound('apsp','5989/2000','strict-upper-bound'),'O(n^(2.9945 + epsilon)), for every fixed epsilon > 0');
+ assert.equal(plainBound('3sum','3989/2000','strict-upper-bound',6),'O(n^(1.9945 + epsilon)), for every fixed epsilon > 0');
+ assert.equal(plainBound('subset-sum','49/100','strict-upper-bound',6),'O(2^((0.49 + epsilon)n)), for every fixed epsilon > 0');
  assert.equal(plainBound('3sum','997891/500000'),'O(n^1.995782)');
  assert.equal(plainBound('apsp','2995943/1000000'),'O(n^2.995943)');
  assert.match(plainBound('matrix-multiplication','9/4'),/2\.25 \+ epsilon/);
@@ -391,4 +394,19 @@ test('delivery sends each table to its own channel webhook and needs the second 
  assert.deepEqual(urls,['https://discord.com/api/webhooks/1/main?wait=true','https://discord.com/api/webhooks/2/other?wait=true']);
  await assert.rejects(deliver('https://discord.com/api/webhooks/1/main',messages,send as typeof fetch),/Other bounds/);
  assert.deepEqual(await deliver('https://discord.com/api/webhooks/1/main',[messages[0]],send as typeof fetch),{sent:1,failed:0});
+});
+
+test('an exponent endpoint never posts as attained and never leads an attained tie',()=>{
+ const rec=(id:string,scoreRelation:'attained'|'strict-upper-bound',date:string)=>({id,score:'5989/2000',scoreRelation,date,repoId:1,evidenceLevel:'claimed' as const,authors:[{name:id}]});
+ const apsp=feedBoard({slug:'apsp',direction:'lower-is-better'},[rec('open','strict-upper-bound','2026-10-12'),rec('closed','attained','2026-10-13')] as any,'APSP');
+ assert.equal(apsp.leader,'closed');
+ const open=apsp.records.find(r=>r.id==='open')!;
+ assert.equal(open.relation,'strict-upper-bound');assert.equal(open.bound,'O(n^(2.9945 + epsilon)), for every fixed epsilon > 0');
+ assert.match(message(apsp,open),/epsilon/);assert.match(xMessage(apsp,open),/epsilon/);
+ const worse={...rec('worse','attained','2026-10-11'),score:'2995561/1000000'};
+ const before=feedBoard({slug:'apsp',direction:'lower-is-better'},[worse] as any,'APSP');
+ const after=feedBoard({slug:'apsp',direction:'lower-is-better'},[worse,rec('open','strict-upper-bound','2026-10-12')] as any,'APSP');
+ assert.equal(after.leader,'open');
+ const posted=plan(baseline({schema_version:1,boards:[before]}),{schema_version:1,boards:[after]}).messages;
+ assert.equal(posted.length,1);assert.match(posted[0].content,/epsilon/);assert.match(posted[0].x_text??'',/epsilon/);
 });

@@ -328,7 +328,7 @@
           "attained",
           "strict-upper-bound"
         ],
-        "description": "Absent means attained. strict-upper-bound stores an excluded endpoint: every fixed saving below score is supported, not the endpoint itself."
+        "description": "Absent means attained. strict-upper-bound stores an excluded endpoint: every fixed saving below score (higher-is-better) or every fixed exponent above score (lower-is-better) is supported, not the endpoint itself."
       }
     },
     "allOf": [

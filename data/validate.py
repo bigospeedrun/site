@@ -30,7 +30,9 @@ for entry in registry['problems']:
  assert records[0]['submitted_at'] is None
  assert isinstance(p['record_metadata']['classical-baseline']['publication_year'],int)
  for r in records:
-  if r.get('score_relation')=='strict-upper-bound':assert p['score']['direction']=='higher-is-better' and r['kind']!='baseline'
+  # An open endpoint (every saving below, or every exponent above, the score) is legal in
+  # both directions; only a baseline must be attained.
+  if r.get('score_relation')=='strict-upper-bound':assert r['kind']!='baseline',r['id']
   q=Fraction(r['score']);assert str(q)==r['score'];assert Fraction(p['score']['minimum'])<=q<=Fraction(p['score']['maximum'])
   if 'source_commit' in r:assert r['source_commit']!='0'*40
   a=r['artifact'];assert a['sha256']!='0'*64;assert hashlib.sha256(safe_path(a['path']).read_bytes()).hexdigest()==a['sha256'],r['id']
@@ -73,4 +75,4 @@ if receipt_path.exists():
 print('All schemas, IDs, score ranges, rational encodings, source hashes, PR coverage and chart checks passed.')
 print('Observed best numbers are not global record claims. Open PRs and unreviewed comparison tracks cannot hold the record.')
 
-print('Scores marked strict-upper-bound are excluded endpoints, not attained savings.')
+print('Scores marked strict-upper-bound are excluded endpoints, not attained values.')

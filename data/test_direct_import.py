@@ -279,6 +279,17 @@ class DirectImportTests(unittest.TestCase):
         self.configure('dft','1/1000')
         summary=gate.current_record_gate('dft',json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
         self.assertTrue(gate.qualifies_for_run(self.env['submission'],summary))
+        # On an exponent board an open endpoint n^(a+o(1)) is weaker than an attained O(n^a):
+        # the attained row leads, and an attained submission at a still qualifies over the endpoint.
+        for problem,score in [('3sum','3989/2000'),('apsp','5989/2000')]:
+            self.configure(problem,score)
+            data=board(problem,[score,score]);data['records'][0]['score_relation']='strict-upper-bound'
+            summary=gate.current_record_gate(problem,json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
+            self.assertEqual((summary['leader_ids'],summary['score_relation']),(['1'],'attained'))
+            data=board(problem,[score]);data['records'][0]['score_relation']='strict-upper-bound'
+            summary=gate.current_record_gate(problem,json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
+            self.assertEqual(summary['score_relation'],'strict-upper-bound')
+            self.assertTrue(gate.qualifies_for_run(self.env['submission'],summary))
 
     def test_board_ignores_reproductions_and_candidate_issue(self):
         data=dict(problem_id=gate.PROBLEMS['dft'][0],score={'direction':'higher-is-better'},

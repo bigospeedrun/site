@@ -36,8 +36,9 @@ export function plainBound(slug:string,score:string,relation='attained',digits?:
  const epsilon=relation==='strict-upper-bound'?', for every fixed epsilon > 0':'';
  if(kappa)return `O(n log^(1 - ${value}${epsilon? ' + epsilon':''}) n)${epsilon}`;
  if(slug==='matrix-multiplication')return `O(n^(${value} + epsilon)), for every fixed epsilon > 0`;
- if(slug==='subset-sum')return `O(2^(${value}n))`;
- return `O(n^${value})`;
+ // An open endpoint never posts as attained: n^(a+o(1)) is O(n^(a + epsilon)), not O(n^a).
+ if(slug==='subset-sum')return epsilon?`O(2^((${value} + epsilon)n))${epsilon}`:`O(2^(${value}n))`;
+ return epsilon?`O(n^(${value} + epsilon))${epsilon}`:`O(n^${value})`;
 }
 export function feedBoard(problem:Pick<Problem,'slug'|'direction'>,records:Pick<RecordEntry,'id'|'score'|'scoreRelation'|'date'|'repoId'|'evidenceLevel'|'authors'>[],name:string):FeedBoard {
  const digits=boundPrecision(records.map(r=>r.score),problem.slug==='integer-multiplication'||problem.slug==='exact-dft');
