@@ -1,0 +1,11 @@
+{
+  "number": 3126,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3126",
+  "title": "Record V45 widths and the inherited call order",
+  "body": "## Summary\n- Both providers charge helpers 249, 251, 265 and 267 at width 8 in the parent and width 7 in the shipped words. Those four are part of six width-8 drops; the other two are helpers 299 and 331.\n- The idle histogram recomputed from the stored basis patterns matches the certificates. It moves at stage 1 and is the same from stage 2 through the final certificate. That histogram is the joint inventory.\n- The shipped ORDER and DISPATCH files are byte-identical to `research/paired-helper-extension` and differ from this package's baseline order. There are 666 calls. No new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/rank7-v45-idle-chronology/verify.py`\n- [x] `python3.12 -B research/rank7-v45-idle-chronology/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank7-v45-idle-chronology`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T04:51:43Z",
+  "updated_at": "2026-10-17T04:51:43Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
