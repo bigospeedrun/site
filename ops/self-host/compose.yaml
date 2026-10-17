@@ -1,4 +1,4 @@
-# bigospeedrun.com on the VPS (phase C draft; not installed). Vercel does not use this file.
+# bigospeedrun.com on the VPS (phase C draft; not installed).
 # auto-deploy.sh runs it as:
 #   docker compose -p bigospeedrun -f /opt/bigospeedrun/compose.yaml --env-file /opt/bigospeedrun/release.env up -d --wait
 # release.env holds BOS_SITE_IMAGE=ghcr.io/bigospeedrun/site@sha256:<digest> (auto-deploy.sh

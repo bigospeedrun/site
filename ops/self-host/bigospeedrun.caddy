@@ -17,7 +17,7 @@
 # 45 s. Behind Cloudflare, ACME's TLS-ALPN challenge cannot reach Caddy, so the site uses
 # HTTP-01. After the 24 h soak, add the host's cloudflare_only gate (phase D).
 #
-# Serve the same site on both names, as Vercel does today (www is not redirected).
+# Serve the same site on both names (www is not redirected).
 bigospeedrun.com, www.bigospeedrun.com {
 	tls {
 		issuer acme {

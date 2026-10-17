@@ -1,6 +1,5 @@
-// Self-hosted bigospeedrun.com: serves the prebuilt Astro dist with the routing of
-// vercel.json, the headers the Vercel platform adds, and the two Vercel functions
-// (/api/chat and /api/markdown). Vercel does not use this file.
+// Self-hosted bigospeedrun.com: serves the prebuilt Astro dist with the page routing,
+// the platform headers and the two API routes (/api/chat and /api/markdown).
 // Run: node --experimental-strip-types server/site-server.ts [--root dist] [--port 3000] [--host 127.0.0.1]
 // It expects a proxy (Caddy) in front that terminates TLS, redirects http to https and sets
 // X-Forwarded-For to the client IP and X-Forwarded-Proto to https.
@@ -14,7 +13,7 @@ import {agentResponse, type AgentPages} from '../src/lib/agent-pages.ts';
 import {createChatHandler} from '../src/lib/chat-handler.ts';
 import type {ChatKnowledge} from '../src/lib/chat-knowledge.ts';
 
-// Content types as measured on Vercel production, 2026-10-16. Unknown types are binary.
+// Content types from the 2026-10-16 production measurements. Unknown types are binary.
 const types: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'application/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.log': 'text/plain; charset=utf-8',
@@ -23,10 +22,10 @@ const types: Record<string, string> = {
   '.gif': 'image/gif', '.ico': 'image/vnd.microsoft.icon', '.woff': 'font/woff', '.woff2': 'font/woff2', '.ttf': 'font/ttf',
   '.zip': 'application/zip', '.pdf': 'application/pdf',
 };
-// Vercel adds these to every response on bigospeedrun.com.
+// These headers go on every response of bigospeedrun.com.
 const platformHeaders = {'Strict-Transport-Security': 'max-age=63072000', 'Vary': 'Accept'};
-// vercel.json: page paths (no api/ or _astro/, no other file extension) go to the markdown
-// function when the Accept header mentions text/markdown, before the filesystem.
+// Page paths (no api/ or _astro/, no other file extension) go to the markdown
+// route when the Accept header mentions text/markdown, before the filesystem.
 const markdownFirst = /^\/((?!api\/|_astro\/)(?:[^.]*|.*\.html))$/;
 const wantsMarkdown = (accept: string | null) => /text\/markdown/.test(accept ?? '');
 
@@ -58,7 +57,7 @@ export function createSiteHandler({root, env = process.env, fetcher, now}: SiteO
     const immutable = path.startsWith(resolve(dist, '_astro') + sep);
     const headers = new Headers({'Content-Type': types[extname(path).toLowerCase()] ?? 'application/octet-stream',
       'Cache-Control': immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=0, must-revalidate', 'ETag': cached.etag});
-    // Vercel answers other methods with a bare 405; Allow is added, as HTTP requires it.
+    // "Allow" lists the methods, as HTTP requires. Other methods get a bare 405.
     if (!['GET', 'HEAD'].includes(request.method)) return new Response(null, {status: 405, headers: {'Cache-Control': 'public, max-age=0, must-revalidate', 'Allow': 'GET, HEAD'}});
     if (status === 200 && request.headers.get('if-none-match') === cached.etag) return new Response(null, {status: 304, headers});
     headers.set('Content-Length', String(body.length));
@@ -118,7 +117,7 @@ export function siteServer(handle: (request: Request) => Promise<Response>) {
   const server = createServer((req, res) => {
     handle(toRequest(req)).then(response => send(response, res)).catch(() => { if (!res.headersSent) res.writeHead(500); res.end(); });
   });
-  // Chat replies can take up to 45 s (CHAT_TIMEOUT_MS); keep a margin, as Vercel's maxDuration 60.
+  // Chat replies can take up to 45 s (CHAT_TIMEOUT_MS); keep a margin.
   server.requestTimeout = 65_000;
   return server;
 }

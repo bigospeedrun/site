@@ -1,4 +1,4 @@
-// Registry steps of .github/workflows/site-image.yml. Vercel does not use this file.
+// Registry steps of .github/workflows/site-image.yml.
 //   node scripts/site-image-registry.mjs exists <tag>        exit 0 if the tag exists, 1 if not
 //   node scripts/site-image-registry.mjs digest <tag>        print the tag's manifest digest
 //   node scripts/site-image-registry.mjs retag <from> <to>   point <to> at <from>'s manifest

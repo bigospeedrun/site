@@ -34,7 +34,7 @@ A race that the site does not list, such as `directed-sssp`, gets no board and n
 
 ## Hosting
 
-On Vercel, select Astro, Node.js 22, build command `npm run build`, and output directory `dist`. The separate `api/chat.ts` function serves `/api/chat` and includes the generated `dist/chat-knowledge.json` file. Chat needs a server-side `ANTHROPIC_API_KEY`; `DISCORD_WEBHOOK_URL` is optional. Never commit these values. The static site can build without either value.
+The site runs from a container image on our own VPS, behind Cloudflare. A GitHub workflow tests and builds the site, pushes the image to GHCR when main changes, and the VPS pulls the image the `main` tag points to and serves it with `server/site-server.ts`, with Caddy in front; see [ops/self-host](ops/self-host). Chat is part of the same server. It needs a server-side `ANTHROPIC_API_KEY`; `DISCORD_WEBHOOK_URL` is optional. Never commit these values. The static site can build without either value.
 
 ## License
 

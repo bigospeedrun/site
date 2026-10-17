@@ -14,13 +14,14 @@ async function addPages(knowledge: ChatKnowledge, load: (path: string) => Promis
   return knowledge;
 }
 
-// Astro remains static. This bridge is for astro dev/preview only; Vercel runs
-// api/chat.ts. The keyless bridge always names itself as a local demo.
+// Astro remains static. This bridge is for astro dev/preview only; the self-hosted
+// site server runs its own /api/chat with the same handler. The keyless bridge
+// always names itself as a local demo.
 function bridge(load: () => Promise<ChatKnowledge>) {
   const handler = createChatHandler({
     apiKey: process.env.ANTHROPIC_API_KEY, webhookUrl: process.env.DISCORD_WEBHOOK_URL,
     chatLogWebhookUrl: process.env.DISCORD_CHAT_LOG_WEBHOOK_URL,
-    localStub: process.env.VERCEL !== '1',
+    localStub: true,
     knowledge: load,
   });
   return async (req: IncomingMessage, res: ServerResponse, next: () => void) => {

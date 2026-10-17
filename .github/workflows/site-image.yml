@@ -1,6 +1,6 @@
 # Self-hosting (phase C): test, build dist and the site image, and push it to GHCR, only
 # when the site changed. The VPS deploys the image the `main` tag points to
-# (ops/self-host/auto-deploy.sh). This workflow does not touch Vercel.
+# (ops/self-host/auto-deploy.sh).
 name: Build site image
 on:
   push:

@@ -1,5 +1,5 @@
 # Self-hosted bigospeedrun.com (phase B of ~/nil/bigospeedrun-notes/self-host-scope.md).
-# Vercel ignores this file. The image takes a prebuilt dist: run `npm run build` in GitHub
+# The image takes a prebuilt dist: run `npm run build` in GitHub
 # Actions first; this image never builds the site.
 # Build: docker build -t bigospeedrun-site .
 # Run:   docker run --rm --read-only --cap-drop ALL --memory 384m -p 127.0.0.1:3200:3000 \

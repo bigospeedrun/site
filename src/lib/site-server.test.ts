@@ -35,7 +35,7 @@ before(async () => {
 after(() => { server.close(); keyless.close(); rmSync(root, {recursive: true, force: true}); rmSync(join(root, '..', 'site-server-secret.txt'), {force: true}); });
 const get = (path: string, headers: Record<string, string> = {}, init: RequestInit = {}) => fetch(base + path, {redirect: 'manual', ...init, headers});
 
-test('pages, directories and the home page match Vercel status and headers', async () => {
+test('pages, directories and the home page get the expected status and headers', async () => {
  for (const path of ['/', '/about', '/about/', '/index.html']) {
   const response = await get(path);
   assert.equal(response.status, 200, path);
@@ -55,7 +55,7 @@ test('pages, directories and the home page match Vercel status and headers', asy
  assert.equal(await head.text(), '');
 });
 
-test('static files keep Vercel content types and the immutable cache for _astro', async () => {
+test('static files keep the expected content types and the immutable cache for _astro', async () => {
  const script = await get('/_astro/app.Bx1.js');
  assert.equal(script.headers.get('content-type'), 'application/javascript; charset=utf-8');
  assert.equal(script.headers.get('cache-control'), 'public, max-age=31536000, immutable');
@@ -77,7 +77,7 @@ test('unknown paths and escapes get the 404 page with status 404', async () => {
  }
 });
 
-test('Accept: text/markdown routes pages to the markdown view, as vercel.json does', async () => {
+test('Accept: text/markdown routes pages to the markdown view', async () => {
  const about = await get('/about', {accept: 'text/markdown'});
  assert.equal(about.status, 200);
  assert.equal(about.headers.get('content-type'), 'text/markdown; charset=utf-8');
@@ -89,7 +89,7 @@ test('Accept: text/markdown routes pages to the markdown view, as vercel.json do
  const missing = await get('/does-not-exist', {accept: 'text/markdown'});
  assert.equal(missing.status, 404);
  assert.equal(await missing.text(), '# Not found\n');
- // Vercel matches the header with a regex; the function then weighs q-values and may return HTML.
+ // The header matches through a regex, and then q-values decide: a text/html preference returns HTML.
  const declined = await get('/about', {accept: 'text/markdown;q=0, text/html'});
  assert.equal(declined.headers.get('content-type'), 'text/html; charset=utf-8');
  assert.equal(declined.headers.get('cache-control'), 'private, no-store');
@@ -138,7 +138,7 @@ test('chat status, origin check, streamed reply and the per-IP rate limit', asyn
  // The limit is per client IP from X-Forwarded-For.
  assert.equal((await post('203.0.113.2')).status, 200);
  assert.equal(calls, 6);
- // Without the key the chat says it is unavailable, as on Vercel without the env.
+ // Without the env the chat says it is unavailable.
  const keylessPost = await fetch(keylessBase + '/api/chat', {method: 'POST', headers: {'content-type': 'application/json', 'x-forwarded-for': '203.0.113.3'}, body: JSON.stringify({messages: [{role: 'user', content: 'Hi'}]})});
  assert.equal(keylessPost.status, 503);
 });

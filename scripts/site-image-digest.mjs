@@ -1,6 +1,6 @@
 // Digest of everything the site image contains: the built dist plus the server files the
 // Dockerfile copies. The image workflow skips the build and push when an image with this
-// digest exists. Vercel does not use this file.
+// digest exists.
 // Usage: node scripts/site-image-digest.mjs [repo root]   -> prints a sha256 hex digest
 import {createHash} from 'node:crypto';
 import {readFileSync, readdirSync, statSync} from 'node:fs';
