@@ -133,6 +133,7 @@ def main():
         holds = load(ROOT, HOLDS, {'holds': []})['holds']
         queue = load(ROOT, CLAIM_QUEUE, {'queue': []})['queue']
         platypii = load(ROOT, PLATYPII, {}) or {}
+        incomplete = (load(ROOT, 'sources/intake.json', {}) or {}).get('pulls_incomplete')
         for h in holds:
             print(f"Held for lead review: {h['board']} {h['id']} score {h['score']} ({h['rule']}, published best {h['published_best']['score']}). Decide in data/{DECISIONS} under approved or rejected.")
         for q in queue:
@@ -140,7 +141,9 @@ def main():
         if platypii.get('status') == 'held':
             reason = ' '.join(ascii(str(platypii.get('reason')))[1:-1].replace('\\n', ' ').split())[:300]
             print(f"platypii Lean note held: {reason}. Review the change; a new Statement.lean needs a new STATEMENT_SHA256 in data/platypii_lean.py.")
-        sys.exit(1 if holds or queue or platypii.get('status') == 'held' else 0)
+        if incomplete:
+            print(f"CrocSwap PR list incomplete: {' '.join(ascii(str(incomplete))[1:-1].split())[:300]}. The refresh kept the stored index; check the GitHub listing.")
+        sys.exit(1 if holds or queue or platypii.get('status') == 'held' or incomplete else 0)
     now = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
     holds = review(ROOT, now)
     print(f'{len(holds)} result(s) held for lead review.')

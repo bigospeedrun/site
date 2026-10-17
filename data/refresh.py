@@ -41,7 +41,12 @@ NOT_CLAIMS = {
     3107: 'Kappa 0.1 budget screens; the PR claims no kappa improvement.',
     3111: 'Shows the selected bit profile exceeds the kappa = 0.1 budget; the PR claims no kappa improvement.',
 }
-PULL_PAGES = 100  # pages of 100 PRs in the CrocSwap listing
+# The CrocSwap PR listing (2026-10-17: past 3,000 PRs). Hourly runs read only the PRs
+# updated since the last run (newest first, 1 hour of overlap) and merge them into the
+# stored index; one run per UTC day reads the full list, with a page limit derived from
+# the stored count, and the review step alerts when that full list looks incomplete.
+OVERLAP_SECONDS = 3600
+FULL_MARGIN_PAGES = 10
 MAX_SCORE_CHARS = 4096  # record score maxLength in schemas/problem-v1.json
 
 def dump(root, path, data):
@@ -242,6 +247,47 @@ def claim_state(p, prior, decisions, evaluate):
     retry = isinstance(reason, claim_judge.Retry)
     return score, reason, claim_path, claim_head, claim_text, retry, decision
 
+def stamp(text):
+    return datetime.fromisoformat(text.replace('Z', '+00:00')).timestamp()
+
+def list_pulls(stage, now):
+    """(pulls, listing): every CrocSwap PR, sorted by number, with body; listing holds the
+    new intake fields (pulls_watermark, pulls_full_at, pulls_incomplete)."""
+    intake = load(stage, 'sources/intake.json')
+    stored = {p['number']: p for p in load(stage, 'sources/crocswap-pulls.json')}
+    watermark = intake.get('pulls_watermark')
+    full = not watermark or (intake.get('pulls_full_at') or '')[:10] != now[:10]
+    listing = dict(pulls_watermark=watermark, pulls_full_at=intake.get('pulls_full_at'), pulls_incomplete=None)
+    fresh = []
+    if full:
+        limit = 2 * len(stored) // 100 + FULL_MARGIN_PAGES
+        try:
+            fresh = pages(f'repos/{CROC}/pulls', {'state': 'all', 'sort': 'created', 'direction': 'asc'}, limit=limit)
+            missing = sorted(set(stored) - {p['number'] for p in fresh})
+            if missing:
+                listing['pulls_incomplete'] = f'full PR list misses {len(missing)} stored PRs (first #{missing[0]})'
+        except RuntimeError as error:
+            if 'pagination limit' not in str(error):
+                raise
+            listing['pulls_incomplete'] = f'full PR list hit its {limit}-page limit'
+            fresh = []
+        if not listing['pulls_incomplete']:
+            listing['pulls_full_at'] = now
+    if not full or listing['pulls_incomplete']:
+        cutoff = stamp(watermark) - OVERLAP_SECONDS if watermark else 0
+        for page in range(1, 2 * len(stored) // 100 + FULL_MARGIN_PAGES + 1):
+            data = api(f'repos/{CROC}/pulls', {'state': 'all', 'sort': 'updated', 'direction': 'desc', 'per_page': 100, 'page': page})
+            fresh += data
+            if len(data) < 100 or any(stamp(p['updated_at']) < cutoff for p in data):
+                break
+    merged = dict(stored)
+    merged.update({p['number']: p for p in fresh})
+    for n, p in merged.items():
+        if 'body' not in p:  # A stored PR not in this listing: its body is in sources/pr-<n>.json.
+            merged[n] = p | {'body': load(stage, f'sources/pr-{n}.json')['body']}
+    listing['pulls_watermark'] = max([p['updated_at'] for p in fresh] + ([watermark] if watermark else []), default=None)
+    return sorted(merged.values(), key=lambda p: p['number']), listing
+
 def refresh(stage, now):
     day = now[:10]
     claim_judge.calls_left = claim_judge.CALLS_PER_RUN
@@ -254,9 +300,7 @@ def refresh(stage, now):
     template = copy.deepcopy(records['crocswap-pr-61'])
     metadata = problem['record_metadata']
     mt = copy.deepcopy(metadata['crocswap-pr-61'])
-    # CrocSwap passed 3,000 PRs on 2026-10-17 (#3340), beyond the default 30 pages of 100;
-    # the 22:17Z refresh failed on 'pagination limit reached'. 100 pages = 10,000 PRs.
-    pulls = sorted(pages(f'repos/{CROC}/pulls', {'state': 'all', 'sort': 'created', 'direction': 'asc'}, limit=PULL_PAGES), key=lambda p: p['number'])
+    pulls, pull_listing = list_pulls(stage, now)
     assert len({p['number'] for p in pulls}) == len(pulls)
     assert set(old) <= {p['number'] for p in pulls}, 'PR coverage regressed'
     heads = {}
@@ -273,6 +317,7 @@ def refresh(stage, now):
     fingerprint = hashlib.sha256(json.dumps({'importer_version':IMPORTER_VERSION,'prompt_version':claim_judge.PROMPT_VERSION,'decisions':sorted(map(list, decisions)),'heads': {repo: h['sha'] for repo,h in heads.items()}, 'pulls': [{k:p[k] for k in ('number','title','body','updated_at','merged_at','closed_at','state')} | {'head_sha':p['head']['sha']} for p in pulls]}, sort_keys=True).encode()).hexdigest()
     # A PR whose Claude check gave no verdict is read again even when nothing changed.
     if load(stage, 'sources/intake.json').get('fingerprint') == fingerprint and not any(s.get('claim_retry') for s in subs['items']):
+        dump(stage, 'sources/intake.json', load(stage, 'sources/intake.json') | pull_listing)
         return dict(checked_at=now,new_prs=[],new_merged_records=[],previous_record=best(before),current_record=best(before),new_current_record=False,unparsed_new_prs=[])
     dump(stage, 'sources/crocswap-pulls.json', [pull_index(p) for p in pulls])
     for repo, head in heads.items():
@@ -398,7 +443,7 @@ def refresh(stage, now):
     dump(stage,'registry.json',reg)
     queue=[dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason']) for s in items if s.get('review_reason') and s['upstream_status'] != 'closed-unmerged' and not isinstance(s['review_reason'], claim_judge.Deferred)]
     dump(stage,CLAIM_QUEUE,{'queue':queue})
-    dump(stage,'sources/intake.json',dict(checked_at=day,assembled_at=now,pulls_source=f'https://api.github.com/repos/{CROC}/pulls',count=len(pulls),fingerprint=fingerprint))
+    dump(stage,'sources/intake.json',dict(checked_at=day,assembled_at=now,pulls_source=f'https://api.github.com/repos/{CROC}/pulls',count=len(pulls),fingerprint=fingerprint)|pull_listing)
     return dict(checked_at=now,new_prs=[p['number'] for p in pulls if p['number'] not in old],new_merged_records=new_merged,previous_record=best(before),current_record=best(problem),new_current_record=best(before)!=best(problem),unparsed_new_prs=[s['pr_number'] for s in items if s['pr_number'] not in old and s['claimed_score'] is None])
 
 def git_state_dir():

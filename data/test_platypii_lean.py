@@ -184,6 +184,9 @@ class PlatypiiTests(unittest.TestCase):
             self.assertEqual(out.returncode, 1); self.assertIn('platypii Lean note held', out.stdout)
             (Path(temp) / 'platypii-lean.json').write_text(json.dumps({'status': 'ok'}))
             self.assertEqual(subprocess.run([sys.executable, '-I', str(script), '--check']).returncode, 0)
+            (Path(temp) / 'sources').mkdir(); (Path(temp) / 'sources/intake.json').write_text(json.dumps({'pulls_incomplete': 'full PR list hit its 70-page limit'}))
+            out = subprocess.run([sys.executable, '-I', str(script), '--check'], capture_output=True, text=True)
+            self.assertEqual(out.returncode, 1); self.assertIn('CrocSwap PR list incomplete', out.stdout)
 
 import unittest.mock
 if __name__ == '__main__':

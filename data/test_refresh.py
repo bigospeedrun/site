@@ -213,10 +213,70 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')
         self.assertEqual(refresh.claim_state(p|{'number':3115},{'source_commit':head,'claimed_score':'1/7'},{},evaluate((None,None,'no package')))[:2],(None,'no package'))
 
-    def test_pull_listing_has_room(self):
-        # 2026-10-17: CrocSwap passed 3,000 PRs and the 30-page default failed the refresh.
-        count=len(refresh.load(refresh.ROOT,'sources/crocswap-pulls.json'))
-        self.assertGreaterEqual(refresh.PULL_PAGES*100,2*count)
+    def listing(self,stored,intake,full=None,updated=(),now='2026-10-18T05:17:00Z',fail=None):
+        """Run list_pulls on a temp stage: stored PR index, intake, the full API list, and
+        the PRs the updated-desc listing returns (newest first)."""
+        with tempfile.TemporaryDirectory() as temp:
+            stage=Path(temp);(stage/'sources').mkdir()
+            refresh.dump(stage,'sources/crocswap-pulls.json',[refresh.pull_index(p) for p in stored])
+            refresh.dump(stage,'sources/intake.json',intake)
+            for p in stored:refresh.dump(stage,f"sources/pr-{p['number']}.json",{'body':p['body']})
+            calls=[]
+            def pages(path,params=None,limit=30):
+                calls.append(('full',limit))
+                if fail:raise RuntimeError('GitHub pagination limit reached')
+                return list(full)
+            def api(path,params):
+                calls.append(('page',params['page']));self.assertEqual((params['sort'],params['direction']),('updated','desc'))
+                return list(updated)[(params['page']-1)*100:params['page']*100]
+            with patch.object(refresh,'pages',pages),patch.object(refresh,'api',api):
+                pulls,info=refresh.list_pulls(stage,now)
+        return pulls,info,calls
+
+    def pr(self,n,updated,body='b'):
+        return {'number':n,'html_url':f'u{n}','title':f't{n}','body':body,'state':'open','created_at':'2026-10-01T00:00:00Z','updated_at':updated,
+                'closed_at':None,'merged_at':None,'user':{'login':'a','html_url':'ua'},'head':{'sha':str(n)*10},'base':{'ref':'main'}}
+
+    def test_pr_listing_full_then_incremental(self):
+        stored=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,251)]
+        # No watermark yet: one full listing; its page limit follows the stored count.
+        pulls,info,calls=self.listing(stored,{},full=stored+[self.pr(251,'2026-10-18T05:00:00Z')])
+        self.assertEqual(calls,[('full',2*250//100+refresh.FULL_MARGIN_PAGES)])
+        self.assertEqual((len(pulls),info['pulls_watermark'],info['pulls_full_at'],info['pulls_incomplete']),(251,'2026-10-18T05:00:00Z','2026-10-18T05:17:00Z',None))
+        # Same day: only the PRs updated since the watermark minus 1 hour, newest first.
+        intake={'pulls_watermark':'2026-10-18T05:00:00Z','pulls_full_at':'2026-10-18T05:17:00Z'}
+        edited=self.pr(7,'2026-10-18T05:40:00Z',body='edited')
+        pulls,info,calls=self.listing(stored,intake,updated=[edited,self.pr(9,'2026-10-18T04:30:00Z'),self.pr(3,'2026-10-18T03:00:00Z')],now='2026-10-18T06:17:00Z')
+        self.assertEqual(calls,[('page',1)])
+        by={p['number']:p for p in pulls}
+        self.assertEqual((len(pulls),by[7]['body'],by[8]['body']),(250,'edited','b'))  # PR 8 keeps its stored body
+        self.assertEqual(info['pulls_watermark'],'2026-10-18T05:40:00Z')
+        # A new UTC day reads the full list again.
+        self.assertEqual(self.listing(stored,intake,full=stored,now='2026-10-19T00:17:00Z')[2][0][0],'full')
+
+    def test_incremental_pages_until_the_watermark(self):
+        stored=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,301)]
+        updated=[self.pr(n,'2026-10-18T05:59:00Z') for n in range(1,201)]+[self.pr(n,'2026-10-18T01:00:00Z') for n in range(201,301)]
+        intake={'pulls_watermark':'2026-10-18T05:00:00Z','pulls_full_at':'2026-10-18T00:17:00Z'}
+        self.assertEqual(self.listing(stored,intake,updated=updated)[2],[('page',1),('page',2),('page',3)])
+
+    def test_incomplete_full_listing_alerts_and_keeps_the_index(self):
+        stored=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,101)]
+        intake={'pulls_watermark':'2026-10-18T05:00:00Z','pulls_full_at':'2026-10-17T00:17:00Z'}
+        pulls,info,calls=self.listing(stored,intake,full=stored[:-3])
+        self.assertIn('misses 3 stored PRs (first #98)',info['pulls_incomplete']);self.assertEqual(len(pulls),100)
+        self.assertEqual(info['pulls_full_at'],'2026-10-17T00:17:00Z')  # tried again next run
+        pulls,info,calls=self.listing(stored,intake,fail=True)
+        self.assertIn('page limit',info['pulls_incomplete']);self.assertEqual(len(pulls),100);self.assertEqual(calls[-1],('page',1))
+
+    def test_incremental_equals_full_on_a_replay(self):
+        base=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,151)]
+        changed={5:self.pr(5,'2026-10-18T05:30:00Z',body='new'),151:self.pr(151,'2026-10-18T05:50:00Z')}
+        truth=sorted({**{p['number']:p for p in base},**changed}.values(),key=lambda p:p['number'])
+        full=self.listing(base,{},full=truth)[0]
+        inc=self.listing(base,{'pulls_watermark':'2026-10-18T05:00:00Z','pulls_full_at':'2026-10-18T00:17:00Z'},
+                         updated=sorted(changed.values(),key=lambda p:p['updated_at'],reverse=True)+[base[0]])[0]
+        self.assertEqual([refresh.pull_index(p)|{'body':p['body']} for p in full],[refresh.pull_index(p)|{'body':p['body']} for p in inc])
 
     def test_score_limit_matches_schema(self):
         schema=json.loads((refresh.ROOT/'schemas/problem-v1.json').read_text())['properties']['records']['items']['properties']['score']
@@ -229,7 +289,8 @@ class RefreshTests(unittest.TestCase):
             snapshot=json.loads((root/'direct-fixtures/refresh-snapshot.json').read_text())
             for rel,raw in snapshot.items():
                 q=stage/rel;q.parent.mkdir(parents=True,exist_ok=True);q.write_text(raw)
-            def api(path):
+            def api(path,params=None):
+                if path.endswith('/pulls'):return []  # incremental listing: nothing updated
                 repo='/'.join(path.split('/')[1:3]);suffix='__head.json' if '/commits/' in path else '__repo.json'
                 result=refresh.load(stage,'sources/'+repo.replace('/','__')+suffix)
                 if '/commits/' in path and repo==refresh.SWAP:
@@ -279,7 +340,8 @@ class RefreshTests(unittest.TestCase):
         # Hourly imports create receipt files before this test and before commit.
         # Copy those files too, because current board JSON already references them.
         tracked=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard'],cwd=source,text=True).splitlines()
-        def api(path):
+        def api(path,params=None):
+            if path.endswith('/pulls'):return []  # incremental listing: nothing updated
             repo='/'.join(path.split('/')[1:3]);suffix='__head.json' if '/commits/' in path else '__repo.json'
             return refresh.load(source,'sources/'+repo.replace('/','__')+suffix)
         def content(repo,path,sha):
