@@ -323,6 +323,52 @@
       }
     },
     {
+      "id": "shreshth-s-apsp-2026",
+      "kind": "improvement",
+      "score": "37411849/12500000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-16T21:33:49Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-16T21:33:49Z",
+      "site_observed_at": "2026-10-17T07:18:43Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137"
+      },
+      "spec_version": "1",
+      "title": "shresh deterministic APSP in time O(n^2.99294792)",
+      "authors": [
+        {
+          "name": "shresh",
+          "url": "https://github.com/shreshth-s"
+        }
+      ],
+      "predecessors": [
+        "https://arxiv.org/abs/2610.06783",
+        "https://arxiv.org/abs/2610.17420"
+      ],
+      "submission_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
+      "artifact": {
+        "path": "sources/shreshth-s-apsp-2-99294792-claim.json",
+        "sha256": "9ec5ea877d0bd9304f4c9b63dee2160cf68d63fd0f16283c2740fa6831e674cc"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/exponent-improvement.pdf",
+        "theorem": "Corollary (Deterministic APSP with shared-factor polynomial caches)",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-and-model",
+          "statement": "The bound rests on the written proof note and its numerical certificates. The Lean theorem uses a different cost model from EndStatement; no site rerun.",
+          "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "8a21eaae81599913dba562727e03a9b48c36a5b9"
+    },
+    {
       "id": "direct-pr-13",
       "kind": "improvement",
       "score": "59911217/20000000",
@@ -403,52 +449,6 @@
         "checked_at": "2026-10-12T02:37:20.122516Z",
         "receipt_path": "sources/direct-pr-6-38193262568-1-final.json"
       }
-    },
-    {
-      "id": "shreshth-s-apsp-2026",
-      "kind": "improvement",
-      "score": "37411849/12500000",
-      "score_relation": "attained",
-      "tier": "claimed",
-      "submitted_at": "2026-10-16T21:33:49Z",
-      "upstream_status": "not-applicable",
-      "upstream_status_at": "2026-10-16T21:33:49Z",
-      "site_observed_at": "2026-10-17T07:18:43Z",
-      "source": {
-        "kind": "repo-artifact",
-        "url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137"
-      },
-      "spec_version": "1",
-      "title": "shresh deterministic APSP in time O(n^2.99294792)",
-      "authors": [
-        {
-          "name": "shresh",
-          "url": "https://github.com/shreshth-s"
-        }
-      ],
-      "predecessors": [
-        "https://arxiv.org/abs/2610.06783",
-        "https://arxiv.org/abs/2610.17420"
-      ],
-      "submission_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
-      "artifact": {
-        "path": "sources/shreshth-s-apsp-2-99294792-claim.json",
-        "sha256": "9ec5ea877d0bd9304f4c9b63dee2160cf68d63fd0f16283c2740fa6831e674cc"
-      },
-      "evidence": {
-        "paper_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/exponent-improvement.pdf",
-        "theorem": "Corollary (Deterministic APSP with shared-factor polynomial caches)",
-        "certificate_path": null
-      },
-      "dependencies": [
-        {
-          "id": "written-proof-and-model",
-          "statement": "The bound rests on the written proof note and its numerical certificates. The Lean theorem uses a different cost model from EndStatement; no site rerun.",
-          "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
-          "status": "unverified"
-        }
-      ],
-      "source_commit": "8a21eaae81599913dba562727e03a9b48c36a5b9"
     }
   ],
   "record_metadata": {
@@ -569,6 +569,30 @@
       "publication_source_url": "https://prove2.me/missions/8e75bf61-9954-42ab-975b-4a150260346b",
       "prove2me": true
     },
+    "shreshth-s-apsp-2026": {
+      "checked_at": "2026-10-17",
+      "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
+      "repo": "shreshth-s/thin-matrix-results",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof note with exact-rational certificates and finite checkers. Its Lean theorem BinaryAlignedAPSPTheorem.correctness_and_work proves APSP correctness and O(n^2.99294792) charged work in a binary-arithmetic, bounded indexed-array model, not the word RAM of EndStatement; the author's word-RAM adapter is conditional. No Big O Speedrun proof check. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/word-ram/v1",
+      "comparison_status": "The corollary states deterministic O(n^2.99294792) APSP for polynomially bounded integer weights and no negative cycles, on a word RAM with O(log n)-bit words (note, Results and scope). Directed graphs, as in the source reduction. Like other written claims, the fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+      "scope": "Directed integer weights of polynomial magnitude, no negative cycles, all-pairs distances; deterministic worst case.",
+      "exact_statement": "All-edges Exact Triangle, min-plus product and APSP without negative cycles admit deterministic O(n^2.99294792) algorithms for polynomially bounded integer weights.",
+      "score_interpretation": "Attained exponent 2.99294792 = 37411849/12500000. The note states the constants settle only for astronomically large n.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Repository made public with the first commit stating the bound",
+      "publication_date": "2026-10-16T21:33:49Z",
+      "publication_source_url": "https://github.com/shreshth-s/thin-matrix-results/commit/0763cd0fac4a81d9f8882b6b118d981e7cc935ce",
+      "claim_date_commit": "0763cd0fac4a81d9f8882b6b118d981e7cc935ce",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "No license file; source files are not copied, only their hashes",
+      "credits": "shresh (shreshth-s). Builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Majdoddin's five-term tensor (arXiv:2610.17420)."
+    },
     "direct-pr-13": {
       "checked_at": "2026-10-17",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/319252b348e254a4257cdc69805fd6eec3f5cd94/submissions/apsp/fringewidth-apsp-299556085/Submission.lean",
@@ -604,31 +628,7 @@
       "direct_submission": true,
       "route": "pull_request",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38193262568"
-    },
-    "shreshth-s-apsp-2026": {
-      "checked_at": "2026-10-17",
-      "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
-      "repo": "shreshth-s/thin-matrix-results",
-      "site_badge": false,
-      "eligible_for_record": true,
-      "proof_status": "Written proof note with exact-rational certificates and finite checkers. Its Lean theorem BinaryAlignedAPSPTheorem.correctness_and_work proves APSP correctness and O(n^2.99294792) charged work in a binary-arithmetic, bounded indexed-array model, not the word RAM of EndStatement; the author's word-RAM adapter is conditional. No Big O Speedrun proof check. Evidence remains Claimed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
-      "comparison_key": "apsp/word-ram/v1",
-      "comparison_status": "The corollary states deterministic O(n^2.99294792) APSP for polynomially bounded integer weights and no negative cycles, on a word RAM with O(log n)-bit words (note, Results and scope). Directed graphs, as in the source reduction. Like other written claims, the fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
-      "scope": "Directed integer weights of polynomial magnitude, no negative cycles, all-pairs distances; deterministic worst case.",
-      "exact_statement": "All-edges Exact Triangle, min-plus product and APSP without negative cycles admit deterministic O(n^2.99294792) algorithms for polynomially bounded integer weights.",
-      "score_interpretation": "Attained exponent 2.99294792 = 37411849/12500000. The note states the constants settle only for astronomically large n.",
-      "publication_date_precision": "date-time",
-      "publication_date_role": "Repository made public with the first commit stating the bound",
-      "publication_date": "2026-10-16T21:33:49Z",
-      "publication_source_url": "https://github.com/shreshth-s/thin-matrix-results/commit/0763cd0fac4a81d9f8882b6b118d981e7cc935ce",
-      "claim_date_commit": "0763cd0fac4a81d9f8882b6b118d981e7cc935ce",
-      "listing_status": "research-draft",
-      "open_race": false,
-      "license_status": "No license file; source files are not copied, only their hashes",
-      "credits": "shresh (shreshth-s). Builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Majdoddin's five-term tensor (arXiv:2610.17420)."
     }
   },
-  "updated_at": "2026-10-17T07:18:43Z"
+  "updated_at": "2026-10-17T07:29:54Z"
 }
