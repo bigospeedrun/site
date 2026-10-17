@@ -92,7 +92,8 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
       <p>There are two types of verification: Human and Lean.</p>
       <ul>
         <li><strong>Human verified:</strong> Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</li>
-        <li><strong>Lean verified:</strong> We rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.</li>
+        <li><strong>Lean verified:</strong> We rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.
+          <p>We also import results from <a href="https://prove2.me" target="_blank" rel="noopener">prove2.me</a>, where Lean checks each proof. A prove2.me result counts as Lean Verified once we review that it proves our exact problem statement.</p></li>
       </ul>
     </section>
     <section aria-labelledby="missing-lean">
@@ -118,7 +119,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     </section>
     <section aria-labelledby="latest-results">
       <h2 id="latest-results">How do we keep track of the latest results?</h2>
-      <p>An hourly GitHub workflow imports new pull requests from the review repos, like <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>. An agent also searches GitHub for new repos about these problems and flags the ones that state a bound. A second agent reads each flagged repo, checks that it solves the same problem, and compares it with the board. If it was the best bound when it appeared, we add it as Claimed. The <a href="https://app.getsupers.com/auto-research" target="_blank" rel="noopener">Auto Research</a> dashboard by Super also tracks pull requests and contributors for several of these problems.</p>
+      <p>An hourly GitHub workflow imports new pull requests from the review repos, like <a href="https://github.com/CrocSwap/integer-mult-bounds" target="_blank" rel="noopener">CrocSwap/integer-mult-bounds</a>. An agent also searches GitHub for new repos about these problems and flags the ones that state a bound. A second agent reads each flagged repo, checks that it solves the same problem, and compares it with the board. If it was the best bound when it appeared, we add it as Claimed. The hourly workflow also imports reviewed results from prove2.me (see <a href="#verification">How are results verified?</a>). The <a href="https://app.getsupers.com/auto-research" target="_blank" rel="noopener">Auto Research</a> dashboard by Super also tracks pull requests and contributors for several of these problems.</p>
     </section>
     <section aria-labelledby="help">
       <h2 id="help">How else can I help?</h2>
@@ -175,6 +176,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
   .prose { min-width: 0; }
   .prose section + section { margin-top: 32px; border-top: 1px solid var(--line); }
   .prose section:first-child h2 { margin-top: 0; }
+  .prose li p { margin: 8px 0 0; }
   .prose h2 { scroll-margin-top: 24px; }
   .about-nav { display: none; }
   @media (min-width: 1200px) {
