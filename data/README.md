@@ -12,7 +12,7 @@ the sha256 of each statement, definition and solution file. When a board differs
 from that file, the board keeps its last import, `prove2me.json` records the
 reason, and the script exits with code 3. To accept a change, review the entry
 and update the trust file. `LEAN_VERIFIED` in the script turns imported rows
-from Human Verified to Lean Verified.
+from Claimed to Lean Verified.
 
 Run `python3 data/validate.py` to check schemas, exact scores and source hashes.
 Run `python3 -m unittest discover -s data -p 'test_*.py'` for offline tests.

@@ -52,6 +52,7 @@ class Fixture:
                          solution=dict(path=so, sha256=hashlib.sha256(solbody).hexdigest(), author='@a'))
             if action == 'link':
                 entry['record_id'] = 'anthropic-2026'
+                entry['same_proof'] = 'The statement header names the row source.'
             else:
                 entry['authors'] = [dict(name='wurtle', url='https://prove2.me/users/u1')]
             entries.append(entry)
@@ -209,6 +210,34 @@ class Prove2meImportTest(unittest.TestCase):
         doc['record_metadata']['same'] = {}
         self.f.write('apsp.json', doc)
         self.assertIn('review it as a link', self.f.run()[2]['apsp'])
+        # A reviewed row with another proof of the same value may stay.
+        self.f.trust['boards']['apsp']['entries'][1]['same_value_rows'] = ['same']
+        self.f.save_trust()
+        self.assertEqual(self.f.run()[2], {})
+
+    def test_a_link_without_same_proof_evidence_holds_the_board(self):
+        del self.f.trust['boards']['apsp']['entries'][0]['same_proof']
+        self.f.save_trust()
+        self.assertIn('no same-proof evidence', self.f.run()[2]['apsp'])
+
+    def test_a_new_page_layout_or_file_format_holds_the_board(self):
+        self.f.run()
+        real = self.f.get
+        def layout(url):
+            raw = real(url)
+            return raw.replace(b'self.__next_f.push', b'window.__data.push') if url.startswith(p2m.CAMPAIGN_URL) else raw
+        with mock.patch.object(self.f, 'get', side_effect=layout):
+            self.assertIn('campaign page has no entry list', self.f.run()[2]['apsp'])
+        def entry_shape(url):
+            raw = real(url)
+            return raw.replace(b'attested_value', b'value') if url.startswith(p2m.CAMPAIGN_URL) else raw
+        with mock.patch.object(self.f, 'get', side_effect=entry_shape):
+            self.assertIn('unknown shape', self.f.run()[2]['apsp'])
+        def no_header(url):
+            raw = real(url)
+            return raw.replace(b'-- ', b'// ') if url.startswith(p2m.RAW_URL) else raw
+        with mock.patch.object(self.f, 'get', side_effect=no_header):
+            self.assertIn('status is None', self.f.run()[2]['apsp'])
 
     def test_removed_rows_leave_the_document_and_kept_rows_keep_their_place(self):
         self.f.run()
@@ -248,7 +277,7 @@ class TrustFileTest(unittest.TestCase):
                 self.assertTrue(digest.match(theorem['statement_sha256']) and digest.match(entry['solution']['sha256']))
                 self.assertTrue(set(theorem['definitions']) <= set(board['definitions']))
                 if entry['action'] == 'link':
-                    self.assertTrue(entry['record_id'])
+                    self.assertTrue(entry['record_id'] and entry['same_proof'])
                 else:
                     self.assertTrue(entry['authors'] and all(a['url'].startswith('https://') for a in entry['authors']))
 

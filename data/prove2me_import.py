@@ -17,8 +17,12 @@ script exits with code 3. The workflow then fails the run at its end, so the
 dead-man check alerts the lead.
 
 An entry with action "link" adds a prove2.me link to an existing board row
-(data/prove2me.json, read by the site). An entry with action "row" adds a row
-when the result was the best on the board at its solved time.
+(data/prove2me.json, read by the site). A link needs the same proof: the
+reviewer records the evidence in "same_proof" (the prove2.me entry names the
+row's source, or the proof content matches). An entry with action "row" adds a
+row when the result was the best on the board at its solved time. A board row
+with the same value but another proof must be listed in "same_value_rows".
+A page layout or file format change makes the parse fail, which holds the board.
 """
 import argparse
 import copy
@@ -36,7 +40,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 # Imported rows get Lean Verified only when this is True. Flip it after prove2.me
 # confirms that it rejects native_decide and new axioms (question sent 2026-10-16).
-# Until then the site shows them as Human Verified.
+# Until then the rows are Claimed (lead decision 2026-10-17).
 LEAN_VERIFIED = False
 CAMPAIGN_URL = 'https://prove2.me/campaigns/'
 RAW_URL = 'https://raw.githubusercontent.com/'
@@ -204,11 +208,13 @@ def check_board(slug, board, doc, files, get):
         solved = utc(entry['solved_at'])
         same = [r for r in records if Fraction(r['score']) == value]
         if entry['action'] == 'link':
+            require(entry.get('same_proof'), f'link for entry {entry["value"]} has no same-proof evidence')
             require(any(r['id'] == entry['record_id'] for r in same), f'board row {entry["record_id"]} with value {entry["value"]} is missing')
             plan['links'][entry['record_id']] = theorem['url']
         else:
             require(entry['action'] == 'row', f'unknown action {entry["action"]!r}')
-            require(not same, f'entry {entry["value"]} now matches board row {same[0]["id"] if same else ""}; review it as a link')
+            other = sorted(r['id'] for r in same if r['id'] not in entry.get('same_value_rows', []))
+            require(not other, f'entry {entry["value"]} now has the same value as board row {", ".join(other)}; review it as a link or list it in same_value_rows')
             earlier = [score for at, score in known if at <= solved]
             require(all(better(value, score) for score in earlier), f'entry {entry["value"]} was not the best result at its solved time')
             plan['rows'].append(entry)

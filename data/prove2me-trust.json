@@ -2,7 +2,7 @@
  "schema_version": 1,
  "reviewed_at": "2026-10-17",
  "reviewed_by": "BOS Worker 4",
- "review_rule": "A prove2.me campaign entry counts for a board only when this file names it. Its goal theorem must state the board problem: EndStatement Q.SolvedInTime v, or the same definitions with the namespace renamed, and nothing else in its statement preamble may change the meaning. Every listed file is pinned by the sha256 of the bytes after its Formalpedia header, the same bytes that Formalpedia index-*.jsonl hashes for solutions.",
+ "review_rule": "A prove2.me campaign entry counts for a board only when this file names it. Its goal theorem must state the board problem: EndStatement Q.SolvedInTime v, or the same definitions with the namespace renamed, and nothing else in its statement preamble may change the meaning. Every listed file is pinned by the sha256 of the bytes after its Formalpedia header, the same bytes that Formalpedia index-*.jsonl hashes for solutions. A link needs the same proof (lead rule 2026-10-17): the prove2.me entry names the source of our row, or the proof content matches. No identity matching between prove2.me and GitHub users. Credit goes to the source proof authors, else to the prove2.me solvers.",
  "formalpedia": {
   "repo": "prove2me/formalpedia",
   "ref": "main",
@@ -44,7 +44,8 @@
       "path": "envs/0df444a/Solutions/Sol_TrulySubcubicAPSP_apsp.lean",
       "sha256": "611374d9fb91169d14b3398cc6f6936eab43bbc11b159c40282c70e30e6679a1",
       "author": "@marwahaha"
-     }
+     },
+     "same_proof": "The goal statement header names our row source, anthropics/formal-math EndStatement.lean at e1a4e6508154ea59f030480661590a9fe3018011, and the mission names that formalization as its proof (Theorem_22_APSP)."
     },
     {
      "mission_id": "e19faecc-7aeb-4fa4-b81f-d8f756166e78",
@@ -78,9 +79,8 @@
      "mission_id": "f0fd230c-80cf-4c65-b628-3e2a7eb0ec29",
      "value": "2.99791",
      "solved_at": "2026-10-06T23:55:43.55046+00:00",
-     "action": "link",
-     "record_id": "jihoon-hyun-apsp-2026",
-     "note": "Same value as the Jihoon Hyun claim; the prove2.me proof is by xuanji. Link only; the row keeps its level.",
+     "action": "row",
+     "note": "Proof by xuanji on prove2.me (Light.Sec3). No prove2.me file names qawbecrdtey/ImprovedExponents, so it is not the proof of the Jihoon Hyun row. It was the best result at its solved time (2026-10-06 23:55 UTC; board best then 2.9983); the Jihoon Hyun row is dated 2026-10-07 09:11 UTC.",
      "theorem": {
       "name": "TrulySubcubicAPSP.apsp_bound_299791",
       "url": "https://prove2.me/theorems/6bdc9821-d8c3-42ef-b58c-7932ad0f6d18",
@@ -95,7 +95,16 @@
       "path": "envs/0df444a/Solutions/Sol_TrulySubcubicAPSP_apsp_bound_299791.lean",
       "sha256": "a00439cd2bd53ee499e352ebdb3fe5b9015f4ca7f359b2e98d5b5e0c328a0ddc",
       "author": "@xuanji"
-     }
+     },
+     "authors": [
+      {
+       "name": "xuanji",
+       "url": "https://prove2.me/users/eb748f54-a7e9-4b93-8588-69f5b241260e"
+      }
+     ],
+     "same_value_rows": [
+      "jihoon-hyun-apsp-2026"
+     ]
     },
     {
      "mission_id": "8e75bf61-9954-42ab-975b-4a150260346b",
@@ -145,7 +154,8 @@
       "path": "envs/0df444a/Solutions/Sol_TrulySubcubicAPSP_apsp_bound_2995561.lean",
       "sha256": "e1c8c3c8262b1126d5bbea23cdc2bdaea45bd4a899537bb7e323fdd4a7344d7a",
       "author": "@xuanji"
-     }
+     },
+     "same_proof": "Proof content matches: the accepted solution of Light.Batch.oNeed_poly (prove2.me submission 70a1cfa8) is the proof of oNeed_poly in verifier PR #6 Submission/ThreeSumApsp/Batch/ONeedPoly.lean at a6e77d9 (272 of its 417 lines appear verbatim), and Race.bound there ends with apsp_2995561, the prove2.me theorem name."
     }
    ]
   },
@@ -160,8 +170,7 @@
    },
    "statement_form": "EndStatement.ThreeSum.SolvedInTime v. Def_TrulySubcubicAPSP_SourceSpecification is EndStatement.lean (anthropics/formal-math e1a4e65) byte for byte after its header, except two blank lines (diff checked 2026-10-17).",
    "definitions": {
-    "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean": "7a8bb241b29ab4e037882492b5a6b7257522b2526ac0ca0fde374b1cf7e9ce1d",
-    "envs/0df444a/Definitions/Def_ThreeSum1960614_Analysis.lean": "0a0fc0a245ffefdd489649195e87302e4ab45e7292fd8c806e0b099dabcae2a4"
+    "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean": "7a8bb241b29ab4e037882492b5a6b7257522b2526ac0ca0fde374b1cf7e9ce1d"
    },
    "entries": [
     {
@@ -183,7 +192,8 @@
       "path": "envs/0df444a/Solutions/Sol_TrulySubquadratic3SUM_threeSum.lean",
       "sha256": "1aa97dde8f8c3c25322072c4592dd05f1f02981f329529645ae88ffb84884a03",
       "author": "@marwahaha"
-     }
+     },
+     "same_proof": "The goal statement header names our row source, anthropics/formal-math EndStatement.lean at e1a4e6508154ea59f030480661590a9fe3018011 (Theorem_22_3SUM)."
     },
     {
      "mission_id": "c69c563c-99fe-4f40-a740-e10a6b16706f",
@@ -272,7 +282,6 @@
      "solved_at": "2026-10-14T19:37:56.749822+00:00",
      "action": "link",
      "record_id": "direct-issue-4",
-     "note": "Upload of c0ldzy17/three-sum-lean at 2b63965.",
      "theorem": {
       "name": "ThreeSum1962.threeSum_bound",
       "url": "https://prove2.me/theorems/faf3da56-8bce-41db-b7fb-332e1861ada2",
@@ -286,7 +295,8 @@
       "path": "envs/0df444a/Solutions/Sol_ThreeSum1962_threeSum_bound.lean",
       "sha256": "acd89f0481954b26629e195fdf659dde3c8cbaa084b85f1e2577476303e6bb8d",
       "author": "@wurtle"
-     }
+     },
+     "same_proof": "The goal statement header names our row source, c0ldzy17/three-sum-lean at 2b639655e07421b9ac743de9090459bab473a7c0 (Submission.lean and FinalSolver.lean)."
     },
     {
      "mission_id": "3fecdd66-37fa-4406-87a5-61db25383b86",
@@ -299,24 +309,8 @@
      "mission_id": "01a7fb00-e5c3-4a42-a3c2-2cbf04330ffc",
      "value": "1.960614",
      "solved_at": "2026-10-15T10:19:54.248486+00:00",
-     "action": "link",
-     "record_id": "direct-issue-8",
-     "note": "Same value as Anchen0823 (verifier issue #8); prove2.me author Yuxuan Xu. Link only.",
-     "theorem": {
-      "name": "ThreeSum1960614.threeSum_1960614",
-      "url": "https://prove2.me/theorems/a53b364e-57a0-4d2c-adc6-983a74218a4b",
-      "statement_path": "envs/0df444a/Theorems/Thm_ThreeSum1960614_threeSum_1960614.lean",
-      "statement_sha256": "f9e94634e29d190068767ddd2213e1dd6b37100d0eec7e6c53acf1faf3490efd",
-      "definitions": [
-       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean",
-       "envs/0df444a/Definitions/Def_ThreeSum1960614_Analysis.lean"
-      ]
-     },
-     "solution": {
-      "path": "envs/0df444a/Solutions/Sol_ThreeSum1960614_threeSum_1960614.lean",
-      "sha256": "c0bb41728a3ce45132ce115d41c53665878d0ce7e5a86e80e6d452f6b972ca8a",
-      "author": "@Yuxuan Xu"
-     }
+     "action": "skip",
+     "note": "Lead decision 2026-10-17: no link to Anchen0823 (verifier issue #8), and no row because the board had the same value first (2026-10-14 12:55 UTC). Evidence for a later review: 525 supporting prove2.me theorems name Anchen0823/three-sum-1960614 at 8c25c0325de5be4286413f39ca0c9278aad33f52, the source of that row, but the goal header and the top lemmas name a user-supplied certificate on c0ldzy17/three-sum-lean."
     }
    ]
   }

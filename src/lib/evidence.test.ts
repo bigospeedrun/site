@@ -11,12 +11,6 @@ test('review levels follow the named repository and proof gates',()=>{
  assert.equal(classifyEvidence({...base,proofPassed:true}),'lean-verified');
  assert.equal(evidenceLevels.length,3);
 });
-test('reviewed prove2.me imports are Human Verified until our Lean receipt gate passes',()=>{
- const base={slug:'apsp',repo:'',prove2me:true};
- assert.equal(classifyEvidence({...base,proofPassed:false}),'human-verified');
- assert.equal(classifyEvidence({...base,proofPassed:true}),'lean-verified');
- assert.equal(classifyEvidence({slug:'apsp',repo:'',proofPassed:false}),'claimed');
-});
 test('displayed logarithmic exponents preserve small savings and round conservatively',()=>{
  assert.equal(logExponent('6685733/10000000000'),'0.9993314267');
  assert.equal(logExponent('1/3'),'0.666666666666667');

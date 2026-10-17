@@ -7,10 +7,8 @@ export const evidenceLevels = [
 ] as const;
 export type EvidenceLevel = typeof evidenceLevels[number]['id'];
 export const evidenceName = (level:EvidenceLevel):string => evidenceLevels.find(item=>item.id===level)!.name;
-export function classifyEvidence(input:{slug:string;repo:string;upstreamStatus?:string;upstreamSelected?:boolean;proofPassed:boolean;prove2me?:boolean}):EvidenceLevel {
+export function classifyEvidence(input:{slug:string;repo:string;upstreamStatus?:string;upstreamSelected?:boolean;proofPassed:boolean}):EvidenceLevel {
  if(input.proofPassed)return 'lean-verified';
- // A reviewed prove2.me import without our Lean receipt (data/prove2me_import.py LEAN_VERIFIED off).
- if(input.prove2me)return 'human-verified';
  if(input.slug==='integer-multiplication'&&input.repo==='CrocSwap/integer-mult-bounds'&&(input.upstreamStatus==='merged'||input.upstreamSelected===true))return 'human-verified';
  return 'claimed';
 }

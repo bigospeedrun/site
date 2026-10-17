@@ -29,7 +29,7 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  const records:RecordEntry[]=data.records.map((r:any)=>{
  const meta=data.record_metadata?.[r.id]??{};const repo=repoName(meta.source_url??r.source?.url??r.submission_url);const entry=rawRepos.find((x:any)=>x.repo===repo);
  // The site assigns evidence levels from the problem review rule and proof receipts.
- const evidenceLevel=classifyEvidence({slug:p.slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:meta.upstream_selected===true,proofPassed:meta.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path),prove2me:meta.prove2me===true});
+ const evidenceLevel=classifyEvidence({slug:p.slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:meta.upstream_selected===true,proofPassed:meta.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)});
  const prove2meUrl=prove2meLink(p.slug,r.id);
  // The Oct 6 announcement is the known public date when the snapshot has no publication date.
  const announcementDate=['openai-original-109','exact-dft-2026','subset-sum-2026'].includes(r.id)&&!meta.publication_date?'2026-10-06':undefined;
