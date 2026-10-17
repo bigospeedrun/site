@@ -53,6 +53,13 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(self.claim({own:'added'},{'kappa':exact},judge='Claude reads the PR text as no new kappa claim.'),
                          (None,own,'Claude reads the PR text as no new kappa claim.'))
 
+    def test_pull_index_keeps_only_read_fields(self):
+        full=json.loads(json.loads((refresh.ROOT/'direct-fixtures/refresh-snapshot.json').read_text())['sources/crocswap-pulls.json'])[0]
+        index=refresh.pull_index(full)
+        self.assertNotIn('body',index);self.assertNotIn('base',index)
+        self.assertEqual(index['head'],{'sha':full['head']['sha']})
+        self.assertEqual(refresh.pull_index(index|{'body':'x'}),index)
+
     def test_score_limit_matches_schema(self):
         schema=json.loads((refresh.ROOT/'schemas/problem-v1.json').read_text())['properties']['records']['items']['properties']['score']
         self.assertEqual(schema['maxLength'],refresh.MAX_SCORE_CHARS)
@@ -121,7 +128,8 @@ class RefreshTests(unittest.TestCase):
             if path=='README.md':return (source/('sources/'+repo.replace('/','__')+'__README.md')).read_bytes()
             if path=='certificates/selected-result.json':return (source/f'sources/crocswap-selected-{sha}.json').read_bytes()
             return (source/f'sources/crocswap-certificate-{sha}.json').read_bytes()
-        pulls=refresh.load(source,'sources/crocswap-pulls.json')
+        # The index omits PR bodies; the API returns them, so add them back from pr-<n>.json.
+        pulls=[p|{'body':refresh.load(source,f"sources/pr-{p['number']}.json")['body']} for p in refresh.load(source,'sources/crocswap-pulls.json')]
         for nested in (False,True):
             with self.subTest(nested=nested),tempfile.TemporaryDirectory(dir=refresh.git_state_dir()) as temp:
                 repo=Path(temp);data=repo/'data' if nested else repo;data.mkdir(exist_ok=True)

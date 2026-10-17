@@ -3,6 +3,8 @@
 Run `python3 data/refresh.py` to read CrocSwap and Swapnil Jain sources through
 GitHub REST GET requests, stage the changes, and validate before replacing files.
 Set `GITHUB_TOKEN` for authenticated API limits. No upstream code is executed.
+`sources/crocswap-pulls.json` is an index of the fields that refresh reads; each
+PR's title and body are in `sources/pr-<n>.json`.
 Other research claims and evidence require a separate reviewed import.
 A CrocSwap PR gets a row only when it adds one research/<dir>/CLAIM.json with a
 `kappa` field, and a Claude Haiku reading of the PR title and body agrees that

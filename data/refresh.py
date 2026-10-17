@@ -9,7 +9,7 @@ import claim_judge
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
-IMPORTER_VERSION = 6
+IMPORTER_VERSION = 7
 # A CrocSwap PR is listed only when its own research package states a kappa (Nil,
 # 2026-10-17, after #3093 was listed from its title 'audit ... against kappa=0.1').
 # The package is the one research/<dir>/CLAIM.json that the PR adds; its 'kappa'
@@ -55,6 +55,14 @@ def best(problem):
     pool = [r for r in problem['records'] if r['id'].startswith('crocswap-') and problem['record_metadata'][r['id']]['eligible_for_record']]
     r = max(pool, key=lambda r: Fraction(r['score']))
     return {k: r[k] for k in ('id', 'score', 'title', 'submission_url')}
+
+# sources/crocswap-pulls.json keeps only the fields that refresh reads; the PR body
+# is in sources/pr-<n>.json. The full API dump was 68 MB on 2026-10-17 (about 24 KB
+# per PR, growing ~6 MB a day toward GitHub's 100 MB file limit); this index is ~1.6 MB.
+def pull_index(p):
+    return {'number': p['number'], 'html_url': p['html_url'], 'title': p['title'], 'state': p['state'],
+            'created_at': p['created_at'], 'updated_at': p['updated_at'], 'closed_at': p['closed_at'], 'merged_at': p['merged_at'],
+            'user': {'login': p['user']['login'], 'html_url': p['user']['html_url']}, 'head': {'sha': p['head']['sha']}}
 
 def exists(repo, path, sha):
     try:
@@ -126,7 +134,7 @@ def refresh(stage, now):
     fingerprint = hashlib.sha256(json.dumps({'importer_version':IMPORTER_VERSION,'decisions':sorted(map(list, decisions)),'heads': {repo: h['sha'] for repo,h in heads.items()}, 'pulls': [{k:p[k] for k in ('number','title','body','updated_at','merged_at','closed_at','state')} | {'head_sha':p['head']['sha']} for p in pulls]}, sort_keys=True).encode()).hexdigest()
     if load(stage, 'sources/intake.json').get('fingerprint') == fingerprint:
         return dict(checked_at=now,new_prs=[],new_merged_records=[],previous_record=best(before),current_record=best(before),new_current_record=False,unparsed_new_prs=[])
-    dump(stage, 'sources/crocswap-pulls.json', pulls)
+    dump(stage, 'sources/crocswap-pulls.json', [pull_index(p) for p in pulls])
     for repo, head in heads.items():
         meta = repo_meta[repo]
         prefix = 'sources/' + repo.replace('/', '__')
