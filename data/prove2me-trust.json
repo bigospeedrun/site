@@ -1,0 +1,324 @@
+{
+ "schema_version": 1,
+ "reviewed_at": "2026-10-17",
+ "reviewed_by": "BOS Worker 4",
+ "review_rule": "A prove2.me campaign entry counts for a board only when this file names it. Its goal theorem must state the board problem: EndStatement Q.SolvedInTime v, or the same definitions with the namespace renamed, and nothing else in its statement preamble may change the meaning. Every listed file is pinned by the sha256 of the bytes after its Formalpedia header, the same bytes that Formalpedia index-*.jsonl hashes for solutions.",
+ "formalpedia": {
+  "repo": "prove2me/formalpedia",
+  "ref": "main",
+  "env": "0df444a"
+ },
+ "boards": {
+  "apsp": {
+   "campaign": {
+    "slug": "apsp-exponent",
+    "id": "fea9d876-b692-4a25-8437-cf9ebec627d8",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "upper",
+    "value_direction": "lower"
+   },
+   "statement_form": "TrulySubcubicAPSP.APSP.SolvedInTime v. Def_TrulySubcubicAPSP_WordRAM and Def_TrulySubcubicAPSP_Problems copy EndStatement.lean (anthropics/formal-math e1a4e65) with the namespace renamed and the unused Theorem_* and ZeroWeightKClique definitions left out (diff checked 2026-10-17).",
+   "definitions": {
+    "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean": "a5a11539bd2b7e76493d88fec93859e08067060ef6892b6f49446efc92cb40b1",
+    "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean": "5c48187ec56cf367db0b881d811e0a9ccae6d59bb49e159cd769a0a466ce8d0b"
+   },
+   "entries": [
+    {
+     "mission_id": "88f4db86-b1eb-4595-bc52-805742fa88ea",
+     "value": "2.99942",
+     "solved_at": "2026-10-06T10:23:09.929792+00:00",
+     "action": "link",
+     "record_id": "anthropic-2026",
+     "theorem": {
+      "name": "TrulySubcubicAPSP.apsp",
+      "url": "https://prove2.me/theorems/305a4420-de91-4e34-9691-405a5b4a8dd3",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubcubicAPSP_apsp.lean",
+      "statement_sha256": "f48dff0d6a30c6f80ffad48950e3b6dd105efe3bd38aa1e51fbef78ecd53fa4e",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean",
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubcubicAPSP_apsp.lean",
+      "sha256": "611374d9fb91169d14b3398cc6f6936eab43bbc11b159c40282c70e30e6679a1",
+      "author": "@marwahaha"
+     }
+    },
+    {
+     "mission_id": "e19faecc-7aeb-4fa4-b81f-d8f756166e78",
+     "value": "2.9983",
+     "solved_at": "2026-10-06T16:59:46.422995+00:00",
+     "action": "row",
+     "authors": [
+      {
+       "name": "wurtle",
+       "url": "https://prove2.me/users/2d179df8-bdcc-43d6-ac3c-03247c42e9b2"
+      }
+     ],
+     "note": "Proof written on prove2.me by wurtle (701-line solution, 1 contributor); no outside proof source.",
+     "theorem": {
+      "name": "APSPExponentImprovement.apsp",
+      "url": "https://prove2.me/theorems/9c4150fb-2e87-4412-bdd9-52c25d6283eb",
+      "statement_path": "envs/0df444a/Theorems/Thm_APSPExponentImprovement_apsp.lean",
+      "statement_sha256": "abf2ce3842aac69d463631ad10ddc1c1594ac126dc1df6384f5a28dbdeb574f7",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean",
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_APSPExponentImprovement_apsp.lean",
+      "sha256": "e22f29caeeaab4ceea18a7aee65c4ac0185ddef21d773a3dd144c157bf88341f",
+      "author": "@wurtle"
+     }
+    },
+    {
+     "mission_id": "f0fd230c-80cf-4c65-b628-3e2a7eb0ec29",
+     "value": "2.99791",
+     "solved_at": "2026-10-06T23:55:43.55046+00:00",
+     "action": "link",
+     "record_id": "jihoon-hyun-apsp-2026",
+     "note": "Same value as the Jihoon Hyun claim; the prove2.me proof is by xuanji. Link only; the row keeps its level.",
+     "theorem": {
+      "name": "TrulySubcubicAPSP.apsp_bound_299791",
+      "url": "https://prove2.me/theorems/6bdc9821-d8c3-42ef-b58c-7932ad0f6d18",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubcubicAPSP_apsp_bound_299791.lean",
+      "statement_sha256": "f933bec4794528215aafb93c5212dc50cdb5862bdc769a1de54c081766f547ac",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean",
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubcubicAPSP_apsp_bound_299791.lean",
+      "sha256": "a00439cd2bd53ee499e352ebdb3fe5b9015f4ca7f359b2e98d5b5e0c328a0ddc",
+      "author": "@xuanji"
+     }
+    },
+    {
+     "mission_id": "8e75bf61-9954-42ab-975b-4a150260346b",
+     "value": "2.996001",
+     "solved_at": "2026-10-07T06:45:53.485206+00:00",
+     "action": "row",
+     "authors": [
+      {
+       "name": "xuanji",
+       "url": "https://prove2.me/users/eb748f54-a7e9-4b93-8588-69f5b241260e"
+      }
+     ],
+     "note": "Proof written on prove2.me by xuanji on the Anthropic 3sum-apsp library; the technical note has no named outside author.",
+     "theorem": {
+      "name": "TrulySubcubicAPSP.apsp_bound_2996001",
+      "url": "https://prove2.me/theorems/6ea60950-8945-4892-82b5-598a60b0ae1b",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubcubicAPSP_apsp_bound_2996001.lean",
+      "statement_sha256": "87470d5ad9665fe18db246aedf3d951ce99a73641d989cf1e8ce944f8c44dd0e",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean",
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubcubicAPSP_apsp_bound_2996001.lean",
+      "sha256": "c5d46ac04ef65a986c26a69d03ff4bf35c770483a591c11a4d73ba8a4a98670d",
+      "author": "@xuanji"
+     }
+    },
+    {
+     "mission_id": "3a54de4f-5e6a-45ab-8257-5e2c23c142f2",
+     "value": "2.995561",
+     "solved_at": "2026-10-07T15:27:29.135285+00:00",
+     "action": "link",
+     "record_id": "direct-pr-6",
+     "theorem": {
+      "name": "TrulySubcubicAPSP.apsp_bound_2995561",
+      "url": "https://prove2.me/theorems/6dffb5ee-d639-4b5a-a27e-718239025c83",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubcubicAPSP_apsp_bound_2995561.lean",
+      "statement_sha256": "71a5bbe60a9938475c21abc43f694e2b38502c55567f917b353cc21ac2b1fbc2",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_Problems.lean",
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_WordRAM.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubcubicAPSP_apsp_bound_2995561.lean",
+      "sha256": "e1c8c3c8262b1126d5bbea23cdc2bdaea45bd4a899537bb7e323fdd4a7344d7a",
+      "author": "@xuanji"
+     }
+    }
+   ]
+  },
+  "3sum": {
+   "campaign": {
+    "slug": "3sum-exponent",
+    "id": "52073c33-5f7d-479b-b2db-238c6e280c9a",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "upper",
+    "value_direction": "lower"
+   },
+   "statement_form": "EndStatement.ThreeSum.SolvedInTime v. Def_TrulySubcubicAPSP_SourceSpecification is EndStatement.lean (anthropics/formal-math e1a4e65) byte for byte after its header, except two blank lines (diff checked 2026-10-17).",
+   "definitions": {
+    "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean": "7a8bb241b29ab4e037882492b5a6b7257522b2526ac0ca0fde374b1cf7e9ce1d",
+    "envs/0df444a/Definitions/Def_ThreeSum1960614_Analysis.lean": "0a0fc0a245ffefdd489649195e87302e4ab45e7292fd8c806e0b099dabcae2a4"
+   },
+   "entries": [
+    {
+     "mission_id": "487064c8-0ffb-4779-802b-6824b289a73c",
+     "value": "1.9992",
+     "solved_at": "2026-10-06T17:31:01.966999+00:00",
+     "action": "link",
+     "record_id": "anthropic-2026",
+     "theorem": {
+      "name": "TrulySubquadratic3SUM.threeSum",
+      "url": "https://prove2.me/theorems/07f62b7b-6f72-4cec-a1fd-eed6348830bf",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubquadratic3SUM_threeSum.lean",
+      "statement_sha256": "a140b6aaff34177fdf9aa78b48b924819ebfbc28341290ca7205ead75a547da6",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubquadratic3SUM_threeSum.lean",
+      "sha256": "1aa97dde8f8c3c25322072c4592dd05f1f02981f329529645ae88ffb84884a03",
+      "author": "@marwahaha"
+     }
+    },
+    {
+     "mission_id": "c69c563c-99fe-4f40-a740-e10a6b16706f",
+     "value": "1.99913",
+     "solved_at": "2026-10-06T18:14:13.362416+00:00",
+     "action": "row",
+     "authors": [
+      {
+       "name": "marwahaha",
+       "url": "https://prove2.me/users/1218a2a5-fec3-4902-88f2-735b90eee971"
+      }
+     ],
+     "note": "Sharper rounding of the Anthropic formalization, proved on prove2.me by marwahaha.",
+     "theorem": {
+      "name": "TrulySubquadratic3SUM.threeSum_199913",
+      "url": "https://prove2.me/theorems/d284346d-62ef-4166-abfe-67b6e6135038",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubquadratic3SUM_threeSum_199913.lean",
+      "statement_sha256": "f08f0021ca9a55d607c63f330ce1af07f8944980a4be924b1b4851bed2a1796a",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubquadratic3SUM_threeSum_199913.lean",
+      "sha256": "9f9ebdbbb9f07f97e312194489b45a13a018e0f13888793d479442f0b05f1354",
+      "author": "@marwahaha"
+     }
+    },
+    {
+     "mission_id": "a5b52369-055a-41b3-a4fa-81f2343b6069",
+     "value": "1.999112",
+     "solved_at": "2026-10-06T18:54:35.600522+00:00",
+     "action": "row",
+     "authors": [
+      {
+       "name": "marwahaha",
+       "url": "https://prove2.me/users/1218a2a5-fec3-4902-88f2-735b90eee971"
+      }
+     ],
+     "note": "Parameter refinement on the Anthropic formalization, proved on prove2.me by marwahaha.",
+     "theorem": {
+      "name": "TrulySubquadratic3SUM.threeSum_1999112",
+      "url": "https://prove2.me/theorems/914126b2-461c-42b3-a5ef-9ab394fe8451",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubquadratic3SUM_threeSum_1999112.lean",
+      "statement_sha256": "4ea32e3ad84dc6e927fd54d3b60c779c88a41d59aa04a2f6583156f0c2e18ede",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubquadratic3SUM_threeSum_1999112.lean",
+      "sha256": "85edee2eb975581636322a8be0eaf43dc9c2979e5bfe29f2798405c75ef00303",
+      "author": "@marwahaha"
+     }
+    },
+    {
+     "mission_id": "702b0d73-2bc2-4812-8b9e-380a535b4050",
+     "value": "1.999074",
+     "solved_at": "2026-10-07T03:40:40.429593+00:00",
+     "action": "row",
+     "authors": [
+      {
+       "name": "xuanji",
+       "url": "https://prove2.me/users/eb748f54-a7e9-4b93-8588-69f5b241260e"
+      }
+     ],
+     "note": "Statement posted by marwahaha; proof by xuanji on prove2.me.",
+     "theorem": {
+      "name": "TrulySubquadratic3SUM.threeSum_1999074",
+      "url": "https://prove2.me/theorems/b6704d8b-ac74-45ed-8c21-3fbf0bb1f7a2",
+      "statement_path": "envs/0df444a/Theorems/Thm_TrulySubquadratic3SUM_threeSum_1999074.lean",
+      "statement_sha256": "b6f424f0d7e4bf72121b14b26f93e8cdd81e1c7cdd6366da37de2d1ab834968d",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TrulySubquadratic3SUM_threeSum_1999074.lean",
+      "sha256": "c40e6ee7ff4a1ec12fe7d0f2a44975e38a33d0542548bd4400f1acc760862330",
+      "author": "@xuanji"
+     }
+    },
+    {
+     "mission_id": "164ae9a9-2e87-4034-a3f8-597ac4bd04fa",
+     "value": "1.962",
+     "solved_at": "2026-10-14T19:37:56.749822+00:00",
+     "action": "link",
+     "record_id": "direct-issue-4",
+     "note": "Upload of c0ldzy17/three-sum-lean at 2b63965.",
+     "theorem": {
+      "name": "ThreeSum1962.threeSum_bound",
+      "url": "https://prove2.me/theorems/faf3da56-8bce-41db-b7fb-332e1861ada2",
+      "statement_path": "envs/0df444a/Theorems/Thm_ThreeSum1962_threeSum_bound.lean",
+      "statement_sha256": "ec5e1ae9a9befcd47148a50abb3a7b954ea282216bad61bc879c30aa143eded1",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_ThreeSum1962_threeSum_bound.lean",
+      "sha256": "acd89f0481954b26629e195fdf659dde3c8cbaa084b85f1e2577476303e6bb8d",
+      "author": "@wurtle"
+     }
+    },
+    {
+     "mission_id": "3fecdd66-37fa-4406-87a5-61db25383b86",
+     "value": "1.999017",
+     "solved_at": "2026-10-13T21:34:24.362931+00:00",
+     "action": "skip",
+     "note": "Not the best result at its time: the board had 1.962 (2026-10-11)."
+    },
+    {
+     "mission_id": "01a7fb00-e5c3-4a42-a3c2-2cbf04330ffc",
+     "value": "1.960614",
+     "solved_at": "2026-10-15T10:19:54.248486+00:00",
+     "action": "link",
+     "record_id": "direct-issue-8",
+     "note": "Same value as Anchen0823 (verifier issue #8); prove2.me author Yuxuan Xu. Link only.",
+     "theorem": {
+      "name": "ThreeSum1960614.threeSum_1960614",
+      "url": "https://prove2.me/theorems/a53b364e-57a0-4d2c-adc6-983a74218a4b",
+      "statement_path": "envs/0df444a/Theorems/Thm_ThreeSum1960614_threeSum_1960614.lean",
+      "statement_sha256": "f9e94634e29d190068767ddd2213e1dd6b37100d0eec7e6c53acf1faf3490efd",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_TrulySubcubicAPSP_SourceSpecification.lean",
+       "envs/0df444a/Definitions/Def_ThreeSum1960614_Analysis.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_ThreeSum1960614_threeSum_1960614.lean",
+      "sha256": "c0bb41728a3ce45132ce115d41c53665878d0ce7e5a86e80e6d452f6b972ca8a",
+      "author": "@Yuxuan Xu"
+     }
+    }
+   ]
+  }
+ }
+}

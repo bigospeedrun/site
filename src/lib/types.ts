@@ -8,6 +8,7 @@ export interface RecordEntry {
  dependencies: { id?: string; statement: string; source_url: string; status: string }[];
  status: string; comparisonNote: string; upstreamStatus: string; upstreamSelected?: boolean; comparison: string; eligible: boolean; raceEventAt?: string; rerunStatus?: {state:string;checked_at?:string;receipt_path?:string|null};
  provenance?: { model?: string; harness?: string; container_digest?: string; logs?: string[] };
+ prove2me?: boolean; prove2meUrl?: string;
 }
 export interface Repo { name: string; owner: string; url: string; ownerUrl: string; submission?: string; rules?: string; agents?: string; open: boolean; mode: string }
 export interface Problem {

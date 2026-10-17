@@ -8,6 +8,9 @@ import {decimal,logExponent,boundPrecision,tableBound,displayDigits} from './ran
 const files=import.meta.glob('../data/*.json',{eager:true,import:'default'});
 const read=(file:string):any=>files['../data/'+file];
 const registry=read('registry.json');
+// Reviewed prove2.me links by board and row id (data/prove2me_import.py). Older bundles have no file.
+const prove2me=read('prove2me.json')??{boards:{}};
+const prove2meLink=(slug:string,id:string):string|undefined=>{const url=prove2me.boards?.[slug]?.links?.[id];return typeof url==='string'&&url.startsWith('https://prove2.me/theorems/')?url:undefined;};
 export const dataUpdatedAt:string=[registry.updated_at,...registry.problems.map((p:any)=>read(p.data_file).updated_at)].sort((a,b)=>Date.parse(a)-Date.parse(b)).at(-1);
 const titles:Record<string,string>={'matrix-multiplication':'Matrix Multiplication','3sum':'3SUM',apsp:'All-pairs shortest paths','subset-sum':'Subset Sum','integer-multiplication':'Integer multiplication','exact-dft':'Exact discrete Fourier transform','directed-sssp':'Directed shortest paths'};
 const repoName=(url:string):string=>url?.match(/^https:\/\/github.com\/([^/]+\/[^/]+)/)?.[1]??'';
@@ -26,7 +29,8 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  const records:RecordEntry[]=data.records.map((r:any)=>{
  const meta=data.record_metadata?.[r.id]??{};const repo=repoName(meta.source_url??r.source?.url??r.submission_url);const entry=rawRepos.find((x:any)=>x.repo===repo);
  // The site assigns evidence levels from the problem review rule and proof receipts.
- const evidenceLevel=classifyEvidence({slug:p.slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:meta.upstream_selected===true,proofPassed:meta.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)});
+ const evidenceLevel=classifyEvidence({slug:p.slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:meta.upstream_selected===true,proofPassed:meta.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path),prove2me:meta.prove2me===true});
+ const prove2meUrl=prove2meLink(p.slug,r.id);
  // The Oct 6 announcement is the known public date when the snapshot has no publication date.
  const announcementDate=['openai-original-109','exact-dft-2026','subset-sum-2026'].includes(r.id)&&!meta.publication_date?'2026-10-06':undefined;
  const sourceDate=r.id==='directed-sssp-2026'&&!meta.publication_date?'2026-09-21T06:31:30Z':undefined;
@@ -34,10 +38,11 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  if(r.evidence.paper_url)evidence.push({name:'Paper',url:r.evidence.paper_url});
  if(r.evidence.certificate_path&&repo&&r.source_commit)evidence.push({name:'Certificate',url:`https://github.com/${repo}/blob/${r.source_commit}/${r.evidence.certificate_path}`});
  if(meta.source_url_public!==false&&r.source_commit&&repo)evidence.push({name:'Commit',url:`https://github.com/${repo}/tree/${r.source_commit}`});
+ if(prove2meUrl)evidence.push({name:'prove2.me',url:prove2meUrl});
  return {id:r.id,reproductionOf:meta.reproduction_of,score:r.score,scoreRelation:r.score_relation??'attained',evidenceLevel,evidenceUrl:recordEvidenceUrl(evidenceLevel,r,evidence[0]?.url,meta.receipt_url),title:r.title,date:meta.publication_date??announcementDate??sourceDate??r.submitted_at??r.site_observed_at,publicationYear:meta.publication_date_precision==='year'?meta.publication_year:undefined,dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':meta.publication_date_role?.toLowerCase().includes('commit')?'Commit date':meta.publication_date_role?.includes('paper')?'Paper date':meta.publication_date?'Source date':meta.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',repo:meta.source_url_public===false?'':repo,repoId:entry?.repo_id??0,authors:r.authors.map((a:any)=>{
  const url=r.id==="crocswap-selected-75ea36bd581c1c02"?"https://github.com/Dugongue":a.url;
  return authorFromProfile({...a,url},profiles,avatars);
-}),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,provenance:r.provenance};
+}),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,provenance:r.provenance,prove2me:meta.prove2me===true,prove2meUrl};
  });
  const kappa=data.score.symbol==='kappa';
  const digits=boundPrecision(records.filter(r=>isBoardEntry(p.slug,r)).map(r=>r.score),kappa);

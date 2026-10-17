@@ -5,6 +5,15 @@ GitHub REST GET requests, stage the changes, and validate before replacing files
 Set `GITHUB_TOKEN` for authenticated API limits. No upstream code is executed.
 Other research claims and evidence require a separate reviewed import.
 
+Run `python3 data/prove2me_import.py` to import reviewed prove2.me campaign
+results. It reads the public campaign pages and the prove2me/formalpedia export
+with anonymous GET requests. `prove2me-trust.json` lists each reviewed entry and
+the sha256 of each statement, definition and solution file. When a board differs
+from that file, the board keeps its last import, `prove2me.json` records the
+reason, and the script exits with code 3. To accept a change, review the entry
+and update the trust file. `LEAN_VERIFIED` in the script turns imported rows
+from Human Verified to Lean Verified.
+
 Run `python3 data/validate.py` to check schemas, exact scores and source hashes.
 Run `python3 -m unittest discover -s data -p 'test_*.py'` for offline tests.
 Run `python3 data/build_data.py --output /tmp/reviewed-data-export` to export a

@@ -12,7 +12,8 @@ if(!existsSync(resolve(source,'registry.json'))){
 const registry=validateData(source);
 // Read and check every file before changing the published snapshot.
 const pending=new Map();
-const names=['registry.json','submissions.json','chart-cross-check.json',...registry.problems.map(p=>p.data_file)];
+// prove2me.json holds reviewed prove2.me links (data/prove2me_import.py); older bundles have none.
+const names=['registry.json','submissions.json','chart-cross-check.json',...registry.problems.map(p=>p.data_file),...(existsSync(resolve(source,'prove2me.json'))?['prove2me.json']:[])];
 const documents=names.map(name=>{
  const bytes=readFileSync(resolve(source,name));
  pending.set(resolve('src/data',name),bytes);
