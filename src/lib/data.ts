@@ -23,7 +23,7 @@ const bound=(slug:string,score:string,relation?:string)=>{
  }
  if(slug==='matrix-multiplication')return `O(n^{${value}+\\varepsilon})`;
  // An open endpoint: every exponent above the score is proved, not the score itself.
- if(slug==='subset-sum')return `O(2^{${value}${open?'+\\varepsilon':''}n})`;
+ if(slug==='subset-sum')return `O(2^{${open?`(${value}+\\varepsilon)`:value}n})`;
  if(slug==='directed-sssp')return `O(n \\log^{${exact}} n)`;
  return `O(n^{${value}${open?'+\\varepsilon':''}})`;
 };

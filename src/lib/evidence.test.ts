@@ -38,6 +38,9 @@ test('table bounds keep conservative rounding and strict endpoint notation',asyn
  assert.equal(boundExponent('0',true,8),'1.00000000');
  assert.equal(tableBound({score:'1/50000000000',scoreRelation:'strict-upper-bound',bound:''},true,1),'O(n \\log^{1-2\\cdot 10^{\\scriptstyle -11}+\\varepsilon} n)');
  assert.equal(tableBound({score:'5989/2000',scoreRelation:'strict-upper-bound',bound:'O(n^{2.9945+\\varepsilon})'},false,4),'O(n^{2.9945+\\varepsilon})');
+ // The exponent multiplies n as a whole: 2^{(a+eps)n}, never 2^{a+eps n}.
+ assert.equal(tableBound({score:'49/100',scoreRelation:'strict-upper-bound',bound:'O(2^{(0.49+\\varepsilon)n})'},false,2),'O(2^{(0.49+\\varepsilon)n})');
+ assert.equal(tableBound({score:'49/100',bound:'O(2^{0.49n})'},false,2),'O(2^{0.49n})');
 });
 
 test('scientific savings round down, preserve tiny improvements, and separate close records',async()=>{
