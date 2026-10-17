@@ -29,11 +29,14 @@ jobs:
       - name: Install data validator
         run: |
           python3 -m venv .refresh-venv
-          .refresh-venv/bin/python -m pip install jsonschema==4.25.1
+          .refresh-venv/bin/python -m pip install jsonschema==4.25.1 anthropic==1.15.0
           echo "$GITHUB_WORKSPACE/.refresh-venv/bin" >> "$GITHUB_PATH"
+      # ANTHROPIC_API_KEY: the Claude agreement check for CrocSwap claims (data/claim_judge.py).
+      # This workflow runs on schedule and dispatch only, never on fork pull requests.
       - name: Refresh data through GitHub GET requests
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: .refresh-venv/bin/python data/refresh.py
       - name: Refresh direct submission issues and PRs
         continue-on-error: true

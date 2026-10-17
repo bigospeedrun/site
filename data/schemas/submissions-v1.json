@@ -63,6 +63,10 @@
           "review_reason": {
             "type": "string",
             "minLength": 1
+          },
+          "claim_text": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
           }
         }
       }

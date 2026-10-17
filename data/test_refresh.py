@@ -5,9 +5,9 @@ from unittest.mock import patch
 import refresh
 
 class RefreshTests(unittest.TestCase):
-    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None):
+    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None, judge=None):
         """Run package_claim on a fake PR. files: {path: status}; claim: CLAIM.json object."""
-        pr={'number':3200,'title':title,'state':state,'head':{'sha':'c'*40}}
+        pr={'number':3200,'title':title,'body':'','state':state,'head':{'sha':'c'*40}}
         def pages(path,*a):
             self.assertEqual(path,f'repos/{refresh.CROC}/pulls/3200/files')
             return [{'filename':f,'status':st} for f,st in files.items()]
@@ -17,7 +17,7 @@ class RefreshTests(unittest.TestCase):
                 raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')
             self.assertEqual(sha,'c'*40)
             return json.dumps(claim).encode()
-        with tempfile.TemporaryDirectory() as temp,patch.object(refresh,'pages',pages),patch.object(refresh,'content',content):
+        with tempfile.TemporaryDirectory() as temp,patch.object(refresh,'pages',pages),patch.object(refresh,'content',content),patch.object(refresh.claim_judge,'check',lambda *a:judge):
             stage=Path(temp);(stage/'sources').mkdir()
             result=refresh.package_claim(stage,pr,'m'*40,owners or {})
             saved=(stage/'sources/pr-3200-claim.json').exists()
@@ -49,6 +49,9 @@ class RefreshTests(unittest.TestCase):
             score,path,reason=self.claim({own:'added'},{'kappa':bad})
             self.assertIsNone(score,bad);self.assertIsNotNone(reason,bad)
         self.assertEqual(self.claim({own:'added'},{'kappa':'1/'+'1'*4094})[0],'1/'+'1'*4094)
+        # A structured claim that the Claude reading does not confirm goes to the lead.
+        self.assertEqual(self.claim({own:'added'},{'kappa':exact},judge='Claude reads the PR text as no new kappa claim.'),
+                         (None,own,'Claude reads the PR text as no new kappa claim.'))
 
     def test_score_limit_matches_schema(self):
         schema=json.loads((refresh.ROOT/'schemas/problem-v1.json').read_text())['properties']['records']['items']['properties']['score']

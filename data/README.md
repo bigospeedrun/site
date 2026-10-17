@@ -5,8 +5,12 @@ GitHub REST GET requests, stage the changes, and validate before replacing files
 Set `GITHUB_TOKEN` for authenticated API limits. No upstream code is executed.
 Other research claims and evidence require a separate reviewed import.
 A CrocSwap PR gets a row only when it adds one research/<dir>/CLAIM.json with a
-`kappa` field; the row shows that exact kappa. A PR whose title names a kappa
-without such a package goes to `claim-review.json` for the lead, who decides in
+`kappa` field, and a Claude Haiku reading of the PR title and body agrees that
+the PR claims that kappa as its own result (`claim_judge.py`, cached in
+`claim-judgments.json`; needs `ANTHROPIC_API_KEY`, else the PR waits for the lead).
+The row shows the exact package kappa. A PR whose title names a kappa
+without such a package, or whose Claude reading does not agree, goes to
+`claim-review.json` for the lead, who decides in
 `review-decisions.json` under `claims` (pr, head, score or null).
 
 Run `python3 data/review_hold.py` after the imports. A new result more than twice

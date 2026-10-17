@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from fractions import Fraction
 from pathlib import Path
 from github_read import api, pages, content
+import claim_judge
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
@@ -87,6 +88,10 @@ def package_claim(stage, p, main_sha, owners):
     q = Fraction(kappa)
     if not 0 < q < 1 or len(str(q)) > MAX_SCORE_CHARS:
         return None, path, f'{path} kappa is outside (0, 1).'
+    # The package and an independent reading of the PR text must agree (claim_judge.py).
+    reason = claim_judge.check(stage, n, head, p['title'], p['body'], str(q))
+    if reason:
+        return None, path, reason
     (stage / f'sources/pr-{n}-claim.json').write_bytes(raw)
     return str(q), path, None
 
@@ -129,13 +134,14 @@ def refresh(stage, now):
     owners = LEGACY_CLAIM_PATHS | {s['claim_path']: s['pr_number'] for s in subs['items'] if s.get('claim_path') and s['claimed_score']}
     for p in pulls:
         n = p['number']; prior = old.get(n) or {}; head_sha = p['head']['sha']
+        text_sha = hashlib.sha256((p['title'] + '\n' + (p['body'] or '')).encode()).hexdigest()
         status = 'merged' if p['merged_at'] else 'open' if p['state'] == 'open' else 'closed-unmerged'
         score, reason = None, None
-        claim_path, claim_head = prior.get('claim_path'), prior.get('claim_head')
+        claim_path, claim_head, claim_text = prior.get('claim_path'), prior.get('claim_head'), prior.get('claim_text')
         if n in NOT_CLAIMS:
             pass
-        elif claim_head == head_sha:
-            # Already read at this head: reuse the result, with no GitHub request.
+        elif claim_head == head_sha and prior.get('claim_text') == text_sha:
+            # Already read at this head and text: reuse the result, with no request.
             score, reason = prior['claimed_score'], prior.get('review_reason')
         elif prior.get('claimed_score') is not None and not claim_head:
             # Listed from its title before 2026-10-17: it keeps its score and identity.
@@ -145,7 +151,7 @@ def refresh(stage, now):
         else:
             others = {path: pr for path, pr in owners.items() if pr != n}
             score, claim_path, reason = package_claim(stage, p, heads[CROC]['sha'], others)
-            claim_head = head_sha
+            claim_head, claim_text = head_sha, text_sha
             if claim_path and score:
                 owners[claim_path] = n
         decision = decisions.get((n, head_sha))
@@ -158,6 +164,7 @@ def refresh(stage, now):
         item = dict(pr_number=n, author=p['user']['login'], author_url=p['user']['html_url'], title=p['title'], url=p['html_url'], submitted_at=p['created_at'], updated_at=p['updated_at'], source_commit=p['head']['sha'], upstream_status=status, upstream_status_at=p['merged_at'] or p['closed_at'] or p['created_at'], checked_at=day, claimed_score=score, record_ids=ids, note=(prior['note'] if prior and prior['title']==p['title'] else None) if score else NOT_CLAIMS.get(n) or reason or (prior or {}).get('note') or 'No research package kappa claim.')
         if claim_path: item['claim_path'] = claim_path
         if claim_head: item['claim_head'] = claim_head
+        if claim_text: item['claim_text'] = claim_text
         if reason: item['review_reason'] = reason
         items.append(item)
         if status == 'merged' and ids and (not prior or prior['upstream_status'] != 'merged'):
