@@ -3755,7 +3755,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-10",
+        "leader": "shea256-exact-dft-complex588-2026",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -3848,16 +3848,6 @@
               "Ryan Shea"
             ],
             "bound": "O(n log^(1 - 0.00123) n)"
-          },
-          {
-            "id": "direct-pr-10",
-            "score": "20099/16000000",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "Dmitri I. Arkhipov"
-            ],
-            "bound": "O(n log^(1 - 0.00125) n)"
           },
           {
             "id": "direct-pr-3",
@@ -4184,7 +4174,7 @@
         "slug": "other-catalan",
         "name": "Catalan’s constant",
         "url": "https://bigospeedrun.com/other/catalan",
-        "leader": "slitsey:759",
+        "leader": "slitsey:740",
         "table": "other-bounds",
         "records": [
           {
@@ -4336,6 +4326,16 @@
               "S. Litsey"
             ],
             "bound": "μ(G) ≤ 759"
+          },
+          {
+            "id": "slitsey:740",
+            "score": "740",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "S. Litsey"
+            ],
+            "bound": "μ(G) ≤ 740"
           }
         ]
       },
@@ -4917,7 +4917,8 @@
     "[\"other-ordered-matrix-removal\",\"shea256:9\",\"9\",\"attained\"]:record",
     "[\"other-heilbronn-triangle\",\"littleBro:1/50{,}893{,}237\",\"1/50{,}893{,}237\",\"attained\"]:record",
     "[\"other-haldane-gap\",\"amachino:0.1515\",\"0.1515\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-3093\",\"1/10\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-3093\",\"1/10\",\"attained\"]:record",
+    "[\"other-catalan\",\"slitsey:740\",\"740\",\"attained\"]:record"
   ],
   "deferred": [
     {

@@ -1,0 +1,11 @@
+{
+  "number": 3099,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3099",
+  "title": "Record the selected scatter duplicate boundary",
+  "body": "## Summary\n- The #2977 scatter repair is not in the pinned exporter. It still emits one ADD when an index is present, while the symbolic replay XORs once per occurrence.\n- On the selected tuned word all 111 rows are unique, and the two actions agree on 527 terms. Appending `[0, 0]` to the first row is the only disagreement: symbolic coefficient 0, export coefficient 1.\n- An odd triple agrees again. Uniqueness accepts the selected rows and rejects both appends. No frozen source or selected frontier changes.\n\n## Test plan\n- [x] `python3.12 -B research/scatter-duplicate-boundary/verify.py`\n- [x] `python3.12 -B research/scatter-duplicate-boundary/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/scatter-duplicate-boundary`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T00:21:58Z",
+  "updated_at": "2026-10-17T00:21:58Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
