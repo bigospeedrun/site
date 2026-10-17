@@ -8,7 +8,13 @@ from github_read import api, pages, content
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
-IMPORTER_VERSION = 3
+IMPORTER_VERSION = 4
+# PRs whose title names a kappa value that the PR does not claim (lead review).
+NOT_CLAIMS = {
+    3093: 'Audit of the #2979 profile against kappa = 0.1; the PR claims no kappa improvement.',
+    3107: 'Kappa 0.1 budget screens; the PR claims no kappa improvement.',
+    3111: 'Shows the selected bit profile exceeds the kappa = 0.1 budget; the PR claims no kappa improvement.',
+}
 MAX_SCORE_CHARS = 4096  # record score maxLength in schemas/problem-v1.json
 
 def dump(root, path, data):
@@ -90,10 +96,11 @@ def refresh(stage, now):
             score=prior['claimed_score']
         # Preserve early manually reviewed multi-score submissions.
         if n<=44 and prior and prior['title']==p['title']:score=prior['claimed_score']
+        if n in NOT_CLAIMS:score=None
         ids = list(prior['record_ids']) if prior and prior['record_ids'] and score else ([f'crocswap-pr-{n}'] if score else [])
         ap = f'sources/pr-{n}.json'
         dump(stage, ap, {k: p[k] for k in ['number','html_url','title','body','created_at','updated_at','closed_at','merged_at','state']})
-        item = dict(pr_number=n, author=p['user']['login'], author_url=p['user']['html_url'], title=p['title'], url=p['html_url'], submitted_at=p['created_at'], updated_at=p['updated_at'], source_commit=p['head']['sha'], upstream_status=status, upstream_status_at=p['merged_at'] or p['closed_at'] or p['created_at'], checked_at=day, claimed_score=score, record_ids=ids, note=(prior['note'] if prior and prior['title']==p['title'] else None) if score else 'No unique supported headline score; retained for review.')
+        item = dict(pr_number=n, author=p['user']['login'], author_url=p['user']['html_url'], title=p['title'], url=p['html_url'], submitted_at=p['created_at'], updated_at=p['updated_at'], source_commit=p['head']['sha'], upstream_status=status, upstream_status_at=p['merged_at'] or p['closed_at'] or p['created_at'], checked_at=day, claimed_score=score, record_ids=ids, note=(prior['note'] if prior and prior['title']==p['title'] else None) if score else NOT_CLAIMS.get(n,'No unique supported headline score; retained for review.'))
         items.append(item)
         if status == 'merged' and ids and (not prior or prior['upstream_status'] != 'merged'):
             new_merged.extend(ids)
