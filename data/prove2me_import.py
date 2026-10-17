@@ -39,10 +39,10 @@ from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-# Imported rows get Lean Verified only when this is True. Flip it after prove2.me
-# confirms that it rejects native_decide and new axioms (question sent 2026-10-16).
-# Until then the rows are Claimed (lead decision 2026-10-17).
-LEAN_VERIFIED = False
+# Imported rows get Lean Verified when this is True, else Claimed. Nil ruling
+# 2026-10-14 (restated 2026-10-17): a matching verified prove2.me result counts as
+# Lean Verified.
+LEAN_VERIFIED = True
 CAMPAIGN_URL = 'https://prove2.me/campaigns/'
 RAW_URL = 'https://raw.githubusercontent.com/'
 USER_AGENT = 'bigospeedrun-refresh (+https://bigospeedrun.com)'

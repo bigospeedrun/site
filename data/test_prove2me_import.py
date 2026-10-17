@@ -132,6 +132,7 @@ class Prove2meImportTest(unittest.TestCase):
         self.f = Fixture()
         self.addCleanup(self.f.temp.cleanup)
 
+    @mock.patch.object(p2m, 'LEAN_VERIFIED', False)
     def test_reviewed_entries_give_links_and_best_rows_and_rerun_is_unchanged(self):
         changed, state, held = self.f.run()
         self.assertEqual(held, {})
