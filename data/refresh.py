@@ -65,7 +65,8 @@ def best(problem):
 def pull_index(p):
     return {'number': p['number'], 'html_url': p['html_url'], 'title': p['title'], 'state': p['state'],
             'created_at': p['created_at'], 'updated_at': p['updated_at'], 'closed_at': p['closed_at'], 'merged_at': p['merged_at'],
-            'user': {'login': p['user']['login'], 'html_url': p['user']['html_url']}, 'head': {'sha': p['head']['sha']}}
+            'user': {'login': p['user']['login'], 'html_url': p['user']['html_url']}, 'head': {'sha': p['head']['sha']},
+            'base': {'ref': (p.get('base') or {}).get('ref')}}
 
 def exists(repo, path, sha):
     try:
@@ -81,11 +82,16 @@ def exists(repo, path, sha):
 # among the STACK_SCAN nearest lower PRs that adds it.
 STACK_SCAN = 30
 
+def base_ref(p):
+    return (p.get('base') or {}).get('ref') or ''
+
 def claim_files(m, pulls_by_number, old, fetched):
     """[[status, path], ...] of the research/*/CLAIM.json files PR m adds or changes at its
-    head; cached in submissions (claim_files, claim_files_head), so each head is read once."""
+    head; cached in submissions (claim_files, claim_files_head, claim_files_base), so each
+    head is read once per base (a stacked PR retargeted to main shows more files)."""
     p = pulls_by_number[m]; prior = old.get(m) or {}
-    if prior.get('claim_files_head') == p['head']['sha'] and 'claim_files' in prior:
+    if (prior.get('claim_files_head') == p['head']['sha'] and (prior.get('claim_files_base') or '') == base_ref(p)
+            and 'claim_files' in prior):
         return prior['claim_files']
     if m not in fetched:
         fetched[m] = [[f['status'], f['filename']] for f in pages(f'repos/{CROC}/pulls/{m}/files')
@@ -102,26 +108,28 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs):
     names = bool(NAMES_KAPPA.search(p['title']))
     files = files_of(n)
     added = [path for status, path in files if status == 'added']
-    own = [path for path in added if path not in owners]
-    # A package already on main while the PR is open is another PR's package (#3093).
+    # Who else holds each added package: a PR listed for it, main (the PR is open, #3093),
+    # or a lower PR that adds it too (a parent in a stack, even one not listed yet).
+    holder = {path: f'PR #{owners[path]}' for path in added if path in owners}
     if p['state'] == 'open':
-        own = [path for path in own if not exists(CROC, path, main_sha)]
-    if len(own) > 1:
-        unowned = set(own)
-        for m in lower_prs[:STACK_SCAN]:
-            unowned -= {path for status, path in files_of(m) if status == 'added'}
-            if len(unowned) <= 1:
-                break
-        own = [path for path in own if path in unowned]
+        holder |= {path: 'main' for path in added if path not in holder and exists(CROC, path, main_sha)}
+    unowned = {path for path in added if path not in holder}
+    for m in lower_prs[:STACK_SCAN] if unowned else ():
+        for status, path in files_of(m):
+            if status == 'added' and path in unowned:
+                holder[path] = f'PR #{m}'; unowned.discard(path)
+        if not unowned:
+            break
+    own = [path for path in added if path not in holder]
     if len(added) == 1 and not own:
         path = added[0]
-        if path in owners:
-            return None, path, f'{path} belongs to PR #{owners[path]}.'
-        return None, path, f'{path} is already on main.'
+        return None, path, (f'{path} is already on main.' if holder[path] == 'main' else f'{path} belongs to {holder[path]}.')
     if len(own) != 1:
         if names:
             return None, None, ('The PR adds no single own research package CLAIM.json.' if own or not added
                                 else 'Every research package CLAIM.json this PR adds belongs to another PR.')
+        if added and not own:
+            return None, None, None  # It only carries other PRs' packages: not a claim.
         # A PR that adds or changes a CLAIM.json with a kappa field goes to the lead,
         # whatever its title says (first 5 such files read).
         for status, path in files[:5]:
@@ -314,8 +322,10 @@ def refresh(stage, now):
         m = item['pr_number']; prior = old.get(m) or {}
         if m in fetched:
             item['claim_files'], item['claim_files_head'] = fetched[m], item['source_commit']
-        elif prior.get('claim_files_head') == item['source_commit'] and 'claim_files' in prior:
-            item['claim_files'], item['claim_files_head'] = prior['claim_files'], prior['claim_files_head']
+            item['claim_files_base'] = base_ref(pulls_by_number[m])
+        elif (prior.get('claim_files_head') == item['source_commit'] and (prior.get('claim_files_base') or '') == base_ref(pulls_by_number[m])
+              and 'claim_files' in prior):
+            item['claim_files'], item['claim_files_head'], item['claim_files_base'] = prior['claim_files'], prior['claim_files_head'], prior['claim_files_base']
     subs.update(items=items,checked_at=day)
     dump(stage,'integer-multiplication.json',problem);dump(stage,'submissions.json',subs)
     reg=load(stage,'registry.json');reg['checked_at']=day;reg['updated_at']=now

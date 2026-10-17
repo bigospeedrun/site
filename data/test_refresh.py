@@ -64,7 +64,7 @@ class RefreshTests(unittest.TestCase):
     def test_pull_index_keeps_only_read_fields(self):
         full=json.loads(json.loads((refresh.ROOT/'direct-fixtures/refresh-snapshot.json').read_text())['sources/crocswap-pulls.json'])[0]
         index=refresh.pull_index(full)
-        self.assertNotIn('body',index);self.assertNotIn('base',index)
+        self.assertNotIn('body',index);self.assertEqual(index['base'],{'ref':full['base']['ref']})
         self.assertEqual(index['head'],{'sha':full['head']['sha']})
         self.assertEqual(refresh.pull_index(index|{'body':'x'}),index)
 
@@ -87,6 +87,12 @@ class RefreshTests(unittest.TestCase):
         score,path,reason=self.claim({t740:'added',bit:'added'},claims=k,lower=far)
         self.assertEqual((score,path),(None,None));self.assertIn('no single own',reason)
         self.assertEqual(len(self.reads),1+refresh.STACK_SCAN)
+        # A child that adds only its parent's package, while the parent is not listed yet
+        # (queued or not read), does not get the parent's kappa (Worker 1 review).
+        score,path,reason=self.claim({t740:'added'},claims=k,lower={3198:{},3190:{t740:'added'}})
+        self.assertEqual((score,path),(None,t740));self.assertIn('belongs to PR #3190',reason)
+        # Without a title kappa, a PR that only carries other PRs' packages is silently no claim.
+        self.assertEqual(self.claim({t740:'added',bit:'added'},claims=k,title='CI fix-up',lower={3198:{t740:'added',bit:'added'}}),(None,None,None))
         # A PR that only re-adds other PRs' packages (#3093) is not a claim of theirs.
         score,path,reason=self.claim({t740:'added'},claims=k,lower={3190:{t740:'added'}},owners={t740:3190})
         self.assertEqual((score,path),(None,t740));self.assertIn('belongs to PR #3190',reason)
@@ -96,6 +102,9 @@ class RefreshTests(unittest.TestCase):
         prior={7:{'claim_files':[['added','research/x/CLAIM.json']],'claim_files_head':'a'*40}}
         with patch.object(refresh,'pages',lambda *a:self.fail('no read for a cached head')):
             self.assertEqual(refresh.claim_files(7,pulls_by_number,prior,{}),[['added','research/x/CLAIM.json']])
+        # A retarget (new base, same head) reads the list again.
+        with patch.object(refresh,'pages',lambda *a:[]):
+            self.assertEqual(refresh.claim_files(7,{7:{'number':7,'head':{'sha':'a'*40},'base':{'ref':'main'}}},prior,{}),[])
         pulls_by_number[7]['head']['sha']='b'*40
         with patch.object(refresh,'pages',lambda *a:[{'filename':'research/y/CLAIM.json','status':'added'},{'filename':'research/y/README.md','status':'added'}]):
             self.assertEqual(refresh.claim_files(7,pulls_by_number,prior,{}),[['added','research/y/CLAIM.json']])
