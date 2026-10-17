@@ -91,18 +91,45 @@ class PlatypiiTests(unittest.TestCase):
         self.run_check()
         self.assertIn("the author's CI run on that commit was cancelled (checked 2026-10-18)", self.note()); self.assertEqual(self.hub.reads, 0)
 
-    def test_network_failure_writes_nothing(self):
+    def test_network_failure_only_counts(self):
         before = (self.root / pl.STATE).read_text()
         def boom(*a): raise RuntimeError('GitHub GET failed')
         self.hub.read = boom
         with self.assertRaises(RuntimeError): self.run_check()
-        self.assertEqual((self.root / pl.STATE).read_text(), before); self.assertEqual(self.note(), OLD_NOTE)
+        after = json.loads((self.root / pl.STATE).read_text())
+        self.assertEqual({k: v for k, v in after.items() if k != 'failures'}, json.loads(before)); self.assertEqual(after['failures'], 1)
+        self.assertEqual(self.note(), OLD_NOTE)
 
     def test_live_state_file_matches_the_live_note(self):
         state = json.loads((pl.ROOT / pl.STATE).read_text())
         board = json.loads((pl.ROOT / pl.BOARD).read_text())
         note = board['record_metadata'][pl.ROW]['proof_status']
         self.assertEqual(state['status'], 'ok'); self.assertIn(f"kappa = {state['value']}", note); self.assertIn(state['commit'][:7], note)
+
+    def test_review_fixes(self):
+        # Worker 1 review, 2026-10-18: a commented old line does not win; two live lines hold.
+        self.assertEqual(pl.saving('-- theorem mulInTime : MulInTime (1 / 2 ^ 3 : ℝ)\n' + THEOREM)[0], '14229/2^46')
+        self.assertIsNone(pl.saving(THEOREM + THEOREM))
+        self.assertEqual(pl.unsafe_tokens([('a', 'theorem x : False := sorryAx False false'), ('b', 'theorem x : True := by native_decide'),
+                                           ('c', 'def s := "/-"\ntheorem t : False := by sorry\n-- -/'), ('d', '@[extern "f"] opaque f : Nat'),
+                                           ('e', '@[implemented_by g] def f := 1'), ('ok', '-- sorry\ndef s := "sorry"')]), ['a', 'b', 'c', 'd', 'e'])
+        text = pl.safe_text('x\n::error::y é')
+        self.assertTrue(text.isascii()); self.assertNotIn('\n', text)
+
+    def test_missing_file_holds_and_repeated_network_failures_hold(self):
+        def gone(repo, path, sha): raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')
+        self.hub.read = gone
+        state = self.run_check()
+        self.assertEqual(state['status'], 'held'); self.assertIn('not found (HTTP 404)', state['reason'])
+        (self.root / pl.STATE).write_text(json.dumps(dict(json.loads((self.root / pl.STATE).read_text()), status='ok', checked_commit='a' * 40, reason=None)))
+        def down(repo, path, sha): raise RuntimeError('GitHub GET failed (connection error after 3 attempts)')
+        self.hub.read = down
+        for run in (1, 2):
+            with self.assertRaises(RuntimeError): self.run_check()
+            self.assertEqual(json.loads((self.root / pl.STATE).read_text())['failures'], run)
+        state = self.run_check()
+        self.assertEqual(state['status'], 'held'); self.assertIn('failed 3 runs in a row', state['reason'])
+        self.assertEqual(self.note(), OLD_NOTE)
 
     def test_review_check_fails_while_held(self):
         import review_hold

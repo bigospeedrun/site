@@ -138,7 +138,8 @@ def main():
         for q in queue:
             print(f"CrocSwap PR #{q['pr']} waits for lead review: {q['reason']} Decide in data/{DECISIONS} under claims (pr, head, score or null).")
         if platypii.get('status') == 'held':
-            print(f"platypii Lean note held: {platypii.get('reason')}. Review the change; a new Statement.lean needs a new STATEMENT_SHA256 in data/platypii_lean.py.")
+            reason = ' '.join(ascii(str(platypii.get('reason')))[1:-1].replace('\\n', ' ').split())[:300]
+            print(f"platypii Lean note held: {reason}. Review the change; a new Statement.lean needs a new STATEMENT_SHA256 in data/platypii_lean.py.")
         sys.exit(1 if holds or queue or platypii.get('status') == 'held' else 0)
     now = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
     holds = review(ROOT, now)
