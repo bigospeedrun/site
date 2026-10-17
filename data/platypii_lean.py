@@ -128,23 +128,26 @@ def write_note(root, value_text, value, sha, ci, day):
         (root / BOARD).write_text(json.dumps(board, indent=2, ensure_ascii=False) + '\n')
 
 def check(root, now, get=api, read=content, files_at=lean_files):
-    """Update platypii-lean.json and the row note in root. Returns the state."""
+    """Update platypii-lean.json and the row note in root. Returns the state.
+
+    Content holds (Statement.lean, the saving, tokens, sizes) stick to their head until
+    the head or the pin changes. GitHub failures are counted; three in a row hold the
+    note too, but such a hold is retried each run and clears on the next success."""
     path = root / STATE
     state = json.loads(path.read_text())
-    head = get(f'repos/{REPO}/commits/HEAD')['sha']
     day = now[:10]
-    same = head == state.get('checked_commit') and state.get('statement_sha256') == STATEMENT_SHA256
-    if same and state.get('status') == 'held':
-        return state  # Still held: the review step keeps alerting until the head or the pin changes.
-    if same:
-        # Same verified head: only the author's CI result can change (1 GET).
-        ci = ci_text(head, get)
-        if ci != state.get('ci'):
-            write_note(root, state['value'], Fraction(state['kappa']), head, ci, day)
-            state.update(ci=ci, checked_at=now)
-            path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + '\n')
-        return state
-    def read_or_hold(path):
+    def save():
+        path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + '\n')
+    def github_failure(error):
+        state['failures'] = state.get('failures', 0) + 1
+        if state['failures'] >= 3:
+            state.update(status='held', retryable=True, checked_at=now,
+                         reason=safe_text(f'GitHub reads failed {state["failures"]} runs in a row ({type(error).__name__})'))
+            save()
+            return state
+        save()
+        raise error
+    def read_or_hold(path, head):
         try:
             return read(REPO, path, head)
         except RuntimeError as error:
@@ -152,35 +155,55 @@ def check(root, now, get=api, read=content, files_at=lean_files):
                 raise ValueError(f'{path} not found (HTTP 404)') from None
             raise
     try:
-        statement = read_or_hold(STATEMENT)
+        head = get(f'repos/{REPO}/commits/HEAD')['sha']
+    except RuntimeError as error:
+        if '(HTTP 404)' in str(error):  # Deleted, renamed or private: retried each run.
+            state.update(status='held', retryable=True, checked_at=now, reason='repository not found (HTTP 404)')
+            save()
+            return state
+        return github_failure(error)
+    except Exception as error:
+        return github_failure(error)
+    same = (head == state.get('checked_commit') and state.get('statement_sha256') == STATEMENT_SHA256
+            and not state.get('retryable'))
+    if same and state.get('status') == 'held':
+        return state  # A content hold: the review step keeps alerting until the head or the pin changes.
+    if same:
+        # Same verified head: only the author's CI result can change (1 GET).
+        try:
+            ci = ci_text(head, get)
+        except Exception as error:
+            return github_failure(error)
+        state['failures'] = 0
+        if ci != state.get('ci'):
+            write_note(root, state['value'], Fraction(state['kappa']), head, ci, day)
+            state.update(ci=ci, checked_at=now)
+        save()
+        return state
+    try:
+        statement = read_or_hold(STATEMENT, head)
         if hashlib.sha256(statement).hexdigest() != STATEMENT_SHA256:
             raise ValueError('Statement.lean changed (sha256 differs from the reviewed file)')
-        found = saving(read_or_hold(THEOREM).decode('utf-8', 'replace'))
+        found = saving(read_or_hold(THEOREM, head).decode('utf-8', 'replace'))
         if not found:
             raise ValueError('not exactly one mulInTime saving in Theorem.lean')
-        bad = unsafe_tokens(files_at(head))
-        if bad:
-            raise ValueError('sorry, admit or axiom in ' + ', '.join(bad[:5]))
         value_text, value = found
         if not 0 < value < 1:
             raise ValueError(f'saving {value_text} is not between 0 and 1')
+        bad = unsafe_tokens(files_at(head))
+        if bad:
+            raise ValueError('sorry, admit or axiom in ' + ', '.join(bad[:5]))
         ci = ci_text(head, get)
         write_note(root, value_text, value, head, ci, day)
         if value_text != state.get('value'):
             state.update(value=value_text, kappa=str(value), first_commit=head, first_seen=now)
-        state.update(commit=head, ci=ci, status='ok', reason=None, failures=0)
+        state.update(commit=head, ci=ci, status='ok', reason=None)
     except ValueError as error:  # Keep the last good value; the review step alerts the lead.
         state.update(status='held', reason=safe_text(f'{head[:7]}: {error}'))
     except Exception as error:
-        # A network or GitHub failure: the next run tries again. Three in a row hold the
-        # note, so a lasting failure reaches the lead through the review step.
-        state['failures'] = state.get('failures', 0) + 1
-        if state['failures'] < 3:
-            path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + '\n')
-            raise
-        state.update(status='held', reason=safe_text(f'{head[:7]}: GitHub reads failed {state["failures"]} runs in a row ({type(error).__name__})'))
-    state.update(checked_commit=head, checked_at=now, statement_sha256=STATEMENT_SHA256)
-    path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + '\n')
+        return github_failure(error)
+    state.update(checked_commit=head, checked_at=now, statement_sha256=STATEMENT_SHA256, failures=0, retryable=False)
+    save()
     return state
 
 def main():

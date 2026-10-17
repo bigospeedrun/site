@@ -130,6 +130,31 @@ class PlatypiiTests(unittest.TestCase):
         state = self.run_check()
         self.assertEqual(state['status'], 'held'); self.assertIn('failed 3 runs in a row', state['reason'])
         self.assertEqual(self.note(), OLD_NOTE)
+        # A failure hold is retried each run and clears when GitHub answers again.
+        self.hub.read = Hub().read
+        state = self.run_check()
+        self.assertEqual((state['status'], state['failures'], state['retryable']), ('ok', 0, False))
+
+    def test_head_read_failures_are_counted_or_held(self):
+        # Worker 1 re-review: the HEAD read itself (repo deleted, renamed or private).
+        real_get = self.hub.get
+        def missing(path, params=None):
+            if path.endswith('/commits/HEAD'): raise RuntimeError('GitHub GET failed: repos/x/commits/HEAD (HTTP 404)')
+            return real_get(path)
+        self.hub.get = missing
+        state = self.run_check()
+        self.assertEqual((state['status'], state['reason']), ('held', 'repository not found (HTTP 404)')); self.assertTrue(state['retryable'])
+        def down(path, params=None):
+            if path.endswith('/commits/HEAD'): raise RuntimeError('GitHub GET failed (HTTP 502)')
+            return real_get(path)
+        self.hub.get = down
+        (self.root / pl.STATE).write_text(json.dumps(dict(json.loads((self.root / pl.STATE).read_text()), status='ok', retryable=False, failures=0)))
+        for run in (1, 2):
+            with self.assertRaises(RuntimeError): self.run_check()
+        self.assertEqual(self.run_check()['status'], 'held')
+        self.hub.get = real_get
+        self.assertEqual(self.run_check()['status'], 'ok')
+        self.assertEqual(self.note().count('@ bbbbbbb'), 1)
 
     def test_saving_outside_zero_one_holds(self):
         self.hub.theorem = 'theorem mulInTime : MulInTime (5 / 2 ^ 2 : ℝ) :='
