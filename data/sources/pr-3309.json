@@ -1,0 +1,11 @@
+{
+  "number": 3309,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3309",
+  "title": "Certify the T740 phase normal form for every owner and port",
+  "body": "## Summary\n\nExtend PR3297's fixed owner-0/port-0 phase normal form to every actual T740 owner and port.\n\n```text\n2,717,280 literal hosted rows\n  no-shear transport at every placement\n82,880 owner/port contexts\n  hosted prefix plus residual becomes the full child\n112 exact port words\n  the same 72-term, twenty-site matrix\n```\n\nThe new result is the hosting implication and complete source coverage. PR3297's inverse and rank consequence are inherited, not independently re-proved. Ross Richardson's earlier related local-only normalization handoff is credited. This package does not depend on another pending audit.\n\n## Evidence\n\n- Before: PR3297 explicitly covers only owner 0 / port 0.\n- After: every expanded fill row passes the transport premise; the complete fill hash matches, and all 112 symbolic port words match the retained matrix. Eleven control groups pass normally and under `-O`.\n- The complete registered CPython 3.12.15 replay passes. All 19 committed package/input files match. The exact committed export passes read-only, Git-free optimized replay and controls with `PATH=/nonexistent`.\n\n```sh\npython3.12 -Werror -B scripts/research_package.py --package research/t740-all-context-normalization\n```\n\nExact canonical source pins, unchanged PR3297 proof/result exports, proof, deterministic receipt, attribution, limits and open next questions are in `research/t740-all-context-normalization/`.\n\nThis is a fixed completed-call Fourier-model result. No changed-interface legality, native execution, paid consumer/caller admission, full multiplication theorem, new kappa or selected-frontier change is claimed.\n\n## Merge Danger\n\nDoor: two-way.\n\nBlast Radius: isolated research package. Frozen inputs and shared tools are unchanged. Hosted CI is tracked on the exact PR head separately from local verification.\n",
+  "created_at": "2026-10-17T21:29:20Z",
+  "updated_at": "2026-10-17T21:29:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
