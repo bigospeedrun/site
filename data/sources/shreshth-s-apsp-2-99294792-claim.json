@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-10-17T07:18:43Z",
+  "repo": "shreshth-s/thin-matrix-results",
+  "source_commit": "8a21eaae81599913dba562727e03a9b48c36a5b9",
+  "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
+  "claim_date_commit": "0763cd0fac4a81d9f8882b6b118d981e7cc935ce",
+  "publication_date": "2026-10-16T21:33:49Z",
+  "publication_date_basis": "The repository went public at 2026-10-16T21:33:49Z (GitHub PublicEvent) with its first commit 0763cd0, whose README and proof note already state deterministic integer APSP in O(n^2.99294792) and integer 3SUM in O(n^1.9931055).",
+  "score": "37411849/12500000",
+  "theorem": "Corollary (Deterministic APSP with shared-factor polynomial caches), outputs/exponent-improvement.tex L3132-L3137",
+  "model_check": "The corollary states deterministic O(n^2.99294792) APSP for polynomially bounded integer weights and no negative cycles, on a word RAM with O(log n)-bit words (note, Results and scope). Directed graphs, as in the source reduction. Like other written claims, the fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+  "files_not_copied": "The repository has no license file, so its files are not copied here. SHA-256 and Git blob ids of the files at the pinned commit:",
+  "files": {
+    "README.md": {
+      "sha256": "da6fa22f80859bd2f92d8f96fe21b465a18c8b30fcc1810cb4e26bc252d0b283",
+      "git_blob": "6cf48a571025249caa629564bcf2df77725e6a2f"
+    },
+    "exponent-improvement.pdf": {
+      "sha256": "de0290a9b928fe2eb8e0e882d0f2c8c184ba675d78465000d77bb8c65af6bf8c",
+      "git_blob": "2d616dd8027ba67a132f102fe3b2e8bebb6caea7"
+    },
+    "outputs/exponent-improvement.tex": {
+      "sha256": "c2bb3196387d121cadd73a26ba68f4f68f9fc086c021f91fc635c75a4b205a3d",
+      "git_blob": "2474afb5f45e8048cc31c5f1b5d72a20669af59b"
+    },
+    "lean/README.md": {
+      "sha256": "a494d1328fa4040a2a00b2599fad411361aa5f71352c11e1830abf5240932033",
+      "git_blob": "e33df889b7aea51e30b2a64cdf877d7d8d83b11a"
+    },
+    "lean/BinaryAlignedAPSPTheorem.lean": {
+      "sha256": "a1cf95ca9940b6e16a7fc0d33169fd72b3d1d1e609ca94382018709a9a518ce1",
+      "git_blob": "fbe2e13a258ce5bca443b91a98b010a3edceca7d"
+    }
+  },
+  "verification": "Written proof note with exact-rational certificates and finite checkers. Its Lean theorem BinaryAlignedAPSPTheorem.correctness_and_work proves APSP correctness and O(n^2.99294792) charged work in a binary-arithmetic, bounded indexed-array model, not the word RAM of EndStatement; the author's word-RAM adapter is conditional. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "shresh (shreshth-s). Builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Majdoddin's five-term tensor (arXiv:2610.17420)."
+}
