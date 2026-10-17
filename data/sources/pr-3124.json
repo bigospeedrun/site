@@ -4,8 +4,8 @@
   "title": "Find a P104 short-cycle matching that survives the helper-91 screen",
   "body": "## Summary\n- Exhaustively enumerate simple alternating cycles of lengths 2–4 around the pinned PR3013 matching (3,375 total).\n- Find three candidates with all 4,992 required support paths in the independent-contact relaxation.\n- New cycle `[13, 203, 191, 63]` passes 33 of 9,765 exact nested-frame choices for helper 91; the package records one witness and the full census.\n- The other 207 helpers remain relaxed, so this is a matching and one-helper result, not a realizable correction or κ improvement.\n\n## Verification\n- PASS: `python3 -I -B research/p104-alternating-cycle-neighborhood/verify.py` (CPython 3.14.7)\n- PASS: `python3 scripts/research_package.py --package research/p104-alternating-cycle-neighborhood --check-only`\n- Registered CPython 3.12 replay was not run because Python 3.12 is unavailable in this environment.\n\n## Credit and assistance\nReuses source-pinned routines from Nick Petalas’s PR3013/2996 lineage and the helper-91 flag checker from PR3032. OpenAI Codex prepared this contribution with user-directed research; no human mathematical review is claimed.\n",
   "created_at": "2026-10-17T03:56:18Z",
-  "updated_at": "2026-10-17T03:56:18Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-17T16:50:26Z",
+  "closed_at": "2026-10-17T16:50:25Z",
+  "merged_at": "2026-10-17T16:50:25Z",
+  "state": "closed"
 }

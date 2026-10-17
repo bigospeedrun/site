@@ -1,0 +1,11 @@
+{
+  "number": 3196,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3196",
+  "title": "Audit paired idle-axis transfers across T740 ports",
+  "body": "PR #3187 gives an exact physical-operator counterexample to the first committed rank-changing move in #3184. This package tests the closest two-channel symmetry repair on the authenticated T740 allocation: move the same residual axis on both streams of child pair (8,10) to both streams of pair (12,13), or in reverse.\n\nThe source-bound replay checks all 112 port recipes for owner replica zero. It finds 2,688 eligible forward and 2,688 eligible reverse transfers (24 of each per port); every candidate changes the exact eight-stream Gaussian-integer matrix at the moved axis character. Eligible moved axes are pairwise orthogonal, so the same witness isolates each move in any simultaneous nonempty set from this restricted class. The registered Python 3.12 package replay passes and retains the complete before/after matrix for a port-0 witness.\n\nThis is a scoped negative result. It does not cover matched swaps that remove a nonorthogonal destination axis, longer cycles, other child/time pairs, nonzero replicas, or all operator-preserving assignments. It claims no new kappa and does not change the selected frontier. Source attribution and the PR3133 notice are retained in the package.\n",
+  "created_at": "2026-10-17T16:37:28Z",
+  "updated_at": "2026-10-17T16:50:24Z",
+  "closed_at": "2026-10-17T16:50:24Z",
+  "merged_at": "2026-10-17T16:50:23Z",
+  "state": "closed"
+}

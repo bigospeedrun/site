@@ -4,8 +4,8 @@
   "title": "Research: exclude the final two P112 (5,4) beta shapes",
   "body": "## Summary\n\nExclude the two remaining TWOSIDE `(b,t)=(5,4)` beta weight shapes reported by #3162, over every characteristic-zero field.\n\n```diff\n Pinned fifteen-shape residue after the preceding thirteen exclusions:\n-3,4^2,6^6\n-2,5^3,6^5\n+Both excluded by the root-simplex inequality 15*53 - 9s <= 5U\n```\n\nThree small pieces leave six pieces in a one-dimensional quotient. Their fundamental codewords form a root A5 simplex, whose fifteen edges meet any coordinate at most nine times. Counting outside the small supports gives `615 <= 600` and `561 <= 560`, both impossible. The second margin is exactly one.\n\nThe new package contains the full proof, exact source pins, bounded standard-library replay, receipt, controls and open next questions. Credit DreamingOfClouds/#3154 for TWOSIDE and the handoff, Nick Petalas/#3161/#3162 for the preceding exclusions and geometry convention, and the retained E8/P112 decoder lineage.\n\n## Evidence\n\n- **Before:** #3162 leaves the two named shapes. **After:** the new theorem excludes both under its explicit nine-piece/code-intersection hypotheses. Combining with the earlier thirteen exclusions inherits that predecessor's finite theorem and TWOSIDE filters.\n- The registered Python 3.12 replay passes all 4,097,782 five/six-flat kernels, 7,140 root-plane pairs, 960 simple reflections and 17 behavioral groups. Optimized Python 3.13 and a read-only Git-free source export give the same receipt.\n- All 14 publication-byte comparisons pass for commit `857384079ab640a949fb7618b7909664d3e737e5`. Internal mathematical and implementation reviews found no substantiated objection. Hosted CI and independent human/proof-kernel review are separate.\n\n```sh\npython3.12 scripts/research_package.py --package research/p112-root-simplex-exclusion\n```\n\nThe README gives interpreter selection and external scratch-directory commands. The proof uses the standard Weyl-chamber theorem. Full C5, other cells, `C(P112)>=64`, supplier admission and kappa remain unclaimed.\n\n## Merge Danger\n\n**Door:** two-way.\n\n**Blast Radius:** research.\n\nAdds one isolated registered package. No selected-frontier, shared-runner or frozen-source changes.\n",
   "created_at": "2026-10-17T13:19:04Z",
-  "updated_at": "2026-10-17T13:19:04Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-17T16:50:24Z",
+  "closed_at": "2026-10-17T16:50:24Z",
+  "merged_at": "2026-10-17T16:50:24Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Certify R439 disjoint-helper optimum: 17,933 ADDs",
   "body": "Closes PR2487's non-greedy matching question: 210 restored helper pairs save 6,372 ADDs, giving the exact fixed-class minimum of 17,933. Versus PR2487: 127 fewer ADDs, F 73,805 -> 72,715, B 1,187,790 -> 1,147,320. A solver-free certificate checks 92,235 inequalities using 430 vertex and 47 odd-set prices. Both precision guards pass; paid profile mass remains 5,129.\n\nUnlike PR941's different PR915 target basis, this certifies the unchanged PR589 D pairing class. No minimum-F claim. No new κ; the complex side still binds.\n\nBase: 997e6a9ca7b4f95d50e366f61412fd640d72a88a.\nPublished commit: e0cc74ffa679b073f99644bd71b915b38abb7136.\nComplete remote tree verified equal to the tested tree.\n\nReproduce (Python 3.12, standard library):\n`python3 -B scripts/research_package.py --package research/r439-copyshare-optimal-matching`\nExpected: PASS_REGISTERED_RESEARCH_PACKAGE, outcome=completed.\n\nExecuted: registered replay; all 661 D columns; both full-word orientations; unchanged owner/exporter and profile checks; 10 mathematical rejection controls; isolated optimized Git-free replay with 3 disk-corruption controls. Baseline binding and card first-example checks also passed.\n\nScope: disjoint non-retained helper pairs with fixed targets and continuation. H2-sem/chronological bridge inherited; original syntactic H2/K still fail. Native/hosted, all-size/compiler, common-label, routing, precision/tape and outer analytic admission remain unproved here. Selected frontier and upstream/ unchanged.\n\nPrepared for @CubeJerry with substantial OpenAI Codex assistance. Credit PR848/1782/1194, Wentao Li/1805/2487, Gareth Davidson/941, PR589/555 and the exporter lineage. Apache-2.0.\n\nProof, exact source/dependency pins, seed-03 claim and full evidence:\nhttps://github.com/CubeJerry/integer-mult-bounds/tree/research/cubejerry-seed03-bit-20261017-2a7a18e0/research/r439-copyshare-optimal-matching",
   "created_at": "2026-10-17T03:00:25Z",
-  "updated_at": "2026-10-17T03:00:25Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-17T16:50:25Z",
+  "closed_at": "2026-10-17T16:50:25Z",
+  "merged_at": "2026-10-17T16:50:25Z",
+  "state": "closed"
 }

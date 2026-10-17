@@ -4,8 +4,8 @@
   "title": "Record the V45 single-lowering margin",
   "body": "## Summary\n- Group V45 lowers helpers 249, 251, 265 and 267 onto one rank-7 subspace. Each recorded end frame is a hyperplane of a rank-8 frame.\n- With the pinned break-even 2091300, one helper loses by 53141, two by 27770, and three by 2399. All four pay by 22972.\n- Every helper end frame in the stage-1 record is rank 8 to 7. The claimed exponent, the cleanup buffers, and both supplier caps are not replayed.\n\n## Test plan\n- [x] `python3.12 -B research/rank7-v45-single-lowering/verify.py`\n- [x] `python3.12 -B research/rank7-v45-single-lowering/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank7-v45-single-lowering`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-17T02:12:21Z",
-  "updated_at": "2026-10-17T02:12:21Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-17T16:50:25Z",
+  "closed_at": "2026-10-17T16:50:25Z",
+  "merged_at": "2026-10-17T16:50:24Z",
+  "state": "closed"
 }

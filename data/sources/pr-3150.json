@@ -4,8 +4,8 @@
   "title": "Research: execute the A13 native climb with 209,920 fewer CNOTs",
   "body": "## Summary\n\nImplement the reached forward A13 source83 warp, target126 rank-one climb and half-ADD in both pinned PR3076 providers using reversible Boolean gates.\n\n```diff\n- Materialize two HALF and two DOUBLE operations per Gaussian C pair\n+ Read aligned half-sources through shifted wire controls\n```\n\nAt 69 bits, the complete local boundary saves **209,920 CNOTs** against the constructed physical-shift control, with the same 996,672 Toffolis. Both counts charge native permutation SWAPs, phase signs and the final half-ADD. The implementation uses no component scratch and returns its 68 clean carries.\n\nThe proof covers the quarter grid and P+5 signed bits for P=3..128, conditional on PR3086's exact physical entrance. The package retains the reproducible generator, exact source pins, proof, controls and evidence. Credit PR3086's native-format boundary, PR3094's scalar circuits, PR3080's shifted adder and the retained supplier lineage.\n\n## Evidence\n\n- **Before:** physical-shift control at 69 bits: 2,126,656 CNOTs and 996,672 Toffolis.\n  **After:** direct native boundary: 1,916,736 CNOTs and 996,672 Toffolis.\n- Registered Python 3.12 cold replay passed, including both fresh native bindings, 279,616 parity-matched truth columns per sign/implementation and literal inverses, 18 complete native fixtures, and a complete 69-bit control/inverse.\n- Nine optimized behavioral groups, Ruff E/F/B/SIM/UP and formatting passed. Publication-byte check passed all 38 package/input files at e5c265f1be9cd0593f49628ec6552e52bd90af61.\n- Reproduce with `uv run --python 3.12 --no-project python -B scripts/research_package.py --package research/rank7-reversible-native-climb`. The README gives external-output commands and exact coverage.\n\n## Merge Danger\n\n**Door:** two-way\n\n**Blast Radius:** package\n\nThis is a conditional local construction. The producer/residual adapters, clean-stock production, physical routing/access, later consumers and complete supplier bill remain open. Gate counts use unit-cost arbitrary-wire Boolean operations. No circuit optimum, new kappa or selected-frontier change is claimed. Hosted CI is separate from the recorded local checks.\n",
   "created_at": "2026-10-17T10:10:02Z",
-  "updated_at": "2026-10-17T10:10:02Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-17T16:50:24Z",
+  "closed_at": "2026-10-17T16:50:24Z",
+  "merged_at": "2026-10-17T16:50:24Z",
+  "state": "closed"
 }
