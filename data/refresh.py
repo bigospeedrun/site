@@ -54,6 +54,29 @@ def load(root, path):
 def artifact(root, path):
     return {'path': path, 'sha256': hashlib.sha256((root / path).read_bytes()).hexdigest()}
 
+def board_leader(problem):
+    """The highest kappa on the published board (rows the site shows: no baseline, no
+    reproduction, no closed unmerged CrocSwap PR), or None."""
+    scores = [Fraction(r['score']) for r in problem['records'] if r['id'] != 'classical-baseline'
+              and not problem['record_metadata'].get(r['id'], {}).get('reproduction_of')
+              and not (r['id'].startswith('crocswap-') and r.get('upstream_status') == 'closed-unmerged')]
+    return max(scores, default=None)
+
+TITLE_KAPPA = re.compile(r'(?:κ|kappa)\W{0,12}?(\d*\.\d+(?:\s*(?:e|[·×x*]\s*10\^?)\s*-?\d+)?|\d+/\d+)', re.I)
+
+def title_kappas(title):
+    """The kappa values a title names (routing only; a title never lists a row)."""
+    out = []
+    for raw in TITLE_KAPPA.findall(title.translate(str.maketrans('⁰¹²³⁴⁵⁶⁷⁸⁹⁻−', '0123456789--'))):
+        m = re.fullmatch(r'(\d*\.\d+)(?:\s*(?:e|[·×x*]\s*10\^?)\s*(-?\d+))?|(\d+)/(\d+)', raw.strip())
+        if not m or len(raw) > 200:
+            continue
+        if m.group(3):
+            out.append(Fraction(int(m.group(3)), int(m.group(4))) if int(m.group(4)) else None)
+        elif abs(int(m.group(2) or 0)) <= 400:
+            out.append(Fraction(m.group(1)) * Fraction(10) ** int(m.group(2) or 0))
+    return [v for v in out if v is not None]
+
 def best(problem):
     pool = [r for r in problem['records'] if r['id'].startswith('crocswap-') and problem['record_metadata'][r['id']]['eligible_for_record']]
     r = max(pool, key=lambda r: Fraction(r['score']))
@@ -113,7 +136,7 @@ def decided_package(p, score, files_of, others=()):
             return path
     return None
 
-def package_claim(stage, p, main_sha, owners, files_of, lower_prs):
+def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
     """(score, claim_path, reason): the kappa that the PR's own research package states.
 
     files_of(m) gives the CLAIM.json files of PR m; lower_prs are the PR numbers below
@@ -140,6 +163,12 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs):
         path = added[0]
         return None, path, (f'{path} is already on main.' if holder[path] == 'main' else f'{path} belongs to {holder[path]}.')
     if len(own) != 1:
+        # A title-only kappa at or below the board leader can be neither a new record nor
+        # listed without a package: silent (#3308, 2026-10-17). Above the leader, or with
+        # a CLAIM.json touched, it still goes to the lead.
+        values = title_kappas(p['title']) if names and not files else []
+        if values and leader is not None and max(values) <= leader:
+            return None, None, None
         if names:
             return None, None, ('The PR adds no single own research package CLAIM.json.' if own or not added
                                 else 'Every research package CLAIM.json this PR adds belongs to another PR.')
@@ -217,6 +246,7 @@ def refresh(stage, now):
     claim_judge.calls_left = claim_judge.CALLS_PER_RUN
     problem = load(stage, 'integer-multiplication.json')
     before = copy.deepcopy(problem)
+    leader = board_leader(before)
     subs = load(stage, 'submissions.json')
     old = {s['pr_number']: s for s in subs['items']}
     records = {r['id']: r for r in problem['records']}
@@ -261,7 +291,7 @@ def refresh(stage, now):
         others = {path: pr for path, pr in owners.items() if pr != n}
         score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
             p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others, files_of,
-                                                       [m for m in reversed(numbers) if m < n]))
+                                                       [m for m in reversed(numbers) if m < n], leader))
         # One lookup per decided head: claim_path_head records it, found or not.
         if decision and score and not claim_path and prior.get('claim_path_head') != head_sha:
             claim_path = decided_package(p, score, files_of, others)

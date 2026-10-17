@@ -127,6 +127,30 @@ class RefreshTests(unittest.TestCase):
         with patch.object(refresh,'pages',lambda *a:[{'filename':'research/y/CLAIM.json','status':'added'},{'filename':'research/y/README.md','status':'added'}]):
             self.assertEqual(refresh.claim_files(7,pulls_by_number,prior,{}),[['added','research/y/CLAIM.json']])
 
+    def test_title_only_kappa_at_or_below_the_leader_is_silent(self):
+        # #3308 (2026-10-17): no CLAIM.json, title kappa 0.001673618490895016, below the leader.
+        leader=refresh.Fraction('0.0017348157703850985634')
+        def run(title,files=None,claim=None):
+            with patch.object(refresh,'pages',lambda *a:[{'filename':f,'status':st} for f,st in (files or {}).items()]),\
+                 patch.object(refresh,'content',lambda repo,path,sha:json.dumps(claim or {}).encode()),\
+                 patch.object(refresh,'exists',lambda *a:False):
+                pr={'number':3308,'title':title,'body':'','state':'open','head':{'sha':'c'*40}}
+                return refresh.package_claim(None,pr,'m'*40,{},lambda m:refresh.claim_files(m,{3308:pr},{},{}),[],leader)
+        self.assertEqual(run('Verified T16 packing gain with OR-Tools: conditional κ = 0.001673618490895016'),(None,None,None))
+        self.assertEqual(run('κ = 1.7348157703850985634e-3: same point'),(None,None,None))
+        # Above the leader, or a title the parser cannot read: still the lead's queue.
+        self.assertIsNotNone(run('Conditional κ = 0.0017349: new words')[2])
+        self.assertIsNotNone(run('kappa from 0.0017 to 0.0018')[2])
+        self.assertIsNotNone(run('Kappa 0.1 budget screens')[2])
+        # A touched CLAIM.json keeps the queue whatever the title value.
+        other={'research/x/CLAIM.json':'modified'}
+        self.assertIsNotNone(run('conditional κ = 0.0016',files=other,claim={'kappa':'1/1000'})[2])
+        self.assertEqual(refresh.title_kappas('κ = 7.44714499357628·10⁻⁴ and kappa 1/1000'),[refresh.Fraction('7.44714499357628e-4'),refresh.Fraction(1,1000)])
+        problem={'records':[{'id':'classical-baseline','score':'0'},{'id':'crocswap-pr-9','score':'1/2','upstream_status':'closed-unmerged'},
+                            {'id':'crocswap-pr-10','score':'1/100','upstream_status':'open'},{'id':'repro','score':'1/3'}],
+                 'record_metadata':{'repro':{'reproduction_of':'x'}}}
+        self.assertEqual(refresh.board_leader(problem),refresh.Fraction(1,100))
+
     def test_touched_claim_with_kappa_goes_to_review(self):
         other='research/rank7-restore-carrier-skips/CLAIM.json'
         # No title kappa, no own package, but it changes a package that states a kappa.
