@@ -35958,6 +35958,51 @@
         }
       ],
       "source_commit": "51eb9c4ee9e4722010d308aa3309e039d3940cc2"
+    },
+    {
+      "id": "crocswap-pr-3143",
+      "kind": "improvement",
+      "score": "172977608940512033423846781989357386829999999999999999999998999999999999999999999999/100000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-17T08:05:57Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-17T08:05:57Z",
+      "site_observed_at": "2026-10-17T09:17:54Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3143"
+      },
+      "spec_version": "1",
+      "title": "research(rank7): certify precision-40 κ above PR3133",
+      "authors": [
+        {
+          "name": "Gonzalo-Mier",
+          "url": "https://github.com/Gonzalo-Mier"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/3133",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/3136"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3143",
+      "artifact": {
+        "path": "sources/pr-3143.json",
+        "sha256": "7ac234d29784d8b4ebff8385fac44fffcd59b94130f9872b51b81b331622ef9c"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3143",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3143",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "dcfaf1d1a7cfebaab22b95776a36a543bc684d50"
     }
   ],
   "record_metadata": {
@@ -56770,7 +56815,35 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-10-17T06:55:07Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-3143": {
+      "checked_at": "2026-10-17",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3143",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 3143,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-10-17T08:05:57Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "kappa in research/rank7-coupled-586-588-carrier-fold-precision40/CLAIM.json at the PR head; source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-10-17T08:05:57Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3143",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-10-17T08:05:57Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-10-17T08:17:29Z"
+  "updated_at": "2026-10-17T09:17:54Z"
 }
