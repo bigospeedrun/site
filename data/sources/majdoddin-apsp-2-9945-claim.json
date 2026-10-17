@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-17T07:20:23Z",
+  "paper": "https://arxiv.org/abs/2610.17420v1",
+  "publication_date": "2026-10-12T21:34:07Z",
+  "publication_date_basis": "arXiv v1 submission time (the only version). The companion Lean fork Majdoddin/formal-math was public from 2026-10-12T21:09Z.",
+  "score": "5989/2000",
+  "score_relation": "strict-upper-bound",
+  "theorem": "Corollary 16.1(d) (p. 54 of v1), via Theorem C (Theorems 15.1-15.2, Corollaries 15.3-15.4) and Corollary 9.1(b)",
+  "model_check": "Corollary 16.1(d): APSP on directed graphs with integer weights of absolute value at most n^nu and no negative cycles in n^(3-0.0055+o(1)) = n^(2.99450+o(1)) time, deterministically, on a word RAM with O(log N)-bit words (definition of H(epsilon, gamma)). Theorem C gives O(n^(3-epsilon*gamma+epsilon/(2r)) (log n)^(r+5)) for every fixed r, with H(1/14, 0.077) from Corollary 9.1(b), so every exponent above 2.9945 is proved, not 2.9945 itself. The fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+  "files_not_copied": "arXiv distributes the paper under its non-exclusive license, so the PDF is not copied here. SHA-256 of the v1 PDF:",
+  "files": {
+    "2610.17420v1.pdf": {
+      "sha256": "a536921aea8fe16830262db76c624593c5815094ae495ef5afce8c761d1c3d2e",
+      "url": "https://arxiv.org/pdf/2610.17420v1"
+    }
+  },
+  "lean": {
+    "repo": "https://github.com/Majdoddin/formal-math",
+    "commit": "63e9490d3b5d62bf8b9f7f0a8103b0e409564a9d",
+    "scope": "Running times are not formalised (README of the fork)."
+  },
+  "verification": "Written proof (130-page arXiv paper). Its Lean projects check identities, counts, reduction correctness and constant arithmetic, but do not formalise running times; results of the Alman and Vassilevska Williams preprint enter as hypotheses. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Schönhage's five-term partial-product tensor."
+}
