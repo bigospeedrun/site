@@ -16,16 +16,12 @@ const titles:Record<string,string>={'matrix-multiplication':'Matrix Multiplicati
 const repoName=(url:string):string=>url?.match(/^https:\/\/github.com\/([^/]+\/[^/]+)/)?.[1]??'';
 const bound=(slug:string,score:string,relation?:string)=>{
  const value=decimal(score);const [n,d]=score.split('/');const exact=d?`\\frac{${n}}{${d}}`:n;
- const open=relation==='strict-upper-bound';
- if(slug==='integer-multiplication'||slug==='exact-dft'){
-  if(open)return `O(n \\log^{1-\\kappa} n),\\quad \\kappa < ${exact}`;
-  return score==='0'?'O(n \\log n)':`O(n \\log^{${logExponent(score)}} n)`;
- }
+ if(relation==='strict-upper-bound')return `O(n \\log^{1-\\kappa} n),\\quad \\kappa < ${exact}`;
+ if(slug==='integer-multiplication'||slug==='exact-dft')return score==='0'?'O(n \\log n)':`O(n \\log^{${logExponent(score)}} n)`;
  if(slug==='matrix-multiplication')return `O(n^{${value}+\\varepsilon})`;
- // An open endpoint: every exponent above the score is proved, not the score itself.
- if(slug==='subset-sum')return `O(2^{${value}${open?'+\\varepsilon':''}n})`;
+ if(slug==='subset-sum')return `O(2^{${value}n})`;
  if(slug==='directed-sssp')return `O(n \\log^{${exact}} n)`;
- return `O(n^{${value}${open?'+\\varepsilon':''}})`;
+ return `O(n^{${value}})`;
 };
 export const problems:Problem[]=registry.problems.map((p:any)=>{
  const data=read(p.data_file);const rawRepos=registry.repositories.filter((r:any)=>r.problem_ids.includes(p.problem_id)&&r.listing_mode!=='planned');
