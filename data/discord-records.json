@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-3200",
+        "leader": "crocswap-pr-3251",
         "records": [
           {
             "id": "openai-original-109",
@@ -3798,6 +3798,16 @@
               "rohanarun"
             ],
             "bound": "O(n log^(1 - 0.001734807021726127552) n)"
+          },
+          {
+            "id": "crocswap-pr-3251",
+            "score": "17348157703850985634839999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "rohanarun"
+            ],
+            "bound": "O(n log^(1 - 0.0017348157703850985634) n)"
           }
         ],
         "table": "big-o"
@@ -3923,7 +3933,7 @@
             "id": "direct-issue-16",
             "score": "63/50000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "canghaimeng"
             ],
@@ -5123,7 +5133,8 @@
     "[\"integer-multiplication\",\"crocswap-pr-3184\",\"17301890612338507600949999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-3200\",\"17348070217261275520339999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-3190\",\"17334270395898442347489999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
-    "[\"exact-dft\",\"direct-issue-16\",\"63/50000\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-issue-16\",\"63/50000\",\"attained\"]:record",
+    "[\"exact-dft\",\"direct-issue-16\",\"63/50000\",\"attained\"]:lean"
   ],
   "deferred": [
     {
@@ -5131,6 +5142,13 @@
       "slug": "integer-multiplication",
       "authors": [
         "aigent-marius"
+      ]
+    },
+    {
+      "key": "[\"integer-multiplication\",\"crocswap-pr-3251\",\"17348157703850985634839999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
+      "slug": "integer-multiplication",
+      "authors": [
+        "rohanarun"
       ]
     }
   ]

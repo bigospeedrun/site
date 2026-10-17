@@ -1,0 +1,1030 @@
+{
+  "envelope": {
+    "challenge": {
+      "file": "challenges/dft/UniformFourier233.lean",
+      "generated_sha256": "0b03cb161dc28b1797c28e94cc6542d378a81b53ceb5b4c53a5add1666340f25",
+      "sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+      "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    },
+    "checked_at": "2026-10-17T19:50:15.004038Z",
+    "importable": true,
+    "issue_body_sha256": "3f30bc8944fa9c3f833f72aec9b32f664604861242d39549cd616e3f699ea786",
+    "issue_created_at": "2026-10-17T19:14:14Z",
+    "issue_number": 16,
+    "issue_submitter_login": "canghaimeng",
+    "issue_updated_at": "2026-10-17T19:14:14Z",
+    "issue_url": "https://github.com/bigospeedrun/verifier/issues/16",
+    "model_revision": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+    "model_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+    "problem_id": "exact-dft/uniform-exact-arithmetic",
+    "publisher_commit": "1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+    "publisher_run_attempt": "1",
+    "publisher_run_id": "39061611899",
+    "reason": "lean_and_axiom_passed_nanoda_pending",
+    "receipt": {
+      "artifact_sha256": {
+        "apt-tools.log": "c305f9857b2da08d0b8652f12fc88cc4a3308ff8863558bf1dd822f4597ecb2d",
+        "apt-update.log": "bfeb6100175f40845aca10f72a11a86bf2e554050dc43b819954ce56a95e37af",
+        "audit.log": "18c3aab031819313ccd0fea6be529044a34366eceb0d9e752d39e5d77a93b073",
+        "build-comparator.log": "714f6229a7a005aa067ccf96a3edcbf9c64bc1c4f599960295f81afc1183ea37",
+        "build-lake-adapter.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build-landrun.log": "5e09e7add5ffb69e6ec818cd8417bef048ede8025e5a71a6dc067b62b9776191",
+        "build-nanoda.log": "f15d63ca9dfc2d898e3e4b44b8bc508f6b38428d9e1a58ba9f077f9c56862da1",
+        "bwrap-apparmor-policy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cache-hash-metadata.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dependency-Cli-checkout.log": "c898721f43d1332795805fed225fb2ab0595c7b8a029c4a9e3c437473521b5e8",
+        "dependency-Cli-fetch.log": "9094417b7a563375dd9f98605caa2f2cb0cc73077b2c498eb7c101dc1bab279b",
+        "dependency-Cli-init.log": "806fb9690dbeea89238e99f8dd297b5af2e0e0f565af71af6f5626a6d61faf3e",
+        "dependency-LeanSearchClient-checkout.log": "7d98119a745a3443f54178ab9619295af66435d735ac04882e276a8a9bffaea1",
+        "dependency-LeanSearchClient-fetch.log": "5b5559b62e0b216d5e13b67a4ba1a230afd09f8c0995af59c8c828c43fc294b7",
+        "dependency-LeanSearchClient-init.log": "7da5337a0fc32514d71481e6bd805dea2161c22056ea299c1b9ad45e663240a9",
+        "dependency-Qq-checkout.log": "ad1b37dbf80199957a96283ccce1b75fb04305981124e49cbdc24d12437c8198",
+        "dependency-Qq-fetch.log": "13597b5d2e96d90eee3ebcc349f5dc29db0615761725a2bd30fd372e037695f3",
+        "dependency-Qq-init.log": "ffa3697aed5c4505fa7b759ea58199632d47708e338d7c844267b2c5754d61e1",
+        "dependency-aesop-checkout.log": "de5e1aa3ee75894a89798703b227a067c3e877d93dafb5419dc70b86ccc109a6",
+        "dependency-aesop-fetch.log": "88e03fded2183f72ff02d3f8bbf8f8bfb95b4bfd69babb6039e2df0cb7f1721e",
+        "dependency-aesop-init.log": "ddfe172f4b698d0ac102ac2178f4280b00372368ef06591a3952fcc668834fc3",
+        "dependency-batteries-checkout.log": "6816a3fef77fa1286c37b8e56ca42c77a51ad242dbb758bfd9f4de43ec50cb06",
+        "dependency-batteries-fetch.log": "116ec193ab5389d576971f2f8a288a9f9fe82744a84da6da90ce289f1e330eda",
+        "dependency-batteries-init.log": "2aba402bb7545f350f21c752a73448002dc8b209f4963bde1df90ea8266b5a91",
+        "dependency-importGraph-checkout.log": "6a4ee8a98d7afdb48cb4c55be58ed0efeaeeefdfb3bf6468909bec14e6aa28b4",
+        "dependency-importGraph-fetch.log": "7c91610e786ab9296071b4bebd42fc455236dd285c2d40beb476b5120c36e605",
+        "dependency-importGraph-init.log": "a48fa1c744a9cebca87074efdb8cfbcb7d6cbaae8af8d46f504f4223c9a551bc",
+        "dependency-mathlib-checkout.log": "a0bb7af7ae0fa5e2cc405332624d7b50a0ed8d31605c0b4b526558ffd20d50a1",
+        "dependency-mathlib-fetch.log": "56a9c709fa42a138a71cef4abafc00e97d480b8e106800c3c34fa21edbceed12",
+        "dependency-mathlib-init.log": "2bcb292b69734b9db2ced338b6ac726cedc20827a6780104169f95f2d66c1b73",
+        "dependency-plausible-checkout.log": "5c722697c8d43ea73fde7079343e63c3bb58b408427b579f6a98f114b2c27ae3",
+        "dependency-plausible-fetch.log": "58688df170d3968e90c11f7fe16f1957ca189393874ba37e84fae3631b9d6b26",
+        "dependency-plausible-init.log": "4077b7e1977b1b77945885d54ad3705e70446164adda8a0c5d8844827b97eb72",
+        "dependency-proofwidgets-checkout.log": "be10a7d449140089e34615969c9fe1a689688c806b5a3f09ce38b17fb6d28794",
+        "dependency-proofwidgets-fetch.log": "5bac8844efd0a2d90aa71757fd8825ed40852e654732b3e51c2e71184e330a1d",
+        "dependency-proofwidgets-init.log": "4c883bd1450aa7a672b32e14df04922d40e349467c3d76da18d2643ce6e1a397",
+        "elan-download.log": "60e0ded3d9a9680f19080e926fcb20ec94d10c1da722593bfa1c911aa99ada65",
+        "elan-install.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elan-unpack.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gate.json": "02582959083e5263a8f5ec31cd3b1bd70164d105e52a41b378fafc6b33305a17",
+        "lean-install.log": "ffdc126ce27bd88ee99ec6de79ca7843f993abe025753814384482d5c387339d",
+        "lean.log": "f12df41d913a856ab3821d5860fe1834ef3ae41b111211dae35da31a11ca3991",
+        "mathlib-cache.log": "484d4468233ca525b481ad951e78fe93d08eaab3041a26ce208cf4e3adfe8983",
+        "runner-sdk-space.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sandbox-preflight.log": "41648742f98aab2171f9eb88297548170de3f3b760e7c07ef9fcc94aedd69355",
+        "selected-request.json": "b1d8c8bd63824026e095f4623ef77fa66b44cddecc083a85be260d3b84d52045",
+        "source-sha256.json": "48cbe88f01e0319cbd53e243f2cb5ae9aa9111e8c377fc90f53f717cce0db23c",
+        "submission-checkout.log": "942fb0f058f17d2b64c125c71e6a91a5159d8eabb65367243462a1b638a3e1c5",
+        "submission-fetch.log": "27ed0e7922d3e75658e6043345e1dff81e3345b914209df7ec1e95ca3d0fea2c",
+        "submission-init.log": "b0cb466a875c47cba4ca64cba0f001ef50a616dc50516bac9b66fd30769c2e1c",
+        "tool-comparator-checkout.log": "3c2feb74939b9406dafa0cb51c8c8e3dfe3699b74c1601779505d0710b48e416",
+        "tool-comparator-fetch.log": "9261bb13765d6f67a340db2c08ec13cde32a1692ae58e6a0ec5aa9c47602c0da",
+        "tool-comparator-init.log": "8e15416f568c947d6b68e42b7ac7e7d538a5d80d8cf6cdd58d2dde6fc25a880d",
+        "tool-exporter-checkout.log": "d4f2490c3adcc8a16a8dfbe64d206920e721444b20d42612fae9a14686be2737",
+        "tool-exporter-fetch.log": "4679263f7ddb25fedf2f8f6fdefa03853ca318c1ca9b9e61b634e859cee32b2e",
+        "tool-exporter-init.log": "018b405fedf95d297837cdacc99659adb689b297c8717951de499143b20a5b6b",
+        "tool-landrun-checkout.log": "d79c67290ceb531c3a58de807a7fa90ffb38fef022cb06beb789045ad1150093",
+        "tool-landrun-fetch.log": "5236b9fb8cd4e085ff194e356bb8f7235b824d3598b30e372ba59a226fc326e8",
+        "tool-landrun-init.log": "a9eb19dc8f9948571af0e040de262ccf9b0afad041ed34b8a563ba78daac7eda",
+        "tool-nanoda-checkout.log": "000d4b6dbb65d8336c4d3b4f2cd3cb6a8afe417db3ac3e9d3822002d7e8db822",
+        "tool-nanoda-fetch.log": "552cb6d19400093c52a70dcbedcf542affd7d15ca22ade89b76553f1de38bd86",
+        "tool-nanoda-init.log": "0823fe50f87fc13c0edb7540c3847aa4be35620dabf31ab1809f8abaa36ccc6d",
+        "tool-sha256.json": "18ef3d6c15e770792484c5a05eb50c5382d2120d2c03d3f169948b2c304f02d7",
+        "trusted-lake-config.log": "355a9a028f81641782d75d6e6b58dec70f29d2f61238a9e271690259d9bf5680"
+      },
+      "axiom_audit": {
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "audit.log",
+        "memory_limit_bytes": 15032385536,
+        "reported_axioms": {
+          "Race.bound": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "sampled_peak_cgroup_bytes": 586993664,
+        "sampled_peak_swap_bytes": 0,
+        "status": "passed",
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "wall_seconds": 5.012
+      },
+      "checked_at": "2026-10-17T19:50:15.004038Z",
+      "finished_unix": 1792266615.0040376,
+      "generated_challenge_sha256": "0b03cb161dc28b1797c28e94cc6542d378a81b53ceb5b4c53a5add1666340f25",
+      "kernels": {
+        "lean": {
+          "exit_code": 0,
+          "guard_stop": null,
+          "log": "lean.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "comparator_acceptance",
+          "sampled_peak_cgroup_bytes": 5946966016,
+          "sampled_peak_swap_bytes": 0,
+          "status": "passed",
+          "swap_limit_bytes": 0,
+          "systemd_result": "success",
+          "wall_seconds": 1788.659
+        },
+        "nanoda": {
+          "reason": "advisory_queued",
+          "status": "pending"
+        }
+      },
+      "profile": {
+        "bound_kind": "saving",
+        "challenge_file": "challenges/dft/UniformFourier233.lean",
+        "challenge_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "manifest_file": "profiles/lake-manifest.json",
+        "maximum": "1",
+        "solution_module": "Submission",
+        "source_roots": [
+          "Submission"
+        ],
+        "theorem_names": [
+          "Race.bound"
+        ],
+        "tools_file": "profiles/tools.json",
+        "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+      },
+      "request": {
+        "challenge_file": "challenges/dft/UniformFourier233.lean",
+        "commit": "5fea541a2a3134b656c7bbdb6bf0b759cf78cb5c",
+        "direct_submission": {
+          "authors": [],
+          "bound": "63/50000",
+          "commit": "5fea541a2a3134b656c7bbdb6bf0b759cf78cb5c",
+          "problem": "dft",
+          "repo_url": "https://github.com/canghaimeng/exact-dft-lean",
+          "schema_version": 1
+        },
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "repo_url": "https://github.com/canghaimeng/exact-dft-lean",
+        "theorem_names": "Race.bound"
+      },
+      "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/39061582815",
+      "schema_version": 1,
+      "solution_dependencies": [],
+      "source_file_count": 362,
+      "started_unix": 1792264490.0186422,
+      "status": "not_verified",
+      "steps": [
+        {
+          "exit_code": 0,
+          "name": "submission-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-fetch",
+          "wall_seconds": 0.604
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-checkout",
+          "wall_seconds": 0.03
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-update",
+          "wall_seconds": 5.735
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-tools",
+          "wall_seconds": 96.825
+        },
+        {
+          "exit_code": 0,
+          "name": "bwrap-apparmor-policy",
+          "wall_seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "name": "runner-sdk-space",
+          "wall_seconds": 106.149
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-download",
+          "wall_seconds": 0.27
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-unpack",
+          "wall_seconds": 0.073
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-install",
+          "wall_seconds": 0.072
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-install",
+          "wall_seconds": 12.502
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-init",
+          "wall_seconds": 0.06
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-fetch",
+          "wall_seconds": 0.335
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-checkout",
+          "wall_seconds": 0.016
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-init",
+          "wall_seconds": 0.066
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-fetch",
+          "wall_seconds": 0.32
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-checkout",
+          "wall_seconds": 0.09
+        },
+        {
+          "exit_code": 0,
+          "name": "build-comparator",
+          "wall_seconds": 6.456
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-init",
+          "wall_seconds": 0.089
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-fetch",
+          "wall_seconds": 0.359
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-checkout",
+          "wall_seconds": 0.091
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nanoda",
+          "wall_seconds": 22.128
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-fetch",
+          "wall_seconds": 0.36
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "build-landrun",
+          "wall_seconds": 10.109
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-init",
+          "wall_seconds": 0.01
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-fetch",
+          "wall_seconds": 7.646
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-checkout",
+          "wall_seconds": 0.563
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-fetch",
+          "wall_seconds": 0.306
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-fetch",
+          "wall_seconds": 0.287
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-checkout",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-fetch",
+          "wall_seconds": 0.378
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-checkout",
+          "wall_seconds": 0.008
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-fetch",
+          "wall_seconds": 0.631
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-checkout",
+          "wall_seconds": 0.031
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-fetch",
+          "wall_seconds": 0.435
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-checkout",
+          "wall_seconds": 0.026
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-init",
+          "wall_seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-fetch",
+          "wall_seconds": 0.3
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-fetch",
+          "wall_seconds": 0.476
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-checkout",
+          "wall_seconds": 0.016
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-init",
+          "wall_seconds": 0.009
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-fetch",
+          "wall_seconds": 0.298
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-checkout",
+          "wall_seconds": 0.11
+        },
+        {
+          "exit_code": 0,
+          "name": "mathlib-cache",
+          "wall_seconds": 50.746
+        },
+        {
+          "exit_code": 0,
+          "name": "cache-hash-metadata",
+          "wall_seconds": 0.376
+        },
+        {
+          "exit_code": 0,
+          "name": "build-lake-adapter",
+          "wall_seconds": 0.142
+        },
+        {
+          "exit_code": 0,
+          "name": "trusted-lake-config",
+          "wall_seconds": 1.73
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.023
+        }
+      ],
+      "test_only": false,
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "theorems": {
+        "Race.bound": {
+          "lean_kernel": "passed",
+          "nanoda_kernel": "pending",
+          "reported_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "timing_group": "shared theorem closure"
+        }
+      },
+      "tool_pins": {
+        "comparator": "d03acab154d269c06e60e4de7e4cc85deebff94b",
+        "elan_tar_sha256": "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63",
+        "elan_version": "v4.2.4",
+        "landrun": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+        "lean4export": "076e8e57707e813375e8f9da8bf989799ace9680",
+        "nanoda": "3a2407216ee84a75f9e1aead6803d0578be06ae7"
+      },
+      "total_wall_seconds": 2124.985,
+      "verification_stage": "lean",
+      "verifier_commit": "1e009d7adeb43a1ddffe8b8148be4bebba69e720"
+    },
+    "receipt_artifact": {
+      "archive_url": "https://github.com/bigospeedrun/verifier/actions/runs/39061582815/artifacts/12112850846",
+      "digest": "sha256:75b2c0e5c3210ee3e86922a1040f44d61f4537bb8313c6e4f011dd4b8196a23e",
+      "id": 12112850846,
+      "name": "verifier-receipt-and-logs-39061582815-1-16-lean"
+    },
+    "receipt_sha256": "f9fb607b699c9e453988f5ae0bf100c74159b5ea2f3f2ef99977ad06431effa9",
+    "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39061582815/artifacts/12112850846",
+    "record_gate": {
+      "any_lean_verified_at_bound": true,
+      "checked_at": "2026-10-17T19:14:49.705980Z",
+      "data_sha256": "9b50761b76caddee42bfcd8dfea9d28de01346500305c681437a02d281e5684d",
+      "leader_ids": [
+        "shea256-exact-dft-complex588-2026"
+      ],
+      "problem_id": "exact-dft/uniform-exact-arithmetic",
+      "schema_version": 1,
+      "score": "2466337/2000000000",
+      "score_relation": "attained",
+      "site_commit": "ddc44e1eaa20a6723a102b4aecc1608ac5db46f9"
+    },
+    "run_attempt": "1",
+    "run_id": "39061582815",
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/39061582815",
+    "schema_version": 1,
+    "score_relation": "attained",
+    "source_published_at": null,
+    "status": "passed",
+    "submission": {
+      "authors": [],
+      "bound": "63/50000",
+      "commit": "5fea541a2a3134b656c7bbdb6bf0b759cf78cb5c",
+      "problem": "dft",
+      "repo_url": "https://github.com/canghaimeng/exact-dft-lean",
+      "schema_version": 1
+    },
+    "submission_sha256": "3952e3092d0dd83ac61fc0e986682320b75c8b2d125ab3dfd16b253e9bbfdb41",
+    "test_only": false,
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "verification_stage": "lean",
+    "verification_status": "passed",
+    "verifier_commit": "1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+    "workflow_conclusion": null
+  },
+  "verification_run": {
+    "id": 39061582815,
+    "name": "Verify direct submissions",
+    "node_id": "WFR_kwLOVDiv6M8AAAAJGEBz3w",
+    "head_branch": "main",
+    "head_sha": "1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+    "path": ".github/workflows/submissions.yml",
+    "display_title": "[Lean submission] DFT: 63/50000 — Euler",
+    "run_number": 348,
+    "event": "issues",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847968,
+    "check_suite_id": 105858360546,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAYpaZk4g",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061582815",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/39061582815",
+    "pull_requests": [],
+    "created_at": "2026-10-17T19:14:17Z",
+    "updated_at": "2026-10-17T19:59:25Z",
+    "actor": {
+      "login": "canghaimeng",
+      "id": 83115194,
+      "node_id": "MDQ6VXNlcjgzMTE1MTk0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83115194?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/canghaimeng",
+      "html_url": "https://github.com/canghaimeng",
+      "followers_url": "https://api.github.com/users/canghaimeng/followers",
+      "following_url": "https://api.github.com/users/canghaimeng/following{/other_user}",
+      "gists_url": "https://api.github.com/users/canghaimeng/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/canghaimeng/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/canghaimeng/subscriptions",
+      "organizations_url": "https://api.github.com/users/canghaimeng/orgs",
+      "repos_url": "https://api.github.com/users/canghaimeng/repos",
+      "events_url": "https://api.github.com/users/canghaimeng/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/canghaimeng/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [
+      {
+        "path": "bigospeedrun/verifier/.github/workflows/submission-check.yml@1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+        "sha": "1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+        "ref": "refs/heads/main"
+      }
+    ],
+    "run_started_at": "2026-10-17T19:14:17Z",
+    "triggering_actor": {
+      "login": "canghaimeng",
+      "id": 83115194,
+      "node_id": "MDQ6VXNlcjgzMTE1MTk0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83115194?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/canghaimeng",
+      "html_url": "https://github.com/canghaimeng",
+      "followers_url": "https://api.github.com/users/canghaimeng/followers",
+      "following_url": "https://api.github.com/users/canghaimeng/following{/other_user}",
+      "gists_url": "https://api.github.com/users/canghaimeng/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/canghaimeng/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/canghaimeng/subscriptions",
+      "organizations_url": "https://api.github.com/users/canghaimeng/orgs",
+      "repos_url": "https://api.github.com/users/canghaimeng/repos",
+      "events_url": "https://api.github.com/users/canghaimeng/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/canghaimeng/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061582815/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061582815/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/105858360546",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061582815/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061582815/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061582815/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847968",
+    "head_commit": {
+      "id": "1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+      "tree_id": "38ce4c21f08847c64c747fd82894f37b5b97475d",
+      "message": "Rank an open endpoint below an attained tie on exponent boards\n\ncurrent_record() and qualifies_for_run() gave a strict-upper-bound\nendpoint the second key -1 on every board, so min() on 3SUM and APSP\nchose an endpoint over an attained tie (Worker 2, 2026-10-17).\nopen_rank() now matches the site rule (site 6fba5f5,\ndata/direct_import.py): -1 on dft, where max wins, and +1 on the\nexponent boards, where min wins. An attained submission at an open\nendpoint's score now qualifies for a run on 3SUM and APSP.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "timestamp": "2026-10-17T07:43:37Z",
+      "author": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      },
+      "committer": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  },
+  "result_artifact": {
+    "id": 12113025416,
+    "node_id": "MDg6QXJ0aWZhY3QxMjExMzAyNTQxNg==",
+    "name": "pr-submission-39061582815-1-publisher-39061611899-1",
+    "size_in_bytes": 5300,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12113025416",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12113025416/zip",
+    "expired": false,
+    "digest": "sha256:f0b745a04b8f5b7527e2ddc056e48875233ac512b49fd6507833a9bebf038bac",
+    "created_at": "2026-10-17T19:50:19Z",
+    "updated_at": "2026-10-17T19:50:19Z",
+    "expires_at": "2027-01-15T19:14:45Z",
+    "workflow_run": {
+      "id": 39061611899,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "1e009d7adeb43a1ddffe8b8148be4bebba69e720"
+    }
+  },
+  "proof_artifact": {
+    "id": 12112850846,
+    "node_id": "MDg6QXJ0aWZhY3QxMjExMjg1MDg0Ng==",
+    "name": "verifier-receipt-and-logs-39061582815-1-16-lean",
+    "size_in_bytes": 350365,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12112850846",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12112850846/zip",
+    "expired": false,
+    "digest": "sha256:75b2c0e5c3210ee3e86922a1040f44d61f4537bb8313c6e4f011dd4b8196a23e",
+    "created_at": "2026-10-17T19:50:16Z",
+    "updated_at": "2026-10-17T19:50:16Z",
+    "expires_at": "2027-01-15T19:14:18Z",
+    "workflow_run": {
+      "id": 39061582815,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "1e009d7adeb43a1ddffe8b8148be4bebba69e720"
+    }
+  },
+  "publisher_run": {
+    "id": 39061611899,
+    "name": "Publish submission PR result",
+    "node_id": "WFR_kwLOVDiv6M8AAAAJGEDlew",
+    "head_branch": "main",
+    "head_sha": "1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+    "path": ".github/workflows/pr-publish.yml",
+    "display_title": "Publish submission PR result",
+    "run_number": 711,
+    "event": "workflow_run",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847965,
+    "check_suite_id": 105858441869,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAYpaeijQ",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061611899",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/39061611899",
+    "pull_requests": [],
+    "created_at": "2026-10-17T19:14:44Z",
+    "updated_at": "2026-10-17T19:50:22Z",
+    "actor": {
+      "login": "canghaimeng",
+      "id": 83115194,
+      "node_id": "MDQ6VXNlcjgzMTE1MTk0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83115194?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/canghaimeng",
+      "html_url": "https://github.com/canghaimeng",
+      "followers_url": "https://api.github.com/users/canghaimeng/followers",
+      "following_url": "https://api.github.com/users/canghaimeng/following{/other_user}",
+      "gists_url": "https://api.github.com/users/canghaimeng/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/canghaimeng/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/canghaimeng/subscriptions",
+      "organizations_url": "https://api.github.com/users/canghaimeng/orgs",
+      "repos_url": "https://api.github.com/users/canghaimeng/repos",
+      "events_url": "https://api.github.com/users/canghaimeng/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/canghaimeng/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-10-17T19:14:44Z",
+    "triggering_actor": {
+      "login": "canghaimeng",
+      "id": 83115194,
+      "node_id": "MDQ6VXNlcjgzMTE1MTk0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83115194?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/canghaimeng",
+      "html_url": "https://github.com/canghaimeng",
+      "followers_url": "https://api.github.com/users/canghaimeng/followers",
+      "following_url": "https://api.github.com/users/canghaimeng/following{/other_user}",
+      "gists_url": "https://api.github.com/users/canghaimeng/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/canghaimeng/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/canghaimeng/subscriptions",
+      "organizations_url": "https://api.github.com/users/canghaimeng/orgs",
+      "repos_url": "https://api.github.com/users/canghaimeng/repos",
+      "events_url": "https://api.github.com/users/canghaimeng/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/canghaimeng/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061611899/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061611899/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/105858441869",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061611899/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061611899/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39061611899/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847965",
+    "head_commit": {
+      "id": "1e009d7adeb43a1ddffe8b8148be4bebba69e720",
+      "tree_id": "38ce4c21f08847c64c747fd82894f37b5b97475d",
+      "message": "Rank an open endpoint below an attained tie on exponent boards\n\ncurrent_record() and qualifies_for_run() gave a strict-upper-bound\nendpoint the second key -1 on every board, so min() on 3SUM and APSP\nchose an endpoint over an attained tie (Worker 2, 2026-10-17).\nopen_rank() now matches the site rule (site 6fba5f5,\ndata/direct_import.py): -1 on dft, where max wins, and +1 on the\nexponent boards, where min wins. An attained submission at an open\nendpoint's score now qualifies for a run on 3SUM and APSP.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "timestamp": "2026-10-17T07:43:37Z",
+      "author": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      },
+      "committer": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  }
+}
