@@ -4,8 +4,8 @@
   "title": "Research: audit #2979 profile against kappa=0.1",
   "body": "This research package independently audits the profile-bearing stages and T74 owner allocation for the #2979 candidate, then checks the donor's κ=0.1 target against that profile and the newer six-skip profile from #3042.\n\nThe exact target screen uses κ = a/(1+a), so κ = 1/10 requires a = 1/9. At that point, exact integer ninth-root bounds show that the paid local children alone contribute at least:\n\n- #2979: 48304277901/44800000000 > 1.\n- #3042 six-skip profile: 48295445607/44800000000 > 1.\n\nThese floors omit idle children and centre costs. They rule out κ ≥ 0.1 for these fixed local profiles under the inherited moment and transfer, even if those omitted costs were free. They do not rule out a changed local profile, coverage law, or outer transfer. The selected frontier is unchanged and this PR claims no κ improvement.\n\nThe verifier reconstructs the V45 coordinated lowering and losing single-helper control, replays the profile-bearing extraction/rewrite stages for both providers, checks 1,332 owner-child windows and all 271,728 owner roles, verifies rank-mass 4,816,512 and reconciles 66,813 physical families. It also pins the PR #3042 claim used by the six-skip screen.\n\nValidation passed:\n\n```sh\npython3.12 -B scripts/research_package.py --package research/rank7-v45-profile-audit\npython3.12 scripts/check_research_commit.py --package research/rank7-v45-profile-audit\n```\n\nThe audit does not independently certify extraction/rewrite operator identities, compensation and cleanup semantics, global stock/precision/native admission, or outer release. Please retain attribution to #2979/#2957 and the six-skip PR #3042 lineage; the package discloses substantial OpenAI Codex assistance.\n",
   "created_at": "2026-10-16T23:47:17Z",
-  "updated_at": "2026-10-16T23:47:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-17T02:02:19Z",
+  "closed_at": "2026-10-17T02:02:19Z",
+  "merged_at": "2026-10-17T02:02:19Z",
+  "state": "closed"
 }
