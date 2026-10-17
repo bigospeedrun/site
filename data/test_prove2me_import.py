@@ -1,7 +1,11 @@
+import contextlib
 import copy
 import hashlib
+import io
 import json
+import os
 import re
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -77,9 +81,35 @@ class Fixture:
     def save_trust(self):
         self.write('prove2me-trust.json', self.trust)
 
+    def add_second_board(self):
+        """A 3sum board with one new best result, on its own campaign page."""
+        self.rules3 = dict(self.rules, id='c3', slug='3sum-exponent')
+        name, value, solved = 'Goal3', '1.9991', '2026-10-06T18:00:00+00:00'
+        st, so = ENV + 'Theorems/Thm_' + name + '.lean', ENV + 'Solutions/Sol_' + name + '.lean'
+        url = 'https://prove2.me/theorems/t-3'
+        sbody, solbody = statement(name, value), b'theorem solution : True := trivial\n'
+        self.files[st] = formalpedia(['Prove2me | x', 'status  : Proved', 'url     : ' + url], sbody)
+        self.files[so] = formalpedia(['Prove2me | solution 1', 'status  : ACCEPTED   (prove)'], solbody)
+        self.live3 = [dict(mission_id='m3', attested_value=value, proved=True, solved_at=solved)]
+        self.trust['boards']['3sum'] = dict(campaign={k: self.rules3[k] for k in p2m.RULE_KEYS}, statement_form='test',
+            definitions={DEF: hashlib.sha256(DEF_BODY).hexdigest()},
+            entries=[dict(mission_id='m3', value=value, solved_at=solved, action='row', authors=[dict(name='marwahaha', url='https://prove2.me/users/u2')],
+                          theorem=dict(name=name, url=url, statement_path=st, statement_sha256=hashlib.sha256(sbody).hexdigest(), definitions=[DEF]),
+                          solution=dict(path=so, sha256=hashlib.sha256(solbody).hexdigest(), author='@b'))])
+        doc = self.doc()
+        doc['problem_id'] = '3sum/word-ram'
+        doc['records'][1]['score'] = '2499/1250'
+        self.write('3sum.json', doc)
+        registry = json.loads((self.root / 'registry.json').read_text())
+        registry['problems'].append(dict(slug='3sum', data_file='3sum.json'))
+        self.write('registry.json', registry)
+        self.save_trust()
+
     def get(self, url):
         if url == p2m.CAMPAIGN_URL + 'apsp-exponent':
             return page(self.live, self.rules)
+        if url == p2m.CAMPAIGN_URL + '3sum-exponent':
+            return page(self.live3, self.rules3)
         prefix = p2m.RAW_URL + 'prove2me/formalpedia/main/'
         if url.startswith(prefix) and url[len(prefix):] in self.files:
             return self.files[url[len(prefix):]]
@@ -93,8 +123,8 @@ class Fixture:
             target.write_bytes(raw)
         return changed, state, held
 
-    def doc(self):
-        return json.loads((self.root / 'apsp.json').read_text())
+    def doc(self, name='apsp.json'):
+        return json.loads((self.root / name).read_text())
 
 
 class Prove2meImportTest(unittest.TestCase):
@@ -255,6 +285,93 @@ class Prove2meImportTest(unittest.TestCase):
         header, body = p2m.split_header(b'-- Prove2me | s\n-- status  : ACCEPTED   (prove)\n\nimport A\n\ntheorem solution : True := trivial\n')
         self.assertEqual(header['status'], 'ACCEPTED   (prove)')
         self.assertEqual(body, b'import A\n\ntheorem solution : True := trivial\n')
+
+    def test_one_held_board_does_not_stop_the_other_board(self):
+        self.f.add_second_board()
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-08T00:00:00+00:00'))
+        changed, state, held = self.f.run()
+        self.assertEqual(list(held), ['apsp'])
+        self.assertEqual(state['boards']['3sum']['status'], 'ok')
+        self.assertIn('3sum.json', changed)
+        self.assertEqual([r['id'] for r in self.f.doc('3sum.json')['records'] if r['id'].startswith('prove2me-')], ['prove2me-3sum-1-9991'])
+        # The held board writes no rows and no receipts.
+        self.assertNotIn('apsp.json', changed)
+        self.assertEqual([p for p in changed if p.startswith('sources/')], ['sources/prove2me-3sum-1-9991.json'])
+
+    def test_a_crash_in_one_board_holds_only_that_board(self):
+        self.f.add_second_board()
+        real = p2m.check_board
+        def crash(slug, *args):
+            if slug == 'apsp':
+                raise RuntimeError('boom\n::error::injected')
+            return real(slug, *args)
+        with mock.patch.object(p2m, 'check_board', side_effect=crash):
+            changed, state, held = self.f.run()
+        self.assertEqual(list(held), ['apsp'])
+        self.assertIn('unexpected error (RuntimeError', held['apsp'])
+        self.assertEqual(state['boards']['3sum']['status'], 'ok')
+
+    def test_a_row_must_beat_an_earlier_imported_row(self):
+        entries = self.f.trust['boards']['apsp']['entries']
+        later = copy.deepcopy(entries[1])
+        later.update(mission_id='m3', value='2.999', solved_at='2026-10-06T20:00:00+00:00')
+        later['theorem'] = dict(later['theorem'], name='Goalm3', url='https://prove2.me/theorems/t-m3',
+                                statement_path=ENV + 'Theorems/Thm_Goalm3.lean', statement_sha256=hashlib.sha256(statement('Goalm3', '2.999')).hexdigest())
+        self.f.files[later['theorem']['statement_path']] = formalpedia(['Prove2me | x', 'status  : Proved', 'url     : https://prove2.me/theorems/t-m3'], statement('Goalm3', '2.999'))
+        entries.append(later)
+        self.f.live.append(dict(mission_id='m3', attested_value='2.999', proved=True, solved_at='2026-10-06T20:00:00+00:00'))
+        self.f.save_trust()
+        self.assertIn('entry 2.999 was not the best', self.f.run()[2]['apsp'])
+        # A skipped earlier result counts too, unless it is marked unsound.
+        entries.pop()
+        entries[1]['action'] = 'skip'
+        entries.append(dict(later, value='2.9984'))
+        entries[-1]['theorem'] = dict(later['theorem'], statement_sha256=hashlib.sha256(statement('Goalm3', '2.9984')).hexdigest())
+        self.f.files[later['theorem']['statement_path']] = formalpedia(['Prove2me | x', 'status  : Proved', 'url     : https://prove2.me/theorems/t-m3'], statement('Goalm3', '2.9984'))
+        self.f.live[-1]['attested_value'] = '2.9984'
+        self.f.save_trust()
+        self.assertIn('entry 2.9984 was not the best', self.f.run()[2]['apsp'])
+        entries[1]['unsound'] = True
+        self.f.save_trust()
+        self.assertEqual(self.f.run()[2], {})
+
+    def test_hold_reasons_are_ascii_one_line_and_capped(self):
+        self.f.run()
+        self.f.live.append(dict(mission_id='m9\n::error::x', attested_value='\u00e9' + 'x' * 900, proved=True, solved_at=None))
+        _, state, held = self.f.run()
+        reason = held['apsp']
+        self.assertEqual(reason, state['boards']['apsp']['reason'])
+        self.assertTrue(reason.isascii())
+        self.assertNotIn('\n', reason)
+        self.assertLessEqual(len(reason), p2m.REASON_CAP)
+        saved = json.loads((self.f.root / 'prove2me.json').read_text())['boards']['apsp']['reason']
+        self.assertEqual(saved, reason)
+
+    def test_main_exits_3_on_hold_and_writes_a_step_summary(self):
+        self.f.live.append(dict(mission_id='m9\n::error::x', attested_value='2.99', proved=True, solved_at=None))
+        summary = self.f.root / 'summary.md'
+        out, err = io.StringIO(), io.StringIO()
+        with mock.patch.object(p2m, 'ROOT', self.f.root), mock.patch.object(p2m, 'fetch', self.f.get), \
+                mock.patch('direct_refresh.transaction') as transaction, mock.patch.object(sys, 'argv', ['prove2me_import.py']), \
+                mock.patch.dict(os.environ, {'GITHUB_STEP_SUMMARY': str(summary)}), \
+                contextlib.redirect_stdout(out), contextlib.redirect_stderr(err), self.assertRaises(SystemExit) as stop:
+            p2m.main()
+        self.assertEqual(stop.exception.code, p2m.HELD_EXIT)
+        transaction.assert_called_once()
+        self.assertIn('apsp: held', summary.read_text())
+        for line in (out.getvalue() + err.getvalue()).splitlines():
+            self.assertFalse(line.startswith('::'), line)
+            self.assertTrue(line.startswith('prove2.me import'), line)
+
+    def test_oversized_fetch_holds_and_long_pages_parse_in_linear_time(self):
+        response = mock.MagicMock()
+        response.__enter__.return_value.read.return_value = b'x' * (p2m.MAX_BYTES + 1)
+        with mock.patch('urllib.request.urlopen', return_value=response):
+            with self.assertRaises(p2m.Hold):
+                p2m.fetch('https://prove2.me/campaigns/x')
+        html = p2m.PUSH * 20000 + '[1,"x"]'
+        with self.assertRaises(p2m.Hold):
+            p2m.campaign_data(html)
 
 
 class TrustFileTest(unittest.TestCase):

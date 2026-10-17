@@ -48,6 +48,9 @@ RAW_URL = 'https://raw.githubusercontent.com/'
 USER_AGENT = 'bigospeedrun-refresh (+https://bigospeedrun.com)'
 RULE_KEYS = ('id', 'slug', 'status', 'value_type', 'bound_type', 'value_direction')
 HELD_EXIT = 3
+MAX_BYTES = 5 * 1024 * 1024
+REASON_CAP = 200
+PUSH = 'self.__next_f.push('
 
 
 class Hold(Exception):
@@ -59,13 +62,23 @@ def require(condition, reason):
         raise Hold(reason)
 
 
+def safe_text(value, cap=REASON_CAP):
+    """Hold reasons quote prove2.me and GitHub text. Escape it to ASCII on one line and
+    cap it, so it cannot form a workflow command or a long log or state entry."""
+    text = ascii(str(value))[1:-1]
+    text = ' '.join(text.replace('\\n', ' ').replace('\\r', ' ').replace('\\t', ' ').split())
+    return text if len(text) <= cap else text[:cap - 3] + '...'
+
+
 def fetch(url):
     last = None
     for attempt in range(3):
         try:
             request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
             with urllib.request.urlopen(request, timeout=30) as response:
-                return response.read()
+                raw = response.read(MAX_BYTES + 1)
+            require(len(raw) <= MAX_BYTES, f'{url} is over {MAX_BYTES} bytes')
+            return raw
         except OSError as error:
             last = error
             time.sleep(2 * (attempt + 1))
@@ -82,7 +95,15 @@ def json_bytes(value):
 
 def campaign_data(html):
     """Return (rules, entries) from the Next.js payload of a campaign page."""
-    chunks = re.findall(r'self\.__next_f\.push\((\[.*?\])\)</script>', html, re.S)
+    # Plain string search keeps the scan linear in the page size.
+    chunks, position = [], 0
+    while True:
+        start = html.find(PUSH, position)
+        end = html.find(')</script>', start) if start >= 0 else -1
+        if end < 0:
+            break
+        chunks.append(html[start + len(PUSH):end])
+        position = end + 1
     payload = ''
     for chunk in chunks:
         try:
@@ -187,9 +208,12 @@ def check_board(slug, board, doc, files, get):
              if not meta[r['id']].get('reproduction_of') and r.get('upstream_status') != 'closed-unmerged']
     plan = dict(links={}, rows=[])
     for entry in sorted(board['entries'], key=lambda e: utc(e['solved_at'])):
-        if entry['action'] == 'skip':
-            continue
         value = Fraction(entry['value'])
+        if entry['action'] == 'skip':
+            # A skipped result still counts for best-at-its-time, unless review found it unsound.
+            if not entry.get('unsound'):
+                known.append((utc(entry['solved_at']), value))
+            continue
         theorem, solution = entry['theorem'], entry['solution']
         header, body = files.read(theorem['statement_path'])
         require(header.get('status') == 'Proved', f'{theorem["name"]} status is {header.get("status")!r}')
@@ -298,14 +322,17 @@ def run(root, get=fetch, now=None):
         prior_rows = {row['record']['id']: row for row in prior.get('rows', [])}
         try:
             plan = check_board(slug, board, doc, files, get)
-            rows = []
+            rows, board_sources = [], {}
             for entry in plan['rows']:
                 record, meta, sources = row_for(slug, doc, board, entry, trust, prior_rows)
                 rows.append((record, meta))
-                out.update(sources)
+                board_sources.update(sources)
             entry_state = dict(status='ok', links=plan['links'], rows=[dict(record=r, meta=m) for r, m in rows])
-        except (Hold, ValueError, KeyError, TypeError) as error:
-            reason = str(error) if isinstance(error, Hold) else f'unexpected data ({type(error).__name__}: {error})'
+            # Receipts join the output only for a board that passed.
+            out.update(board_sources)
+        except Exception as error:
+            # One board's failure, even a crash, holds only that board.
+            reason = safe_text(error if isinstance(error, Hold) else f'unexpected error ({type(error).__name__}: {error})')
             held[slug] = reason
             since = prior.get('since') if prior.get('status') == 'held' and prior.get('reason') == reason else now
             rows = [(row['record'], row['meta']) for row in prior.get('rows', [])]
@@ -330,20 +357,26 @@ def main():
     parser.add_argument('--check-only', action='store_true', help='validate the staged result and write nothing')
     args = parser.parse_args()
     from direct_refresh import transaction
-    changed, state, held = run(ROOT)
-    transaction(ROOT, changed, args.check_only)
+    try:
+        changed, state, held = run(ROOT, fetch)
+        transaction(ROOT, changed, args.check_only)
+    except Exception as error:
+        # Print no traceback: its text can quote fetched data.
+        print('prove2.me import failed: ' + safe_text(f'{type(error).__name__}: {error}', 500), file=sys.stderr)
+        sys.exit(1)
     lines = []
     for slug, board in state['boards'].items():
-        lines.append(f'{slug}: {board["status"]}, {len(board["links"])} links, {len(board["rows"])} rows'
-                     + (f'; held since {board["since"]}: {board["reason"]}' if board['status'] == 'held' else ''))
+        lines.append(f'{safe_text(slug, 40)}: {board["status"]}, {len(board["links"])} links, {len(board["rows"])} rows'
+                     + (f'; held since {board["since"]}: {safe_text(board["reason"])}' if board['status'] == 'held' else ''))
     lines.append(f'{len(changed)} changed files; lean_verified={LEAN_VERIFIED}; check_only={args.check_only}')
-    print('\n'.join(lines))
+    # Every line starts with this prefix, so no line can start with '::'.
+    print('\n'.join('prove2.me import: ' + line for line in lines))
     summary = os.environ.get('GITHUB_STEP_SUMMARY')
     if summary:
         with open(summary, 'a') as handle:
             handle.write('### prove2.me import\n\n' + '\n'.join('- ' + line for line in lines) + '\n')
     if held:
-        print('prove2.me import held for ' + ', '.join(held) + '. Review data/prove2me-trust.json.', file=sys.stderr)
+        print('prove2.me import: held for ' + ', '.join(safe_text(slug, 40) for slug in held) + '. Review data/prove2me-trust.json.', file=sys.stderr)
         sys.exit(HELD_EXIT)
 
 
