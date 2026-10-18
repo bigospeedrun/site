@@ -1,0 +1,11 @@
+{
+  "number": 3722,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3722",
+  "title": "Record the omitted-closure partition in the intake family order",
+  "body": "## Summary\n- In the published family order, 24 of the 564 intake rows omit `closure`. Every intake row still carries `review_completion` and `verification_evidence`.\n- Four omitted rows inherit an explicit null (1365, 1494, 2361, 2832). Row 2963 records null with no earlier closure. The other 19 omit the field in the ledger as well.\n- Partial, no new kappa. The ledger and the family files are unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/intake-closure-omission/verify.py`\n- [x] `python3.12 -B research/intake-closure-omission/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/intake-closure-omission`\n- [ ] Maintainer replay from canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:38:51Z",
+  "updated_at": "2026-10-18T18:38:51Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

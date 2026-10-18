@@ -1,0 +1,11 @@
+{
+  "number": 3737,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3737",
+  "title": "Record the integer idle histogram",
+  "body": "## Summary\n- The selected complex profile leaves an idle mass of 1646, and the integer minimum at both bracket ends is 32 children of rank 51 plus one child of rank 14.\n- The lower endpoint is strictly below one, the upper endpoint is strictly above one, and the selected saving sits below the bracket. No new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/integer-idle-histogram/verify.py`\n- [x] `python3.12 -B research/integer-idle-histogram/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/integer-idle-histogram`\n- [ ] Maintainer replay on a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:15:24Z",
+  "updated_at": "2026-10-18T19:15:24Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

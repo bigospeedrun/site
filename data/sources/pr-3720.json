@@ -1,0 +1,11 @@
+{
+  "number": 3720,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3720",
+  "title": "Record the three retained intake starting heads",
+  "body": "## Summary\n- Intake rows 3107, 3184 and 3251 keep a ledger starting head that matches the named field of an authenticated receipt.\n- The mutable metadata, current head and reviewed head match a later receipt head, and the two heads differ. Attribution agrees on each row.\n- Partial, no new kappa. The ledger, intake decisions and receipts are unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/intake-initial-heads/verify.py`\n- [x] `python3.12 -B research/intake-initial-heads/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/intake-initial-heads`\n- [ ] Maintainer replay from canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:34:21Z",
+  "updated_at": "2026-10-18T18:34:21Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

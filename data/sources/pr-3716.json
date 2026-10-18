@@ -1,0 +1,11 @@
+{
+  "number": 3716,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3716",
+  "title": "The non-Fano assignment costs at least 32 against a baseline of 30",
+  "body": "## Summary\n- The displayed six readers cost at least `(8-1) + 4·(6-1) + (6-1) = 32`, above the five-target baselines 30 and 31.\n- With `k` J axes, the one-role floor is `B0+6` and the two-role floor is `B0+k`, where `B0 = 30-3k`. Neither is a saving.\n- Partial receipt only. No new kappa, and no coefficient sweep.\n\n## Test plan\n- [x] `python3.12 -B research/nonfano-invoice-floor/verify.py`\n- [x] `python3.12 -B research/nonfano-invoice-floor/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/nonfano-invoice-floor`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:23:03Z",
+  "updated_at": "2026-10-18T18:23:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3723,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3723",
+  "title": "Record that the isolated runner is outside the accepted successor list",
+  "body": "## Summary\n- `scripts/run_isolated_tests.py` on canonical main hashes to `ef5035e6216d39569da670f32b2717c870b23c418016fd134cc0a72649fb912a`.\n- The reconciliation checker admits the predecessor `96ea543e` and seven later digests, the last of which is `8f9298eb`. The current digest is none of those values.\n- Partial, no new kappa. The runner and the successor list are unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/isolated-runner-successor/verify.py`\n- [x] `python3.12 -B research/isolated-runner-successor/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/isolated-runner-successor`\n- [ ] Maintainer replay from canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:41:57Z",
+  "updated_at": "2026-10-18T18:41:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

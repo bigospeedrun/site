@@ -1,0 +1,11 @@
+{
+  "number": 3718,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3718",
+  "title": "The selected saving lies below the one-cell ceiling bracket",
+  "body": "## Summary\n- The published ceiling bracket has width exactly `1/10^15`.\n- The selected saving `kappa/(1-kappa) = 836330098538459/499163669901461541` is strictly below the lower endpoint.\n- Partial receipt only. No new kappa, and no exponential evaluation.\n\n## Test plan\n- [x] `python3.12 -B research/ceiling-bracket-gap/verify.py`\n- [x] `python3.12 -B research/ceiling-bracket-gap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/ceiling-bracket-gap`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:28:16Z",
+  "updated_at": "2026-10-18T18:28:16Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

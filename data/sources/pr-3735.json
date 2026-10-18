@@ -1,0 +1,11 @@
+{
+  "number": 3735,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3735",
+  "title": "Record the manuscript exponent clearance",
+  "body": "## Summary\n- At modulus `10^6`, both displayed rank deficits keep `Psi` strictly below 1 at exponent `1-2^{-50}`.\n- The complex node is binding, with margin above 298 manuscript steps. No schedule retune and no new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/manuscript-exponent-clearance/verify.py`\n- [x] `python3.12 -B research/manuscript-exponent-clearance/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/manuscript-exponent-clearance`\n- [ ] Maintainer replay on a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:11:51Z",
+  "updated_at": "2026-10-18T19:11:51Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

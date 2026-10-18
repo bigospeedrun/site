@@ -1,0 +1,11 @@
+{
+  "number": 3726,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3726",
+  "title": "Record a length-2 return witness for every positive length-22 split",
+  "body": "## Summary\n- A one-bit prefix step flips weight parity, so every return has even length.\n- Each of the ten admitted length-22 splits with a positive revisit count has an explicit restored witness. The distances between equal prefix states are exactly 2, 20 and 22.\n- Partial, no new kappa. The witnesses are not a word census and do not claim f(7).\n\n## Test plan\n- [x] `python3.12 -B research/revisit-length-witness/verify.py`\n- [x] `python3.12 -B research/revisit-length-witness/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/revisit-length-witness`\n- [ ] Maintainer replay from canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:51:14Z",
+  "updated_at": "2026-10-18T18:51:14Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3719,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3719",
+  "title": "Record that a prefix-walk return has even length",
+  "body": "## Summary\n- A one-bit prefix step flips Hamming-weight parity, so every contiguous zero-XOR block has even length. The check covers every state and every label at width 7.\n- A repeated label leaves the endpoint fixed and the pairwise-XOR set monotone. A fresh midpoint raises the revisit count by 1, and a repeated midpoint raises it by 2.\n- Partial, no new kappa. This does not census words or claim f(7).\n\n## Test plan\n- [x] `python3.12 -B research/zero-xor-return/verify.py`\n- [x] `python3.12 -B research/zero-xor-return/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/zero-xor-return`\n- [ ] Maintainer replay from canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:31:05Z",
+  "updated_at": "2026-10-18T18:31:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

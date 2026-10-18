@@ -1,0 +1,11 @@
+{
+  "number": 3730,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3730",
+  "title": "Record that every even length from 4 through 18 meets the positive length-22 splits",
+  "body": "## Summary\n- A one-bit prefix step flips weight parity, so every return has even length.\n- For each of the ten positive length-22 splits, explicit restored words realize every return length from 4 through 18.\n- Partial, no new kappa. The witnesses are not a word census and do not claim f(7).\n\n## Test plan\n- [x] `python3.12 -B research/even-return-lengths/verify.py`\n- [x] `python3.12 -B research/even-return-lengths/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/even-return-lengths`\n- [ ] Maintainer replay from canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:06:01Z",
+  "updated_at": "2026-10-18T19:06:01Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

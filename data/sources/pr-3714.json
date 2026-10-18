@@ -1,0 +1,11 @@
+{
+  "number": 3714,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3714",
+  "title": "The product exponent 603/1000 sits under the Fourier allowance",
+  "body": "## Summary\n- At `epsilon = 997/1000`, the online product exponent is `8/5 - epsilon = 603/1000`.\n- That is strictly less than the inherited Fourier exponent `1 - 576/332929 = 332353/332929`.\n- For every `m >= 1`, the scaled coefficient error is strictly below `1/8`. Partial receipt only. No new kappa, and no convolution replay.\n\n## Test plan\n- [x] `python3.12 -B research/product-exponent-gap/verify.py`\n- [x] `python3.12 -B research/product-exponent-gap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/product-exponent-gap`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:18:33Z",
+  "updated_at": "2026-10-18T18:18:33Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
