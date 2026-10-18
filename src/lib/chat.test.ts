@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import katex from 'katex';
-import {createChatHandler, createLimiter, validateMessages, sseData, CHAT_MODEL, FALLBACK_MODEL, MAX_BODY_BYTES} from './chat-handler.ts';
+import {createChatHandler, createLimiter, validateMessages, sseData, CHAT_MODEL, FALLBACK_MODEL, MAX_BODY_BYTES, MAX_REPLY_CHARS} from './chat-handler.ts';
 import {buildSystemPrompt, createKnowledge, pageText} from './chat-knowledge.ts';
 import {formatReply, safeLink} from './chat-format.ts';
 import type {Problem, RecordEntry} from './types.ts';
@@ -163,6 +163,17 @@ test('thinking events are not forwarded, and a refusal reads as an error reply',
   assert.deepEqual(lines, [['Chat provider call failed:', 200, 'refusal']]);
   const empty = await setup(async () => fixtureStream([{type: 'message_delta', delta: {stop_reason: 'refusal'}}]))(request());
   assert.match(await empty.text(), /cannot answer that/);
+});
+
+test('a long reply streams in full up to the reply cap; one more character is cut off', async () => {
+  assert.equal(MAX_REPLY_CHARS, 16_000);
+  const long = await setup(async () => fixtureStream([textEvent('a'.repeat(9_000)), textEvent('b'.repeat(MAX_REPLY_CHARS - 9_000))]))(request());
+  const full = await long.text(); assert.match(full, /\[DONE\]/); assert.doesNotMatch(full, /interrupted/);
+  const over = await setup(async () => fixtureStream([textEvent('a'.repeat(MAX_REPLY_CHARS + 1))]))(request());
+  const cut = await over.text(); assert.match(cut, /interrupted/); assert.doesNotMatch(cut, /\[DONE\]/);
+  // A stored reply of that size is valid history; the client trims history to the total cap before sending.
+  assert.equal(validateMessages([{role: 'user', content: 'q'}, {role: 'assistant', content: 'a'.repeat(15_000)}, {role: 'user', content: 'q'}]), true);
+  assert.equal(validateMessages([{role: 'user', content: 'q'}, {role: 'assistant', content: 'a'.repeat(MAX_REPLY_CHARS + 1)}, {role: 'user', content: 'q'}]), false);
 });
 
 test('a failed provider call logs only the status and error type', async (t) => {

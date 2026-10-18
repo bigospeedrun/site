@@ -6,6 +6,8 @@ export const MAX_BODY_BYTES = 32_768;
 export const MAX_MESSAGE_CHARS = 2_000;
 export const MAX_HISTORY = 20;
 export const MAX_HISTORY_CHARS = 16_000;
+// A reply may use up to max_tokens 4000 (thinking included), about 16,000 characters of text.
+export const MAX_REPLY_CHARS = 16_000;
 export const CHAT_TIMEOUT_MS = 45_000;
 const encoder = new TextEncoder();
 export type ChatMessage = {role: 'user' | 'assistant'; content: string};
@@ -62,7 +64,7 @@ export function validateMessages(value: unknown): value is ChatMessage[] {
   return value.every((m, i) => {
     if (!m || m.role !== (i % 2 ? 'assistant' : 'user') || typeof m.content !== 'string') return false;
     size += m.content.length;
-    return m.content.trim().length > 0 && m.content.length <= (m.role === 'user' ? MAX_MESSAGE_CHARS : 8_000);
+    return m.content.trim().length > 0 && m.content.length <= (m.role === 'user' ? MAX_MESSAGE_CHARS : MAX_REPLY_CHARS);
   }) && value.at(-1).role === 'user' && size <= MAX_HISTORY_CHARS;
 }
 
@@ -198,7 +200,7 @@ export function createChatHandler(options: Options) {
             if (event.type === 'error') throw new Error('Provider error');
             if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta' && typeof event.delta.text === 'string') {
               fullText += event.delta.text;
-              if (fullText.length > 8_000) throw new Error('Reply too long');
+              if (fullText.length > MAX_REPLY_CHARS) throw new Error('Reply too long');
               send({text: event.delta.text});
             }
             if (event.type === 'message_delta' && event.delta?.stop_reason === 'refusal') refused = true;

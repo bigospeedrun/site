@@ -148,7 +148,7 @@ export function initChatbot() {
             }
             if (typeof event.text === 'string') {
               reply += event.text;
-              if (reply.length > 8_000) throw new Error('The reply is too long.');
+              if (reply.length > 16_000) throw new Error('The reply is too long.'); // MAX_REPLY_CHARS in chat-handler.ts
               const nearEnd = list.scrollHeight - list.scrollTop - list.clientHeight < 80;
               bot.innerHTML = formatReply(reply);
               if (nearEnd) list.scrollTop = list.scrollHeight;
