@@ -1,0 +1,11 @@
+{
+  "number": 3439,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3439",
+  "title": "Record the source value copied into register 258",
+  "body": "## Summary\n- Immediately before event 20719, register 262 holds `-1` when register 359 starts at `1`. The data register contributes `0`.\n- The addition multiplies that value by `1` and writes `-1` into register 258, which is `0` until then.\n- One earlier addition, event 16152, writes that `-1`. No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-whole-source/verify.py`\n- [x] `python3.12 -B research/qq16-whole-source/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-whole-source`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T01:45:03Z",
+  "updated_at": "2026-10-18T01:45:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3431,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3431",
+  "title": "Research: independently verify the 73-map two-transfer exclusion",
+  "body": "## Summary\n\nPR2208 explicitly leaves its 73-map/two-transfer connector exclusion with one census implementation. This adds a separate standard-library checker and exhaustive coverage proof for both exceptional multiplicities.\n\n```text\nrestoring word -> first transfer -> two source phases\n  -> solve restoring physical ports -> all paired/triple reads\n  -> every native histogram bin = (12 or 13) * new bin\n```\n\nOnly `research/connector-two-transfer-audit/` is added. Conorholds' theorem and tariff remain credited. No new kappa, physical caller or selected-frontier change is claimed.\n\n## Evidence\n\n- **Before:** the published 73-map exclusion has one native implementation.\n  **After:** 145,080 paired-source and 1,401,120 triple-source assignments independently exclude both cases. Every scaled histogram bin agrees with PR2208; its two original native domains were also freshly replayed.\n- The complete small oracle checks 116,400 port assignments, both orientations, all 2,796 restoring cases and every two/three-read mask. Four complete words pass 552 dirty forward/inverse pairs; all 356 omission/port/direction variants reject.\n- Registered Python 3.12 replay, three behavioral groups, broad pinned Ruff diagnostics, committed-byte/source-history checks and optimized Git-free replays pass. Exact inputs, commands, limits and controls are in README.md, PROOF.md, VALIDATION.md and the two receipts.\n- [Canonical investigation](https://github.com/CrocSwap/integer-mult-bounds/discussions/2049#discussioncomment-19009368). Scientific base remains canonical `6f100d4bb5083f8c35d96fd95a539811c62f245c` after submission refresh. Unequal prices, physical admission, formal-kernel and independent human review remain unclaimed.\n\n## Merge Danger\n\n**Door:** two-way\n\n**Blast Radius:** package\n\nSelf-contained research verification only. Frozen predecessors, selected sources and shared tooling are unchanged.\n",
+  "created_at": "2026-10-18T01:35:26Z",
+  "updated_at": "2026-10-18T01:35:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

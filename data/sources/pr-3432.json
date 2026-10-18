@@ -1,0 +1,11 @@
+{
+  "number": 3432,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3432",
+  "title": "Research: rule out repeated-axis T740 redistributions (no kappa gain)",
+  "body": "## Result\n\nAdd a source-bound exact screen for the repeated-copy case left by orthogonal-axis isolation. For each of 112 owner-zero T740 port recipes, the package tests every count-preserving reassignment of each existing residual axis across the 20 residual-child slots. A six-column meet-in-the-middle signature narrows the search; every surviving assignment is replayed against the full exact eight-stream operator.\n\nThe receipts cover 14,089,152 balanced occupancy patterns, 5,730,304 meet states and 26,880 full-matrix replays. No nontrivial pattern preserves the operator. This is a scoped negative result: **no κ improvement, supplier admission or selected-frontier change**.\n\n## Validation\n\n- `python3.12 -B scripts/research_package.py --package research/t740-axis-redistribution-mitm-obstruction` — registered two-half replay passes.\n- `python3.12 -B scripts/research_package.py --package research/t740-axis-redistribution-mitm-obstruction --check-only` — passes.\n- `python3.12 -B scripts/check_research_commit.py --package research/t740-axis-redistribution-mitm-obstruction --check-source-history` — passes.\n\nThe verifier reuses PR3187/PR3148 operator semantics. Its scope fixes the axis dictionary, translations, hosting, bridges, chronology and owner replica; it is not an all-size theorem or a universal multiplication barrier. The README and TASK record the next structural direction: jointly change a small phase dictionary and an actual bridge, then price the full replacement.\n\nBase main refreshed immediately before publication: `6f100d4bb5083f8c35d96fd95a539811c62f245c`; no priority-input changes.\n",
+  "created_at": "2026-10-18T01:35:44Z",
+  "updated_at": "2026-10-18T01:35:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

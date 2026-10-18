@@ -1,0 +1,11 @@
+{
+  "number": 3433,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3433",
+  "title": "Record the cut coefficient of register 359",
+  "body": "## Summary\n- Starting from `1`, the scalar coefficient of register 359 is `-1` after event 9545, `0` after event 9549, and `1` after event 24433.\n- Immediately before the fault the coefficient is `1`, so the literal amplitude `256` is unchanged. The data register contributes `0`, and register 39 holds `-4`.\n- No selected frontier change and no new exponent. The restoring source is not traced.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-cut-coefficient/verify.py`\n- [x] `python3.12 -B research/qq16-cut-coefficient/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-cut-coefficient`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T01:36:57Z",
+  "updated_at": "2026-10-18T01:36:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

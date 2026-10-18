@@ -1,0 +1,11 @@
+{
+  "number": 3424,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3424",
+  "title": "Record the first component of native frame 1",
+  "body": "## Summary\n- Stored frame 1 is the nine axes `[256, 128, 64, 32, 16, 8, 4, 2, 1]`.\n- The published formula returns the unnormalized constant vector for rank 9, so the first component is real `1`, imaginary `0`, at exponent `0`.\n- No selected frontier change and no new exponent. The other 1,003 frames are not evaluated.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-frame1-component/verify.py`\n- [x] `python3.12 -B research/qq16-frame1-component/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-frame1-component`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T01:23:42Z",
+  "updated_at": "2026-10-18T01:23:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
