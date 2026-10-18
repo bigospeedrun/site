@@ -134,6 +134,36 @@ test('unknown model retries 4.6 once with compatible options; billing does not r
   assert.doesNotMatch(await response.text(), /credit balance|private detail|placeholder/);
 });
 
+test('requests use medium effort on both models, and the fallback is a current model', async () => {
+  assert.equal(CHAT_MODEL, 'claude-sonnet-5-5'); assert.equal(FALLBACK_MODEL, 'claude-haiku-5-5');
+  const bodies: Record<string, any>[] = [];
+  const handler = setup(async (_url, init) => {
+    bodies.push(JSON.parse(String(init?.body)));
+    return bodies.length === 1 ? Response.json({error: {type: 'not_found_error', message: 'model: x'}}, {status: 404}) : fixtureStream([textEvent('Reply')]);
+  });
+  assert.match(await (await handler(request())).text(), /\[DONE\]/);
+  assert.deepEqual(bodies.map(b => b.model), [CHAT_MODEL, FALLBACK_MODEL]);
+  for (const body of bodies) assert.deepEqual(body.output_config, {effort: 'medium'});
+  assert.deepEqual(bodies[0].thinking, {type: 'between_tools'}); assert.equal(bodies[1].thinking, undefined);
+});
+
+test('thinking events are not forwarded, and a refusal reads as an error reply', async (t) => {
+  const lines: unknown[][] = []; t.mock.method(console, 'warn', (...args: unknown[]) => { lines.push(args); });
+  const think = await setup(async () => fixtureStream([
+    {type: 'content_block_delta', delta: {type: 'thinking_delta', thinking: 'private reasoning'}},
+    {type: 'content_block_delta', delta: {type: 'signature_delta', signature: 'private-signature'}},
+    textEvent('Answer.'),
+  ]))(request());
+  const out = await think.text(); assert.match(out, /Answer\./); assert.match(out, /\[DONE\]/); assert.doesNotMatch(out, /private/);
+  const refused = await setup(async () => fixtureStream([
+    textEvent('private refusal text'), {type: 'message_delta', delta: {stop_reason: 'refusal'}},
+  ]))(request());
+  const refusal = await refused.text(); assert.match(refusal, /cannot answer that/); assert.doesNotMatch(refusal, /\[DONE\]/);
+  assert.deepEqual(lines, [['Chat provider call failed:', 200, 'refusal']]);
+  const empty = await setup(async () => fixtureStream([{type: 'message_delta', delta: {stop_reason: 'refusal'}}]))(request());
+  assert.match(await empty.text(), /cannot answer that/);
+});
+
 test('a failed provider call logs only the status and error type', async (t) => {
   const lines: unknown[][] = []; t.mock.method(console, 'warn', (...args: unknown[]) => { lines.push(args); });
   const limit = setup(async () => Response.json({error: {type: 'invalid_request_error', message: 'You have reached your specified API usage limits. private detail'}}, {status: 400}));

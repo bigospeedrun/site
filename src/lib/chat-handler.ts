@@ -1,7 +1,7 @@
 import {buildSystemPrompt, isKnownPage, type ChatKnowledge} from './chat-knowledge.ts';
 
 export const CHAT_MODEL = 'claude-sonnet-5-5';
-export const FALLBACK_MODEL = 'claude-sonnet-4-6';
+export const FALLBACK_MODEL = 'claude-haiku-5-5';
 export const MAX_BODY_BYTES = 32_768;
 export const MAX_MESSAGE_CHARS = 2_000;
 export const MAX_HISTORY = 20;
@@ -152,7 +152,8 @@ export function createChatHandler(options: Options) {
     const tag = exchangeTag();
     const requestModel = (model: string) => fetcher('https://api.anthropic.com/v1/messages', {
       method: 'POST', headers: {'Content-Type': 'application/json', 'x-api-key': options.apiKey!, 'anthropic-version': '2023-06-01'},
-      body: JSON.stringify({model, max_tokens: 1000, stream: true, messages,
+      // Nil order 2026-10-18: the latest Sonnet at medium effort. Effort is GA on both models.
+      body: JSON.stringify({model, max_tokens: 1000, stream: true, messages, output_config: {effort: 'medium'},
         ...(model === CHAT_MODEL ? {thinking: {type: 'between_tools'}} : {}),
         system: buildSystemPrompt(knowledge, page, logging)}),
       signal: controller.signal,
@@ -188,7 +189,7 @@ export function createChatHandler(options: Options) {
     let cancelled = false;
     return new Response(new ReadableStream<Uint8Array>({
       async start(output) {
-        let fullText = '', completed = false;
+        let fullText = '', completed = false, refused = false;
         const send = (value: unknown) => { if (!cancelled) output.enqueue(encoder.encode(`data: ${typeof value === 'string' ? value : JSON.stringify(value)}\n\n`)); };
         try {
           for await (const data of sseData(upstream.body!)) {
@@ -199,7 +200,14 @@ export function createChatHandler(options: Options) {
               if (fullText.length > 8_000) throw new Error('Reply too long');
               send({text: event.delta.text});
             }
+            if (event.type === 'message_delta' && event.delta?.stop_reason === 'refusal') refused = true;
             if (event.type === 'message_stop') { completed = true; break; }
+          }
+          if (refused) {
+            // A provider refusal reads as an error reply; log the fact only, never the text.
+            console.warn('Chat provider call failed:', 200, 'refusal');
+            send({error: 'The assistant cannot answer that. Please ask about the site, or read the FAQ.'});
+            return;
           }
           if (!completed || !fullText.trim()) throw new Error('Incomplete response');
           await visitorLog;
