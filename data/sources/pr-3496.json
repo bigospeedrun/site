@@ -1,0 +1,11 @@
+{
+  "number": 3496,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3496",
+  "title": "Record register 39 from the fault through the last event",
+  "body": "## Summary\n- From event 24438 through event 26098, register 39 has one scalar value change when register 359 starts at `1`. The fault addition takes it from `-4` to `0`.\n- Five later additions name the same register. Their sources hold `0`, so each contribution is `0`, and the value remains `0`. The data register contributes `0`.\n- No selected frontier change and no new exponent. The sources of those zero contributions are not traced.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-later-zero/verify.py`\n- [x] `python3.12 -B research/qq16-later-zero/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-later-zero`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:45:32Z",
+  "updated_at": "2026-10-18T03:45:32Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

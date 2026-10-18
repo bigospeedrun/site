@@ -1,0 +1,11 @@
+{
+  "number": 3500,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3500",
+  "title": "Apply the dimension-1 transfer to X102's readers",
+  "body": "## Summary\n- X102 has 16 dimension-1 readers among the 2,309 compatible edges. Those edges all use X102's initial line.\n- The dimension-1 relation joins exactly the edges on one line, so those 16 readers form a clique. One read-first transfer leaves X102 on those same 16 edges.\n- No selected frontier change and no new exponent. The dimension-2 relation is not built.\n\n## Test plan\n- [x] `python3.12 -B research/p104-first-transfer/verify.py`\n- [x] `python3.12 -B research/p104-first-transfer/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-first-transfer`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:58:06Z",
+  "updated_at": "2026-10-18T03:58:06Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

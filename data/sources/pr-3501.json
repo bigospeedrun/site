@@ -1,0 +1,11 @@
+{
+  "number": 3501,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3501",
+  "title": "Apply the dimension-2 transfer to X102's 16-edge state",
+  "body": "## Summary\n- The dimension-1 transfer leaves X102 on 16 edges: 7 through departure slot 204 and 9 through departure slot 205. Dimension 2 grants X102 no new read.\n- Slot 165, the second departure of channel 82, uses the same plane as slot 205, so the transfer adds slot 165's 9 edges. Slot 204's 7 edges stay on their own plane. The resulting count is 25.\n- No selected frontier change and no new exponent. The dimension-3 relation is not built.\n\n## Test plan\n- [x] `python3.12 -B research/p104-plane-transfer/verify.py`\n- [x] `python3.12 -B research/p104-plane-transfer/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-plane-transfer`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T04:00:30Z",
+  "updated_at": "2026-10-18T04:00:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

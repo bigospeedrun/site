@@ -1,0 +1,11 @@
+{
+  "number": 3495,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3495",
+  "title": "Record the sum written into register 39 at the fault",
+  "body": "## Summary\n- Immediately before event 24438, register 359 holds `1` and register 39 holds `-4` when register 359 starts at `1`. Their last writes are events 24433 and 24284.\n- The fault addition multiplies register 359 by `4` and contributes `4`. The sum in register 39 is `0`. The data register contributes `0` to both operands.\n- At the literal magnitude `256`, the operands are `256` and `-1024`, and the literal sum is `0`. No selected frontier change and no new exponent. Later changes of register 39 are not scanned.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-fault-sum/verify.py`\n- [x] `python3.12 -B research/qq16-fault-sum/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-fault-sum`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:41:46Z",
+  "updated_at": "2026-10-18T03:41:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

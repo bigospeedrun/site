@@ -1,0 +1,11 @@
+{
+  "number": 3492,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3492",
+  "title": "Record the one later change of register 39",
+  "body": "## Summary\n- From event 24284 through event 24437, register 39 has one scalar change when register 359 starts at `1`. Event 24284 takes it from `-2` to `-4`.\n- The other 153 scalar events in that window leave the value at `-4`. The data register contributes `0`. At the literal magnitude `256`, the held value is `-1024`.\n- No selected frontier change and no new exponent. Event 24438 is not applied.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-held-four/verify.py`\n- [x] `python3.12 -B research/qq16-held-four/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-held-four`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:37:20Z",
+  "updated_at": "2026-10-18T03:37:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

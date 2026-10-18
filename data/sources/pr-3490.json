@@ -1,0 +1,11 @@
+{
+  "number": 3490,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3490",
+  "title": "Record the value that doubles register 39 to -4",
+  "body": "## Summary\n- Immediately before event 24284, register 354 holds `-1` when register 359 starts at `1`. Its last write is event 20745. The data register contributes `0`.\n- The addition multiplies that value by `2` and contributes `-2`. Register 39 holds `-2`, so the sum is `-4`.\n- No selected frontier change and no new exponent. Changes of register 39 after this addition are not scanned.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-target-four/verify.py`\n- [x] `python3.12 -B research/qq16-target-four/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-target-four`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:31:22Z",
+  "updated_at": "2026-10-18T03:31:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

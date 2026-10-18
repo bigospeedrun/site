@@ -1,0 +1,11 @@
+{
+  "number": 3509,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3509",
+  "title": "Apply the dimension-4 transfer to X102's 52-edge state",
+  "body": "## Summary\n- The dimension-3 transfer leaves X102 on 52 edges. Dimension 4 grants X102 no new read.\n- The same interval bounds, tested at dimension 4, add 313 edges from 98 departure slots on 74 channels. The resulting count is 365.\n- No selected frontier change and no new exponent. The dimension-5 relation is not built. The receipt includes a SHA-256 digest of the 365 reached edge indices.\n\n## Test plan\n- [x] `python3.12 -B research/p104-fourth-transfer/verify.py`\n- [x] `python3.12 -B research/p104-fourth-transfer/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-fourth-transfer`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T04:12:50Z",
+  "updated_at": "2026-10-18T04:12:50Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
