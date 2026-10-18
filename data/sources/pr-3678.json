@@ -1,0 +1,11 @@
+{
+  "number": 3678,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3678",
+  "title": "Check the corrected scatter identity and its two invoices",
+  "body": "## Summary\n- The corrected word `U; scatter(U S); U^{-1}` satisfies `U^{-1}(U d + U S p) = d + S p`. The checker confirms this for the shear `U = [[1, 1], [0, 1]]` on nine integer pairs.\n- Three changed tetrads cost `167 + 18 = 185` scalar operations, and fourteen cost `794 + 84 = 878`. The sign scales are `6 · 3 = 18` and `6 · 14 = 84`.\n- The cut ADD counts move from 176 to 181 and from 176 to 214. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/scatter-basis-identity/verify.py`\n- [x] `python3.12 -B research/scatter-basis-identity/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/scatter-basis-identity`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:56:11Z",
+  "updated_at": "2026-10-18T13:56:11Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

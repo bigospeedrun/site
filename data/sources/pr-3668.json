@@ -1,0 +1,11 @@
+{
+  "number": 3668,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3668",
+  "title": "Add the published R437 histogram and compare its coefficient with the selected kappa",
+  "body": "## Summary\n- The profile `{1:380160, 2:400864, 3:22176, 4:26592, 5:29376, 6:17376, 7:26496, 34:64, 42:352}` has 903,456 children and rank mass 1,808,352.\n- Across 32 replicas the schedule hosts `32 · 3933 = 125856` helper occurrences, with width `32 · 888 = 28416` and physical width `28425`. Window 6 has `209 · 5 + 2 = 1047` occupied slots.\n- The BIT coefficient `868314126713557740143/500000000000000000000000 = 0.001736628253427115480286` is greater than the selected kappa. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/r437-histogram-mass/verify.py`\n- [x] `python3.12 -B research/r437-histogram-mass/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/r437-histogram-mass`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:31:32Z",
+  "updated_at": "2026-10-18T13:31:32Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

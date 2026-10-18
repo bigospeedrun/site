@@ -1,0 +1,11 @@
+{
+  "number": 3673,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3673",
+  "title": "Show the checked complex saving is half the consumed saving",
+  "body": "## Summary\n- The assembly consumes `a_complex = 717/10000000`, which is exactly twice the checked saving `717/20000000`.\n- The mutant adds five children to the last row, from `[756, 516232080]` to `[756, 516232085]`, with `m = 784` and `W = 537696432`.\n- A 24-term logarithm lower bound, rounded down on the `10^30` grid, and a degree-4 exponential polynomial put the consumed-saving moment above `1 + 4/10^10`. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/supplier-saving-half/verify.py`\n- [x] `python3.12 -B research/supplier-saving-half/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/supplier-saving-half`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:47:41Z",
+  "updated_at": "2026-10-18T13:47:41Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

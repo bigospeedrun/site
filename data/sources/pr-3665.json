@@ -1,0 +1,11 @@
+{
+  "number": 3665,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3665",
+  "title": "Check that the published centre columns cancel",
+  "body": "## Summary\n- Ports `(0, 6, 85)` have columns `(1,1,1,1,0,0,0,0)`, `(0,1,1,0,1,0,0,1)` and `(1,0,0,1,-1,0,0,-1)`, and `R_0 - R_6 - R_85 = 0`.\n- The per-owner factor is `112 - 8 = 104`. The even subgroup has order `16 · 15 · 17 = 4080`, so the block has `104 · 4080 = 424320` coordinates and the common kernel saves one of them.\n- The published census splits 896 triples into 56 of order 4080 and 840 larger ones. With the published 15-owner floor, the support lies in `[15, 4080]`. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/centre-column-relation/verify.py`\n- [x] `python3.12 -B research/centre-column-relation/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/centre-column-relation`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:27:22Z",
+  "updated_at": "2026-10-18T13:27:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3661,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3661",
+  "title": "Add the published T450 allocation and compare its root with the selected kappa",
+  "body": "## Summary\n- The published order joins 37 replicas with 8 replicas and takes ten copies: `10 · (37 + 8) = 450`. The schedule is `450 · 9 = 4,050` calls and `4,050 · 408 = 1,652,400` roles.\n- The profile `{1:9983580, 2:2940300, 3:936579, 4:413100, 5:87495, 8:32400, 48:172221}` has 14,565,675 children and rank mass 29,289,600.\n- The conditional root `0.001730047552093344159584 − 10^(−46) − 10^(−70)` is greater than the T740 root `0.001730006549538841847005` and greater than the selected kappa. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/t450-replica-count/verify.py`\n- [x] `python3.12 -B research/t450-replica-count/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/t450-replica-count`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:23:45Z",
+  "updated_at": "2026-10-18T13:23:45Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

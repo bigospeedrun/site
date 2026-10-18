@@ -1,0 +1,11 @@
+{
+  "number": 3666,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3666",
+  "title": "Multiply the published H6 sector dimensions",
+  "body": "## Summary\n- The idempotent ranks `1, 8, 35, 112, 84` sum to 240. The six sector dimensions `2·8·1`, `2·112·1`, `2·8·35`, `2·112·35`, `2·8·84` and `2·112·84` sum to `120 · 240 = 28800`.\n- The first three sectors, the ones that survive at `u = v = 0`, sum to 800. The remaining ports satisfy `28800 + 2160 = 30960`.\n- Width 17 costs `17 · 9424 = 160208` and `17 · 20400 = 346800`. Both exceed 30,960 ports, so the inherited deficit stays negative. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/h6-sector-dimensions/verify.py`\n- [x] `python3.12 -B research/h6-sector-dimensions/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/h6-sector-dimensions`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:29:15Z",
+  "updated_at": "2026-10-18T13:29:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3672,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3672",
+  "title": "Add the published R438 profile and its 132-unit local drop",
+  "body": "## Summary\n- The profile `{1:1298, 2:1342, 3:79, 4:44, 5:93, 6:11, 7:9}` has 2,876 paid children and rank mass 4,989.\n- The change `-9 e7 − 24 e1 − 9 e5` saves `9·7 + 24 + 9·5 = 132`, and `5121 − 132 = 4989`. Nine helper families take the dirty-helper count from 438 to 429.\n- Width-8 accounting returns `9 · 8 = 72` rank units per call, so the local drop is not a global saving. The ADD split `5758 + 5619 + 1499 + 347 = 13223` is down 11,025 from 24,248. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/r438-rank-drop/verify.py`\n- [x] `python3.12 -B research/r438-rank-drop/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/r438-rank-drop`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:38:30Z",
+  "updated_at": "2026-10-18T13:38:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
