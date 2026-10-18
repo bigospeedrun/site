@@ -1,0 +1,11 @@
+{
+  "number": 3587,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3587",
+  "title": "Reuse the coverage producer's stage list when its hash matches",
+  "body": "## Summary\n- The coverage checker parses `research/complex-sw4-frame8/verify.py` on every contract read. That producer names 22 top-level `run` stages.\n- Reusing the stage list when the source hash matches makes one hundred reads more than twice as fast. The cached list equals a fresh parse, and a changed producer is parsed again.\n- Partial result. No new kappa and no selected-frontier change. The frontier coverage command is not run.\n\n## Test plan\n- [x] `python3.12 -B research/replay-ast-cache/verify.py`\n- [x] `python3.12 -B research/replay-ast-cache/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/replay-ast-cache`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T07:06:20Z",
+  "updated_at": "2026-10-18T07:06:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

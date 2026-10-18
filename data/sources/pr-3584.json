@@ -1,0 +1,11 @@
+{
+  "number": 3584,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3584",
+  "title": "Accept an mtime-one gzip container by its payload digest",
+  "body": "## Summary\n- Level-9 gzip of one fixed payload differs in header bytes 4 through 7 when the mtime is 0 or 1. The digest of the mtime-zero container rejects the mtime-one container.\n- Both containers decompress to the same payload, sha256 `0ca09c6bea5b4320135b555d02c56d208cbb2d0cd699708d1dc3c57a0a376b60`. The payload digest accepts the alternate container.\n- Partial result. No new kappa and no selected-frontier change. The balanced-split verifier and the shipped archive are unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/gzip-mtime-payload/verify.py`\n- [x] `python3.12 -B research/gzip-mtime-payload/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gzip-mtime-payload`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T06:54:19Z",
+  "updated_at": "2026-10-18T06:54:19Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

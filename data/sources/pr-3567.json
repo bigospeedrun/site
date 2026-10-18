@@ -1,0 +1,11 @@
+{
+  "number": 3567,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3567",
+  "title": "Bound the tetrad alphabet's exhibited effective rank",
+  "body": "## Summary\n- The one-sided tetrad-local alphabet has copy floor 112 and term rank at most 4. Its completed identities have effective ranks 2 and 1.\n- The ideal rank-2 screen of the selected local mass stays under a 5% gain. The rank-4 screen clears that gain as the term-cap relaxation, and the note does not exhibit that identity.\n- Partial bound only. No new kappa and no decoder search.\n\n## Test plan\n- [x] `python3.12 -B research/tetrad-effective-rank/verify.py`\n- [x] `python3.12 -B research/tetrad-effective-rank/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/tetrad-effective-rank`\n- [ ] Maintainer replay on a full checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T06:24:48Z",
+  "updated_at": "2026-10-18T06:24:48Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

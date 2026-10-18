@@ -1,0 +1,11 @@
+{
+  "number": 3580,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3580",
+  "title": "Index the two P104 replays the live map omits",
+  "body": "## Summary\n- The family record points at the live P104 support map. That map separates the #3242 event-touch claim from the #3259 frame-support claim and does not name either on-main replay.\n- The touch replay keeps targets at or before event 410 and sources at or after event 488. The support replay keeps the missing pair `(Y71,X102)` at coefficient `-1/2`, and leaves changed covers outside that contract.\n- Partial result. No new kappa and no selected-frontier change. The map and the status page are unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/p104-obstruction-index/verify.py`\n- [x] `python3.12 -B research/p104-obstruction-index/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-obstruction-index`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T06:49:10Z",
+  "updated_at": "2026-10-18T06:49:10Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

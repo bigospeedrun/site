@@ -1,0 +1,11 @@
+{
+  "number": 3575,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3575",
+  "title": "Record the empty forward relay for flag 0",
+  "body": "## Summary\n- Flag 0 leaves basis head 232 at event 591. `Y34` first contains that head at event 3500, when `X0` is already on the coordinate basis.\n- The only shared registers are `Q3`, `Q4` and `Q6`. Each meets `Y34` before it meets `X0`, so the forward relay count is zero.\n- Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/p104-flag0-relay/verify.py`\n- [x] `python3.12 -B research/p104-flag0-relay/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-flag0-relay`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T06:40:37Z",
+  "updated_at": "2026-10-18T06:40:37Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

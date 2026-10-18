@@ -1,0 +1,11 @@
+{
+  "number": 3588,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3588",
+  "title": "Record that the R439 scalar drop leaves the paid histogram unchanged",
+  "body": "## Summary\n- The four recorded R439 words have native ADD counts 11,783, 11,515, 11,500 and 11,715. Each word has nine rank-7 copies.\n- The owner check compares every word with one paid profile of rank mass 5,129. The certificate claims no new kappa.\n- Partial result. No new kappa and no selected-frontier change. The 661-column replay is not rerun.\n\n## Test plan\n- [x] `python3.12 -B research/r439-scalar-histogram/verify.py`\n- [x] `python3.12 -B research/r439-scalar-histogram/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/r439-scalar-histogram`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T07:08:45Z",
+  "updated_at": "2026-10-18T07:08:45Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

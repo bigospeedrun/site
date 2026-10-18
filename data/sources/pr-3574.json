@@ -1,0 +1,11 @@
+{
+  "number": 3574,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3574",
+  "title": "Bound the P104 rank-1 hosting threshold",
+  "body": "## Summary\n- The native channel mass is 2,368. The 208 unit-step helpers add 1,872, for local mass 4,240 and idle mass 2,472.\n- At the selected saving that bill has moment 0.9988962438816702, below one. Extra rank-1 hosting of 1,126 stays below one, and 1,127 goes above.\n- Partial threshold only. No new kappa and no flag-matching replay.\n\n## Test plan\n- [x] `python3.12 -B research/p104-hosting-threshold/verify.py`\n- [x] `python3.12 -B research/p104-hosting-threshold/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-hosting-threshold`\n- [ ] Maintainer replay on a full checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T06:35:49Z",
+  "updated_at": "2026-10-18T06:35:49Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
