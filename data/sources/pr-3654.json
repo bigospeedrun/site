@@ -1,0 +1,11 @@
+{
+  "number": 3654,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3654",
+  "title": "Prove rank-1 deletions maximize the power-sum drop",
+  "body": "## Summary\n- At `a = 1/596`, a rank-1 step changes the power sum by exactly 1. For every rank from 2 through 73, one step changes it by strictly less than 1, because `z^595 < z^596` for `z = r/(r-1)`.\n- When the combined power sum is strictly larger than the forward sum, the second-derivative bracket in the pair count is bounded below by `U(16p + 16ap + 2 + 16a)`, which is positive for every integer `p ≥ 1`. The same bound holds at the selected kappa.\n- Partial result. The signed excess enclosure is left in the published receipt. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/rank-unit-deletion-order/verify.py`\n- [x] `python3.12 -B research/rank-unit-deletion-order/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank-unit-deletion-order`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:12:13Z",
+  "updated_at": "2026-10-18T13:12:13Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

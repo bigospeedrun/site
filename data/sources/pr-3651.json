@@ -1,0 +1,11 @@
+{
+  "number": 3651,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3651",
+  "title": "Prove the actual-width floors differ on perfect 500th powers",
+  "body": "## Summary\n- For `d >= 2`, `floor(d^(1/500))` and `floor((d-1)^(1/500))` differ exactly when `d` is a perfect 500th power. This is the matched-layer cut between the old layout and the actual-width plan.\n- At `d = 2^500` the floors are 2 and 1. At `2^500 + 1` they agree. The same locus holds for exponent 3 on widths 2 through 299.\n- Truncation, layout and host serialization stay unpriced. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/width-k-power-cut/verify.py`\n- [x] `python3.12 -B research/width-k-power-cut/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/width-k-power-cut`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T13:06:56Z",
+  "updated_at": "2026-10-18T13:06:56Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
