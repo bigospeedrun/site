@@ -1,0 +1,11 @@
+{
+  "number": 3407,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3407",
+  "title": "Research: prove the rational P112 three-query reader floor",
+  "body": "## Summary\n\n```diff\n P112: same PR3370 matrix K and actual complete-plane reader tariff\n- PR3398: seven canonical query directions, one binary seed\n+ arbitrary rational three-query bases, one independent binary seed\n sharp pair floor: m_A + m_B; disjoint replacements keep global tariff 224\n```\n\nThe analytic proof closes PR3398's arbitrary-rational-direction continuation for three independent queries. Mixed-reader cases have support-dominated integral replacements; full-reader cases use rank subadditivity. No denominator bound is assumed. Only `research/p112-rational-reader-pricing/` is added. Credit Tekalign/PR3370, PR3398, PR3383, PR3345, Philippe Van Velzen and the retained lineage.\n\n## Evidence\n\n- **Before:** PR3398 left arbitrary rational directions outside its canonical family open.\n  **After:** the written proof covers them; primary and separate author checks agree on 1,009 support-pattern classes, 496 literal pairs and eighteen exact rational fixtures. All 50,176 expanded identity entries pass.\n- Python 3.12.15 registered replay, Python 3.15 optimized checks, six behavioral groups with nine actual CLI corruption rejections, Ruff diagnostics/formatting, source-history and committed-byte checks pass. All three actual committed scripts pass in the read-only Git-free export with unchanged hashes.\n- Replay: `python3.12 -I -Werror -B scripts/research_package.py --package research/p112-rational-reader-pricing`. Sources, coefficients, proof, receipts and limits are included.\n\n## Merge Danger\n\n**Door:** two-way\n\n**Blast Radius:** isolated\n\nScoped tariff obstruction only. Multiple seeds, nonbinary seeds, dependent longer query lists and changed matrices remain open. No native execution cost, circuit optimum, supplier admission, new kappa or selected-frontier change is claimed. No independent human or proof-kernel review is claimed.\n",
+  "created_at": "2026-10-18T00:53:23Z",
+  "updated_at": "2026-10-18T00:53:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

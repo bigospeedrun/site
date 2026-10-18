@@ -1,0 +1,11 @@
+{
+  "number": 3404,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3404",
+  "title": "Record that the flag-0 source read has no owner",
+  "body": "## Summary\n- Event 5759 is `Y34 += -1/2 * X0` on the full frame. The add has five fields and no owner field.\n- The tail package's result, task and readme state that no global owner or host is assigned for the appended source reads.\n- No selected frontier change and no new exponent. This reading does not build a schedule.\n\n## Test plan\n- [x] `python3.12 -B research/p104-tail-flag0-owner/verify.py`\n- [x] `python3.12 -B research/p104-tail-flag0-owner/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-tail-flag0-owner`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T00:49:46Z",
+  "updated_at": "2026-10-18T00:49:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

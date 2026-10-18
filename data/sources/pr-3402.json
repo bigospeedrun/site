@@ -1,0 +1,11 @@
+{
+  "number": 3402,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3402",
+  "title": "Check the flag-0 restore recipe against its frame operator",
+  "body": "## Summary\n- Event 5807 returns `Y34` from the full frame to its rank-8 frame. Target 34's stored restore recipe is rank 1 and has 9 gates.\n- The operator of the swapped physical frames has 21 gates. The two operators have the same signed Pauli tableau and the same exact global phase.\n- No selected frontier change and no new exponent. The source read at event 5759 still has no owner in this reading.\n\n## Test plan\n- [x] `python3.12 -B research/p104-tail-flag0-restore/verify.py`\n- [x] `python3.12 -B research/p104-tail-flag0-restore/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-tail-flag0-restore`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T00:46:26Z",
+  "updated_at": "2026-10-18T00:46:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

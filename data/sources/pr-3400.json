@@ -1,0 +1,11 @@
+{
+  "number": 3400,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3400",
+  "title": "Check the flag-0 promote recipe against its frame operator",
+  "body": "## Summary\n- Target 34's stored promote recipe is rank 1 and has 9 gates. The operator built from its physical frames has 21 gates.\n- Those two operators have the same signed Pauli tableau and the same exact global phase under the pinned native checker.\n- The label isometry is not recomputed. No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/p104-tail-flag0-recipe/verify.py`\n- [x] `python3.12 -B research/p104-tail-flag0-recipe/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-tail-flag0-recipe`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T00:39:21Z",
+  "updated_at": "2026-10-18T00:39:21Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
