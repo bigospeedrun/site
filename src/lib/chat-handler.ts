@@ -172,8 +172,10 @@ export function createChatHandler(options: Options) {
         const failure = await upstream.json().catch(() => null);
         failureType = failure?.error?.type;
         const unavailableType = ['not_found_error', 'permission_error'].includes(failure?.error?.type);
-        if (/model/i.test(String(failure?.error?.message)) && (unavailableType || /not found|not exist|not available|invalid model|unknown model|access/i.test(String(failure?.error?.message))))
+        if (/model/i.test(String(failure?.error?.message)) && (unavailableType || /not found|not exist|not available|invalid model|unknown model|access/i.test(String(failure?.error?.message)))) {
+          failureType = undefined; // the fallback's own failure gets its own type
           upstream = await requestModel(FALLBACK_MODEL);
+        }
       }
       if (!upstream.ok || !upstream.body) {
         if (failureType === undefined) failureType = (await upstream.json().catch(() => null))?.error?.type;

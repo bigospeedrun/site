@@ -146,12 +146,17 @@ test('a failed provider call logs only the status and error type', async (t) => 
   assert.equal((await html(request())).status, 502);
   const thrown = setup(async () => { throw new TypeError('fetch failed: private detail'); });
   assert.equal((await thrown(request())).status, 502);
+  // A failing fallback model logs its own type, not the first answer's.
+  let n = 0;
+  const fallback = setup(async () => Response.json(++n === 1 ? {error: {type: 'not_found_error', message: 'model: private'}} : {error: {type: 'overloaded_error'}}, {status: n === 1 ? 404 : 529}));
+  assert.equal((await fallback(request())).status, 502); assert.equal(n, 2);
   assert.deepEqual(lines, [
     ['Chat provider call failed:', 400, 'invalid_request_error'],
     ['Chat provider call failed:', 529, 'overloaded_error'],
     ['Chat provider call failed:', 500, 'unknown'],
     ['Chat provider call failed:', 502, 'unknown'],
     ['Chat provider call failed:', 'TypeError', 'unknown'],
+    ['Chat provider call failed:', 529, 'overloaded_error'],
   ]);
   assert.doesNotMatch(JSON.stringify(lines), /private|placeholder|usage limits|How do I submit/);
 });
