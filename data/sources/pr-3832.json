@@ -1,0 +1,11 @@
+{
+  "number": 3832,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3832",
+  "title": "Record the prefix-mask basis",
+  "body": "## Summary\n- The prefix masks `M_t = 2^(t+1) - 1` form a basis: every mask in dimensions 1 through 20 has exactly one subset whose XOR equals it.\n- That subset is the set of positions where consecutive bits differ, taking the bit past the top as zero. Its size is `2 * (number of 1-runs)` minus one when the low bit is set. A lone low bit has one boundary; every other single bit has two. There are 2,097,150 masks.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/prefix-mask-basis/verify.py`\n- [x] `python3.12 -B research/prefix-mask-basis/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/prefix-mask-basis`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T22:23:43Z",
+  "updated_at": "2026-10-18T22:23:43Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

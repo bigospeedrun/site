@@ -1,0 +1,11 @@
+{
+  "number": 3846,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3846",
+  "title": "Record which transvection products the bridge reducer finishes",
+  "body": "## Summary\n- The published integer row reducer finishes all 24 plus-or-minus-one transvections on four wires.\n- Of their 576 determinant-one products, 564 reduce to the identity, 6 return no operations, and 6 stop when a column has no pivot.\n- The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/bridge-reducer-gap/verify.py`\n- [x] `python3.12 -B research/bridge-reducer-gap/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/bridge-reducer-gap`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T22:53:28Z",
+  "updated_at": "2026-10-18T22:53:28Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

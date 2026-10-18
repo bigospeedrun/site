@@ -1,0 +1,11 @@
+{
+  "number": 3838,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3838",
+  "title": "Record the stage-2 break-even offset",
+  "body": "## Summary\n- Each of the five printed stage-2 extraction margins equals the negation of its price minus 2,091,300.\n- The two prices, −2,101,683 and −2,106,679, and the two margins, 10,383 and 15,379, differ by 4,996. The five prices sum to −10,523,403.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/stage2-breakeven/verify.py`\n- [x] `python3.12 -B research/stage2-breakeven/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/stage2-breakeven`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T22:34:44Z",
+  "updated_at": "2026-10-18T22:34:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

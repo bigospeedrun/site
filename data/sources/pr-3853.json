@@ -1,0 +1,11 @@
+{
+  "number": 3853,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3853",
+  "title": "Record the source indices of a rounded target window",
+  "body": "## Summary\n- For denominators 2 through 20 and numerators strictly between the denominator and its double, every target window with endpoints at most 13 pulls back to the published ceiling interval.\n- The check covers 17,290 windows and uses only integer arithmetic. The rounding is nondecreasing on each scanned range.\n- The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/source-window-index/verify.py`\n- [x] `python3.12 -B research/source-window-index/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/source-window-index`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T23:11:48Z",
+  "updated_at": "2026-10-18T23:11:48Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

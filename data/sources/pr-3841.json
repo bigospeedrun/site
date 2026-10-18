@@ -1,0 +1,11 @@
+{
+  "number": 3841,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3841",
+  "title": "Record the printed V45 margin ladder",
+  "body": "## Summary\n- The printed V45 margins for one through four helpers, −53,141 / −27,770 / −2,399 / +22,972, form an arithmetic progression with difference 25,371.\n- The four-helper value is the printed joint margin. The five joint prices sum to −46,150,994.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/v45-margin-ladder/verify.py`\n- [x] `python3.12 -B research/v45-margin-ladder/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/v45-margin-ladder`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T22:40:29Z",
+  "updated_at": "2026-10-18T22:40:29Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

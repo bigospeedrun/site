@@ -1,0 +1,11 @@
+{
+  "number": 3847,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3847",
+  "title": "Record the even source-call count on overlapping windows",
+  "body": "## Summary\n- Consecutive length-two windows through ten outputs have hitting number `ceil(k/2)`, and the even source-call count is twice that number rounded up.\n- Prices `(1, 9, 1)` cost 6; one shared-slot call plus an outside close costs 14, and two shared-slot calls cost 22.\n- The six-output scalar pilot uses 70 gates, the disjoint windows use 84, and the per-output close uses 126. The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/window-chain-source-count/verify.py`\n- [x] `python3.12 -B research/window-chain-source-count/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/window-chain-source-count`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T22:58:13Z",
+  "updated_at": "2026-10-18T22:58:13Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

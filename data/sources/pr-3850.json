@@ -1,0 +1,11 @@
+{
+  "number": 3850,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3850",
+  "title": "Record the signed deficit of the retained full-target schedule",
+  "body": "## Summary\n- For pair counts 1 through 24, the retained recipe's idle ranks sum to `7(2K+1)(K-1)`.\n- A full target on every port leaves capacity short by one rank per port and replica. At 111 ports and 32 replicas the deficit is `-3552`.\n- The rank-seven local profile leaves a deficit equal to the live width. The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/retained-schedule-deficit/verify.py`\n- [x] `python3.12 -B research/retained-schedule-deficit/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/retained-schedule-deficit`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T23:07:08Z",
+  "updated_at": "2026-10-18T23:07:08Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

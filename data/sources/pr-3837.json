@@ -1,0 +1,11 @@
+{
+  "number": 3837,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3837",
+  "title": "Record the printed rank-7 pattern cover",
+  "body": "## Summary\n- The ten printed rank-7 patterns cover nine copies of the width inventory `{4:26, 5:2, 6:16, 7:52, 8:99, 9:213}` on every width: 234, 18, 144, 468, 891 and 1917 slots.\n- Those six widths cover 3,672 slots, and the ten multiplicities sum to 2,016. The printed swap has width multiset `{7,7,8,8,9,9}` on both sides.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/rank7-basis-cover/verify.py`\n- [x] `python3.12 -B research/rank7-basis-cover/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank7-basis-cover`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T22:32:48Z",
+  "updated_at": "2026-10-18T22:32:48Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
