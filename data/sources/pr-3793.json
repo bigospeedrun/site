@@ -1,0 +1,11 @@
+{
+  "number": 3793,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3793",
+  "title": "Record the normalized COPY floor",
+  "body": "## Summary\n- The pairing rank is at least the sum of the two dimensions minus the ambient dimension, and the nine-bit dot product is nondegenerate.\n- For normalized ranks 8+s and 8+t with s and t in {0,1}, Sylvester's bound forces COPY at least 72. The orthogonal frame has eight terms of cost 9.\n- Partial, no new kappa. This records that floor. It does not exhaust the character pairs.\n\n## Test plan\n- [x] `python3.12 -B research/copy-floor-arithmetic/verify.py`\n- [x] `python3.12 -B research/copy-floor-arithmetic/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/copy-floor-arithmetic`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:16:53Z",
+  "updated_at": "2026-10-18T21:16:53Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

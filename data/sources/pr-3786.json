@@ -1,0 +1,11 @@
+{
+  "number": 3786,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3786",
+  "title": "Record the six-label central triple floor",
+  "body": "## Summary\n- Every nonzero coefficient pair, including `w^2`, has a four-call commutator, and the existing twelve-call word still realizes the central triple.\n- The stacked image of coefficients `1`, `w` and `w^2` is still at least three-dimensional on each side, so the floor remains six X-type calls and six Y-type calls.\n- Partial, no new kappa. This records that floor. It does not search words.\n\n## Test plan\n- [x] `python3.12 -B research/six-label-central-floor/verify.py`\n- [x] `python3.12 -B research/six-label-central-floor/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/six-label-central-floor`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T20:59:21Z",
+  "updated_at": "2026-10-18T20:59:21Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

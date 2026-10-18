@@ -1,0 +1,11 @@
+{
+  "number": 3790,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3790",
+  "title": "Record the FFT word parameter bounds",
+  "body": "## Summary\n- For every width from 2 through 65536 and at width 1000000, the digit ring sits between twice and four times the digit count, and every product coefficient has one spare leading bit.\n- The direct screen is 799/500, above one. The absorbed power 9981/10000 lies under the Fourier power by 17619697/100000000000.\n- Partial, no new kappa. This records these bounds. It does not run the word multiplier.\n\n## Test plan\n- [x] `python3.12 -B research/fft-word-parameter-bounds/verify.py`\n- [x] `python3.12 -B research/fft-word-parameter-bounds/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/fft-word-parameter-bounds`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:09:47Z",
+  "updated_at": "2026-10-18T21:09:47Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

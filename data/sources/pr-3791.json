@@ -1,0 +1,11 @@
+{
+  "number": 3791,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3791",
+  "title": "Record the six-owner centre repair count",
+  "body": "## Summary\n- Three outputs each need two further owners, and one pair of owners meets in at most one output, so a joint kernel vector needs at least seven owners.\n- The complement of the eight pivot columns has 104 ports, so a repair block of size b at most six needs exactly 104b coordinates.\n- Partial, no new kappa. This records that count. It does not enumerate the route products.\n\n## Test plan\n- [x] `python3.12 -B research/six-owner-repair-count/verify.py`\n- [x] `python3.12 -B research/six-owner-repair-count/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/six-owner-repair-count`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:12:18Z",
+  "updated_at": "2026-10-18T21:12:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

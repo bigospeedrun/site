@@ -1,0 +1,11 @@
+{
+  "number": 3792,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3792",
+  "title": "Record the trace-zero call floor",
+  "body": "## Summary\n- There are 21 trace-zero rank-one matrices on three bits. An explicit pair has diagonal zero and cross scalar one, so a trace-zero factor can feed the corner.\n- The stacked rank does not read that diagonal, so each side still needs six calls. The twelve-call word still attains the bound.\n- Partial, no new kappa. This records that floor. It does not search words.\n\n## Test plan\n- [x] `python3.12 -B research/nilpotent-call-floor/verify.py`\n- [x] `python3.12 -B research/nilpotent-call-floor/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/nilpotent-call-floor`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:14:49Z",
+  "updated_at": "2026-10-18T21:14:49Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

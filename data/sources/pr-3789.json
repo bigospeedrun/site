@@ -1,0 +1,11 @@
+{
+  "number": 3789,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3789",
+  "title": "Record the one-coset orbit deficiency budget",
+  "body": "## Summary\n- Nine weight orbits and one hundred forbidden pair profiles each have scalar rank 8, so a compatible pair cannot carry one of those profiles.\n- Nine explicit column shifts have distinct supports and deficiency sum 9, which meets the one-coset budget.\n- Partial, no new kappa. This records that budget. It does not exhaust the character pairs.\n\n## Test plan\n- [x] `python3.12 -B research/one-coset-orbit-budget/verify.py`\n- [x] `python3.12 -B research/one-coset-orbit-budget/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/one-coset-orbit-budget`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:06:31Z",
+  "updated_at": "2026-10-18T21:06:31Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
