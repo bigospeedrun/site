@@ -159,7 +159,7 @@ test('thinking events are not forwarded, and a refusal reads as an error reply',
   const refused = await setup(async () => fixtureStream([
     textEvent('private refusal text'), {type: 'message_delta', delta: {stop_reason: 'refusal'}},
   ]))(request());
-  const refusal = await refused.text(); assert.match(refusal, /cannot answer that/); assert.doesNotMatch(refusal, /\[DONE\]/);
+  const refusal = await refused.text(); assert.match(refusal, /cannot answer that/); assert.match(refusal, /"refused":true/); assert.doesNotMatch(refusal, /\[DONE\]/);
   assert.deepEqual(lines, [['Chat provider call failed:', 200, 'refusal']]);
   const empty = await setup(async () => fixtureStream([{type: 'message_delta', delta: {stop_reason: 'refusal'}}]))(request());
   assert.match(await empty.text(), /cannot answer that/);

@@ -207,7 +207,7 @@ export function createChatHandler(options: Options) {
           if (refused) {
             // A provider refusal reads as an error reply; log the fact only, never the text.
             console.warn('Chat provider call failed:', 200, 'refusal');
-            send({error: 'The assistant cannot answer that. Please ask about the site, or read the FAQ.'});
+            send({error: 'The assistant cannot answer that. Please ask about the site, or read the FAQ.', refused: true});
             return;
           }
           if (!completed || !fullText.trim()) throw new Error('Incomplete response');

@@ -115,7 +115,7 @@ export function initChatbot() {
     controller = new AbortController();
     const timeout = setTimeout(() => controller?.abort(), 55_000);
     const bot = addMessage('assistant', '');
-    let reply = '', completed = false, buffer = '';
+    let reply = '', completed = false, buffer = '', refused = false;
     try {
       const response = await fetch('/api/chat', {
         method: 'POST', headers: {'Content-Type': 'application/json'}, signal: controller.signal,
@@ -141,7 +141,11 @@ export function initChatbot() {
             if (!data) continue;
             if (data === '[DONE]') { completed = true; break; }
             const event = JSON.parse(data);
-            if (event.error) throw new Error('The reply was interrupted. Please try again.');
+            if (event.error) {
+              // The server sends fixed short texts; a refusal also sets event.refused and keeps no retry text.
+              refused = event.refused === true;
+              throw new Error(typeof event.error === 'string' && event.error.length <= 200 ? event.error : 'The reply was interrupted. Please try again.');
+            }
             if (typeof event.text === 'string') {
               reply += event.text;
               if (reply.length > 8_000) throw new Error('The reply is too long.');
@@ -162,7 +166,7 @@ export function initChatbot() {
     } catch (err) {
       bot.remove();
       status.textContent = controller.signal.aborted ? 'The reply stopped. Send the message again to retry.' : err instanceof Error ? err.message : 'The chat is unavailable. Please try again.';
-      input.value = content;
+      if (!refused) input.value = content;
     } finally {
       clearTimeout(timeout); controller = null; busy = false; controls();
       if (!panel.hidden && config?.available) input.focus();
