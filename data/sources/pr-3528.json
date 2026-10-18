@@ -1,0 +1,11 @@
+{
+  "number": 3528,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3528",
+  "title": "Evaluate the bit-motif parking node at Psi one half",
+  "body": "## Summary\n- The bit-motif parking schedule makes one recursive call per unit of edge rank, each of width `e/m`. The child list is `177176569088785861287000000` copies of width 1.\n- The modulus is `1000000` and the role count is `177176569091445000000`. At `tau = 1/2`, Psi equals `22587334999661/22587335000`, which is greater than 1.\n- No network replay and no new exponent. The manuscript's own exponent `1-2^{-50}` is not evaluated here.\n\n## Test plan\n- [x] `python3.12 -B research/uniform-parking-psi/verify.py`\n- [x] `python3.12 -B research/uniform-parking-psi/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/uniform-parking-psi`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T04:49:21Z",
+  "updated_at": "2026-10-18T04:51:46Z",
+  "closed_at": "2026-10-18T04:51:45Z",
+  "merged_at": "2026-10-18T04:51:45Z",
+  "state": "closed"
+}

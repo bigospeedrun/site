@@ -1,0 +1,11 @@
+{
+  "number": 3540,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3540",
+  "title": "Research: add sparse four-endpoint observability census",
+  "body": "This extends the exact observability census on PR2979's changed word from pairs and triples to all 211,876 four-class supports of rank-seven endpoints. A complete GF(3) screen finds 1,353 candidates; each is rechecked over the rationals on both pinned word orientations.\n\nThe census adds six exact readout identities beyond the triple block. Four use five input coordinates; all six span the same five-dimensional space using nine terminal registers across seven endpoint classes. This suggests a sparse multi-endpoint interface that could avoid constructing a common rank-nine register, if a real caller can consume it directly.\n\nNo downstream consumer, physical realization, complete recursive invoice, or kappa improvement is claimed. The selected kappa remains 0.001672660197076918. This is a scoped follow-up to PR2979 and the pooling boundary explicitly left open by PR3172; it does not claim the general pooling idea as novel.\n\nValidation: `python3.12 scripts/research_package.py --package research/cross-endframe-observability`; `python3 scripts/check_research_commit.py --package research/cross-endframe-observability`.\n",
+  "created_at": "2026-10-18T05:11:26Z",
+  "updated_at": "2026-10-18T05:11:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

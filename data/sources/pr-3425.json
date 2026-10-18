@@ -4,8 +4,8 @@
   "title": "Record the initial amplitude of register 359",
   "body": "## Summary\n- The literal execution assigns register 359 the scalar `256` and expands it by scaling the constant vector.\n- The first amplitude of that expansion is real `256`, imaginary `0`, at exponent `0`.\n- The saved receipt stores the scalar and not the amplitude. No selected frontier change and no new exponent. The 26,099 events are not replayed.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-literal-amplitude/verify.py`\n- [x] `python3.12 -B research/qq16-literal-amplitude/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-literal-amplitude`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T01:26:26Z",
-  "updated_at": "2026-10-18T01:26:26Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:49:34Z",
+  "closed_at": "2026-10-18T04:49:34Z",
+  "merged_at": "2026-10-18T04:49:34Z",
+  "state": "closed"
 }

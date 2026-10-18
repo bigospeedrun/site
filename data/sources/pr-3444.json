@@ -4,8 +4,8 @@
   "title": "Record the copied value that halves register 360",
   "body": "## Summary\n- Immediately before event 11810, register 356 holds `1` when register 359 starts at `1`. The data register contributes `0`.\n- Event 11809 copies that `1` from register 360. Event 11810 multiplies the copy by `-1/2` and contributes `-1/2` to register 360.\n- No selected frontier change and no new exponent. The addition that first placed this `1` into register 360 is not traced.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-adjacent-copy/verify.py`\n- [x] `python3.12 -B research/qq16-adjacent-copy/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-adjacent-copy`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T01:54:56Z",
-  "updated_at": "2026-10-18T01:54:56Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:48Z",
+  "closed_at": "2026-10-18T04:51:47Z",
+  "merged_at": "2026-10-18T04:51:47Z",
+  "state": "closed"
 }

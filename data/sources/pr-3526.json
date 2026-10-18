@@ -1,0 +1,11 @@
+{
+  "number": 3526,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3526",
+  "title": "Show that dividing by W does not bound the normalized recurrence",
+  "body": "## Summary\n- The transfer review proves `F(e) <= A e^tau` when `Psi(tau) < 1`. The factor `1/W` is the normalization named in the audit.\n- Four children of width 2, two roles and modulus 4 satisfy `1 <= t < m`. At `tau = 1/2`, the square of Psi is 2. The recurrence equals 3 at width 8, and `9 > 8`.\n- One child of width 1, four roles and modulus 4 has Psi `1/8` and stays within allowance `8/7` through width 64. No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/uniform-w-bound/verify.py`\n- [x] `python3.12 -B research/uniform-w-bound/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/uniform-w-bound`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T04:45:32Z",
+  "updated_at": "2026-10-18T04:51:46Z",
+  "closed_at": "2026-10-18T04:51:45Z",
+  "merged_at": "2026-10-18T04:51:45Z",
+  "state": "closed"
+}

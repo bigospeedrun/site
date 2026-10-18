@@ -4,8 +4,8 @@
   "title": "Count the intersection of the X102 and Y71 cones",
   "body": "## Summary\n- The dimension-5 transfer leaves X102 on 1,725 edges. Y71 has 12 dimension-8 writers, through arrival slots 142 and 143.\n- Expanding through dimensions 8, 7 and 6 leaves 12, then 22, then 37 backward edges. Their intersection with the 1,725 forward edges is empty.\n- No selected frontier change and no new exponent. The other required pairs are not accumulated. The receipt includes a SHA-256 digest of the 37 backward edge indices.\n\n## Test plan\n- [x] `python3.12 -B research/p104-cone-cut/verify.py`\n- [x] `python3.12 -B research/p104-cone-cut/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-cone-cut`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T04:20:08Z",
-  "updated_at": "2026-10-18T04:20:08Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:46Z",
+  "closed_at": "2026-10-18T04:51:46Z",
+  "merged_at": "2026-10-18T04:51:46Z",
+  "state": "closed"
 }

@@ -1,0 +1,11 @@
+{
+  "number": 3530,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3530",
+  "title": "Certify the complex motif ratio below the manuscript power",
+  "body": "## Summary\n- The complex motif displays rank sum `s_c = 1873807244636671267308000000` and deficit `2(N - L_c)` with `L_c/N = 101/539`. Rebuilding that deficit recovers `eta = 73/19906842167500` and `s_c/W_c = m(1-eta)`.\n- `2^{50} eta` exceeds six times the ninth harmonic number, and that harmonic number exceeds `ln(10)`. For a width-1 list of length `s_c`, Psi at `sigma = 1-2^{-50}` is below 1.\n- No network replay and no new exponent. Both displayed motif ratios now clear the same logarithm bound.\n\n## Test plan\n- [x] `python3.12 -B research/uniform-complex-exponent/verify.py`\n- [x] `python3.12 -B research/uniform-complex-exponent/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/uniform-complex-exponent`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T04:56:00Z",
+  "updated_at": "2026-10-18T04:56:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

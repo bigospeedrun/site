@@ -1,0 +1,11 @@
+{
+  "number": 3541,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3541",
+  "title": "Fix retained-total output crashes in the partial-swap verifier",
+  "body": "Valid retained-total outputs currently crash `SharedPointCircuit.verify()`: `graph(6).verify()` raises `ValueError` because the optimized digest writer unpacks every target as a triple. The h25 producer reached by `make verify` uses singleton targets for retained totals.\n\nSerialize the target's integer entries at their actual arity, preserving the historical compact JSON bytes and every support/topology assertion. Add whole-receipt comparisons against the pre-optimization verifier at h=6,8,10,25, the frozen h25 scalar receipt, and a negative control that substitutes an incomplete sum for a retained total.\n\nRegenerate `partial-swap-network.json` with its existing generator: only the repaired source hash changes. Refresh the corresponding live pins in the two existing optimization suites; frozen baselines, source-provenance manifests and mathematical expectations remain unchanged.\n\nValidation: 16 focused tests pass; both registered optimization packages pass, including h46 equivalence and optimized-Python checks; the complete fresh h25 producer and copied CRT audit pass (96,273 matrix profiles). Details and hashes are in `docs/research/partial-swap-retained-total-fix.md`.\n\n`make verify` passes the repaired producer and geometry, then exits 2 at an independently confirmed pre-existing historical source-pin mismatch: the copied-fixed-reversed witness still pins the pre-optimization `shared.py`. That frozen manifest is preserved. The full sweep and selected cold replay are not claimed to pass.\n\nNo new κ, runtime gain, selected-record change, or complete theorem proof is claimed. Credits: Douglas R. Colkitt's underlying circuits, icekylinx's partial-swap adaptation, Wentao Li / VictorLiwentao's #2039 optimizations, and the h25 producer's credited predecessors. Prepared as SovereignSteak with OpenAI Codex assistance; existing licenses preserved.\n",
+  "created_at": "2026-10-18T05:12:43Z",
+  "updated_at": "2026-10-18T05:12:43Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -4,8 +4,8 @@
   "title": "Record the native value of dirty helper L359",
   "body": "## Summary\n- The native dirty-fault receipt sets `L359` to `T` times the unit constant payload, and its literal check uses `T = 256`.\n- With unit `1/1048576`, the stored maximum data error `1/1024` equals `4 u T` and the stored injection `1/512` equals `8 u T`.\n- No selected frontier change and no new exponent. The 512 components and the 1,004 frame vectors are not reconstructed.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-native-helper-value/verify.py`\n- [x] `python3.12 -B research/qq16-native-helper-value/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-native-helper-value`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T01:17:41Z",
-  "updated_at": "2026-10-18T01:17:41Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:49:35Z",
+  "closed_at": "2026-10-18T04:49:34Z",
+  "merged_at": "2026-10-18T04:49:34Z",
+  "state": "closed"
 }

@@ -1,0 +1,11 @@
+{
+  "number": 3539,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3539",
+  "title": "Show that the selected HPE binding accepts a self-partner tail gate",
+  "body": "## Summary\n- The hyperplane-end label statement requires the cleanup gate `h -= p` to use two different registers. The instance checker rejects `h == p`. The selected binding script does not read the partner index.\n- A synthetic 38-gate tail, using all three Lean pairs and coefficient `-1`, has one gate whose helper is its own partner. The binding rules accept it. A coefficient of `+1` is rejected.\n- The word is not an emitted supplier word. No Lean build and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/hpe-partner-binding/verify.py`\n- [x] `python3.12 -B research/hpe-partner-binding/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/hpe-partner-binding`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T05:10:51Z",
+  "updated_at": "2026-10-18T05:10:51Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

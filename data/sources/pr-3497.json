@@ -4,8 +4,8 @@
   "title": "Recompute the required X102 coefficient in Y71",
   "body": "## Summary\n- The archived fixed-cover correction has 4,992 nonzero entries. The entry for target Y71 and source X102 is `-4`, so its coefficient is `-1/2`.\n- The channel path of X102 has 5 frames and the path of Y71 has 7. Those frames are disjoint, so this pair has no direct contact.\n- No selected frontier change and no new exponent. The pooled recurrence and its 2,309 edges are not replayed.\n\n## Test plan\n- [x] `python3.12 -B research/p104-required-coefficient/verify.py`\n- [x] `python3.12 -B research/p104-required-coefficient/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-required-coefficient`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T03:52:10Z",
-  "updated_at": "2026-10-18T03:52:10Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:47Z",
+  "closed_at": "2026-10-18T04:51:46Z",
+  "merged_at": "2026-10-18T04:51:46Z",
+  "state": "closed"
 }

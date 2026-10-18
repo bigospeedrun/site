@@ -4,8 +4,8 @@
   "title": "Record the frames around the flag-0 tail add",
   "body": "## Summary\n- At the end of the channel prefix, `X0` holds `[1, 2, 4, 8, 16, 32, 64, 128, 256]` and `Y34` holds its rank-8 frame. The tail never writes `X0`.\n- Event 5758 promotes `Y34` onto that full frame. Event 5759 adds `-1/2` times `X0` there, and event 5807 restores the rank-8 frame. All 48 tail adds into `Y34` sit between those transports.\n- No selected frontier change and no new exponent. The transport is not compiled as a native recipe here.\n\n## Test plan\n- [x] `python3.12 -B research/p104-tail-flag0-frames/verify.py`\n- [x] `python3.12 -B research/p104-tail-flag0-frames/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-tail-flag0-frames`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-17T23:51:33Z",
-  "updated_at": "2026-10-17T23:51:33Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:49:35Z",
+  "closed_at": "2026-10-18T04:49:35Z",
+  "merged_at": "2026-10-18T04:49:35Z",
+  "state": "closed"
 }

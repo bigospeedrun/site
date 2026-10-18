@@ -4,8 +4,8 @@
   "title": "Match the flag-0 promotion to its compiled transport",
   "body": "## Summary\n- The compiled side-transport file has 208 rank-1 records. Target 34's promote record is the only one whose compressed frames are event 5758.\n- Target 34's restore record is the reverse pair, event 5807. The Clifford recipe is not replayed.\n- No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/p104-tail-flag0-transport/verify.py`\n- [x] `python3.12 -B research/p104-tail-flag0-transport/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-tail-flag0-transport`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T00:13:04Z",
-  "updated_at": "2026-10-18T00:13:04Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:49:35Z",
+  "closed_at": "2026-10-18T04:49:35Z",
+  "merged_at": "2026-10-18T04:49:35Z",
+  "state": "closed"
 }

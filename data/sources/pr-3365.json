@@ -4,8 +4,8 @@
   "title": "Record that the relay coefficient is the Gram boundary term",
   "body": "## Summary\n- For all 208 published flags, the channel addition replay ends with the Gram term `Q(inner(target root, source root), 2)`.\n- Flag 0 uses roots `[0, 0, 0, 0, 0, 2, 0, -2]` and `[1, -1, -1, -1, -1, 1, -1, -1]`. Their normalized inner product is 1, so the coefficient is 1/2.\n- The side correction remains outside this replay, and there is no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/p104-flag-gram-boundary/verify.py`\n- [x] `python3.12 -B research/p104-flag-gram-boundary/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-flag-gram-boundary`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-17T23:17:49Z",
-  "updated_at": "2026-10-17T23:17:49Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:49:35Z",
+  "closed_at": "2026-10-18T04:49:35Z",
+  "merged_at": "2026-10-18T04:49:35Z",
+  "state": "closed"
 }

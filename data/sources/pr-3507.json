@@ -4,8 +4,8 @@
   "title": "Apply the dimension-3 transfer to X102's 25-edge state",
   "body": "## Summary\n- The dimension-2 transfer leaves X102 on 25 edges, through departure slots 165, 204 and 205. Dimension 3 grants X102 no new read.\n- The interval transfer adds 27 edges across departure slots 10, 11, 20, 21, 77, 78, 79, 86, 87, 172, 173, 202 and 203. The resulting count is 52.\n- No selected frontier change and no new exponent. The dimension-4 relation is not built.\n\n## Test plan\n- [x] `python3.12 -B research/p104-third-transfer/verify.py`\n- [x] `python3.12 -B research/p104-third-transfer/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-third-transfer`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T04:04:05Z",
-  "updated_at": "2026-10-18T04:04:05Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:46Z",
+  "closed_at": "2026-10-18T04:51:46Z",
+  "merged_at": "2026-10-18T04:51:46Z",
+  "state": "closed"
 }

@@ -1,0 +1,11 @@
+{
+  "number": 3537,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3537",
+  "title": "Price nine coordinate calls beside one idle dirty auxiliary",
+  "body": "## Summary\n- On four roles, the nine factors `D_{E_ww}([E_ii])` multiply to `diag([I],[I],[I],[0])`. The fourth role is a dirty auxiliary and is restored because no factor writes it.\n- Every assignment of eight coordinate-projector calls leaves some data register with at most two frames, so that register cannot hold `I`.\n- The published span test still leaves dimensions 4, 5 and 6 open for a general eight-call word. This package does not classify the 120 four-register projectors. No new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/three-data-aux-direct/verify.py`\n- [x] `python3.12 -B research/three-data-aux-direct/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/three-data-aux-direct`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T05:07:34Z",
+  "updated_at": "2026-10-18T05:07:34Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -4,8 +4,8 @@
   "title": "Record the magnitude of dirty helper L359",
   "body": "## Summary\n- The F0 scalar fault witness sets dirty helper `L359` to `T` and, immediately before event 24438, sets `L39` to `-4T`.\n- The stored instruction adds 4 times `L359` into `L39`. All four stored completed defects equal `4*u*T`, for `T` a power of two equal to 1, 256, `2^64` or `2^256`.\n- No selected frontier change and no new exponent. The 26,099-event word is not replayed.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-dirty-helper-magnitude/verify.py`\n- [x] `python3.12 -B research/qq16-dirty-helper-magnitude/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-dirty-helper-magnitude`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T01:14:56Z",
-  "updated_at": "2026-10-18T01:14:56Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:49:34Z",
+  "closed_at": "2026-10-18T04:49:34Z",
+  "merged_at": "2026-10-18T04:49:34Z",
+  "state": "closed"
 }

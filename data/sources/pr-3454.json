@@ -4,8 +4,8 @@
   "title": "research: Yu–Oh χ=4 fixture with unit pivots 12 and full box 13",
   "body": "The released question in PR #2890 asks for an admitted rank-three zero digraph with dichromatic number at least four, and asks whether such a coloring obstruction actually obstructs the full anchor box. This package instantiates the established Yu–Oh thirteen-ray configuration and separates the answers: **χ(Z)=4, matched canonical unit-pivot maximum 12, full directed anchor-box value 13**.\n\nThe proof admits the integer coordinates into the rational three-total model, reduces three-color impossibility to eight face orientations, supplies a compatible twelve-row unit witness, and constructs a thirteen-row general witness using two face blocks and seven odd-tie middle rows. The replay independently checks coloring, all 5,184 pivot maps, both retained witnesses against the literal definition and the frozen PR #3393 oracle, and semantic/source failure controls.\n\nValidation: both registered CPython 3.12.15 commands passed, including isolation, optimization and warnings-as-errors; metadata and post-commit source-history checks passed. Canonical main and fork main were refreshed and the branch rebased before submission.\n\nAttribution: the graph and rays are due to Sixia Yu and C. H. Oh, [arXiv:1109.4396v1](https://arxiv.org/abs/1109.4396v1), visible equation (1), PDF page 2. This is a repository instantiation, not a new graph or discovery of its chromatic property. Aaron Wang/navinor's PR #2890 question and DreamingOfClouds's F-star lineage retain credit. Written by Sagar Thakrar with substantial OpenAI Codex assistance; same-session agents supplied proof, controls and review.\n\nScope: exact thirteen-row fixture only. It does not contradict PR #2890's bounded searches, resolve the all-even twelve-line case, establish a general F-star theorem or counterexample, or change the selected frontier. The literature PDF and predecessor search are not replay dependencies. Open next questions are in the package.\n\nPackage: `research/fstar-yu-oh-zero-digraph/`. Coordination: [claim and final handoff](https://github.com/CrocSwap/integer-mult-bounds/discussions/1317#discussioncomment-19009748).\n",
   "created_at": "2026-10-18T02:28:59Z",
-  "updated_at": "2026-10-18T02:28:59Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:47Z",
+  "closed_at": "2026-10-18T04:51:47Z",
+  "merged_at": "2026-10-18T04:51:47Z",
+  "state": "closed"
 }

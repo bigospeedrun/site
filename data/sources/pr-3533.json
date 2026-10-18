@@ -1,0 +1,11 @@
+{
+  "number": 3533,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3533",
+  "title": "Show that one restored helper edge misses the literal K mask",
+  "body": "## Summary\n- The restored edge `h0 ^= h1`, `y ^= h0`, `h0 ^= h1` returns both helpers to their starting columns. The checker's literal mask names only `h0`. The column replay delivers `h0 XOR h1`.\n- After the first gate, `h0` holds both columns. The two direct writes `y ^= h0` and `y ^= h1`, with no edge, deliver exactly the helpers they name.\n- No 661-column replay and no new exponent. The paid profile cited by the phase-B note is unchanged by this three-gate check.\n\n## Test plan\n- [x] `python3.12 -B research/helper-star-literal-k/verify.py`\n- [x] `python3.12 -B research/helper-star-literal-k/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/helper-star-literal-k`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T05:02:32Z",
+  "updated_at": "2026-10-18T05:02:32Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -4,8 +4,8 @@
   "title": "Record the writes that leave register 39 at -2",
   "body": "## Summary\n- Immediately before event 23304, register 39 holds `-2` when register 359 starts at `1`. The data register contributes `0`.\n- Event 23237 copies register 18 at `-4`. Event 23278 adds `-1/2` times register 343 at `-4` and leaves `-2`.\n- No selected frontier change and no new exponent. The writes that produce register 18 are not traced.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-target-two/verify.py`\n- [x] `python3.12 -B research/qq16-target-two/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-target-two`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T03:15:44Z",
-  "updated_at": "2026-10-18T03:15:44Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:47Z",
+  "closed_at": "2026-10-18T04:51:47Z",
+  "merged_at": "2026-10-18T04:51:47Z",
+  "state": "closed"
 }

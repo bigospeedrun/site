@@ -4,8 +4,8 @@
   "title": "Record the source value of the first restored half",
   "body": "## Summary\n- Immediately before event 23507, register 343 holds `-8` when register 359 starts at `1`. The data register contributes `0`.\n- The addition multiplies that value by `8` and contributes `-64` to register 103, which is `0` until then.\n- Event 23274 adds register 18 at `-4`. Event 23304 adds `2` times register 39 at `-2`. No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-eightfold/verify.py`\n- [x] `python3.12 -B research/qq16-eightfold/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-eightfold`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T03:13:43Z",
-  "updated_at": "2026-10-18T03:13:43Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:47Z",
+  "closed_at": "2026-10-18T04:51:47Z",
+  "merged_at": "2026-10-18T04:51:47Z",
+  "state": "closed"
 }

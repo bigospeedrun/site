@@ -4,8 +4,8 @@
   "title": "Bind an odd-multiplicity successor for the even scatter duplicate",
   "body": "## Summary\n- The published replay XORs a retained total once per occurrence. The frozen exporter emits one ADD when the index is present.\n- Appending `[0, 0]` to the first selected row makes the replay coefficient `0` and the frozen export `1`. An odd-multiplicity successor emits `0` on that duplicate and `1` on an odd triple.\n- The successor matches the replay on the selected word. The frozen exporter is unchanged. No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/scatter-odd-successor/verify.py`\n- [x] `python3.12 -B research/scatter-odd-successor/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/scatter-odd-successor`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T04:34:52Z",
-  "updated_at": "2026-10-18T04:34:52Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:46Z",
+  "closed_at": "2026-10-18T04:51:46Z",
+  "merged_at": "2026-10-18T04:51:45Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Show the literal recurrence misses the same required pair",
   "body": "## Summary\n- The fixed-cover correction has 4,992 required pairs. The eight-layer literal quotient recurrence reaches 4,991 of them.\n- The only missing pair is target 71 from source 102. Its matrix entry is `-4`, so the coefficient is `-1/2`.\n- At every dimension the literal relation equals the interval relation and the archived layer digest. No selected frontier change and no new exponent. The backward cone is not rebuilt.\n\n## Test plan\n- [x] `python3.12 -B research/p104-literal-missing/verify.py`\n- [x] `python3.12 -B research/p104-literal-missing/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-literal-missing`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T04:29:32Z",
-  "updated_at": "2026-10-18T04:29:32Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:46Z",
+  "closed_at": "2026-10-18T04:51:46Z",
+  "merged_at": "2026-10-18T04:51:45Z",
+  "state": "closed"
 }

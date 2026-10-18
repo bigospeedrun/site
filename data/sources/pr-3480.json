@@ -4,8 +4,8 @@
   "title": "Research: defer P112 five-plane endpoint corrections under a shared register (no new κ)",
   "body": "This package checks a conditional way to remove the 23 provisional cleanup charges in the selected P112 five-plane decoder. The pinned 112 labels xor to zero, and the 23 blocks partition them. Each block's exact `C_E^2 = X_delta` identity is replayed on all 512 nine-bit address states; if the block lifts share one address register, their deferred corrections compose to the identity.\n\nUnder the predecessor's local `u=5` relaxation, deferring the cleanups restores 23 rank-one-equivalent units: the `a` ceiling changes from `0.016435974402421` with 23 provisional correction charges to `0.017542237243537` without them. This is a local budget comparison, not a new supplier or κ.\n\nThe key unresolved condition is physical: distinct per-block output/address registers prevent cross-block cancellation. The package does not provide a native owner map, schedule, restoration proof or selected-frontier change. Its registered Python 3.12 replay and metadata check pass.\n\nOpen next step: map one five-frame block through the native producer/consumer route and establish whether all blocks use the same live nine-bit register before funding a larger implementation round.\n",
   "created_at": "2026-10-18T03:14:00Z",
-  "updated_at": "2026-10-18T03:15:59Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:47Z",
+  "closed_at": "2026-10-18T04:51:47Z",
+  "merged_at": "2026-10-18T04:51:47Z",
+  "state": "closed"
 }

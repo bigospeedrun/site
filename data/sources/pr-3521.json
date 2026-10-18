@@ -4,8 +4,8 @@
   "title": "Record that cover routing names no constant width factor",
   "body": "## Summary\n- The finite-cover note says fixed port routing uses a constant number of old width-`O(w)` interchanges. That paragraph does not name a constant `c_R`.\n- The reviewed PR185 text repeats width-`O(w)` for routing and gives the high-part exchange width `k=O(w log e)`. The vendored PR387 proof treats 252 as unused slack.\n- The published native stage-2 routing room is `4777557234646`. The comparison `log2(c_R)` against that room stays uninstantiated. No cutoff margin is recomputed, and there is no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/stock-routing-factor/verify.py`\n- [x] `python3.12 -B research/stock-routing-factor/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/stock-routing-factor`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T04:39:40Z",
-  "updated_at": "2026-10-18T04:39:40Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-18T04:51:46Z",
+  "closed_at": "2026-10-18T04:51:45Z",
+  "merged_at": "2026-10-18T04:51:45Z",
+  "state": "closed"
 }
