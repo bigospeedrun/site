@@ -1,0 +1,11 @@
+{
+  "number": 3598,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3598",
+  "title": "Screen the four-end histogram inside one incumbent grid cell",
+  "body": "## Summary\n- The exhibited four-end profile `{1:2400, 2:446, 3:416, 4:142, 5:82, 8:8}` has rank mass 5,582 and idle mass 1,650. No other partition was searched.\n- At grid `1/10^12`, `ceiling.ceiling` returns the cell from `33803961/20000000000` to `1690198051/1000000000000`. The note's bracket `0.001690198050302 < best ceiling < 0.001690198050303` lies inside that cell.\n- The high endpoint exceeds the selected ceiling by less than `0.00852%`. The selected saving stays below the cap. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/k8-four-end-ceiling/verify.py`\n- [x] `python3.12 -B research/k8-four-end-ceiling/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/k8-four-end-ceiling`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T07:22:51Z",
+  "updated_at": "2026-10-18T07:22:51Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
