@@ -134,6 +134,28 @@ test('unknown model retries 4.6 once with compatible options; billing does not r
   assert.doesNotMatch(await response.text(), /credit balance|private detail|placeholder/);
 });
 
+test('a failed provider call logs only the status and error type', async (t) => {
+  const lines: unknown[][] = []; t.mock.method(console, 'warn', (...args: unknown[]) => { lines.push(args); });
+  const limit = setup(async () => Response.json({error: {type: 'invalid_request_error', message: 'You have reached your specified API usage limits. private detail'}}, {status: 400}));
+  assert.equal((await limit(request())).status, 502);
+  const down = setup(async () => Response.json({error: {type: 'overloaded_error', message: 'private detail'}}, {status: 529}));
+  assert.equal((await down(request())).status, 502);
+  const odd = setup(async () => Response.json({error: {type: 'Bad Type; secret'}}, {status: 500}));
+  assert.equal((await odd(request())).status, 502);
+  const html = setup(async () => new Response('<html>bad gateway private detail</html>', {status: 502}));
+  assert.equal((await html(request())).status, 502);
+  const thrown = setup(async () => { throw new TypeError('fetch failed: private detail'); });
+  assert.equal((await thrown(request())).status, 502);
+  assert.deepEqual(lines, [
+    ['Chat provider call failed:', 400, 'invalid_request_error'],
+    ['Chat provider call failed:', 529, 'overloaded_error'],
+    ['Chat provider call failed:', 500, 'unknown'],
+    ['Chat provider call failed:', 502, 'unknown'],
+    ['Chat provider call failed:', 'TypeError', 'unknown'],
+  ]);
+  assert.doesNotMatch(JSON.stringify(lines), /private|placeholder|usage limits|How do I submit/);
+});
+
 test('stream supports split Unicode and CRLF; interrupted streams never signal success', async () => {
   const bytes = new TextEncoder().encode('data: {"text":"κ"}\r\n\r\n');
   const body = new ReadableStream<Uint8Array>({start(c) { for (const byte of bytes) c.enqueue(Uint8Array.of(byte)); c.close(); }});

@@ -158,20 +158,30 @@ export function createChatHandler(options: Options) {
       signal: controller.signal,
     });
     let upstream: Response;
+    // One log line per failed provider call, so a 502 can be traced: the HTTP status and the
+    // error type word only. Never the key, the message text or the visitor's message.
+    let failureType: unknown;
+    const logUpstreamFailure = (status: number | string) => {
+      const type = typeof failureType === 'string' && /^[a-z_]{1,40}$/.test(failureType) ? failureType : 'unknown';
+      console.warn('Chat provider call failed:', status, type);
+    };
     try {
       upstream = await requestModel(CHAT_MODEL);
       // Only retry an unavailable model, not billing, throttle or network errors.
       if ([400, 403, 404].includes(upstream.status)) {
         const failure = await upstream.json().catch(() => null);
+        failureType = failure?.error?.type;
         const unavailableType = ['not_found_error', 'permission_error'].includes(failure?.error?.type);
         if (/model/i.test(String(failure?.error?.message)) && (unavailableType || /not found|not exist|not available|invalid model|unknown model|access/i.test(String(failure?.error?.message))))
           upstream = await requestModel(FALLBACK_MODEL);
       }
       if (!upstream.ok || !upstream.body) {
+        if (failureType === undefined) failureType = (await upstream.json().catch(() => null))?.error?.type;
         await upstream.body?.cancel().catch(() => {});
+        logUpstreamFailure(upstream.status);
         cleanup(); return error(502, 'The chat service is unavailable. Please try again later.');
       }
-    } catch { cleanup(); return error(502, 'The chat service is unavailable. Please try again later.'); }
+    } catch (e) { logUpstreamFailure(e instanceof Error && /^\w{1,40}$/.test(e.name) ? e.name : 'throw'); cleanup(); return error(502, 'The chat service is unavailable. Please try again later.'); }
     const visitorLog = log(`[bigospeedrun.com] Visitor ${tag}:\n${messages.at(-1)!.content}\nIP: ${ip}\nBrowser: ${(req.headers.get('user-agent') ?? '').slice(0, 100)}\nPage: ${page}`);
     let cancelled = false;
     return new Response(new ReadableStream<Uint8Array>({
