@@ -1,0 +1,11 @@
+{
+  "number": 3478,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3478",
+  "title": "Record the source value of the first quarter",
+  "body": "## Summary\n- Immediately before event 19133, register 274 holds `-1/2` when register 359 starts at `1`. The data register contributes `0`.\n- Event 18927 writes that value as `-2` times register 360, which holds `1/4`.\n- The addition multiplies register 274 by `1/2` and contributes `-1/4` to register 280. No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-leading-half/verify.py`\n- [x] `python3.12 -B research/qq16-leading-half/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-leading-half`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:11:58Z",
+  "updated_at": "2026-10-18T03:11:58Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

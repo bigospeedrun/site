@@ -1,0 +1,11 @@
+{
+  "number": 3473,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3473",
+  "title": "Record the later value of register 360",
+  "body": "## Summary\n- Immediately before event 18932, register 360 holds `1/4` when register 359 starts at `1`. The data register contributes `0`.\n- The addition multiplies that value by `-1` and contributes `-1/4` to register 354, which is `0` until then.\n- Event 16153 adds `1/4` times register 262, which holds `-1`, and takes register 360 from `1/2` to `1/4`. No selected frontier change and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-quarter-value/verify.py`\n- [x] `python3.12 -B research/qq16-quarter-value/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-quarter-value`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:08:26Z",
+  "updated_at": "2026-10-18T03:08:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3482,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3482",
+  "title": "Record the shared -4 copied into the restored half",
+  "body": "## Summary\n- Immediately before event 23237, register 18 holds `-4` when register 359 starts at `1`. The data register contributes `0`.\n- One addition writes it: event 20575 adds `-2` times register 292, which holds `2`.\n- No selected frontier change and no new exponent. The writes that produce register 292 are not traced.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-shared-four/verify.py`\n- [x] `python3.12 -B research/qq16-shared-four/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-shared-four`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T03:17:17Z",
+  "updated_at": "2026-10-18T03:17:17Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
