@@ -151,6 +151,17 @@ class RefreshTests(unittest.TestCase):
                  'record_metadata':{'repro':{'reproduction_of':'x'}}}
         self.assertEqual(refresh.board_leader(problem),refresh.Fraction(1,100))
 
+    def test_unreadable_package_is_retried(self):
+        # 2026-10-18 10:17Z: the offline refresh test read a CLAIM.json that its mock 404s,
+        # and package_claim raised. A 404 on the package is now a retry, not a crash.
+        own='research/x/CLAIM.json'
+        pr={'number':3200,'title':'Conditional κ = 0.0018','body':'','state':'open','head':{'sha':'c'*40}}
+        def gone(repo,path,sha):raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')
+        with patch.object(refresh,'content',gone),patch.object(refresh,'exists',lambda *a:False):
+            score,path,reason=refresh.package_claim(None,pr,'m'*40,{},lambda m:[['added',own]],[])
+            self.assertEqual((score,path),(None,own));self.assertIsInstance(reason,refresh.claim_judge.Retry)
+            self.assertEqual(refresh.package_claim(None,pr|{'title':'tooling'},'m'*40,{},lambda m:[['modified',own]],[]),(None,None,None))
+
     def test_touched_claim_with_kappa_goes_to_review(self):
         other='research/rank7-restore-carrier-skips/CLAIM.json'
         # No title kappa, no own package, but it changes a package that states a kappa.
@@ -382,7 +393,9 @@ class RefreshTests(unittest.TestCase):
                 if nested:
                     (repo/'unrelated.json').write_text('preserve me')
                     git('add','unrelated.json')
-                with patch.object(refresh,'ROOT',data),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
+                # Offline and hermetic: no PR package is read here (package_claim has its own
+                # tests), so whatever the committed data queues cannot reach the network mock.
+                with patch.object(refresh,'package_claim',lambda *a,**k:(None,None,None)),patch.object(refresh,'ROOT',data),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
                     refresh.main()
                     summary=json.loads((repo/'.git/refresh-summary.json').read_text())
                     self.assertIn('registry.json',summary['changed_files'])

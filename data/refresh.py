@@ -188,9 +188,20 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
                     return None, None, f"The PR touches {path}, which has a kappa field, but adds no single own package."
             except (ValueError, TypeError):
                 continue
+            except RuntimeError as error:
+                if '(HTTP 404)' not in str(error):
+                    raise
+                continue
         return None, None, None
     path = own[0]
-    raw = content(CROC, path, head)
+    try:
+        raw = content(CROC, path, head)
+    except RuntimeError as error:
+        # The file list names the package but GitHub has no file at this head (a push
+        # between the two reads, or the offline test): no verdict, read again next run.
+        if '(HTTP 404)' not in str(error):
+            raise
+        return None, path, claim_judge.Retry(f'{path} is not readable at the PR head (HTTP 404).')
     try:
         kappa = json.loads(raw).get('kappa')
     except (ValueError, AttributeError):
