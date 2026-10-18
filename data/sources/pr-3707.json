@@ -1,0 +1,11 @@
+{
+  "number": 3707,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3707",
+  "title": "Only the all-ones mask alternates on every walk",
+  "body": "## Summary\n- One walk step changes a linear functional by exactly the walked mask bit.\n- The all-ones mask is the only mask that flips on every label, so only that mask alternates on every walk.\n- Partial receipt only. No new kappa, and no word classification.\n\n## Test plan\n- [x] `python3.12 -B research/alternation-lemma/verify.py`\n- [x] `python3.12 -B research/alternation-lemma/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/alternation-lemma`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:08:43Z",
+  "updated_at": "2026-10-18T18:08:43Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

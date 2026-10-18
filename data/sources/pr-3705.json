@@ -1,0 +1,11 @@
+{
+  "number": 3705,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3705",
+  "title": "The mixed-negative Q8 bound is attained at t=1 and t=2",
+  "body": "## Summary\n- The inherited conditions `5n >= 11t` and `n ≡ t (mod 2)` force 3 calls at `t = 1` and 6 calls at `t = 2`.\n- Three factors of one label multiply that role by `z` times the label, so the witness meets both counts.\n- Partial receipt only. No new kappa, and no decision for `t` greater than 2.\n\n## Test plan\n- [x] `python3.12 -B research/q8-bound-attainment/verify.py`\n- [x] `python3.12 -B research/q8-bound-attainment/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/q8-bound-attainment`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:05:08Z",
+  "updated_at": "2026-10-18T18:05:08Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

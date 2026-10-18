@@ -1,0 +1,11 @@
+{
+  "number": 3706,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3706",
+  "title": "Destination-free gates make the two updates agree",
+  "body": "## Summary\n- If the destination is not a source, the symbolic XOR and the sequential ADD write the same register, including when a source repeats.\n- Sources `(0, 0)` and `(1, 0)` diverge: the sequential operator re-reads its own write.\n- Partial receipt only. No new kappa, and no gate census.\n\n## Test plan\n- [x] `python3.12 -B research/gate-dest-free-agreement/verify.py`\n- [x] `python3.12 -B research/gate-dest-free-agreement/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gate-dest-free-agreement`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T18:07:02Z",
+  "updated_at": "2026-10-18T18:07:02Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
