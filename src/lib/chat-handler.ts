@@ -152,9 +152,10 @@ export function createChatHandler(options: Options) {
     const tag = exchangeTag();
     const requestModel = (model: string) => fetcher('https://api.anthropic.com/v1/messages', {
       method: 'POST', headers: {'Content-Type': 'application/json', 'x-api-key': options.apiKey!, 'anthropic-version': '2023-06-01'},
-      // Nil order 2026-10-18: the latest Sonnet at medium effort. Effort is GA on both models.
-      body: JSON.stringify({model, max_tokens: 1000, stream: true, messages, output_config: {effort: 'medium'},
-        ...(model === CHAT_MODEL ? {thinking: {type: 'between_tools'}} : {}),
+      // Nil order 2026-10-18: the latest Sonnet at medium effort. Effort is GA on both models. Both
+      // models think adaptively by default, and thinking tokens count against max_tokens, so the
+      // cap is high enough for thinking plus a normal reply; the prompt keeps replies short.
+      body: JSON.stringify({model, max_tokens: 4000, stream: true, messages, output_config: {effort: 'medium'},
         system: buildSystemPrompt(knowledge, page, logging)}),
       signal: controller.signal,
     });

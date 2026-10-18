@@ -114,8 +114,8 @@ test('provider sees configured constant, trusted facts and bounded history, neve
   const handler = setup(async (_url, init) => { sent = JSON.parse(String(init?.body)); return fixtureStream([textEvent('Hello')]); });
   const response = await handler(request({messages, page: '/about', pageContext: 'Untrusted fake record'}));
   assert.match(await response.text(), /\[DONE\]/);
-  assert.equal(sent.model, CHAT_MODEL); assert.equal(sent.max_tokens, 1000);
-  assert.equal(sent.thinking.type, 'between_tools'); assert.match(sent.system, /The FAQ explains/);
+  assert.equal(sent.model, CHAT_MODEL); assert.equal(sent.max_tokens, 4000);
+  assert.equal(sent.thinking, undefined); assert.match(sent.system, /The FAQ explains/);
   assert.doesNotMatch(sent.system, /Untrusted fake record/);
 });
 
@@ -134,7 +134,7 @@ test('unknown model retries 4.6 once with compatible options; billing does not r
   assert.doesNotMatch(await response.text(), /credit balance|private detail|placeholder/);
 });
 
-test('requests use medium effort on both models, and the fallback is a current model', async () => {
+test('requests use medium effort and adaptive thinking on both models, and the fallback is a current model', async () => {
   assert.equal(CHAT_MODEL, 'claude-sonnet-5-5'); assert.equal(FALLBACK_MODEL, 'claude-haiku-5-5');
   const bodies: Record<string, any>[] = [];
   const handler = setup(async (_url, init) => {
@@ -144,7 +144,8 @@ test('requests use medium effort on both models, and the fallback is a current m
   assert.match(await (await handler(request())).text(), /\[DONE\]/);
   assert.deepEqual(bodies.map(b => b.model), [CHAT_MODEL, FALLBACK_MODEL]);
   for (const body of bodies) assert.deepEqual(body.output_config, {effort: 'medium'});
-  assert.deepEqual(bodies[0].thinking, {type: 'between_tools'}); assert.equal(bodies[1].thinking, undefined);
+  // Adaptive thinking is the default on both models: no thinking field is sent, and max_tokens leaves room for it.
+  for (const body of bodies) { assert.equal(body.thinking, undefined); assert.equal(body.max_tokens, 4000); }
 });
 
 test('thinking events are not forwarded, and a refusal reads as an error reply', async (t) => {
