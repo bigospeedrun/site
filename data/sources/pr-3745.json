@@ -1,0 +1,11 @@
+{
+  "number": 3745,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3745",
+  "title": "Record the ordinary-rate coefficient gap",
+  "body": "## Summary\n- With `c = 1/577`, the factor `17/16` composes to `4283584`. The bounds written on line 156 replace that factor by 2 and give `8033584`.\n- The witness `n = 1023683` at `e = 2^20` exceeds the stated line-158 bound by more than `17/16`. No moment rerun and no new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/ordinary-rate-gap/verify.py`\n- [x] `python3.12 -B research/ordinary-rate-gap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/ordinary-rate-gap`\n- [ ] Maintainer replay on a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:26:27Z",
+  "updated_at": "2026-10-18T19:26:27Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

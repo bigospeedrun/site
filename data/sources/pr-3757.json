@@ -1,0 +1,11 @@
+{
+  "number": 3757,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3757",
+  "title": "Record the two-unpaid idle mass",
+  "body": "## Summary\n- With two unpaid coordinates, the selected local profile has idle mass `13918/9` on one call, so that call has no integer idle histogram. Nine calls leave the integer `13918 = 272*51 + 46`. One hundred forty-four calls leave `222688 = 4366*51 + 22`.\n- One unpaid coordinate still leaves the integer 1646 on one call. The rank cap 51 satisfies `2*51^2 < 73^2`. The selected kappa is unchanged.\n- Partial result, no new kappa. No packing is searched.\n\n## Test plan\n- [x] `python3.12 -B research/two-unpaid-idle-mass/verify.py`\n- [x] `python3.12 -B research/two-unpaid-idle-mass/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/two-unpaid-idle-mass`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:47:42Z",
+  "updated_at": "2026-10-18T19:47:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

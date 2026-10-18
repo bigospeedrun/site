@@ -1,0 +1,11 @@
+{
+  "number": 3746,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3746",
+  "title": "Record the null stock coefficients",
+  "body": "## Summary\n- All fourteen recorded stage coefficients are null, and the boundary coefficient is null.\n- The historical candidate `57604` stays in the candidate record and is not written into any stage. Both recorded stage-1 headrooms are `6562783`. No new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/stock-coefficient-nulls/verify.py`\n- [x] `python3.12 -B research/stock-coefficient-nulls/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/stock-coefficient-nulls`\n- [ ] Maintainer replay on a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:27:57Z",
+  "updated_at": "2026-10-18T19:27:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

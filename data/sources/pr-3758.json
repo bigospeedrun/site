@@ -1,0 +1,11 @@
+{
+  "number": 3758,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3758",
+  "title": "Record the sparse E8 coset deficiencies",
+  "body": "## Summary\n- The 120 E8 root lines, after transport to the identity form, are exactly the 9-bit vectors of weights 3 and 7: 84 and 36 of them. Label parity agrees with geometric orthogonality.\n- Four sparse outside cosets of the `F3` evaluation code have deficiency sums 9, 9, 9, and 7. Each is at most 9. All 6560 nonzero codewords have binary support rank 9. The selected kappa is unchanged.\n- Partial result, no new kappa. The 130305-pair exhaustion is not rerun.\n\n## Test plan\n- [x] `python3.12 -B research/e8-sparse-coset-budget/verify.py`\n- [x] `python3.12 -B research/e8-sparse-coset-budget/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/e8-sparse-coset-budget`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:51:23Z",
+  "updated_at": "2026-10-18T19:51:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

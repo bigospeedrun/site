@@ -1,0 +1,11 @@
+{
+  "number": 3748,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3748",
+  "title": "Record the helper544 root sign",
+  "body": "## Summary\n- The 360-replica profile, charged at rank 73 by `-896 * 360`, has a negative upper enclosure at `86522418010381773087/50000000000000000000000` and a positive lower enclosure one unit of `10^-24` later.\n- The released endpoint exceeds the PR 3682 comparator by `1841277597768621/62500000000000000000000` and stays above the selected kappa. No word replay and no new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/helper544-root-sign/verify.py`\n- [x] `python3.12 -B research/helper544-root-sign/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/helper544-root-sign`\n- [ ] Maintainer replay on a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:30:55Z",
+  "updated_at": "2026-10-18T19:30:55Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

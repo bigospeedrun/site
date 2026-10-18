@@ -1,0 +1,11 @@
+{
+  "number": 3750,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3750",
+  "title": "Record the two-hub tariff minimum",
+  "body": "## Summary\n- The retained 21-premise literal actual-reader model has minimum charge 54: seven source rows pay one unit, six reader premises pay two, and the other eight reader rows pay one.\n- The retained witness charges `4, 8, 12, 4, 10, 8, 0, 4, 4` also sum to 54. The baseline of 42 is unattained in this model. The selected kappa is unchanged.\n- Partial result, no new kappa. This is the minimum of this fixed model.\n\n## Test plan\n- [x] `python3.12 -B research/two-hub-tariff-minimum/verify.py`\n- [x] `python3.12 -B research/two-hub-tariff-minimum/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/two-hub-tariff-minimum`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:36:40Z",
+  "updated_at": "2026-10-18T19:36:40Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

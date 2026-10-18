@@ -1,0 +1,11 @@
+{
+  "number": 3756,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3756",
+  "title": "Record the lost-free cover bound",
+  "body": "## Summary\n- One hundred twelve orthonormal frames cover the 112 selected ports with total weight 14, so a lost-free set has size at most 56. The retained 32-plane witness meets the lost-free pair condition.\n- With fixed block cost 72, size 32 costs 232, size 37 costs 222, and size 56 costs 184. The cost drops below `1792/9` at size 49. The selected kappa is unchanged.\n- Partial result, no new kappa. The 4,032-frame census is not rerun.\n\n## Test plan\n- [x] `python3.12 -B research/lost-free-cover-bound/verify.py`\n- [x] `python3.12 -B research/lost-free-cover-bound/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/lost-free-cover-bound`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:45:44Z",
+  "updated_at": "2026-10-18T19:45:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

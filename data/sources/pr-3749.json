@@ -1,0 +1,11 @@
+{
+  "number": 3749,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3749",
+  "title": "Record the aggregate idle histogram gap",
+  "body": "## Summary\n- At the per-call ceiling `1688603446527/10^15`, the aggregate idle histogram `{51:4647, 27:1}` has certified moment below one, while 144 copies of `{51:32, 14:1}` have certified moment above one. Both have idle mass 237024.\n- The aggregate histogram's own bracket is `1690044548222/10^15` to `1690044548223/10^15`. The selected saving stays below that lower endpoint, and the selected kappa is unchanged.\n- Partial result, no new kappa. The per-call histogram in PR #3737 stays as published.\n\n## Test plan\n- [x] `python3.12 -B research/idle-aggregation-gap/verify.py`\n- [x] `python3.12 -B research/idle-aggregation-gap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/idle-aggregation-gap`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:33:38Z",
+  "updated_at": "2026-10-18T19:33:38Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

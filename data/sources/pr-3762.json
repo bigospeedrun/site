@@ -1,0 +1,11 @@
+{
+  "number": 3762,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3762",
+  "title": "Record the selected owner slice ledger",
+  "body": "## Summary\n- The selected owner file has 69120 rows, and each of the 144 calls uses helpers 0 through 479 once.\n- The slices are prefix-packed and use 537120 of 774144 declared capacity. Their unused suffixes are the selected idle histogram `{1: 2276, 3: 377, 7: 7, 48: 4866}`.\n- 17217 bins are shared by more than one call. The bin `(0, 6, 85)` has capacity 32 and used width 31. No new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/owner-slice-ledger/verify.py`\n- [x] `python3.12 -B research/owner-slice-ledger/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/owner-slice-ledger`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T19:58:31Z",
+  "updated_at": "2026-10-18T19:58:31Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
