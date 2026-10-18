@@ -1,0 +1,11 @@
+{
+  "number": 3555,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3555",
+  "title": "Price the plane-port repair against the naive charge 224",
+  "body": "## Summary\n- The line-port repair `X_q` delivers `C_all`. Replacing the line by a plane delivers `C_all` on both plane coordinates. A dirty spectator stays at exponent 2, and omitting the repair misses the endpoint.\n- The ideal unpaid=2 ceiling ratio rounds to the published 3.77. The naive charge 224 has deficit `-224/9`, and the ceiling rejects a positive saving.\n- The selected exponent is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/plane-port-endpoint/verify.py`\n- [x] `python3.12 -B research/plane-port-endpoint/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/plane-port-endpoint`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T05:40:07Z",
+  "updated_at": "2026-10-18T05:40:07Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

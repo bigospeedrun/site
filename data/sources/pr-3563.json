@@ -1,0 +1,11 @@
+{
+  "number": 3563,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3563",
+  "title": "Name the checkpoint behind the #1042 status link",
+  "body": "## Summary\n- The historical section \"Historical status through #1042\" prints `0.001672188119205421` and links Selected record to `certificates/selected-result.json`.\n- That file carries the live kappa `836330098538459/500000000000000000`. The printed decimal is `certificates/checkpoints/frontier1042.json`, which the live record names as `previous_record`.\n- The status page is unchanged, and the selected exponent is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/historical-1042-link/verify.py`\n- [x] `python3.12 -B research/historical-1042-link/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/historical-1042-link`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T06:05:09Z",
+  "updated_at": "2026-10-18T06:05:09Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

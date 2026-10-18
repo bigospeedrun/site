@@ -1,0 +1,11 @@
+{
+  "number": 3556,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3556",
+  "title": "Bound eight height-8 copied totals by subspace rank 64",
+  "body": "## Summary\n- When `U` is contained in `V`, `D_V D_U` equals the operator on `V` intersect `U` perpendicular, and the rank is `dim(V) - dim(U)`. A full 8-dimensional copy has rank 8. A copy of dimensions 6 and 3 has rank 3. A mask outside `V` does not match.\n- Eight height-8 totals cost 64. The published two-call centre charge is 32, which is below that mass.\n- The selected exponent is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/copied-total-rank/verify.py`\n- [x] `python3.12 -B research/copied-total-rank/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/copied-total-rank`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T05:42:53Z",
+  "updated_at": "2026-10-18T05:42:54Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

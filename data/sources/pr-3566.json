@@ -1,0 +1,11 @@
+{
+  "number": 3566,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3566",
+  "title": "Bind P112 tetrad decoder to selected ports; no kappa change",
+  "body": "This adds an exact source binding between the selected complex provider's 112 nine-bit ports and the P112 tetrad geometry. A checked bijection preserves all 12,544 pairings; transporting the tetrad identity verifies all 6,720 constrained entries and yields 56 rank-2 terms, total copy charge 112.\n\nThe package also tests a conditional two-sided budget route. With the selected 192 phase units, 166 ideal complex rank-32 children, centre charge 112, and two unpaid coordinates, the complex moment at a=1/99 is 0.996649697627 and its ideal retained-conversion kappa cap is 0.0137876681081. The tracked bit-side two-unpaid/rank-32 relaxation caps at 0.0319843333739. One-unpaid controls fail.\n\nThis does not construct either changed physical endpoint, price the new terms' source access/restoration/consumer, or change the selected kappa (0.001672660197076918). The result is a source-bound coefficient identity and an optimistic budget lead only.\n\nValidation:\n- `python3.12 -I -B research/selected-p112-tetrad-rank32-route/verify.py`\n- `python3 scripts/research_package.py --package research/selected-p112-tetrad-rank32-route --check-only`\n- `python3.12 scripts/research_package.py --package research/selected-p112-tetrad-rank32-route`\n",
+  "created_at": "2026-10-18T06:17:45Z",
+  "updated_at": "2026-10-18T06:17:45Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3546,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3546",
+  "title": "Time a hash-checked parse cache on the selected record",
+  "body": "## Summary\n- Four thousand hash-checked loads of the selected record reuse one parse. On the registered replay the cached pass took 0.0185s and the cold pass took 0.0986s. The checker requires the cached pass to stay more than twice as fast and prints both times.\n- Changing the decimal digit from 8 to 9 misses. Restoring the original bytes parses again, so the changed object is not reused. A hit returns the object from the fresh parse.\n- This does not run `make frontier1094-verify` and does not change the selected exponent.\n\n## Test plan\n- [x] `python3.12 -B research/selected-record-parse-cache/verify.py`\n- [x] `python3.12 -B research/selected-record-parse-cache/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/selected-record-parse-cache`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T05:24:26Z",
+  "updated_at": "2026-10-18T05:24:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
