@@ -1,0 +1,11 @@
+{
+  "number": 3814,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3814",
+  "title": "Record the negacyclic sign cancellation",
+  "body": "## Summary\n- Substituting `x = zeta y` with `zeta^r = -1` wraps the exponent and the degree together, so the two minus signs cancel.\n- All 22,369,620 exponent pairs through `r = 4096` keep that cancellation, and all 65,808 binary polynomial products at `r = 2, 4, 8` agree on the cyclic and negacyclic sides.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/negacyclic-sign-cancellation/verify.py`\n- [x] `python3.12 -B research/negacyclic-sign-cancellation/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/negacyclic-sign-cancellation`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:43:13Z",
+  "updated_at": "2026-10-18T21:43:13Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

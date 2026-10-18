@@ -1,0 +1,11 @@
+{
+  "number": 3821,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3821",
+  "title": "Record the prefix-budget counterexample",
+  "body": "## Summary\n- The length-8 word `01021323` has prefix set `{0,1,2,3,4,6,8,12}` and covers all 16 masks in dimension 4.\n- Its bit-0 collision excess is 8, which is above the balanced budget 5 and at most the actual class budget 9.\n- Partial result, no new kappa. The selected frontier is unchanged, and this check does not decide `f(7)`.\n\n## Test plan\n- [x] `python3.12 -B research/prefix-budget-counterexample/verify.py`\n- [x] `python3.12 -B research/prefix-budget-counterexample/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/prefix-budget-counterexample`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:58:25Z",
+  "updated_at": "2026-10-18T21:58:25Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

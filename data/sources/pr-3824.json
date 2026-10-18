@@ -1,0 +1,11 @@
+{
+  "number": 3824,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3824",
+  "title": "Record the bit-0 budget gap",
+  "body": "## Summary\n- For class sizes `10+d` and `10-d`, the within-class pair count is `90+d^2`, so the even collision budget is `27+d^2`.\n- The cross-pair count is `100-d^2`. It drops below the 64 odd masks for `d = 7, 8, 9, 10`, so those splits cannot be universal.\n- Partial result, no new kappa. The selected frontier is unchanged, and this check does not decide `f(7)`.\n\n## Test plan\n- [x] `python3.12 -B research/bit0-budget-gap/verify.py`\n- [x] `python3.12 -B research/bit0-budget-gap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/bit0-budget-gap`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T22:08:17Z",
+  "updated_at": "2026-10-18T22:08:17Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

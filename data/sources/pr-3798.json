@@ -1,0 +1,11 @@
+{
+  "number": 3798,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3798",
+  "title": "Record the dual-basis Gram identity",
+  "body": "## Summary\n- The eight primal vectors and eight dual vectors in the rank-(9,9) equality example have Gram matrix equal to the identity, so `v · w = 1`.\n- The stated ten term costs `(1, 7, 9, 9, 9, 9, 9, 9, 9, 1)` add to 72.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/dual-basis-gram/verify.py`\n- [x] `python3.12 -B research/dual-basis-gram/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/dual-basis-gram`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:24:16Z",
+  "updated_at": "2026-10-18T21:24:16Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

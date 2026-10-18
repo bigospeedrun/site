@@ -1,0 +1,11 @@
+{
+  "number": 3806,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3806",
+  "title": "Record the chirp residue step",
+  "body": "## Summary\n- The chirp residue update preserves `v = c j^2` and `Delta = c(2j+1)` modulo `2r`, because `(j+1)^2 - j^2 = 2j+1` and the second difference is 2.\n- All 6,141 one-axis rollouts through `ell = 12` return to zero, the 21,840 two-axis states match the closed form, and all 3,905 visit tuples stay strictly below `2T`.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/chirp-residue-step/verify.py`\n- [x] `python3.12 -B research/chirp-residue-step/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/chirp-residue-step`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T21:30:00Z",
+  "updated_at": "2026-10-18T21:30:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
