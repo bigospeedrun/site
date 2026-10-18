@@ -1,0 +1,11 @@
+{
+  "number": 3783,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3783",
+  "title": "Record the twelve-call and fourteen-call central words",
+  "body": "## Summary\n- The twelve-call diagonal word, six X labels and six Y labels, sends three registers to `Z_1`, `Z_w` and `Z_{w^2}` on every element of the group of order 64.\n- A fourth register stays fixed. The earlier composite schedule realizes the same three outputs in 14 calls.\n- No new kappa. Shorter words are not searched.\n\n## Test plan\n- [x] `python3.12 -B research/twelve-call-central-triple/verify.py`\n- [x] `python3.12 -B research/twelve-call-central-triple/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/twelve-call-central-triple`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T20:43:15Z",
+  "updated_at": "2026-10-18T20:43:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

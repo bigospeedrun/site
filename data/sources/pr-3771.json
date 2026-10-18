@@ -1,0 +1,11 @@
+{
+  "number": 3771,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3771",
+  "title": "Record the uniform P112 cover counts",
+  "body": "## Summary\n- The 120 E8 lines split into 112 nonframe roots and 8 frame roots. There are 3780 orthogonal pairs, and every common core has 24 roots of rank 7.\n- Each nonframe root has 3 five-site covers, 336 in total. Each frame root has 945 eight-site covers, 7560 in total. Every accepted cover has support ranks 7, 6 and 4.\n- No new kappa. This count does not infer an invoice floor.\n\n## Test plan\n- [x] `python3.12 -B research/uniform-cover-counts/verify.py`\n- [x] `python3.12 -B research/uniform-cover-counts/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/uniform-cover-counts`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T20:19:59Z",
+  "updated_at": "2026-10-18T20:19:59Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

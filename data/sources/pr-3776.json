@@ -1,0 +1,11 @@
+{
+  "number": 3776,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3776",
+  "title": "Record the rotating-normal rank-two closure",
+  "body": "## Summary\n- Six rotating-normal steps move the inactive address axis through `0, 1, 8, 15, 22, 29, 36` and stop in dimension 43.\n- The rank histogram is `{1: 6, 6: 6, 7: 6}`, so the uncorrected mass is 84. The rank-two address correction makes the paid mass `86 = 43 * 2`.\n- The zero-saving bill is exactly 1. At saving `1/499` the corrected lower bound exceeds 1, while one extra rank-one child without that correction stays below 1. No new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/rotating-normal-closure/verify.py`\n- [x] `python3.12 -B research/rotating-normal-closure/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rotating-normal-closure`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T20:30:26Z",
+  "updated_at": "2026-10-18T20:30:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 3779,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3779",
+  "title": "Record the six-window connector gate bill",
+  "body": "## Summary\n- Six chained write windows have hitting number 3, so even connector restoration uses four source calls.\n- The scalar gate counts are 70 for the overlap, 84 for disjoint windows, and 126 for separately closed windows.\n- The overlap saves fourteen gates, exactly two source calls. No new kappa, and the 5,336-case census is not rerun.\n\n## Test plan\n- [x] `python3.12 -B research/overlapping-window-bill/verify.py`\n- [x] `python3.12 -B research/overlapping-window-bill/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/overlapping-window-bill`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T20:36:35Z",
+  "updated_at": "2026-10-18T20:36:35Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
