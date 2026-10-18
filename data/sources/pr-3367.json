@@ -1,0 +1,11 @@
+{
+  "number": 3367,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3367",
+  "title": "Improve selected T16 packing with five cross-call cycles",
+  "body": "This package improves the selected PR1094 T16 owner packing with five explicit cross-call three-role cycles. On the unchanged word and suppliers, the exact conditional value is κ = 0.001673623729715781, a gain of 4.191059243×10⁻⁹ over open PR #3338 and 5.238820765×10⁻⁹ over the PR3308 predecessor.\n\nThe first cycle reaches the same κ as #3338; four further cycles increase it. The package preserves the selected result and makes no packing-optimality or complete multiplication theorem claim. The fixed-word ceiling remains below 0.01.\n\nValidation: `python3.12 scripts/research_package.py --package research/t16-cross-call-cycle-packing-improvement` passes. This rebuilds the five-cycle owner map, runs the strict T16 global replay (10,008 charts; controls 69/12/6/15), then runs the independent owner audit, both supplier prices and the PR1069 pricing sweep. The complex supplier still binds; conservative κ is 0.001673623726862990.\n",
+  "created_at": "2026-10-17T23:23:35Z",
+  "updated_at": "2026-10-17T23:23:35Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

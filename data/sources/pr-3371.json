@@ -1,0 +1,11 @@
+{
+  "number": 3371,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3371",
+  "title": "Record that the channel word leaves the coefficient at 1/2",
+  "body": "## Summary\n- The native channel witness is one program of 4,058 events with opcodes `add`, `transport`, `zero`, `copy` and `erase`. Its expected scope says it contains no `I-G/2` side correction.\n- `X0` enters `Y34` at event 2815 with coefficient `1/2` and keeps that value through the last event.\n- No selected frontier change and no new exponent. Pull requests #3363 and #3365 are unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/p104-channel-correction-absent/verify.py`\n- [x] `python3.12 -B research/p104-channel-correction-absent/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-channel-correction-absent`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T23:33:03Z",
+  "updated_at": "2026-10-17T23:33:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

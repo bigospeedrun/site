@@ -1,0 +1,11 @@
+{
+  "number": 3372,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3372",
+  "title": "Record the tail coefficient that cancels flag 0",
+  "body": "## Summary\n- The published tail word keeps the 4,058-event channel prefix. Its only add of `X0` into `Y34` is event 5759, with coefficient `-1/2`.\n- That value is `0 - G/2` for the same ports whose normalized inner product is 1. The channel prefix ends at `+1/2`, so the two published coefficients sum to `0`.\n- No selected frontier change and no new exponent. The 280-column identity and the host schedule are not replayed.\n\n## Test plan\n- [x] `python3.12 -B research/p104-tail-flag0-coefficient/verify.py`\n- [x] `python3.12 -B research/p104-tail-flag0-coefficient/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p104-tail-flag0-coefficient`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-17T23:36:38Z",
+  "updated_at": "2026-10-17T23:36:38Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
