@@ -355,6 +355,118 @@
           }
         }
       ]
+    },
+    "other-block-sensitivity": {
+      "status": "ok",
+      "kind": "other",
+      "family": "block-sensitivity",
+      "links": {},
+      "rows": [],
+      "claims": [
+        {
+          "author": "abhishekdpseok",
+          "handle": "prove2me-2-007",
+          "value": "2.007",
+          "display": "\\ge 2.007",
+          "date": "2026-10-15T21:07:56Z",
+          "dateSource": "https://prove2.me/theorems/d14fe2ad-8864-4b73-88ba-f2f878df87d9",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/d14fe2ad-8864-4b73-88ba-f2f878df87d9",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "OpenAI construction at depth 20 with the schedule of the 2.007 mission.",
+          "authors": [
+            {
+              "name": "abhishekdpseok",
+              "url": "https://prove2.me/submissions/2cc2d774-0919-4c77-8f6e-7bbad4e835e8"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.reach_2007 on prove2.me states this exponent. Its accepted proof is by abhishekdpseok.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.007}",
+          "prove2me": true,
+          "receiptSha256": "5b40cff9fa133e466718d2c8417b211df6bcec869c63b7d748cafb79f3c3bb22"
+        },
+        {
+          "author": "Leo Shaposhnik",
+          "handle": "prove2me-2-0205",
+          "value": "2.0205",
+          "display": "\\ge 2.0205",
+          "date": "2026-10-16T00:14:22Z",
+          "dateSource": "https://prove2.me/theorems/5cd504de-db5d-4194-856a-e53a707196ec",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/5cd504de-db5d-4194-856a-e53a707196ec",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "Finite seed certificate (prove2.me finite_certificate) with a larger depth.",
+          "authors": [
+            {
+              "name": "Leo Shaposhnik",
+              "url": "https://prove2.me/submissions/cf267e8b-68d1-4d7a-8366-9da5dcf88a33"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.reach_20205 on prove2.me states this exponent. Its accepted proof is by Leo Shaposhnik.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.0205}",
+          "prove2me": true,
+          "receiptSha256": "bdf053a5592a6602fc34b67fde03c0cbfb364015cdd489387721a480c8b3c120"
+        },
+        {
+          "author": "bwdaugherty",
+          "handle": "prove2me-2-0391",
+          "value": "2.0391",
+          "display": "\\ge 2.0391",
+          "date": "2026-10-16T10:49:55Z",
+          "dateSource": "https://prove2.me/theorems/872a88de-6ec2-46b6-a079-9afd4617aa55",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/872a88de-6ec2-46b6-a079-9afd4617aa55",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "Finite seed certificate with a further parameter choice.",
+          "authors": [
+            {
+              "name": "bwdaugherty",
+              "url": "https://prove2.me/submissions/157e0151-e62a-4c18-91fc-8b4c41efbdd4"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.exponent_2_0391 on prove2.me states this exponent. Its accepted proof is by bwdaugherty.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.0391}",
+          "prove2me": true,
+          "receiptSha256": "d2fe697b1519d916e298907a174848b24d3bbc0188eda3ac71341a57ed6f2740"
+        },
+        {
+          "author": "Robin Kothari",
+          "handle": "prove2me-2-05",
+          "value": "2.05",
+          "display": "\\ge 2.05",
+          "date": "2026-10-16T16:51:24Z",
+          "dateSource": "https://prove2.me/theorems/4807ab9c-ddde-49d8-83cf-3532a7f795c3",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/4807ab9c-ddde-49d8-83cf-3532a7f795c3",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "Separate construction with a 2,363-line Lean proof.",
+          "authors": [
+            {
+              "name": "Robin Kothari",
+              "url": "https://prove2.me/submissions/39b2d7f4-3948-4bc3-b4bb-9875317f6c37"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.reach_205 on prove2.me states this exponent. Its accepted proof is by Robin Kothari.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.05}",
+          "prove2me": true,
+          "receiptSha256": "d51d0a698e3a0ffdfa110a85b9e8de4a6e3b74cc7b2605795f95558de64ad0d4"
+        }
+      ]
+    },
+    "integer-multiplication": {
+      "status": "ok",
+      "links": {
+        "openai-original-109": "https://prove2.me/theorems/60e37d6f-88a9-4bc4-b925-6e7ec3460fc3"
+      },
+      "rows": []
     }
   }
 }

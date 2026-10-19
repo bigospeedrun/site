@@ -67,7 +67,7 @@
       "id": "openai-original-109",
       "kind": "improvement",
       "score": "1/6129982163463555433433388108601236734474956488734408704",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-08T21:34:39.207006Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-08T21:34:39.207006Z",
@@ -92,11 +92,16 @@
       },
       "evidence": {
         "paper_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex",
-        "theorem": null,
+        "theorem": "IntMul.Kappa.openai_theorem_1",
         "certificate_path": null
       },
       "dependencies": [],
-      "source_commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a"
+      "source_commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-18T15:05:22Z",
+        "receipt_path": "sources/prove2me-integer-multiplication-openai-original-109.json"
+      }
     },
     {
       "id": "crocswap-frozen-154",
@@ -40099,12 +40104,14 @@
       "source_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun. A Lean proof of a stronger saving, kappa = 127238784/2^46 (about 1.81e-06), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ 3e7d90a, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit passed (checked 2026-10-19)); it is not our exact multitape statement and we have not rerun it.",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun. A Lean proof of a stronger saving, kappa = 127238784/2^46 (about 1.81e-06), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ 3e7d90a, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit passed (checked 2026-10-19)); it is not our exact multitape statement and we have not rerun it. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source).",
       "comparison_key": "openai/original-109",
       "date_precision": "Manuscript dated September 23, 2026; submitted_at is observation time.",
       "upstream_tier": "claimed",
-      "site_tier": "claimed",
-      "publication_date_precision": "unknown"
+      "site_tier": "verified",
+      "publication_date_precision": "unknown",
+      "receipt_url": "https://prove2.me/theorems/60e37d6f-88a9-4bc4-b925-6e7ec3460fc3",
+      "prove2me_upgrade": true
     },
     "swapnil-round-2": {
       "checked_at": "2026-10-08",
@@ -58450,5 +58457,5 @@
       "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-10-19T15:17:24Z"
+  "updated_at": "2026-10-19T17:20:33Z"
 }

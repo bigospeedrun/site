@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "a411477a-bae1-44a4-b4f4-1791af7b398f",
+    "slug": "integer-multiplication-kappa",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+  },
+  "mission_id": "b235b990-9ad3-49d5-9bd6-18f7e617905f",
+  "mission_url": "https://prove2.me/missions/b235b990-9ad3-49d5-9bd6-18f7e617905f",
+  "attested_value": "0.00000000000000000000000000000000000000000000000000000016313261169996311316775735273141368889252910645172416369396591138674308111493715568057240317134670704035670496523380279541015625",
+  "solved_at": "2026-10-18T15:05:22.370113+00:00",
+  "statement_form": "IntMul.KappaBound (1 / 2 ^ 182): one deterministic k-tape Turing machine (k >= 2: a read-only input tape, an output tape and k-2 work tapes, a fixed finite alphabet, Montanaro conventions) that for every n >= 1 and all x, y in {0,1}^n halts on input x#y with the output bin_2n(val(x) val(y)), in worst-case time at most c n (lg n)^(1 - kappa) for n >= n0, with lg n = max(ceil(log2 n), 1) and kappa = 2^-182. That is OpenAI Theorem 1 and our page statement (a Turing machine with a fixed finite alphabet and a fixed number of one-dimensional tapes). Definitions Def_IntMul_MultitapeModel pinned by hash; it has no instances, notations or axioms (reviewed 2026-10-19).",
+  "same_proof": "The goal header names our row source: the OpenAI preprint Integer multiplication below n log n at openai/math commit adc7f1241b42e322a6451854ab7e4b4c146bf78a, Theorem 1. The value is the same: 1/2^182 = 1/6129982163463555433433388108601236734474956488734408704. The accepted proof (xuanji, solution 4) concludes the published node NLogN.KFTop.kappa_bound, a formalization of that paper.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "IntMul.Kappa.openai_theorem_1",
+    "url": "https://prove2.me/theorems/60e37d6f-88a9-4bc4-b925-6e7ec3460fc3",
+    "statement_path": "envs/0df444a/Theorems/Thm_IntMul_Kappa_openai_theorem_1.lean",
+    "statement_sha256": "638e86bdc856631844aca5308c98680171873417c9fa0eaa431695f36a2e2e82",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_IntMul_Kappa_openai_theorem_1_4.lean",
+    "sha256": "2811b0f3233c7ce7bb45c4f92d8c941e0454b123b438e212f49afe0079cb0703",
+    "author": "@xuanji"
+  },
+  "record_id": "openai-original-109",
+  "definitions": {
+    "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean": "107cd94171ccabed6eed73161d05d40551a953fa1d79020c1023c59c69d7c3f7"
+  },
+  "lean_verified": true
+}

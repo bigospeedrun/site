@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "9873ab8f-732c-478e-b068-f800ef18558e",
+    "slug": "block-sensitivity-vs-sensitivity",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+  },
+  "mission_id": "2dded06e-703e-4256-9ed3-a12b0eb9becb",
+  "mission_url": "https://prove2.me/missions/2dded06e-703e-4256-9ed3-a12b0eb9becb",
+  "attested_value": "2.05",
+  "solved_at": "2026-10-16T16:51:24.744977+00:00",
+  "statement_form": "SensitivityCampaign.AchievesExponent a: for every epsilon > 0 and every S >= 2 there is a total Boolean function f on Fin n bits with sensitivity(f) >= S and sensitivity(f)^(a-epsilon) <= blockSensitivity(f). Sensitivity is the largest number of single bit flips that change f, and block sensitivity is the largest number of disjoint nonempty bit sets that each change f at one input (Def_SensitivitySeparation, reviewed 2026-10-19). That is our statement: bs(f) >= s(f)^(alpha - o(1)) for a family of total Boolean functions with s(f) -> infinity.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "SensitivityCampaign.reach_205",
+    "url": "https://prove2.me/theorems/4807ab9c-ddde-49d8-83cf-3532a7f795c3",
+    "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_205.lean",
+    "statement_sha256": "73712b685478c6a02758b8b18ff4a4535b393a245c8b3e707a80dd986dd4586a",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+      "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_205.lean",
+    "sha256": "00cc6c215b56801d1f22aad140b7d0c89586fa07653a5e57a679f94935fb14a1",
+    "author": "@Robin Kothari",
+    "submission_url": "https://prove2.me/submissions/39b2d7f4-3948-4bc3-b4bb-9875317f6c37"
+  },
+  "definitions": {
+    "envs/0df444a/Definitions/Def_SensitivityCampaign.lean": "7cc4307ef9adf4ddc6cb355d159ba4ece3378249561c15fd2accc52d5c748532",
+    "envs/0df444a/Definitions/Def_SensitivitySeparation.lean": "2b76ae96c33e71832ccdf155581d27f80398281ae33cc0550c2ce0e0a32729b7"
+  },
+  "lean_verified": true
+}
