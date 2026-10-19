@@ -1,0 +1,11 @@
+{
+  "number": 3875,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3875",
+  "title": "Refine the certified staged544 conditional kappa endpoint to 80 digits",
+  "body": "Refines PR3857’s conditional multiplication endpoint, on the same physical construction, to\n\n```\nkappa = 0.00173057843726624681874071321804985755655644807397156243331276259008002643975681\n      - 10^-102 - 10^-126.\n```\n\nThe strict improvement is approximately **7.6259e-61**. This is a tiny numerical refinement, not a new geometry or new verification coverage merely from more digits. The paid profile, physical owners, native suppliers and payload allowance remain unchanged. No selected-frontier update is requested.\n\nRegenerated concrete Lean certificates compile with pinned Lean 4.34.1/Mathlib, and separate target-module kernel replay passes; the transitive axioms remain `propext`, `Classical.choice`, and `Quot.sound`. Exact independent moment enclosures, regenerated outer/bootstrap ledgers, Python 3.12 registered replay, source-history checks, and Git-free semantic corruption controls pass. All-imports fresh kernel replay and fresh complete native-cache rebuild were not run. Source-bound reuse and inherited all-size/compiler/hosting/precision/recovery/BIT assumptions are explicit.\n\n```\npython3.12 -B scripts/research_package.py --package research/staged544-refined-endpoint\npython3.12 -B scripts/check_research_commit.py --package research/staged544-refined-endpoint --check-source-history\n```\n\nOnly the new package is added. Credit Dugongue/PR3857 for the generic formal proof and exact evaluators, ChaloupeMusic/PR3815 for the T360 construction, hexapode/PR3802 for the previous endpoint at T385, dataisfire/PR3734 and all retained native/owner/outer authors. Source bytes and notices are preserved. Prepared by hexapode with substantial OpenAI Codex assistance; no independent human review or unconditional multiplication theorem claimed.\n",
+  "created_at": "2026-10-19T00:56:33Z",
+  "updated_at": "2026-10-19T00:56:33Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
