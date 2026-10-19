@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {prove2meCampaigns, prove2meCampaign, prove2meCampaignForOther, verifierProblems} from './submission.ts';
 
 // data/prove2me-trust.json is the reviewed list of campaigns the importer reads. The pages take their
-// prove2.me links from src/data/prove2me-campaigns.json, which scripts/sync-data.mjs derives from it.
+// prove2.me links from src/lib/prove2me-campaigns.ts, which scripts/sync-data.mjs derives from it.
 test('prove2.me campaign links match the active campaigns the importer reviews', () => {
   const trust = JSON.parse(readFileSync(new URL('../../data/prove2me-trust.json', import.meta.url), 'utf8'));
   const reviewed = Object.fromEntries(Object.entries(trust.boards as Record<string, {campaign: {slug: string; status: string}}>)

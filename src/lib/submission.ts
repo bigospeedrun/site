@@ -1,5 +1,5 @@
 import type {Problem} from './types';
-import campaignData from '../data/prove2me-campaigns.json' with {type: 'json'};
+import campaignSlugs from './prove2me-campaigns.ts';
 
 export const verifierUrl = 'https://github.com/bigospeedrun/verifier';
 export const discordUrl = 'https://discord.gg/JEN582WvNv';
@@ -17,10 +17,10 @@ export function submissionRoute(problem: Pick<Problem, 'slug' | 'repos'>) {
 
 // Races that have a prove2.me campaign: the page where proofs of the race's bound are submitted.
 // prove2.me checks each proof with Lean on its server. The list is derived from the campaigns that
-// data/prove2me-trust.json reviews (scripts/sync-data.mjs writes src/data/prove2me-campaigns.json), so
+// data/prove2me-trust.json reviews (scripts/sync-data.mjs writes src/lib/prove2me-campaigns.ts), so
 // a new campaign there shows on the pages by itself. Board keys: a race slug, or other-<slug> for an
 // Other bounds row.
 export const prove2meCampaigns: Readonly<Record<string, string>> = Object.fromEntries(
-  Object.entries(campaignData as Record<string, {slug: string}>).map(([board, {slug}]) => [board, 'https://prove2.me/campaigns/' + slug]));
+  Object.entries(campaignSlugs).map(([board, slug]) => [board, 'https://prove2.me/campaigns/' + slug]));
 export const prove2meCampaign = (problem: Pick<Problem, 'slug'>): string | undefined => prove2meCampaigns[problem.slug];
 export const prove2meCampaignForOther = (rowSlug: string): string | undefined => prove2meCampaigns['other-' + rowSlug];
