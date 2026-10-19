@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-3934",
+        "leader": "crocswap-pr-3939",
         "records": [
           {
             "id": "openai-original-109",
@@ -3858,6 +3858,16 @@
               "rohanarun"
             ],
             "bound": "O(n log^(1 - 0.0017348462641201991514) n)"
+          },
+          {
+            "id": "crocswap-pr-3939",
+            "score": "17348651784727109982329999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "rohanarun"
+            ],
+            "bound": "O(n log^(1 - 0.0017348651784727109982) n)"
           }
         ],
         "table": "big-o"
@@ -4093,7 +4103,7 @@
             "id": "direct-issue-18",
             "score": "19203/10000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "Hrishik Sai Bojnal"
             ],
@@ -5211,7 +5221,8 @@
     "[\"integer-multiplication\",\"crocswap-pr-3875\",\"1730578437266246818740713218049857556556448073971562433312762590080026439756809999999999999999999998999999999999999999999999/1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
     "[\"3sum\",\"direct-issue-18\",\"19203/10000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-3934\",\"17348462641201991514749999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
-    "[\"exact-dft\",\"direct-issue-19\",\"6327/5000000\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-issue-19\",\"6327/5000000\",\"attained\"]:record",
+    "[\"3sum\",\"direct-issue-18\",\"19203/10000\",\"attained\"]:lean"
   ],
   "deferred": [
     {
@@ -5219,6 +5230,13 @@
       "slug": "integer-multiplication",
       "authors": [
         "aigent-marius"
+      ]
+    },
+    {
+      "key": "[\"integer-multiplication\",\"crocswap-pr-3939\",\"17348651784727109982329999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
+      "slug": "integer-multiplication",
+      "authors": [
+        "rohanarun"
       ]
     }
   ]
