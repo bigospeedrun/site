@@ -79,3 +79,38 @@ test('no level link points at an Actions run; every receipt page has a passing r
   }
   assert.ok(seen.length > 0 && readdirSync(new URL('public/sources', root)).length > 0);
 });
+
+test('a first-stage receipt shows nanoda as not finished, never as passed', () => {
+  for (const path of ['sources/direct-issue-14-38739681220-1-lean.json', 'sources/direct-pr-13-38739681220-1-lean.json']) {
+    const receipt = publicJson(path), view = receiptView(receipt, publicJson(receipt.source_receipt_path), path);
+    assert.equal(receipt.description, 'Lean and permitted-axiom audit passed; nanoda advisory check pending', path);
+    assert.equal(view.leanKernel, 'passed', path); assert.equal(view.nanoda, 'pending', path); assert.equal(view.axioms.status, 'passed', path);
+  }
+  // The same words with no structured fields: the clause reading must also say pending.
+  const bare = receiptView({status: 'passed', description: 'Lean and permitted-axiom audit passed; nanoda advisory check pending'}, undefined, 'sources/x.json');
+  assert.deepEqual([bare.leanKernel, bare.nanoda, bare.axioms.status], ['passed', 'pending', 'passed']);
+});
+
+test('the one-line result is read clause by clause and only for a receipt with no structured fields', () => {
+  const view = (description: string, extra = {}) => receiptView({status: 'passed', description, ...extra}, undefined, 'sources/x.json');
+  assert.deepEqual([view('Lean and nanoda passed; permitted-axiom audit passed').leanKernel, view('Lean and nanoda passed; permitted-axiom audit passed').nanoda], ['passed', 'passed']);
+  const mixed = view('Lean failed; nanoda passed');
+  assert.deepEqual([mixed.leanKernel, mixed.nanoda], ['failed', 'passed']);
+  const nanodaOnly = view('The nanoda passed list was checked; Lean passed? no');
+  assert.deepEqual([nanodaOnly.leanKernel, nanodaOnly.nanoda], [undefined, undefined]);
+  // A structured field outranks the words.
+  const structured = view('Lean and nanoda passed; permitted-axiom audit passed', {nanoda: 'rejected'});
+  assert.deepEqual([structured.leanKernel, structured.nanoda], [undefined, 'failed']);
+});
+
+test('Comparator is named only when the receipt names it; a repository link must be https', () => {
+  const sussman = 'sources/sussman-boukhalfa-dft-receipt.json', receipt = publicJson(sussman);
+  assert.equal(receiptView(receipt, undefined, sussman).comparator, false);
+  assert.equal(receiptView(receipt, undefined, sussman).leanKernel, 'passed');
+  for (const path of ['sources/anthropic-comparator-receipt.json', 'sources/dft-frontier-receipt.json', 'sources/direct-issue-18-39196965603-1.json']) {
+    const r = publicJson(path);
+    assert.equal(receiptView(r, typeof r.source_receipt_path === 'string' ? publicJson(r.source_receipt_path) : undefined, path).comparator, true, path);
+  }
+  const odd = receiptView({status: 'passed'}, {binding: {repo_url: 'http://example.org/x', commit: 'abc'}}, 'sources/x.json');
+  assert.equal(odd.source.repo, undefined);
+});

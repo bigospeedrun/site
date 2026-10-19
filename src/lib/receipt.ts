@@ -3,6 +3,8 @@
 // full envelope), maintainer reruns of results from the OpenAI release (a binding plus the run), and
 // older hand-written receipts. Every field is optional; the page shows only what the receipt says.
 
+export type CheckState = 'passed' | 'failed' | 'pending';
+
 export interface ReceiptView {
   passed: boolean;
   checkedAt?: string;
@@ -14,10 +16,13 @@ export interface ReceiptView {
   source: {repo?: string; commit?: string; subdir?: string};
   theorems: string[];
   toolchain?: string;
-  // 'passed', 'failed' or undefined when the receipt does not say.
-  leanKernel?: 'passed' | 'failed';
-  nanoda?: 'passed' | 'failed';
-  axioms: {status?: 'passed' | 'failed'; reported: string[]; allowed: string[]};
+  // 'passed', 'failed', 'pending' (the check had not finished when the receipt was made) or
+  // undefined when the receipt does not say.
+  leanKernel?: CheckState;
+  nanoda?: CheckState;
+  // True only when the receipt itself names Comparator (an exit code, an acceptance reason or its scope text).
+  comparator: boolean;
+  axioms: {status?: CheckState; reported: string[]; allowed: string[]};
   links: {run?: string; issue?: string; pullRequest?: string; verifierCommit?: string};
   files: {label: string; path: string}[];
 }
@@ -26,12 +31,33 @@ type Json = any;
 const pick = (...values: unknown[]) => values.find(v => v !== undefined && v !== null && v !== '');
 const text = (value: unknown): string | undefined => typeof value === 'string' && value ? value : undefined;
 const list = (value: unknown): string[] => Array.isArray(value) ? value.filter((x): x is string => typeof x === 'string') : [];
-const status = (value: unknown): 'passed' | 'failed' | undefined => {
+const status = (value: unknown): CheckState | undefined => {
   if (typeof value !== 'string') return undefined;
   if (/^(passed|accepted|ok|success)$/i.test(value)) return 'passed';
   if (/^(failed|rejected|error)$/i.test(value)) return 'failed';
+  if (/^(pending|advisory_queued|queued|running|incomplete)$/i.test(value)) return 'pending';
   return undefined;
 };
+
+// The verifier's one-line result, for a receipt with no structured fields. Only whole clauses count:
+// 'Lean and nanoda passed; permitted-axiom audit passed', 'Lean and permitted-axiom audit passed; nanoda
+// advisory check pending', 'Lean failed; nanoda passed'. A clause that is not recognised says nothing.
+function fromDescription(description: string | undefined) {
+  const found: {lean?: CheckState; nanoda?: CheckState; axioms?: CheckState} = {};
+  for (const clause of (description ?? '').split(/;\s*/)) {
+    const c = clause.trim().toLowerCase();
+    if (c === 'lean and nanoda passed') { found.lean = 'passed'; found.nanoda = 'passed'; }
+    else if (c === 'lean and permitted-axiom audit passed') { found.lean = 'passed'; found.axioms = 'passed'; }
+    else if (c === 'lean passed') found.lean = 'passed';
+    else if (c === 'lean failed') found.lean = 'failed';
+    else if (c === 'nanoda passed') found.nanoda = 'passed';
+    else if (c === 'nanoda failed') found.nanoda = 'failed';
+    else if (/^nanoda (advisory )?check pending$/.test(c)) found.nanoda = 'pending';
+    else if (c === 'permitted-axiom audit passed') found.axioms = 'passed';
+    else if (c === 'permitted-axiom audit failed') found.axioms = 'failed';
+  }
+  return found;
+}
 
 /** The page slug of a receipt path such as sources/direct-issue-18-39196965603-1.json. */
 export const receiptSlug = (path: string): string => path.replace(/^\/+/, '').split('/').pop()!.replace(/\.json$/, '');
@@ -44,11 +70,14 @@ export function receiptView(receipt: Json, source: Json | undefined, path: strin
   const profile: Json = verifying?.profile ?? binding?.profile;
   const request: Json = verifying?.request?.direct_submission ?? envelope?.submission ?? envelope?.request?.submission;
   const description = text(pick(receipt.description, receipt.summary));
-  const lean = status(pick(verifying?.kernels?.lean?.status, receipt.lean_kernel)) ?? (description && /\bLean\b.*\bpassed\b/i.test(description) ? 'passed' : undefined);
-  const nanoda = status(pick(verifying?.kernels?.nanoda?.status, receipt.nanoda, receipt.second_kernel?.state)) ?? (description && /\bnanoda\b/i.test(description) && /\bpassed\b/i.test(description) ? 'passed' : undefined);
+  // The structured fields win. The description is read only for a receipt that has none of them.
+  const structured = Boolean(verifying?.kernels) || [receipt.lean_kernel, receipt.nanoda, receipt.second_kernel].some(v => v !== undefined);
+  const words = structured ? {} : fromDescription(description);
+  const lean = status(pick(verifying?.kernels?.lean?.status, receipt.lean_kernel)) ?? words.lean;
+  const nanoda = status(pick(verifying?.kernels?.nanoda?.status, receipt.nanoda, receipt.second_kernel?.state)) ?? words.nanoda;
   const reportedByTheorem: Json = pick(verifying?.axiom_audit?.reported_axioms, receipt.axiom_audit) ?? {};
   const reported = [...new Set(Object.values(reportedByTheorem).flatMap(list))];
-  const axiomStatus = status(pick(verifying?.axiom_audit?.status)) ?? (description && /axiom audit passed/i.test(description) ? 'passed' : undefined);
+  const axiomStatus = status(verifying?.axiom_audit?.status) ?? (structured ? undefined : words.axioms);
   const recorded = status(pick(receipt.status, receipt.state));
   const url = (value: unknown) => { const v = text(value); return v?.startsWith('https://') ? v : undefined; };
   const files: ReceiptView['files'] = [{label: 'This receipt (JSON)', path}];
@@ -67,7 +96,7 @@ export function receiptView(receipt: Json, source: Json | undefined, path: strin
       commit: text(pick(envelope?.challenge?.upstream_commit, profile?.upstream_commit, receipt.upstream_commit)),
     },
     source: {
-      repo: text(pick(request?.repo_url, binding?.repo_url, verifying?.request?.repo_url)),
+      repo: url(pick(request?.repo_url, binding?.repo_url, verifying?.request?.repo_url)),
       commit: text(pick(request?.commit, binding?.commit, receipt.source_commit)),
       subdir: text(pick(request?.source_subdir, profile?.source_subdir)),
     },
@@ -75,6 +104,7 @@ export function receiptView(receipt: Json, source: Json | undefined, path: strin
     toolchain: text(pick(profile?.lean_toolchain, verifying?.request?.lean_toolchain)),
     leanKernel: lean,
     nanoda,
+    comparator: receipt.comparator_exit_code === 0 || verifying?.kernels?.lean?.reason === 'comparator_acceptance' || /\bcomparator\b/i.test(`${receipt.scope ?? ''} ${description ?? ''}`),
     axioms: {status: axiomStatus, reported, allowed: list(profile?.permitted_axioms)},
     links: {
       run: url(pick(receipt.receipt_url, receipt.run_url, envelope?.run_url, binding && source?.run?.html_url)),

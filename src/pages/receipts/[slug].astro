@@ -30,11 +30,14 @@ const {view, rows} = Astro.props;
 const commitUrl = (repo: string | undefined, commit: string | undefined) => repo && commit ? `${repo}/tree/${commit}` : undefined;
 const short = (hash: string) => hash.slice(0, 12);
 const axiomList = view.axioms.reported.length ? view.axioms.reported : view.axioms.allowed;
+const ranByVerifier = Boolean(view.links.run || view.links.issue || view.links.pullRequest);
+// A check that had not finished when its receipt was made (the first stage of a verifier run).
+const early = view.nanoda === 'pending' || view.leanKernel === 'pending' || view.axioms.status === 'pending';
 ---
 <Layout title="Lean proof check">
   <h1>Lean proof check</h1>
-  <p>Our verifier rebuilt a Lean proof from its source and checked it against the Lean statement of the problem. This page is the receipt of that check.</p>
-  <p>{view.passed ? <strong>It passed</strong> : <strong>The receipt does not record a pass</strong>}{view.checkedAt && <> on <time datetime={view.checkedAt} data-local-datetime>{localTimeFallback(view.checkedAt)}</time></>}.{view.summary && <> The verifier’s own words: “{view.summary}”.</>}</p>
+  <p>{ranByVerifier ? 'Our verifier' : 'We'} rebuilt a Lean proof from its source and checked it against the Lean statement of the problem. This page is the receipt of that check.</p>
+  <p>{early ? <strong>The first stage passed</strong> : view.passed ? <strong>It passed</strong> : <strong>The receipt does not record a pass</strong>}{view.checkedAt && <> on <time datetime={view.checkedAt} data-local-datetime>{localTimeFallback(view.checkedAt)}</time></>}.{view.summary && <> The verifier’s own words: “{view.summary}”.</>}</p>
   <h2>Rows that use this check</h2>
   <ul>{rows.map(row => <li><a href={'/' + row.board}>{row.boardName}</a>: <span set:html={math(row.bound)}/>, by {row.authors.join(', ')}</li>)}</ul>
   <h2>What passed</h2>
@@ -47,14 +50,14 @@ const axiomList = view.axioms.reported.length ? view.axioms.reported : view.axio
       {view.source.repo && <>Source repository <a href={view.source.repo} target="_blank" rel="noopener">{view.source.repo.replace('https://github.com/', '')}</a></>}{view.source.commit && <> at commit {commitUrl(view.source.repo, view.source.commit) ? <a href={commitUrl(view.source.repo, view.source.commit)} target="_blank" rel="noopener"><code>{short(view.source.commit)}</code></a> : <code>{short(view.source.commit)}</code>}</>}{view.source.subdir && <>, folder <code>{view.source.subdir}</code></>}.
       {view.theorems.length > 0 && <> The theorem{view.theorems.length > 1 ? 's' : ''} checked: {view.theorems.map((name, i) => <>{i > 0 && ', '}<code>{name}</code></>)}.</>}
     </dd></>}
-    <dt>Comparator and the Lean kernel</dt><dd>
-      {view.leanKernel === 'passed' ? <>Both accepted the proof. <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a> is the Lean community tool that checks a proof against a fixed copy of the statement. The Lean kernel is the small program that checks every step of the proof.</> : view.leanKernel === 'failed' ? <>They did not accept the proof.</> : <>This receipt does not record this check.</>}
+    <dt>{view.comparator ? 'Comparator and the Lean kernel' : 'The Lean kernel'}</dt><dd>
+      {view.leanKernel === 'passed' ? (view.comparator ? <>Both accepted the proof. <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a> is the Lean community tool that checks a proof against a fixed copy of the statement. The Lean kernel is the small program that checks every step of the proof.</> : <>The Lean kernel accepted the proof. It is the small program that checks every step of the proof.</>) : view.leanKernel === 'failed' ? <>{view.comparator ? 'They' : 'It'} did not accept the proof.</> : view.leanKernel === 'pending' ? <>This check had not finished when the receipt was made.</> : <>This receipt does not record this check.</>}
     </dd>
     <dt>A second kernel (nanoda)</dt><dd>
-      {view.nanoda === 'passed' ? <>nanoda, a proof checker written separately from Lean’s own, also accepted the proof.</> : view.nanoda === 'failed' ? <>nanoda did not accept the proof.</> : <>This receipt does not record a nanoda check.</>}
+      {view.nanoda === 'passed' ? <>nanoda, a proof checker written separately from Lean’s own, also accepted the proof.</> : view.nanoda === 'failed' ? <>nanoda did not accept the proof.</> : view.nanoda === 'pending' ? <>nanoda is a proof checker written separately from Lean’s own. Its check had not finished when this receipt was made.</> : <>This receipt does not record a nanoda check.</>}
     </dd>
     <dt>The axioms</dt><dd>
-      {view.axioms.status === 'passed' ? <>The audit passed.</> : view.axioms.status === 'failed' ? <>The audit failed.</> : <>This receipt does not record an audit.</>} An axiom is a statement that Lean accepts without proof. {axiomList.length > 0 && <>{view.axioms.reported.length ? 'The proof uses only' : 'The check allows only'} <code>{axiomList.join(', ')}</code>.</>}
+      {view.axioms.status === 'passed' ? <>The audit passed.</> : view.axioms.status === 'failed' ? <>The audit failed.</> : view.axioms.status === 'pending' ? <>The audit had not finished when this receipt was made.</> : <>This receipt does not record an audit.</>} An axiom is a statement that Lean accepts without proof. {axiomList.length > 0 && <>{view.axioms.reported.length ? 'The proof uses only' : 'The check allows only'} <code>{axiomList.join(', ')}</code>.</>}
     </dd>
     {view.toolchain && <><dt>Lean version</dt><dd><code>{view.toolchain}</code></dd></>}
     {view.scope && <><dt>What the receipt says it covers</dt><dd>{view.scope}</dd></>}
