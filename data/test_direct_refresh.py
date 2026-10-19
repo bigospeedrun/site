@@ -88,6 +88,31 @@ class RefreshTests(unittest.TestCase):
             pr['state']='closed'
             self.assertEqual(r.Importer(DiscoveryAPI(prs=[pr])).collect(),{})
 
+    def test_reviewed_credit_note_survives_the_hourly_rebuild(self):
+        fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
+        docs={slug:fixtures[slug] for slug in r.SLUGS.values()}
+        claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
+        note=dict(predecessor='https://github.com/bigospeedrun/verifier/issues/3',text='Same proof as an earlier submission.')
+        row,meta,_=r.row_for('direct-issue-5',claim,'2026-10-11T00:00:00Z',None,note)
+        self.assertEqual(row['predecessors'],[note['predecessor']]);self.assertEqual(meta['credit_note'],note['text'])
+        plain_row,plain_meta,_=r.row_for('direct-issue-5',claim,'2026-10-11T00:00:00Z')
+        self.assertEqual(plain_row['predecessors'],[]);self.assertNotIn('credit_note',plain_meta)
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            for slug,doc in docs.items():(root/(slug+'.json')).write_bytes(r.json_bytes(doc))
+            (root/'registry.json').write_bytes(r.json_bytes({'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'}))
+            (root/'direct-notes.json').write_text(json.dumps({'schema_version':1,'notes':{'direct-issue-5':note}}))
+            first=r.prepare(root,{'direct-issue-5':claim},{},'2026-10-11T00:00:00Z')
+            for path,raw in first.items():
+                dest=root/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
+            for hour in ('01','02'):
+                again=r.prepare(root,{'direct-issue-5':claim},{},f'2026-10-11T{hour}:00:00Z')
+                self.assertNotIn('exact-dft.json',again,'a rebuild with the same claim must not drop or change the note')
+            board=json.loads((root/'exact-dft.json').read_text())
+            kept=next(x for x in board['records'] if x['id']=='direct-issue-5')
+            self.assertEqual(kept['predecessors'],[note['predecessor']])
+            self.assertEqual(board['record_metadata']['direct-issue-5']['credit_note'],note['text'])
+
     def test_closed_issues_removed_and_non_direct_rows_retained(self):
         fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
         docs={slug:fixtures[slug] for slug in r.SLUGS.values()}

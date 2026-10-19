@@ -237,7 +237,7 @@ class Importer:
         claims=self.verify(self.discover(),previous)
         return claims
 
-def row_for(key,claim,now,old=None):
+def row_for(key,claim,now,old=None,note=None):
     sub=claim['submission'];item=claim['item'];proof=claim.get('verification');login=item['user']['login']
     require(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9-]{0,38}',login),'Invalid submitter login')
     tier='verified' if proof else 'claimed';route=claim['route']
@@ -246,7 +246,7 @@ def row_for(key,claim,now,old=None):
     path='sources/'+key+'-submission.json';raw=json_bytes(snapshot)
     row=dict(id=key,kind='improvement',score=sub['bound'],score_relation='attained',tier=tier,
         submitted_at=item['created_at'],spec_version='1',title=f'{login} direct {sub["problem"]} submission',
-        authors=[dict(name=login,url='https://github.com/'+login)],predecessors=[],submission_url=item['html_url'],
+        authors=[dict(name=login,url='https://github.com/'+login)],predecessors=[note['predecessor']] if note else [],submission_url=item['html_url'],
         source_commit=sub['commit'],artifact=dict(path=path,sha256=sha(raw)),
         evidence=dict(paper_url=item['html_url'],theorem='Race.bound',certificate_path=None),dependencies=[],
         upstream_status='merged' if route=='pull_request' and item.get('merged') else 'open',
@@ -257,6 +257,8 @@ def row_for(key,claim,now,old=None):
         upstream_tier=tier,site_tier=tier,comparison_key=PROBLEMS[sub['problem']][0]+'/v1',
         publication_date=item['created_at'],publication_date_precision='date-time',publication_date_role='Submission opened',
         publication_source_url=item['html_url'],direct_submission=True,route=route)
+    # A reviewed credit note (data/direct-notes.json) survives the hourly rebuild of direct rows.
+    if note:meta['credit_note']=note['text']
     if proof:
         row['rerun_status']=dict(state='passed',checked_at=proof['checked_at'],receipt_path=proof['receipt_path'])
         meta['receipt_url']=proof['receipt_url']
@@ -265,13 +267,15 @@ def row_for(key,claim,now,old=None):
 def prepare(root,claims,files,now,final_states=None,config=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
     suppressed=apply_bindings(documents,claims,final_states or {},config or {})
+    notes_path=root/'direct-notes.json'
+    notes=json.loads(notes_path.read_text())['notes'] if notes_path.exists() else {}
     for slug,doc in documents.items():
         old={r['id']:r for r in doc['records']}
         doc['records']=[r for r in doc['records'] if not doc['record_metadata'][r['id']].get('direct_submission')]
         doc['record_metadata']={k:v for k,v in doc['record_metadata'].items() if not v.get('direct_submission')}
         for key,claim in sorted(claims.items()):
             if key in suppressed or SLUGS[claim['submission']['problem']]!=slug:continue
-            row,meta,source=row_for(key,claim,now,old.get(key));files.update(source)
+            row,meta,source=row_for(key,claim,now,old.get(key),notes.get(key));files.update(source)
             doc['records'].append(row);doc['record_metadata'][key]=meta
         prior=json.loads((root/(slug+'.json')).read_text())
         if doc!=prior:

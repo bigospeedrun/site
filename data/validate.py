@@ -22,6 +22,12 @@ for listing in registry['repositories']:
   raw=safe_path(manifest['path']).read_bytes();assert manifest['revision']=='sha256:'+hashlib.sha256(raw).hexdigest(), f"Manifest hash mismatch: {listing['repo']} ({manifest['path']})"
   validate(json.loads(raw),load('schemas/manifest-v1.json'))
 for stem in ['submissions','chart-cross-check']:validate(load(stem+'.json'),load('schemas/'+stem+'-v1.json'))
+if (ROOT/'direct-notes.json').exists():
+ # Reviewed credit notes for direct rows: plain text for a tooltip, one predecessor link each.
+ for key,n in load('direct-notes.json')['notes'].items():
+  assert re.fullmatch(r'direct-(issue|pr)-\d+',key),key
+  assert re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/(issues|pull)/\d+',n['predecessor']),key
+  assert 0<len(n['text'])<=500 and not re.search(r'[<>&\\$]',n['text']),key
 print('Checked',registry['checked_at'])
 print('problem | verified | certified-conditional | claimed (observed maximum/minimum) | records')
 for entry in registry['problems']:
