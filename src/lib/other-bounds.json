@@ -354,18 +354,18 @@
           "date": "2026-10-18T23:46:00-07:00",
           "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/66",
           "dateKind": "first-stated",
-          "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/7c49dfafe165bbae38cc6e95520875ab3363b95f/submissions/sil-uneven-normalization-20261019/src/Candidate/Main.lean#L13-L18",
+          "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/c68a3b2ba5b28b9c9b4bf26966ed6ee04ffa29b9/submissions/sil-uneven-normalization-20261019/src/Candidate/Main.lean#L13-L18",
           "lean": true,
-          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out after about three hours (the same way as the first run of PR #63), and its admission check failed. The PR is still open; the author reports only local Lean checks. No independent rerun.",
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out on the first version of the proof and again on the smaller one (in the second run a worker also ran out of memory), and its admission check failed both times. A maintainer comment on the PR says the time-outs are being worked on. The PR is still open; the author reports only local Lean checks. No independent rerun.",
           "evidence": "claimed",
-          "note": "Open PR #66 when listed. The author says it builds on the merged PR #63: it first proves 0.8748286 from the 0.87483 of #63, and then the stated boundary.",
+          "note": "Open PR #66 when listed. The author says it builds on the merged PR #63: it first proves 0.8748286 from the 0.87483 of #63, and then the stated boundary. The author later pushed a smaller proof of the same statement (commit c68a3b2), which this entry links.",
           "authors": [
             {
               "name": "Sil",
               "url": "https://github.com/TheSil"
             }
           ],
-          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out after about three hours (the same way as the first run of PR #63), and its admission check failed. The PR is still open; the author reports only local Lean checks. No independent rerun.",
+          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out on the first version of the proof and again on the smaller one (in the second run a worker also ran out of memory), and its admission check failed both times. A maintainer comment on the PR says the time-outs are being worked on. The PR is still open; the author reports only local Lean checks. No independent rerun.",
           "bound": "\\theta\\le 0.874828524351"
         }
       ],
