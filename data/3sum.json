@@ -414,6 +414,42 @@
       }
     },
     {
+      "id": "direct-issue-18",
+      "kind": "improvement",
+      "score": "19203/10000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-19T03:55:27Z",
+      "spec_version": "1",
+      "title": "fringewidth direct 3sum submission",
+      "authors": [
+        {
+          "name": "fringewidth",
+          "url": "https://github.com/fringewidth"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/18",
+      "source_commit": "4a4a98e6eca4fc16817f0d2074026fdaece52efd",
+      "artifact": {
+        "path": "sources/direct-issue-18-submission.json",
+        "sha256": "9745619b84e20fa3ba2295d0efe347793e016a770bcde2e5bef378fb2eb87d53"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/18",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-19T03:55:27Z",
+      "site_observed_at": "2026-10-19T04:19:14Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/fringewidth/three-sum-lean/blob/4a4a98e6eca4fc16817f0d2074026fdaece52efd/Submission.lean"
+      }
+    },
+    {
       "id": "direct-issue-4",
       "kind": "improvement",
       "score": "981/500",
@@ -654,6 +690,23 @@
       "route": "issue",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38739681220"
     },
+    "direct-issue-18": {
+      "checked_at": "2026-10-19",
+      "source_url": "https://github.com/fringewidth/three-sum-lean/blob/4a4a98e6eca4fc16817f0d2074026fdaece52efd/Submission.lean",
+      "repo": "fringewidth/three-sum-lean",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sum/word-ram/v1",
+      "publication_date": "2026-10-19T03:55:27Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/18",
+      "direct_submission": true,
+      "route": "issue"
+    },
     "direct-issue-4": {
       "checked_at": "2026-10-19",
       "source_url": "https://github.com/c0ldzy17/three-sum-lean/blob/2b639655e07421b9ac743de9090459bab473a7c0/Submission.lean",
@@ -691,5 +744,5 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38567645711"
     }
   },
-  "updated_at": "2026-10-19T00:21:20Z"
+  "updated_at": "2026-10-19T04:19:14Z"
 }

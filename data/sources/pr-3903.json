@@ -1,0 +1,11 @@
+{
+  "number": 3903,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3903",
+  "title": "docs: link reviewed status from research glossary",
+  "body": "## Summary\n\nThe research glossary now links readers to the [current reviewed status](https://github.com/CrocSwap/integer-mult-bounds/blob/20ecf2891d80b5acf18d980b2164fb44ea7faa90/docs/research/current-status.md) for frozen checkpoints and remaining obligations, and to [current priorities](https://github.com/CrocSwap/integer-mult-bounds/blob/20ecf2891d80b5acf18d980b2164fb44ea7faa90/docs/research/current-priorities.md) for the live candidate and queue. The status link sits beside first-session terminology without changing shared source guidance that historical research packages pin as input.\n\nAt the pinned base, revision-6 priorities link a supporting review through #2027, while the current-status index includes the later efficient1900 review in progress. The index labels rows as frozen checkpoints and keeps the selected record authoritative. This adds navigation to that existing index; it does not change priorities or the selected result.\n\nThis complements the already merged status-index correction in [PR #2892](https://github.com/CrocSwap/integer-mult-bounds/pull/2892), which reconciled later review records. The selected-CI navigation repair in [Discussion #2211](https://github.com/CrocSwap/integer-mult-bounds/discussions/2211) addresses a different route.\n\n## Validation\n\n- `python3 -B scripts/research_package.py --changed-since 20ecf2891d80b5acf18d980b2164fb44ea7faa90 --matrix-batch-size 256` selected zero package replays for the final glossary-only diff.\n- A local assertion confirmed both relative links resolve from the glossary.\n- `git diff --check 20ecf2891d80b5acf18d980b2164fb44ea7faa90..HEAD` passed.\n- The full selected cold replay was not run.\n\nNo mathematical evidence, selected records, or frozen reviews changed.\n\nCredit the prior index repair and retained authorship through PR #2892. Prepared by the assigned homelab-16 Codex worker with substantial AI assistance. Apache-2.0.\n",
+  "created_at": "2026-10-19T03:23:53Z",
+  "updated_at": "2026-10-19T03:52:59Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
