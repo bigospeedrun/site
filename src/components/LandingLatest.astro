@@ -3,13 +3,15 @@ import InfoTooltip from './InfoTooltip.astro';
 import {math} from '../lib/math';
 import {evidenceName, type EvidenceLevel} from '../lib/evidence';
 import {localTimeFallback} from '../lib/freshness';
-interface Props {records:{bound:string;url:string;evidenceLevel:EvidenceLevel;date:string;endpoint?:boolean}[];}
+// evidenceUrl: where the level label leads (a receipt page, a prove2.me theorem page, the accepted pull request);
+// without it the label leads to the definitions of the levels.
+interface Props {records:{bound:string;url:string;evidenceLevel:EvidenceLevel;date:string;endpoint?:boolean;evidenceUrl?:string}[];}
 const {records}=Astro.props;
 const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
 ---
 <landing-latest class="latest-result">
 {records.map((record,index)=><span data-candidate data-evidence-level={record.evidenceLevel} hidden={index!==0}>
- <a href={record.url} {...githubLink(record.url)} title={evidenceName(record.evidenceLevel)} set:html={math(record.bound)}/><span class="latest-metadata"> <a class:list={['latest-level',record.evidenceLevel]} href="/about#evidence-levels">{evidenceName(record.evidenceLevel)}</a><span class="latest-date"><time datetime={record.date} data-local-datetime={record.date.includes('T')?true:undefined}>{localTimeFallback(record.date)}</time></span></span>
+ <a href={record.url} {...githubLink(record.url)} title={evidenceName(record.evidenceLevel)} set:html={math(record.bound)}/><span class="latest-metadata"> <a class:list={['latest-level',record.evidenceLevel]} href={record.evidenceUrl??'/about#evidence-levels'} {...(record.evidenceUrl?githubLink(record.evidenceUrl):{})}>{evidenceName(record.evidenceLevel)}</a><span class="latest-date"><time datetime={record.date} data-local-datetime={record.date.includes('T')?true:undefined}>{localTimeFallback(record.date)}</time></span></span>
  {record.endpoint&&<span class="mobile-bound-info"><InfoTooltip label="About this strict endpoint">The bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</InfoTooltip></span>}
 </span>)}
 <span data-no-result aria-label="No later result" hidden={records.length>0}>-</span>
