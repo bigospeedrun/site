@@ -1,7 +1,7 @@
 import {problems,boardRecords} from '../lib/data';
 import {problemLinks,problemDisplayName} from '../lib/navigation';
 import {feedBoard,otherFeedBoard} from '../lib/records-feed';
-import otherBounds from '../lib/other-bounds.json';
+import otherBounds from '../lib/other-bounds-data';
 // The two landing-page tables: the Big O problems, then the Other bounds rows.
 export function GET(){
  const boards=[

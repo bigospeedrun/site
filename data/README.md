@@ -33,7 +33,12 @@ with anonymous GET requests. `prove2me-trust.json` lists each reviewed entry and
 the sha256 of each statement, definition and solution file. When a board differs
 from that file, the board keeps its last import, `prove2me.json` records the
 reason, and the script exits with code 3. To accept a change, review the entry
-and update the trust file. `LEAN_VERIFIED` in the script turns imported rows
+and update the trust file. A trust board with `"kind": "other"` imports an Other bounds
+row: its results become Lean Verified claims in `prove2me.json`, which the site merges
+into the row at build time (`src/lib/other-merge.ts`); `src/lib/other-bounds.json` is not
+edited. An entry with `"action": "wait"` is proved on prove2.me but not yet in the
+Formalpedia export; it may wait until its `wait_until` date, then the board holds.
+`LEAN_VERIFIED` in the script turns imported rows
 from Claimed to Lean Verified.
 
 Run `python3 data/validate.py` to check schemas, exact scores and source hashes.

@@ -313,6 +313,181 @@
      "note": "Lead decision 2026-10-17: no link to Anchen0823 (verifier issue #8), and no row because the board had the same value first (2026-10-14 12:55 UTC). Evidence for a later review: 525 supporting prove2.me theorems name Anchen0823/three-sum-1960614 at 8c25c0325de5be4286413f39ca0c9278aad33f52, the source of that row, but the goal header and the top lemmas name a user-supplied certificate on c0ldzy17/three-sum-lean."
     }
    ]
+  },
+  "other-block-sensitivity": {
+   "kind": "other",
+   "family": "block-sensitivity",
+   "existing_claims_file": "../src/lib/other-bounds.json",
+   "bound_template": "\\mathrm{bs}(f)\\ge s(f)^{{value}}",
+   "statement_pattern": "AchievesExponent \\(\\s*{value}\\b",
+   "campaign": {
+    "id": "9873ab8f-732c-478e-b068-f800ef18558e",
+    "slug": "block-sensitivity-vs-sensitivity",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+   },
+   "statement_form": "SensitivityCampaign.AchievesExponent a: for every epsilon > 0 and every S >= 2 there is a total Boolean function f on Fin n bits with sensitivity(f) >= S and sensitivity(f)^(a-epsilon) <= blockSensitivity(f). Sensitivity is the largest number of single bit flips that change f, and block sensitivity is the largest number of disjoint nonempty bit sets that each change f at one input (Def_SensitivitySeparation, reviewed 2026-10-19). That is our statement: bs(f) >= s(f)^(alpha - o(1)) for a family of total Boolean functions with s(f) -> infinity.",
+   "definitions": {
+    "envs/0df444a/Definitions/Def_SensitivityCampaign.lean": "7cc4307ef9adf4ddc6cb355d159ba4ece3378249561c15fd2accc52d5c748532",
+    "envs/0df444a/Definitions/Def_SensitivitySeparation.lean": "2b76ae96c33e71832ccdf155581d27f80398281ae33cc0550c2ce0e0a32729b7"
+   },
+   "entries": [
+    {
+     "mission_id": "aefa605d-4a9b-4f9f-8b12-48f60d8630f4",
+     "value": "2.000252407",
+     "solved_at": "2026-10-15T18:38:48.632496+00:00",
+     "action": "skip",
+     "note": "OpenAI baseline (depth-9 seed), already the baseline of this row; not better than the 2.00647 claim stated earlier."
+    },
+    {
+     "mission_id": "bf91bc07-0adc-4fa2-a84a-8be2017ea6c4",
+     "value": "2.006470828",
+     "solved_at": "2026-10-15T21:19:33.744458+00:00",
+     "action": "skip",
+     "note": "Depth-20 seed: the same construction and value as the robinkothari claim (2.00647, 2026-10-15 07:52 UTC), stated before. No proof evidence ties them, so no link."
+    },
+    {
+     "mission_id": "f5ae229d-83a2-4c53-8ac7-6d3ddbc89bab",
+     "value": "2.007",
+     "solved_at": "2026-10-15T21:07:56.592986+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_2007",
+      "url": "https://prove2.me/theorems/d14fe2ad-8864-4b73-88ba-f2f878df87d9",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_2007.lean",
+      "statement_sha256": "8e95303d7586f0970ea27f61adff5d191c6806d59060486b9e92686cdad5371c",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_2007.lean",
+      "sha256": "ca5470e68348afe97bbd3318614016178c5faa2e451bb45279c29bd9bd4ed378",
+      "author": "@abhishekdpseok",
+      "submission_url": "https://prove2.me/submissions/2cc2d774-0919-4c77-8f6e-7bbad4e835e8"
+     },
+     "authors": [
+      {
+       "name": "abhishekdpseok",
+       "url": "https://prove2.me/submissions/2cc2d774-0919-4c77-8f6e-7bbad4e835e8"
+      }
+     ],
+     "note": "OpenAI construction at depth 20 with the schedule of the 2.007 mission."
+    },
+    {
+     "mission_id": "46106f9d-3b6a-4b4d-bef4-f6438e700ee1",
+     "value": "2.0205",
+     "solved_at": "2026-10-16T00:14:22.696993+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_20205",
+      "url": "https://prove2.me/theorems/5cd504de-db5d-4194-856a-e53a707196ec",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_20205.lean",
+      "statement_sha256": "22aa3818a028d3b0119c871b44d581e8c47ae22ad12ae01ab604c5d1babe6cb9",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_20205.lean",
+      "sha256": "3370e0361bc81996ddb0db5e731b9ed61623b5cd8653c55c75aa5a4197591bcc",
+      "author": "@Leo Shaposhnik",
+      "submission_url": "https://prove2.me/submissions/cf267e8b-68d1-4d7a-8366-9da5dcf88a33"
+     },
+     "authors": [
+      {
+       "name": "Leo Shaposhnik",
+       "url": "https://prove2.me/submissions/cf267e8b-68d1-4d7a-8366-9da5dcf88a33"
+      }
+     ],
+     "note": "Finite seed certificate (prove2.me finite_certificate) with a larger depth."
+    },
+    {
+     "mission_id": "c1c25d27-13b0-41cc-b6fe-6acb1e3606e5",
+     "value": "2",
+     "solved_at": "2026-10-16T12:11:01.570072+00:00",
+     "action": "skip",
+     "note": "Classical Rubinstein exponent 2; not better than the baseline."
+    },
+    {
+     "mission_id": "f90b4484-ea60-4703-9ab3-40b4d1817f7e",
+     "value": "2.0391",
+     "solved_at": "2026-10-16T10:49:55.436195+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.exponent_2_0391",
+      "url": "https://prove2.me/theorems/872a88de-6ec2-46b6-a079-9afd4617aa55",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_exponent_2_0391.lean",
+      "statement_sha256": "556b3c5c7fb48d8c12e489184e3ed82bf1197e65e418a672db670045b6758773",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_exponent_2_0391.lean",
+      "sha256": "1a7e11ec65f20ac5b2da53fbd3ba4453896b3492460ad8d69c8a38fdfa26cf63",
+      "author": "@@bwdaugherty",
+      "submission_url": "https://prove2.me/submissions/157e0151-e62a-4c18-91fc-8b4c41efbdd4"
+     },
+     "authors": [
+      {
+       "name": "bwdaugherty",
+       "url": "https://prove2.me/submissions/157e0151-e62a-4c18-91fc-8b4c41efbdd4"
+      }
+     ],
+     "note": "Finite seed certificate with a further parameter choice."
+    },
+    {
+     "mission_id": "2dded06e-703e-4256-9ed3-a12b0eb9becb",
+     "value": "2.05",
+     "solved_at": "2026-10-16T16:51:24.744977+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_205",
+      "url": "https://prove2.me/theorems/4807ab9c-ddde-49d8-83cf-3532a7f795c3",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_205.lean",
+      "statement_sha256": "73712b685478c6a02758b8b18ff4a4535b393a245c8b3e707a80dd986dd4586a",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_205.lean",
+      "sha256": "00cc6c215b56801d1f22aad140b7d0c89586fa07653a5e57a679f94935fb14a1",
+      "author": "@Robin Kothari",
+      "submission_url": "https://prove2.me/submissions/39b2d7f4-3948-4bc3-b4bb-9875317f6c37"
+     },
+     "authors": [
+      {
+       "name": "Robin Kothari",
+       "url": "https://prove2.me/submissions/39b2d7f4-3948-4bc3-b4bb-9875317f6c37"
+      }
+     ],
+     "note": "Separate construction with a 2,363-line Lean proof."
+    },
+    {
+     "mission_id": "dcd3dbe1-5b49-4587-934f-ee69d34e2bab",
+     "value": "2.0635",
+     "solved_at": "2026-10-18T04:29:35.700657+00:00",
+     "action": "wait",
+     "wait_until": "2026-10-23",
+     "note": "Proved 2026-10-18 04:29 UTC. Its goal theorem is not in the Formalpedia export of 2026-10-19 12:27 UTC (the export leaves out items that import unlicensed work), so its statement cannot be pinned yet."
+    }
+   ]
   }
  }
 }

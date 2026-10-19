@@ -180,8 +180,8 @@ class Files:
         return self.cache[path]
 
 
-def check_board(slug, board, doc, files, get):
-    """Return the import plan for one board, or raise Hold."""
+def verify_campaign(board, files, get, today):
+    """Check the campaign page and the reviewed definitions against the trust file."""
     html = get(CAMPAIGN_URL + board['campaign']['slug']).decode('utf-8', 'replace')
     rules, live = campaign_data(html)
     for key in RULE_KEYS:
@@ -197,10 +197,40 @@ def check_board(slug, board, doc, files, get):
         require(now['proved'] is True, f'entry {entry["value"]} is no longer proved')
         require(now['attested_value'] == entry['value'], f'entry {entry["value"]} now has value {now["attested_value"]}')
         require(now['solved_at'] == entry['solved_at'], f'entry {entry["value"]} has a new solved time')
+        # A "wait" entry is proved on prove2.me but not in the Formalpedia export yet. It may wait
+        # until its wait_until date; after that the board holds, so it cannot wait unnoticed.
+        if entry['action'] == 'wait':
+            require(today <= entry['wait_until'], f'entry {entry["value"]} is still not reviewable after {entry["wait_until"]}')
     for path, digest in board['definitions'].items():
         header, body = files.read(path)
         require(header.get('status') == 'Definition', f'{path} status is {header.get("status")!r}')
         require(sha(body) == digest, f'{path} changed')
+
+
+def verify_entry(entry, board, files):
+    """Check one reviewed goal and its accepted solution against the pinned hashes."""
+    theorem, solution = entry['theorem'], entry['solution']
+    header, body = files.read(theorem['statement_path'])
+    require(header.get('status') == 'Proved', f'{theorem["name"]} status is {header.get("status")!r}')
+    require(header.get('url') == theorem['url'], f'{theorem["name"]} has a new theorem URL')
+    require(sha(body) == theorem['statement_sha256'], f'{theorem["name"]} statement changed')
+    # theorem['definitions'] is the reviewed import closure of the statement.
+    require(all(p in board['definitions'] for p in theorem['definitions']), f'{theorem["name"]} uses an unreviewed definition file')
+    closure = {module_name(p).encode() for p in theorem['definitions']} | {m.encode() for m in theorem.get('allowed_imports', [])}
+    for text in [body] + [files.read(p)[1] for p in theorem['definitions']]:
+        imports = set(re.findall(rb'(?m)^import\s+(\S+)', text))
+        # Mathlib itself is trusted; any other import must be in the reviewed closure.
+        require(imports <= closure | {b'Mathlib'}, f'{theorem["name"]} imports changed')
+    pattern = board.get('statement_pattern', r'SolvedInTime \(?{value}\b')
+    require(re.search(pattern.replace('{value}', re.escape(entry['value'])).encode(), body), f'{theorem["name"]} does not state {entry["value"]}')
+    header, body = files.read(solution['path'])
+    require(header.get('status', '').startswith('ACCEPTED'), f'{solution["path"]} status is {header.get("status")!r}')
+    require(sha(body) == solution['sha256'], f'{solution["path"]} changed')
+
+
+def check_board(slug, board, doc, files, get, today='9999-12-31'):
+    """Return the import plan for one board, or raise Hold."""
+    verify_campaign(board, files, get, today)
     records = [r for r in doc['records'] if not doc['record_metadata'][r['id']].get('prove2me')]
     meta = doc['record_metadata']
     better = (lambda a, b: a < b) if doc['score']['direction'] == 'lower-is-better' else (lambda a, b: a > b)
@@ -209,27 +239,15 @@ def check_board(slug, board, doc, files, get):
     plan = dict(links={}, rows=[])
     for entry in sorted(board['entries'], key=lambda e: utc(e['solved_at'])):
         value = Fraction(entry['value'])
+        if entry['action'] == 'wait':
+            continue
         if entry['action'] == 'skip':
             # A skipped result still counts for best-at-its-time, unless review found it unsound.
             if not entry.get('unsound'):
                 known.append((utc(entry['solved_at']), value))
             continue
-        theorem, solution = entry['theorem'], entry['solution']
-        header, body = files.read(theorem['statement_path'])
-        require(header.get('status') == 'Proved', f'{theorem["name"]} status is {header.get("status")!r}')
-        require(header.get('url') == theorem['url'], f'{theorem["name"]} has a new theorem URL')
-        require(sha(body) == theorem['statement_sha256'], f'{theorem["name"]} statement changed')
-        # theorem['definitions'] is the reviewed import closure of the statement.
-        require(all(p in board['definitions'] for p in theorem['definitions']), f'{theorem["name"]} uses an unreviewed definition file')
-        closure = {module_name(p).encode() for p in theorem['definitions']}
-        for text in [body] + [files.read(p)[1] for p in theorem['definitions']]:
-            imports = set(re.findall(rb'(?m)^import\s+(\S+)', text))
-            # Mathlib itself is trusted; any other import must be in the reviewed closure.
-            require(imports <= closure | {b'Mathlib'}, f'{theorem["name"]} imports changed')
-        require(re.search(rb'SolvedInTime \(?' + re.escape(entry['value'].encode()) + rb'\b', body), f'{theorem["name"]} does not state {entry["value"]}')
-        header, body = files.read(solution['path'])
-        require(header.get('status', '').startswith('ACCEPTED'), f'{solution["path"]} status is {header.get("status")!r}')
-        require(sha(body) == solution['sha256'], f'{solution["path"]} changed')
+        theorem = entry['theorem']
+        verify_entry(entry, board, files)
         solved = utc(entry['solved_at'])
         same = [r for r in records if Fraction(r['score']) == value]
         if entry['action'] == 'link':
@@ -245,6 +263,80 @@ def check_board(slug, board, doc, files, get):
             plan['rows'].append(entry)
         known.append((solved, value))
     return plan
+
+
+OTHER_EPSILON = Fraction(1, 100000)
+
+
+def claim_number(claim):
+    """The number of an Other bounds claim: the first decimal in its display, else an exact fraction."""
+    match = re.search(r'\d+\.\d+', claim.get('display', ''))
+    if match:
+        return Fraction(match[0])
+    match = re.fullmatch(r'\s*(\d+)/(\d+)\s*', claim.get('value', ''))
+    return Fraction(int(match[1]), int(match[2])) if match else None
+
+
+def other_known(root, board):
+    """(time, number) of the baseline and the claims already on the Other bounds row."""
+    data = json.loads((root / board['existing_claims_file']).read_text())
+    family = next(f for f in data['families'] if f['slug'] == board['family'])
+    known = []
+    for claim in [dict(family['baseline'], display=family['baseline'].get('display', family['baseline']['value'])), *family['claims']]:
+        number = claim_number(claim)
+        if number is not None:
+            known.append((utc(claim['date']), number))
+    return family, known
+
+
+def check_other(slug, board, root, files, get, today):
+    """Return the import plan for an Other bounds row, or raise Hold. Higher is better."""
+    verify_campaign(board, files, get, today)
+    family, known = other_known(root, board)
+    plan = dict(links={}, rows=[], claims=[])
+    for entry in sorted(board['entries'], key=lambda e: utc(e['solved_at'])):
+        value = Fraction(entry['value'])
+        if entry['action'] == 'wait':
+            continue
+        if entry['action'] == 'skip':
+            if not entry.get('unsound'):
+                known.append((utc(entry['solved_at']), value))
+            continue
+        require(entry['action'] == 'row', f'unknown action {entry["action"]!r}')
+        verify_entry(entry, board, files)
+        solved = utc(entry['solved_at'])
+        earlier = [number for at, number in known if at <= solved]
+        require(all(value > number + OTHER_EPSILON for number in earlier), f'entry {entry["value"]} was not the best result at its solved time')
+        plan['claims'].append(entry)
+        known.append((solved, value))
+    return plan
+
+
+def claim_for(slug, board, entry, trust):
+    """An Other bounds claim (the shape of src/lib/other-bounds.json) for one reviewed entry, and its receipt."""
+    theorem, solution = entry['theorem'], entry['solution']
+    # The site writes these texts as HTML after its math step (set:html with inlineMath), which
+    # escapes only math. Plain text with <, > or & would be HTML, so the board holds instead.
+    for label, text in [('note', entry.get('note', '')), ('theorem name', theorem['name']), *[('author name', a['name']) for a in entry['authors']]]:
+        require(not re.search(r'[<>&]', text), f'entry {entry["value"]}: the {label} has a character (< > &) that the page cannot show as text')
+    mission_url = 'https://prove2.me/missions/' + entry['mission_id']
+    key = 'prove2me-' + board['family'] + '-' + entry['value'].replace('.', '-')
+    receipt = dict(schema_version=1, source='prove2.me', reviewed_at=trust['reviewed_at'], reviewed_by=trust['reviewed_by'],
+                   campaign=board['campaign'], mission_id=entry['mission_id'], mission_url=mission_url,
+                   attested_value=entry['value'], solved_at=entry['solved_at'], statement_form=board['statement_form'],
+                   formalpedia=trust['formalpedia'], theorem=theorem, solution=solution,
+                   definitions={p: board['definitions'][p] for p in theorem['definitions']}, lean_verified=LEAN_VERIFIED)
+    raw = json_bytes(receipt)
+    path = 'sources/' + key + '.json'
+    names = entry['authors']
+    claim = dict(author=names[0]['name'], handle='prove2me-' + entry['value'].replace('.', '-'), value=entry['value'],
+                 display='\\ge ' + entry['value'], date=zulu(entry['solved_at']), dateSource=theorem['url'], dateKind='first-stated',
+                 url=theorem['url'], lean=True,
+                 leanNote='Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.',
+                 evidence='lean-verified' if LEAN_VERIFIED else 'claimed', note=entry['note'], authors=names,
+                 proofScope='The Lean theorem ' + theorem['name'] + ' on prove2.me states this exponent. Its accepted proof is by ' + ', '.join(n['name'] for n in names) + '.',
+                 bound=board['bound_template'].replace('{value}', entry['value']), prove2me=True, receiptSha256=sha(raw))
+    return claim, {path: raw}
 
 
 def row_for(slug, doc, board, entry, trust, previous):
@@ -317,11 +409,28 @@ def run(root, get=fetch, now=None):
     registry = json.loads((root / 'registry.json').read_text())
     data_files = {p['slug']: p['data_file'] for p in registry['problems']}
     for slug, board in trust['boards'].items():
-        doc = json.loads((root / data_files[slug]).read_text())
         prior = previous['boards'].get(slug, {})
+        if board.get('kind') == 'other':
+            try:
+                plan = check_other(slug, board, root, files, get, now[:10])
+                claims, sources = [], {}
+                for entry in plan['claims']:
+                    claim, receipt = claim_for(slug, board, entry, trust)
+                    claims.append(claim)
+                    sources.update(receipt)
+                state['boards'][slug] = dict(status='ok', kind='other', family=board['family'], links={}, rows=[], claims=claims)
+                out.update(sources)
+            except Exception as error:
+                reason = safe_text(error if isinstance(error, Hold) else f'unexpected error ({type(error).__name__}: {error})')
+                held[slug] = reason
+                since = prior.get('since') if prior.get('status') == 'held' and prior.get('reason') == reason else now
+                state['boards'][slug] = dict(status='held', kind='other', family=board['family'], reason=reason, since=since, links={}, rows=[],
+                                             claims=prior.get('claims', []))
+            continue
+        doc = json.loads((root / data_files[slug]).read_text())
         prior_rows = {row['record']['id']: row for row in prior.get('rows', [])}
         try:
-            plan = check_board(slug, board, doc, files, get)
+            plan = check_board(slug, board, doc, files, get, now[:10])
             rows, board_sources = [], {}
             for entry in plan['rows']:
                 record, meta, sources = row_for(slug, doc, board, entry, trust, prior_rows)
@@ -366,7 +475,7 @@ def main():
         sys.exit(1)
     lines = []
     for slug, board in state['boards'].items():
-        lines.append(f'{safe_text(slug, 40)}: {board["status"]}, {len(board["links"])} links, {len(board["rows"])} rows'
+        lines.append(f'{safe_text(slug, 40)}: {board["status"]}, {len(board["links"])} links, {len(board["rows"])} rows, {len(board.get("claims", []))} claims'
                      + (f'; held since {board["since"]}: {safe_text(board["reason"])}' if board['status'] == 'held' else ''))
     lines.append(f'{len(changed)} changed files; lean_verified={LEAN_VERIFIED}; check_only={args.check_only}')
     # Every line starts with this prefix, so no line can start with '::'.

@@ -375,6 +375,107 @@ class Prove2meImportTest(unittest.TestCase):
             p2m.campaign_data(html)
 
 
+class OtherBoundsImportTest(unittest.TestCase):
+    """An Other bounds row (higher is better): claims for the site, best at their solved time."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        base = Path(self.temp.name)
+        self.root = base / 'data'
+        (self.root).mkdir()
+        (base / 'src' / 'lib').mkdir(parents=True)
+        (base / 'src' / 'lib' / 'other-bounds.json').write_text(json.dumps(dict(families=[dict(slug='row', baseline=dict(value='\\approx2.000', date='2026-10-06T00:00:00Z'),
+            claims=[dict(display='\\approx2.00647', value='x', date='2026-10-15T07:52:00Z')])])))
+        self.rules = dict(id='c9', slug='camp', name='N', status='active', value_type='real', bound_type='lower', value_direction='higher')
+        self.files = {DEF: formalpedia(['Prove2me | d', 'status  : Definition'], DEF_BODY)}
+        self.live, entries = [], []
+        for mission, value, solved, action in [('o1', '2.001', '2026-10-15T10:00:00+00:00', 'skip'), ('o2', '2.007', '2026-10-15T21:00:00+00:00', 'row'),
+                                                ('o3', '2.02', '2026-10-16T01:00:00+00:00', 'row'), ('o4', '2.05', '2026-10-18T01:00:00+00:00', 'wait')]:
+            self.live.append(dict(mission_id=mission, attested_value=value, proved=True, solved_at=solved))
+            entry = dict(mission_id=mission, value=value, solved_at=solved, action=action)
+            if action == 'row':
+                name, url = 'Goal' + mission, 'https://prove2.me/theorems/' + (mission * 12)[:36]
+                st, so = ENV + 'Theorems/Thm_' + name + '.lean', ENV + 'Solutions/Sol_' + name + '.lean'
+                sbody = ('import Definitions.Def_Spec\n\ntheorem ' + name + ' :\n    Camp.AchievesExponent (' + value + ' : R) := by sorry\n').encode()
+                self.files[st] = formalpedia(['Prove2me | x', 'status  : Proved', 'url     : ' + url], sbody)
+                self.files[so] = formalpedia(['Prove2me | s', 'status  : ACCEPTED   (prove)'], b'theorem solution : True := trivial\n')
+                entry.update(theorem=dict(name=name, url=url, statement_path=st, statement_sha256=hashlib.sha256(sbody).hexdigest(), definitions=[DEF]),
+                             solution=dict(path=so, sha256=hashlib.sha256(b'theorem solution : True := trivial\n').hexdigest(), author='@a'),
+                             authors=[dict(name='abc', url='https://prove2.me/submissions/s1')], note='A note.')
+            if action == 'wait':
+                entry['wait_until'] = '2026-10-23'
+            entries.append(entry)
+        self.trust = dict(schema_version=1, reviewed_at='2026-10-19', reviewed_by='test', review_rule='t', formalpedia=dict(repo='prove2me/formalpedia', ref='main', env='0df444a'),
+                          boards={'other-row': dict(kind='other', family='row', existing_claims_file='../src/lib/other-bounds.json', bound_template='b^{{value}}',
+                                                   statement_pattern=r'Camp\.AchievesExponent \(\s*{value}\b', campaign={k: self.rules[k] for k in p2m.RULE_KEYS},
+                                                   statement_form='t', definitions={DEF: hashlib.sha256(DEF_BODY).hexdigest()}, entries=entries)})
+        (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+        (self.root / 'registry.json').write_text(json.dumps(dict(updated_at='x', checked_at='x', problems=[])))
+
+    def get(self, url):
+        if url == p2m.CAMPAIGN_URL + 'camp':
+            return page(self.live, self.rules)
+        prefix = p2m.RAW_URL + 'prove2me/formalpedia/main/'
+        if url.startswith(prefix) and url[len(prefix):] in self.files:
+            return self.files[url[len(prefix):]]
+        raise p2m.Hold('cannot read ' + url)
+
+    def go(self, now='2026-10-19T12:00:00Z'):
+        return p2m.run(self.root, self.get, now=now)
+
+    @mock.patch.object(p2m, 'LEAN_VERIFIED', True)
+    def test_best_at_its_time_entries_become_lean_verified_claims_with_receipts(self):
+        changed, state, held = self.go()
+        self.assertEqual(held, {})
+        board = state['boards']['other-row']
+        self.assertEqual([c['value'] for c in board['claims']], ['2.007', '2.02'])
+        claim = board['claims'][0]
+        self.assertEqual((claim['evidence'], claim['handle'], claim['display'], claim['bound'], claim['author']), ('lean-verified', 'prove2me-2-007', '\\ge 2.007', 'b^{2.007}', 'abc'))
+        self.assertEqual(claim['url'], 'https://prove2.me/theorems/' + ('o2' * 12)[:36])
+        self.assertEqual(claim['date'], '2026-10-15T21:00:00Z')
+        self.assertIn('sources/prove2me-row-2-007.json', changed)
+        self.assertEqual(self.go()[0] and 0, 0)
+
+    @mock.patch.object(p2m, 'LEAN_VERIFIED', False)
+    def test_the_switch_off_gives_claimed_claims(self):
+        self.assertEqual({c['evidence'] for c in self.go()[1]['boards']['other-row']['claims']}, {'claimed'})
+
+    def test_a_result_not_better_than_the_row_at_its_time_holds_the_board(self):
+        path = self.root.parent / 'src' / 'lib' / 'other-bounds.json'
+        path.write_text(path.read_text().replace('2.00647', '2.01'))
+        self.assertIn('was not the best', self.go()[2]['other-row'])
+
+    def test_a_wait_entry_waits_until_its_date_and_then_holds(self):
+        self.assertEqual(self.go('2026-10-23T00:00:00Z')[2], {})
+        self.assertIn('still not reviewable after 2026-10-23', self.go('2026-10-24T00:00:00Z')[2]['other-row'])
+
+    def test_text_with_html_characters_holds_the_board(self):
+        entry = self.trust['boards']['other-row']['entries'][1]
+        for field, change in [('note', lambda: entry.__setitem__('note', 'a <b>bold</b> note')), ('author name', lambda: entry['authors'][0].__setitem__('name', 'a&b'))]:
+            with self.subTest(field=field):
+                change()
+                (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+                self.assertIn(f'the {field} has a character', self.go()[2]['other-row'])
+                entry['note'], entry['authors'][0]['name'] = 'A note.', 'abc'
+
+    def test_an_unreviewed_proved_entry_or_a_changed_statement_holds_the_board(self):
+        self.live.append(dict(mission_id='o9', attested_value='2.5', proved=True, solved_at='2026-10-19T01:00:00+00:00'))
+        self.assertIn('unreviewed proved entry 2.5', self.go()[2]['other-row'])
+        self.live.pop()
+        path = self.trust['boards']['other-row']['entries'][1]['theorem']['statement_path']
+        self.files[path] = self.files[path].replace(b'by sorry', b'by sorry -- changed')
+        self.assertIn('statement changed', self.go()[2]['other-row'])
+
+    def test_a_held_other_board_keeps_its_last_claims(self):
+        _, state, _ = self.go()
+        (self.root / 'prove2me.json').write_text(json.dumps(state))
+        self.live.append(dict(mission_id='o9', attested_value='2.5', proved=True, solved_at='2026-10-19T01:00:00+00:00'))
+        _, held_state, held = self.go()
+        self.assertIn('other-row', held)
+        self.assertEqual(len(held_state['boards']['other-row']['claims']), 2)
+
+
 class TrustFileTest(unittest.TestCase):
     def test_the_reviewed_trust_file_is_complete(self):
         trust = json.loads((ROOT / 'prove2me-trust.json').read_text())
@@ -385,8 +486,11 @@ class TrustFileTest(unittest.TestCase):
             missions = [e['mission_id'] for e in board['entries']]
             self.assertEqual(len(missions), len(set(missions)))
             for entry in board['entries']:
-                self.assertIn(entry['action'], ('link', 'row', 'skip'))
+                self.assertIn(entry['action'], ('link', 'row', 'skip', 'wait'))
                 p2m.utc(entry['solved_at'])
+                if entry['action'] == 'wait':
+                    self.assertTrue(entry['note'] and re.fullmatch(r'\d{4}-\d{2}-\d{2}', entry['wait_until']))
+                    continue
                 if entry['action'] == 'skip':
                     self.assertTrue(entry['note'])
                     continue
