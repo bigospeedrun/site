@@ -1042,6 +1042,28 @@
           ],
           "proofScope": "Formalization pending.",
           "bound": "\\mathbb{E}[R]\\ge 5.10\\cdot10^{-10}\\mathbb{E}[\\mathrm{OPT}]"
+        },
+        {
+          "author": "Qiuyu Chen (Euler)",
+          "handle": "canghaimeng",
+          "value": "165971304277649481670619/324956758716416046811841770291200",
+          "display": "\\approx5.107\\cdot10^{-10}",
+          "date": "2026-10-19T11:44:32Z",
+          "dateSource": "https://github.com/canghaimeng/openai-math-improvement/commit/b3c7abea0d5e392777498816ca837eded8b85669",
+          "dateKind": "first-stated",
+          "url": "https://github.com/canghaimeng/openai-math-improvement/blob/b3c7abea0d5e392777498816ca837eded8b85669/problems/bound-111/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "The paper keeps OpenAI’s construction and Ryan Shea’s refinements and changes only one evaluation: it uses the estimate \\(B>141\\) instead of \\(B>140\\), which raises Shea’s certificate by a factor of about 1.0014. It covers every finite matroid in the full-seed adversary model. The paper is dated October 17, 2026.",
+          "authors": [
+            {
+              "name": "Qiuyu Chen (Euler)",
+              "url": "https://github.com/canghaimeng"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied for this result. The proof is the PDF paper in the repository; no independent check.",
+          "bound": "\\mathbb{E}[R]\\ge 5.107\\cdot10^{-10}\\,\\mathbb{E}[\\mathrm{OPT}]"
         }
       ],
       "repos": [
@@ -1050,7 +1072,7 @@
           "url": "https://github.com/shea256/matroid-prophet-inequality"
         }
       ],
-      "bestHandle": "shea256"
+      "bestHandle": "canghaimeng"
     },
     {
       "family": "115",
@@ -1165,6 +1187,28 @@
           ],
           "proofScope": "The supplied Lean theorem polynomial_bound_3762_general proves \\(\\mathrm{AS}(\\operatorname{sign}p)\\le\\frac{1881}{500}d\\sqrt n\\) for every real polynomial \\(p\\) of total degree at most \\(d\\) in \\(n\\) variables, with \\(n\\ge1\\), \\(d\\ge1\\) and \\(\\operatorname{sign}(0)=1\\), on the definitions of OpenAI’s challenge file; it needs neither \\(d\\le n\\) nor a multilinear \\(p\\). The author’s CI built it and printed only the standard axioms. No site rerun.",
           "bound": "\\mathrm{AS}(f)\\le 3.762d\\sqrt n"
+        },
+        {
+          "author": "Qiuyu Chen (Euler)",
+          "handle": "canghaimeng",
+          "value": "399/125",
+          "display": "3.192",
+          "date": "2026-10-19T11:44:32Z",
+          "dateSource": "https://github.com/canghaimeng/openai-math-improvement/commit/b3c7abea0d5e392777498816ca837eded8b85669",
+          "dateKind": "first-stated",
+          "url": "https://github.com/canghaimeng/openai-math-improvement/blob/b3c7abea0d5e392777498816ca837eded8b85669/problems/bound-127/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "The paper rebuilds the compensated coupling argument of Lagdive, Aglave and Damre on OpenAI’s weighted filtration. That argument gives the coefficient \\(8/\\sqrt{2\\pi}\\approx3.1915\\), and an exact rational certificate rounds it up to \\(399/125\\). The paper states it for all integers \\(n,d\\ge1\\) with \\(\\operatorname{sgn}(0)=1\\), and is dated October 17, 2026.",
+          "authors": [
+            {
+              "name": "Qiuyu Chen (Euler)",
+              "url": "https://github.com/canghaimeng"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied for this result. The proof is the PDF paper in the repository; no independent check.",
+          "bound": "\\mathrm{AS}(f)\\le 3.192d\\sqrt n"
         }
       ],
       "repos": [
@@ -1174,7 +1218,7 @@
           "note": "The dimension-dependent refinements are separate."
         }
       ],
-      "bestHandle": "Anchen0823"
+      "bestHandle": "canghaimeng"
     },
     {
       "family": "132",
@@ -1212,10 +1256,32 @@
           ],
           "proofScope": "No Lean proof is supplied. The claim applies OpenAI’s Lean theorems exists_constructed_seed and power_amplification, which hold for all allowed seed parameters, to the parameters in the note.",
           "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.00647}"
+        },
+        {
+          "author": "Qiuyu Chen (Euler)",
+          "handle": "canghaimeng",
+          "value": "380/187",
+          "display": "\\ge 2.032083",
+          "date": "2026-10-19T11:44:32Z",
+          "dateSource": "https://github.com/canghaimeng/openai-math-improvement/commit/b3c7abea0d5e392777498816ca837eded8b85669",
+          "dateKind": "first-stated",
+          "url": "https://github.com/canghaimeng/openai-math-improvement/blob/b3c7abea0d5e392777498816ca837eded8b85669/problems/bound-132/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "The paper keeps the nested-predicate construction of OpenAI and the level-dependent schedule of the ProveIt Part I preprint (depth \\(d=20\\)), and takes 99 OR copies instead of 100. An integer certificate gives \\(\\alpha>380/187\\approx2.0320855\\). The paper is dated October 17, 2026.",
+          "authors": [
+            {
+              "name": "Qiuyu Chen (Euler)",
+              "url": "https://github.com/canghaimeng"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied for this result. The proof is the PDF paper in the repository; no independent check.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.032083}"
         }
       ],
       "repos": [],
-      "bestHandle": "robinkothari"
+      "bestHandle": "canghaimeng"
     },
     {
       "family": "160",
@@ -1819,10 +1885,32 @@
           ],
           "proofScope": "Lean covers the degree-five norm decomposition, interpolation descent, finite packing, tag separation and the finite fresh-digit probability theorem; the interface instantiation, Smith-divisor identification, slab, lattice, orbit, deletion and prime-progression arguments and the full theorem are written proofs.",
           "bound": "\\eta>1.96\\cdot10^{-8}"
+        },
+        {
+          "author": "Qiuyu Chen (Euler)",
+          "handle": "canghaimeng",
+          "value": "2/100866719",
+          "display": "\\approx1.98\\cdot10^{-8}",
+          "date": "2026-10-19T11:44:32Z",
+          "dateSource": "https://github.com/canghaimeng/openai-math-improvement/commit/b3c7abea0d5e392777498816ca837eded8b85669",
+          "dateKind": "first-stated",
+          "url": "https://github.com/canghaimeng/openai-math-improvement/blob/b3c7abea0d5e392777498816ca837eded8b85669/problems/bound-191/README.md",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "The paper keeps OpenAI’s projective lattice construction and Blinov’s degree-five decomposition, and changes the scale of the lift box. The bound holds for every sufficiently large \\(n\\), with \\(c=2^{-10086671700}\\) and \\(n\\ge2^{100866718\\cdot250}\\). Its exponent is above the \\(1/50893237\\) of the previous entry. The paper is dated October 18, 2026.",
+          "authors": [
+            {
+              "name": "Qiuyu Chen (Euler)",
+              "url": "https://github.com/canghaimeng"
+            }
+          ],
+          "proofScope": "No Lean proof is supplied for this result. The proof is the PDF paper in the repository; no independent check.",
+          "bound": "\\eta>1.98\\cdot10^{-8}"
         }
       ],
       "repos": [],
-      "bestHandle": "littleBro"
+      "bestHandle": "canghaimeng"
     },
     {
       "family": "268",
