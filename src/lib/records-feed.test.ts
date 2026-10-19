@@ -354,6 +354,8 @@ test('an Other bounds row becomes a feed board with its own slug, table, leader 
  assert.equal(plainTex('W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/9}'),'W_r(k) > k^(k floor(log_2r)/9)');
  assert.equal(plainTex('\\mathbb{E}[R]\\ge \\frac{1}{2}\\mathbb{E}[\\mathrm{OPT}]'),'E[R] ≥ 1/2 E[OPT]');
  assert.equal(plainTex('\\mathrm{AS}(f)\\le 3.762d\\sqrt n'),'AS(f) ≤ 3.762d sqrt(n)');
+ assert.equal(plainTex('\\mathbb{E}[R]\\ge 5.1\\cdot10^{-10}\\,\\mathbb{E}[\\mathrm{OPT}]'),'E[R] ≥ 5.1·10^(-10) E[OPT]');
+ assert.equal(plainTex('1{,}000'),'1,000');
 });
 test('Other bounds boards are seeded on first sight: old leaders never post, a later leader posts to its table',()=>{
  const main=board();const start=Date.parse('2026-10-16T00:00:00Z');

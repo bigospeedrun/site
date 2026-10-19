@@ -48,6 +48,7 @@ export function feedBoard(problem:Pick<Problem,'slug'|'direction'>,records:Pick<
 // A plain-text form of a site bound (KaTeX source) for Discord and X posts.
 export function plainTex(tex:string):string {
  let s=tex.replace(/\{,\}/g,',');
+ s=s.replace(/\\[,;:!]/g,' '); // TeX thin spaces are spacing, not punctuation
  for(let i=0;i<3;i++){
   s=s.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,(all,a,b)=>`${/^[\w.]+$/.test(a)?a:'('+a+')'}/${/^[\w.]+$/.test(b)?b:'('+b+')'}`);
   s=s.replace(/\\mathbb\{([^{}]*)\}/g,' $1').replace(/\\(?:text|mathrm|operatorname|mathbf|mathit)\{([^{}]*)\}/g,'$1');
