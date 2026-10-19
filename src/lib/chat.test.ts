@@ -341,7 +341,7 @@ test('contribution routes send new results to Discord and Lean proofs to the ver
   assert.equal(contribute.leanProof.repository, 'https://github.com/bigospeedrun/verifier');
   assert.deepEqual(contribute.prove2me.problems, ['/3sum']);
   assert.deepEqual(contribute.prove2me.campaigns, [{problem: '/3sum', url: 'https://prove2.me/campaigns/3sum-exponent'}]);
-  assert.match(contribute.prove2me.text, /First path/); assert.match(contribute.leanProof.text, /second path/);
+  assert.match(contribute.prove2me.text, /additional way/); assert.match(contribute.leanProof.text, /main path/); assert.doesNotMatch(JSON.stringify(contribute), /first path|second path/i);
   assert.doesNotMatch(JSON.stringify(contribute), /issues/);
   assert.match(buildSystemPrompt(knowledge, '/', false), /use the contribute facts\. They replace any GitHub issue route/);
 });

@@ -67,9 +67,9 @@ function contributeRoutes(problems: Problem[]) {
     prove2me: {
       problems: paths(p => prove2meCampaigns[p.slug] !== undefined),
       campaigns: problems.filter(p => prove2meCampaigns[p.slug]).map(p => ({problem: '/' + p.slug, url: prove2meCampaigns[p.slug]})),
-      text: 'First path for the problems listed here: prove the bound on prove2.me, which checks each proof with Lean on its server, in the campaign of the race. When a proof states our exact problem, we review it, and it shows as Lean Verified, with a link to prove2.me, after our next hourly refresh.'},
+      text: 'An additional way for the problems listed here: prove the bound on prove2.me, which checks each proof with Lean on its server, in the campaign of the race. When a proof states our exact problem, we review it, and it shows as Lean Verified, with a link to prove2.me, after our next hourly refresh.'},
     leanProof: {problems: paths(p => verifierProblems.has(p.slug)), repository: verifierUrl, instructions: verifierUrl + '#submit',
-      text: 'Submit the Lean proof to bigospeedrun/verifier as a pull request or an issue. It shows as Lean Verified when it passes. The verifier checks a proof only if its bound matches or beats the current record. It is the second path for the problems that have a prove2.me campaign, and the only path for the other problems listed here.'},
+      text: 'Submit the Lean proof to bigospeedrun/verifier as a pull request or an issue. It shows as Lean Verified when it passes. The verifier checks a proof only if its bound matches or beats the current record. It is the main path for these problems.'},
     reviewRepositories: 'If a problem lists a repository with acceptsSubmissions true, also open a pull request there. Its maintainer reviews it, and a merge makes it Human Verified.',
     newLeanStatement: {text: 'Open a pull request to bigospeedrun/verifier that adds the problem under challenges/.', instructions: verifierUrl + '/blob/main/docs/new-statements.md'},
   };

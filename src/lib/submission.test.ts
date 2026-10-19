@@ -12,7 +12,7 @@ test('prove2.me campaign links match the campaigns the importer reviews', () => 
   assert.deepEqual(prove2meCampaigns, reviewed);
 });
 
-test('every race with a campaign also has the verifier as its second path', () => {
+test('every race with a campaign also has the verifier, which stays the main path', () => {
   for (const slug of Object.keys(prove2meCampaigns)) assert.ok(verifierProblems.has(slug), slug);
   assert.equal(prove2meCampaign({slug: '3sum'}), 'https://prove2.me/campaigns/3sum-exponent');
   assert.equal(prove2meCampaign({slug: 'exact-dft'}), undefined);

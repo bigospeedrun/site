@@ -33,8 +33,8 @@ ${breakthroughLabel}: ${breakthroughDefinition}
 - [How do I start?](${siteOrigin}/about#get-started): choose a problem and check the latest updates.
 - [Submit a result](${siteOrigin}/about#submit): start here to find the submission route for each problem and the full instructions.
 - New results: post a link to the public repository, commit or paper in ${submitChannel} on our [Discord](${discordUrl}).
-${problemLinks.filter(([slug])=>prove2meCampaigns[slug]).length?`- Lean proofs, first path: prove the bound on prove2.me, which checks proofs with Lean. Campaigns: ${problemLinks.filter(([slug])=>prove2meCampaigns[slug]).map(([slug,title])=>`[${title}](${prove2meCampaigns[slug]})`).join(', ')}. A proof of our exact statement shows as Lean Verified, with a link to prove2.me, after we review it and our next hourly refresh.\n`:''}- Lean proofs, second path (the only path for races without a prove2.me campaign): submit them to [bigospeedrun/verifier](${verifierUrl}#submit).
-- [About and evidence levels](${siteOrigin}/about#evidence-levels): evidence definitions.
+- Lean proofs: submit them to [bigospeedrun/verifier](${verifierUrl}#submit).
+${problemLinks.filter(([slug])=>prove2meCampaigns[slug]).length?`- Additionally, for races with a prove2.me campaign you can prove the bound on prove2.me, which checks proofs with Lean. Campaigns: ${problemLinks.filter(([slug])=>prove2meCampaigns[slug]).map(([slug,title])=>`[${title}](${prove2meCampaigns[slug]})`).join(', ')}. A proof of our exact statement shows as Lean Verified, with a link to prove2.me, after we review it and our next hourly refresh.\n`:''}- [About and evidence levels](${siteOrigin}/about#evidence-levels): evidence definitions.
 - [Structured data](${siteOrigin}/chat-knowledge.json): update times, page text, evidence definitions, current leaders overall and by evidence level, their assumptions and sources, and repository submission links, and the current leader and relevant repositories of each Other bounds row. This file does not contain the full record history.
 - [Sitemap](${siteOrigin}/sitemap.xml): public page URLs.
 
