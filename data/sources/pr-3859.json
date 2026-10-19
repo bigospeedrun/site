@@ -1,0 +1,11 @@
+{
+  "number": 3859,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/3859",
+  "title": "Record the margin between two expansion axes and the chirp input cap",
+  "body": "## Summary\n- A single expansion axis bounded by `3/4` exceeds the chirp input cap of `3/5`.\n- The product of two such bounds is `9/16`, and `3/5 - 9/16 = 3/80` exactly.\n- All 270,000 grid sums with both factors below `3/4` and an error of `0`, `1/80`, or `2/80` stay strictly below `3/5`. The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/expansion-axis-margin/verify.py`\n- [x] `python3.12 -B research/expansion-axis-margin/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/expansion-axis-margin`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-18T23:24:32Z",
+  "updated_at": "2026-10-18T23:24:32Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
