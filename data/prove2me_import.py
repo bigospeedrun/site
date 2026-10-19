@@ -219,8 +219,8 @@ def verify_entry(entry, board, files):
     closure = {module_name(p).encode() for p in theorem['definitions']} | {m.encode() for m in theorem.get('allowed_imports', [])}
     for text in [body] + [files.read(p)[1] for p in theorem['definitions']]:
         imports = set(re.findall(rb'(?m)^import\s+(\S+)', text))
-        # Mathlib itself is trusted; any other import must be in the reviewed closure.
-        require(imports <= closure | {b'Mathlib'}, f'{theorem["name"]} imports changed')
+        # Mathlib itself (also a Mathlib.* module) is trusted; any other import must be in the reviewed closure.
+        require(all(i in closure or i == b'Mathlib' or i.startswith(b'Mathlib.') for i in imports), f'{theorem["name"]} imports changed')
     pattern = board.get('statement_pattern', r'SolvedInTime \(?{value}\b')
     require(re.search(pattern.replace('{value}', re.escape(entry['value'])).encode(), body), f'{theorem["name"]} does not state {entry["value"]}')
     header, body = files.read(solution['path'])

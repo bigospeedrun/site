@@ -528,6 +528,102 @@
      }
     }
    ]
+  },
+  "matrix-multiplication": {
+   "submit_path": false,
+   "campaign": {
+    "id": "8603ca89-1eac-4cd6-97f6-9170d3a1716a",
+    "slug": "matmul-omega",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "upper",
+    "value_direction": "lower"
+   },
+   "statement_pattern": "omega ℂ ≤ \\(9 : ℝ\\) / 4",
+   "statement_form": "Not the campaign goals (matMulExp K < c, tensor rank over every field) but the goal OAI.MatrixMultiplication.complex_omega_le_nine_quarters: Arithmetic.omega C <= 9/4, where Arithmetic.omega is the infimum of the exponents tau such that for every epsilon > 0 one positive constant C bounds the cost of a correct division-free straight-line program for n x n complex matrix multiplication by C n^(tau + epsilon) at every size n. The definition file Def_OAI_MatrixMultiplication_Arithmetic_omega is openai/math adc7f12 lean/ComparatorChallenges/MatrixMultiplication.lean with its original declarations; after removing comments and blank lines it differs from our trusted challenge only in the import lines (specific Mathlib modules instead of import Mathlib) and in leaving out our three target theorems (reviewed 2026-10-19). The goal is our challenge theorem complex_omega_le_nine_quarters.",
+   "definitions": {
+    "envs/0df444a/Definitions/Def_OAI_MatrixMultiplication_Arithmetic_omega.lean": "922fc8440ba94d56bc195756db6b8259a8e82753bab8b944fa3b13823813b704"
+   },
+   "entries": [
+    {
+     "mission_id": "c9059e77-ef38-4628-8a34-e8193c8f70c9",
+     "value": "2.55",
+     "solved_at": "2026-05-30T19:23:59.726184+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    },
+    {
+     "mission_id": "04919dc1-47b7-4ca4-92f2-c5fdf6771b93",
+     "value": "2.522",
+     "solved_at": "2026-08-24T04:12:14.07828+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    },
+    {
+     "mission_id": "647e1dc7-e847-4e71-9752-fa0067bc979c",
+     "value": "2.376",
+     "solved_at": "2026-08-25T05:53:34.707396+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    },
+    {
+     "mission_id": "5514f86d-d4d6-4a16-b4cf-22bcaffbe628",
+     "value": "2.3747",
+     "solved_at": "2026-08-28T11:48:04.470838+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    },
+    {
+     "mission_id": "f6ee2ece-8e6b-4e00-8a30-daa205745acd",
+     "value": "2.3737",
+     "solved_at": "2026-09-05T11:15:01.789163+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    },
+    {
+     "mission_id": "40c9fb6e-2def-4cde-8e96-16749b765471",
+     "value": "2.37193",
+     "solved_at": "2026-09-21T19:05:02.016087+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    },
+    {
+     "mission_id": "7e65274f-75a6-4d18-9bc2-8b01e6aadc63",
+     "value": "2.37134",
+     "solved_at": "2026-09-27T20:49:07.51785+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    },
+    {
+     "mission_id": "5b586aed-6028-4801-b419-c0ca84754158",
+     "value": "2.25",
+     "solved_at": "2026-10-07T05:50:18.78402+00:00",
+     "action": "link",
+     "record_id": "openai-matrix-nine-fourths-2026",
+     "same_proof": "The linked goal OAI.MatrixMultiplication.complex_omega_le_nine_quarters states Arithmetic.omega C <= 9/4 on definitions identical to our trusted challenge (verifier challenges/matrix-multiplication/MatrixMultiplication.lean; the prove2.me definition file differs only in its import lines and in leaving out our three target theorems, checked 2026-10-19). Its header cites the same OpenAI paper commit adc7f1241b42e322a6451854ab7e4b4c146bf78a as our row source, and its accepted proof (marwahaha, 2026-10-07, 18736 lines) ports that paper. The campaign mission for 2.25 is the tensor-rank form of this result over every field; prove2.me bridges it to this statement (mme_complex_arithmetic_omega_le_matMulExp, proved 2026-10-19, not in the export yet).",
+     "theorem": {
+      "name": "OAI.MatrixMultiplication.complex_omega_le_nine_quarters",
+      "url": "https://prove2.me/theorems/b5d0688a-7cad-4147-9cf0-bdcc937328ba",
+      "statement_path": "envs/0df444a/Theorems/Thm_OAI_MatrixMultiplication_complex_omega_le_nine_quarters.lean",
+      "statement_sha256": "0249f4908f847cca93419927738e75253fa9a617fcc50b446065cb9c361ffd09",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_OAI_MatrixMultiplication_Arithmetic_omega.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_OAI_MatrixMultiplication_complex_omega_le_nine_quarters.lean",
+      "sha256": "dff33d3ffa26f43b6da87ee0340104ab36c4f79397d65ae49e5e758f66a86134",
+      "author": "@marwahaha"
+     }
+    },
+    {
+     "mission_id": "07181a55-6880-4824-9c6f-9cb838fa4805",
+     "value": "2.371177",
+     "solved_at": "2026-10-07T05:57:00.372312+00:00",
+     "action": "skip",
+     "note": "Tensor-rank bound over every field (matMulExp K < value). Weaker than our classical baseline 2.371177 or equal to it, so it was not the best result on our board when it was proved. Not a Lean Verified row of ours."
+    }
+   ]
   }
  }
 }

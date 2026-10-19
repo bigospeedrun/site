@@ -3,5 +3,6 @@ export default {
   "apsp": "apsp-exponent",
   "3sum": "3sum-exponent",
   "other-block-sensitivity": "block-sensitivity-vs-sensitivity",
-  "integer-multiplication": "integer-multiplication-kappa"
+  "integer-multiplication": "integer-multiplication-kappa",
+  "matrix-multiplication": "matmul-omega"
 } as Record<string, string>;

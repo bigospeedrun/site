@@ -236,6 +236,23 @@ class Prove2meImportTest(unittest.TestCase):
         reason = self.held_after(lambda: self.f.files.__setitem__(path, self.f.files[path].replace(b'by sorry', b' := by sorry -- x')))
         self.assertIn('statement changed', reason)
 
+    def test_mathlib_modules_are_trusted_imports_but_other_modules_are_not(self):
+        entry = self.f.trust['boards']['apsp']['entries'][1]
+        path = entry['theorem']['statement_path']
+        for line, reason in [(b'import Mathlib.Data.Complex.Basic\n', None), (b'import Mathlibx.Evil\n', 'imports changed'), (b'import Other.Module\n', 'imports changed')]:
+            with self.subTest(line=line):
+                _, body = p2m.split_header(self.f.files[path])
+                header = b''.join(l + b'\n' for l in self.f.files[path].split(b'\n') if l.startswith(b'--'))
+                new = body.replace(b'import Definitions.Def_Spec\n', b'import Definitions.Def_Spec\n' + line)
+                self.f.files[path] = header + b'\n' + new
+                entry['theorem']['statement_sha256'] = hashlib.sha256(new).hexdigest()
+                self.f.save_trust()
+                held = self.f.run()[2]
+                if reason:
+                    self.assertIn(reason, held['apsp'])
+                else:
+                    self.assertEqual(held, {})
+
     def test_a_changed_definition_holds_the_board(self):
         reason = self.held_after(lambda: self.f.files.__setitem__(DEF, self.f.files[DEF] + b'instance : True := trivial\n'))
         self.assertIn('changed', reason)
