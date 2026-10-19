@@ -4,7 +4,7 @@
   "title": "Bind the lcm row stock to the wrapper and the selected fit guards",
   "body": "## Summary\n- Binds PR2753's compatible stock `K = 269241600 |GL_64(F_q)| q^(4096(w-1))` to the coefficient `sigma=6748`, which fits the `ell=16` form of the repair-(b) lemma. The published rounded coefficient 8195 does not.\n- Shows that `k=ceil(log_q K^D(e))` meets the merged outer wrapper's `1<=S<=q^k` precondition, with padding strictly below a factor of two whenever `D(e)>=1`.\n- Reproduces all fourteen selected native and conservative cutoffs and checks their `ell=16` numeric premises. No new kappa, GL64 endpoint, physical tape, or complex `m=73` divisor.\n\n## Test plan\n- [x] `python3.12 -B scripts/research_package.py --package research/selected-lcm-stock-wrapper-fit` reports `PASS_REGISTERED_RESEARCH_PACKAGE` on CPython 3.12.14.\n- [ ] Confirm the vendored PR2753 proof text and wrapper contract needles still match the pinned inputs.\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-16T07:41:50Z",
-  "updated_at": "2026-10-19T08:51:01Z",
+  "updated_at": "2026-10-19T10:28:57Z",
   "closed_at": "2026-10-16T11:42:23Z",
   "merged_at": "2026-10-16T11:42:23Z",
   "state": "closed"
