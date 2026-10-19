@@ -388,7 +388,19 @@ def upgrade_for(slug, board, entry, trust):
                 theorem=theorem['name'], url=theorem['url'], checked_at=zulu(entry['solved_at']))
 
 
-UPGRADE_NOTE = ' Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row\'s statement (same value, same source).'
+UPGRADE_NOTE = 'Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row\'s statement (same value, same source).'
+# The platypii note (data/platypii_lean.py) says 'we have not rerun it' about another Lean proof. It goes
+# after the prove2.me sentence and starts with 'Separately, a Lean proof', so the two do not contradict.
+PLATYPII_START = re.compile(r'(?:Separately, a|A) Lean proof of ')
+
+
+def with_upgrade_note(text):
+    if UPGRADE_NOTE in text:
+        return text
+    match = PLATYPII_START.search(text)
+    if not match:
+        return text.rstrip() + ' ' + UPGRADE_NOTE
+    return text[:match.start()] + UPGRADE_NOTE + ' Separately, a Lean proof of ' + text[match.end():]
 
 
 def apply_upgrades(doc, upgrades):
@@ -404,8 +416,7 @@ def apply_upgrades(doc, upgrades):
         row['evidence']['theorem'] = up['theorem']
         row['rerun_status'] = dict(state='passed', checked_at=up['checked_at'], receipt_path=up['path'])
         meta.update(site_tier='verified', receipt_url=up['url'], prove2me_upgrade=True)
-        if UPGRADE_NOTE not in meta.get('proof_status', ''):
-            meta['proof_status'] = meta.get('proof_status', '').rstrip() + UPGRADE_NOTE
+        meta['proof_status'] = with_upgrade_note(meta.get('proof_status', ''))
     return doc
 
 

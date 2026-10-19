@@ -43,6 +43,19 @@ class PlatypiiTests(unittest.TestCase):
         return pl.check(self.root, now, self.hub.get, self.hub.read, self.hub.files_at)
     def note(self): return json.loads((self.root / pl.BOARD).read_text())['record_metadata'][pl.ROW]['proof_status']
 
+    def test_a_note_after_the_prove2me_sentence_keeps_its_prefix_when_updated(self):
+        # data/prove2me_import.py writes 'Source claim... <prove2.me sentence> Separately, a Lean proof of ...'.
+        board = json.loads((self.root / pl.BOARD).read_text())
+        first, rest = OLD_NOTE.split(' A Lean proof', 1)
+        board['record_metadata'][pl.ROW]['proof_status'] = first + ' Proved on prove2.me. Separately, a Lean proof' + rest
+        (self.root / pl.BOARD).write_text(json.dumps(board))
+        self.hub.theorem = THEOREM.replace('14229 / 2 ^ 46', '1 / 2 ^ 31'); self.hub.runs = [{'conclusion': 'success'}]
+        self.run_check()
+        note = self.note()
+        self.assertIn('Proved on prove2.me. Separately, a Lean proof of a stronger saving, kappa = 1/2^31', note)
+        self.assertEqual(note.count('Lean proof of'), 1)
+        self.assertTrue(note.endswith('we have not rerun it.'))
+
     def test_saving_forms(self):
         self.assertEqual(pl.saving(THEOREM), ('14229/2^46', Fraction(14229, 2 ** 46)))
         self.assertEqual(pl.saving('theorem mulInTime : MulInTime (2 ^ 33 : ℝ)⁻¹ :='), ('2^-33', Fraction(1, 2 ** 33)))

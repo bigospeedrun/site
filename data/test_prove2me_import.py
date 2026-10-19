@@ -185,6 +185,13 @@ class Prove2meImportTest(unittest.TestCase):
         self.assertEqual(state['boards']['apsp']['links'], {'anthropic-2026': 'https://prove2.me/theorems/t-m1'})
         self.assertEqual(self.f.run()[0], {}, 'a second run changes nothing')
 
+    def test_the_prove2me_sentence_goes_before_the_platypii_note_which_starts_with_separately(self):
+        old = 'Source claim; not independently rerun by bigOspeedrun. A Lean proof of a stronger saving, kappa = 1/2^31 (about 4.66e-10), by K (platypii), exists on M; it is not our exact multitape statement and we have not rerun it.'
+        new = p2m.with_upgrade_note(old)
+        self.assertEqual(new, 'Source claim; not independently rerun by bigOspeedrun. ' + p2m.UPGRADE_NOTE + ' Separately, a Lean proof of a stronger saving, kappa = 1/2^31 (about 4.66e-10), by K (platypii), exists on M; it is not our exact multitape statement and we have not rerun it.')
+        self.assertEqual(p2m.with_upgrade_note(new), new, 'a second pass changes nothing')
+        self.assertEqual(p2m.with_upgrade_note('Source claim.'), 'Source claim. ' + p2m.UPGRADE_NOTE)
+
     @mock.patch.object(p2m, 'LEAN_VERIFIED', False)
     def test_an_upgrade_with_the_switch_off_only_links(self):
         self.make_upgrade()

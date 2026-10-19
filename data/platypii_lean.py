@@ -34,7 +34,8 @@ THEOREM = 'IntegerMultBounds/MathlibTM2/Theorem.lean'
 STATEMENT_SHA256 = 'fdefddb6fe2870e6c2c5f45dd4ac02ef93dee3171ebaaa86e3d059cf0a57c0d5'
 MAX_TARBALL = 64 * 1024 * 1024
 MAX_LEAN_BYTES = 256 * 1024 * 1024  # decompressed .lean total (9 MB on 2026-10-15)
-NOTE = re.compile(r'A Lean proof of a (?:stronger )?saving, kappa = .*?we have not rerun it\.')
+# The prove2.me import (prove2me_import.py) puts its sentence first and writes 'Separately, a Lean proof'.
+NOTE = re.compile(r'(Separately, a|A) Lean proof of a (?:stronger )?saving, kappa = .*?we have not rerun it\.')
 CI_TEXT = {'success': "the author's CI on that commit passed",
            'failure': "the author's CI on that commit failed",
            'cancelled': "the author's CI run on that commit was cancelled"}
@@ -122,7 +123,7 @@ def write_note(root, value_text, value, sha, ci, day):
     row_score = next(r['score'] for r in board['records'] if r['id'] == ROW)
     if not NOTE.search(meta['proof_status']):
         raise ValueError('note sentence not found in the row proof_status')
-    updated = NOTE.sub(lambda m: note(value_text, value, sha, ci, day, row_score), meta['proof_status'], count=1)
+    updated = NOTE.sub(lambda m: (m[1] + note(value_text, value, sha, ci, day, row_score)[1:]), meta['proof_status'], count=1)
     if updated != meta['proof_status']:
         meta['proof_status'] = updated
         (root / BOARD).write_text(json.dumps(board, indent=2, ensure_ascii=False) + '\n')
