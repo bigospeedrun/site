@@ -1,7 +1,7 @@
 import type {Problem, RecordEntry} from './types.ts';
 import {ranked, boundPrecision, tableBound} from './ranking.ts';
 import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, type EvidenceLevel} from './evidence.ts';
-import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns} from './submission.ts';
+import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns, prove2meCampaignForOther} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import {problemLinks, problemDisplayName} from './navigation.ts';
 
@@ -55,6 +55,7 @@ function otherBoundRows(data: OtherBoundsData) {
       current: {bound: best.bound, exactValue: best.value, conditions: best.note, evidence: evidenceName(best.evidence as EvidenceLevel),
         authors: best.authors.map(a => a.name), date: best.date.slice(0, 10), source: best.url, proofScope: best.proofScope},
       claimCount: f.claims.length,
+      ...(prove2meCampaignForOther(f.slug) ? {prove2meCampaign: prove2meCampaignForOther(f.slug)} : {}),
       relevantRepos: f.repos.map(r => ({name: r.name, url: r.url, ...(r.note ? {note: r.note} : {})})),
     };
   });

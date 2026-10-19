@@ -14,7 +14,7 @@ const reviewed = entries.filter(({problem}) => submissionRoute(problem) === 'rev
 const verified = entries.filter(({problem}) => submissionRoute(problem) === 'verifier');
 const unreviewed = entries.filter(({problem}) => submissionRoute(problem) === 'site');
 // Races with a prove2.me campaign also take proofs there, in addition to the verifier.
-const withCampaign = verified.filter(({problem}) => prove2meCampaign(problem));
+const withCampaign = entries.filter(({problem}) => prove2meCampaign(problem));
 const missingStatements = entries.filter(({problem}) => !verifierProblems.has(problem.slug));
 const missingProofs = entries.filter(({problem}) => {
   const leader = ranked(boardRecords(problem), problem.direction)[0]?.record;

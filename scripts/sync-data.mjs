@@ -14,6 +14,13 @@ const registry=validateData(source);
 const pending=new Map();
 // prove2me.json holds reviewed prove2.me links (data/prove2me_import.py); older bundles have none.
 const names=['registry.json','submissions.json','chart-cross-check.json',...registry.problems.map(p=>p.data_file),...(existsSync(resolve(source,'prove2me.json'))?['prove2me.json']:[])];
+// prove2me-campaigns.json is the list of prove2.me campaigns that data/prove2me-trust.json reviews, by board
+// (the race slug, or other-<slug> for an Other bounds row). The pages link each race to its campaign.
+if(existsSync(resolve(source,'prove2me-trust.json'))){
+ const trust=JSON.parse(readFileSync(resolve(source,'prove2me-trust.json'),'utf8'));
+ const campaigns=Object.fromEntries(Object.entries(trust.boards??{}).filter(([,board])=>board.campaign?.status==='active').map(([board,{campaign}])=>[board,{slug:campaign.slug}]));
+ pending.set(resolve('src/data','prove2me-campaigns.json'),Buffer.from(JSON.stringify(campaigns,null,2)+'\n'));
+}
 const documents=names.map(name=>{
  const bytes=readFileSync(resolve(source,name));
  pending.set(resolve('src/data',name),bytes);

@@ -318,6 +318,9 @@ test('a QRH question reaches the quasi-Riemann Other bounds row with its leader,
     .some(name => name.toLowerCase().includes(query.toLowerCase())));
   for (const query of ['qrh', 'QRH', 'riemann', 'quasi riemann', 'quasi-Riemann'])
     assert.deepEqual(find(query).map(row => row.path), ['/other/quasi-riemann'], query);
+  // Only the rows with a reviewed prove2.me campaign carry its link.
+  assert.deepEqual(rows.filter(r => 'prove2meCampaign' in r).map(r => [r.path, (r as {prove2meCampaign?: string}).prove2meCampaign]),
+    [['/other/block-sensitivity', 'https://prove2.me/campaigns/block-sensitivity-vs-sensitivity']]);
   const row = find('qrh')[0];
   assert.equal(row.title, 'Quasi-Riemann hypothesis'); assert.match(row.better, /lower value is better/);
   assert.equal(knowledge.otherBounds.list, '/#other-bounds');
