@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-3875",
+        "leader": "crocswap-pr-3934",
         "records": [
           {
             "id": "openai-original-109",
@@ -3848,6 +3848,16 @@
               "Pierre-Loic Doulcet"
             ],
             "bound": "O(n log^(1 - 0.0017305784372662468187) n)"
+          },
+          {
+            "id": "crocswap-pr-3934",
+            "score": "17348462641201991514749999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "rohanarun"
+            ],
+            "bound": "O(n log^(1 - 0.0017348462641201991514) n)"
           }
         ],
         "table": "big-o"
@@ -3875,7 +3885,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-issue-16",
+        "leader": "direct-issue-19",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -3905,7 +3915,7 @@
             "authors": [
               "eumemic"
             ],
-            "bound": "O(n log^(1 - 0.000485 + epsilon) n), for every fixed epsilon > 0"
+            "bound": "O(n log^(1 - 0.0004856 + epsilon) n), for every fixed epsilon > 0"
           },
           {
             "id": "shea256-exact-dft-2026",
@@ -3925,7 +3935,7 @@
             "authors": [
               "jacobalansussman"
             ],
-            "bound": "O(n log^(1 - 0.000747) n)"
+            "bound": "O(n log^(1 - 0.0007474) n)"
           },
           {
             "id": "shea256-exact-dft-round11-2026",
@@ -3946,7 +3956,7 @@
               "jacobalansussman",
               "chafreaky"
             ],
-            "bound": "O(n log^(1 - 0.000754) n)"
+            "bound": "O(n log^(1 - 0.0007547) n)"
           },
           {
             "id": "jacob-sussman-exact-dft-e8-2026",
@@ -3956,7 +3966,7 @@
             "authors": [
               "jacobalansussman"
             ],
-            "bound": "O(n log^(1 - 0.000876) n)"
+            "bound": "O(n log^(1 - 0.0008762) n)"
           },
           {
             "id": "shea256-exact-dft-complex588-2026",
@@ -3967,7 +3977,7 @@
               "jeremykothe2",
               "Ryan Shea"
             ],
-            "bound": "O(n log^(1 - 0.00123) n)"
+            "bound": "O(n log^(1 - 0.001233) n)"
           },
           {
             "id": "direct-issue-16",
@@ -3980,6 +3990,16 @@
             "bound": "O(n log^(1 - 0.00126) n)"
           },
           {
+            "id": "direct-issue-19",
+            "score": "6327/5000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Hrishik Sai Bojnal"
+            ],
+            "bound": "O(n log^(1 - 0.001265) n)"
+          },
+          {
             "id": "direct-pr-3",
             "score": "2555269/2500000000",
             "relation": "attained",
@@ -3987,7 +4007,7 @@
             "authors": [
               "Nil Mamano"
             ],
-            "bound": "O(n log^(1 - 0.00102) n)"
+            "bound": "O(n log^(1 - 0.001022) n)"
           }
         ],
         "table": "big-o"
@@ -5189,7 +5209,9 @@
     "[\"integer-multiplication\",\"crocswap-pr-3633\",\"17300963635286235342299999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-3857\",\"17305784372662468187407132180498575565564480739715624333119999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-3875\",\"1730578437266246818740713218049857556556448073971562433312762590080026439756809999999999999999999998999999999999999999999999/1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
-    "[\"3sum\",\"direct-issue-18\",\"19203/10000\",\"attained\"]:record"
+    "[\"3sum\",\"direct-issue-18\",\"19203/10000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-3934\",\"17348462641201991514749999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
+    "[\"exact-dft\",\"direct-issue-19\",\"6327/5000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
