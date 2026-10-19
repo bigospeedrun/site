@@ -236,7 +236,7 @@ def check_board(slug, board, doc, files, get, today='9999-12-31'):
     better = (lambda a, b: a < b) if doc['score']['direction'] == 'lower-is-better' else (lambda a, b: a > b)
     known = [(record_time(r, meta[r['id']]), Fraction(r['score'])) for r in records
              if not meta[r['id']].get('reproduction_of') and r.get('upstream_status') != 'closed-unmerged']
-    plan = dict(links={}, rows=[])
+    plan = dict(links={}, rows=[], upgrades=[])
     for entry in sorted(board['entries'], key=lambda e: utc(e['solved_at'])):
         value = Fraction(entry['value'])
         if entry['action'] == 'wait':
@@ -250,10 +250,13 @@ def check_board(slug, board, doc, files, get, today='9999-12-31'):
         verify_entry(entry, board, files)
         solved = utc(entry['solved_at'])
         same = [r for r in records if Fraction(r['score']) == value]
-        if entry['action'] == 'link':
-            require(entry.get('same_proof'), f'link for entry {entry["value"]} has no same-proof evidence')
+        if entry['action'] in ('link', 'upgrade'):
+            require(entry.get('same_proof'), f'{entry["action"]} for entry {entry["value"]} has no same-proof evidence')
             require(any(r['id'] == entry['record_id'] for r in same), f'board row {entry["record_id"]} with value {entry["value"]} is missing')
             plan['links'][entry['record_id']] = theorem['url']
+            # An upgrade makes that row Lean Verified (the row has the same value, source and statement).
+            if entry['action'] == 'upgrade':
+                plan.setdefault('upgrades', []).append(entry)
         else:
             require(entry['action'] == 'row', f'unknown action {entry["action"]!r}')
             other = sorted(r['id'] for r in same if r['id'] not in entry.get('same_value_rows', []))
@@ -372,6 +375,40 @@ def row_for(slug, doc, board, entry, trust, previous):
     return record, meta, {path: raw}
 
 
+def upgrade_for(slug, board, entry, trust):
+    """The receipt for an upgrade of an existing row to Lean Verified, by its prove2.me theorem."""
+    theorem = entry['theorem']
+    receipt = dict(schema_version=1, source='prove2.me', reviewed_at=trust['reviewed_at'], reviewed_by=trust['reviewed_by'],
+                   campaign=board['campaign'], mission_id=entry['mission_id'], mission_url='https://prove2.me/missions/' + entry['mission_id'],
+                   attested_value=entry['value'], solved_at=entry['solved_at'], statement_form=board['statement_form'], same_proof=entry['same_proof'],
+                   formalpedia=trust['formalpedia'], theorem=theorem, solution=entry['solution'], record_id=entry['record_id'],
+                   definitions={p: board['definitions'][p] for p in theorem['definitions']}, lean_verified=LEAN_VERIFIED)
+    raw = json_bytes(receipt)
+    return dict(record_id=entry['record_id'], path='sources/prove2me-' + slug + '-' + entry['record_id'] + '.json', raw=raw,
+                theorem=theorem['name'], url=theorem['url'], checked_at=zulu(entry['solved_at']))
+
+
+UPGRADE_NOTE = ' Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row\'s statement (same value, same source).'
+
+
+def apply_upgrades(doc, upgrades):
+    """Make each upgraded row Lean Verified. The row stays where it is. A later hold leaves it as it is;
+    removing an upgrade from the trust file does not undo it (a person edits the row)."""
+    if not LEAN_VERIFIED or not upgrades:
+        return doc
+    doc = copy.deepcopy(doc)
+    for up in upgrades:
+        row = next(r for r in doc['records'] if r['id'] == up['record_id'])
+        meta = doc['record_metadata'][row['id']]
+        row['tier'] = 'verified'
+        row['evidence']['theorem'] = up['theorem']
+        row['rerun_status'] = dict(state='passed', checked_at=up['checked_at'], receipt_path=up['path'])
+        meta.update(site_tier='verified', receipt_url=up['url'], prove2me_upgrade=True)
+        if UPGRADE_NOTE not in meta.get('proof_status', ''):
+            meta['proof_status'] = meta.get('proof_status', '').rstrip() + UPGRADE_NOTE
+    return doc
+
+
 def apply_rows(doc, rows):
     """Put the imported rows in the document. A row keeps its place, so an unchanged
     import leaves the file byte for byte the same."""
@@ -429,9 +466,14 @@ def run(root, get=fetch, now=None):
             continue
         doc = json.loads((root / data_files[slug]).read_text())
         prior_rows = {row['record']['id']: row for row in prior.get('rows', [])}
+        upgrades = []
         try:
             plan = check_board(slug, board, doc, files, get, now[:10])
             rows, board_sources = [], {}
+            for entry in plan['upgrades']:
+                up = upgrade_for(slug, board, entry, trust)
+                upgrades.append(up)
+                board_sources[up['path']] = up['raw']
             for entry in plan['rows']:
                 record, meta, sources = row_for(slug, doc, board, entry, trust, prior_rows)
                 rows.append((record, meta))
@@ -447,7 +489,7 @@ def run(root, get=fetch, now=None):
             rows = [(row['record'], row['meta']) for row in prior.get('rows', [])]
             entry_state = dict(status='held', reason=reason, since=since, links=prior.get('links', {}), rows=prior.get('rows', []))
         state['boards'][slug] = entry_state
-        updated = apply_rows(doc, rows)
+        updated = apply_upgrades(apply_rows(doc, rows), upgrades if state['boards'][slug]['status'] == 'ok' else [])
         if updated != doc:
             updated['updated_at'] = now
             updated['checked_at'] = now[:10]

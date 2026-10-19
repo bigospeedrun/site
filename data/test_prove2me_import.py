@@ -161,6 +161,45 @@ class Prove2meImportTest(unittest.TestCase):
         receipt = json.loads((self.f.root / row['artifact']['path']).read_text())
         self.assertTrue(receipt['lean_verified'])
 
+    def make_upgrade(self):
+        doc = self.f.doc()
+        row = doc['records'][1]
+        row.update(tier='claimed', evidence=dict(paper_url='https://example.org/p', theorem=None, certificate_path=None))
+        doc['record_metadata']['anthropic-2026'] = dict(proof_status='Source claim.', site_tier='claimed')
+        self.f.write('apsp.json', doc)
+        self.f.trust['boards']['apsp']['entries'][0]['action'] = 'upgrade'
+        self.f.save_trust()
+
+    @mock.patch.object(p2m, 'LEAN_VERIFIED', True)
+    def test_an_upgrade_makes_the_row_lean_verified_with_a_receipt_and_is_stable(self):
+        self.make_upgrade()
+        changed, state, held = self.f.run()
+        self.assertEqual(held, {})
+        row = self.f.doc()['records'][1]
+        meta = self.f.doc()['record_metadata']['anthropic-2026']
+        self.assertEqual((row['tier'], row['evidence']['theorem'], row['rerun_status']['state']), ('verified', 'Goalm1', 'passed'))
+        self.assertEqual(row['rerun_status']['receipt_path'], 'sources/prove2me-apsp-anthropic-2026.json')
+        self.assertTrue((self.f.root / row['rerun_status']['receipt_path']).exists())
+        self.assertEqual((meta['site_tier'], meta['receipt_url'], meta['prove2me_upgrade']), ('verified', 'https://prove2.me/theorems/t-m1', True))
+        self.assertTrue(meta['proof_status'].startswith('Source claim. Proved on prove2.me'))
+        self.assertEqual(state['boards']['apsp']['links'], {'anthropic-2026': 'https://prove2.me/theorems/t-m1'})
+        self.assertEqual(self.f.run()[0], {}, 'a second run changes nothing')
+
+    @mock.patch.object(p2m, 'LEAN_VERIFIED', False)
+    def test_an_upgrade_with_the_switch_off_only_links(self):
+        self.make_upgrade()
+        self.f.run()
+        self.assertEqual(self.f.doc()['records'][1]['tier'], 'claimed')
+
+    @mock.patch.object(p2m, 'LEAN_VERIFIED', True)
+    def test_a_held_board_leaves_an_upgraded_row_as_it_is(self):
+        self.make_upgrade()
+        self.f.run()
+        before = self.f.doc()['records'][1]
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-08T00:00:00+00:00'))
+        self.assertIn('apsp', self.f.run()[2])
+        self.assertEqual(self.f.doc()['records'][1], before)
+
     def held_after(self, change):
         self.f.run()
         before = self.f.doc()
@@ -486,7 +525,7 @@ class TrustFileTest(unittest.TestCase):
             missions = [e['mission_id'] for e in board['entries']]
             self.assertEqual(len(missions), len(set(missions)))
             for entry in board['entries']:
-                self.assertIn(entry['action'], ('link', 'row', 'skip', 'wait'))
+                self.assertIn(entry['action'], ('link', 'upgrade', 'row', 'skip', 'wait'))
                 p2m.utc(entry['solved_at'])
                 if entry['action'] == 'wait':
                     self.assertTrue(entry['note'] and re.fullmatch(r'\d{4}-\d{2}-\d{2}', entry['wait_until']))
@@ -498,7 +537,7 @@ class TrustFileTest(unittest.TestCase):
                 self.assertTrue(theorem['url'].startswith('https://prove2.me/theorems/'))
                 self.assertTrue(digest.match(theorem['statement_sha256']) and digest.match(entry['solution']['sha256']))
                 self.assertTrue(set(theorem['definitions']) <= set(board['definitions']))
-                if entry['action'] == 'link':
+                if entry['action'] in ('link', 'upgrade'):
                     self.assertTrue(entry['record_id'] and entry['same_proof'])
                 else:
                     self.assertTrue(entry['authors'] and all(a['url'].startswith('https://') for a in entry['authors']))
