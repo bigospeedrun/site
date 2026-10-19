@@ -395,8 +395,8 @@ PLATYPII_START = re.compile(r'(?:Separately, a|A) Lean proof of ')
 
 
 def with_upgrade_note(text):
-    if UPGRADE_NOTE in text:
-        return text
+    # A row upgraded before this order (17:17Z run, 2026-10-19) has the sentence at the end: move it.
+    text = text.replace(' ' + UPGRADE_NOTE, '').replace(UPGRADE_NOTE, '')
     match = PLATYPII_START.search(text)
     if not match:
         return text.rstrip() + ' ' + UPGRADE_NOTE

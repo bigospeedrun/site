@@ -190,6 +190,8 @@ class Prove2meImportTest(unittest.TestCase):
         new = p2m.with_upgrade_note(old)
         self.assertEqual(new, 'Source claim; not independently rerun by bigOspeedrun. ' + p2m.UPGRADE_NOTE + ' Separately, a Lean proof of a stronger saving, kappa = 1/2^31 (about 4.66e-10), by K (platypii), exists on M; it is not our exact multitape statement and we have not rerun it.')
         self.assertEqual(p2m.with_upgrade_note(new), new, 'a second pass changes nothing')
+        # The 17:17Z run of 2026-10-19 put the sentence after the platypii note: the next run moves it.
+        self.assertEqual(p2m.with_upgrade_note(old + ' ' + p2m.UPGRADE_NOTE), new)
         self.assertEqual(p2m.with_upgrade_note('Source claim.'), 'Source claim. ' + p2m.UPGRADE_NOTE)
 
     @mock.patch.object(p2m, 'LEAN_VERIFIED', False)
