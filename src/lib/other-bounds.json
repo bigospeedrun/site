@@ -334,17 +334,39 @@
           "dateKind": "first-stated",
           "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/52419a826d4a8465cdeb56aaa2d471c489221d1d/submissions/gao-balanced-marked-20261017/src/Candidate/Main.lean#L9-L14",
           "lean": true,
-          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted check compiled the proof, but its Comparator and kernel step timed out, so the check failed; no independent rerun.",
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's first hosted verify job timed out; its admission check (qrh/pr-admission) passed on a rerun and the tracker merged the PR. No independent rerun.",
           "evidence": "claimed",
-          "note": "Open PR #63 when listed. Its argument uses the accepted 0.874836 bound (PR #62) as an input.",
+          "note": "The tracker merged PR #63 on October 18, at the commit listed here. Its argument uses the accepted 0.874836 bound (PR #62) as an input.",
           "authors": [
             {
               "name": "Zhongpai Gao",
               "url": "https://github.com/Gaozhongpai"
             }
           ],
-          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's hosted check compiled the proof, but its Comparator and kernel step timed out, so the check failed; no independent rerun.",
+          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's first hosted verify job timed out; its admission check (qrh/pr-admission) passed on a rerun and the tracker merged the PR. No independent rerun.",
           "bound": "\\theta\\le 0.874830"
+        },
+        {
+          "author": "Sil",
+          "handle": "TheSil",
+          "value": "874828524351/1000000000000",
+          "display": "0.874828524351",
+          "date": "2026-10-18T23:46:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/66",
+          "dateKind": "first-stated",
+          "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/7c49dfafe165bbae38cc6e95520875ab3363b95f/submissions/sil-uneven-normalization-20261019/src/Candidate/Main.lean#L13-L18",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify and admission checks were still running when we listed it; the author reports only local Lean checks. No independent rerun.",
+          "evidence": "claimed",
+          "note": "Open PR #66 when listed. The author says it builds on the merged PR #63: it first proves 0.8748286 from the 0.87483 of #63, and then the stated boundary.",
+          "authors": [
+            {
+              "name": "Sil",
+              "url": "https://github.com/TheSil"
+            }
+          ],
+          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's hosted verify and admission checks were still running when we listed it; the author reports only local Lean checks. No independent rerun.",
+          "bound": "\\theta\\le 0.874828524351"
         }
       ],
       "repos": [
@@ -421,7 +443,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "Gaozhongpai"
+      "bestHandle": "TheSil"
     },
     {
       "family": "005",
