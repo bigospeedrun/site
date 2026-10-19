@@ -114,6 +114,13 @@ STACK_SCAN = 30
 def base_ref(p):
     return (p.get('base') or {}).get('ref') or ''
 
+# GitHub lists at most 3000 files of a PR (CrocSwap #4085 changed 3039, 2026-10-19).
+PR_FILES_CAP = 3000
+
+class CappedFiles(list):
+    """The CLAIM.json files of a PR whose file list reached PR_FILES_CAP: its own
+    package can be missing from it."""
+
 def claim_files(m, pulls_by_number, old, fetched):
     """[[status, path], ...] of the research/*/CLAIM.json files PR m adds or changes at its
     head; cached in submissions (claim_files, claim_files_head, claim_files_base), so each
@@ -121,10 +128,13 @@ def claim_files(m, pulls_by_number, old, fetched):
     p = pulls_by_number[m]; prior = old.get(m) or {}
     if (prior.get('claim_files_head') == p['head']['sha'] and (prior.get('claim_files_base') or '') == base_ref(p)
             and 'claim_files' in prior):
-        return prior['claim_files']
+        return CappedFiles(prior['claim_files']) if prior.get('claim_files_capped') else prior['claim_files']
     if m not in fetched:
-        fetched[m] = [[f['status'], f['filename']] for f in pages(f'repos/{CROC}/pulls/{m}/files')
-                      if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
+        # Page 31 of a capped list is empty, so pages() stops there without an error.
+        listed = pages(f'repos/{CROC}/pulls/{m}/files', None, PR_FILES_CAP // 100 + 1)
+        files = [[f['status'], f['filename']] for f in listed
+                 if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
+        fetched[m] = CappedFiles(files) if len(listed) >= PR_FILES_CAP else files
     return fetched[m]
 
 def decided_package(p, score, files_of, others=()):
@@ -151,6 +161,10 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
     n = p['number']; head = p['head']['sha']
     names = bool(NAMES_KAPPA.search(p['title']))
     files = files_of(n)
+    if isinstance(files, CappedFiles):
+        # Not a crash and not a silent skip: the lead reads the PR (#4085, 2026-10-19).
+        return None, None, (f'The PR changes {PR_FILES_CAP} files or more and GitHub lists only the first '
+                            f'{PR_FILES_CAP}, so its own research package cannot be read.')
     added = [path for status, path in files if status == 'added']
     # Who else holds each added package: a PR listed for it, main (the PR is open, #3093),
     # or a lower PR that adds it too (a parent in a stack, even one not listed yet).
@@ -453,9 +467,11 @@ def refresh(stage, now):
         if m in fetched:
             item['claim_files'], item['claim_files_head'] = fetched[m], item['source_commit']
             item['claim_files_base'] = base_ref(pulls_by_number[m])
+            if isinstance(fetched[m], CappedFiles): item['claim_files_capped'] = True
         elif (prior.get('claim_files_head') == item['source_commit'] and (prior.get('claim_files_base') or '') == base_ref(pulls_by_number[m])
               and 'claim_files' in prior):
             item['claim_files'], item['claim_files_head'], item['claim_files_base'] = prior['claim_files'], prior['claim_files_head'], prior['claim_files_base']
+            if prior.get('claim_files_capped'): item['claim_files_capped'] = True
     subs.update(items=items,checked_at=day)
     dump(stage,'integer-multiplication.json',problem);dump(stage,'submissions.json',subs)
     reg=load(stage,'registry.json');reg['checked_at']=day;reg['updated_at']=now

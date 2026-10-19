@@ -127,6 +127,30 @@ class RefreshTests(unittest.TestCase):
         with patch.object(refresh,'pages',lambda *a:[{'filename':'research/y/CLAIM.json','status':'added'},{'filename':'research/y/README.md','status':'added'}]):
             self.assertEqual(refresh.claim_files(7,pulls_by_number,prior,{}),[['added','research/y/CLAIM.json']])
 
+    def test_capped_file_list_goes_to_review(self):
+        # CrocSwap #4085 (2026-10-19 16:17Z): 3039 files, GitHub lists 3000, the refresh
+        # raised 'GitHub pagination limit reached'. Now the PR goes to the lead's queue.
+        pr={'number':4085,'title':'Conditional κ = 0.0017309','body':'','state':'open','head':{'sha':'c'*40},'base':{'ref':'main'}}
+        listed=[{'filename':f'research/x/f{i}.lean','status':'added'} for i in range(2999)]+[{'filename':'research/y/CLAIM.json','status':'modified'}]
+        def pages(path,params=None,limit=30):
+            data=[listed[i:i+100] for i in range(0,len(listed),100)]+[[]]
+            self.assertGreater(limit,len(data)-1)  # The empty page after the cap ends the read.
+            return [f for page in data[:limit] for f in page]
+        fetched={}
+        with patch.object(refresh,'pages',pages):
+            files=refresh.claim_files(4085,{4085:pr},{},fetched)
+        self.assertIsInstance(files,refresh.CappedFiles);self.assertEqual(files,[['modified','research/y/CLAIM.json']])
+        reason=refresh.package_claim(None,pr,'m'*40,{},lambda m:files,[])
+        self.assertEqual(reason[:2],(None,None));self.assertIn('3000 files',reason[2])
+        # The cached list keeps the cap, with no new read.
+        prior={4085:{'claim_files':list(files),'claim_files_head':'c'*40,'claim_files_base':'main','claim_files_capped':True}}
+        with patch.object(refresh,'pages',lambda *a,**k:self.fail('no read for a cached head')):
+            self.assertIsInstance(refresh.claim_files(4085,{4085:pr},prior,{}),refresh.CappedFiles)
+        # One file fewer than the cap: a normal list.
+        del listed[0]
+        with patch.object(refresh,'pages',pages):
+            self.assertNotIsInstance(refresh.claim_files(4085,{4085:pr},{},{}),refresh.CappedFiles)
+
     def test_title_only_kappa_at_or_below_the_leader_is_silent(self):
         # #3308 (2026-10-17): no CLAIM.json, title kappa 0.001673618490895016, below the leader.
         leader=refresh.Fraction('0.0017348157703850985634')
