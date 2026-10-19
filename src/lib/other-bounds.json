@@ -356,7 +356,7 @@
           "dateKind": "first-stated",
           "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/7c49dfafe165bbae38cc6e95520875ab3363b95f/submissions/sil-uneven-normalization-20261019/src/Candidate/Main.lean#L13-L18",
           "lean": true,
-          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify and admission checks were still running when we listed it; the author reports only local Lean checks. No independent rerun.",
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out after about three hours (the same way as the first run of PR #63), and its admission check failed. The PR is still open; the author reports only local Lean checks. No independent rerun.",
           "evidence": "claimed",
           "note": "Open PR #66 when listed. The author says it builds on the merged PR #63: it first proves 0.8748286 from the 0.87483 of #63, and then the stated boundary.",
           "authors": [
@@ -365,7 +365,7 @@
               "url": "https://github.com/TheSil"
             }
           ],
-          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's hosted verify and admission checks were still running when we listed it; the author reports only local Lean checks. No independent rerun.",
+          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out after about three hours (the same way as the first run of PR #63), and its admission check failed. The PR is still open; the author reports only local Lean checks. No independent rerun.",
           "bound": "\\theta\\le 0.874828524351"
         }
       ],
