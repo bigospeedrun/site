@@ -13,3 +13,13 @@ export function submissionRoute(problem: Pick<Problem, 'slug' | 'repos'>) {
   if (problem.repos.some(repo => repo.open)) return 'review';
   return verifierProblems.has(problem.slug) ? 'verifier' : 'site';
 }
+
+// Races that have a prove2.me campaign: the page where a proof of the race's bound is submitted.
+// prove2.me checks each proof with Lean on its server. The slugs are the campaigns that
+// data/prove2me-trust.json lists for each board (a test keeps the two in step).
+const prove2meCampaignUrl = (slug: string) => 'https://prove2.me/campaigns/' + slug;
+export const prove2meCampaigns: Readonly<Record<string, string>> = {
+  '3sum': prove2meCampaignUrl('3sum-exponent'),
+  apsp: prove2meCampaignUrl('apsp-exponent'),
+};
+export const prove2meCampaign = (problem: Pick<Problem, 'slug'>): string | undefined => prove2meCampaigns[problem.slug];
