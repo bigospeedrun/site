@@ -18,11 +18,11 @@ for(const family of otherBounds.families) pageDescriptions['/other/'+family.slug
 // Model permalinks show the same page as the main problem URL.
 export function pageSeo(pathname:string) {
  const segments=pathname.split('/').filter(Boolean);
- const path = '/'+(segments[0]==='other'?segments.slice(0,2).join('/'):(segments[0]??''));
+ const path = '/'+(segments[0]==='other'||segments[0]==='receipts'?segments.slice(0,2).join('/'):(segments[0]??''));
  const canonicalPath = path==='/'?'/':path;
  return {
   canonical: siteOrigin+canonicalPath,
-  noindex: canonicalPath==='/directed-sssp'||canonicalPath==='/404',
+  noindex: canonicalPath==='/directed-sssp'||canonicalPath==='/404'||canonicalPath.startsWith('/receipts/'),
   description: pageDescriptions[canonicalPath]??pageDescriptions['/'],
  };
 }

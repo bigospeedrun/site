@@ -1,0 +1,73 @@
+---
+import {readFileSync, existsSync} from 'node:fs';
+import {join} from 'node:path';
+import Layout from '../../layouts/Layout.astro';
+import {problems} from '../../lib/data';
+import {receiptSlug, receiptView} from '../../lib/receipt';
+import {localTimeFallback} from '../../lib/freshness';
+import {math} from '../../lib/math';
+import {problemDisplayName} from '../../lib/navigation';
+// One page per proof check receipt that a Lean Verified row links to (its level link).
+export function getStaticPaths() {
+  // Astro runs getStaticPaths apart from the rest of this frontmatter, so its helpers live inside it.
+  const publicFile = (path: string) => join(process.cwd(), 'public', path.replace(/^\/+/, ''));
+  const readJson = (path: string) => existsSync(publicFile(path)) ? JSON.parse(readFileSync(publicFile(path), 'utf8')) : undefined;
+  const byReceipt = new Map<string, {path: string; rows: {board: string; boardName: string; id: string; bound: string; authors: string[]}[]}>();
+  for (const p of problems) for (const r of p.records) {
+    if (!r.evidenceUrl?.startsWith('/receipts/') || !r.rerunStatus?.receipt_path) continue;
+    const path = r.rerunStatus.receipt_path.replace(/^\/+/, '');
+    const entry = byReceipt.get(receiptSlug(path)) ?? {path, rows: []};
+    entry.rows.push({board: p.slug, boardName: problemDisplayName(p.slug, p.title), id: r.id, bound: r.bound, authors: r.authors.map(a => a.name)});
+    byReceipt.set(receiptSlug(path), entry);
+  }
+  return [...byReceipt].map(([slug, {path, rows}]) => {
+    const receipt = readJson(path);
+    const sourcePath = typeof receipt?.source_receipt_path === 'string' ? receipt.source_receipt_path : undefined;
+    return {params: {slug}, props: {view: receiptView(receipt, sourcePath ? readJson(sourcePath) : undefined, path), rows}};
+  });
+}
+const {view, rows} = Astro.props;
+const commitUrl = (repo: string | undefined, commit: string | undefined) => repo && commit ? `${repo}/tree/${commit}` : undefined;
+const short = (hash: string) => hash.slice(0, 12);
+const axiomList = view.axioms.reported.length ? view.axioms.reported : view.axioms.allowed;
+---
+<Layout title="Lean proof check">
+  <h1>Lean proof check</h1>
+  <p>Our verifier rebuilt a Lean proof from its source and checked it against the Lean statement of the problem. This page is the receipt of that check.</p>
+  <p>{view.passed ? <strong>It passed</strong> : <strong>The receipt does not record a pass</strong>}{view.checkedAt && <> on <time datetime={view.checkedAt} data-local-datetime>{localTimeFallback(view.checkedAt)}</time></>}.{view.summary && <> The verifier’s own words: “{view.summary}”.</>}</p>
+  <h2>Rows that use this check</h2>
+  <ul>{rows.map(row => <li><a href={'/' + row.board}>{row.boardName}</a>: <span set:html={math(row.bound)}/>, by {row.authors.join(', ')}</li>)}</ul>
+  <h2>What passed</h2>
+  <dl class="checks">
+    {(view.statement.file || view.statement.sha256 || view.statement.commit) && <><dt>The statement</dt><dd>
+      {view.statement.file ? <>The Lean file <code>{view.statement.file}</code> states the problem.</> : <>A fixed Lean statement states the problem.</>} A proof counts only if it proves exactly this statement.
+      {view.statement.sha256 && <> Its checksum is <code>{short(view.statement.sha256)}</code>.</>}{view.statement.commit && <> It comes from commit <code>{short(view.statement.commit)}</code> of the statement’s source repository.</>}
+    </dd></>}
+    {(view.source.repo || view.source.commit) && <><dt>The proof</dt><dd>
+      {view.source.repo && <>Source repository <a href={view.source.repo} target="_blank" rel="noopener">{view.source.repo.replace('https://github.com/', '')}</a></>}{view.source.commit && <> at commit {commitUrl(view.source.repo, view.source.commit) ? <a href={commitUrl(view.source.repo, view.source.commit)} target="_blank" rel="noopener"><code>{short(view.source.commit)}</code></a> : <code>{short(view.source.commit)}</code>}</>}{view.source.subdir && <>, folder <code>{view.source.subdir}</code></>}.
+      {view.theorems.length > 0 && <> The theorem{view.theorems.length > 1 ? 's' : ''} checked: {view.theorems.map((name, i) => <>{i > 0 && ', '}<code>{name}</code></>)}.</>}
+    </dd></>}
+    <dt>Comparator and the Lean kernel</dt><dd>
+      {view.leanKernel === 'passed' ? <>Both accepted the proof. <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a> is the Lean community tool that checks a proof against a fixed copy of the statement. The Lean kernel is the small program that checks every step of the proof.</> : view.leanKernel === 'failed' ? <>They did not accept the proof.</> : <>This receipt does not record this check.</>}
+    </dd>
+    <dt>A second kernel (nanoda)</dt><dd>
+      {view.nanoda === 'passed' ? <>nanoda, a proof checker written separately from Lean’s own, also accepted the proof.</> : view.nanoda === 'failed' ? <>nanoda did not accept the proof.</> : <>This receipt does not record a nanoda check.</>}
+    </dd>
+    <dt>The axioms</dt><dd>
+      {view.axioms.status === 'passed' ? <>The audit passed.</> : view.axioms.status === 'failed' ? <>The audit failed.</> : <>This receipt does not record an audit.</>} An axiom is a statement that Lean accepts without proof. {axiomList.length > 0 && <>{view.axioms.reported.length ? 'The proof uses only' : 'The check allows only'} <code>{axiomList.join(', ')}</code>.</>}
+    </dd>
+    {view.toolchain && <><dt>Lean version</dt><dd><code>{view.toolchain}</code></dd></>}
+    {view.scope && <><dt>What the receipt says it covers</dt><dd>{view.scope}</dd></>}
+  </dl>
+  <h2>Links</h2>
+  <ul>
+    {view.links.run && <li><a href={view.links.run} target="_blank" rel="noopener">The GitHub Actions run of the verifier</a> that made the check</li>}
+    {view.links.issue && <li><a href={view.links.issue} target="_blank" rel="noopener">The verifier issue</a> of the submission</li>}
+    {view.links.pullRequest && <li><a href={view.links.pullRequest} target="_blank" rel="noopener">The verifier pull request</a> of the submission</li>}
+    {view.links.verifierCommit && <li>Verifier commit <a href={'https://github.com/bigospeedrun/verifier/tree/' + view.links.verifierCommit} target="_blank" rel="noopener"><code>{short(view.links.verifierCommit)}</code></a></li>}
+    {view.files.map(file => <li><a href={'/' + file.path.replace(/^\/+/, '')}>{file.label}</a></li>)}
+  </ul>
+</Layout>
+<style>
+.checks{margin:0 0 1.25rem}.checks dt{font-weight:600;margin-top:.9rem}.checks dd{margin:.2rem 0 0;overflow-wrap:anywhere}li{margin:.4rem 0;overflow-wrap:anywhere}
+</style>
