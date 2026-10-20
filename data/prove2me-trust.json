@@ -319,7 +319,7 @@
    "family": "block-sensitivity",
    "existing_claims_file": "../src/lib/other-bounds.json",
    "bound_template": "\\mathrm{bs}(f)\\ge s(f)^{{value}}",
-   "statement_pattern": "AchievesExponent \\(\\s*{value}\\b",
+   "statement_pattern": "AchievesExponent \\(\\s*{value}0*\\b",
    "campaign": {
     "id": "9873ab8f-732c-478e-b068-f800ef18558e",
     "slug": "block-sensitivity-vs-sensitivity",
@@ -483,25 +483,100 @@
      "mission_id": "dcd3dbe1-5b49-4587-934f-ee69d34e2bab",
      "value": "2.0635",
      "solved_at": "2026-10-18T04:29:35.700657+00:00",
-     "action": "wait",
-     "wait_until": "2026-10-23",
-     "note": "Proved 2026-10-18 04:29 UTC. Its goal theorem is not in the Formalpedia export of 2026-10-19 12:27 UTC (the export leaves out items that import unlicensed work), so its statement cannot be pinned yet. Still not in the export on 2026-10-20 03:40 UTC (the newest snapshot is 2026-10-19 12:27 UTC)."
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_20635_coupled_tournament",
+      "url": "https://prove2.me/theorems/f4a6abf1-69b0-4785-a7d9-cd45649231b2",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_20635_coupled_tournament.lean",
+      "statement_sha256": "709f51a37f79f9915f3cc5192d0f3a26199f386ef438ab43d4253fc59231a870",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_20635_coupled_tournament.lean",
+      "sha256": "fd6d122f5c0f72b1ef6a0ad7c75b286384f65c35c3fca409fe3a37bc9e3fda64",
+      "author": "@abhishekdpseok",
+      "submission_url": "https://prove2.me/submissions/f80a3f37-72fa-4d56-a094-3e4d351764f3"
+     },
+     "authors": [
+      {
+       "name": "abhishekdpseok",
+       "url": "https://prove2.me/submissions/f80a3f37-72fa-4d56-a094-3e4d351764f3"
+      }
+     ],
+     "note": "Analytic coupled-tournament construction with a 4,444-line Lean proof."
     },
     {
      "mission_id": "3f17f47e-88c2-4261-8573-324b57828cf7",
      "value": "2.075",
      "solved_at": "2026-10-19T20:16:20.976478+00:00",
-     "action": "wait",
-     "wait_until": "2026-10-23",
-     "note": "Proved 2026-10-19 20:16 UTC. Its goal theorem is not in the Formalpedia export of 2026-10-19 12:27 UTC (it was proved later), so its statement cannot be pinned yet. Checked 2026-10-20 03:40 UTC."
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_2075_nine_state",
+      "url": "https://prove2.me/theorems/49fdd176-c319-4f1e-b15f-b1fd5130f0bc",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_2075_nine_state.lean",
+      "statement_sha256": "6088d58850770769ff51b65041dc590e039070de31751d215843de0243dd6371",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_2075_nine_state.lean",
+      "sha256": "b8b3d440c3c148ee8401967fc8f2270df9c8c142dfb63f8fde28dfb88bf8c152",
+      "author": "@Robin Kothari",
+      "submission_url": "https://prove2.me/submissions/819ad4c6-aa25-48ca-82e9-c8df39c182c0"
+     },
+     "authors": [
+      {
+       "name": "Robin Kothari",
+       "url": "https://prove2.me/submissions/819ad4c6-aa25-48ca-82e9-c8df39c182c0"
+      }
+     ],
+     "note": "Seven-level nine-state sensitivity certificate with a 6,491-line Lean proof."
     },
     {
      "mission_id": "299978d9-05c4-478a-9039-1982062058c0",
      "value": "2.1",
      "solved_at": "2026-10-20T04:24:24.074873+00:00",
-     "action": "wait",
-     "wait_until": "2026-10-23",
-     "note": "Proved 2026-10-20 04:24 UTC. Its goal theorem is not in the Formalpedia export yet (newest snapshot 2026-10-19 12:29 UTC, before it was proved), so its statement cannot be pinned yet. Checked 2026-10-20 05:40 UTC."
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_210",
+      "url": "https://prove2.me/theorems/34794a98-e5bd-4623-ae65-526fc87e9ad1",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_210.lean",
+      "statement_sha256": "1582a5a1ddedfc371e7ad9ba995da479fe3ff41abecaa1cc14efcb8db85eb3e1",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_210.lean",
+      "sha256": "6dd2e89fb37ba1d73bd30cef62a725691bb03281dfeb1665112ccb484f3ffdc5",
+      "author": "@yousofy",
+      "submission_url": "https://prove2.me/submissions/ea04a251-431f-4f7a-9b53-529d5e807b0d"
+     },
+     "authors": [
+      {
+       "name": "yousofy",
+       "url": "https://prove2.me/submissions/ea04a251-431f-4f7a-9b53-529d5e807b0d"
+      }
+     ],
+     "note": "Exact 21-layer profile construction with a 7,083-line Lean proof."
     }
    ]
   },
@@ -616,7 +691,7 @@
      "solved_at": "2026-10-07T05:50:18.78402+00:00",
      "action": "link",
      "record_id": "openai-matrix-nine-fourths-2026",
-     "same_proof": "The linked goal OAI.MatrixMultiplication.complex_omega_le_nine_quarters states Arithmetic.omega C <= 9/4 on definitions identical to our trusted challenge (verifier challenges/matrix-multiplication/MatrixMultiplication.lean; the prove2.me definition file differs only in its import lines and in leaving out our three target theorems, checked 2026-10-19). Its header cites the same OpenAI paper commit adc7f1241b42e322a6451854ab7e4b4c146bf78a as our row source, and its accepted proof (marwahaha, 2026-10-07, 18736 lines) ports that paper. The campaign mission for 2.25 is the tensor-rank form of this result over every field; prove2.me bridges it to this statement (mme_complex_arithmetic_omega_le_matMulExp, proved 2026-10-19, not in the export yet).",
+     "same_proof": "The linked goal OAI.MatrixMultiplication.complex_omega_le_nine_quarters states Arithmetic.omega C <= 9/4 on definitions identical to our trusted challenge (verifier challenges/matrix-multiplication/MatrixMultiplication.lean; the prove2.me definition file differs only in its import lines and in leaving out our three target theorems, checked 2026-10-19). Its header cites the same OpenAI paper commit adc7f1241b42e322a6451854ab7e4b4c146bf78a as our row source, and its accepted proof (marwahaha, 2026-10-07, 18736 lines) ports that paper. The campaign mission for 2.25 is the tensor-rank form of this result over every field; prove2.me bridges it to this statement (mme_complex_arithmetic_omega_le_matMulExp, proved 2026-10-19). That bridge is in the export of 2026-10-20 06:00 UTC: statement Arithmetic.omega C <= matMulExp C (statement sha256 3bead60f561637b1c2d98b839e4f4d3f24de12fc188e8bb554c767f80c7871b3), accepted proof by marwahaha, 3168 lines, imports only Mathlib and the two definition files; reviewed 2026-10-20. The importer pins only the linked goal, not the bridge.",
      "theorem": {
       "name": "OAI.MatrixMultiplication.complex_omega_le_nine_quarters",
       "url": "https://prove2.me/theorems/b5d0688a-7cad-4147-9cf0-bdcc937328ba",

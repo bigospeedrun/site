@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "9873ab8f-732c-478e-b068-f800ef18558e",
+    "slug": "block-sensitivity-vs-sensitivity",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+  },
+  "mission_id": "3f17f47e-88c2-4261-8573-324b57828cf7",
+  "mission_url": "https://prove2.me/missions/3f17f47e-88c2-4261-8573-324b57828cf7",
+  "attested_value": "2.075",
+  "solved_at": "2026-10-19T20:16:20.976478+00:00",
+  "statement_form": "SensitivityCampaign.AchievesExponent a: for every epsilon > 0 and every S >= 2 there is a total Boolean function f on Fin n bits with sensitivity(f) >= S and sensitivity(f)^(a-epsilon) <= blockSensitivity(f). Sensitivity is the largest number of single bit flips that change f, and block sensitivity is the largest number of disjoint nonempty bit sets that each change f at one input (Def_SensitivitySeparation, reviewed 2026-10-19). That is our statement: bs(f) >= s(f)^(alpha - o(1)) for a family of total Boolean functions with s(f) -> infinity.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "SensitivityCampaign.reach_2075_nine_state",
+    "url": "https://prove2.me/theorems/49fdd176-c319-4f1e-b15f-b1fd5130f0bc",
+    "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_2075_nine_state.lean",
+    "statement_sha256": "6088d58850770769ff51b65041dc590e039070de31751d215843de0243dd6371",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+      "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+    ],
+    "allowed_imports": [
+      "Theorems.Thm_SensitivityCampaign_finite_certificate",
+      "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_2075_nine_state.lean",
+    "sha256": "b8b3d440c3c148ee8401967fc8f2270df9c8c142dfb63f8fde28dfb88bf8c152",
+    "author": "@Robin Kothari",
+    "submission_url": "https://prove2.me/submissions/819ad4c6-aa25-48ca-82e9-c8df39c182c0"
+  },
+  "definitions": {
+    "envs/0df444a/Definitions/Def_SensitivityCampaign.lean": "7cc4307ef9adf4ddc6cb355d159ba4ece3378249561c15fd2accc52d5c748532",
+    "envs/0df444a/Definitions/Def_SensitivitySeparation.lean": "2b76ae96c33e71832ccdf155581d27f80398281ae33cc0550c2ce0e0a32729b7"
+  },
+  "lean_verified": true
+}
