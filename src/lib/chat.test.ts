@@ -328,6 +328,12 @@ test('a QRH question reaches the quasi-Riemann Other bounds row with its leader,
   const leader = otherBoundLeader(otherBounds.families.find(f => f.slug === 'quasi-riemann')!)!;
   assert.equal(row.current.evidence, 'Claimed'); assert.deepEqual(row.current.authors, leader.authors.map(a => a.name));
   assert.equal(row.current.bound, leader.bound); assert.equal(row.baseline.bound, '\\theta\\le 7/8');
+  // The row names its review repository and the rule; the leader's pull request is linked with its status.
+  assert.deepEqual((row as {reviewRepository?: object}).reviewRepository, {name: 'GTimG/QuasiRiemannTracker', url: 'https://github.com/GTimG/QuasiRiemannTracker',
+    rule: 'A result is Human Verified when GTimG/QuasiRiemannTracker merges its pull request. A result in an open pull request is Claimed.'});
+  assert.match((row.current as {reviewPullRequest?: string}).reviewPullRequest ?? '', /^https:\/\/github\.com\/GTimG\/QuasiRiemannTracker\/pull\/\d+$/);
+  assert.equal(rows.filter(r => 'reviewRepository' in r).length, 1);
+  assert.match(knowledge.otherBounds.about, /unless its row names a review repository/);
   assert.ok(row.relevantRepos.some(repo => repo.name === 'AxiomMath/DedekindZetaZeroFree' && repo.note));
   // Initials are an alias only when the row's own repositories use them.
   assert.deepEqual(rows.filter(r => r.aliases.some(a => /^[A-Z]+$/.test(a))).map(r => r.path), ['/other/quasi-riemann']);

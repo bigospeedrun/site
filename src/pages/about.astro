@@ -20,6 +20,7 @@ const missingProofs = entries.filter(({problem}) => {
   const leader = ranked(boardRecords(problem), problem.direction)[0]?.record;
   return verifierProblems.has(problem.slug) && leader && leader.evidenceLevel !== 'lean-verified';
 });
+const reviewedOther = otherBounds.families.filter(f => 'reviewRepository' in f) as (typeof otherBounds.families[number] & {reviewRepository: {name: string; url: string}})[];
 const separator = (index: number, length: number) => index === 0 ? '' : index === length - 1 ? ' and ' : ', ';
 ---
 <Layout title="About">
@@ -96,7 +97,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
       <h2 id="verification">How are results verified?</h2>
       <p>There are two types of verification: Human and Lean.</p>
       <ul>
-        <li><strong>Human verified:</strong> Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.</li>
+        <li><strong>Human verified:</strong> Each problem page states which repository counts as review (usually an independently owned one, not affiliated with Big O Speedrun). A result is Human Verified when that repository accepts it. Submissions that repository closes without accepting them stay off the board.{reviewedOther.length > 0 && <> {reviewedOther.map((f, index) => <>{index > 0 && ' '}The <a href={'/other/' + f.slug}>{f.name}</a> page names <a href={f.reviewRepository.url} target="_blank" rel="noopener">{f.reviewRepository.name}</a>: a result is Human Verified when that repository merges its pull request.</>)}</>}</li>
         <li><strong>Lean verified:</strong> We rebuild the Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. We use <a href="https://github.com/leanprover/comparator" target="_blank" rel="noopener">Comparator</a>, the Lean community tool that checks a proof against a fixed copy of the statement. Anyone can submit a Lean proof to <a href="https://github.com/bigospeedrun/verifier" target="_blank" rel="noopener">our verifier</a>.
           <p>We also import results from <a href="https://prove2.me" target="_blank" rel="noopener">prove2.me</a>, where Lean checks each proof. A prove2.me result counts as Lean Verified once we review that it proves our exact problem statement.</p></li>
       </ul>

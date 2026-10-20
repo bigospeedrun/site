@@ -63,3 +63,12 @@ at most once per race every three hours, whoever leads; a later leader is deferr
 when the window ends if it still leads. Big O boards keep the per-author window above.
 Without `DISCORD_RECORDS_OTHER_WEBHOOK`, a plan keeps the previous state of the Other
 bounds boards and reserves nothing for them.
+
+As of 2026-10-20, an Other bounds row with a `reviewRepository` (today the quasi-Riemann
+row, GTimG/QuasiRiemannTracker) shows a claim as Human Verified once its pull request is
+merged (`review.status` is `merged`). That change never posts: the event key of a Human
+Verified record is the same `:record` key as a Claimed one, so a claim that was already
+announced or reserved stays reserved, and a merge of the current leader posts nothing new.
+A result first seen as already merged and leading posts as a new record with its level.
+Check a deploy with `node --experimental-strip-types scripts/discord-records.ts dry-run
+<batch>` after `npm run build`: it must plan 0 messages.

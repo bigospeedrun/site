@@ -15,6 +15,10 @@
         "exactValue": "7/8",
         "bound": "\\theta\\le 7/8"
       },
+      "reviewRepository": {
+        "name": "GTimG/QuasiRiemannTracker",
+        "url": "https://github.com/GTimG/QuasiRiemannTracker"
+      },
       "claims": [
         {
           "author": "Jizhou Guo",
@@ -49,7 +53,11 @@
           "url": "https://github.com/GTimG/QuasiRiemannTracker/commit/ec626ec9c0e7ab7b29f6c916314932caeb4df39a",
           "lean": true,
           "leanNote": "Yes; 228 new modules reported in source package.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 6,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -71,7 +79,11 @@
           "url": "https://github.com/GTimG/QuasiRiemannTracker/commit/58344dfdbe756cf2f743da1908ffe0582418cf5b",
           "lean": true,
           "leanNote": "Yes; proof contribution and reported multi-kernel receipts.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 9,
+            "status": "merged"
+          },
           "note": "Here \\(\\ell\\) is the unique root in \\([1/6,1/5]\\) of \\(927\\ell^4-3135\\ell^3+2433\\ell^2+275\\ell-100=0\\). The certified display upper bound is \\(683505193/781250000\\).",
           "authors": [
             {
@@ -93,7 +105,11 @@
           "url": "https://github.com/nielstron/QuasiRiemannTracker/blob/16ce30342471344c2b2f0d383388e6f9acb9bccf/submissions/local44-20261013/src/Candidate/Main.lean#L132-L134",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 26,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -115,7 +131,11 @@
           "url": "https://github.com/karirogg/QuasiRiemannTracker/blob/c707738a659786b9a44a79c629bed8c801cca8f3/submissions/affine-local-20261013/src/Candidate/Main.lean#L139-L141",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 37,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -137,7 +157,11 @@
           "url": "https://github.com/karirogg/QuasiRiemannTracker/blob/14ab1618c5133a7d12e06aa76661bbcb34e843cd/submissions/reserve-local-20261013/src/Candidate/Main.lean#L140-L142",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 38,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -159,7 +183,11 @@
           "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/c5235c0c4b21e548a86b0c616fb295e2c3a00441/submissions/gao-asymmetric-reserves-20261013/src/Candidate/Main.lean#L146-L148",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 41,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -181,7 +209,11 @@
           "url": "https://github.com/HaileyStorm/QuasiRiemannTracker/blob/fb6d4fd11aeaff0b37dd96bad3b274ce28a5c08b/submissions/cycle61-c0125139/src/Candidate/Main.lean#L8-L13",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 42,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -203,7 +235,11 @@
           "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/9e0008692e77836a9a61cff25c808727d6d6690d/submissions/gao-cycle61-plane-20261013/src/Candidate/Main.lean#L9-L13",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's hosted check did not pass (its maintainer reports a timeout), and the maintainer's offline Comparator, Lean, nanoda and con-ron replay accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 43,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -225,7 +261,11 @@
           "url": "https://github.com/timbalud/QuasiRiemannTracker/blob/a512fae28b0c353e2b81fb1c70ad8974c0fbb564/submissions/marked-high-count-20261014/src/Candidate/Main.lean#L8-L13",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's hosted worker ran out of memory, and the tracker accepted it on its maintainer's registered Comparator, Lean, nanoda and con-ron replay; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 48,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -247,7 +287,11 @@
           "url": "https://github.com/timbalud/QuasiRiemannTracker/blob/8cb265dc34909040c6f8cb48f53b19670a217ceb/submissions/radical-asymmetric-count-20261014/src/Candidate/Main.lean#L8-L12",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 50,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -269,7 +313,11 @@
           "url": "https://github.com/DaysSky/QuasiRiemannTracker/blob/b84b5dd3dd489cffc3c0d62d9cf22e60f1caab56/submissions/detector-affine-c0125154/src/Candidate/Main.lean#L8-L12",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 56,
+            "status": "merged"
+          },
           "note": "",
           "authors": [
             {
@@ -291,7 +339,11 @@
           "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/74643447f52a2df4d05cbb23f50b9e6f2959beaa/submissions/gao-affine-asymmetric-20261015/src/Candidate/Main.lean#L9-L13",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 60,
+            "status": "merged"
+          },
           "note": "Combines timbalud's asymmetric marked counting (PR #50) with DaysSky's affine detector construction (PR #56).",
           "authors": [
             {
@@ -313,7 +365,11 @@
           "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/b5e69ce575f43a72ec49ed690f1afb76d919f925/submissions/gao-directional-affine-20261016/src/Candidate/Main.lean#L8-L12",
           "lean": true,
           "leanNote": "Yes; Lean proves the all-Dirichlet theorem; the tracker's own Comparator, Lean, nanoda and con-ron run accepted it while the PR was still open; no independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 62,
+            "status": "merged"
+          },
           "note": "The tracker merged PR #62 on October 16, at the commit listed here. It uses the accepted 0.874840 bound (PR #60) for one range of the argument.",
           "authors": [
             {
@@ -335,7 +391,11 @@
           "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/52419a826d4a8465cdeb56aaa2d471c489221d1d/submissions/gao-balanced-marked-20261017/src/Candidate/Main.lean#L9-L14",
           "lean": true,
           "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's first hosted verify job timed out; its admission check (qrh/pr-admission) passed on a rerun and the tracker merged the PR. No independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 63,
+            "status": "merged"
+          },
           "note": "The tracker merged PR #63 on October 18, at the commit listed here. Its argument uses the accepted 0.874836 bound (PR #62) as an input.",
           "authors": [
             {
@@ -357,7 +417,11 @@
           "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/c68a3b2ba5b28b9c9b4bf26966ed6ee04ffa29b9/submissions/sil-uneven-normalization-20261019/src/Candidate/Main.lean#L13-L18",
           "lean": true,
           "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out on the first version of the proof and again on the smaller one (in the second run a worker also ran out of memory), and its admission check failed both times. The maintainer then checked the smaller proof outside the hosted job with a longer time limit; Comparator, Lean, nanoda and con-ron accepted it. A manual rerun of the hosted check then passed, and the tracker merged the PR. No independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 66,
+            "status": "merged"
+          },
           "note": "The tracker merged PR #66 on October 19 (PT), at the commit listed here. The author says it builds on the merged PR #63: it first proves 0.8748286 from the 0.87483 of #63, and then the stated boundary. The author pushed a smaller proof of the same statement (commit c68a3b2) before the merge, and this entry links it.",
           "authors": [
             {
@@ -380,6 +444,10 @@
           "lean": true,
           "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job and admission check for the PR had not finished when this entry was added. The author reports a clean local build of 922 modules and local nanoda and con-ron runs; the author notes that the hosted time limit may be too short for a single-threaded worker. No independent rerun.",
           "evidence": "claimed",
+          "review": {
+            "pr": 67,
+            "status": "open"
+          },
           "note": "Open PR #67 when listed. The author says it adds a second affine step for the low children on top of the PR #63 ledger and Collet's affine step, and that the new bound is 174963413/200000000 (equal to 0.874817065).",
           "authors": [
             {

@@ -13,7 +13,7 @@ export const pageDescriptions: Record<string,string> = {
  '/privacy': 'Read how the site uses Google Analytics, chat messages and browser storage.',
  '/about': 'Read how Big O Speedrun selects problems and repositories, checks results, and accepts submissions.',
 };
-for(const family of otherBounds.families) pageDescriptions['/other/'+family.slug]='Compare claimed improvements for '+family.name+', with source dates and proof scope.';
+for(const family of otherBounds.families) pageDescriptions['/other/'+family.slug]='Compare improvements for '+family.name+', with evidence levels, source dates and proof scope.';
 
 // Model permalinks show the same page as the main problem URL.
 export function pageSeo(pathname:string) {

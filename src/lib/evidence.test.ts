@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {classifyEvidence,evidenceLevels,isBoardEntry,isBreakthroughRecord,isVisibleAtEvidence,breakthroughLabel} from './evidence.ts';
+import {classifyEvidence,classifyOtherEvidence,otherReviewPrUrl,evidenceLevels,isBoardEntry,isBreakthroughRecord,isVisibleAtEvidence,breakthroughLabel} from './evidence.ts';
 import {logExponent} from './ranking.ts';
 test('review levels follow the named repository and proof gates',()=>{
  const base={slug:'integer-multiplication',repo:'CrocSwap/integer-mult-bounds',proofPassed:false};
@@ -64,4 +64,17 @@ test('every board keeps only its agent breakthrough when all evidence checkboxes
   const records=[{id,evidenceLevel:'claimed',isBreakthrough:isBreakthroughRecord(slug,id)},{id:'later',evidenceLevel:'lean-verified',isBreakthrough:isBreakthroughRecord(slug,'later')}];
   assert.deepEqual(records.filter(r=>isVisibleAtEvidence(r,[])).map(r=>r.id),[id]);
  }
+});
+
+test('an Other bounds claim is Human Verified only when its row names a review repository and that repository merged the pull request',()=>{
+ const repo={name:'GTimG/QuasiRiemannTracker',url:'https://github.com/GTimG/QuasiRiemannTracker'};
+ const claim=(status:string,evidence='claimed')=>({evidence,review:{pr:63,status}});
+ assert.equal(classifyOtherEvidence(repo,claim('merged')),'human-verified');
+ assert.equal(classifyOtherEvidence(repo,claim('open')),'claimed');
+ assert.equal(classifyOtherEvidence(repo,claim('closed')),'claimed');
+ assert.equal(classifyOtherEvidence(repo,{evidence:'claimed'}),'claimed');
+ assert.equal(classifyOtherEvidence(undefined,claim('merged')),'claimed');
+ assert.equal(classifyOtherEvidence(repo,claim('merged','lean-verified')),'lean-verified');
+ assert.equal(classifyOtherEvidence(undefined,{evidence:'lean-verified'}),'lean-verified');
+ assert.equal(otherReviewPrUrl(repo,{pr:63,status:'merged'}),'https://github.com/GTimG/QuasiRiemannTracker/pull/63');
 });

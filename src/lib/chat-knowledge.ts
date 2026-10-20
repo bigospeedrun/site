@@ -1,6 +1,6 @@
 import type {Problem, RecordEntry} from './types.ts';
 import {ranked, boundPrecision, tableBound} from './ranking.ts';
-import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, type EvidenceLevel} from './evidence.ts';
+import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, otherReviewPrUrl, type EvidenceLevel, type OtherClaimReview, type OtherReviewRepository} from './evidence.ts';
 import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns, prove2meCampaignForOther} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import {problemLinks, problemDisplayName} from './navigation.ts';
@@ -11,8 +11,9 @@ export interface OtherBoundsData {
   families: {
     family: string; slug: string; name: string; quantity: string; direction: string; statement: string; bestHandle: string;
     baseline: {bound: string; url: string; date: string};
+    reviewRepository?: OtherReviewRepository;
     claims: {handle: string; bound: string; value: string; display: string; note: string; url: string; date: string;
-      evidence: string; proofScope: string; authors: {name: string}[]}[];
+      evidence: string; review?: OtherClaimReview; proofScope: string; authors: {name: string}[]}[];
     repos: {name: string; url: string; note?: string}[];
   }[];
 }
@@ -52,7 +53,10 @@ function otherBoundRows(data: OtherBoundsData) {
       rankedQuantity: f.quantity, better: f.direction === 'higher' ? 'A higher value is better.' : 'A lower value is better.',
       statement: f.statement,
       baseline: {bound: f.baseline.bound, source: f.baseline.url, date: f.baseline.date.slice(0, 10)},
+      ...(f.reviewRepository ? {reviewRepository: {name: f.reviewRepository.name, url: f.reviewRepository.url,
+        rule: `A result is Human Verified when ${f.reviewRepository.name} merges its pull request. A result in an open pull request is Claimed.`}} : {}),
       current: {bound: best.bound, exactValue: best.value, conditions: best.note, evidence: evidenceName(best.evidence as EvidenceLevel),
+        ...(f.reviewRepository && best.review ? {reviewPullRequest: otherReviewPrUrl(f.reviewRepository, best.review), reviewStatus: best.review.status} : {}),
         authors: best.authors.map(a => a.name), date: best.date.slice(0, 10), source: best.url, proofScope: best.proofScope},
       claimCount: f.claims.length,
       ...(prove2meCampaignForOther(f.slug) ? {prove2meCampaign: prove2meCampaignForOther(f.slug)} : {}),
@@ -87,7 +91,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
   return {
     updatedAt, pages: {}, evidence: evidenceLevels,
     otherBounds: {
-      about: 'Other bounds are results that improve a bound from OpenAI\'s October 6, 2026 release. Each row ranks one quantity against the OpenAI baseline. Every result in these rows is Claimed: its authors published it, and we have not checked it.',
+      about: 'Other bounds are results that improve a bound from OpenAI\'s October 6, 2026 release. Each row ranks one quantity against the OpenAI baseline. A result is Claimed (its authors published it, and we have not checked it) unless its row names a review repository (reviewRepository): a result in a pull request that repository merged is Human Verified.',
       list: '/#other-bounds', checkedAt: otherBounds.checkedAt, rows: otherBoundRows(otherBounds),
     },
     contribute: contributeRoutes(boards),

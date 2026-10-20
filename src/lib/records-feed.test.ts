@@ -412,3 +412,20 @@ test('an exponent endpoint never posts as attained and never leads an attained t
  const posted=plan(baseline({schema_version:1,boards:[before]}),{schema_version:1,boards:[after]}).messages;
  assert.equal(posted.length,1);assert.match(posted[0].content,/epsilon/);assert.match(posted[0].x_text??'',/epsilon/);
 });
+
+// A pull request that the row's review repository merges turns its claim from Claimed to Human Verified.
+// That change never posts: the merged rows existed as Claimed, and a leader's merge is not a new event.
+test('Other bounds: a claim that becomes Human Verified posts nothing, for a past row or for the leader',()=>{
+ const main=board();const start=Date.parse('2026-10-20T00:00:00Z');
+ const merged=(c:OtherClaim):OtherClaim=>({...c,evidence:'human-verified'});
+ const old=claim('alice','0.8749'),lead=claim('bob','0.8748');
+ const before=plan(baseline(both(main)),both(main,otherFeedBoard(otherRow([old,lead],'bob'))),[],start).state;
+ const afterOld=plan(before,both(main,otherFeedBoard(otherRow([merged(old),lead],'bob'))),[],start+60000);
+ assert.deepEqual(afterOld.messages,[]);assert.deepEqual(afterOld.state.reserved,before.reserved);
+ const afterLead=plan(afterOld.state,both(main,otherFeedBoard(otherRow([merged(old),merged(lead)],'bob'))),[],start+120000);
+ assert.deepEqual(afterLead.messages,[]);
+ assert.equal(otherFeedBoard(otherRow([merged(lead)],'bob')).records[0].evidence,'Human Verified');
+ // A result first seen already merged and leading posts as a new record, with its level.
+ const fresh=plan(afterLead.state,both(main,otherFeedBoard(otherRow([merged(old),merged(lead),merged(claim('carol','0.8747'))],'carol'))),[],start+180000);
+ assert.equal(fresh.messages.length,1);assert.match(fresh.messages[0].content,/\*\*New record\*\* .*by carol \| Human Verified/);
+});

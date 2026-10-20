@@ -12,6 +12,16 @@ export function classifyEvidence(input:{slug:string;repo:string;upstreamStatus?:
  if(input.slug==='integer-multiplication'&&input.repo==='CrocSwap/integer-mult-bounds'&&(input.upstreamStatus==='merged'||input.upstreamSelected===true))return 'human-verified';
  return 'claimed';
 }
+// An Other bounds row may name one review repository (reviewRepository in src/lib/other-bounds.json).
+// A claim whose pull request that repository merged (review.status 'merged') is Human Verified; an open or
+// closed pull request, and a claim with no review, stay as the data says (Claimed, or Lean Verified).
+export interface OtherReviewRepository {name:string; url:string}
+export interface OtherClaimReview {pr:number; status:string} // status: 'open', 'merged' or 'closed'
+export function classifyOtherEvidence(reviewRepository:OtherReviewRepository|undefined,claim:{evidence:string;review?:OtherClaimReview}):EvidenceLevel {
+ if(claim.evidence==='lean-verified')return 'lean-verified';
+ return reviewRepository&&claim.review?.status==='merged'?'human-verified':'claimed';
+}
+export const otherReviewPrUrl=(reviewRepository:OtherReviewRepository,review:OtherClaimReview):string=>`${reviewRepository.url}/pull/${review.pr}`;
 export const integerMultiplicationClaimedRule = 'Published bounds outside CrocSwap/integer-mult-bounds, and open pull requests to it that are not yet merged.';
 export const reviewSubmissionPolicy = 'Open submissions appear as Claimed and move to Human Verified when accepted. Submissions closed without acceptance and reproductions stay off the board.';
 // Repository admission is separate from evidence strength: open submissions and independent claims remain eligible.

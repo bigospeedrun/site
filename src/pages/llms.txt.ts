@@ -3,6 +3,7 @@ import {breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
 import {siteOrigin} from '../lib/seo';
 import otherBounds from '../lib/other-bounds.json';
 import {verifierUrl, discordUrl, submitChannel, prove2meCampaigns} from '../lib/submission';
+const reviewRules=otherBounds.families.flatMap(f=>'reviewRepository' in f&&f.reviewRepository?[`on the ${f.name} row, a result is Human Verified when ${f.reviewRepository.name} merges its pull request`]:[]);
 export function GET() {
   return new Response(`# Big O Speedrun
 
@@ -18,9 +19,9 @@ ${problemLinks.map(([slug,title])=>`- [${title}](${siteOrigin}/${slug}): bounds,
 
 ## Other bounds
 
-These rows track results that improve a bound from OpenAI's October 6, 2026 release. Every listed result is Claimed: its authors published it, and we have not checked it.
+These rows track results that improve a bound from OpenAI's October 6, 2026 release. A listed result is Claimed unless its row names a review repository: ${reviewRules.join('; ')||'no row names one'}. Claimed means its authors published it, and we have not checked it.
 
-${otherBounds.families.map(f=>`- [${f.name}](${siteOrigin}/other/${f.slug}): the OpenAI baseline, claimed improvements and relevant repositories.`).join('\n')}
+${otherBounds.families.map(f=>`- [${f.name}](${siteOrigin}/other/${f.slug}): the OpenAI baseline, improvements with their evidence levels and relevant repositories.`).join('\n')}
 
 ## Race boards
 

@@ -4,6 +4,7 @@
 // for them. Each is a Lean Verified claim that links its prove2.me theorem page. The leader
 // of a row is the newest claim of its best handle, so a prove2.me claim that beats the
 // current leader by more than the display precision becomes the best handle.
+import {classifyOtherEvidence, type OtherClaimReview, type OtherReviewRepository} from './evidence.ts';
 export const OTHER_EPSILON = 0.00001;
 
 type Claim = {handle: string; display: string; value: string; date: string; evidence: string; url: string};
@@ -46,4 +47,13 @@ export function mergeProve2me<D extends {families: Family[]}>(data: D, state: {b
     return {...family, claims, bestHandle: best};
   });
   return {...data, families};
+}
+
+// A row with a reviewRepository takes each claim's evidence level from its review: a claim whose pull
+// request that repository merged is Human Verified (see classifyOtherEvidence).
+type Reviewed = {reviewRepository?: OtherReviewRepository; claims: {evidence: string; review?: OtherClaimReview}[]};
+export function applyReviews<D extends {families: Reviewed[]}>(data: D): D {
+  const families = data.families.map(family => ({...family,
+    claims: family.claims.map(claim => ({...claim, evidence: classifyOtherEvidence(family.reviewRepository, claim)}))}));
+  return {...data, families} as D;
 }
