@@ -61,3 +61,22 @@ test('applyReviews derives the level from the review and leaves other rows as th
     {claims: [{evidence: 'claimed', review: {pr: 3, status: 'merged' as const}}]}]});
   assert.deepEqual(out.families.map(f => f.claims.map(c => c.evidence)), [['human-verified', 'claimed', 'lean-verified'], ['claimed']]);
 });
+
+test('a status read from GitHub replaces the stored status of a pull request that is not merged yet', () => {
+  const repo = {name: 'o/r', url: 'https://github.com/o/r'};
+  const rows = {families: [{slug: 'row', reviewRepository: repo, claims: [
+    {evidence: 'claimed', review: {pr: 1, status: 'open'}}, {evidence: 'claimed', review: {pr: 2, status: 'open'}},
+    {evidence: 'human-verified', review: {pr: 3, status: 'merged'}}, {evidence: 'claimed'}]}]};
+  const levels = (state: Parameters<typeof applyReviews>[1]) => applyReviews(rows, state).families[0].claims.map(c => c.evidence);
+  assert.deepEqual(levels(undefined), ['claimed', 'claimed', 'human-verified', 'claimed']);
+  assert.deepEqual(levels({rows: {row: {'1': {status: 'merged'}}}}), ['human-verified', 'claimed', 'human-verified', 'claimed']);
+  // A closed pull request stays Claimed; a merged one is final even if a stale read says open; other rows are not touched.
+  assert.deepEqual(levels({rows: {row: {'2': {status: 'closed'}, '3': {status: 'open'}}, other: {'1': {status: 'merged'}}}}), ['claimed', 'claimed', 'human-verified', 'claimed']);
+  assert.equal(applyReviews(rows, {rows: {row: {'1': {status: 'merged'}}}}).families[0].claims[0].review!.status, 'merged');
+});
+test('the claims in other-bounds.json hold no status text that a merge would make stale', () => {
+  for (const row of reviewed) for (const c of row.claims.filter(c => c.review?.status === 'open')) {
+    const text = JSON.stringify(c);
+    assert.doesNotMatch(text, /Open PR|is still open|had not finished/i, `${row.slug} ${c.handle}`);
+  }
+});

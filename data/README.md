@@ -27,6 +27,13 @@ the published best kappa, or more than 1% below the published best exponent,
 leaves its board and waits in `review-holds.json` until the lead approves or
 rejects it in `review-decisions.json`. `--check` exits 1 while anything waits.
 
+Run `python3 data/other_reviews.py` to read the review pull requests of Other bounds rows.
+A row of `src/lib/other-bounds.json` with a `reviewRepository` lists claims with
+`review {pr, status}`. The script reads each pull request that is not merged yet with
+one GET and writes its status to `other-reviews.json`. The site build applies that file
+over the stored status, so a merge makes the claim Human Verified at the next refresh.
+The script exits 1 when a read fails, and it reports a pull request closed without a merge.
+
 Run `python3 data/prove2me_import.py` to import reviewed prove2.me campaign
 results. It reads the public campaign pages and the prove2me/formalpedia export
 with anonymous GET requests. `prove2me-trust.json` lists each reviewed entry and

@@ -52,6 +52,14 @@ jobs:
         continue-on-error: true
         timeout-minutes: 5
         run: .refresh-venv/bin/python data/prove2me_import.py
+      # One GET per review pull request of an Other bounds row that is not merged yet
+      # (data/other_reviews.py): a merge turns the claim into Human Verified at the next build.
+      - name: Read the status of the review pull requests
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: .refresh-venv/bin/python data/other_reviews.py
       # The platypii Lean note on the IM OpenAI row (data/platypii_lean.py, GET only). A
       # network failure keeps the last state; a held check fails the review step.
       - name: Check the platypii Lean note

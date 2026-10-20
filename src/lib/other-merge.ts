@@ -50,10 +50,18 @@ export function mergeProve2me<D extends {families: Family[]}>(data: D, state: {b
 }
 
 // A row with a reviewRepository takes each claim's evidence level from its review: a claim whose pull
-// request that repository merged is Human Verified (see classifyOtherEvidence).
-type Reviewed = {reviewRepository?: OtherReviewRepository; claims: {evidence: string; review?: OtherClaimReview}[]};
-export function applyReviews<D extends {families: Reviewed[]}>(data: D): D {
+// request that repository merged is Human Verified (see classifyOtherEvidence). The hourly refresh
+// (data/other_reviews.py) reads the status of each review pull request that is not merged yet into
+// data/other-reviews.json; that status replaces the one in other-bounds.json, so a merge flips the claim
+// without an edit. A pull request that the rows file already lists as merged stays merged.
+type Reviewed = {slug?: string; reviewRepository?: OtherReviewRepository; claims: {evidence: string; review?: OtherClaimReview}[]};
+export type ReviewState = {rows?: Record<string, Record<string, {status?: string}>>};
+export function applyReviews<D extends {families: Reviewed[]}>(data: D, state?: ReviewState | null): D {
   const families = data.families.map(family => ({...family,
-    claims: family.claims.map(claim => ({...claim, evidence: classifyOtherEvidence(family.reviewRepository, claim)}))}));
+    claims: family.claims.map(claim => {
+      const seen = family.slug && claim.review ? state?.rows?.[family.slug]?.[String(claim.review.pr)]?.status : undefined;
+      const review = claim.review && seen && claim.review.status !== 'merged' ? {...claim.review, status: seen} : claim.review;
+      return {...claim, ...(review ? {review} : {}), evidence: classifyOtherEvidence(family.reviewRepository, {...claim, review})};
+    })}));
   return {...data, families} as D;
 }

@@ -66,7 +66,7 @@ bounds boards and reserves nothing for them.
 
 As of 2026-10-20, an Other bounds row with a `reviewRepository` (today the quasi-Riemann
 row, GTimG/QuasiRiemannTracker) shows a claim as Human Verified once its pull request is
-merged (`review.status` is `merged`). That change never posts: the event key of a Human
+merged (`review.status` is `merged`, read hourly from GitHub by `data/other_reviews.py`). That change never posts: the event key of a Human
 Verified record is the same `:record` key as a Claimed one, so a claim that was already
 announced or reserved stays reserved, and a merge of the current leader posts nothing new.
 A result first seen as already merged and leading posts as a new record with its level.
