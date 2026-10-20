@@ -37153,7 +37153,7 @@
       "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4181",
       "artifact": {
         "path": "sources/pr-4181.json",
-        "sha256": "c45ae6de5320b10157261d729b7c20604d274deacba3cc0788deb37ea06f15e6"
+        "sha256": "00119df0835d9bd7fa7a195399722c2b5aafcdb5dc688eb6361c51fd882c7213"
       },
       "evidence": {
         "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4181",
@@ -40303,7 +40303,7 @@
       "source_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 127238784/2^46 (about 1.81e-06), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ df729d5, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit failed (checked 2026-10-20)); it is not our exact multitape statement and we have not rerun it.",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 127238784/2^46 (about 1.81e-06), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ ccf1f51, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit passed (checked 2026-10-20)); it is not our exact multitape statement and we have not rerun it.",
       "comparison_key": "openai/original-109",
       "date_precision": "Manuscript dated September 23, 2026; submitted_at is observation time.",
       "upstream_tier": "claimed",
@@ -58722,7 +58722,7 @@
       "merged": false,
       "merged_at": null,
       "closed_at": null,
-      "updated_at": "2026-10-20T14:14:23Z",
+      "updated_at": "2026-10-20T19:46:48Z",
       "comparison_key": "crocswap/integer-multiplication-v1",
       "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
       "score_source": "conditional_kappa in research/staged544-pooled-ceiling-fill/RESULT.json at the PR head; source claim only",
@@ -58768,5 +58768,5 @@
       "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-10-20T19:17:21Z"
+  "updated_at": "2026-10-20T20:17:24Z"
 }
