@@ -13,7 +13,7 @@
       },
       "verification": {
         "decision": "lean-verified",
-        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
         "id": "direct-28-085c8e734184f350557f4b04ed7186242b4d2616ce88416e7231b01dc1d8ba44",
         "problem_id": "3sum/word-ram",
         "score": "1920279461/1000000000",
@@ -21,22 +21,22 @@
         "source_commit": "e1d4a6a0c21a7a08bece69a4ffb2c6bae0a28f32",
         "source_url": "https://github.com/fringewidth/3sum-bound",
         "authors": [],
-        "workflow_conclusion": null,
+        "workflow_conclusion": "success",
         "issue_submitter": "fringewidth",
         "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39469071264",
-        "checked_at": "2026-10-20T20:00:27.872901Z",
+        "checked_at": "2026-10-20T20:24:32.246447Z",
         "issue_created_at": "2026-10-20T17:11:35Z",
         "issue_updated_at_at_verification": "2026-10-20T17:11:35Z",
-        "issue_updated_at_at_import": "2026-10-20T20:00:52Z",
+        "issue_updated_at_at_import": "2026-10-20T20:24:57Z",
         "review_required": [
           "authorship",
           "first publication date",
           "historical record eligibility"
         ],
-        "receipt_path": "sources/direct-issue-28-39469071264-1-lean.json",
-        "receipt_sha256": "0978d1e2e6045db77ccdb6b9d39d6f9f23eb650086ea3d6ee0e356661f3b4218",
+        "receipt_path": "sources/direct-issue-28-39469071264-1.json",
+        "receipt_sha256": "1e38715f3052a584b4d16d962b7079684e470f92748c1e56d8f91c95093706ba",
         "policy_hash": "c24085e74bf5bb48f73278fa71ae9387f673c03e95dfa2652f4566fdf114c043",
-        "result_artifact_id": 12294387880,
+        "result_artifact_id": 12294998870,
         "controller_fingerprint": "71c53882cd454ec3c813fa32a97b1a8a67bb8cb335a47a30c355e52de736ffae",
         "pr_identity": null,
         "source_file": "Submission.lean"
@@ -92,6 +92,36 @@
         "commit": "32c6858cf43efd48bf9c8a3541274e7a655ca2ad",
         "bound": "1497780383/500000000",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "id": "direct-25-28f6c349c3ccf32df5170a18ab919b309904de7ff13f6d8d0ff252676c358ce0",
+        "problem_id": "apsp/word-ram",
+        "score": "1497780383/500000000",
+        "score_relation": "attained",
+        "source_commit": "32c6858cf43efd48bf9c8a3541274e7a655ca2ad",
+        "source_url": "https://github.com/JoshuaQFEX/apsp-bound",
+        "authors": [],
+        "workflow_conclusion": null,
+        "issue_submitter": "JoshuaQFEX",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39494922904",
+        "checked_at": "2026-10-20T21:29:01.379378Z",
+        "issue_created_at": "2026-10-20T14:14:28Z",
+        "issue_updated_at_at_verification": "2026-10-20T14:15:18Z",
+        "issue_updated_at_at_import": "2026-10-20T21:29:23Z",
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-25-39494922904-1-lean.json",
+        "receipt_sha256": "29961eeabd669932bea110e3ca9b14eeda4895b96d23dc8483288e256a3eb086",
+        "policy_hash": "c24085e74bf5bb48f73278fa71ae9387f673c03e95dfa2652f4566fdf114c043",
+        "result_artifact_id": 12299687127,
+        "controller_fingerprint": "87c5308b6da7e22ce671930aa249a17c6b2a1740f999a826b160b1e4237a1271",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-19": {
@@ -851,6 +881,48 @@
         "receipt_sha256": "53ea54fcf78ddfe669dfb2bf122a22fba0d552668731a4e9d2f7929931f991d6",
         "policy_hash": "c24085e74bf5bb48f73278fa71ae9387f673c03e95dfa2652f4566fdf114c043",
         "result_artifact_id": 12284154138,
+        "controller_fingerprint": "71c53882cd454ec3c813fa32a97b1a8a67bb8cb335a47a30c355e52de736ffae",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-28:085c8e734184f350557f4b04ed7186242b4d2616ce88416e7231b01dc1d8ba44": {
+      "key": "direct-issue-28",
+      "submission": {
+        "schema_version": 1,
+        "problem": "3sum",
+        "repo_url": "https://github.com/fringewidth/3sum-bound",
+        "commit": "e1d4a6a0c21a7a08bece69a4ffb2c6bae0a28f32",
+        "bound": "1920279461/1000000000",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-28-085c8e734184f350557f4b04ed7186242b4d2616ce88416e7231b01dc1d8ba44",
+        "problem_id": "3sum/word-ram",
+        "score": "1920279461/1000000000",
+        "score_relation": "attained",
+        "source_commit": "e1d4a6a0c21a7a08bece69a4ffb2c6bae0a28f32",
+        "source_url": "https://github.com/fringewidth/3sum-bound",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "fringewidth",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39469071264",
+        "checked_at": "2026-10-20T20:24:32.246447Z",
+        "issue_created_at": "2026-10-20T17:11:35Z",
+        "issue_updated_at_at_verification": "2026-10-20T17:11:35Z",
+        "issue_updated_at_at_import": "2026-10-20T20:24:57Z",
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-28-39469071264-1.json",
+        "receipt_sha256": "1e38715f3052a584b4d16d962b7079684e470f92748c1e56d8f91c95093706ba",
+        "policy_hash": "c24085e74bf5bb48f73278fa71ae9387f673c03e95dfa2652f4566fdf114c043",
+        "result_artifact_id": 12294998870,
         "controller_fingerprint": "71c53882cd454ec3c813fa32a97b1a8a67bb8cb335a47a30c355e52de736ffae",
         "pr_identity": null,
         "source_file": "Submission.lean"
