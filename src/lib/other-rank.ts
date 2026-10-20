@@ -2,7 +2,9 @@
 // single exact format ('\approx6.14\cdot10^{-11}', '2^{-38}', '10499/12000', '\le0.87488664704'), so its
 // number is read from its display, then from its exact value. Claims that tie share a rank, the earliest
 // first, as on the Big O pages. When a number cannot be read for some claim, the row keeps the newest
-// first: a listed claim was the best when it appeared, so the newest is the best.
+// first. That is only a fallback: a claim listed by hand was the best when it appeared, but a prove2.me
+// claim needs only to beat the best Lean Verified claim at its time (data/prove2me_import.py), so the
+// newest claim is not always the best.
 type Claim = {display: string; value: string; date: string};
 
 export function otherClaimNumber(claim: Pick<Claim, 'display' | 'value'>): number | null {
