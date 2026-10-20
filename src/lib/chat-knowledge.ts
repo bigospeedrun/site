@@ -74,7 +74,7 @@ function contributeRoutes(problems: Problem[]) {
       campaigns: problems.filter(p => prove2meCampaigns[p.slug]).map(p => ({problem: '/' + p.slug, url: prove2meCampaigns[p.slug]})),
       text: 'An additional way for the problems listed here: prove the bound on prove2.me, which checks each proof with Lean on its server, in the campaign of the race. When a proof states our exact problem, we review it, and it shows as Lean Verified, with a link to prove2.me, after our next hourly refresh.'},
     leanProof: {problems: paths(p => verifierProblems.has(p.slug)), repository: verifierUrl, instructions: verifierUrl + '#submit',
-      text: 'Submit the Lean proof to bigospeedrun/verifier as a pull request or an issue. It shows as Lean Verified when it passes. The verifier checks a proof only if its bound matches or beats the current record. It is the main path for these problems.'},
+      text: 'Submit the Lean proof to bigospeedrun/verifier as a pull request or an issue. It shows as Lean Verified when it passes. The verifier checks a proof only if its bound matches or beats the best Lean Verified result on that board; a Claimed result does not block it. It is the main path for these problems.'},
     reviewRepositories: 'If a problem lists a repository with acceptsSubmissions true, also open a pull request there. Its maintainer reviews it, and a merge makes it Human Verified.',
     newLeanStatement: {text: 'Open a pull request to bigospeedrun/verifier that adds the problem under challenges/.', instructions: verifierUrl + '/blob/main/docs/new-statements.md'},
   };

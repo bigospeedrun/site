@@ -266,11 +266,12 @@ class DirectImportTests(unittest.TestCase):
                 record_metadata={str(i):dict(site_tier='verified' if i in verified else 'claimed',eligible_for_record=False) for i in range(len(scores))})
         for problem,score in [('dft','1/1000'),('3sum','1999/1000'),('apsp','2999/1000')]:
             self.configure(problem,score)
-            for verified in [(),(1,)]:
+            # Nil ruling 2026-10-20: only Lean Verified rows gate a run; a Claimed row at the same bound is no leader.
+            for verified,leaders in [((1,),['1']),((0,1),['0','1'])]:
                 data=board(problem,[score,score],verified)
                 summary=gate.current_record_gate(problem,json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
-                self.assertEqual(summary['leader_ids'],['0','1'])
-                self.assertEqual(gate.qualifies_for_run(self.env['submission'],summary),not bool(verified))
+                self.assertEqual(summary['leader_ids'],leaders)
+                self.assertFalse(gate.qualifies_for_run(self.env['submission'],summary))
                 # A second issue gets its own identity; no other author's row is relabelled.
                 original=copy.deepcopy(data)
                 gate.qualifies_for_run(self.env['submission'],summary)
@@ -283,19 +284,29 @@ class DirectImportTests(unittest.TestCase):
         # the attained row leads, and an attained submission at a still qualifies over the endpoint.
         for problem,score in [('3sum','3989/2000'),('apsp','5989/2000')]:
             self.configure(problem,score)
-            data=board(problem,[score,score]);data['records'][0]['score_relation']='strict-upper-bound'
+            data=board(problem,[score,score],(0,1));data['records'][0]['score_relation']='strict-upper-bound'
             summary=gate.current_record_gate(problem,json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
             self.assertEqual((summary['leader_ids'],summary['score_relation']),(['1'],'attained'))
-            data=board(problem,[score]);data['records'][0]['score_relation']='strict-upper-bound'
+            data=board(problem,[score],(0,));data['records'][0]['score_relation']='strict-upper-bound'
             summary=gate.current_record_gate(problem,json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
             self.assertEqual(summary['score_relation'],'strict-upper-bound')
             self.assertTrue(gate.qualifies_for_run(self.env['submission'],summary))
 
     def test_board_ignores_reproductions_and_candidate_issue(self):
+        lean={'state':'passed','receipt_path':'sources/proof.json'}
         data=dict(problem_id=gate.PROBLEMS['dft'][0],score={'direction':'higher-is-better'},
-            records=[{'id':'a','score':'1/1000'},{'id':'b','score':'1/10'},{'id':'c','score':'1/100','submission_url':'candidate'}],
-            record_metadata={'a':{'eligible_for_record':False},'b':{'reproduction_of':'a'},'c':{}})
+            records=[{'id':'a','score':'1/1000','rerun_status':lean},{'id':'b','score':'1/10','rerun_status':lean},
+                     {'id':'c','score':'1/100','submission_url':'candidate','rerun_status':lean},{'id':'d','score':'1/50'}],
+            record_metadata={'a':{'site_tier':'verified'},'b':{'reproduction_of':'a','site_tier':'verified'},'c':{'site_tier':'verified'},'d':{'site_tier':'claimed'}})
         summary=gate.current_record_gate('dft',json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z','candidate')
+        # The better Claimed row d does not gate (Nil ruling 2026-10-20); the Lean Verified a does.
         self.assertEqual(summary['leader_ids'],['a'])
+        # Without a Lean Verified row the classical baseline gates; with neither, no guess.
+        data=dict(problem_id=gate.PROBLEMS['dft'][0],score={'direction':'higher-is-better'},
+            records=[{'id':'classical-baseline','score':'1/2000'},{'id':'d','score':'1/50'}],record_metadata={'classical-baseline':{},'d':{'site_tier':'claimed'}})
+        summary=gate.current_record_gate('dft',json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
+        self.assertEqual((summary['leader_ids'],summary['any_lean_verified_at_bound']),(['classical-baseline'],False))
+        data['records']=data['records'][1:]
+        with self.assertRaises(gate.Rejected):gate.current_record_gate('dft',json.dumps(data).encode(),'c'*40,'2026-10-10T13:00:00Z')
 
 if __name__=='__main__':unittest.main()

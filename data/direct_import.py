@@ -286,10 +286,16 @@ def current_record_gate(problem, data_bytes, site_commit, checked_at, exclude_is
     require(data.get('problem_id') == PROBLEMS[problem][0], 'Board model mismatch')
     direction = 'higher-is-better' if problem == 'dft' else 'lower-is-better'
     require(data.get('score', {}).get('direction') == direction, 'Board score direction mismatch')
-    candidates = []
+    # Nil ruling 2026-10-20 (verifier 7f4f6bd): the gate is the best Lean Verified row; a Claimed
+    # or Human Verified row never blocks a proof run. With no Lean Verified row the classical
+    # baseline is the gate.
+    candidates, baseline = [], []
     for record in data['records']:
         meta = data['record_metadata'][record['id']]
-        if record['id'] == 'classical-baseline' or meta.get('reproduction_of'):
+        if record['id'] == 'classical-baseline':
+            baseline.append(((Fraction(record['score']), 0), record['id'], False))
+            continue
+        if meta.get('reproduction_of'):
             continue
         if exclude_issue_url and record.get('submission_url') == exclude_issue_url:
             continue
@@ -300,8 +306,10 @@ def current_record_gate(problem, data_bytes, site_commit, checked_at, exclude_is
         key = (Fraction(record['score']), open_rank(problem) if relation == 'strict-upper-bound' else 0)
         verified = (meta.get('site_tier') == 'verified' and record.get('rerun_status', {}).get('state') == 'passed'
                     and bool(record['rerun_status'].get('receipt_path')))
-        candidates.append((key, record['id'], verified))
-    require(bool(candidates), 'No board leader; do not guess')
+        if verified:
+            candidates.append((key, record['id'], verified))
+    candidates = candidates or baseline
+    require(bool(candidates), 'No Lean Verified row or baseline; do not guess')
     leader_key = (max if problem == 'dft' else min)(row[0] for row in candidates)
     leaders = [row for row in candidates if row[0] == leader_key]
     return dict(schema_version=1, problem_id=data['problem_id'], site_commit=site_commit,
