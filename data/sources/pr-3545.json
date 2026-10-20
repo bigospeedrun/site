@@ -4,8 +4,8 @@
   "title": "Show that the canonical word payload omits the gauge annihilator",
   "body": "## Summary\n- The paired-cube word container is built from keys that do not start with `_`. The gauge annihilator is stored as `_gauge_ann` and then dropped.\n- Two words with the same public gauges and annihilators `[3]` and `[4]` decompress to the same payload. A changed public gauge dimension does not. A changed gzip modification time changes the container hash only.\n- No producer edit and no new exponent.\n\n## Test plan\n- [x] `python3.12 -B research/canonical-gauge-field/verify.py`\n- [x] `python3.12 -B research/canonical-gauge-field/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/canonical-gauge-field`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T05:20:17Z",
-  "updated_at": "2026-10-18T05:20:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:19Z",
+  "closed_at": "2026-10-20T04:59:19Z",
+  "merged_at": "2026-10-20T04:59:19Z",
+  "state": "closed"
 }

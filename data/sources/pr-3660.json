@@ -4,8 +4,8 @@
   "title": "Check the format bounds 3296H and 6592H",
   "body": "## Summary\n- A field of 1,024 components bounded by `H` has Euclidean norm at most `32H`, since `32² = 1024`. The published row `ℓ1` norm 103 then gives the field bound `103 · 32H = 3296H`.\n- The four-term numerator has coefficient norm 2, so the scratch bound is `2 · 3296H = 6592H`.\n- `3296 < 2^12` and `6592 < 2^13`. With a sign bit, guard 7 gives signed widths `b+20` and `b+21`; guard 6 gives `b+19` and `b+20`. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/format-width-bound/verify.py`\n- [x] `python3.12 -B research/format-width-bound/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/format-width-bound`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:21:40Z",
-  "updated_at": "2026-10-18T13:21:40Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:39Z",
+  "merged_at": "2026-10-20T05:06:39Z",
+  "state": "closed"
 }

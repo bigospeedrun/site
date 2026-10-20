@@ -4,8 +4,8 @@
   "title": "Cap each lost-free eight-frame by four ports",
   "body": "## Summary\n- An orthonormal list in `F2^9` has length at most 9. Two vectors per port give `2 · 4 = 8 ≤ 9` and `2 · 5 = 10 > 9`, so each eight-frame meets at most 4 lost-free ports.\n- The published weights sum to 14, so `|S| ≤ 4 · 14 = 56`.\n- The tariff `72 + 2 · (112 − s)` costs 232 at size 32 and 230, 228, 226, 224 at sizes 33 through 36. It drops below 224 at size 37, and every size at most 56 costs at least `72 + 2 · (112 − 56) = 184`. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/p112-frame-bound/verify.py`\n- [x] `python3.12 -B research/p112-frame-bound/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/p112-frame-bound`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:51:53Z",
-  "updated_at": "2026-10-18T13:51:53Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:38Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

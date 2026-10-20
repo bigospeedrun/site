@@ -4,8 +4,8 @@
   "title": "Show the five-cell floor depends on the block basis",
   "body": "## Summary\n- Three private lines and one 4-dimensional block give `n_1 = 3` and `n_3 = 4`. The VVV floor is 15 and the MMM tariff is 18.\n- The only free-cell set of block weight 4 is `{A_free, B_free}`. In the basis `f_j = sum_{i ≠ j} e_i`, `e_0 · f_2 = 1`, so those cells are adjacent and the floor is missed.\n- Replacing each `f_j` by `e_j` removes that edge, and the same set attains 15. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/five-cell-basis-obstruction/verify.py`\n- [x] `python3.12 -B research/five-cell-basis-obstruction/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/five-cell-basis-obstruction`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:17:33Z",
-  "updated_at": "2026-10-18T13:17:33Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:39Z",
+  "merged_at": "2026-10-20T05:06:39Z",
+  "state": "closed"
 }

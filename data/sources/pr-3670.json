@@ -4,8 +4,8 @@
   "title": "Multiply the published row-ledger terms",
   "body": "## Summary\n- The family charges are `9909 = 367 · 27`, `252 = 9 · 28` and `1024 = 2 · 512`. With `B = 2642` the ledger is `2 · 2642 + 9909 + 252 + 1024 = 16469`, and the three external terms sum to 11,185.\n- The BIT row is `2 · (64² + 1) + 9909 + 252 = 18355`. The degree gap is `10^6 − (51/25) · 20161 = 23971789/25`.\n- The displayed caps `4362.14` and `12556.14` differ by exactly 8194. Their guards are 16 and 17, and both caps sit below `6,562,783`. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/stock-rho-ledger/verify.py`\n- [x] `python3.12 -B research/stock-rho-ledger/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/stock-rho-ledger`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:34:08Z",
-  "updated_at": "2026-10-18T13:34:08Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:39Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Show that deleting the rank-1 children still misses 1/99",
   "body": "## Summary\n- The selected local word has 2,412 rank-1 children. Deleting them moves that mass into the idle remainder, which rises from 1,646 to 4,058. The largest legal idle rank stays 51.\n- At the planning target `a = 1/99`, the published relaxation of the deleted word still has its lower bound above one. The full word's relaxation is higher.\n- The selected saving stays below the packing cap `169005411/100000000000`. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/rank1-deletion-target/verify.py`\n- [x] `python3.12 -B research/rank1-deletion-target/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank1-deletion-target`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T07:11:32Z",
-  "updated_at": "2026-10-18T07:11:32Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:18Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

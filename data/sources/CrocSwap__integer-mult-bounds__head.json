@@ -1,35 +1,35 @@
 {
-  "sha": "bb4bccbf42844d2801487450727c2f63e10d1d0f",
-  "node_id": "C_kwDOU-508toAKGJiNGJjY2JmNDI4NDRkMjgwMTQ4NzQ1MDcyN2MyZjYzZTEwZDFkMGY",
+  "sha": "5c79e2d7654415da3ddadb48cbaefbec2b87647c",
+  "node_id": "C_kwDOU-508toAKDVjNzllMmQ3NjU0NDE1ZGEzZGRhZGI0OGNiYWVmYmVjMmI4NzY0N2M",
   "commit": {
     "author": {
-      "name": "Doug Colkitt",
+      "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-19T14:01:07Z"
+      "date": "2026-10-20T05:07:26Z"
     },
     "committer": {
-      "name": "GitHub",
-      "email": "noreply@github.com",
-      "date": "2026-10-19T14:01:07Z"
+      "name": "Douglas R. Colkitt",
+      "email": "douglas.colkitt@gmail.com",
+      "date": "2026-10-20T05:07:26Z"
     },
-    "message": "research_baseline_sparse: name sparse-checkout omissions without touching pinned inputs (#3725)\n\n* research_baseline: name sparse-checkout omissions instead of failing opaquely\n\nportable-replay (verifier-engineering). In a sparse checkout the card's\npositive control died with \"Invalid selected file: .../ASSEMBLY.json\" and no\nhint which of 27 directories to materialize; at least five sessions recorded\nthat failure and stopped (#1594, #2690, #2253, #1317, PR #3628).\n\nBefore the strict check, enumerate the selected record's inputs (reading the\nsource manifest from HEAD if it is itself omitted) and apply the chooser's\nPR3102 contract: stage-zero regular skip-worktree entries matching HEAD are\nreported as SPARSE_SELECTED_INPUTS_ABSENT with the exact\n`git sparse-checkout add` directories (exit 2). Deletions and drift still\nfail as before; full checkouts are unchanged. verify_selected_result.py is\nnot modified.\n\nCo-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>\n\n* research_baseline_sparse: name sparse-checkout omissions without touching pinned inputs\n\nMove the sparse-checkout diagnosis out of scripts/research_baseline.py and\ntests/test_research_onboarding.py, which research packages pin as live\ninputs, into a new preflight script and test module. Both pinned files are\nrestored to main's bytes, so no package replay is selected by this change.\n\nscripts/research_baseline_sparse.py lists every input the selected-record\ncheck reads, applies the PR3102 skip-worktree/HEAD contract via\nchoose_research_task.check_catalog_files (imported, unchanged), and prints\nSPARSE_SELECTED_INPUTS_ABSENT with the git sparse-checkout add command\n(exit 2), or NO_SPARSE_SELECTED_OMISSIONS (exit 0). Ordinary deletions and\nstaged index drift still raise \"Invalid selected file\".\n\nCo-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_018EfKX1CiD4571K7pdqM8re\n\n---------\n\nCo-authored-by: Mister-Meeseeks <doug@crocodilelabs.io>\nCo-authored-by: Claude Opus 5.5 (1M context) <noreply@anthropic.com>",
+    "message": "Record second queue chunk receipts and retained revision holds [skip ci]",
     "tree": {
-      "sha": "3b4a588c8b48fe97c439c48beac43b2b21db0937",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/3b4a588c8b48fe97c439c48beac43b2b21db0937"
+      "sha": "226051b6ce9aaaca6f876c7a3ebb83ac3d8a5b0d",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/226051b6ce9aaaca6f876c7a3ebb83ac3d8a5b0d"
     },
-    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/bb4bccbf42844d2801487450727c2f63e10d1d0f",
+    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/5c79e2d7654415da3ddadb48cbaefbec2b87647c",
     "comment_count": 0,
     "verification": {
-      "verified": true,
-      "reason": "valid",
-      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq1iKjCRC1aQ7uu5UhlAAAfZ8QAJOyVHr3WYQaghjsJQuo6kWV\nbDaH0y2RFY4Wr8kL9HPSzdxQ4z5/zjybDlOGAZSmI+9Z8JMl2gbXBSBSNinI+bRN\nXQWQz6ybj7Kbl98mu/j/Pwt9/vBORfqQnUBFHSazcaLEpvPqHG20CyKd+8lCI42i\ndwWOd2UpX64jCICSrCFlKB9Vd47Y0WB7sKWzi3ThoAa+hSli3WKfBSy6mR4UKgU/\nXfV2HKDToYH+8c8HZxJnvZBfrbLMKxNX6dlUyZ0N9KeM5tUmslURYs4wBbWUFGeL\naUKfTZXTPCTYY0nl6P38u0YtiniqRa5P9YysmK4GliEx3tWBkIcfX5J7gZNva+m+\n4xTtk521H0r4/MKEifmKEf/j5ONfmUh3IbosV4LorohA4hFAoxTi0xqvkOTA0rUP\nTffcK6boJXdDbRVfQq7fjLIRlfYplOtkw9YO38V6cFd7Eo4V0OjV7TTwlBwQdsSN\n14L8ErQ4U3kZvXIji+knVrHrvhm3/NLFr2rU+ydUrn2Clg+j66f8zhOp+ByVoIV/\ncPtIr5CeVETSWf2D5DIMAosLgVwYKLffvfEKN0kJbkYorSALlJpeRJAB029gAwzq\noJESGu1fgyqlDfHWNQJF8xXcCTgoANvqqwvi211AUseyfVq2fPlUARkon2fgR9ur\nYQNtSbsNdvM6fdva5CTR\n=3ab4\n-----END PGP SIGNATURE-----\n",
-      "payload": "tree 3b4a588c8b48fe97c439c48beac43b2b21db0937\nparent 20ecf2891d80b5acf18d980b2164fb44ea7faa90\nauthor Doug Colkitt <douglas.colkitt@gmail.com> 1792418467 -0400\ncommitter GitHub <noreply@github.com> 1792418467 -0400\n\nresearch_baseline_sparse: name sparse-checkout omissions without touching pinned inputs (#3725)\n\n* research_baseline: name sparse-checkout omissions instead of failing opaquely\n\nportable-replay (verifier-engineering). In a sparse checkout the card's\npositive control died with \"Invalid selected file: .../ASSEMBLY.json\" and no\nhint which of 27 directories to materialize; at least five sessions recorded\nthat failure and stopped (#1594, #2690, #2253, #1317, PR #3628).\n\nBefore the strict check, enumerate the selected record's inputs (reading the\nsource manifest from HEAD if it is itself omitted) and apply the chooser's\nPR3102 contract: stage-zero regular skip-worktree entries matching HEAD are\nreported as SPARSE_SELECTED_INPUTS_ABSENT with the exact\n`git sparse-checkout add` directories (exit 2). Deletions and drift still\nfail as before; full checkouts are unchanged. verify_selected_result.py is\nnot modified.\n\nCo-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>\n\n* research_baseline_sparse: name sparse-checkout omissions without touching pinned inputs\n\nMove the sparse-checkout diagnosis out of scripts/research_baseline.py and\ntests/test_research_onboarding.py, which research packages pin as live\ninputs, into a new preflight script and test module. Both pinned files are\nrestored to main's bytes, so no package replay is selected by this change.\n\nscripts/research_baseline_sparse.py lists every input the selected-record\ncheck reads, applies the PR3102 skip-worktree/HEAD contract via\nchoose_research_task.check_catalog_files (imported, unchanged), and prints\nSPARSE_SELECTED_INPUTS_ABSENT with the git sparse-checkout add command\n(exit 2), or NO_SPARSE_SELECTED_OMISSIONS (exit 0). Ordinary deletions and\nstaged index drift still raise \"Invalid selected file\".\n\nCo-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_018EfKX1CiD4571K7pdqM8re\n\n---------\n\nCo-authored-by: Mister-Meeseeks <doug@crocodilelabs.io>\nCo-authored-by: Claude Opus 5.5 (1M context) <noreply@anthropic.com>",
-      "verified_at": "2026-10-19T14:01:07Z"
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
     }
   },
-  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/bb4bccbf42844d2801487450727c2f63e10d1d0f",
-  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/bb4bccbf42844d2801487450727c2f63e10d1d0f",
-  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/bb4bccbf42844d2801487450727c2f63e10d1d0f/comments",
+  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/5c79e2d7654415da3ddadb48cbaefbec2b87647c",
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/5c79e2d7654415da3ddadb48cbaefbec2b87647c",
+  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/5c79e2d7654415da3ddadb48cbaefbec2b87647c/comments",
   "author": {
     "login": "Mister-Meeseeks",
     "id": 18204987,
@@ -52,60 +52,104 @@
     "site_admin": false
   },
   "committer": {
-    "login": "web-flow",
-    "id": 19864447,
-    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
-    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "login": "Mister-Meeseeks",
+    "id": 18204987,
+    "node_id": "MDQ6VXNlcjE4MjA0OTg3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/18204987?v=4",
     "gravatar_id": "",
-    "url": "https://api.github.com/users/web-flow",
-    "html_url": "https://github.com/web-flow",
-    "followers_url": "https://api.github.com/users/web-flow/followers",
-    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
-    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
-    "organizations_url": "https://api.github.com/users/web-flow/orgs",
-    "repos_url": "https://api.github.com/users/web-flow/repos",
-    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "url": "https://api.github.com/users/Mister-Meeseeks",
+    "html_url": "https://github.com/Mister-Meeseeks",
+    "followers_url": "https://api.github.com/users/Mister-Meeseeks/followers",
+    "following_url": "https://api.github.com/users/Mister-Meeseeks/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Mister-Meeseeks/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Mister-Meeseeks/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Mister-Meeseeks/subscriptions",
+    "organizations_url": "https://api.github.com/users/Mister-Meeseeks/orgs",
+    "repos_url": "https://api.github.com/users/Mister-Meeseeks/repos",
+    "events_url": "https://api.github.com/users/Mister-Meeseeks/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Mister-Meeseeks/received_events",
     "type": "User",
     "user_view_type": "public",
     "site_admin": false
   },
   "parents": [
     {
-      "sha": "20ecf2891d80b5acf18d980b2164fb44ea7faa90",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/20ecf2891d80b5acf18d980b2164fb44ea7faa90",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/20ecf2891d80b5acf18d980b2164fb44ea7faa90"
+      "sha": "eae57005fbd2ff37b6d8f25bdb6adcc3b24a843a",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/eae57005fbd2ff37b6d8f25bdb6adcc3b24a843a",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/eae57005fbd2ff37b6d8f25bdb6adcc3b24a843a"
     }
   ],
   "stats": {
-    "total": 216,
-    "additions": 216,
-    "deletions": 0
+    "total": 2930,
+    "additions": 2242,
+    "deletions": 688
   },
   "files": [
     {
-      "sha": "627ca334f274c724f81586721aef56fc0a0ce716",
-      "filename": "scripts/research_baseline_sparse.py",
-      "status": "added",
-      "additions": 101,
-      "deletions": 0,
-      "changes": 101,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/bb4bccbf42844d2801487450727c2f63e10d1d0f/scripts%2Fresearch_baseline_sparse.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/bb4bccbf42844d2801487450727c2f63e10d1d0f/scripts%2Fresearch_baseline_sparse.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/scripts%2Fresearch_baseline_sparse.py?ref=bb4bccbf42844d2801487450727c2f63e10d1d0f"
+      "sha": "0d8cda6ee3a86645a1052fdd8fafd319679d9d1e",
+      "filename": "docs/research/pr-intake-checkpoint.json",
+      "status": "modified",
+      "additions": 106,
+      "deletions": 103,
+      "changes": 209,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-checkpoint.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-checkpoint.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-checkpoint.json?ref=5c79e2d7654415da3ddadb48cbaefbec2b87647c"
     },
     {
-      "sha": "0ed25d56e706e209bef8be5854872a4c49ee1ba5",
-      "filename": "tests/test_research_baseline_sparse.py",
+      "sha": "2fd5e24cbd435990d311139242415bdf0ac58768",
+      "filename": "docs/research/pr-intake-decisions.json",
+      "status": "modified",
+      "additions": 665,
+      "deletions": 285,
+      "changes": 950,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-decisions.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-decisions.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-decisions.json?ref=5c79e2d7654415da3ddadb48cbaefbec2b87647c"
+    },
+    {
+      "sha": "1e1153974c840aa8439fdf41f6dad53504a128eb",
+      "filename": "docs/research/pr-intake-evidence/audit-publication-holds-20261020.json",
       "status": "added",
-      "additions": 115,
+      "additions": 34,
       "deletions": 0,
-      "changes": 115,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/bb4bccbf42844d2801487450727c2f63e10d1d0f/tests%2Ftest_research_baseline_sparse.py",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/bb4bccbf42844d2801487450727c2f63e10d1d0f/tests%2Ftest_research_baseline_sparse.py",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/tests%2Ftest_research_baseline_sparse.py?ref=bb4bccbf42844d2801487450727c2f63e10d1d0f"
+      "changes": 34,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-evidence%2Faudit-publication-holds-20261020.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-evidence%2Faudit-publication-holds-20261020.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Faudit-publication-holds-20261020.json?ref=5c79e2d7654415da3ddadb48cbaefbec2b87647c"
+    },
+    {
+      "sha": "c9f7c4b97ef8417b0f8d1692c124b5452acce66f",
+      "filename": "docs/research/pr-intake-evidence/queue-oct20b-closures.json",
+      "status": "added",
+      "additions": 765,
+      "deletions": 0,
+      "changes": 765,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct20b-closures.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct20b-closures.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct20b-closures.json?ref=5c79e2d7654415da3ddadb48cbaefbec2b87647c"
+    },
+    {
+      "sha": "b0724d259ad64c72b223fefb16b280edb7c21deb",
+      "filename": "docs/research/pr-intake-state.json",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 12,
+      "changes": 16,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-state.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-intake-state.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-state.json?ref=5c79e2d7654415da3ddadb48cbaefbec2b87647c"
+    },
+    {
+      "sha": "04387765bf52aa717cdaa0493c75388bf504095f",
+      "filename": "docs/research/pr-ledger.json",
+      "status": "modified",
+      "additions": 668,
+      "deletions": 288,
+      "changes": 956,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-ledger.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/5c79e2d7654415da3ddadb48cbaefbec2b87647c/docs%2Fresearch%2Fpr-ledger.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-ledger.json?ref=5c79e2d7654415da3ddadb48cbaefbec2b87647c"
     }
   ]
 }

@@ -4,8 +4,8 @@
   "title": "Cap line-port replicas at one unpaid coordinate per family",
   "body": "## Summary\n- Eight paying calls clear eight label columns, and the dirty bit stays 1. A ninth column keeps rank 1.\n- With 112 ports, nine calls and one offset, the cap is `112 * 8 = 896`, equal to the number of live families. Two unpaid coordinates per family would be 1792.\n- The selected exponent is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/line-port-unpaid-cap/verify.py`\n- [x] `python3.12 -B research/line-port-unpaid-cap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/line-port-unpaid-cap`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T05:54:32Z",
-  "updated_at": "2026-10-18T05:54:32Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:19Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

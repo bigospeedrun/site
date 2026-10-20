@@ -4,8 +4,8 @@
   "title": "Show the displayed QQ16 output is one quarter-turn of the source formula",
   "body": "## Summary\n- `i · (s − i d) / 2 = (d + i s) / 2`, so the displayed second output is one quarter-turn of the pinned source formula. Component magnitudes are unchanged.\n- Each of 11,076 axis factors pays `4 + 2 + 4 = 10` real operations, so the lambda coefficient is `11076 · 10 = 110760`. The lambda-one total satisfies `483082 − 110760 = 372322`.\n- Cover transfers are `528 · 4 = 2112` per `N`, and storage is `712 · 2 + 2 = 1426` words of scale `N`, plus 12 scalar words. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-output-turn/verify.py`\n- [x] `python3.12 -B research/qq16-output-turn/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-output-turn`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:36:12Z",
-  "updated_at": "2026-10-18T13:36:12Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:39Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

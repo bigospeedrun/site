@@ -4,8 +4,8 @@
   "title": "Add the published T740 histogram and compare its root with the selected kappa",
   "body": "## Summary\n- The published histogram `{1:16417896, 2:4835160, 3:1540174, 4:679321, 5:143992, 6:3, 8:53280, 48:283185}` has 23,953,011 children and rank mass 48,165,120.\n- The stated schedule is 740 replicas, `740 · 9 = 6,660` calls, and `6,660 · 408 = 2,717,280` helper roles.\n- The conditional root `0.001730006549538841847005 − 10^(−46) − 10^(−70)` is greater than `0.00173` and greater than the selected kappa. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/t740-histogram-mass/verify.py`\n- [x] `python3.12 -B research/t740-histogram-mass/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/t740-histogram-mass`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:19:34Z",
-  "updated_at": "2026-10-18T13:19:34Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:39Z",
+  "merged_at": "2026-10-20T05:06:39Z",
+  "state": "closed"
 }

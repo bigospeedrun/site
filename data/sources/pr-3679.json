@@ -4,8 +4,8 @@
   "title": "Show that the count 1e-10000 has a 33220-bit denominator",
   "body": "## Summary\n- The spelling `1e-10000` has 8 characters, so a 60-character limit does not reject it. As an exact fraction it is `1/10^10000`, and that denominator has bit length 33,220.\n- The published budget rejects a trailing decimal exponent whose absolute value exceeds 60. This exponent is `-10000`.\n- `1e-60` stays inside the exponent budget and the `10^60` component limit, while `1e-61` does not. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/count-exponent-budget/verify.py`\n- [x] `python3.12 -B research/count-exponent-budget/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/count-exponent-budget`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:57:47Z",
-  "updated_at": "2026-10-18T13:57:47Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:38Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

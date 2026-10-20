@@ -4,8 +4,8 @@
   "title": "Charge one direct connector call on the one-by-one instance",
   "body": "## Summary\n- The published connector alphabet allows only `B` and `A`. On one source and one output, `B A B A` meets all eight dirty states, and no shorter word in that alphabet does.\n- One direct product call meets the same eight states. Its price is one complete call, against four calls for the old word.\n- Partial result. No new kappa and no selected-frontier change. The 945-pairing census is not rerun.\n\n## Test plan\n- [x] `python3.12 -B research/connector-direct-call/verify.py`\n- [x] `python3.12 -B research/connector-direct-call/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/connector-direct-call`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T07:03:17Z",
-  "updated_at": "2026-10-18T07:03:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:19Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Compare the four stored L359 magnitudes with the F0 tolerance",
   "body": "## Summary\n- The F0 fault checker stores register 359 as one rational, `2^e`, in a 712-register state. The completed data defect is `4 u 2^e` with `u = 2^-80`.\n- At the #2965 tolerance `H 2^(-72)` with `H = 1`, the exponent 0 meets the bound and the exponents 8, 64 and 256 miss it.\n- The 26,099-event word is not replayed, and the selected exponent is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/qq16-l359-scalar/verify.py`\n- [x] `python3.12 -B research/qq16-l359-scalar/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qq16-l359-scalar`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T05:35:06Z",
-  "updated_at": "2026-10-18T05:35:06Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:19Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

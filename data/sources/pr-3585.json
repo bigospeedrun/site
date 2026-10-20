@@ -4,8 +4,8 @@
   "title": "Record the archive-only blob disposition for PR 2979",
   "body": "## Summary\n- PR 2979's archive lists 112 files. Each installed oid matches the blob of that path on canonical main, and the reviewed head `be191346391661f4d35fc0d1508d0a6029572576` is unchanged.\n- The ledger and the decision stay at partially reviewed, with closure `merged_for_archive_only`. Mechanism review and required execution stay false. The contributor line names the pull request as a source archive.\n- Partial result. No new kappa and no selected-frontier change. The pull request is not closed.\n\n## Test plan\n- [x] `python3.12 -B research/archive-2979-receipt/verify.py`\n- [x] `python3.12 -B research/archive-2979-receipt/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/archive-2979-receipt`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T07:00:47Z",
-  "updated_at": "2026-10-18T07:00:47Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:18Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

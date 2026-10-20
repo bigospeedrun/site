@@ -4,8 +4,8 @@
   "title": "The selective co-delivery repair bills 124 against 112",
   "body": "## Summary\n- Blocks 0, 3, 10 and 13 each contribute centre support 2, so the nominal sensitivity is `112 - 8 = 104`.\n- The repair adds 5 rank units on each block. `104 + 20 = 124`, which is 12 above the baseline.\n- Partial receipt only. No new kappa, and no column replay.\n\n## Test plan\n- [x] `python3.12 -B research/codelivery-repair-bill/verify.py`\n- [x] `python3.12 -B research/codelivery-repair-bill/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/codelivery-repair-bill`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T18:11:26Z",
-  "updated_at": "2026-10-18T18:11:26Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:38Z",
+  "closed_at": "2026-10-20T05:06:38Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

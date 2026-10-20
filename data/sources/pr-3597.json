@@ -4,8 +4,8 @@
   "title": "Price one odd root pair at copy rank 7",
   "body": "## Summary\n- The doubled roots `(2, 2, 0, 0, 0, 0, 0, 0)` and `(1, 1, 1, 1, 1, 1, 1, 1)` have inner product 1. Their label pairing on the other 118 lines has rank 7. Restoring either line, or pairing the first line with itself, raises that rank to 8.\n- Eight rank-7 children, with the centre charge lowered from 64 to 56, have packing ceiling `2069881607/1000000000000`. The ratio to the selected ceiling is `26201033/21393090`, above `21/20`.\n- Centre reads, phase frames and restoration stay unpriced. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/odd-pair-block-rank/verify.py`\n- [x] `python3.12 -B research/odd-pair-block-rank/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/odd-pair-block-rank`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T07:18:09Z",
-  "updated_at": "2026-10-18T07:18:09Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:18Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

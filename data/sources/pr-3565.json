@@ -4,8 +4,8 @@
   "title": "Audit the 2980/2981 archive receipt",
   "body": "## Summary\n- The archive receipt for #2980 and #2981 retains all sixteen installed blobs, and both reviewed heads are unchanged.\n- The decisions stay partially reviewed, with archive-only closure and scientific execution still open. Four README predecessor sentences are outside the receipt and the two contributor lines.\n- Partial retention only. No new kappa and no pull-request closure.\n\n## Test plan\n- [x] `python3.12 -B research/archive-2980-2981-receipt/verify.py`\n- [x] `python3.12 -B research/archive-2980-2981-receipt/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/archive-2980-2981-receipt`\n- [ ] Maintainer replay on a full checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T06:16:30Z",
-  "updated_at": "2026-10-18T06:16:30Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:19Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

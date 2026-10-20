@@ -4,8 +4,8 @@
   "title": "Multiply the published H6 Smith factors into repair rank 560",
   "body": "## Summary\n- The published factors are `1` repeated 30,400 times, `11` repeated 336 times, `209 = 11·19` repeated 208 times, and `4807 = 11·19·23` repeated 16 times.\n- The non-unit factors number `336 + 208 + 16 = 560`, and the port count is `30400 + 560 = 30960`.\n- Their product is `11^560 · 19^224 · 23^16`, so a dyadic repair has rank at least 560. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/h6-smith-exponents/verify.py`\n- [x] `python3.12 -B research/h6-smith-exponents/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/h6-smith-exponents`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:25:53Z",
-  "updated_at": "2026-10-18T13:25:53Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:39Z",
+  "merged_at": "2026-10-20T05:06:39Z",
+  "state": "closed"
 }

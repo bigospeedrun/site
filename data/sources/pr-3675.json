@@ -4,8 +4,8 @@
   "title": "Multiply the published C5 weights into the floors 45 and 561/16",
   "body": "## Summary\n- The integer lifts `2, 8, 1, 7, 2, 3, 3, 4, 6` sum to 36, so the weights sum to `36/16 = 9/4`. With local floor 20 this gives `20 · 9/4 = 45`.\n- The full-support total `303/16` exceeds 9 by `159/16`, so one J term lowers the floor to `45 − 159/16 = 561/16`.\n- Both floors are greater than `180/7`. The diagonal tariff `112 · 2 = 224` meets 45, and the J-extension tariff `9 + 16088 = 16097` meets `561/16`. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/c5-cancellation-floors/verify.py`\n- [x] `python3.12 -B research/c5-cancellation-floors/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/c5-cancellation-floors`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T13:50:04Z",
-  "updated_at": "2026-10-18T13:50:04Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:39Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

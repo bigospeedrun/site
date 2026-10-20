@@ -4,8 +4,8 @@
   "title": "The staged entrance has width 7 against the parent width 8",
   "body": "## Summary\n- Helpers 644 and 660 climb from `(429, 30)` to the length-9 dyadic frame. Each climb rank is the growth in the number of blocks, and both totals are `9 - 2 = 7`.\n- The parent entrance is the one-block frame `(30)`, so its totals are `9 - 1 = 8`. Only the first rank changes, from 3 to 2.\n- Partial receipt only. No new kappa, and no column replay.\n\n## Test plan\n- [x] `python3.12 -B research/span-entrance-width/verify.py`\n- [x] `python3.12 -B research/span-entrance-width/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/span-entrance-width`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T18:20:45Z",
-  "updated_at": "2026-10-18T18:20:45Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:38Z",
+  "closed_at": "2026-10-20T05:06:38Z",
+  "merged_at": "2026-10-20T05:06:37Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Record that the stock receipt leaves every selected coefficient null",
   "body": "## Summary\n- The bootstrap audit receipt has fourteen stages. Every `actual_stock_coefficient` is null, and the source boundary repeats that null. Completed inner-leaf borrowing is 0.\n- The historical candidate is width 120 with coefficient 57,604. The selected candidate is width 73 and carries no coefficient. The receipt marks `sigma_j = sigma_0 + j*57604` as not established.\n- Partial result. No cutoff margin is recomputed. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/stock-coefficient-absent/verify.py`\n- [x] `python3.12 -B research/stock-coefficient-absent/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/stock-coefficient-absent`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T07:28:00Z",
-  "updated_at": "2026-10-18T07:28:00Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:18Z",
+  "closed_at": "2026-10-20T04:59:18Z",
+  "merged_at": "2026-10-20T04:59:18Z",
+  "state": "closed"
 }

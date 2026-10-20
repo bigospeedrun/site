@@ -4,8 +4,8 @@
   "title": "539 ledger rows omit the intake-decisions path",
   "body": "## Summary\n- The Markdown and JSON ledgers both list 3028 pull requests, and their disposition counts agree.\n- On 539 rows, from PR 1365 through PR 3528, the JSON evidence contains `docs/research/pr-intake-decisions.json` and the Markdown cell does not.\n- Contributors and dispositions match on every row. Partial receipt only. No new kappa, and no ledger rewrite.\n\n## Test plan\n- [x] `python3.12 -B research/ledger-evidence-drift/verify.py`\n- [x] `python3.12 -B research/ledger-evidence-drift/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/ledger-evidence-drift`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T18:26:53Z",
-  "updated_at": "2026-10-18T18:26:53Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:38Z",
+  "closed_at": "2026-10-20T05:06:38Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

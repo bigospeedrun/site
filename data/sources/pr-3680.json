@@ -4,8 +4,8 @@
   "title": "Factor the T360 role count against the 488-replica schedule",
   "body": "## Summary\n- The 488-replica schedule is `488 · 9 = 4,392` calls and `4,392 · 408 = 1,791,936` roles, with 437,757 physical families.\n- T360 is `360 · 9 · 408 = 1,321,920` roles, with physical stock 323,069.\n- The gaps are `1,791,936 − 1,321,920 = 470,016` roles and `437,757 − 323,069 = 114,688` physical families. Partial result. No new kappa and no selected-frontier change.\n\n## Test plan\n- [x] `python3.12 -B research/t360-role-gap/verify.py`\n- [x] `python3.12 -B research/t360-role-gap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/t360-role-gap`\n- [ ] Maintainer replay on canonical main\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T14:00:19Z",
-  "updated_at": "2026-10-18T14:00:19Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:39Z",
+  "closed_at": "2026-10-20T05:06:38Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }

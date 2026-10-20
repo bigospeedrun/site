@@ -4,8 +4,8 @@
   "title": "Check the V45 rank-7 intersection and its declared subset margins",
   "body": "## Summary\n- The listed basis `⟨256, 128, 64, 35, 16, 11, 5⟩` spans `E_7 ∩ E_42 ∩ E_45`. The normals satisfy `7 XOR 42 = 45`, so the intersection has rank 7.\n- In the declared price table, every proper subset of helpers 249, 251, 265 and 267 has a negative margin. The full group has margin `+22972`. Dropping any one helper costs exactly `25371`.\n- The selected kappa is unchanged. The literal word, cleanup, chronology and supplier caps are not replayed.\n\n## Test plan\n- [x] `python3.12 -B research/rank7-v45-margin/verify.py`\n- [x] `python3.12 -B research/rank7-v45-margin/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank7-v45-margin`\n- [ ] Confirm the registered replay on the maintainer's Python 3.12 checkout\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T05:15:38Z",
-  "updated_at": "2026-10-18T05:15:38Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T04:59:19Z",
+  "closed_at": "2026-10-20T04:59:19Z",
+  "merged_at": "2026-10-20T04:59:19Z",
+  "state": "closed"
 }

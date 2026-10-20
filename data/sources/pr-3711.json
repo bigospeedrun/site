@@ -4,8 +4,8 @@
   "title": "The ordinary rate 575/331776 clears the width threshold at 2^20",
   "body": "## Summary\n- At `c = 1/576`, the ordinary saving is `c(1-c) = 575/576^2 = 575/331776`, above the selected kappa and not adopted.\n- The doubled width estimate gives `32780 · (17/16) · 20 = 696575 < 2^20`, and `2^(20/576) < 17/16`.\n- Partial receipt only. No new kappa, and no moment enclosure.\n\n## Test plan\n- [x] `python3.12 -B research/ordinary-rate-threshold/verify.py`\n- [x] `python3.12 -B research/ordinary-rate-threshold/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/ordinary-rate-threshold`\n- [ ] Maintainer replay from a clean checkout\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T18:12:40Z",
-  "updated_at": "2026-10-18T18:12:40Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:06:38Z",
+  "closed_at": "2026-10-20T05:06:38Z",
+  "merged_at": "2026-10-20T05:06:38Z",
+  "state": "closed"
 }
