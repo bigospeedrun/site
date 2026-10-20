@@ -11,10 +11,10 @@
     "bound_type": "lower",
     "value_direction": "higher"
   },
-  "mission_id": "299978d9-05c4-478a-9039-1982062058c0",
-  "mission_url": "https://prove2.me/missions/299978d9-05c4-478a-9039-1982062058c0",
-  "attested_value": "2.1",
-  "solved_at": "2026-10-20T04:24:24.074873+00:00",
+  "mission_id": "baecc77b-f1a7-4e19-a1a0-45b7aee3e1e7",
+  "mission_url": "https://prove2.me/missions/baecc77b-f1a7-4e19-a1a0-45b7aee3e1e7",
+  "attested_value": "2.1301",
+  "solved_at": "2026-10-20T05:54:41.792277+00:00",
   "statement_form": "SensitivityCampaign.AchievesExponent a: for every epsilon > 0 and every S >= 2 there is a total Boolean function f on Fin n bits with sensitivity(f) >= S and sensitivity(f)^(a-epsilon) <= blockSensitivity(f). Sensitivity is the largest number of single bit flips that change f, and block sensitivity is the largest number of disjoint nonempty bit sets that each change f at one input (Def_SensitivitySeparation, reviewed 2026-10-19). That is our statement: bs(f) >= s(f)^(alpha - o(1)) for a family of total Boolean functions with s(f) -> infinity.",
   "formalpedia": {
     "repo": "prove2me/formalpedia",
@@ -22,10 +22,10 @@
     "env": "0df444a"
   },
   "theorem": {
-    "name": "SensitivityCampaign.reach_210",
-    "url": "https://prove2.me/theorems/34794a98-e5bd-4623-ae65-526fc87e9ad1",
-    "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_210.lean",
-    "statement_sha256": "1582a5a1ddedfc371e7ad9ba995da479fe3ff41abecaa1cc14efcb8db85eb3e1",
+    "name": "SensitivityCampaign.reach_21301_coupled",
+    "url": "https://prove2.me/theorems/ff7ef69d-ca91-413b-872c-cf760dc244dc",
+    "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_21301_coupled.lean",
+    "statement_sha256": "f423e17a353aa752e542529c0b88a297deb47aa7081b918930c6304bbf00a777",
     "definitions": [
       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
@@ -36,10 +36,10 @@
     ]
   },
   "solution": {
-    "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_210.lean",
-    "sha256": "6dd2e89fb37ba1d73bd30cef62a725691bb03281dfeb1665112ccb484f3ffdc5",
+    "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_21301_coupled.lean",
+    "sha256": "cbfe03cc4f7a22a9c71f747d0139a5b332397e003f25f9e3f4bd6f7bfca41c55",
     "author": "@yousofy",
-    "submission_url": "https://prove2.me/submissions/ea04a251-431f-4f7a-9b53-529d5e807b0d"
+    "submission_url": "https://prove2.me/submissions/f3481863-af82-45e3-8054-0e908f333651"
   },
   "definitions": {
     "envs/0df444a/Definitions/Def_SensitivityCampaign.lean": "7cc4307ef9adf4ddc6cb355d159ba4ece3378249561c15fd2accc52d5c748532",

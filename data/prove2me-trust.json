@@ -546,15 +546,15 @@
      "note": "Seven-level nine-state sensitivity certificate with a 6,491-line Lean proof."
     },
     {
-     "mission_id": "299978d9-05c4-478a-9039-1982062058c0",
-     "value": "2.1",
-     "solved_at": "2026-10-20T04:24:24.074873+00:00",
+     "mission_id": "966c179a-a9cb-4672-b4f4-bee73b18c8f3",
+     "value": "2.085",
+     "solved_at": "2026-10-20T03:37:57.575444+00:00",
      "action": "row",
      "theorem": {
-      "name": "SensitivityCampaign.reach_210",
-      "url": "https://prove2.me/theorems/34794a98-e5bd-4623-ae65-526fc87e9ad1",
-      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_210.lean",
-      "statement_sha256": "1582a5a1ddedfc371e7ad9ba995da479fe3ff41abecaa1cc14efcb8db85eb3e1",
+      "name": "SensitivityCampaign.reach_2085_eight_layer",
+      "url": "https://prove2.me/theorems/7e54a28e-196b-40a3-a2c0-957e75db9e4f",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_2085_eight_layer.lean",
+      "statement_sha256": "fbc14b4857c88f19afbd501e04ca47f266597e6ae4c67d5ef18eecd80a79b91d",
       "definitions": [
        "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
        "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
@@ -565,18 +565,91 @@
       ]
      },
      "solution": {
-      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_210.lean",
-      "sha256": "6dd2e89fb37ba1d73bd30cef62a725691bb03281dfeb1665112ccb484f3ffdc5",
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_2085_eight_layer.lean",
+      "sha256": "1ff3de610d3e87f4dd633eed8a6055e4f8594822e7924a37e05e654e18e43c4d",
       "author": "@yousofy",
-      "submission_url": "https://prove2.me/submissions/ea04a251-431f-4f7a-9b53-529d5e807b0d"
+      "submission_url": "https://prove2.me/submissions/c6096517-61e7-4f51-bc68-c1521d61eb65"
      },
      "authors": [
       {
        "name": "yousofy",
-       "url": "https://prove2.me/submissions/ea04a251-431f-4f7a-9b53-529d5e807b0d"
+       "url": "https://prove2.me/submissions/c6096517-61e7-4f51-bc68-c1521d61eb65"
       }
      ],
-     "note": "Exact 21-layer profile construction with a 7,083-line Lean proof."
+     "note": "Eight-layer profile construction with a 6,504-line Lean proof."
+    },
+    {
+     "mission_id": "0fb44b55-8818-4846-9e03-722f6f241ee3",
+     "value": "2.119",
+     "solved_at": "2026-10-20T04:21:04.146766+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_2119_periodic",
+      "url": "https://prove2.me/theorems/cf005af0-93b2-44c1-991f-ddab41d85874",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_2119_periodic.lean",
+      "statement_sha256": "06e1624aa1b6c62f7d14a8b294d37a618f62818debc3c90d042d8df3ffb7ccb4",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_2119_periodic.lean",
+      "sha256": "b0636278528038d32f0c3a137608ca9f4ff24c2675e256acdfcf3515ec204f02",
+      "author": "@yousofy",
+      "submission_url": "https://prove2.me/submissions/bb3251a4-f00f-4b06-962a-97be2de5db1b"
+     },
+     "authors": [
+      {
+       "name": "yousofy",
+       "url": "https://prove2.me/submissions/bb3251a4-f00f-4b06-962a-97be2de5db1b"
+      }
+     ],
+     "note": "Periodic profile construction with a 7,015-line Lean proof."
+    },
+    {
+     "mission_id": "299978d9-05c4-478a-9039-1982062058c0",
+     "value": "2.1",
+     "solved_at": "2026-10-20T04:24:24.074873+00:00",
+     "action": "skip",
+     "note": "Proved 2026-10-20 04:24 UTC, three minutes after the 2.119 result (04:21 UTC), so it was not the best result when it was proved. Reviewed and listed as a row on 2026-10-20; this rule check on 2026-10-21 replaced it with a skip."
+    },
+    {
+     "mission_id": "baecc77b-f1a7-4e19-a1a0-45b7aee3e1e7",
+     "value": "2.1301",
+     "solved_at": "2026-10-20T05:54:41.792277+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_21301_coupled",
+      "url": "https://prove2.me/theorems/ff7ef69d-ca91-413b-872c-cf760dc244dc",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_21301_coupled.lean",
+      "statement_sha256": "f423e17a353aa752e542529c0b88a297deb47aa7081b918930c6304bbf00a777",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_21301_coupled.lean",
+      "sha256": "cbfe03cc4f7a22a9c71f747d0139a5b332397e003f25f9e3f4bd6f7bfca41c55",
+      "author": "@yousofy",
+      "submission_url": "https://prove2.me/submissions/f3481863-af82-45e3-8054-0e908f333651"
+     },
+     "authors": [
+      {
+       "name": "yousofy",
+       "url": "https://prove2.me/submissions/f3481863-af82-45e3-8054-0e908f333651"
+      }
+     ],
+     "note": "Coupled construction; its 84-line Lean proof uses the accepted prove2.me theorems coupled_n15_periodic_seeds and finite_certificate."
     }
    ]
   },
