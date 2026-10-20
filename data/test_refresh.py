@@ -5,7 +5,7 @@ from unittest.mock import patch
 import refresh
 
 class RefreshTests(unittest.TestCase):
-    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None, judge=None, lower=None, claims=None):
+    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None, judge=None, lower=None, claims=None, leader=None):
         """Run package_claim on a fake PR 3200. files: {path: status}; claim: CLAIM.json object
         (claims: {path: object} when several differ); lower: {pr: {path: status}} of lower PRs;
         on_main: True, or the set of paths on main."""
@@ -26,7 +26,7 @@ class RefreshTests(unittest.TestCase):
         files_of=lambda m:refresh.claim_files(m,pulls_by_number,{},fetched)
         with tempfile.TemporaryDirectory() as temp,patch.object(refresh,'pages',pages),patch.object(refresh,'content',content),patch.object(refresh.claim_judge,'check',lambda *a:judge):
             stage=Path(temp);(stage/'sources').mkdir()
-            result=refresh.package_claim(stage,pr,'m'*40,owners or {},files_of,sorted((m for m in prs if m<3200),reverse=True))
+            result=refresh.package_claim(stage,pr,'m'*40,owners or {},files_of,sorted((m for m in prs if m<3200),reverse=True),leader)
             saved=(stage/'sources/pr-3200-claim.json').exists()
         self.assertEqual(saved,result[0] is not None)
         self.reads=reads
@@ -143,7 +143,7 @@ class RefreshTests(unittest.TestCase):
         reason=refresh.package_claim(None,pr,'m'*40,{},lambda m:files,[])
         self.assertEqual(reason[:2],(None,None));self.assertIn('3000 files',reason[2])
         # The cached list keeps the cap, with no new read.
-        prior={4085:{'claim_files':list(files),'claim_files_head':'c'*40,'claim_files_base':'main','claim_files_capped':True}}
+        prior={4085:{'claim_files':list(files),'claim_files_head':'c'*40,'claim_files_base':'main','claim_files_capped':True,'claim_files_result':True}}
         with patch.object(refresh,'pages',lambda *a,**k:self.fail('no read for a cached head')):
             self.assertIsInstance(refresh.claim_files(4085,{4085:pr},prior,{}),refresh.CappedFiles)
         # One file fewer than the cap: a normal list.
@@ -181,7 +181,7 @@ class RefreshTests(unittest.TestCase):
         title='Conditional κ = 0.001730809033576552081734 (+1.458e-7 over #3945): three staged helper entries'
         head='9'*40;text=refresh.hashlib.sha256((title+'\n').encode()).hexdigest()
         p={'number':4076,'title':title,'body':'','state':'closed','merged_at':'2026-10-20T05:24:24Z','head':{'sha':head}}
-        prior={'claimed_score':None,'claim_head':head,'claim_text':text,'upstream_status':'merged'}
+        prior={'claimed_score':None,'claim_head':head,'claim_text':text,'upstream_status':'merged','claim_files_result':True}
         calls=[]
         def evaluate():
             calls.append(1);return None,None,'The PR adds no single own research package CLAIM.json.'
@@ -190,6 +190,43 @@ class RefreshTests(unittest.TestCase):
         self.assertIsNotNone(refresh.claim_state(p,prior,{},evaluate,new)[1]);self.assertEqual(calls,[1])
         # A closed unmerged PR stays silent.
         self.assertIsNone(refresh.claim_state(p|{'merged_at':None},prior|{'upstream_status':'closed-unmerged'},{},evaluate,new)[1]);self.assertEqual(calls,[1])
+
+    def test_result_json_conditional_kappa_is_the_package_without_a_claim_json(self):
+        # Lead ruling 2026-10-20: the staged544 chain (#3945..#4181) states its value as
+        # conditional_kappa in RESULT.json and has no CLAIM.json. Real #4181 value.
+        own='research/staged544-pooled-ceiling-fill/RESULT.json'
+        exact='17309802559890369599619999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000'
+        title='Conditional κ = 0.001730980255989036959962 (+1.140e-9 over #4088)'
+        score,path,reason=self.claim({own:'added'},{'status':'AUTHOR_CHECKED_FINITE_CONDITIONAL_CONSTRUCTION','conditional_kappa':exact},title=title)
+        self.assertEqual((score,path,reason),(str(refresh.Fraction(exact)),own,None))
+        # A RESULT.json without conditional_kappa (#4091) leaves the PR to the other rules.
+        self.assertEqual(self.claim({own:'added'},{'status':'PASS_EXACT_POOLED_PATTERN_OPTIMUM'},title='Prove the sharp pooled optimum'),(None,None,None))
+        self.assertEqual(self.claim({own:'added'},{'no_new_kappa':True},title='κ = 0.0016 audit',leader=refresh.Fraction('0.0017'))[:2],(None,None))
+        # A stacked child carries its parent's RESULT.json (#4100 on #4088): not its package.
+        parent='research/staged544-mixed-fourth-entry/RESULT.json'
+        self.assertEqual(self.claim({parent:'added'},{'conditional_kappa':exact},title='Propose unconditional κ = 0.0017309791',lower={3199:{parent:'added'}})[:2],(None,None))
+        # An own CLAIM.json comes first; a bad conditional_kappa goes to the lead.
+        self.assertEqual(self.claim({own:'added','research/x/CLAIM.json':'added'},claims={'research/x/CLAIM.json':{'kappa':'1/1000'},own:{'conditional_kappa':exact}},title='κ = 0.001')[:2],('1/1000','research/x/CLAIM.json'))
+        score,path,reason=self.claim({own:'added'},{'conditional_kappa':'0.00173 approx'},title=title)
+        self.assertEqual((score,path,reason),(None,own,f'{own} conditional_kappa is not an exact rational.'))
+
+    def test_silent_pr_is_read_once_more_for_result_json(self):
+        # #4088 and #4091 were read silent before RESULT.json support: read once more, from #3945 on.
+        head='8'*40;title='Improve conditional κ with a mixed fourth staged entry (+8.696e-9)'
+        text=refresh.hashlib.sha256((title+'\n').encode()).hexdigest()
+        p={'number':4088,'title':title,'body':'','state':'closed','merged_at':'2026-10-20T05:28:21Z','head':{'sha':head}}
+        prior={'claimed_score':None,'claim_head':head,'claim_text':text,'upstream_status':'merged','claim_files':[],'claim_files_head':head}
+        calls=[]
+        def evaluate():calls.append(1);return '1/500',None,None
+        self.assertEqual(refresh.claim_state(p,prior,{},evaluate)[0],'1/500');self.assertEqual(calls,[1])
+        self.assertIsNone(refresh.claim_state(p,prior|{'claim_files_result':True},{},evaluate)[0]);self.assertEqual(calls,[1])
+        self.assertIsNone(refresh.claim_state(p|{'number':3944},prior,{},evaluate)[0]);self.assertEqual(calls,[1])
+        # The cached file list is read again too, and the new list keeps the marker.
+        pulls={4088:{'number':4088,'head':{'sha':head},'base':{'ref':'main'}}}
+        with patch.object(refresh,'pages',lambda *a:[{'filename':'research/s/RESULT.json','status':'added'},{'filename':'research/s/inputs/PR1-CLAIM.json','status':'added'}]):
+            self.assertEqual(refresh.claim_files(4088,pulls,{4088:prior|{'claim_files_base':'main'}},{}),[['added','research/s/RESULT.json']])
+        with patch.object(refresh,'pages',lambda *a:self.fail('no read for a marked cache')):
+            self.assertEqual(refresh.claim_files(4088,pulls,{4088:prior|{'claim_files_base':'main','claim_files_result':True}},{}),[])
 
     def test_unreadable_package_is_retried(self):
         # 2026-10-18 10:17Z: the offline refresh test read a CLAIM.json that its mock 404s,

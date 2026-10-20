@@ -17,6 +17,15 @@ IMPORTER_VERSION = 7
 # exact decimal, 2 as text, 2026-10-17). A package whose status says 'no new kappa' has no
 # kappa field (all 15 such packages on main, 2026-10-17).
 CLAIM_PATH = re.compile(r'research/[^/]+/CLAIM\.json')
+# Packages without a CLAIM.json state their value as conditional_kappa in RESULT.json
+# (staged544 chain, #3945..#4181, 2026-10-20). Lead ruling 2026-10-20: read it when a PR
+# has no own CLAIM.json, with the same ownership rules and the Claude title check.
+RESULT_PATH = re.compile(r'research/[^/]+/RESULT\.json')
+PACKAGE_FIELD = {'CLAIM.json': 'kappa', 'RESULT.json': 'conditional_kappa'}
+# The first PR with a RESULT.json conditional_kappa (#3945; none on CrocSwap main before
+# it, and none in the 73 open silent PRs, checked 2026-10-20). Silent PRs from this
+# number on, read before RESULT.json support, are read once more.
+RESULT_SINCE_PR = 3945
 # A title that names a kappa value, without a structured claim, goes to the lead:
 # 'κ = 0.0017', 'kappa 0.1', 'kappa from 0.00172 to 0.00173', 'kappa>=0.1',
 # 'kappa of 0.0017', 'new record 0.0017'. The title only routes to review; it never lists.
@@ -121,31 +130,36 @@ class CappedFiles(list):
     """The CLAIM.json files of a PR whose file list reached PR_FILES_CAP: its own
     package can be missing from it."""
 
+def package_field(path):
+    return PACKAGE_FIELD[path.rsplit('/', 1)[1]]
+
 def claim_files(m, pulls_by_number, old, fetched):
-    """[[status, path], ...] of the research/*/CLAIM.json files PR m adds or changes at its
-    head; cached in submissions (claim_files, claim_files_head, claim_files_base), so each
-    head is read once per base (a stacked PR retargeted to main shows more files)."""
+    """[[status, path], ...] of the research/*/CLAIM.json and research/*/RESULT.json files
+    PR m adds or changes at its head; cached in submissions (claim_files, claim_files_head,
+    claim_files_base), so each head is read once per base (a stacked PR retargeted to main
+    shows more files). A list cached before RESULT.json support (no claim_files_result) is
+    read again from RESULT_SINCE_PR on."""
     p = pulls_by_number[m]; prior = old.get(m) or {}
     if (prior.get('claim_files_head') == p['head']['sha'] and (prior.get('claim_files_base') or '') == base_ref(p)
-            and 'claim_files' in prior):
+            and 'claim_files' in prior and (prior.get('claim_files_result') or m < RESULT_SINCE_PR)):
         return CappedFiles(prior['claim_files']) if prior.get('claim_files_capped') else prior['claim_files']
     if m not in fetched:
         # Page 31 of a capped list is empty, so pages() stops there without an error.
         listed = pages(f'repos/{CROC}/pulls/{m}/files', None, PR_FILES_CAP // 100 + 1)
         files = [[f['status'], f['filename']] for f in listed
-                 if f['status'] != 'removed' and CLAIM_PATH.fullmatch(f['filename'])]
+                 if f['status'] != 'removed' and (CLAIM_PATH.fullmatch(f['filename']) or RESULT_PATH.fullmatch(f['filename']))]
         fetched[m] = CappedFiles(files) if len(listed) >= PR_FILES_CAP else files
     return fetched[m]
 
 def decided_package(p, score, files_of, others=()):
-    """The package a lead approval refers to: the added CLAIM.json whose kappa equals the
-    decided score. It makes a decided PR own its package (stacked children such as
-    #3251 carry it)."""
+    """The package a lead approval refers to: the added CLAIM.json (kappa) or RESULT.json
+    (conditional_kappa) whose value equals the decided score. It makes a decided PR own
+    its package (stacked children such as #3251 carry it)."""
     for status, path in files_of(p['number'])[:5]:
         if status != 'added' or path in others:
             continue
         try:
-            kappa = json.loads(content(CROC, path, p['head']['sha'])).get('kappa')
+            kappa = json.loads(content(CROC, path, p['head']['sha'])).get(package_field(path))
         except (ValueError, AttributeError, RuntimeError):
             continue
         if isinstance(kappa, str) and len(kappa) <= MAX_SCORE_CHARS and re.fullmatch(r'\d+(?:/\d+)?|\d*\.\d+', kappa) and Fraction(kappa) == Fraction(score):
@@ -165,20 +179,41 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
         # Not a crash and not a silent skip: the lead reads the PR (#4085, 2026-10-19).
         return None, None, (f'The PR changes {PR_FILES_CAP} files or more and GitHub lists only the first '
                             f'{PR_FILES_CAP}, so its own research package cannot be read.')
+    def owned(added):
+        # Who else holds each added package: a PR listed for it, main (the PR is open, #3093),
+        # or a lower PR that adds it too (a parent in a stack, even one not listed yet).
+        holder = {path: f'PR #{owners[path]}' for path in added if path in owners}
+        if p['state'] == 'open':
+            holder |= {path: 'main' for path in added if path not in holder and exists(CROC, path, main_sha)}
+        unowned = {path for path in added if path not in holder}
+        for m in lower_prs[:STACK_SCAN] if unowned else ():
+            for status, path in files_of(m):
+                if status == 'added' and path in unowned:
+                    holder[path] = f'PR #{m}'; unowned.discard(path)
+            if not unowned:
+                break
+        return holder, [path for path in added if path not in holder]
+    results = [path for status, path in files if status == 'added' and RESULT_PATH.fullmatch(path)]
+    files = [[status, path] for status, path in files if CLAIM_PATH.fullmatch(path)]
     added = [path for status, path in files if status == 'added']
-    # Who else holds each added package: a PR listed for it, main (the PR is open, #3093),
-    # or a lower PR that adds it too (a parent in a stack, even one not listed yet).
-    holder = {path: f'PR #{owners[path]}' for path in added if path in owners}
-    if p['state'] == 'open':
-        holder |= {path: 'main' for path in added if path not in holder and exists(CROC, path, main_sha)}
-    unowned = {path for path in added if path not in holder}
-    for m in lower_prs[:STACK_SCAN] if unowned else ():
-        for status, path in files_of(m):
-            if status == 'added' and path in unowned:
-                holder[path] = f'PR #{m}'; unowned.discard(path)
-        if not unowned:
-            break
-    own = [path for path in added if path not in holder]
+    holder, own = owned(added)
+    if not own and results:
+        # No own CLAIM.json: one own RESULT.json that states a conditional_kappa is the package.
+        # A RESULT.json without that field (most of them, 2026-10-20) leaves the rules below.
+        result_own = owned(results)[1]
+        if len(result_own) == 1:
+            try:
+                raw = content(CROC, result_own[0], head)
+            except RuntimeError as error:
+                if '(HTTP 404)' not in str(error):
+                    raise
+                return None, result_own[0], claim_judge.Retry(f'{result_own[0]} is not readable at the PR head (HTTP 404).')
+            try:
+                stated = 'conditional_kappa' in json.loads(raw)
+            except (ValueError, TypeError):
+                stated = False
+            if stated:
+                return package_value(stage, p, result_own[0], raw, names)
     if len(added) == 1 and not own:
         path = added[0]
         return None, path, (f'{path} is already on main.' if holder[path] == 'main' else f'{path} belongs to {holder[path]}.')
@@ -216,18 +251,24 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
         if '(HTTP 404)' not in str(error):
             raise
         return None, path, claim_judge.Retry(f'{path} is not readable at the PR head (HTTP 404).')
+    return package_value(stage, p, path, raw, names)
+
+def package_value(stage, p, path, raw, names):
+    """(score, claim_path, reason) from the package file text: kappa in a CLAIM.json,
+    conditional_kappa in a RESULT.json."""
+    n = p['number']; head = p['head']['sha']; field = package_field(path)
     try:
-        kappa = json.loads(raw).get('kappa')
+        kappa = json.loads(raw).get(field)
     except (ValueError, AttributeError):
         return None, path, f'{path} is not a JSON object.'
     if kappa is None:
-        return None, path, (f'{path} has no kappa field.' if names else None)
+        return None, path, (f'{path} has no {field} field.' if names else None)
     # From here on the package states a kappa, so every failure goes to the lead.
     if not isinstance(kappa, str) or len(kappa) > MAX_SCORE_CHARS or not re.fullmatch(r'\d+(?:/\d+)?|\d*\.\d+', kappa):
-        return None, path, f'{path} kappa is not an exact rational.'
+        return None, path, f'{path} {field} is not an exact rational.'
     q = Fraction(kappa)
     if not 0 < q < 1 or len(str(q)) > MAX_SCORE_CHARS:
-        return None, path, f'{path} kappa is outside (0, 1).'
+        return None, path, f'{path} {field} is outside (0, 1).'
     # The package and an independent reading of the PR text must agree (claim_judge.py).
     reason = claim_judge.check(stage, n, head, p['title'], p['body'], str(q))
     if reason:
@@ -247,6 +288,12 @@ def silent_above(p, prior, leader):
     values = title_kappas(p['title'])
     return bool(values) and max(values) > leader
 
+def result_unread(p, prior):
+    """A silent PR from RESULT_SINCE_PR on whose file list was read before RESULT.json
+    support (#3945, #4076, #4088 and #4091 state their value only there)."""
+    return (p['number'] >= RESULT_SINCE_PR and not prior.get('claim_files_result') and prior.get('claimed_score') is None
+            and not prior.get('review_reason') and prior.get('upstream_status') != 'closed-unmerged')
+
 def claim_state(p, prior, decisions, evaluate, leader=None):
     """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
     retry, decision). evaluate() reads the PR's package and runs the Claude check."""
@@ -263,7 +310,7 @@ def claim_state(p, prior, decisions, evaluate, leader=None):
         pass
     elif (claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided')
           and (not prior.get('review_reason') or prior.get('upstream_status') == 'closed-unmerged')
-          and not silent_above(p, prior, leader)):
+          and not silent_above(p, prior, leader) and not result_unread(p, prior)):
         # Already read at this head and text: reuse the result, with no request. A PR in
         # the lead's queue is read again each run (its file lists are cached), so it lists
         # as soon as its parents own their packages (#3251 on decided #3198 and #3200).
@@ -433,7 +480,7 @@ def refresh(stage, now):
             m.update(checked_at=day, source_url=p['html_url'], pr_number=n, merged=bool(p['merged_at']), merged_at=p['merged_at'], closed_at=p['closed_at'], updated_at=p['updated_at'], eligible_for_record=bool(p['merged_at']), upstream_selected=False, publication_date=p['created_at'], publication_source_url=p['html_url'], race_event_at=p['created_at'])
             if new:
                 m.pop('upstream_readme', None)
-                m['score_source'] = f'kappa in {claim_path} at the PR head; source claim only' if claim_head and claim_path else 'Lead review decision; source claim only'
+                m['score_source'] = f'{package_field(claim_path)} in {claim_path} at the PR head; source claim only' if claim_head and claim_path else 'Lead review decision; source claim only'
             records[rid] = r; metadata[rid] = m
         for rid in prior['record_ids'] if prior else []:
             if rid not in ids:
@@ -481,10 +528,12 @@ def refresh(stage, now):
             item['claim_files'], item['claim_files_head'] = fetched[m], item['source_commit']
             item['claim_files_base'] = base_ref(pulls_by_number[m])
             if isinstance(fetched[m], CappedFiles): item['claim_files_capped'] = True
+            item['claim_files_result'] = True
         elif (prior.get('claim_files_head') == item['source_commit'] and (prior.get('claim_files_base') or '') == base_ref(pulls_by_number[m])
               and 'claim_files' in prior):
             item['claim_files'], item['claim_files_head'], item['claim_files_base'] = prior['claim_files'], prior['claim_files_head'], prior['claim_files_base']
             if prior.get('claim_files_capped'): item['claim_files_capped'] = True
+            if prior.get('claim_files_result'): item['claim_files_result'] = True
     subs.update(items=items,checked_at=day)
     dump(stage,'integer-multiplication.json',problem);dump(stage,'submissions.json',subs)
     reg=load(stage,'registry.json');reg['checked_at']=day;reg['updated_at']=now

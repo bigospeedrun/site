@@ -54,7 +54,7 @@
           "note": {},
           "claim_path": {
             "type": "string",
-            "pattern": "^research/[^/]+/CLAIM\\.json$"
+            "pattern": "^research/[^/]+/(?:CLAIM|RESULT)\\.json$"
           },
           "claim_head": {
             "type": "string",
@@ -84,7 +84,7 @@
                 },
                 {
                   "type": "string",
-                  "pattern": "^research/[^/]+/CLAIM\\.json$"
+                  "pattern": "^research/[^/]+/(?:CLAIM|RESULT)\\.json$"
                 }
               ],
               "minItems": 2,
@@ -99,6 +99,9 @@
             "type": "string"
           },
           "claim_files_capped": {
+            "const": true
+          },
+          "claim_files_result": {
             "const": true
           },
           "claim_path_head": {
