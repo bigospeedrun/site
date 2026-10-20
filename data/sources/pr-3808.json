@@ -4,8 +4,8 @@
   "title": "Record the FFT carry recovery",
   "body": "## Summary\n- The base-B carry `c_i + K_i = d_i + B K_{i+1}` rebuilds the integer product, and the worst-case update `(q(B-1)^2 + q(B-1))/B` equals `q(B-1)` exactly.\n- All 1,398,096 products of width 2 through 10 recover on the published FFT geometry, with every carry inside the cap and a zero final carry.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/fft-carry-recovery/verify.py`\n- [x] `python3.12 -B research/fft-carry-recovery/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/fft-carry-recovery`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:33:53Z",
-  "updated_at": "2026-10-18T21:33:53Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

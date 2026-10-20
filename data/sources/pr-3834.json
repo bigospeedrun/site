@@ -4,8 +4,8 @@
   "title": "Record the controlled block reversal",
   "body": "## Summary\n- Reversing each aligned block of length `2^width`, on the blocks whose start has a chosen bit set, equals XORing those low bits where the same bit is set.\n- Through dimension 16 this holds for all 680 pairs whose control bit is at least the block width, and it fails for all 680 pairs whose control bit varies inside a block.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/controlled-block-shear/verify.py`\n- [x] `python3.12 -B research/controlled-block-shear/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/controlled-block-shear`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:28:22Z",
-  "updated_at": "2026-10-18T22:28:22Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:45Z",
+  "closed_at": "2026-10-20T05:22:44Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Record the T488 composition moment straddle",
   "body": "## Summary\n- The published T488 profile has rank mass `65088 * 488`, and its moment is negative at `0.001730418899766071163804` and positive one unit of `10^-24` later.\n- The 70-digit released string is that lower endpoint minus `10^-46` and `10^-70`, and it stays above the selected kappa. No word replay and no new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/t488-moment-straddle/verify.py`\n- [x] `python3.12 -B research/t488-moment-straddle/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/t488-moment-straddle`\n- [ ] Maintainer replay on a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T19:22:08Z",
-  "updated_at": "2026-10-18T19:22:08Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:13Z",
+  "merged_at": "2026-10-20T05:20:13Z",
+  "state": "closed"
 }

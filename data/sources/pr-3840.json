@@ -4,8 +4,8 @@
   "title": "Record the printed E7 generator span",
   "body": "## Summary\n- The seven printed generators `256, 128, 66, 36, 22, 8, 1` are linearly independent and span 128 vectors in `F2^9`.\n- Their overlaps with 7 are even, even, odd, odd, even, even, odd. The hyperplane of even overlap with 7 has 256 points, and the span meets it in 64.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/e7-generator-span/verify.py`\n- [x] `python3.12 -B research/e7-generator-span/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/e7-generator-span`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:38:56Z",
-  "updated_at": "2026-10-18T22:38:56Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:45Z",
+  "closed_at": "2026-10-20T05:22:44Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

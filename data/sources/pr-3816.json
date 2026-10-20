@@ -4,8 +4,8 @@
   "title": "Record the chirp scalar invoice",
   "body": "## Summary\n- The kernel, endpoints, twists and ring product add to `16N(ell+1) + 28N` scalar words.\n- For every precision from 16 through 256 and every admitted length, that total times `p+2` equals the cell count times `8(ell+1)+14`.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/chirp-scalar-invoice/verify.py`\n- [x] `python3.12 -B research/chirp-scalar-invoice/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/chirp-scalar-invoice`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:45:23Z",
-  "updated_at": "2026-10-18T21:45:23Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:11Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

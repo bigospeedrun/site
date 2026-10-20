@@ -4,8 +4,8 @@
   "title": "Record the q-adic row excess",
   "body": "## Summary\n- For an integer `q > 2^80`, `|GL_64(q)|` has bit length at least `64^2 * 80 = 327680`. The product of `(1 - q^{-i})` exceeds one half already at `q = 3`.\n- The published depth is 2, so one level charges at least 655360. The frozen assembler caps the external row at 20161.\n- No new kappa. The fourteen stage headrooms stay unrecomputed.\n\n## Test plan\n- [x] `python3.12 -B research/qadic-row-excess/verify.py`\n- [x] `python3.12 -B research/qadic-row-excess/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/qadic-row-excess`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:11:54Z",
-  "updated_at": "2026-10-18T20:11:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

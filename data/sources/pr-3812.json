@@ -4,8 +4,8 @@
   "title": "Record the logarithm absorption bound",
   "body": "## Summary\n- The series for `exp(1/2)` stays below 2, so `ln 2 > 1/2`, and together with `exp(u) >= u^2/2` this gives `log2(y)^2 <= 8y`.\n- For every integer `n >= 1`, `n+2 <= 3n`, so `log2(n+2)^2 <= 24n`. The integer form `ceil(log2(n+2))^2 <= 24n` holds for every `n` through `2^24`.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/log-absorption-bound/verify.py`\n- [x] `python3.12 -B research/log-absorption-bound/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/log-absorption-bound`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:38:49Z",
-  "updated_at": "2026-10-18T21:38:49Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:11Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Record the FFT packed-record ratio",
   "body": "## Summary\n- For every width from 3 through `2^22`, the packed FFT record `r(p0+2)` satisfies `7 r(p0+2) <= 88 n`.\n- Width 7 meets the bound with equality, at 88 cells. The coarser estimate from `r beta < 8n` and `p0 <= 4 beta` is `40n`.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/fft-space-ratio/verify.py`\n- [x] `python3.12 -B research/fft-space-ratio/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/fft-space-ratio`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:47:09Z",
-  "updated_at": "2026-10-18T21:47:09Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:11Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

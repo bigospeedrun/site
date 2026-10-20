@@ -4,8 +4,8 @@
   "title": "Record the nine-stage idle sum",
   "body": "## Summary\n- For every assignment of nine stages to absent, ridden or owned, the idle sum is `8 * (9 - owned shears)`. There are 19,683 assignments.\n- The opening idle before a first stage `s` is `8s`. Before stages 2, 4 and 6 that opening is 16, 32 and 48.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/idle-rank-sum/verify.py`\n- [x] `python3.12 -B research/idle-rank-sum/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/idle-rank-sum`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:47:19Z",
-  "updated_at": "2026-10-18T22:47:19Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:45Z",
+  "closed_at": "2026-10-20T05:22:45Z",
+  "merged_at": "2026-10-20T05:22:45Z",
+  "state": "closed"
 }

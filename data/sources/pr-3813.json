@@ -4,8 +4,8 @@
   "title": "Record the FFT invoice time constants",
   "body": "## Summary\n- For every width from 3 through `2^20`, the FFT geometry satisfies `r beta < 8n`, `ell+1 <= 2 beta` and `p0 <= 4 beta`.\n- The three setup terms are then at most `256`, `512` and `64` times `n beta^2`, and those three products of the stated factors are exact.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/fft-time-constants/verify.py`\n- [x] `python3.12 -B research/fft-time-constants/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/fft-time-constants`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:40:23Z",
-  "updated_at": "2026-10-18T21:40:23Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Record the countdown ripple sum",
   "body": "## Summary\n- Decrementing `m` rewrites `1 + v_2(m)` bits, and the popcount changes by `1 - v_2(m)`.\n- The countdown lengths therefore sum to `2N - popcount(N)`, and the trailing-zero counts sum to `N - popcount(N)`, for every `N` through `2^24`.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/countdown-ripple-sum/verify.py`\n- [x] `python3.12 -B research/countdown-ripple-sum/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/countdown-ripple-sum`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:35:33Z",
-  "updated_at": "2026-10-18T21:35:33Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

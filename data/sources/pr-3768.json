@@ -4,8 +4,8 @@
   "title": "Record the three degree-gap clearances",
   "body": "## Summary\n- The selected degree gap is `10^6 - (51/25)*20161 = 23971789/25`, and the stored assembly field matches it.\n- The three-stage reserve `58344+9909+252 = 68505` leaves `506245/25` under degree 160000. The paired-cube reserve `10284+9909+252 = 20445` leaves `141461/5` under degree 70000.\n- All three gaps are positive. No new kappa. The fourteen stage headrooms stay unrecomputed.\n\n## Test plan\n- [x] `python3.12 -B research/degree-gap-clearance/verify.py`\n- [x] `python3.12 -B research/degree-gap-clearance/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/degree-gap-clearance`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:13:34Z",
-  "updated_at": "2026-10-18T20:13:34Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

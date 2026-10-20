@@ -4,8 +4,8 @@
   "title": "Record the Fano incidence six-cycle count",
   "body": "## Summary\n- The seven Fano lines put every point pair on one line and every line pair on one point, so the incidence graph is 3-regular and has no 4-cycle.\n- That graph has 28 six-cycles, and each of the 14 vertices lies on 12 of them, matching 3(3-1)^2.\n- Partial, no new kappa. This records that count. It does not replay the centre window.\n\n## Test plan\n- [x] `python3.12 -B research/fano-incidence-cycles/verify.py`\n- [x] `python3.12 -B research/fano-incidence-cycles/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/fano-incidence-cycles`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:19:03Z",
-  "updated_at": "2026-10-18T21:19:03Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

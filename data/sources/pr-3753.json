@@ -4,8 +4,8 @@
   "title": "Record the mixed-negative bound at t = 2",
   "body": "## Summary\n- The necessary count `5n >= 11t`, with `n` and `t` the same parity, is 3 at `t = 1` and 6 at `t = 2`. Five retained endpoints meet those counts.\n- The same three-call spine uses 9 calls at `t = 3` against a bound of 7, and 12 calls on the balanced `t = 4` endpoint against a bound of 10. The two product tables agree on all 64 pairs. The selected kappa is unchanged.\n- Partial result, no new kappa. No shorter word is searched.\n\n## Test plan\n- [x] `python3.12 -B research/q8-bound-attainment/verify.py`\n- [x] `python3.12 -B research/q8-bound-attainment/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/q8-bound-attainment`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T19:42:11Z",
-  "updated_at": "2026-10-18T19:42:11Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:13Z",
+  "merged_at": "2026-10-20T05:20:13Z",
+  "state": "closed"
 }

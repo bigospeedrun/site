@@ -4,8 +4,8 @@
   "title": "Record the nine-stage BIT row allowance",
   "body": "## Summary\n- The nine-stage assembler asserts `DEPTH*(m*m+1)+9909+252 = 18355` and `18355 < 20161`.\n- The parent allowance is `2*(64^2+1) = 8194`, and the gauge pairs give `367*27 = 9909` and `9*28 = 252`. Their sum is 18355.\n- No new kappa. The fourteen stage headrooms stay unrecomputed.\n\n## Test plan\n- [x] `python3.12 -B research/bit-row-allowance/verify.py`\n- [x] `python3.12 -B research/bit-row-allowance/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/bit-row-allowance`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:17:12Z",
-  "updated_at": "2026-10-18T20:17:12Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

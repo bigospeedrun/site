@@ -4,8 +4,8 @@
   "title": "Record the Mantel edge cap",
   "body": "## Summary\n- Every graph on at most 7 vertices with more than `floor(n^2/4)` edges contains a triangle. There are 407,058 such graphs.\n- The balanced complete bipartite graph meets the count and is triangle-free, and `floor(n/2)*ceil(n/2) = floor(n^2/4)` for every `n` through `2^20`.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/mantel-edge-cap/verify.py`\n- [x] `python3.12 -B research/mantel-edge-cap/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/mantel-edge-cap`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T21:51:44Z",
-  "updated_at": "2026-10-18T21:51:44Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:11Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

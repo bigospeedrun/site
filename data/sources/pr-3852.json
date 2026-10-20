@@ -4,8 +4,8 @@
   "title": "Record the six-stage rotating address walk",
   "body": "## Summary\n- The rotating walk's spectator axes are 1, 8, 15, 22, 29 and 36, and it closes at dimension 43.\n- The moves have ranks `{1: 6, 6: 6, 7: 6}` and mass 84, two below the capacity `2 × 43`.\n- XORing axes 0 and 36 into the second bank meets the first bank's endpoint. The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/rotating-address-walk/verify.py`\n- [x] `python3.12 -B research/rotating-address-walk/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/rotating-address-walk`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T23:08:54Z",
-  "updated_at": "2026-10-18T23:08:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:44Z",
+  "closed_at": "2026-10-20T05:22:44Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

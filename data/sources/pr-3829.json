@@ -4,8 +4,8 @@
   "title": "Record the chirp field width",
   "body": "## Summary\n- Every residue modulo `2^w`, for `w` from 2 through 12, fits in `w` bits, and the modulus itself does not.\n- Every pair of those residues sums to less than `2^(w+1)`, so the representative needs at most one subtraction. There are 22,369,616 pairs.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/chirp-field-width/verify.py`\n- [x] `python3.12 -B research/chirp-field-width/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/chirp-field-width`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:14:24Z",
-  "updated_at": "2026-10-18T22:14:24Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:11Z",
+  "closed_at": "2026-10-20T05:20:11Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

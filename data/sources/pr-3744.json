@@ -4,8 +4,8 @@
   "title": "Record the cutoff sequence location",
   "body": "## Summary\n- The frozen assembler defines `outer_witness` once and calls it at lines 221 and 226. `cuts.append` appears once, and the retained Python members mention a cutoff twice.\n- Both discounted complex lowers sit strictly below the bit lower, so the minimum is the complex side. No fourteen-stage recomputation and no new kappa.\n\n## Test plan\n- [x] `python3.12 -B research/cutoff-sequence-location/verify.py`\n- [x] `python3.12 -B research/cutoff-sequence-location/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/cutoff-sequence-location`\n- [ ] Maintainer replay on a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T19:23:59Z",
-  "updated_at": "2026-10-18T19:23:59Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:13Z",
+  "merged_at": "2026-10-20T05:20:13Z",
+  "state": "closed"
 }

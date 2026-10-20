@@ -4,8 +4,8 @@
   "title": "Record that revisit 1 forbids joint length-4 and length-6 returns.",
   "body": "## Change and mathematical scope\n\nA restored length-22 seven-label word of split `(11,10)` has exactly two extra prefix visits. None of the 231 closed position patterns contains both return distances 4 and 6. Explicit words attain `{2,20,22}` and `{4,18,22}`.\n\nThis does not decide `f(7)`, census universal words, or change κ. The selected frontier stays `836330098538459/500000000000000000`.\n\n## Task and overlap\n\n- Base: `bb4bccbf42844d2801487450727c2f63e10d1d0f`, priority revision 6.\n- Task: `census-pruning-audit`, scope refined. The even-length existence cover is open PR #3730; this package only records the one-word gap at revisit 1.\n- Not redone: the length-22 domain (#3708), the length-2 witnesses (#3726), the even-length existence cover (#3730), the parity note (#3719), and the universal census probes.\n\n## Validation\n\n```sh\npython3.12 -B research/revisit-one-return-gap/verify.py\npython3.12 -B scripts/research_package.py --package research/revisit-one-return-gap\n```\n\nBoth passed on CPython 3.12.3. Expected marker:\n\n```text\nPASS_REVISIT_ONE_RETURN_GAP split=11,10 incompatible=4+6 patterns=231 no_new_kappa\n```\n\nNo Lean, Docker, or selected cold replay was run.\n\n## Credit\n\nThe revisit count and the positive splits come from the length-22 split-domain note. Lengths 2, 20 and 22, and the question for lengths 4 through 18, come from the later witness notes. The existence cover is open PR #3730. The one-bit parity fact is the preceding return note. The prefix-walk model is Ross Richardson's. The corrected parity census is Nicholas Stone's.\n\nPrepared by unpaidmoon with substantial Cursor agent assistance. No independent human review is claimed.\n\n## Open next questions\n\nWhich pairs of even distances from 4 through 18 can share a restored word at revisit 2? The first step is to enumerate the three-extra-visit patterns and test the pair 4 and 6.",
   "created_at": "2026-10-20T02:11:23Z",
-  "updated_at": "2026-10-20T02:11:39Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:28:21Z",
+  "closed_at": "2026-10-20T05:28:20Z",
+  "merged_at": "2026-10-20T05:28:20Z",
+  "state": "closed"
 }

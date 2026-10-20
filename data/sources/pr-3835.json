@@ -4,8 +4,8 @@
   "title": "Record the outer-product mask weight",
   "body": "## Summary\n- Writing the second mask into each set bit of the first, with stride equal to the second width, produces a mask whose weight is the product of the two weights.\n- This holds for all 8,408,068 pairs whose widths multiply to at most 20. For all 27 shapes with both widths at least 2, a stride one shorter makes the all-ones masks collide.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/kronecker-mask-weight/verify.py`\n- [x] `python3.12 -B research/kronecker-mask-weight/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/kronecker-mask-weight`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:31:03Z",
-  "updated_at": "2026-10-18T22:31:03Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:45Z",
+  "closed_at": "2026-10-20T05:22:44Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

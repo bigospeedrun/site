@@ -4,8 +4,8 @@
   "title": "Record the odd-kernel coefficient-bit tariff",
   "body": "## Summary\n- On the named coefficient-bit tariff, each kernel in `{3, 5, 7, 9, 15}` strictly exceeds the dyadic fused bill and the dyadic baseline bill at every `j` from 0 through 32. That is 165 comparisons on each bill.\n- The smallest fused margin is 14, at kernel 3 and `j = 0`. The word cost is not monotone: the costs of powers 4, 2, and 1 are 32, 38, and 45. The selected kappa is unchanged.\n- Partial result, no new kappa. The comparison stops at `j = 32`.\n\n## Test plan\n- [x] `python3.12 -B research/odd-kernel-bit-tariff/verify.py`\n- [x] `python3.12 -B research/odd-kernel-bit-tariff/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/odd-kernel-bit-tariff`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T19:39:20Z",
-  "updated_at": "2026-10-18T19:39:20Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:13Z",
+  "merged_at": "2026-10-20T05:20:13Z",
+  "state": "closed"
 }

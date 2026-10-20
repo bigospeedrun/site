@@ -4,8 +4,8 @@
   "title": "Record the rank-7 hyperplane count",
   "body": "## Summary\n- Every 7-dimensional subspace of `F_2^9` has a 128-point orthogonal and an annihilator of size 4, so it lies in exactly 3 hyperplanes.\n- There are 43,435 such subspaces, and each of the 511 hyperplanes contains 255 of them. The incidence identity is `43435 * 3 = 511 * 255`.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/rank7-hyperplane-count/verify.py`\n- [x] `python3.12 -B research/rank7-hyperplane-count/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank7-hyperplane-count`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:03:02Z",
-  "updated_at": "2026-10-18T22:03:02Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:11Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Record the bit budget for a cleared minor",
   "body": "## Summary\n- A cleared k-by-k entry with B-bit numerators and denominators fits in `(k+1)B` bits.\n- For every order and entry budget from 1 through 20, the Hadamard number `k!(2^M-1)^k` has bit length at most the published minor budget.\n- All 2,401 determinants of 2×2 matrices with entries from −3 through 3 fit in that budget as well. The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/minor-bit-budget/verify.py`\n- [x] `python3.12 -B research/minor-bit-budget/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/minor-bit-budget`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T23:21:56Z",
-  "updated_at": "2026-10-18T23:21:56Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:44Z",
+  "closed_at": "2026-10-20T05:22:44Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Record the three-bit rank-one idempotent count",
   "body": "## Summary\n- The three-bit matrix ring has 28 rank-one idempotents: seven nonzero image vectors, four dual vectors of trace one each, and all 28 products distinct.\n- The other 21 rank-one matrices have trace zero and are not idempotent.\n- Partial, no new kappa. This records that count. It does not search words.\n\n## Test plan\n- [x] `python3.12 -B research/rank-one-idempotent-count/verify.py`\n- [x] `python3.12 -B research/rank-one-idempotent-count/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/rank-one-idempotent-count`\n- [ ] Maintainer replay on CPython 3.12 from a checkout of this head\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:50:47Z",
-  "updated_at": "2026-10-18T20:50:47Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

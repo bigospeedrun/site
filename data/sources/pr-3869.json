@@ -4,8 +4,8 @@
   "title": "Record the erasure of one unweighted tensor kernel on the P-grid",
   "body": "## Summary\n- On the family `p = 2^(10a)`, `m = 2^(4a)`, `X = 2^(3a)`, the unweighted kernel exponent exceeds `P = 32768p`, so toward-zero rounding on that grid is zero.\n- The weighted exponent stays strictly below `p/8` for every integer `a` from 26 through 64.\n- The scalar band identities hold on all 39 scales, and the selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/kernel-grid-erasure/verify.py`\n- [x] `python3.12 -B research/kernel-grid-erasure/test_verify.py`\n- [x] `python3.12 scripts/research_package.py --package research/kernel-grid-erasure`\n- [ ] Maintainer replay from the pinned base commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T23:51:17Z",
-  "updated_at": "2026-10-18T23:51:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:44Z",
+  "closed_at": "2026-10-20T05:22:44Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

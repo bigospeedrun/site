@@ -4,8 +4,8 @@
   "title": "Record the printed 112-port triple count",
   "body": "## Summary\n- `C(112,3)` is 227920. The braid note prints 229936, which is larger by 2016.\n- The printed order histogram sums to `C(112,2) = 6216`. The printed extension counts sum to 50, and `846 + 50 = 896`. The ordered-product count `112 * 111 = 12432` matches the printed figure.\n- Partial result, no new kappa. The selected frontier is unchanged. The route products were not enumerated.\n\n## Test plan\n- [x] `python3.12 -B research/braid-triple-count/verify.py`\n- [x] `python3.12 -B research/braid-triple-count/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/braid-triple-count`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:26:27Z",
-  "updated_at": "2026-10-18T22:26:27Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:45Z",
+  "closed_at": "2026-10-20T05:22:45Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Record the address-operator composition",
   "body": "## Summary\n- For the canonical root `(2, 2, 0, 0, 0, 0, 0, 0)`, exchanging every address half and then the normal line equals exchanging the complement, on all 16 basis pairs.\n- The full exchange sends that root from the head bank to the tail bank, and the complement leaves it on the head bank.\n- No new kappa. The 111 port boundary charts are not rerun.\n\n## Test plan\n- [x] `python3.12 -B research/address-operator-composition/verify.py`\n- [x] `python3.12 -B research/address-operator-composition/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/address-operator-composition`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:38:38Z",
-  "updated_at": "2026-10-18T20:38:38Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

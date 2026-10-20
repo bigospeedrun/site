@@ -4,8 +4,8 @@
   "title": "Record the zero-saving centre moment",
   "body": "## Summary\n- With one unpaid coordinate, width 896/9 and centre 112, the saving-zero moment is `1 + (112 - 896/9)/(73*896/9) = 585/584`.\n- The value is above one. A rank-1 profile and a profile with one rank-51 child give the same moment, because every rank unit costs 1/73.\n- No new kappa. The 704 columns stay unreplayed.\n\n## Test plan\n- [x] `python3.12 -B research/zero-saving-centre-moment/verify.py`\n- [x] `python3.12 -B research/zero-saving-centre-moment/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/zero-saving-centre-moment`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:15:42Z",
-  "updated_at": "2026-10-18T20:15:42Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

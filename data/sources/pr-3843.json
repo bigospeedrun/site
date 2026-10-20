@@ -4,8 +4,8 @@
   "title": "Record the one-pair alternating shears",
   "body": "## Summary\n- Forward sends `(X, Y)` to `(X, X+Y)` and reverse sends `(X, Y)` to `(X-Y, Y)`. Both alternating triples equal the map `(X, Y)` to `(-Y, X)`.\n- The final exchange `(X, Y)` to `(Y, -X)` is the inverse, so either triple followed by the exchange restores the pair. This holds for all 66,049 coordinate pairs from −128 through 128.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/alternating-shear-exchange/verify.py`\n- [x] `python3.12 -B research/alternating-shear-exchange/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/alternating-shear-exchange`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:45:18Z",
-  "updated_at": "2026-10-18T22:45:18Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:44Z",
+  "closed_at": "2026-10-20T05:22:44Z",
+  "merged_at": "2026-10-20T05:22:44Z",
+  "state": "closed"
 }

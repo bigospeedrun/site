@@ -4,8 +4,8 @@
   "title": "Record the four-wire bridge block form",
   "body": "## Summary\n- A bridge `(target ← source, q)` adds `q` times `X_source` to `X_target` and subtracts `q` times `Y_target` from `Y_source`. For every coefficient from −12 through 12, its eight-wire matrix is `diag(E, E^{-T})` with `det E = 1`. There are 300 bridges.\n- The negated coefficient is the inverse. All 7,056 products of bridges with coefficients from −3 through 3 stay in the same form.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/bridge-block-form/verify.py`\n- [x] `python3.12 -B research/bridge-block-form/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/bridge-block-form`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:43:35Z",
-  "updated_at": "2026-10-18T22:43:35Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:22:45Z",
+  "closed_at": "2026-10-20T05:22:45Z",
+  "merged_at": "2026-10-20T05:22:45Z",
+  "state": "closed"
 }

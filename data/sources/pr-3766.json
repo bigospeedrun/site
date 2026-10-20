@@ -4,8 +4,8 @@
   "title": "Record the two selected row readings",
   "body": "## Summary\n- The gauge pairs give 9909 and 252. The frozen assembler adds the prefix term 2*512 = 1024, so the constant degrees total 11185.\n- The orthogonal order with live width 14336 has row-bit length 2642. The published readings are 2*2642+11185 = 16469 and ceil(43*2642/26)+11185 = 15555. Both stay under the cap 20161.\n- No new kappa. The fourteen stage headrooms stay unrecomputed.\n\n## Test plan\n- [x] `python3.12 -B research/row-ledger-readings/verify.py`\n- [x] `python3.12 -B research/row-ledger-readings/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/row-ledger-readings`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:09:22Z",
-  "updated_at": "2026-10-18T20:09:22Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:13Z",
+  "merged_at": "2026-10-20T05:20:13Z",
+  "state": "closed"
 }

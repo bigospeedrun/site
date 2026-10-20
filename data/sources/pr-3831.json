@@ -4,8 +4,8 @@
   "title": "XOR-mask decreasing subsequence lengths",
   "body": "## Summary\n- Every XOR mask in dimensions 1 through 12 has longest decreasing subsequence exactly `2` to its Hamming weight: 8,190 masks.\n- Every pair of masks through dimension 10 obeys `wt(a xor b) + 2 wt(a and b) = wt(a) + wt(b)`, so the composed length is at most the product of the two lengths: 1,398,100 pairs.\n- Partial result, no new kappa. The selected frontier is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/xor-mask-lds/verify.py`\n- [x] `python3.12 -B research/xor-mask-lds/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/xor-mask-lds`\n- [ ] Maintainer replay from a clean checkout at `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T22:19:54Z",
-  "updated_at": "2026-10-18T22:19:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:11Z",
+  "closed_at": "2026-10-20T05:20:11Z",
+  "merged_at": "2026-10-20T05:20:11Z",
+  "state": "closed"
 }

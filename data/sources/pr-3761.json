@@ -4,8 +4,8 @@
   "title": "Record the 153-call zero remainder",
   "body": "## Summary\n- The selected one-unpaid idle mass is `1646 = 32*51 + 14` on each call. The least positive multiple of nine calls that clears that remainder is 153.\n- At 153 calls the idle mass is `251838 = 4938*51`, with no remainder child, and the live width is 15232. Every smaller positive multiple of nine calls leaves a remainder. The selected kappa is unchanged.\n- Partial result, no new kappa. No moment is priced.\n\n## Test plan\n- [x] `python3.12 -B research/zero-remainder-calls/verify.py`\n- [x] `python3.12 -B research/zero-remainder-calls/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/zero-remainder-calls`\n- [ ] Maintainer replay from a clean checkout at the parent commit\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T19:55:54Z",
-  "updated_at": "2026-10-18T19:55:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:13Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }

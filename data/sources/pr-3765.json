@@ -4,8 +4,8 @@
   "title": "Record the chirp budget clearance",
   "body": "## Summary\n- All 7910 chirp phase rows, for precision 16 through 128, meet the width and guard inequalities. The error bill is 22 and the norm margin is 601/1000.\n- The online power is 8/5 - 997/1000 = 603/1000. The stated Fourier power is 99827619697/100000000000, and both 603/1000 and 332353/332929 sit strictly below it.\n- No new kappa. The middle-map consumer stays unrun.\n\n## Test plan\n- [x] `python3.12 -B research/chirp-budget-clearance/verify.py`\n- [x] `python3.12 -B research/chirp-budget-clearance/test_verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/chirp-budget-clearance`\n- [ ] Maintainer replay on CPython 3.12 from `20ecf2891d80b5acf18d980b2164fb44ea7faa90`\n\nMade with Cursor\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-18T20:04:37Z",
-  "updated_at": "2026-10-18T20:04:37Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-20T05:20:12Z",
+  "closed_at": "2026-10-20T05:20:12Z",
+  "merged_at": "2026-10-20T05:20:12Z",
+  "state": "closed"
 }
