@@ -66631,13 +66631,16 @@
       "upstream_status": "merged",
       "upstream_status_at": "2026-10-20T05:24:24Z",
       "checked_at": "2026-10-20",
-      "claimed_score": null,
-      "record_ids": [],
+      "claimed_score": "17308090335765520817339999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
+      "record_ids": [
+        "crocswap-pr-4076"
+      ],
       "note": "Claude reads the PR text as no new kappa claim.",
       "claim_path": "research/staged544-triple-entry-fill/RESULT.json",
       "claim_head": "9744f9df268590295a9872b1952c695a678192b9",
       "claim_text": "83e7b1a98bbdc78975be09ec0a0112b3c2be056255bbc27f4107303116f12edc",
-      "review_reason": "Claude reads the PR text as no new kappa claim.",
+      "claim_path_head": "9744f9df268590295a9872b1952c695a678192b9",
+      "claim_decided": true,
       "claim_files": [
         [
           "added",
@@ -69344,7 +69347,7 @@
       "title": "Construct restored compensation forests for the staged words",
       "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4197",
       "submitted_at": "2026-10-20T13:21:00Z",
-      "updated_at": "2026-10-20T13:21:00Z",
+      "updated_at": "2026-10-20T13:27:56Z",
       "source_commit": "acb22886813c73a95ce5eb4b67805defb687b879",
       "upstream_status": "open",
       "upstream_status_at": "2026-10-20T13:21:00Z",
@@ -69353,9 +69356,36 @@
       "record_ids": [],
       "note": "No research package kappa claim.",
       "claim_head": "acb22886813c73a95ce5eb4b67805defb687b879",
-      "claim_text": "5c89cd8cfc33d7ed94a2949e3ff8726b30a90ca8a98234299c95571797a0634f",
+      "claim_text": "f549d880641df04da63c4dd9d5fa1a60348690c3957229271e67fd32799a71ef",
       "claim_files": [],
       "claim_files_head": "acb22886813c73a95ce5eb4b67805defb687b879",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 4198,
+      "author": "jmbarrancoml",
+      "author_url": "https://github.com/jmbarrancoml",
+      "title": "Generate exact bounded rational Stein coefficients",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4198",
+      "submitted_at": "2026-10-20T13:35:49Z",
+      "updated_at": "2026-10-20T13:38:38Z",
+      "source_commit": "e457d5e912a27307d725827aeca7198169320b84",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-20T13:35:49Z",
+      "checked_at": "2026-10-20",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "e457d5e912a27307d725827aeca7198169320b84",
+      "claim_text": "c522de4b2748537d67bf6799b5986a21d093f15f5b88ad3141b49b9a371a271a",
+      "claim_files": [
+        [
+          "added",
+          "research/rational-stein-generators/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "e457d5e912a27307d725827aeca7198169320b84",
       "claim_files_base": "main",
       "claim_files_result": true
     }

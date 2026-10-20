@@ -3878,6 +3878,16 @@
               "rohanarun"
             ],
             "bound": "O(n log^(1 - 0.0017309802559890369599) n)"
+          },
+          {
+            "id": "crocswap-pr-4076",
+            "score": "17308090335765520817339999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
+            "relation": "attained",
+            "evidence": "Human Verified",
+            "authors": [
+              "rohanarun"
+            ],
+            "bound": "O(n log^(1 - 0.0017308090335765520817) n)"
           }
         ],
         "table": "big-o"
@@ -4146,7 +4156,7 @@
         "slug": "apsp",
         "name": "APSP",
         "url": "https://bigospeedrun.com/apsp",
-        "leader": "shreshth-s-apsp-2026",
+        "leader": "joshuaqfex-apsp-2026",
         "records": [
           {
             "id": "anthropic-2026",
@@ -4230,6 +4240,16 @@
             "bound": "O(n^(2.9945 + epsilon)), for every fixed epsilon > 0"
           },
           {
+            "id": "joshuaqfex-apsp-2026",
+            "score": "14964739593547/5000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Joshua Wharton"
+            ],
+            "bound": "O(n^2.9929479187094)"
+          },
+          {
             "id": "direct-pr-13",
             "score": "59911217/20000000",
             "relation": "attained",
@@ -4256,7 +4276,7 @@
         "slug": "subset-sum",
         "name": "Subset Sum",
         "url": "https://bigospeedrun.com/subset-sum",
-        "leader": "a-kapila-subset-sum-0-4877-2026",
+        "leader": "joshuaqfex-subset-sum-0-487676-2026",
         "records": [
           {
             "id": "subset-sum-2026",
@@ -4277,6 +4297,16 @@
               "Annanay Kapila"
             ],
             "bound": "O(2^(0.4877n))"
+          },
+          {
+            "id": "joshuaqfex-subset-sum-0-487676-2026",
+            "score": "121919/250000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Joshua Wharton"
+            ],
+            "bound": "O(2^(0.487676n))"
           }
         ],
         "table": "big-o"
@@ -4801,7 +4831,7 @@
         "slug": "other-block-sensitivity",
         "name": "Block sensitivity separation",
         "url": "https://bigospeedrun.com/other/block-sensitivity",
-        "leader": "prove2me-2-05:2.05",
+        "leader": "prove2me-2-1:2.1",
         "table": "other-bounds",
         "records": [
           {
@@ -4855,6 +4885,16 @@
             "bound": "bs(f) ≥ s(f)^2.05"
           },
           {
+            "id": "prove2me-2-0635:2.0635",
+            "score": "2.0635",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "abhishekdpseok"
+            ],
+            "bound": "bs(f) ≥ s(f)^2.0635"
+          },
+          {
             "id": "canghaimeng:380/187",
             "score": "380/187",
             "relation": "attained",
@@ -4863,6 +4903,26 @@
               "Qiuyu Chen (Euler)"
             ],
             "bound": "bs(f) ≥ s(f)^2.032083"
+          },
+          {
+            "id": "prove2me-2-075:2.075",
+            "score": "2.075",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "Robin Kothari"
+            ],
+            "bound": "bs(f) ≥ s(f)^2.075"
+          },
+          {
+            "id": "prove2me-2-1:2.1",
+            "score": "2.1",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "yousofy"
+            ],
+            "bound": "bs(f) ≥ s(f)^2.1"
           }
         ]
       },
@@ -5347,7 +5407,12 @@
     "[\"other-block-sensitivity\",\"prove2me-2-0391:2.0391\",\"2.0391\",\"attained\"]:lean",
     "[\"other-block-sensitivity\",\"prove2me-2-05:2.05\",\"2.05\",\"attained\"]:lean",
     "[\"other-quasi-riemann\",\"ArviFoxy:174963413/200000000\",\"174963413/200000000\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-4181\",\"17309802559890369599619999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-4181\",\"17309802559890369599619999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000\",\"attained\"]:record",
+    "[\"apsp\",\"joshuaqfex-apsp-2026\",\"14964739593547/5000000000000\",\"attained\"]:record",
+    "[\"subset-sum\",\"joshuaqfex-subset-sum-0-487676-2026\",\"121919/250000\",\"attained\"]:record",
+    "[\"other-block-sensitivity\",\"prove2me-2-0635:2.0635\",\"2.0635\",\"attained\"]:lean",
+    "[\"other-block-sensitivity\",\"prove2me-2-075:2.075\",\"2.075\",\"attained\"]:lean",
+    "[\"other-block-sensitivity\",\"prove2me-2-1:2.1\",\"2.1\",\"attained\"]:lean"
   ],
   "deferred": [
     {
