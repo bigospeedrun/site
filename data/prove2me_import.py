@@ -343,12 +343,11 @@ def other_known(root, board):
     for claim in [baseline, *family['claims']]:
         number = claim_number(claim)
         if number is not None:
-            known.append((utc(claim['date']), number))
-            # The baseline and the Lean Verified claims: what a new Lean Verified result must beat.
-            if claim is baseline:
-                known_lv.append((datetime.min.replace(tzinfo=timezone.utc), number))
-            elif claim.get('evidence') == 'lean-verified':
-                known_lv.append((utc(claim['date']), number))
+            # The baseline counts at any date. The Lean Verified claims are what a new Lean Verified result must beat.
+            at = datetime.min.replace(tzinfo=timezone.utc) if claim is baseline else utc(claim['date'])
+            known.append((at, number))
+            if claim is baseline or claim.get('evidence') == 'lean-verified':
+                known_lv.append((at, number))
     return family, known, known_lv
 
 

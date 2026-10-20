@@ -598,6 +598,10 @@ class OtherBoundsImportTest(unittest.TestCase):
         data['families'][0]['claims'][0].update(display='\\approx2.6', date='2026-10-01T00:00:00Z')
         path.write_text(json.dumps(data))
         self.assertIn('not the best Lean Verified result either', self.go()[2]['other-row'])
+        # Without the better Claimed claim, the baseline still blocks the best-overall way.
+        data['families'][0]['claims'][0].update(display='\\approx2.0', date='2026-10-01T00:00:00Z')
+        path.write_text(json.dumps(data))
+        self.assertIn('was not the best', self.go()[2]['other-row'])
 
     def test_a_wait_entry_waits_until_its_date_and_then_holds(self):
         self.assertEqual(self.go('2026-10-23T00:00:00Z')[2], {})
