@@ -51,7 +51,6 @@ CAMPAIGN_URL = 'https://prove2.me/campaigns/'
 RAW_URL = 'https://raw.githubusercontent.com/'
 USER_AGENT = 'bigospeedrun-refresh (+https://bigospeedrun.com)'
 RULE_KEYS = ('id', 'slug', 'status', 'value_type', 'bound_type', 'value_direction')
-HELD_EXIT = 3
 # A proved entry that the newest export snapshot predates waits this long for the next export.
 UNEXPORTED_DAYS = 3
 MAX_BYTES = 5 * 1024 * 1024
@@ -568,8 +567,9 @@ def main():
         with open(summary, 'a') as handle:
             handle.write('### prove2.me import\n\n' + '\n'.join('- ' + line for line in lines) + '\n')
     if held:
+        # A hold is state in data/prove2me.json, not a failed run: exit 0. The dead-man
+        # check (prove2me-import) alerts the lead from that file on main.
         print('prove2.me import: held for ' + ', '.join(safe_text(slug, 40) for slug in held) + '. Review data/prove2me-trust.json.', file=sys.stderr)
-        sys.exit(HELD_EXIT)
 
 
 if __name__ == '__main__':

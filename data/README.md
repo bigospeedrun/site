@@ -25,7 +25,8 @@ note and marks `platypii-lean.json` held, which fails `review_hold.py --check`.
 Run `python3 data/review_hold.py` after the imports. A new result more than twice
 the published best kappa, or more than 1% below the published best exponent,
 leaves its board and waits in `review-holds.json` until the lead approves or
-rejects it in `review-decisions.json`. `--check` exits 1 while anything waits.
+rejects it in `review-decisions.json`. `--check` lists what waits and exits 0; the
+dead-man check in the watch repo alerts the lead from these files.
 
 Run `python3 data/other_reviews.py` to read the review pull requests of Other bounds rows.
 A row of `src/lib/other-bounds.json` with a `reviewRepository` lists claims with

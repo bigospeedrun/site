@@ -458,16 +458,15 @@ class Prove2meImportTest(unittest.TestCase):
         saved = json.loads((self.f.root / 'prove2me.json').read_text())['boards']['apsp']['reason']
         self.assertEqual(saved, reason)
 
-    def test_main_exits_3_on_hold_and_writes_a_step_summary(self):
+    def test_main_exits_0_on_hold_and_writes_a_step_summary(self):
         self.f.live.append(dict(mission_id='m9\n::error::x', attested_value='2.99', proved=True, solved_at=None))
         summary = self.f.root / 'summary.md'
         out, err = io.StringIO(), io.StringIO()
         with mock.patch.object(p2m, 'ROOT', self.f.root), mock.patch.object(p2m, 'fetch', self.f.get), \
                 mock.patch('direct_refresh.transaction') as transaction, mock.patch.object(sys, 'argv', ['prove2me_import.py']), \
                 mock.patch.dict(os.environ, {'GITHUB_STEP_SUMMARY': str(summary)}), \
-                contextlib.redirect_stdout(out), contextlib.redirect_stderr(err), self.assertRaises(SystemExit) as stop:
-            p2m.main()
-        self.assertEqual(stop.exception.code, p2m.HELD_EXIT)
+                contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            p2m.main()  # A hold is state, not a failure: no SystemExit.
         transaction.assert_called_once()
         self.assertIn('apsp: held', summary.read_text())
         for line in (out.getvalue() + err.getvalue()).splitlines():

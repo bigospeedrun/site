@@ -107,7 +107,8 @@ class ReviewHoldTests(unittest.TestCase):
         review_hold.dump(self.root, 'im.json', data)
         self.assertEqual([h['id'] for h in self.run_review()], ['crocswap-pr-3051'])
 
-    def test_check_exit_code(self):
+    def test_check_lists_waits_and_exits_0(self):
+        # 2026-10-20: a wait is state, not a failed run; the dead-man check reads the files.
         script = Path(review_hold.__file__)
         def check():
             with tempfile.TemporaryDirectory() as temp:
@@ -116,15 +117,22 @@ class ReviewHoldTests(unittest.TestCase):
                 for name in (review_hold.HOLDS, review_hold.CLAIM_QUEUE):
                     if (self.root / name).exists():
                         (Path(temp) / name).write_text((self.root / name).read_text())
-                return subprocess.run([sys.executable, '-I', str(copy_path), '--check'], capture_output=True, text=True).returncode
-        self.assertEqual(check(), 0)
+                done = subprocess.run([sys.executable, '-I', str(copy_path), '--check'], capture_output=True, text=True)
+                return done.returncode, done.stdout
+        self.assertEqual(check(), (0, ''))
         review_hold.dump(self.root, review_hold.CLAIM_QUEUE, {'queue': [{'pr': 3111, 'head': 'b' * 40, 'title': 't', 'url': 'u', 'reason': 'r'}]})
-        self.assertEqual(check(), 1)
+        code, out = check()
+        self.assertEqual(code, 0);self.assertIn('CrocSwap PR #3111 waits for lead review: r', out)
         review_hold.dump(self.root, review_hold.CLAIM_QUEUE, {'queue': []})
-        self.assertEqual(check(), 0)
+        self.assertEqual(check(), (0, ''))
         self.add('im.json', record('crocswap-pr-3093', '1/10'))
         self.run_review()
-        self.assertEqual(check(), 1)
+        code, out = check()
+        self.assertEqual(code, 0);self.assertIn('Held for lead review: ', out)
+        # A real error (an unreadable wait file) still fails the step.
+        review_hold.dump(self.root, review_hold.CLAIM_QUEUE, {'queue': []})
+        (self.root / review_hold.CLAIM_QUEUE).write_text('{not json')
+        self.assertNotEqual(check()[0], 0)
 
     def test_live_bundle_has_no_pending_holds_file_errors(self):
         holds = review_hold.load(review_hold.ROOT, review_hold.HOLDS)

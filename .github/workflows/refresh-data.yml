@@ -46,7 +46,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: .refresh-venv/bin/python data/direct_refresh.py
       # Anonymous GETs to prove2.me campaign pages and the formalpedia export. A held
-      # board keeps its last import; the last step then fails the run (dead-man alert).
+      # board keeps its last import and exits 0; data/prove2me.json records the hold and
+      # the dead-man check (watch repo, prove2me-import) alerts the lead from it.
       - name: Import reviewed prove2.me results
         id: prove2me
         continue-on-error: true
@@ -185,11 +186,15 @@ jobs:
           git commit -m 'Log X record API delivery results'
           gh auth setup-git
           scripts/push-bot-commit.sh "$TARGET_BRANCH"
-      - name: Fail the run when the prove2.me import is held
+      # A wait or hold is not a failure (Nil gets an email for each red run, 2026-10-20):
+      # these two steps fail the run only on a real error. The dead-man check in the
+      # watch repo alerts the lead from claim-review.json, review-holds.json and
+      # prove2me.json on main, and a green run builds the site image as usual.
+      - name: Fail the run when the prove2.me import failed
         if: ${{ always() && steps.prove2me.outcome == 'failure' }}
         run: |
-          echo "::error::prove2.me import held or failed. Read the 'Import reviewed prove2.me results' step and data/prove2me.json, then review data/prove2me-trust.json."
+          echo "::error::prove2.me import failed. Read the 'Import reviewed prove2.me results' step."
           exit 1
-      - name: Fail the run while a result waits for lead review
+      - name: List results that wait for lead review
         if: ${{ !cancelled() }}
         run: .refresh-venv/bin/python data/review_hold.py --check

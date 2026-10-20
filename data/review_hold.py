@@ -16,9 +16,11 @@ jump:
 A held record leaves the board file, so the site does not list it and the records
 feed does not post it. Its full record waits in review-holds.json. The lead decides
 in review-decisions.json: an approved hold goes back on the board in the next run (it
-then posts like any new leader); a rejected one stays off. `--check` exits 1 while a
-hold, or a CrocSwap PR in claim-review.json (written by refresh.py), waits for the
-lead, so the refresh run fails and the dead-man check alerts the lead.
+then posts like any new leader); a rejected one stays off. `--check` lists each hold and
+each CrocSwap PR in claim-review.json (written by refresh.py) that waits for the lead,
+and exits 0: a wait is state, not a failed run (Nil gets an email for each red run,
+2026-10-20). The dead-man check (watch repo deadman.py, review-wait) alerts the lead
+from these files on main.
 
 Other bounds rows (src/lib/other-bounds.json) are hand-edited and reviewed by the
 lead before a push, so this script does not read them.
@@ -143,7 +145,7 @@ def main():
             print(f"platypii Lean note held: {reason}. Review the change; a new Statement.lean needs a new STATEMENT_SHA256 in data/platypii_lean.py.")
         if incomplete:
             print(f"CrocSwap PR list incomplete: {' '.join(ascii(str(incomplete))[1:-1].split())[:300]}. The refresh kept the stored index; check the GitHub listing.")
-        sys.exit(1 if holds or queue or platypii.get('status') == 'held' or incomplete else 0)
+        return
     now = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
     holds = review(ROOT, now)
     print(f'{len(holds)} result(s) held for lead review.')
