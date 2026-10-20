@@ -235,7 +235,19 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
     (stage / f'sources/pr-{n}-claim.json').write_bytes(raw)
     return str(q), path, None
 
-def claim_state(p, prior, decisions, evaluate):
+def silent_above(p, prior, leader):
+    """A PR left silent by its title kappa (at or below the leader when it was read)
+    whose title kappa is now above the leader. #4076 (2026-10-19 14:17Z) was read while
+    the board still showed #3959 at 0.0017367 (closed 13:55Z, the run's 'before' data)
+    and stayed silent after the leader fell to 0.0017305784."""
+    if leader is None or prior.get('claimed_score') is not None or prior.get('review_reason'):
+        return False
+    if prior.get('upstream_status') == 'closed-unmerged' or p['state'] == 'closed' and not p.get('merged_at'):
+        return False
+    values = title_kappas(p['title'])
+    return bool(values) and max(values) > leader
+
+def claim_state(p, prior, decisions, evaluate, leader=None):
     """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
     retry, decision). evaluate() reads the PR's package and runs the Claude check."""
     n = p['number']; head_sha = p['head']['sha']
@@ -250,7 +262,8 @@ def claim_state(p, prior, decisions, evaluate):
     if n in NOT_CLAIMS:
         pass
     elif (claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided')
-          and (not prior.get('review_reason') or prior.get('upstream_status') == 'closed-unmerged')):
+          and (not prior.get('review_reason') or prior.get('upstream_status') == 'closed-unmerged')
+          and not silent_above(p, prior, leader)):
         # Already read at this head and text: reuse the result, with no request. A PR in
         # the lead's queue is read again each run (its file lists are cached), so it lists
         # as soon as its parents own their packages (#3251 on decided #3198 and #3200).
@@ -385,7 +398,7 @@ def refresh(stage, now):
         others = {path: pr for path, pr in owners.items() if pr != n}
         score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
             p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others, files_of,
-                                                       [m for m in reversed(numbers) if m < n], leader))
+                                                       [m for m in reversed(numbers) if m < n], leader), leader)
         # One lookup per decided head: claim_path_head records it, found or not.
         if decision and score and not claim_path and prior.get('claim_path_head') != head_sha:
             claim_path = decided_package(p, score, files_of, others)

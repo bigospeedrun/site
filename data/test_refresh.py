@@ -175,6 +175,22 @@ class RefreshTests(unittest.TestCase):
                  'record_metadata':{'repro':{'reproduction_of':'x'}}}
         self.assertEqual(refresh.board_leader(problem),refresh.Fraction(1,100))
 
+    def test_silent_title_is_read_again_when_the_leader_falls_below_it(self):
+        # #4076 (2026-10-19 14:17Z): title kappa 0.0017308090, read silent while the board
+        # still showed #3959 at 0.0017367; the leader then fell to 0.0017305784.
+        title='Conditional κ = 0.001730809033576552081734 (+1.458e-7 over #3945): three staged helper entries'
+        head='9'*40;text=refresh.hashlib.sha256((title+'\n').encode()).hexdigest()
+        p={'number':4076,'title':title,'body':'','state':'closed','merged_at':'2026-10-20T05:24:24Z','head':{'sha':head}}
+        prior={'claimed_score':None,'claim_head':head,'claim_text':text,'upstream_status':'merged'}
+        calls=[]
+        def evaluate():
+            calls.append(1);return None,None,'The PR adds no single own research package CLAIM.json.'
+        old,new=refresh.Fraction('0.0017367386510889'),refresh.Fraction('0.0017305784372662468')
+        self.assertIsNone(refresh.claim_state(p,prior,{},evaluate,old)[1]);self.assertEqual(calls,[])
+        self.assertIsNotNone(refresh.claim_state(p,prior,{},evaluate,new)[1]);self.assertEqual(calls,[1])
+        # A closed unmerged PR stays silent.
+        self.assertIsNone(refresh.claim_state(p|{'merged_at':None},prior|{'upstream_status':'closed-unmerged'},{},evaluate,new)[1]);self.assertEqual(calls,[1])
+
     def test_unreadable_package_is_retried(self):
         # 2026-10-18 10:17Z: the offline refresh test read a CLAIM.json that its mock 404s,
         # and package_claim raised. A 404 on the package is now a retry, not a crash.
