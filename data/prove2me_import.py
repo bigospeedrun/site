@@ -23,6 +23,10 @@ reviewer records the evidence in "same_proof" (the prove2.me entry names the
 row's source, or the proof content matches). An entry with action "row" adds a
 row when the result was the best on the board at its solved time. A board row
 with the same value but another proof must be listed in "same_value_rows".
+A proved entry that the trust file does not list holds the board, unless it was proved after
+the newest export snapshot (MANIFEST.json generated_at): its goal cannot be in the export yet, so
+it waits for the next export and the board still imports. If the export has no goal for it
+UNEXPORTED_DAYS days after the proof, the board holds, so the dead-man item alerts.
 A page layout or file format change makes the parse fail, which holds the board.
 """
 import argparse
@@ -34,7 +38,7 @@ import re
 import sys
 import time
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from fractions import Fraction
 from pathlib import Path
 
@@ -48,6 +52,8 @@ RAW_URL = 'https://raw.githubusercontent.com/'
 USER_AGENT = 'bigospeedrun-refresh (+https://bigospeedrun.com)'
 RULE_KEYS = ('id', 'slug', 'status', 'value_type', 'bound_type', 'value_direction')
 HELD_EXIT = 3
+# A proved entry that the newest export snapshot predates waits this long for the next export.
+UNEXPORTED_DAYS = 3
 MAX_BYTES = 5 * 1024 * 1024
 REASON_CAP = 200
 PUSH = 'self.__next_f.push('
@@ -179,6 +185,30 @@ class Files:
             self.cache[path] = split_header(self.get(self.base + path))
         return self.cache[path]
 
+    def generated_at(self):
+        """The time of the export snapshot (MANIFEST.json), as a datetime."""
+        if 'MANIFEST.json' not in self.cache:
+            try:
+                stamp = utc(json.loads(self.get(self.base + 'MANIFEST.json'))['generated_at'])
+            except (ValueError, KeyError, TypeError, AttributeError):
+                raise Hold('the Formalpedia MANIFEST.json has an unknown shape')
+            self.cache['MANIFEST.json'] = stamp
+        return self.cache['MANIFEST.json']
+
+
+def unexported(entry, files, today):
+    """An unreviewed proved entry. If it was proved after the newest export snapshot, its goal cannot be in the
+    export yet: it waits, for UNEXPORTED_DAYS days after it was proved. An entry that the export could hold
+    (proved before the snapshot) holds the board, as does a wait that ran out."""
+    label = f'unreviewed proved entry {entry["attested_value"]} (mission {entry["mission_id"]})'
+    proved = max(utc(entry[key]) for key in ('solved_at', 'recorded_at') if entry.get(key))
+    # A time in the future could keep an entry waiting for ever, so it holds the board.
+    require(proved.strftime('%Y-%m-%d') <= today, f'{label} is dated in the future')
+    if proved <= files.generated_at():
+        raise Hold(label)
+    require(today <= (proved + timedelta(days=UNEXPORTED_DAYS)).strftime('%Y-%m-%d'),
+            f'{label} is still not in the Formalpedia export {UNEXPORTED_DAYS} days after it was proved')
+
 
 def verify_campaign(board, files, get, today):
     """Check the campaign page and the reviewed definitions against the trust file."""
@@ -190,7 +220,7 @@ def verify_campaign(board, files, get, today):
     by_mission = {e['mission_id']: e for e in live}
     for entry in live:
         if entry['proved'] is True and entry['mission_id'] not in reviewed:
-            raise Hold(f'unreviewed proved entry {entry["attested_value"]} (mission {entry["mission_id"]})')
+            unexported(entry, files, today)
     for entry in board['entries']:
         now = by_mission.get(entry['mission_id'])
         require(now, f'reviewed entry {entry["value"]} is no longer in the campaign')

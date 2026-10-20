@@ -39,6 +39,7 @@ class Fixture:
         self.rules = dict(id='c1', slug='apsp-exponent', name='APSP', status='active', value_type='real', bound_type='upper', value_direction='lower')
         self.live = []
         self.files = {}
+        self.export_at = '2026-10-17T00:00:00+00:00'
         entries = []
         # A link to an existing row, then a new best result, then a result that is not the best.
         for mission, value, solved, action in [('m1', '2.99942', '2026-10-06T10:00:00+00:00', 'link'),
@@ -111,6 +112,8 @@ class Fixture:
         if url == p2m.CAMPAIGN_URL + '3sum-exponent':
             return page(self.live3, self.rules3)
         prefix = p2m.RAW_URL + 'prove2me/formalpedia/main/'
+        if url == prefix + 'MANIFEST.json':
+            return json.dumps(dict(generated_at=self.export_at)).encode()
         if url.startswith(prefix) and url[len(prefix):] in self.files:
             return self.files[url[len(prefix):]]
         raise p2m.Hold('cannot read ' + url)
@@ -224,6 +227,48 @@ class Prove2meImportTest(unittest.TestCase):
     def test_an_unreviewed_proved_entry_holds_the_board(self):
         reason = self.held_after(lambda: self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-08T00:00:00+00:00')))
         self.assertIn('unreviewed proved entry 2.99', reason)
+
+    def test_an_unreviewed_proved_entry_newer_than_the_export_waits_three_days_and_then_holds(self):
+        self.f.run()
+        before = self.f.doc()
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-17T05:00:00+00:00', recorded_at='2026-10-17T05:00:00+00:00'))
+        _, state, held = self.f.run()
+        self.assertEqual((held, state['boards']['apsp']['status']), ({}, 'ok'))
+        self.assertEqual(self.f.doc()['records'], before['records'])
+        for now, expect_hold in [('2026-10-20T23:59:00Z', False), ('2026-10-21T00:00:00Z', True)]:
+            _, _, held = p2m.run(self.f.root, self.f.get, now=now)
+            self.assertEqual('apsp' in held, expect_hold, now)
+        self.assertIn('3 days after it was proved', held['apsp'])
+
+    def test_the_wait_counts_from_the_later_of_the_solved_and_recorded_times(self):
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-16T05:00:00+00:00', recorded_at='2026-10-17T05:00:00+00:00'))
+        self.assertEqual(self.f.run()[2], {})
+        self.assertIn('apsp', p2m.run(self.f.root, self.f.get, now='2026-10-21T00:00:00Z')[2])
+        self.assertEqual(p2m.run(self.f.root, self.f.get, now='2026-10-20T00:00:00Z')[2], {})
+        self.f.live[-1]['recorded_at'] = '2026-10-16T05:00:00+00:00'
+        self.assertIn('unreviewed proved entry 2.99', self.f.run()[2]['apsp'])
+
+    def test_an_unreviewed_proved_entry_dated_in_the_future_or_at_the_export_time_holds(self):
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-16T05:00:00+00:00', recorded_at='2099-01-01T00:00:00+00:00'))
+        self.assertIn('dated in the future', self.f.run()[2]['apsp'])
+        self.f.live[-1]['recorded_at'] = self.f.live[-1]['solved_at'] = self.f.export_at
+        self.assertIn('unreviewed proved entry 2.99', self.f.run()[2]['apsp'])
+
+    def test_a_malformed_export_time_holds(self):
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-17T05:00:00+00:00'))
+        with mock.patch.object(self.f, 'get', lambda url, get=self.f.get: b'{"generated_at": null}' if url.endswith('MANIFEST.json') else get(url)):
+            self.assertIn('MANIFEST.json has an unknown shape', self.f.run()[2]['apsp'])
+
+    def test_an_unreviewed_proved_entry_older_than_the_export_holds(self):
+        self.f.export_at = '2026-10-17T06:00:00+00:00'
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-17T05:00:00+00:00', recorded_at='2026-10-17T05:00:00+00:00'))
+        self.assertIn('unreviewed proved entry 2.99', self.f.run()[2]['apsp'])
+
+    def test_an_unreadable_export_manifest_holds_an_unreviewed_proved_entry(self):
+        self.f.live.append(dict(mission_id='m9', attested_value='2.99', proved=True, solved_at='2026-10-17T05:00:00+00:00'))
+        for broken in (b'not json', b'{}'):
+            with mock.patch.object(self.f, 'get', lambda url, get=self.f.get: broken if url.endswith('MANIFEST.json') else get(url)):
+                self.assertIn('MANIFEST.json has an unknown shape', self.f.run()[2]['apsp'])
 
     def test_an_open_unreviewed_entry_does_not_hold(self):
         self.f.run()
@@ -454,6 +499,7 @@ class OtherBoundsImportTest(unittest.TestCase):
             claims=[dict(display='\\approx2.00647', value='x', date='2026-10-15T07:52:00Z')])])))
         self.rules = dict(id='c9', slug='camp', name='N', status='active', value_type='real', bound_type='lower', value_direction='higher')
         self.files = {DEF: formalpedia(['Prove2me | d', 'status  : Definition'], DEF_BODY)}
+        self.export_at = '2026-10-19T12:00:00+00:00'
         self.live, entries = [], []
         for mission, value, solved, action in [('o1', '2.001', '2026-10-15T10:00:00+00:00', 'skip'), ('o2', '2.007', '2026-10-15T21:00:00+00:00', 'row'),
                                                 ('o3', '2.02', '2026-10-16T01:00:00+00:00', 'row'), ('o4', '2.05', '2026-10-18T01:00:00+00:00', 'wait')]:
@@ -482,6 +528,8 @@ class OtherBoundsImportTest(unittest.TestCase):
         if url == p2m.CAMPAIGN_URL + 'camp':
             return page(self.live, self.rules)
         prefix = p2m.RAW_URL + 'prove2me/formalpedia/main/'
+        if url == prefix + 'MANIFEST.json':
+            return json.dumps(dict(generated_at=self.export_at)).encode()
         if url.startswith(prefix) and url[len(prefix):] in self.files:
             return self.files[url[len(prefix):]]
         raise p2m.Hold('cannot read ' + url)
@@ -514,6 +562,11 @@ class OtherBoundsImportTest(unittest.TestCase):
     def test_a_wait_entry_waits_until_its_date_and_then_holds(self):
         self.assertEqual(self.go('2026-10-23T00:00:00Z')[2], {})
         self.assertIn('still not reviewable after 2026-10-23', self.go('2026-10-24T00:00:00Z')[2]['other-row'])
+
+    def test_an_unexported_unreviewed_entry_waits_on_an_other_bounds_board(self):
+        self.live.append(dict(mission_id='o9', attested_value='2.5', proved=True, solved_at='2026-10-19T13:00:00+00:00'))
+        self.assertEqual(self.go('2026-10-22T00:00:00Z')[2], {})
+        self.assertIn('3 days after it was proved', self.go('2026-10-23T00:00:00Z')[2]['other-row'])
 
     def test_text_with_html_characters_holds_the_board(self):
         entry = self.trust['boards']['other-row']['entries'][1]
