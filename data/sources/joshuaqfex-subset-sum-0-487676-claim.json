@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-10-20T13:20:00Z",
+  "repo": "JoshuaQFEX/subset-sum-bound",
+  "source_commit": "dcb002174cb1e06213e171c9f5ff6b063fdf2c40",
+  "source_url": "https://github.com/JoshuaQFEX/subset-sum-bound/blob/dcb002174cb1e06213e171c9f5ff6b063fdf2c40/paper.tex#L65-L81",
+  "claim_date_commit": "294db190c7321e503ce3ed8586b7512c456dea88",
+  "publication_date": "2026-10-20T11:38:36Z",
+  "publication_date_basis": "The repository was made public at 2026-10-20T11:28:26Z with an empty first commit. Commit 294db19 (paper, verifier and README with the bound) is dated 2026-10-20T11:38:36Z. GitHub's event log has no push event for it, so the date is the commit date, not a confirmed push time.",
+  "score": "121919/250000",
+  "theorem": "Theorem 1, Conditional refinement (paper.tex L65-L81)",
+  "model_check": "The conditional theorem matches the board model clause by clause: a single uniform randomised classical word-RAM program, word length ceil(4(n+b+log2(n+2))), halts on every input, correct with probability at least 2/3, every random execution costs at most C_c 2^(0.487676n) for every fixed c and b <= n^c, and the program does not depend on c. Source comparison, not a proof check.",
+  "files_not_copied": "The repository has no license file, so its files are not copied here. SHA-256 and Git blob ids of the files at the pinned commit:",
+  "files": {
+    "README.md": {
+      "sha256": "685e55d3a27a56431c8cd99acb876e801a9f483fe04ac221dd4b2a36c6438e48",
+      "git_blob": "a26eff5da5d4fae882a0c85812b12137d8085357"
+    },
+    "paper.pdf": {
+      "sha256": "8d8eed6284aa416f63f8d1ff08a23f04a86472d6c79f02d2b9cb113a011e6f67",
+      "git_blob": "961de7b4a0167612fec2196e843507323e5ef47f"
+    },
+    "paper.tex": {
+      "sha256": "86e3cbb6ba63a4ff270661a1e38a651117b58bd67b38dd62ace02916e1deb8ef",
+      "git_blob": "01ef4091e85a206100ff78700b4fa2d55bc78a69"
+    },
+    "parameters.json": {
+      "sha256": "89361952bc471e116c3585db3b3fd3fcad2f56ff88f76bf5e5059aa9d8c978ff",
+      "git_blob": "e79643529eb5320457f6a4ab5967392085105a22"
+    },
+    "source_facts.json": {
+      "sha256": "7d189ccc1fd7b61ad4c9879b592dc443fccf9fcc6af787d1810b6eaab0d647bb",
+      "git_blob": "173996686ce570e3a0c46ec3669cbc5a0765a96d"
+    },
+    "FORMALIZATION.md": {
+      "sha256": "6bd3b7828d7c1f91082a99bc5863df6d769c57bc31db0a8ad553abb25fb4d083",
+      "git_blob": "1b11d9c9303ecf57a082f807213bbacd4b6415b4"
+    },
+    "verification.txt": {
+      "sha256": "79975170a992eded971e56e21060b4284fa62622276c27c596b35dec79b910f8",
+      "git_blob": "04b214aa2f7174d11bc2d518a980095f3670eb8a"
+    },
+    "LEAN_VERIFICATION.md": {
+      "sha256": "b11439ade99c256c0cb5422062691263a81b5efd43b46164136a2137013a8bf0",
+      "git_blob": "94df83529b77668eb200f6ff61b8cb82731e3635"
+    }
+  },
+  "verification": "Conditional refinement of a-kapila's Claimed construction. The paper, an exact-rational Python checker and a Lean development prove the new parameter margins, alias side conditions and the transfer of the old moment certificates. The original isolation and implementation lemmas and the original moment inequalities remain unproved premises (explicit hypotheses in Lean); the author says it is not an end-to-end verified solver. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Joshua Wharton (QFEX). Refines the parameters of Annanay Kapila's manuscript (a-kapila/maths-proofs), which builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n)). The materials were prepared with ChatGPT, per the repository README."
+}

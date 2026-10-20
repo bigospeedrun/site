@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-20T13:20:00Z",
+  "repo": "JoshuaQFEX/apsp-bound",
+  "source_commit": "5dafbb186851aa80da58fb40a5e6857f4129b4fc",
+  "source_url": "https://github.com/JoshuaQFEX/apsp-bound/blob/5dafbb186851aa80da58fb40a5e6857f4129b4fc/apsp_refinement.tex#L197-L202",
+  "claim_date_commit": "e9f1eebca889cb0d06d17da45e40b9913f1df916",
+  "publication_date": "2026-10-20T11:38:02Z",
+  "publication_date_basis": "The repository was created public at 2026-10-20T11:32:44Z with an empty first commit. Its first push of the bound (commit e9f1eeb, README and note) was at 2026-10-20T11:38:02Z per the GitHub event log.",
+  "score": "14964739593547/5000000000000",
+  "theorem": "Corollary (Conditional algorithmic consequence), apsp_refinement.tex L197-L202",
+  "model_check": "The corollary states deterministic O(n^2.9929479187094) APSP for directed graphs with polynomially bounded integer weights and no negative cycles, with reachability and distance outputs, on the word RAM of the challenge (note, Scope and precise status). Like other written claims, the fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+  "files_not_copied": "The repository has no license file, so its files are not copied here. SHA-256 and Git blob ids of the files at the pinned commit:",
+  "files": {
+    "README.md": {
+      "sha256": "384e4db652ded057f2737f186fc80a9e0edc9220924e1cc90ad7280766f8f8f5",
+      "git_blob": "68b9412996c85efb87a7d7366b712c05ff3458c3"
+    },
+    "apsp_refinement.pdf": {
+      "sha256": "d8a24d21903ce239f94057aa22a2b13709d3094da097d32fbc3bf96194e6671a",
+      "git_blob": "3cdcc85056edcf39a0424feae5109dc0baa2910d"
+    },
+    "apsp_refinement.tex": {
+      "sha256": "348d6fe169b06dcc35d88743af38dd75dd7d8900cf1119593b2828f2b988c134",
+      "git_blob": "d1ff901804afaad2d51514b4f20649f68228dc34"
+    },
+    "certificate.json": {
+      "sha256": "9ff2659c71cdb608a43b86701baa5007329db6f492789cf056e96b11b691334a",
+      "git_blob": "2038f064285eb6868aae2771176da4d59e4bc1da"
+    },
+    "parameters.json": {
+      "sha256": "81cc8c1f6a45cd19e5d2a73b8e6339cb5f44a3ada83597675c39cd27a7f8c60f",
+      "git_blob": "fed020b6a50caa0938d3e7dfb848b1baff97ad25"
+    },
+    "lean/README.md": {
+      "sha256": "95cd83c1d8c0f85b488ec681db7f61343879191e1c6c7044b7695150b90bcd83",
+      "git_blob": "d664b8713b5c8a983d63d375b9082381c2aef49b"
+    },
+    "CITATION.cff": {
+      "sha256": "fb2c041f83ec251590496c00922202df6327be599a060c568a7bffd4106de9d2",
+      "git_blob": "15e16d2b3a10bcdde15b05bf4f03b3c7f7cc2b9f"
+    }
+  },
+  "verification": "Conditional exponent refinement. The note, an exact-rational Python checker and a Lean development prove 47 strict numerical inequalities and the exact stage identities of shreshth-s's written construction, and a closed theorem about its cost ledger. They do not state our word-RAM APSP problem: the corollary assumes the written construction and its word-RAM cost interpretation, which are Claimed. The repository says it is not a submission to our verifier. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Joshua Wharton (QFEX). Refines the parameters of the construction by shreshth-s (aligned Walsh embedding, polynomial query cache, composite-incidence reduction), which builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Majdoddin (arXiv:2610.17420). The materials were prepared with AI assistance, per the repository README."
+}

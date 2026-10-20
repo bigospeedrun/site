@@ -495,6 +495,51 @@
         "checked_at": "2026-10-12T02:37:20.122516Z",
         "receipt_path": "sources/direct-pr-6-38193262568-1-final.json"
       }
+    },
+    {
+      "id": "joshuaqfex-apsp-2026",
+      "kind": "improvement",
+      "score": "14964739593547/5000000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-20T11:38:02Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-20T11:38:02Z",
+      "site_observed_at": "2026-10-20T13:20:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/JoshuaQFEX/apsp-bound/blob/5dafbb186851aa80da58fb40a5e6857f4129b4fc/apsp_refinement.tex#L197-L202"
+      },
+      "spec_version": "1",
+      "title": "Joshua Wharton conditional APSP in time O(n^2.9929479187094)",
+      "authors": [
+        {
+          "name": "Joshua Wharton",
+          "url": "https://github.com/JoshuaQFEX"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137"
+      ],
+      "submission_url": "https://github.com/JoshuaQFEX/apsp-bound/blob/5dafbb186851aa80da58fb40a5e6857f4129b4fc/apsp_refinement.tex#L197-L202",
+      "artifact": {
+        "path": "sources/joshuaqfex-apsp-2-9929479187094-claim.json",
+        "sha256": "f90b6b01b65838ac25783ebdd27db4eac57a10c36f6eac64f78950533d11eb70"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/JoshuaQFEX/apsp-bound/blob/5dafbb186851aa80da58fb40a5e6857f4129b4fc/apsp_refinement.pdf",
+        "theorem": "Corollary (Conditional algorithmic consequence)",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "upstream-written-construction",
+          "statement": "The bound is conditional on the written proof and the word-RAM cost interpretation of shreshth-s's construction, which are unverified Claimed work. The Lean files of this repository prove only the numerical certificate and a cost-ledger theorem; no site rerun.",
+          "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex#L3132-L3137",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "5dafbb186851aa80da58fb40a5e6857f4129b4fc"
     }
   ],
   "record_metadata": {
@@ -698,7 +743,32 @@
       "direct_submission": true,
       "route": "pull_request",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38193262568"
+    },
+    "joshuaqfex-apsp-2026": {
+      "checked_at": "2026-10-20",
+      "source_url": "https://github.com/JoshuaQFEX/apsp-bound/blob/5dafbb186851aa80da58fb40a5e6857f4129b4fc/apsp_refinement.tex#L197-L202",
+      "repo": "JoshuaQFEX/apsp-bound",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Conditional exponent refinement. The note, an exact-rational Python checker and a Lean development prove 47 strict numerical inequalities and the exact stage identities of shreshth-s's written construction, and a closed theorem about its cost ledger. They do not state our word-RAM APSP problem: the corollary assumes the written construction and its word-RAM cost interpretation, which are Claimed. The repository says it is not a submission to our verifier. No Big O Speedrun proof check. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/word-ram/v1",
+      "comparison_status": "The corollary states deterministic O(n^2.9929479187094) APSP for directed graphs with polynomially bounded integer weights and no negative cycles, with reachability and distance outputs, on the word RAM of the challenge (note, Scope and precise status). Like other written claims, the fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+      "scope": "Directed integer weights of polynomial magnitude, no negative cycles, all-pairs distances; deterministic worst case. Conditional on the written construction of shreshth-s.",
+      "exact_statement": "Conditional on the written construction of shreshth-s: deterministic O(n^2.9929479187094) APSP for polynomially bounded integer weights and no negative cycles.",
+      "score_interpretation": "Attained exponent 2.9929479187094 = 14964739593547/5000000000000, 0.0000000012906 below the 2.99294792 of shreshth-s. The note states the constants settle only for astronomically large n.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "First push of the repository stating the bound",
+      "publication_date": "2026-10-20T11:38:02Z",
+      "publication_source_url": "https://github.com/JoshuaQFEX/apsp-bound/commit/e9f1eebca889cb0d06d17da45e40b9913f1df916",
+      "claim_date_commit": "e9f1eebca889cb0d06d17da45e40b9913f1df916",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "No license file; source files are not copied, only their hashes",
+      "credits": "Joshua Wharton (QFEX). Refines the parameters of the construction by shreshth-s (aligned Walsh embedding, polynomial query cache, composite-incidence reduction), which builds on Alman and Vassilevska Williams (arXiv:2610.06783) and Majdoddin (arXiv:2610.17420). The materials were prepared with AI assistance, per the repository README.",
+      "credit_note": "This is shresh's Claimed APSP construction with refined rational parameters, which lowers the exponent from 2.99294792 to 2.9929479187094. The algorithm and the written proof are shresh's; Joshua Wharton changed the parameters and added a numerical certificate with a Lean proof of its cost ledger. The bound stays conditional on shresh's written proof and word-RAM cost interpretation."
     }
   },
-  "updated_at": "2026-10-20T00:21:28Z"
+  "updated_at": "2026-10-20T13:20:00Z"
 }
