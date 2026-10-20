@@ -356,17 +356,39 @@
           "dateKind": "first-stated",
           "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/c68a3b2ba5b28b9c9b4bf26966ed6ee04ffa29b9/submissions/sil-uneven-normalization-20261019/src/Candidate/Main.lean#L13-L18",
           "lean": true,
-          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out on the first version of the proof and again on the smaller one (in the second run a worker also ran out of memory), and its admission check failed both times. A maintainer comment on the PR says the time-outs are being worked on. The PR is still open; the author reports only local Lean checks. No independent rerun.",
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out on the first version of the proof and again on the smaller one (in the second run a worker also ran out of memory), and its admission check failed both times. The maintainer then checked the smaller proof outside the hosted job with a longer time limit; Comparator, Lean, nanoda and con-ron accepted it. A manual rerun of the hosted check then passed, and the tracker merged the PR. No independent rerun.",
           "evidence": "claimed",
-          "note": "Open PR #66 when listed. The author says it builds on the merged PR #63: it first proves 0.8748286 from the 0.87483 of #63, and then the stated boundary. The author later pushed a smaller proof of the same statement (commit c68a3b2), which this entry links.",
+          "note": "The tracker merged PR #66 on October 19 (PT), at the commit listed here. The author says it builds on the merged PR #63: it first proves 0.8748286 from the 0.87483 of #63, and then the stated boundary. The author pushed a smaller proof of the same statement (commit c68a3b2) before the merge, and this entry links it.",
           "authors": [
             {
               "name": "Sil",
               "url": "https://github.com/TheSil"
             }
           ],
-          "proofScope": "Lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out on the first version of the proof and again on the smaller one (in the second run a worker also ran out of memory), and its admission check failed both times. A maintainer comment on the PR says the time-outs are being worked on. The PR is still open; the author reports only local Lean checks. No independent rerun.",
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job timed out on the first version of the proof and again on the smaller one (in the second run a worker also ran out of memory), and its admission check failed both times. The maintainer then checked the smaller proof outside the hosted job with a longer time limit; Comparator, Lean, nanoda and con-ron accepted it. A manual rerun of the hosted check then passed, and the tracker merged the PR. No independent rerun.",
           "bound": "\\theta\\le 0.874828524351"
+        },
+        {
+          "author": "ArviFoxy",
+          "handle": "ArviFoxy",
+          "value": "174963413/200000000",
+          "display": "0.874817065",
+          "date": "2026-10-19T17:35:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/67",
+          "dateKind": "first-stated",
+          "url": "https://github.com/ArviFoxy/QuasiRiemannTracker/blob/0db497edc397d7076b1652b060e49c76b683e901/submissions/two-level-affine-20261019/src/Candidate/Main.lean#L8-L15",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job and admission check for the PR had not finished when this entry was added. The author reports a clean local build of 922 modules and local nanoda and con-ron runs; the author notes that the hosted time limit may be too short for a single-threaded worker. No independent rerun.",
+          "evidence": "claimed",
+          "note": "Open PR #67 when listed. The author says it adds a second affine step for the low children on top of the PR #63 ledger and Collet's affine step, and that the new bound is 174963413/200000000 (equal to 0.874817065).",
+          "authors": [
+            {
+              "name": "ArviFoxy",
+              "url": "https://github.com/ArviFoxy"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The tracker's hosted verify job and admission check for the PR had not finished when this entry was added. The author reports a clean local build of 922 modules and local nanoda and con-ron runs; the author notes that the hosted time limit may be too short for a single-threaded worker. No independent rerun.",
+          "bound": "\\theta\\le 0.874817065"
         }
       ],
       "repos": [
@@ -443,7 +465,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "TheSil"
+      "bestHandle": "ArviFoxy"
     },
     {
       "family": "005",
