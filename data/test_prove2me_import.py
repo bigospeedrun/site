@@ -338,8 +338,18 @@ class Prove2meImportTest(unittest.TestCase):
         doc['records'].append(dict(id='earlier', kind='improvement', score='2997/1000', submitted_at='2026-10-06T12:00:00Z', site_observed_at='2026-10-06T12:00:00Z'))
         doc['record_metadata']['earlier'] = {}
         self.f.write('apsp.json', doc)
+        # A better Claimed row does not block a row that beats the best Lean Verified result.
+        self.assertEqual(self.f.run()[2], {})
+        doc['records'][-1]['tier'] = 'verified'
+        self.f.write('apsp.json', doc)
         _, _, held = self.f.run()
         self.assertIn('not the best result', held['apsp'])
+        self.assertIn('not the best Lean Verified result either', held['apsp'])
+        # A Lean Verified row counts from the time of its passed rerun, not from its record time.
+        doc['records'][-1]['rerun_status'] = dict(state='passed', checked_at='2026-10-06T19:00:00Z', receipt_path='x')
+        self.f.write('apsp.json', doc)
+        self.assertEqual(self.f.run()[2], {})
+        del doc['records'][-1]['rerun_status']
         doc['records'][-1]['submitted_at'] = '2026-10-06T18:00:00Z'
         self.f.write('apsp.json', doc)
         _, _, held = self.f.run()
@@ -441,7 +451,17 @@ class Prove2meImportTest(unittest.TestCase):
         self.f.files[later['theorem']['statement_path']] = formalpedia(['Prove2me | x', 'status  : Proved', 'url     : https://prove2.me/theorems/t-m3'], statement('Goalm3', '2.9984'))
         self.f.live[-1]['attested_value'] = '2.9984'
         self.f.save_trust()
+        # A skipped earlier result counts for the best overall, but it is no Lean Verified row: the 2.9984 row is
+        # not the best overall and still beats the best Lean Verified result (the baseline).
+        self.assertEqual(self.f.run()[2], {})
+        doc = self.f.doc()
+        doc['records'].append(dict(id='lv', kind='improvement', tier='verified', score='2998/1000', submitted_at='2026-10-06T12:00:00Z', site_observed_at='2026-10-06T12:00:00Z'))
+        doc['record_metadata']['lv'] = {}
+        self.f.write('apsp.json', doc)
         self.assertIn('entry 2.9984 was not the best', self.f.run()[2]['apsp'])
+        doc['records'].pop()
+        del doc['record_metadata']['lv']
+        self.f.write('apsp.json', doc)
         entries[1]['unsound'] = True
         self.f.save_trust()
         self.assertEqual(self.f.run()[2], {})
@@ -556,7 +576,28 @@ class OtherBoundsImportTest(unittest.TestCase):
     def test_a_result_not_better_than_the_row_at_its_time_holds_the_board(self):
         path = self.root.parent / 'src' / 'lib' / 'other-bounds.json'
         path.write_text(path.read_text().replace('2.00647', '2.01'))
+        # A better Claimed claim does not block a row that beats the best Lean Verified claim.
+        self.assertEqual(self.go()[2], {})
+        data = json.loads(path.read_text())
+        data['families'][0]['claims'][0]['evidence'] = 'lean-verified'
+        path.write_text(json.dumps(data))
         self.assertIn('was not the best', self.go()[2]['other-row'])
+
+    def test_a_result_must_also_beat_the_baseline(self):
+        path = self.root.parent / 'src' / 'lib' / 'other-bounds.json'
+        data = json.loads(path.read_text())
+        data['families'][0]['baseline']['value'] = '\\approx2.5'
+        path.write_text(json.dumps(data))
+        self.assertIn('not the best Lean Verified result either', self.go()[2]['other-row'])
+
+    def test_the_baseline_counts_whatever_its_date(self):
+        path = self.root.parent / 'src' / 'lib' / 'other-bounds.json'
+        data = json.loads(path.read_text())
+        # A better Claimed claim blocks the best-overall way, and the baseline (dated after the entries) blocks the other way.
+        data['families'][0]['baseline'].update(value='\\approx2.5', date='2026-10-17T00:00:00Z')
+        data['families'][0]['claims'][0].update(display='\\approx2.6', date='2026-10-01T00:00:00Z')
+        path.write_text(json.dumps(data))
+        self.assertIn('not the best Lean Verified result either', self.go()[2]['other-row'])
 
     def test_a_wait_entry_waits_until_its_date_and_then_holds(self):
         self.assertEqual(self.go('2026-10-23T00:00:00Z')[2], {})

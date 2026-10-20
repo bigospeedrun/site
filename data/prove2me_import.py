@@ -21,7 +21,8 @@ An entry with action "link" adds a prove2.me link to an existing board row
 (data/prove2me.json, read by the site). A link needs the same proof: the
 reviewer records the evidence in "same_proof" (the prove2.me entry names the
 row's source, or the proof content matches). An entry with action "row" adds a
-row when the result was the best on the board at its solved time. A board row
+row when the result was the best on the board at its solved time, or when it beats the baseline and every
+Lean Verified row of the board at its solved time (a better Claimed or Human Verified row does not block it). A board row
 with the same value but another proof must be listed in "same_value_rows".
 A proved entry that the trust file does not list holds the board, unless it was proved after
 the newest export snapshot (MANIFEST.json generated_at): its goal cannot be in the export yet, so
@@ -171,6 +172,21 @@ def record_time(record, meta):
         return datetime.min.replace(tzinfo=timezone.utc)
 
 
+def lean_verified_time(record, meta):
+    """When a verified row became Lean Verified: its passed rerun, else its record time."""
+    rerun = record.get('rerun_status') or {}
+    if rerun.get('state') == 'passed' and rerun.get('checked_at'):
+        try:
+            return utc(rerun['checked_at'])
+        except ValueError:
+            pass
+    return record_time(record, meta)
+
+
+def beats_all(value, earlier, better):
+    return all(better(value, score) for score in earlier)
+
+
 class Files:
     """Formalpedia files, read once per run."""
 
@@ -265,6 +281,11 @@ def check_board(slug, board, doc, files, get, today='9999-12-31'):
     better = (lambda a, b: a < b) if doc['score']['direction'] == 'lower-is-better' else (lambda a, b: a > b)
     known = [(record_time(r, meta[r['id']]), Fraction(r['score'])) for r in records
              if not meta[r['id']].get('reproduction_of') and r.get('upstream_status') != 'closed-unmerged']
+    # The baseline and the Lean Verified rows, with the time each became Lean Verified. A result that is
+    # not the best overall still gets a Lean Verified row when it beats all of these at its solved time.
+    known_lv = [(datetime.min.replace(tzinfo=timezone.utc) if r.get('kind') == 'baseline' else lean_verified_time(r, meta[r['id']]), Fraction(r['score']))
+                for r in records if (r.get('kind') == 'baseline' or r.get('tier') == 'verified')
+                and not meta[r['id']].get('reproduction_of') and r.get('upstream_status') != 'closed-unmerged']
     plan = dict(links={}, rows=[], upgrades=[])
     for entry in sorted(board['entries'], key=lambda e: utc(e['solved_at'])):
         value = Fraction(entry['value'])
@@ -291,8 +312,12 @@ def check_board(slug, board, doc, files, get, today='9999-12-31'):
             other = sorted(r['id'] for r in same if r['id'] not in entry.get('same_value_rows', []))
             require(not other, f'entry {entry["value"]} now has the same value as board row {", ".join(other)}; review it as a link or list it in same_value_rows')
             earlier = [score for at, score in known if at <= solved]
-            require(all(better(value, score) for score in earlier), f'entry {entry["value"]} was not the best result at its solved time')
+            earlier_lv = [score for at, score in known_lv if at <= solved]
+            require(beats_all(value, earlier, better) or beats_all(value, earlier_lv, better),
+                    f'entry {entry["value"]} was not the best result at its solved time, and not the best Lean Verified result either')
             plan['rows'].append(entry)
+        if entry['action'] in ('row', 'upgrade'):
+            known_lv.append((solved, value))
         known.append((solved, value))
     return plan
 
@@ -313,18 +338,24 @@ def other_known(root, board):
     """(time, number) of the baseline and the claims already on the Other bounds row."""
     data = json.loads((root / board['existing_claims_file']).read_text())
     family = next(f for f in data['families'] if f['slug'] == board['family'])
-    known = []
-    for claim in [dict(family['baseline'], display=family['baseline'].get('display', family['baseline']['value'])), *family['claims']]:
+    known, known_lv = [], []
+    baseline = dict(family['baseline'], display=family['baseline'].get('display', family['baseline']['value']))
+    for claim in [baseline, *family['claims']]:
         number = claim_number(claim)
         if number is not None:
             known.append((utc(claim['date']), number))
-    return family, known
+            # The baseline and the Lean Verified claims: what a new Lean Verified result must beat.
+            if claim is baseline:
+                known_lv.append((datetime.min.replace(tzinfo=timezone.utc), number))
+            elif claim.get('evidence') == 'lean-verified':
+                known_lv.append((utc(claim['date']), number))
+    return family, known, known_lv
 
 
 def check_other(slug, board, root, files, get, today):
     """Return the import plan for an Other bounds row, or raise Hold. Higher is better."""
     verify_campaign(board, files, get, today)
-    family, known = other_known(root, board)
+    family, known, known_lv = other_known(root, board)
     plan = dict(links={}, rows=[], claims=[])
     for entry in sorted(board['entries'], key=lambda e: utc(e['solved_at'])):
         value = Fraction(entry['value'])
@@ -338,8 +369,11 @@ def check_other(slug, board, root, files, get, today):
         verify_entry(entry, board, files)
         solved = utc(entry['solved_at'])
         earlier = [number for at, number in known if at <= solved]
-        require(all(value > number + OTHER_EPSILON for number in earlier), f'entry {entry["value"]} was not the best result at its solved time')
+        earlier_lv = [number for at, number in known_lv if at <= solved]
+        require(all(value > number + OTHER_EPSILON for number in earlier) or all(value > number + OTHER_EPSILON for number in earlier_lv),
+                f'entry {entry["value"]} was not the best result at its solved time, and not the best Lean Verified result either')
         plan['claims'].append(entry)
+        known_lv.append((solved, value))
         known.append((solved, value))
     return plan
 
