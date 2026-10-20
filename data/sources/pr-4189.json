@@ -1,0 +1,11 @@
+{
+  "number": 4189,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4189",
+  "title": "Research: exact F3 minimum for the one-source additive connector",
+  "body": "## Result\n\nOver F3, with arbitrary dirty x, y and z, every correct word in the additive alphabet `{B: z += x, A: y += z}` for the one-source one-output identity has length at least 6, and length 6 is attained by exactly six words.\n\nEach `B` adds 1 to the x-coefficient of `z`. Each `A` adds 1 to the z0-coefficient of `y` because that coefficient of `z` stays 1. Both finals must be 0 mod 3, so each operator appears a multiple of three times. Exhaustion finds no correct word of length ≤ 5 and exactly the witnesses `BBAABA`, `BABBAA`, `BAABAB`, `ABBAAB`, `ABABBA`, `AABABB`. The F2 control `BABA` remains length 4 and fails over F3.\n\nNo new kappa. Claim: [#4188](https://github.com/CrocSwap/integer-mult-bounds/discussions/4188).\n\n## Scope\n\nChooser seed `04cbf2cbcf13a1a4ea434b5ef3acf93b`, card `connector-alphabet-change`, priority revision 7, base `12fa8c5c844be21bfefb38a19503fbd867a11244`. Live alphabet extensions already cover arity-four events, joint outputs, high-arity toggles and the direct product call. This package keeps the same operators and changes only the characteristic-two premise that the starting universal-connector README already flags. The signed F3 connector of #1349 is a different interface.\n\nPackage: `research/f3-additive-connector-1x1`. Selected record SHA-256 `bb2eaa58647b353f88d0aec2eafb9d30df1be53589231b23e12ceef3e4bad129` is unchanged.\n\n## Evidence\n\n```sh\npython3.12 -B scripts/research_package.py --package research/f3-additive-connector-1x1\n```\n\nExpected marker: `PASS_F3_ADDITIVE_CONNECTOR_1X1`. Local Python 3.12 replay passed. The predecessor 945-pairing replay was not run in this partial checkout.\n\n## Limits\n\nNo five-source F3 batch, signed patterns, nonlinear readout or supplier admission. Substantial AI assistance; no independent human review claimed. Apache-2.0.\n\n## Open next question\n\nFor the five-source all-31-mask batch over F3 with the same alphabet, what is the exact optimum? The F2 figure is 74.",
+  "created_at": "2026-10-20T12:09:28Z",
+  "updated_at": "2026-10-20T12:09:28Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
