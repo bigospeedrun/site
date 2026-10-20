@@ -472,7 +472,9 @@
           "url": "https://github.com/JoshuaQFEX"
         }
       ],
-      "predecessors": [],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/pull/13"
+      ],
       "submission_url": "https://github.com/bigospeedrun/verifier/issues/25",
       "source_commit": "32c6858cf43efd48bf9c8a3541274e7a655ca2ad",
       "artifact": {
@@ -789,7 +791,8 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/25",
       "direct_submission": true,
       "route": "issue",
-      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39494922904"
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39494922904",
+      "credit_note": "This is Hrishik Sai Bojnal's Lean Verified proof (submission #13) with tighter parameters and sharper logarithm and entropy estimates, which lowers the proved exponent from 2.99556085 to 2.995560766. The algorithm and the proof steps are Li Xuanji's (submission #6); Joshua Wharton changed 17 of its 401 Lean files, which hold those parameters and estimates."
     },
     "direct-pr-13": {
       "checked_at": "2026-10-20",
