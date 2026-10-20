@@ -457,6 +457,42 @@
       }
     },
     {
+      "id": "direct-issue-26",
+      "kind": "improvement",
+      "score": "4800699/2500000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-20T14:57:15Z",
+      "spec_version": "1",
+      "title": "JoshuaQFEX direct 3sum submission",
+      "authors": [
+        {
+          "name": "JoshuaQFEX",
+          "url": "https://github.com/JoshuaQFEX"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/26",
+      "source_commit": "eda5da36565f1ad5136cea39a2251945e040a2f5",
+      "artifact": {
+        "path": "sources/direct-issue-26-submission.json",
+        "sha256": "0c33ef6d7781a3b2f9f68c150ed12341ce11e125c4e8190976bdd58f67972317"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/26",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-20T14:57:15Z",
+      "site_observed_at": "2026-10-20T15:20:32Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/JoshuaQFEX/3sum-bound/blob/eda5da36565f1ad5136cea39a2251945e040a2f5/Submission.lean"
+      }
+    },
+    {
       "id": "direct-issue-4",
       "kind": "improvement",
       "score": "981/500",
@@ -716,6 +752,23 @@
       "credit_note": "This is c0ldzy17's Lean Verified 1.921 proof (submission #14) with smaller safety margins in its exponent constants, which lowers the proved exponent to 1.9203. The construction and the proof steps are c0ldzy17's; Hrishik Sai Bojnal changed only those constants.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39196965603"
     },
+    "direct-issue-26": {
+      "checked_at": "2026-10-20",
+      "source_url": "https://github.com/JoshuaQFEX/3sum-bound/blob/eda5da36565f1ad5136cea39a2251945e040a2f5/Submission.lean",
+      "repo": "JoshuaQFEX/3sum-bound",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sum/word-ram/v1",
+      "publication_date": "2026-10-20T14:57:15Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/26",
+      "direct_submission": true,
+      "route": "issue"
+    },
     "direct-issue-4": {
       "checked_at": "2026-10-20",
       "source_url": "https://github.com/c0ldzy17/three-sum-lean/blob/2b639655e07421b9ac743de9090459bab473a7c0/Submission.lean",
@@ -753,5 +806,5 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38567645711"
     }
   },
-  "updated_at": "2026-10-20T00:21:28Z"
+  "updated_at": "2026-10-20T15:20:32Z"
 }
