@@ -457,6 +457,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a clean local build of 922 modules and local nanoda and con-ron runs, and notes that the tracker's hosted time limit may be too short for a single-threaded worker. The tracker's check results are on the pull request. No independent rerun.",
           "bound": "\\theta\\le 0.874817065"
+        },
+        {
+          "author": "Zhongpai Gao",
+          "handle": "Gaozhongpai",
+          "value": "8748087/10000000",
+          "display": "0.8748087",
+          "date": "2026-10-20T09:34:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/68",
+          "dateKind": "first-stated",
+          "url": "https://github.com/Gaozhongpai/QuasiRiemannTracker/blob/f07bb2418990a9976c0da5f65bb6a7a77da94c9a/submissions/gao-five-step-affine-20261020/src/Candidate/Main.lean#L12-L16",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks with only the standard axioms and a passing metadata validator. The tracker's check results are on the pull request. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 68,
+            "status": "open"
+          },
+          "note": "The author says it uses five finite affine stages and builds on ArviFoxy's two-level affine construction (PR #67), Gao's balanced marked ledger (PR #63) and Collet's affine step.",
+          "authors": [
+            {
+              "name": "Zhongpai Gao",
+              "url": "https://github.com/Gaozhongpai"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks with only the standard axioms and a passing metadata validator. The tracker's check results are on the pull request. No independent rerun.",
+          "bound": "\\theta\\le 0.8748087"
         }
       ],
       "repos": [
@@ -533,7 +559,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "ArviFoxy"
+      "bestHandle": "Gaozhongpai"
     },
     {
       "family": "005",
