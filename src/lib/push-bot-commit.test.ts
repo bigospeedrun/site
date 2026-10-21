@@ -52,6 +52,28 @@ test('no new commit and origin moved on: the step pushes nothing and succeeds', 
  } finally { r.cleanup(); }
 });
 
+test('a bot commit that changes data/direct-trust.json is refused; a trust change on main is not the bot\'s', () => {
+ const r = setup();
+ try {
+  // 2026-10-21: the verifier trusts data/direct-trust.json at site main.
+  r.git(r.bot, 'checkout', '-q', '-b', 'tmp'); r.git(r.bot, 'checkout', '-q', 'main');
+  execFileSync('mkdir', ['-p', join(r.bot, 'data')]);
+  r.write(r.bot, 'data/direct-trust.json', '{"controller_blobs":{}}\n'); r.git(r.bot, 'add', 'data/direct-trust.json'); r.git(r.bot, 'commit', '-q', '-m', 'Refresh reviewed leaderboard data');
+  let result = r.run();
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /changes data\/direct-trust.json \(the verifier trust list\); nothing was pushed/);
+  assert.equal(r.log(), 'seed');
+  // A reviewed trust change pushed to main during the run: the rebased data commit is pushed.
+  r.git(r.bot, 'reset', '-q', '--hard', 'tmp');
+  execFileSync('mkdir', ['-p', join(r.dev, 'data')]);
+  r.write(r.dev, 'data/direct-trust.json', '{"controller_blobs":{"x":1}}\n'); r.git(r.dev, 'add', '.'); r.git(r.dev, 'commit', '-q', '-m', 'Trust verifier x'); r.git(r.dev, 'push', '-q', 'origin', 'main');
+  r.write(r.bot, 'data.json', '{"v":5}\n'); r.git(r.bot, 'commit', '-q', '-am', 'Refresh reviewed leaderboard data');
+  result = r.run();
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(r.log(), 'Refresh reviewed leaderboard data\nTrust verifier x\nseed');
+ } finally { r.cleanup(); }
+});
+
 test('a real conflict aborts the rebase and pushes nothing', () => {
  const r = setup();
  try {

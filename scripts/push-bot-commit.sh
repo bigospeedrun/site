@@ -10,8 +10,25 @@ set -euo pipefail
 
 branch=${1:?usage: push-bot-commit.sh <branch>}
 backoff=${BOT_PUSH_BACKOFF:-3}
+# The verifier reads data/direct-trust.json at site main as its list of trusted revisions
+# (verifier 7e31229, 2026-10-21). A bot commit must never change it: refuse the push, and
+# also refuse when the commits to push cannot be listed.
+trust_file=data/direct-trust.json
+
+refuse_trust_change() {
+  local touched
+  if ! touched=$(git log --no-renames --format= --name-only "refs/remotes/origin/$branch..HEAD" -- "$trust_file"); then
+    echo "Cannot list the bot commits to push; nothing was pushed." >&2
+    exit 1
+  fi
+  if [ -n "$touched" ]; then
+    echo "A bot commit changes $trust_file (the verifier trust list); nothing was pushed." >&2
+    exit 1
+  fi
+}
 
 for attempt in 1 2 3; do
+  refuse_trust_change
   if git push --quiet origin "HEAD:refs/heads/$branch"; then
     echo "Pushed to $branch (attempt $attempt)."
     exit 0

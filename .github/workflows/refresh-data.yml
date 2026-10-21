@@ -104,6 +104,8 @@ jobs:
           TARGET_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           git add -- data/*.json data/sources data/manifests src/data public/sources src/lib/author-profiles.json src/lib/author-avatars.json src/lib/prove2me-campaigns.ts public/avatars
+          # The verifier's trust list changes only in a reviewed push, never in a bot commit.
+          git reset -q -- data/direct-trust.json
           if git diff --cached --quiet; then
             echo 'Reviewed data is unchanged.'
             exit 0
