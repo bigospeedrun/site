@@ -456,6 +456,11 @@ class RefreshTests(unittest.TestCase):
             if path=='certificates/selected-result.json':return (source/f'sources/crocswap-selected-{sha}.json').read_bytes()
             # Offline: a package file (CLAIM.json, or RESULT.json since 2026-10-20) is a 404. A fresh
             # decision on a RESULT.json package reads it in decided_package (#4405/#4412/#4414, 2026-10-21).
+            # The selected certificate can itself be a package file (#4359's research/kappa-rebuild/CLAIM.json,
+            # selected 2026-10-21 19:10Z): serve it from its fixture before the package 404 rule.
+            selected=source/f'sources/crocswap-selected-{sha}.json'
+            if selected.exists() and json.loads(selected.read_text()).get('certificate')==path:
+                return (source/f'sources/crocswap-certificate-{sha}.json').read_bytes()
             if path.endswith(('/CLAIM.json','/RESULT.json')):raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')
             return (source/f'sources/crocswap-certificate-{sha}.json').read_bytes()
         # The index omits PR bodies; the API returns them, so add them back from pr-<n>.json.
