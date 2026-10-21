@@ -184,6 +184,51 @@
         }
       ],
       "source_commit": "dcb002174cb1e06213e171c9f5ff6b063fdf2c40"
+    },
+    {
+      "id": "yannouli-subset-sum-0-4876723-2026",
+      "kind": "improvement",
+      "score": "4876723/10000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-21T17:10:35Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-21T17:10:35Z",
+      "site_observed_at": "2026-10-21T19:30:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/yannouli/subset-sum-conditional-refinement/blob/bf1f50f066f2c71a53293791f693f505a67a1540/paper.tex#L87-L97"
+      },
+      "spec_version": "1",
+      "title": "Yanni Bills conditional Subset Sum in time O(2^(0.4876723n))",
+      "authors": [
+        {
+          "name": "Yanni Bills",
+          "url": "https://github.com/yannouli"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/JoshuaQFEX/subset-sum-bound/blob/dcb002174cb1e06213e171c9f5ff6b063fdf2c40/paper.tex#L65-L81"
+      ],
+      "submission_url": "https://github.com/yannouli/subset-sum-conditional-refinement/blob/bf1f50f066f2c71a53293791f693f505a67a1540/paper.tex#L87-L97",
+      "artifact": {
+        "path": "sources/yannouli-subset-sum-0-4876723-claim.json",
+        "sha256": "4aedfea08b6bd9a2ee830e150e2c0de20c7a58f482e775eaa8790600f60e12e3"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/yannouli/subset-sum-conditional-refinement/blob/bf1f50f066f2c71a53293791f693f505a67a1540/paper.pdf",
+        "theorem": "Theorem 1 (Conditional refinement)",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "upstream-lemmas-and-moments",
+          "statement": "The bound is conditional on the isolation and implementation lemmas, the alias arguments and the original continuous moment inequalities of the OpenAI and a-kapila constructions, which are unverified written work. The new filter-3 boundary rule is proved in the note only; there is no Lean proof and no site rerun.",
+          "source_url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "bf1f50f066f2c71a53293791f693f505a67a1540"
     }
   ],
   "record_metadata": {
@@ -260,7 +305,32 @@
       "license_status": "No license file; source files are not copied, only their hashes",
       "credits": "Joshua Wharton (QFEX). Refines the parameters of Annanay Kapila's manuscript (a-kapila/maths-proofs), which builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n)). The materials were prepared with ChatGPT, per the repository README.",
       "credit_note": "This is Annanay Kapila's Claimed Subset Sum construction with refined internal parameters, which lowers the exponent from 0.4877 to 0.487676. The algorithm and the proof steps are Annanay Kapila's; Joshua Wharton changed the parameters, transferred the moment certificates to them and added exact numerical checks with a Lean proof of those parts. The bound stays conditional on the original lemmas and moment inequalities, which are not verified."
+    },
+    "yannouli-subset-sum-0-4876723-2026": {
+      "checked_at": "2026-10-21",
+      "source_url": "https://github.com/yannouli/subset-sum-conditional-refinement/blob/bf1f50f066f2c71a53293791f693f505a67a1540/paper.tex#L87-L97",
+      "repo": "yannouli/subset-sum-conditional-refinement",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Conditional refinement of Joshua Wharton's conditional Subset Sum construction, itself a refinement of a-kapila's Claimed manuscript. A written note with an exact-rational Python checker proves a new boundary rule for filter 3's certificates and the new parameter margins. There is no Lean proof (the author says no Lean toolchain was available). The OpenAI and Kapila isolation, implementation, alias and finite-circle arguments and the original 430 continuous moment inequalities remain unproved premises. No Big O Speedrun proof check. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "subset-sum/randomized-word-ram/v1",
+      "comparison_status": "The conditional theorem matches the board model clause by clause: a single randomized classical word-RAM program, word length ceil(4(n+b+log2(n+2))), halts on every input, correct with probability at least 2/3 on each input, every random execution costs at most C_c 2^(0.4876723n) for every fixed c and b <= n^c, and the program does not depend on c (paper, Section 1 and Theorem 1). Source comparison, not a proof check.",
+      "scope": "Randomized classical word-RAM algorithm of the OpenAI paper's model; correct with probability at least 2/3; worst case over random outcomes; inputs with b <= n^c for every fixed c. Conditional on the original lemmas and moment inequalities of the inherited constructions.",
+      "exact_statement": "Conditional on the original lemmas and moment inequalities of the OpenAI and a-kapila constructions: Subset Sum in at most C_c 2^(0.4876723n) word operations on every random outcome, for every fixed c and b <= n^c.",
+      "score_interpretation": "Attained exponent 0.4876723; the internal work exponent is 0.48767228002, leaving an absorption gap of 0.00000001998 for the subexponential and polynomial factors.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "First commit of the repository stating the bound",
+      "publication_date": "2026-10-21T17:10:35Z",
+      "publication_source_url": "https://github.com/yannouli/subset-sum-conditional-refinement/commit/b27bbfeec2da319001f3d87f43a6d8f60a0f822a",
+      "claim_date_commit": "b27bbfeec2da319001f3d87f43a6d8f60a0f822a",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "No license file; source files are not copied, only their hashes",
+      "credits": "Yanni Bills (GitHub yannouli). Refines the parameters of Joshua Wharton's conditional note, which refines Annanay Kapila's manuscript (a-kapila/maths-proofs), which builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n)). AI assistance is acknowledged in the note.",
+      "credit_note": "This is Joshua Wharton's conditional Subset Sum construction (itself a refinement of Annanay Kapila's Claimed 0.4877) with a new boundary rule for filter 3's certificates and new parameters, which lowers the exponent from 0.487676 to 0.4876723. The algorithm and the inherited premises are OpenAI's and Annanay Kapila's; Joshua Wharton supplied the earlier parameter and certificate transfer. The bound stays conditional on the original lemmas and moment inequalities, which are not verified."
     }
   },
-  "updated_at": "2026-10-20T13:20:00Z"
+  "updated_at": "2026-10-21T19:30:00Z"
 }

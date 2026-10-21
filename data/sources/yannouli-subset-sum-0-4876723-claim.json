@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-10-21T19:30:00Z",
+  "repo": "yannouli/subset-sum-conditional-refinement",
+  "source_commit": "bf1f50f066f2c71a53293791f693f505a67a1540",
+  "source_url": "https://github.com/yannouli/subset-sum-conditional-refinement/blob/bf1f50f066f2c71a53293791f693f505a67a1540/paper.tex#L87-L97",
+  "claim_date_commit": "b27bbfeec2da319001f3d87f43a6d8f60a0f822a",
+  "publication_date": "2026-10-21T17:10:35Z",
+  "publication_date_basis": "The repository was created 2026-10-21T17:04:03Z. Its first commit b27bbfe (paper, README, checker and evidence; dated 2026-10-21T17:10:35Z) already states the bound. GitHub's event log has no push event for it, so the date is the commit date, not a confirmed push time. The README of the pinned commit says the author has not submitted it to Big O Speedrun.",
+  "score": "4876723/10000000",
+  "theorem": "Theorem 1, Conditional refinement (paper.tex L87-L97)",
+  "model_check": "The conditional theorem matches the board model clause by clause: a single randomized classical word-RAM program, word length ceil(4(n+b+log2(n+2))), halts on every input, correct with probability at least 2/3 on each input, every random execution costs at most C_c 2^(0.4876723n) for every fixed c and b <= n^c, and the program does not depend on c (paper, Section 1 and Theorem 1). Source comparison, not a proof check.",
+  "files_not_copied": "The repository has no license file, so its files are not copied here. SHA-256 and Git blob ids of the files at the pinned commit:",
+  "files": {
+    "README.md": {
+      "sha256": "1fa639ff0d36a8437ca6bfe7334658df3c3a3f408187d8416eb889e9168e25ac",
+      "git_blob": "16c4d59efb515a72c10ec70ca423e3e2134097a5"
+    },
+    "paper.pdf": {
+      "sha256": "5c212019a757d7ee294c08588824c60e2490bfffbcf8d672113378366f29cbeb",
+      "git_blob": "38cc317b85a23f17264c5adcd09a46f836d1733c"
+    },
+    "paper.tex": {
+      "sha256": "c116de491a401af943e345207c2dcc83c281e9e9bfd412d52800b8ac0a40cd8d",
+      "git_blob": "be3b3290764100d29e314126845b64ecdadc81a8"
+    },
+    "CORRECTIONS.md": {
+      "sha256": "348b39e9c3f8b05a7c894787af90755918615b2645648f415aacf166aa366e0d",
+      "git_blob": "7d09a93f9943145e38e7a97325e603f92bf90d08"
+    },
+    "release-manifest.json": {
+      "sha256": "46e97d83b016644a7e1a331514bbf0643e0851314b92eefd3321a7ae0560d571",
+      "git_blob": "3f28ce8fcb9d9145e2bb3d2245b929e7ce35af6c"
+    },
+    "numerics/FORMALIZATION-SCOPE.md": {
+      "sha256": "bfd4f0574e313671946a72973dc3735c3c98351c4ce59cf78e268e2fccd1a577",
+      "git_blob": "da006fee6256fc3920019686af5add6fd96afa0d"
+    },
+    "numerics/verify_certificate.py": {
+      "sha256": "9174f7b254d32a62ccdce66414a6c81f1c2468d76c975623a5fbc55c3e44f3d8",
+      "git_blob": "6caeb1462e923d3e8d149d2736f7630cbe4103eb"
+    },
+    "review.md": {
+      "sha256": "52658ea2f9b63d9fb020116f29dc09d91a750c96edb244bb10e7c03201a624a6",
+      "git_blob": "5df296c9a1d85d1d5f74e7b0da8be5d74c92a7ff"
+    }
+  },
+  "verification": "Conditional refinement of Joshua Wharton's conditional Subset Sum construction, itself a refinement of a-kapila's Claimed manuscript. A written note with an exact-rational Python checker proves a new boundary rule for filter 3's certificates and the new parameter margins. There is no Lean proof (the author says no Lean toolchain was available). The OpenAI and Kapila isolation, implementation, alias and finite-circle arguments and the original 430 continuous moment inequalities remain unproved premises. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Yanni Bills (GitHub yannouli). Refines the parameters of Joshua Wharton's conditional note, which refines Annanay Kapila's manuscript (a-kapila/maths-proofs), which builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n)). AI assistance is acknowledged in the note."
+}
