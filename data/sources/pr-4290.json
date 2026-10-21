@@ -1,0 +1,11 @@
+{
+  "number": 4290,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4290",
+  "title": "Show that one positive entry cancels only one length-9 rim direction",
+  "body": "## Summary\n- On the length-9 width-1 cycle, flipping one neighbor entry and deleting the opposite vertex leaves both rim entries at `-1/16`. Every directed neighbor sign flip keeps the touching bandwidth.\n- The one-vertex fill is `1/16`. One positive entry of that size zeros one Schur direction and leaves the other at `-1/16`, so the bandwidth stays 2. Both directions drop it to 1, below the touching diameter.\n- The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -I -B research/length9-positive-rim/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/length9-positive-rim`\n- [ ] Maintainer replay from the pinned base commit\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T04:05:22Z",
+  "updated_at": "2026-10-21T04:05:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

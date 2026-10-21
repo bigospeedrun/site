@@ -1,0 +1,11 @@
+{
+  "number": 4284,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4284",
+  "title": "Show which two-index pivots keep the narrow bandwidth",
+  "body": "## Summary\n- An invertible prefix of a bandwidth-`b` matrix has Schur bandwidth at most `b`. Every prefix of the 7 by 7 witness, and of a generic in-band matrix, stays within bandwidth 2.\n- The adjacent pair `{2,3}` fills bandwidth 3, and the split pair `{2,4}` fills bandwidth 4. Their inverses equal the complementary blocks of the original inverse and remain inside the Neumann bounds `2` and `10`.\n- The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -B research/schur-prefix-bandwidth/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/schur-prefix-bandwidth`\n- [ ] Maintainer replay from the pinned base commit\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T03:17:27Z",
+  "updated_at": "2026-10-21T03:17:27Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
