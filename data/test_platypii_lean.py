@@ -114,10 +114,15 @@ class PlatypiiTests(unittest.TestCase):
         self.assertEqual(self.note(), OLD_NOTE)
 
     def test_live_state_file_matches_the_live_note(self):
+        # A held state keeps the last good value and note, so it matches too. A hold is a
+        # wait, not a failed run (2026-10-20): the dead-man check reads platypii-lean.json.
         state = json.loads((pl.ROOT / pl.STATE).read_text())
         board = json.loads((pl.ROOT / pl.BOARD).read_text())
         note = board['record_metadata'][pl.ROW]['proof_status']
-        self.assertEqual(state['status'], 'ok'); self.assertIn(f"kappa = {state['value']}", note); self.assertIn(state['commit'][:7], note)
+        for status in (state['status'], 'held'):
+            with self.subTest(status=status):
+                live = dict(state, status=status)
+                self.assertIn(live['status'], ('ok', 'held')); self.assertIn(f"kappa = {live['value']}", note); self.assertIn(live['commit'][:7], note)
 
     def test_review_fixes(self):
         # Worker 1 review, 2026-10-18: a commented old line does not win; two live lines hold.

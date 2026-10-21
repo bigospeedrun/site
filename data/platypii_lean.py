@@ -13,8 +13,8 @@ At each new head of the repository it checks:
 - no .lean file outside comments uses sorry or admit or declares an axiom.
 Then it writes the value, the commit and the author's CI result to
 platypii-lean.json and the note. On any failure it keeps the last good value and
-note, and marks the file held: review_hold.py --check fails the refresh run, so
-the dead-man check alerts the lead. A new Statement.lean needs a human review and a
+note, and marks the file held: review_hold.py --check lists the hold (the run stays
+green, 2026-10-20) and the dead-man check alerts the lead from platypii-lean.json. A new Statement.lean needs a human review and a
 new STATEMENT_SHA256.
 """
 import hashlib, io, json, os, re, tarfile, urllib.error, urllib.request
