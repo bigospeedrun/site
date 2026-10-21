@@ -167,7 +167,8 @@ class Prove2meImportTest(unittest.TestCase):
     def make_upgrade(self):
         doc = self.f.doc()
         row = doc['records'][1]
-        row.update(tier='claimed', evidence=dict(paper_url='https://example.org/p', theorem=None, certificate_path=None))
+        row.update(tier='claimed', evidence=dict(paper_url='https://example.org/p', theorem=None, certificate_path=None),
+                   dependencies=[dict(id='framework', statement='The source framework holds.', source_url='https://example.org/p', status='unverified')])
         doc['record_metadata']['anthropic-2026'] = dict(proof_status='Source claim.', site_tier='claimed')
         self.f.write('apsp.json', doc)
         self.f.trust['boards']['apsp']['entries'][0]['action'] = 'upgrade'
@@ -181,6 +182,7 @@ class Prove2meImportTest(unittest.TestCase):
         row = self.f.doc()['records'][1]
         meta = self.f.doc()['record_metadata']['anthropic-2026']
         self.assertEqual((row['tier'], row['evidence']['theorem'], row['rerun_status']['state']), ('verified', 'Goalm1', 'passed'))
+        self.assertEqual(row['dependencies'], [], 'a verified row has no open assumption')
         self.assertEqual(row['rerun_status']['receipt_path'], 'sources/prove2me-apsp-anthropic-2026.json')
         self.assertTrue((self.f.root / row['rerun_status']['receipt_path']).exists())
         self.assertEqual((meta['site_tier'], meta['receipt_url'], meta['prove2me_upgrade']), ('verified', 'https://prove2.me/theorems/t-m1', True))

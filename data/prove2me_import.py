@@ -476,6 +476,8 @@ def apply_upgrades(doc, upgrades):
         row = next(r for r in doc['records'] if r['id'] == up['record_id'])
         meta = doc['record_metadata'][row['id']]
         row['tier'] = 'verified'
+        # The proof on prove2.me is complete, so the assumptions of the source (a verified row has none) are discharged.
+        row['dependencies'] = []
         row['evidence']['theorem'] = up['theorem']
         row['rerun_status'] = dict(state='passed', checked_at=up['checked_at'], receipt_path=up['path'])
         meta.update(site_tier='verified', receipt_url=up['url'], prove2me_upgrade=True)
