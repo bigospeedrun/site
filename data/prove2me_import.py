@@ -266,7 +266,8 @@ def verify_entry(entry, board, files):
         imports = set(re.findall(rb'(?m)^import\s+(\S+)', text))
         # Mathlib itself (also a Mathlib.* module) is trusted; any other import must be in the reviewed closure.
         require(all(i in closure or i == b'Mathlib' or i.startswith(b'Mathlib.') for i in imports), f'{theorem["name"]} imports changed')
-    pattern = board.get('statement_pattern', r'SolvedInTime \(?{value}\b')
+    # An entry whose goal states its value another way (a log ratio, a power) carries its own reviewed pattern.
+    pattern = entry.get('statement_pattern', board.get('statement_pattern', r'SolvedInTime \(?{value}\b'))
     require(re.search(pattern.replace('{value}', re.escape(entry['value'])).encode(), body), f'{theorem["name"]} does not state {entry["value"]}')
     header, body = files.read(solution['path'])
     require(header.get('status', '').startswith('ACCEPTED'), f'{solution["path"]} status is {header.get("status")!r}')

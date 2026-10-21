@@ -276,6 +276,21 @@ class Prove2meImportTest(unittest.TestCase):
         _, _, held = self.f.run()
         self.assertEqual(held, {})
 
+    def test_an_entry_pattern_replaces_the_board_pattern(self):
+        entry = self.f.trust['boards']['apsp']['entries'][1]
+        path = entry['theorem']['statement_path']
+        body = statement('Goalm2', '2.9983').replace(b'APSP.SolvedInTime 2.9983', b'APSP.SolvedInTime (Real.log 3 / Real.log 2)')
+        self.f.files[path] = formalpedia(['Prove2me | x', 'status  : Proved', 'url     : https://prove2.me/theorems/t-m2'], body)
+        entry['theorem']['statement_sha256'] = hashlib.sha256(body).hexdigest()
+        self.f.save_trust()
+        self.assertIn('does not state 2.9983', self.f.run()[2]['apsp'])
+        entry['statement_pattern'] = r'SolvedInTime \(Real\.log 3 / Real\.log 2\)'
+        self.f.save_trust()
+        self.assertEqual(self.f.run()[2], {})
+        entry['statement_pattern'] = r'SolvedInTime \(Real\.log 5 / Real\.log 2\)'
+        self.f.save_trust()
+        self.assertIn('does not state 2.9983', self.f.run()[2]['apsp'])
+
     def test_changed_statement_bytes_hold_the_board(self):
         path = self.f.trust['boards']['apsp']['entries'][1]['theorem']['statement_path']
         reason = self.held_after(lambda: self.f.files.__setitem__(path, self.f.files[path].replace(b'by sorry', b' := by sorry -- x')))
