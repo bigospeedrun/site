@@ -483,6 +483,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks with only the standard axioms and a passing metadata validator. The tracker's check results are on the pull request. No independent rerun.",
           "bound": "\\theta\\le 0.8748087"
+        },
+        {
+          "author": "Hailey Collet",
+          "handle": "HaileyStorm",
+          "value": "8747729897/10000000000",
+          "display": "0.8747729897",
+          "date": "2026-10-21T12:58:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/69",
+          "dateKind": "first-stated",
+          "url": "https://github.com/HaileyStorm/QuasiRiemannTracker/blob/ac76d5ef6008d976a7b8f3c1d921af2317e79ce9/submissions/hailey-collet-1252270103/src/Candidate/Main.lean#L8-L12",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks that were incomplete when the pull request opened, and asks the tracker for its protected verification. The tracker's check results are on the pull request. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 69,
+            "status": "open"
+          },
+          "note": "The author says it starts from the merged PR #67 (ArviFoxy's two-level affine construction) and proves the bound by a finite ordinary-source induction with exact scalar certificates. It is 0.0000357 below the merged PR #68.",
+          "authors": [
+            {
+              "name": "Hailey Collet",
+              "url": "https://x.com/HaileyStormC"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks that were incomplete when the pull request opened, and asks the tracker for its protected verification. The tracker's check results are on the pull request. No independent rerun.",
+          "bound": "\\theta\\le 0.8747729897"
         }
       ],
       "repos": [
@@ -559,7 +585,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "Gaozhongpai"
+      "bestHandle": "HaileyStorm"
     },
     {
       "family": "005",
