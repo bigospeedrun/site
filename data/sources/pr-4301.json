@@ -1,0 +1,11 @@
+{
+  "number": 4301,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4301",
+  "title": "A shifted truncated Gaussian keeps both separator corners positive (no new κ)",
+  "body": "## Summary\n- On the kernel `exp(-h^2 + h/2)`, truncated at bandwidth 2, deleting `{3,4,5,6}` leaves both Schur directions between vertices 1 and 8 positive.\n- The forward entry lies strictly between `1/1600` and `1/1500`. The reverse entry lies strictly between `5/10000000` and `6/10000000`. The half-bandwidth in increasing survivor order is 3.\n- Selected κ is unchanged. This uses `gamma=1` and `s=1/4`, not the eventual prime-scale gamma.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-shift-corner/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-shift-corner`\n- [ ] Maintainer replay of the registered package command\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T05:02:20Z",
+  "updated_at": "2026-10-21T05:02:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

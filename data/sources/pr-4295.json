@@ -1,0 +1,11 @@
+{
+  "number": 4295,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4295",
+  "title": "On a five-vertex arc, the far numerators split and one direction vanishes at 809/1296 (no new κ)",
+  "body": "## Summary\n- On the length-9 width-2 arc `{0,1,2,3,4}`, the path entry from 1 to 2 has far numerators with roots `481/36` and `809/1296`. No pivot entry has a positive common root.\n- At `809/1296`, which is `5/8 - 1/1296`, one Schur direction is zero and the other is `-971/276616`. The bandwidth stays at the touching diameter 3, and the row gap is `1295/1296`.\n- Selected κ is unchanged. This does not decide Gaussian boundary order.\n\n## Test plan\n- [x] `python3.12 -I -B research/length9-five-vertex-gap/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/length9-five-vertex-gap`\n- [ ] Maintainer replay of the registered package command\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T04:29:55Z",
+  "updated_at": "2026-10-21T04:29:55Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

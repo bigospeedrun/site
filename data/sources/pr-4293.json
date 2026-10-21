@@ -1,0 +1,11 @@
+{
+  "number": 4293,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4293",
+  "title": "Show that the entry 17/8 zeros both directions of one far pair",
+  "body": "## Summary\n- On the length-9 width-2 arc `{0,1,2}`, both far numerators of the pair `(4,8)` equal `(x - 17/8) / 512`. At `x = 17/8` the determinant is `81/64`, so both Schur directions are zero.\n- The pairs `(3,7)` and `(3,8)` stay nonzero, so the bandwidth remains 4. The row gap rises to `5/2`. Corner entries and diagonals have no positive common root.\n- The selected κ is unchanged.\n\n## Test plan\n- [x] `python3.12 -I -B research/length9-three-vertex-entry/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/length9-three-vertex-entry`\n- [ ] Maintainer replay from the pinned base commit\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T04:22:30Z",
+  "updated_at": "2026-10-21T04:22:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 4299,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4299",
+  "title": "On a width-3 path, one interior has boundary-order half-bandwidth 5 (no new κ)",
+  "body": "## Summary\n- On an equal-weight path of bandwidth 3, survivors kept in increasing index have Schur half-bandwidth 5 after an interior of length 3, 4, or 6 is deleted.\n- The farthest new entries are `-1/1560`, `-1/1404`, and `-13/92380`. Their original-index spans are 8, 9, and 11. The endpoint row stays equal to the original band row.\n- Selected κ is unchanged. This does not measure a truncated Gaussian row.\n\n## Test plan\n- [x] `python3.12 -I -B research/boundary-order-width3/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/boundary-order-width3`\n- [ ] Maintainer replay of the registered package command\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T04:53:46Z",
+  "updated_at": "2026-10-21T04:53:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
