@@ -30,6 +30,17 @@ class ClaimJudgeTests(unittest.TestCase):
         self.assertIsNone(self.run_check(dict(yes, value='1.729737950064279·10⁻³')))
         self.assertIsNone(self.run_check(dict(yes, value='κ = 1.729737950064279e-3')))
 
+    def test_a_short_value_agrees_only_when_it_is_the_exact_package_kappa(self):
+        # #4359, 2026-10-21: CLAIM.json kappa 23/10000, the text and Claude say 0.0023.
+        for i,value in enumerate(['0.0023','23/10000','2.3e-3','0.00230','κ = 0.0023']):
+            yes={'claims_new_kappa': True, 'value': value, 'confidence': 'medium'}
+            self.assertIsNone(self.run_check(yes,kappa='23/10000',head=str(i)*40),value)
+        # Close but not equal, or a low confidence: still the lead's queue.
+        for i,value in enumerate(['0.002','0.0024','0.00229']):
+            self.assertIsNotNone(self.run_check({'claims_new_kappa': True, 'value': value, 'confidence': 'high'},kappa='23/10000',head=chr(97+i)*40),value)
+        self.assertIsNotNone(self.run_check({'claims_new_kappa': True, 'value': '0.0023', 'confidence': 'low'},kappa='23/10000',head='z'*40))
+        self.assertFalse(claim_judge.agrees('0.0017',EXACT))  # the coarse-title guard still holds
+
     def test_disagreement_goes_to_review(self):
         # The 2026-10-17 #3093 text: a kappa = 0.1 target, no claim.
         self.assertIsNotNone(self.run_check({'claims_new_kappa': False, 'value': None, 'confidence': 'high'}))

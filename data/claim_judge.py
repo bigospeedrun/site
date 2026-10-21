@@ -19,7 +19,7 @@ MODEL = 'claude-haiku-5-5'
 PROMPT_VERSION = 2
 CACHE = 'claim-judgments.json'
 MAX_INPUT_CHARS = 40000  # Largest CrocSwap PR title + body on 2026-10-17: 33,516 characters.
-MIN_SIGNIFICANT_DIGITS = 6  # A coarse value such as 0.1 never agrees with a package kappa.
+MIN_SIGNIFICANT_DIGITS = 6  # A coarse value such as 0.1 never agrees with a package kappa, unless it is that exact value.
 TIMEOUT_SECONDS = 30
 MAX_RETRIES = 1  # Worst case per call: 2 x 30 s.
 CALLS_PER_RUN = 5  # Later PRs wait for the next run, uncached (refresh.py resets the budget).
@@ -100,6 +100,10 @@ def agrees(value, kappa):
         v = Fraction(int(whole + frac), 10 ** len(frac)) * Fraction(10) ** exp
         unit = Fraction(1, 10 ** len(frac)) * Fraction(10) ** exp
         digits = len((whole + frac).lstrip('0'))
+    if 0 < v < 1 and v == Fraction(kappa):
+        # The package states this exact value, however few its digits (#4359: kappa 23/10000
+        # and '0.0023' in the text went to the lead, 2026-10-21).
+        return True
     if digits < MIN_SIGNIFICANT_DIGITS or not 0 < v < 1:
         return False
     return abs(v - Fraction(kappa)) <= unit
