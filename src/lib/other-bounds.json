@@ -1392,7 +1392,7 @@
               "url": "https://github.com/canghaimeng"
             }
           ],
-          "proofScope": "No Lean proof is supplied for this result. The proof is the PDF paper in the repository; no independent check.",
+          "proofScope": "No Lean proof is supplied for this result. The proof is the PDF paper in the repository. Its integer certificate was replayed independently in verifier pull request 23 (by 1337isnot1337): it confirms the threshold 380/187 and puts the exponent of the construction between 2.0322 and 2.033, slightly above the shown value. The Boolean construction itself is not checked.",
           "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.032083}"
         }
       ],
@@ -1588,7 +1588,7 @@
           "dateKind": "first-stated",
           "url": "https://github.com/rohanarun/unit-distance-grid-refinement/blob/62455a6709204f79a3a93c4eace817c3ce0d54ec/README.md",
           "lean": false,
-          "leanNote": "No.",
+          "leanNote": "Only the algebraic steps, by a third party (verifier pull request 27).",
           "evidence": "claimed",
           "note": "",
           "authors": [
@@ -1597,7 +1597,7 @@
               "url": "https://github.com/rohanarun"
             }
           ],
-          "proofScope": "No Lean proof is supplied.",
+          "proofScope": "No Lean proof of the claim is supplied by its author. A third party (fringewidth, verifier pull request 27) proved the algebraic steps in Lean, 21 theorems with only the standard axioms. The source's generic-grid, private-valuation and Kummer lemmas stay hypotheses there. That work found a slip at line 71 of proof.tex (the normalization uses the wrong translation); the fix is the one the source README already uses, and the bound 32 does not change.",
           "bound": "Nj\\le 32"
         }
       ],
