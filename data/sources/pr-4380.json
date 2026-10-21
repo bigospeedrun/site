@@ -4,8 +4,8 @@
   "title": "This section's polynomial-inverse error is strictly below 2^{-133} (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the degree-27 Taylor sum of `exp(361)` equals `12540856486358503759485869430182174501205661530906018358179595409/111933279712359705600000`, which is strictly greater than `2^{133}*(319/100) = 868400600382234958758531998165872475635712/25`.\n- The degree-26 partial sum is strictly below that target, and the next Taylor term is positive, so `(319/100) exp(-361) < 2^{-133}`. This section's polynomial-inverse error is strictly below that majorant, hence strictly below `2^{-133}`.\n- No new kappa is claimed. The selected record is unchanged. This is the case `C=7` on one normalized section, and `Q` is not formed.\n- The parent commits are #4367, #4368, #4369, #4374 and #4379. This pull request adds `research/gaussian-origin-two-power-c7` and replays those predecessors.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-two-power-c7/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-two-power-c7`\n- [ ] Maintainer replay of the registered package\n\nMade with [Cursor](https://cursor.com)\n",
   "created_at": "2026-10-21T15:43:07Z",
-  "updated_at": "2026-10-21T15:43:07Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:53Z",
+  "merged_at": "2026-10-21T19:27:53Z",
+  "state": "closed"
 }

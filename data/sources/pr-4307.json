@@ -4,8 +4,8 @@
   "title": "Every translated width-2 row sum lies below the displayed Gaussian bound (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, every off-diagonal row sum on the 10-vertex path is strictly below `exp(-2 a theta)+5 exp(-2 a)`. At these parameters that expression is `exp(-9 pi/722)+5 exp(-18 pi)`.\n- The forward step from vertex 0 equals the first term. Every other in-band entry has coefficient at least `6462/361`, and `exp(36 pi/361)` is strictly below `5/3`, so three copies of the largest other entry are strictly smaller than `5 exp(-18 pi)`.\n- No new kappa is claimed. The selected record is unchanged. This is one translated width-2 section, not the all-size row-gap claim.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-displayed/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-displayed`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T06:31:34Z",
-  "updated_at": "2026-10-21T06:31:34Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:11Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Eigenvalues of this section's Q lie strictly inside (0, 1 - p^{-40}) (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the normalized Schur section satisfies `||H||_2 < 1226/625` and `||H^{-1}||_2 < 319/100`.\n- `p^{-20}(1226/625)^2 < 1` and `p^{-20}(100/319)^2 > p^{-40}`, so every eigenvalue of `Q = I - p^{-20} H* H` is strictly greater than 0 and strictly less than `1 - p^{-40}`.\n- No new kappa is claimed. The selected record is unchanged. This is one normalized section, and `Q` is not formed.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-q-eigenvalues/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-q-eigenvalues`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T14:52:03Z",
-  "updated_at": "2026-10-21T14:52:03Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:53Z",
+  "merged_at": "2026-10-21T19:27:53Z",
+  "state": "closed"
 }

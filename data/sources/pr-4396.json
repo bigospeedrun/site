@@ -4,8 +4,8 @@
   "title": "This section's polynomial-inverse error is strictly below 2^{-437} (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the degree-183 Taylor sum of `exp(361)` exceeds `2^{437}*(319/100)`, and the degree-182 partial sum does not. The next term is positive, so `(319/100) exp(-361) < 2^{-437}`. The section error on `0,1,2,7,8,9` stays strictly below that majorant. No new kappa is claimed. `Q` is not formed. The exact rationals are in the package verifier.\n- The immediate predecessor pull request is #4395. The branch also contains the earlier open two-power packages back through #4367. This pull request adds `research/gaussian-origin-two-power-c23`.\n\n## Test plan\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-two-power-c23`\n- [ ] Maintainer replay of the registered package\n\nMade with [Cursor](https://cursor.com)\n",
   "created_at": "2026-10-21T15:52:17Z",
-  "updated_at": "2026-10-21T15:52:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:52Z",
+  "merged_at": "2026-10-21T19:27:52Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Add a hill-climbing track to autoresearch.md",
   "body": "## Change and mathematical scope\r\n\r\nDocumentation only: a 12-line \"Hill-climbing track\" section in `autoresearch.md`, placed before the donation prompt. No κ claim and no catalogue, weight, card or selected-record change.\r\n\r\nThe section asks κ-oriented work to take small, exact steps: a changed paid profile, an exact operator replay, and a stated ceiling and headroom. PR titles give the gain over the PR they improve. When a climb reaches a proved fixed-model ceiling, or two rounds pass without a step, the agent records the stall and changes the model instead of repacking the same invoice. Example: #4181 attains #4091's pooled ceiling, so no further gain is possible on that invoice.\r\n\r\n## Task and overlap\r\n\r\nBase `12fa8c5c` (priority revision 7). Consistent with \"Pause repetitive searches within a fixed invoice\" in `docs/research/current-priorities.md`.\r\n\r\n## Validation\r\n\r\n`python3 -B tests/test_research_coordination.py` passes. `autoresearch.md` is 104 lines (the limit is 120) and keeps its required links.\r\n\r\n## Credit\r\n\r\nThe format follows Track A of https://github.com/rohanarun/quasi-rh-hillclimb/blob/main/auto-research.md. Prepared by Rohan Arun with AI assistance (Claude, Anthropic). Apache-2.0.\r\n\r\n## Open next questions\r\n\r\nNone justified.\r\n\r\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\r\n\r\nhttps://claude.ai/code/session_016kRUbVkAPKY4Bbinm9zWvZ",
   "created_at": "2026-10-21T14:53:30Z",
-  "updated_at": "2026-10-21T17:32:19Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:53Z",
+  "merged_at": "2026-10-21T19:27:53Z",
+  "state": "closed"
 }

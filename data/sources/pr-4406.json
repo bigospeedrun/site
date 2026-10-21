@@ -4,8 +4,8 @@
   "title": "HALO exponents 20, 42, 45, 48 and the normalizer 100 can fall under the ceiling 16 p^2 (no new κ)",
   "body": "## Summary\n\nThis adds `research/gaussian-halo-exponents/`. It answers the open question of #4403: if both 2-norms are at most `16 p^2`, which of HALO's exponents 20, 42, 45 and 48, and GAUSSIAN's normalizer 100, can decrease?\n\n**Claim type:** conditional exponent arithmetic. **No new κ.** The ceiling is not proved for the rounded reference `H`, and the #4100 notes are not edited.\n\nAll five can decrease. For every integer `p >= 2` and every integer bandwidth `W <= p - 1`, the same locality argument with the stronger ceiling gives:\n\n| Written | Replacement |\n| --- | ---: |\n| 20 | 12 |\n| 42 | 26 |\n| 45 | 28 |\n| 48 | 28 |\n| 100 | 7 |\n\nThe error is then strictly below `p^6 exp(-p^2)`, and a row at distance `p^28` from a section edge matches the global polynomial row. Each replacement is the smallest uniform integer with that role. The written core exponent 400 remains sufficient and can fall to 86; this package does not retune it.\n\n## Test plan\n\n```text\npython3.12 -B scripts/research_package.py --package research/gaussian-halo-exponents\n  PASS_REGISTERED_RESEARCH_PACKAGE research/gaussian-halo-exponents outcome=completed\n```\n\nMaintainer replay has not been run. Head: `b1fa86ecc00307058cfd324f9d87042c5d951264`. Base: canonical main `12fa8c5c844be21bfefb38a19503fbd867a11244`, priority revision 7, selected record unchanged. Rechecked 2026-10-21T16:51:10Z.\n\n## Not covered\n\n- Phase cuts, truncation and rounding, so `||H^-1||_2 <= 16 p^2` is not claimed for the rounded matrix.\n- An edit to HALO.md, GAUSSIAN.md or PROOF.md. The written exponents stay sufficient.\n\nClaim: https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19102574\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance. Apache-2.0. Maintainer edits are allowed; this PR does not merge anything or change the frontier.\n\nMade with Cursor\n",
   "created_at": "2026-10-21T16:51:25Z",
-  "updated_at": "2026-10-21T16:51:26Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:52Z",
+  "closed_at": "2026-10-21T19:27:52Z",
+  "merged_at": "2026-10-21T19:27:52Z",
+  "state": "closed"
 }

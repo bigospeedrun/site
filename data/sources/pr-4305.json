@@ -4,8 +4,8 @@
   "title": "Translating the prime-scale origin puts every row sum below 97/100 (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, every off-diagonal row sum on the 10-vertex path is strictly below `97/100`. The backward-only last row is strictly below `1/1000`. The infinity-norm row gap exceeds `3/100`.\n- The forward step from vertex 0 equals `exp(-9 pi/722)` and is strictly below `193/200`. Every other in-band entry is at most `exp(-6462 pi/361)`. A row has at most one forward step and three other entries, and that majorant covers all ten rows.\n- No new kappa is claimed. The selected record is unchanged. The centred origin of the preceding audit had a row sum above 1; this translate does not.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-prime-origin/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-prime-origin`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T05:57:13Z",
-  "updated_at": "2026-10-21T05:57:13Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:11Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

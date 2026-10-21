@@ -13,48 +13,62 @@ starting with [the coordination guide](https://github.com/CrocSwap/integer-mult-
 New to the construction? Read [the bottleneck brief](docs/research/bottleneck-brief.md).
 Workflow feedback is welcome in [discussion #1200](https://github.com/CrocSwap/integer-mult-bounds/discussions/1200).
 
-## Current reviewed result: rare-pattern T16 owner exchanges
+## Current reviewed result: productive helper jobs
 
-**Rohan Arun's [#1094](https://github.com/CrocSwap/integer-mult-bounds/pull/1094)** gives
+**zxv's [#4359](https://github.com/CrocSwap/integer-mult-bounds/pull/4359)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{836330098538459}{500000000000000000}=0.001672660197076918.
+\kappa=\frac{23}{10000}=0.0023>2^{-9}.
 $$
 
-This is about **0.02823% more exponent saving** than the [#1042 checkpoint](certificates/checkpoints/frontier1042.json), not measured runtime. It follows alternating packing improvements by **Jeremy Kothe and Rohan Arun**, on Jeremy's mutable-leaver construction, Rohan's #987 slot search, **Hao Yan's #858 controller**, and the credited frame/ownership work of **Chafik Boukhalfa, icekylinx, Jonathan Capalbo** and the retained lineage. The bit supplier remains **DreamingOfClouds' #589 on eumemic's #555**.
+The construction makes helper arrays productive and compiles unequal jobs into
+one uniform recursive supplier. **Jacob Alan Sussman's mixed-target recursion**
+is the direct conceptual predecessor. It builds on the complex/native work of
+**Rohan Arun, Cinna Davis, David Ganz, Jeremy Kothe, Marius-Paul Dumitrean and
+Erwan Secousses**, the binary words of **eumemic and DreamingOfClouds**, and the
+outer/precision contributions of **Vlado-V, Chafik Boukhalfa and Zhihao Chen**.
+[Detailed contribution and verification credits](docs/research/community-productive4359-contributors.md).
 
-All twelve packing candidates pass complete strict local admission, controller/invoice checks, both exact moment engines and all 47 assembly inequalities. Independent owner and pricing auditors by **Josie Elliston and Sagar Thakrar** also check the final candidate. Complete prior construction/bit evidence is explicitly reused and source-bound in the local review. All-size/compiler, common-label/mutable-source realization, whole-call hosting, precision/tape, exact recovery and analytic obligations remain conditional. This is **not a complete Lean multiplication theorem**. Hosted Linux CI is separate.
+A fresh sequential replay passed **23 stages** and compared **59 regenerated
+artifacts** under the documented metadata/compression normalization. The
+changed compiler, native lift, delayed BIT cover and outer-transfer interfaces
+received an AI-assisted mathematical review. **Ryanson Jonathan's #4404** adds
+a separately implemented exact flow/rank audit, also replayed locally.
 
-[Forty-PR review and attribution](docs/research/community-batch1099-review.md) ·
+The result retains the analytic, exact-recovery, native-movement and fixed-tape
+hypotheses identified in the review. It is **not a complete Lean proof or an
+independent human verification of the multiplication theorem**. The winning
+uniform templates are algorithm-defined and astronomically large; they were
+not materialized. No practical speed improvement is claimed.
+
 [Selected record](certificates/selected-result.json) ·
-[Exact assembly](research/community-frontier1094-audit/ASSEMBLY.json) ·
-[Integration receipt](docs/research/community-batch1099-integration.json) ·
-[PR ledger](docs/research/pr-ledger.md) · [Contributors](CONTRIBUTORS.md)
-
-Post-selection research and verification rounds are indexed in
-[current status](docs/research/current-status.md). Use the
-[PR ledger](docs/research/pr-ledger.md) for each contribution's reviewed head,
-integration status and remaining obligations.
+[Proof review](docs/research/pr-intake-evidence/pr4359/PROOF-REVIEW.md) ·
+[Replay receipt](docs/research/pr-intake-evidence/pr4359/VALIDATION.json) ·
+[Integration receipt](docs/research/pr-intake-evidence/pr4359/INTEGRATION.json) ·
+[Contributors](CONTRIBUTORS.md) · [PR ledger](docs/research/pr-ledger.md)
 
 ```sh
-# Also requires a C++17 compiler and Boost headers.
-python3 -m pip install numpy sympy scipy
-make frontier1094-verify
+# Python standard library; sequential replay in a fresh temporary directory.
+make frontier4359-verify
 ```
 
-The batch includes separate U10, rank-seven-end and E4 gap-filling constructions, finite bit circuits, exact decoder bounds, independent numerical and SAT-proof audits, and verification tools. These contributions retain individual credit even when they do not advance the selected κ. #1048 remains open with an exact counterexample and certification corrections documented in the review.
+The saving is about **37.5% larger** than the last selected #1094 checkpoint,
+and **32.9% larger** than Rohan's later #4181 conditional checkpoint. These
+compare exponent savings, not measured runtimes. Historical submissions retain
+their original status wording; the selected record is the current authority.
+Unrelated H-branch research in the imported archive is not a selected result.
 
-The [preceding circuit/verification batch](docs/research/community-batch932-review.md)
-and [U8/T21 review](docs/research/community-frontier890-review.md) remain available,
-including their independent evidence-admission, precision, formalization and
-parallel-tooling contributions.
+## Historical checkpoint: rare-pattern T16 owner exchanges
 
-The previous [fifteen-PR review](docs/research/community-frontier799-review.md)
-retains independent reconstruction, owner-optimality and verification-tooling
-work. [Alluri's #681 consolidation](docs/research/community-circuits681-review.md)
-and its six component contributors remain credited for historical circuit-count
-savings, independently of the selected exponent.
+**Rohan Arun's #1094** reached κ = 0.001672660197076918, following alternating
+packing improvements by **Jeremy Kothe and Rohan Arun**, **Hao Yan's controller**,
+and the retained frame/ownership and binary lineage. Independent owner/pricing
+audits by **Josie Elliston and Sagar Thakrar** are preserved in the
+[review](docs/research/community-batch1099-review.md) and
+[frozen checkpoint](certificates/checkpoints/frontier1094.json).
+Subsequent research, negative results and verification work remain indexed in
+[current status](docs/research/current-status.md) and the [PR ledger](docs/research/pr-ledger.md).
 
 ## Historical checkpoint: K-triangle helpers and owner repair
 

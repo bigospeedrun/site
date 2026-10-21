@@ -4,8 +4,8 @@
   "title": "Every principal restriction of the normalized section keeps the row gap (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, divide each Schur row on survivors `0,1,2,7,8,9` by its diagonal. All 32 subsets of the other five columns, in each of the six rows, have absolute sum strictly below `1-1/5776`.\n- Every principal restriction therefore has row gap strictly greater than `1/(16 p^2)=1/5776`. Vertices 0 and 9 use the original per-entry exponent majorants. Vertices 1, 2, 7, and 8 use the enclosed absolute entries divided by their diagonal lower bounds.\n- No new kappa is claimed. The selected record is unchanged. This is one normalized Schur section, not a proof that every principal restriction of the note's reference matrix retains the row gap.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-principal/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-principal`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T07:06:24Z",
-  "updated_at": "2026-10-21T07:06:25Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:11Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

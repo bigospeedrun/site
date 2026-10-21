@@ -4,8 +4,8 @@
   "title": "The Neumann bounds at the displayed-expression gap are at most 27, 3938, and below 321 (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, keep survivor bandwidth `b=3` and set `rho` to the rational lower bound `L` for `exp(-9 pi/722)+5 exp(-18 pi)`. Every normalized off-sum on `0,1,2,7,8,9` is strictly below `L`, and `L<1-1/5776`.\n- The lemma's right-hand sides at `delta=1-L` lie in `(26, 27]`, `(3937, 3938]`, and `(320, 321)`. They are smaller than the `delta=1/5776` bounds by factors in `[221, 222)`, `[50824, 50825)`, and `[11274122, 11274123)`.\n- No new kappa is claimed. The selected record is unchanged. This applies the pinned lemma to one section; it does not prove the Neumann series.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-neumann-tight/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-neumann-tight`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T07:16:16Z",
-  "updated_at": "2026-10-21T07:16:16Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:11Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

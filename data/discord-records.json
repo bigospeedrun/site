@@ -2623,7 +2623,7 @@
             "id": "crocswap-selected-5390d4a62d0e21ee",
             "score": "836330098538459/500000000000000000",
             "relation": "attained",
-            "evidence": "Human Verified",
+            "evidence": "Claimed",
             "authors": [
               "CrocSwap"
             ],
@@ -3873,7 +3873,7 @@
             "id": "crocswap-pr-4181",
             "score": "17309802559890369599619999999999999999999998999999999999999999999999/10000000000000000000000000000000000000000000000000000000000000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "rohanarun"
             ],
@@ -3893,7 +3893,7 @@
             "id": "crocswap-pr-4359",
             "score": "23/10000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "zxv"
             ],
@@ -3903,7 +3903,7 @@
             "id": "crocswap-pr-4405",
             "score": "230509/100000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Cinna Davis"
             ],
@@ -3913,7 +3913,7 @@
             "id": "crocswap-pr-4412",
             "score": "49551/20000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Cinna Davis"
             ],
@@ -3923,7 +3923,7 @@
             "id": "crocswap-pr-4414",
             "score": "267987/100000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Cinna Davis"
             ],
@@ -3933,11 +3933,21 @@
             "id": "crocswap-pr-4416",
             "score": "268647/100000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Cinna Davis"
             ],
             "bound": "O(n log^(1 - 0.00268647) n)"
+          },
+          {
+            "id": "crocswap-selected-20e1947e1f614a14",
+            "score": "23/10000",
+            "relation": "attained",
+            "evidence": "Human Verified",
+            "authors": [
+              "CrocSwap"
+            ],
+            "bound": "O(n log^(1 - 0.0023) n)"
           }
         ],
         "table": "big-o"
@@ -4116,7 +4126,7 @@
         "slug": "3sum",
         "name": "3SUM",
         "url": "https://bigospeedrun.com/3sum",
-        "leader": "direct-issue-31",
+        "leader": "direct-issue-35",
         "records": [
           {
             "id": "anthropic-2026",
@@ -4228,6 +4238,16 @@
               "Hrishik Sai Bojnal"
             ],
             "bound": "O(n^1.92027945701)"
+          },
+          {
+            "id": "direct-issue-35",
+            "score": "4800698571997281331/2500000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Hrishik Sai Bojnal"
+            ],
+            "bound": "O(n^1.9202794287989125324)"
           },
           {
             "id": "direct-issue-4",
@@ -4396,7 +4416,7 @@
         "slug": "subset-sum",
         "name": "Subset Sum",
         "url": "https://bigospeedrun.com/subset-sum",
-        "leader": "joshuaqfex-subset-sum-0-487676-2026",
+        "leader": "yannouli-subset-sum-0-4876723-2026",
         "records": [
           {
             "id": "subset-sum-2026",
@@ -4427,6 +4447,16 @@
               "Joshua Wharton"
             ],
             "bound": "O(2^(0.487676n))"
+          },
+          {
+            "id": "yannouli-subset-sum-0-4876723-2026",
+            "score": "4876723/10000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Yanni Bills"
+            ],
+            "bound": "O(2^(0.4876723n))"
           }
         ],
         "table": "big-o"
@@ -5604,7 +5634,9 @@
     "[\"other-block-sensitivity\",\"prove2me-2-1308255793978239:2.1308255793978239\",\"2.1308255793978239\",\"attained\"]:lean",
     "[\"exact-dft\",\"direct-pr-29\",\"3577409/2000000000\",\"attained\"]:lean",
     "[\"integer-multiplication\",\"crocswap-pr-4359\",\"23/10000\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-4414\",\"267987/100000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-4414\",\"267987/100000000\",\"attained\"]:record",
+    "[\"3sum\",\"direct-issue-35\",\"4800698571997281331/2500000000000000000\",\"attained\"]:record",
+    "[\"subset-sum\",\"yannouli-subset-sum-0-4876723-2026\",\"4876723/10000000\",\"attained\"]:record"
   ],
   "deferred": [
     {

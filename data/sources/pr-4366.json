@@ -4,8 +4,8 @@
   "title": "This section's polynomial-inverse error is strictly below 2^{-19} (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the degree-3 Taylor sum of `exp(361)` equals `23719508/3`, which is strictly greater than `2^{19}*(319/100) = 41811968/25`.\n- The next Taylor term is positive, so `(319/100) exp(-361) < 2^{-19}`. This section's polynomial-inverse error is strictly below that majorant, hence strictly below `2^{-19}`.\n- No new kappa is claimed. The selected record is unchanged. This is the case `C=1` on one normalized section, and `Q` is not formed.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-two-power/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-two-power`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T15:22:50Z",
-  "updated_at": "2026-10-21T15:22:50Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:53Z",
+  "merged_at": "2026-10-21T19:27:53Z",
+  "state": "closed"
 }

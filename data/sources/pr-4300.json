@@ -4,8 +4,8 @@
   "title": "A centered truncated Gaussian keeps a positive separator corner (no new κ)",
   "body": "## Summary\n- On the centered kernel `exp(-h^2)`, truncated at bandwidth 2, deleting `{3,4,5,6}` leaves a Schur entry between vertices 1 and 8.\n- Twelve alternating terms enclose `exp(-1)`. The corner lies strictly between `1/51000` and `1/50000`, and the half-bandwidth in increasing survivor order is 3.\n- Selected κ is unchanged. This uses `gamma=1` and `s=0`, not a shifted kernel or the eventual prime-scale gamma.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-separator-corner/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-separator-corner`\n- [ ] Maintainer replay of the registered package command\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T04:58:58Z",
-  "updated_at": "2026-10-21T04:58:58Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:12Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "On a six-vertex arc, both far directions vanish only at diagonals below 1/2 (no new κ)",
   "body": "## Summary\n- On the length-9 width-2 arc `{0,1,2,3,4,5}`, the path entry from 1 to 2 has far-rim roots `-114917/19728` and `-114521/16560`. No off-diagonal pivot entry has a root in `(0, 5/8]`.\n- The only positive common roots are diagonals. At `H_00 = 3821/116272` both directions of `(6,8)` vanish and the Schur bandwidth falls to 1. That diagonal is below `1/2`, so scaling it back to 1 makes the off-sum `58136/3821`.\n- Selected κ is unchanged. This does not decide Gaussian boundary order.\n\n## Test plan\n- [x] `python3.12 -I -B research/length9-six-vertex-gap/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/length9-six-vertex-gap`\n- [ ] Maintainer replay of the registered package command\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T04:35:34Z",
-  "updated_at": "2026-10-21T04:35:34Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:12Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

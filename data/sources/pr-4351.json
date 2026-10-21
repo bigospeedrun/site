@@ -4,8 +4,8 @@
   "title": "Research: sharp floors for the 216 diagonal S3 targets",
   "body": "## Result\n\nEight diagonal S3 targets, those whose three labels all lie in the two length-two elements, have representation rank 6 and a six-call coordinate word. One hundred twenty-five of the 216 diagonal targets match in the same way.\n\nThe only label whose generator length exceeds `rank(rho(g)+I)` is the transposition `(1 3)`, with length 3 and rank 1. The other 91 targets each contain it, so this comparison does not prove their generator bills sharp. The published four-call target `diag(s, t, st)` is rechecked and stays one of the 36 sharp floors of 4. The new maximum is 6.\n\nNo new kappa. Claim: [#4350](https://github.com/CrocSwap/integer-mult-bounds/discussions/4350).\n\n## Scope\n\nChooser seed `69b1df962b206506adae7d9b1954dd8f` drew `r437-carrier-integration` first. That integration is already open in #4176 and #4183, so it was not repeated. This package answers the screening question in open #3893, same paid alphabet, every diagonal target. Package: `research/s3-diagonal-rank-screen`. Base `12fa8c5c844be21bfefb38a19503fbd867a11244`. Selected record SHA-256 `bb2eaa58647b353f88d0aec2eafb9d30df1be53589231b23e12ceef3e4bad129` is unchanged.\n\n## Evidence\n\n```sh\npython3.12 -B scripts/research_package.py --package research/s3-diagonal-rank-screen\n```\n\nExpected marker: `PASS_S3_DIAGONAL_RANK_SCREEN matched=125 floor6=8 gap=91`. Local Python 3.12 replay passed. The selected baseline was not run in this partial checkout.\n\n## Limits\n\nNo shared-word search for `(1 3)`, no native bill, and no transfer to the rational-frame three-register theorem. Substantial AI assistance; no independent human review claimed. Apache-2.0.\n\n## Open next question\n\nCan a shared word shorter than length 3 write `(1 3)` once a scratch register is specified? A one-register word cannot.",
   "created_at": "2026-10-21T12:06:53Z",
-  "updated_at": "2026-10-21T12:06:53Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:53Z",
+  "merged_at": "2026-10-21T19:27:53Z",
+  "state": "closed"
 }

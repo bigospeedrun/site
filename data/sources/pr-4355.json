@@ -4,8 +4,8 @@
   "title": "The product bound puts the inverse 2-norm strictly below 319/100 (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the product of the certified inverse 1-norm and infinity-norm upper bounds is strictly below `(319/100)^2`. The inverse 2-norm is therefore strictly below `319/100`, hence strictly below `321`.\n- The round ceilings multiply as `(282/100)*(361/100) = 101802/10000`, and `319^2 < 101802 < 320^2`.\n- No new kappa is claimed. The selected record is unchanged. This is one normalized section, not an all-size inverse bound.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-inverse-two/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-inverse-two`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T14:14:40Z",
-  "updated_at": "2026-10-21T14:14:40Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:53Z",
+  "merged_at": "2026-10-21T19:27:53Z",
+  "state": "closed"
 }

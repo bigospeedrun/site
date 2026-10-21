@@ -4,8 +4,8 @@
   "title": "At the prime-scale shift endpoint both separator corners stay positive (no new κ)",
   "body": "## Summary\n- At `p=19`, `theta=1/1444`, `alpha=3`, `gamma=9*pi*1445/1444`, and `beta0=-1/2`, the bandwidth-2 truncation keeps both Schur directions between vertices 1 and 8 positive. The forward corner lies strictly between `1/10^50` and `1/10^49`. The reverse corner lies strictly between `1/10^222` and `1/10^221`. The half-bandwidth is 3.\n- `s=722/1445=1/(2 rho)` is the closed endpoint of the gauge-free shift range and still satisfies `|beta0/rho|<1/2`. Every off-diagonal row sum of this truncation is below `99/100`, so its own row gap exceeds `1/(16 p^2)`. That does not check `||N-I||_infinity <= exp(-2 a theta)+5 exp(-2a)` for the gauged matrix.\n- No new kappa is claimed. The selected record is unchanged. This is one prime, one shift endpoint, and width 2, not the all-size bandwidth claim.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-prime-shift/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-prime-shift`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T05:36:35Z",
-  "updated_at": "2026-10-21T05:36:35Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:11Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

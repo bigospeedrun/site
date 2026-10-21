@@ -4,8 +4,8 @@
   "title": "Principal restrictions inherit the displayed-gap Neumann ceilings (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, all 64 principal restrictions of the normalized Schur section on `0,1,2,7,8,9` obey the same Neumann ceilings as the full section: infinity norm at most `27`, 1-norm at most `3938`, and 2-norm strictly below `321`.\n- All 192 column deletions stay strictly below the displayed-expression lower bound `L`. In every survivor subset, compressed distance is at most the original survivor distance, and every pair at distance greater than 3 is an exact zero. The lemma therefore still applies at `b=3` and `rho=L`.\n- No new kappa is claimed. The selected record is unchanged. This applies the pinned lemma to one section and its principal restrictions; it does not prove the Neumann series.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-neumann-principal/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-neumann-principal`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T07:19:22Z",
-  "updated_at": "2026-10-21T07:19:22Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:11Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "A prime-scale truncated Gaussian keeps its separator corner positive (no new κ)",
   "body": "## Summary\n- At `p=19`, `theta=1/1444`, `alpha=3`, and `gamma=9*pi*1445/1444`, the centered bandwidth-2 truncation keeps a positive Schur corner between vertices 1 and 8, strictly between `1/10^136` and `1/10^135`. The half-bandwidth in survivor order is 3.\n- The parameter sandwich `4 log(304) <= 9 pi <= 5 log(304)` is proved at this prime. The truncation's off-diagonal row sum is below `1/10^11`. That does not check the note's tail bound `exp(-2 a theta)+5 exp(-2a)`.\n- No new kappa is claimed. The selected record is unchanged. This is one prime and width 2, not the all-size bandwidth claim.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-prime-corner/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-prime-corner`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
   "created_at": "2026-10-21T05:28:29Z",
-  "updated_at": "2026-10-21T05:28:29Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:24:11Z",
+  "closed_at": "2026-10-21T19:24:11Z",
+  "merged_at": "2026-10-21T19:24:11Z",
+  "state": "closed"
 }

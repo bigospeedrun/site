@@ -4,8 +4,8 @@
   "title": "This section's polynomial-inverse error is strictly below 2^{-76} (no new κ)",
   "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the degree-13 Taylor sum of `exp(361)` equals `917160294948960776428552987246843/3113510400`, which is strictly greater than `2^{76}*(319/100) = 6025739632141667292676096/25`.\n- The degree-12 partial sum is strictly below that target, and the next Taylor term is positive, so `(319/100) exp(-361) < 2^{-76}`. This section's polynomial-inverse error is strictly below that majorant, hence strictly below `2^{-76}`.\n- No new kappa is claimed. The selected record is unchanged. This is the case `C=4` on one normalized section, and `Q` is not formed.\n- The parent commits are #4367 and #4368. This pull request adds `research/gaussian-origin-two-power-c4` and replays those predecessors.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-two-power-c4/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-two-power-c4`\n- [ ] Maintainer replay of the registered package\n\nMade with [Cursor](https://cursor.com)\n",
   "created_at": "2026-10-21T15:38:21Z",
-  "updated_at": "2026-10-21T15:38:21Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-21T19:27:53Z",
+  "closed_at": "2026-10-21T19:27:53Z",
+  "merged_at": "2026-10-21T19:27:53Z",
+  "state": "closed"
 }
