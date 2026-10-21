@@ -1,0 +1,11 @@
+{
+  "number": 4304,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4304",
+  "title": "A centred prime-scale chirp keeps both corners positive, with a row sum above 1 (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, and the centred chirp `t_i=i-9/2`, both bandwidth-2 Schur directions between vertices 1 and 8 stay positive. The forward corner lies strictly between `1/10^50` and `1/10^49`. The reverse corner lies strictly between `1/10^222` and `1/10^221`. The half-bandwidth is 3.\n- The centred entry from vertex 0 to vertex 1 equals `exp(63 pi/1444)` and is strictly greater than 1. The distance-2 entry in that row is positive and there is no Schur fill, so the off-diagonal row sum exceeds 1. Wider bandwidths keep this same entry.\n- At these parameters the displayed expression `exp(-2 a theta)+5 exp(-2 a)` is strictly less than 1. This section sits outside the hypothesis `||E||_infinity<1` of the narrow Neumann bound. No new kappa is claimed. The selected record is unchanged.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-prime-chirp/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-prime-chirp`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T05:49:23Z",
+  "updated_at": "2026-10-21T05:49:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
