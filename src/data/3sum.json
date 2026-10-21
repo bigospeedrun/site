@@ -590,7 +590,7 @@
       "kind": "improvement",
       "score": "4800698571997281331/2500000000000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-21T07:30:56Z",
       "spec_version": "1",
       "title": "fringewidth direct 3sum submission",
@@ -619,6 +619,11 @@
       "source": {
         "kind": "repo-artifact",
         "url": "https://github.com/proof-factory/3sum-bound/blob/8af82141280754b0c46d3dacb926426265da6f99/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-21T21:00:25.413932Z",
+        "receipt_path": "sources/direct-issue-35-39660258427-1.json"
       }
     },
     {
@@ -944,16 +949,17 @@
       "repo": "proof-factory/3sum-bound",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "3sum/word-ram/v1",
       "publication_date": "2026-10-21T07:30:56Z",
       "publication_date_precision": "date-time",
       "publication_date_role": "Submission opened",
       "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/35",
       "direct_submission": true,
-      "route": "issue"
+      "route": "issue",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39660258427"
     },
     "direct-issue-4": {
       "checked_at": "2026-10-21",
@@ -992,5 +998,5 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38567645711"
     }
   },
-  "updated_at": "2026-10-21T19:54:51Z"
+  "updated_at": "2026-10-21T21:21:55Z"
 }

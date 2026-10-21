@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-4416",
+        "leader": "crocswap-pr-4447",
         "records": [
           {
             "id": "openai-original-109",
@@ -3948,6 +3948,36 @@
               "CrocSwap"
             ],
             "bound": "O(n log^(1 - 0.0023) n)"
+          },
+          {
+            "id": "crocswap-pr-4440",
+            "score": "37/12500",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Cinna Davis"
+            ],
+            "bound": "O(n log^(1 - 0.00296) n)"
+          },
+          {
+            "id": "crocswap-pr-4441",
+            "score": "60021/20000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Cinna Davis"
+            ],
+            "bound": "O(n log^(1 - 0.00300105) n)"
+          },
+          {
+            "id": "crocswap-pr-4447",
+            "score": "300123/100000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Cinna Davis"
+            ],
+            "bound": "O(n log^(1 - 0.00300123) n)"
           }
         ],
         "table": "big-o"
@@ -4243,7 +4273,7 @@
             "id": "direct-issue-35",
             "score": "4800698571997281331/2500000000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "Hrishik Sai Bojnal"
             ],
@@ -4465,7 +4495,7 @@
         "slug": "other-quasi-riemann",
         "name": "Quasi-Riemann hypothesis",
         "url": "https://bigospeedrun.com/other/quasi-riemann",
-        "leader": "Gaozhongpai:8748087/10000000",
+        "leader": "HaileyStorm:8747729897/10000000000",
         "table": "other-bounds",
         "records": [
           {
@@ -4647,6 +4677,16 @@
               "Zhongpai Gao"
             ],
             "bound": "θ ≤ 0.8748087"
+          },
+          {
+            "id": "HaileyStorm:8747729897/10000000000",
+            "score": "8747729897/10000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Hailey Collet"
+            ],
+            "bound": "θ ≤ 0.8747729897"
           }
         ]
       },
@@ -5636,7 +5676,11 @@
     "[\"integer-multiplication\",\"crocswap-pr-4359\",\"23/10000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-4414\",\"267987/100000000\",\"attained\"]:record",
     "[\"3sum\",\"direct-issue-35\",\"4800698571997281331/2500000000000000000\",\"attained\"]:record",
-    "[\"subset-sum\",\"yannouli-subset-sum-0-4876723-2026\",\"4876723/10000000\",\"attained\"]:record"
+    "[\"subset-sum\",\"yannouli-subset-sum-0-4876723-2026\",\"4876723/10000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-4447\",\"300123/100000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-4416\",\"268647/100000000\",\"attained\"]:record",
+    "[\"3sum\",\"direct-issue-35\",\"4800698571997281331/2500000000000000000\",\"attained\"]:lean",
+    "[\"other-quasi-riemann\",\"HaileyStorm:8747729897/10000000000\",\"8747729897/10000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
@@ -5644,13 +5688,6 @@
       "slug": "integer-multiplication",
       "authors": [
         "aigent-marius"
-      ]
-    },
-    {
-      "key": "[\"integer-multiplication\",\"crocswap-pr-4416\",\"268647/100000000\",\"attained\"]:record",
-      "slug": "integer-multiplication",
-      "authors": [
-        "Cinna Davis"
       ]
     }
   ]

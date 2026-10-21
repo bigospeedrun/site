@@ -10,6 +10,36 @@
         "commit": "8af82141280754b0c46d3dacb926426265da6f99",
         "bound": "4800698571997281331/2500000000000000000",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-35-a721b5ef8abc3e120d10fb11241f91f84320fd539fe42c0fd701ced1463ab930",
+        "problem_id": "3sum/word-ram",
+        "score": "4800698571997281331/2500000000000000000",
+        "score_relation": "attained",
+        "source_commit": "8af82141280754b0c46d3dacb926426265da6f99",
+        "source_url": "https://github.com/proof-factory/3sum-bound",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "fringewidth",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39660258427",
+        "checked_at": "2026-10-21T21:00:25.413932Z",
+        "issue_created_at": "2026-10-21T07:30:56Z",
+        "issue_updated_at_at_verification": "2026-10-21T19:06:40Z",
+        "issue_updated_at_at_import": "2026-10-21T21:00:50Z",
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-35-39660258427-1.json",
+        "receipt_sha256": "9fd2013ad64984ab4b39cf728a116e889913cb62bd4a4ced2749fad5f7c9fc52",
+        "policy_hash": "024adedc20356fcf988fd413622f97588d7856b714fc5213db0fe6e6a0c65d09",
+        "result_artifact_id": 12381596491,
+        "controller_fingerprint": "597e39e938d4727401a3afe28c9de979a08c9fc462f1b00ab44cc2de52612f55",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-32": {
@@ -1288,6 +1318,48 @@
           "changed_files_sha256": "d16c936de5b1d1ec3d87e4a5c4a8cfffe8f466edf890b29258a60005785b457b",
           "controller": "0fe1f056e9ca25d839705fbb2b2b5fc877fe24d2"
         },
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-35:a721b5ef8abc3e120d10fb11241f91f84320fd539fe42c0fd701ced1463ab930": {
+      "key": "direct-issue-35",
+      "submission": {
+        "schema_version": 1,
+        "problem": "3sum",
+        "repo_url": "https://github.com/proof-factory/3sum-bound",
+        "commit": "8af82141280754b0c46d3dacb926426265da6f99",
+        "bound": "4800698571997281331/2500000000000000000",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-35-a721b5ef8abc3e120d10fb11241f91f84320fd539fe42c0fd701ced1463ab930",
+        "problem_id": "3sum/word-ram",
+        "score": "4800698571997281331/2500000000000000000",
+        "score_relation": "attained",
+        "source_commit": "8af82141280754b0c46d3dacb926426265da6f99",
+        "source_url": "https://github.com/proof-factory/3sum-bound",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "fringewidth",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39660258427",
+        "checked_at": "2026-10-21T21:00:25.413932Z",
+        "issue_created_at": "2026-10-21T07:30:56Z",
+        "issue_updated_at_at_verification": "2026-10-21T19:06:40Z",
+        "issue_updated_at_at_import": "2026-10-21T21:00:50Z",
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-35-39660258427-1.json",
+        "receipt_sha256": "9fd2013ad64984ab4b39cf728a116e889913cb62bd4a4ced2749fad5f7c9fc52",
+        "policy_hash": "024adedc20356fcf988fd413622f97588d7856b714fc5213db0fe6e6a0c65d09",
+        "result_artifact_id": 12381596491,
+        "controller_fingerprint": "597e39e938d4727401a3afe28c9de979a08c9fc462f1b00ab44cc2de52612f55",
+        "pr_identity": null,
         "source_file": "Submission.lean"
       }
     }
