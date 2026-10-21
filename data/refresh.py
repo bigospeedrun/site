@@ -138,7 +138,9 @@ def package_field(path):
 # kappa the PR title states exactly (Lead: list that shape without a manual decision).
 RESULT_VALUE_FIELDS = (('kappa',), ('endpoint', 'kappa'), ('endpoint_refill', 'kappa'))
 MAX_OWN_RESULTS = 5
-EXACT_RATIONAL = re.compile(r'\d+(?:/\d+)?|\d*\.\d+')
+# A nonzero denominator: Fraction('1/0') raises, and a contributor's file must never fail the refresh
+# (Reviewer, 2026-10-21).
+EXACT_RATIONAL = re.compile(r'\d+(?:/0*[1-9]\d*)?|\d*\.\d+')
 
 def result_values(obj):
     """(field, value) of each exact rational a RESULT.json object states in RESULT_VALUE_FIELDS."""
@@ -296,7 +298,7 @@ def package_value(stage, p, path, raw, names, field=None, kappa=None):
     if kappa is None:
         return None, path, (f'{path} has no {field} field.' if names else None)
     # From here on the package states a kappa, so every failure goes to the lead.
-    if not isinstance(kappa, str) or len(kappa) > MAX_SCORE_CHARS or not re.fullmatch(r'\d+(?:/\d+)?|\d*\.\d+', kappa):
+    if not isinstance(kappa, str) or len(kappa) > MAX_SCORE_CHARS or not EXACT_RATIONAL.fullmatch(kappa):
         return None, path, f'{path} {field} is not an exact rational.'
     q = Fraction(kappa)
     if not 0 < q < 1 or len(str(q)) > MAX_SCORE_CHARS:

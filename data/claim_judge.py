@@ -91,6 +91,8 @@ def agrees(value, kappa):
     if not m:
         return False
     if m.group(1):
+        if not int(m.group(2)):
+            return False  # A zero denominator is no value (Reviewer, 2026-10-21).
         v, unit = Fraction(int(m.group(1)), int(m.group(2))), Fraction(0)
         digits = len(m.group(1).lstrip('0'))
     else:

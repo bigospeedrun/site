@@ -236,6 +236,21 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(self.claim({top:'added'},{'kappa':'37/12500'},title='Query-thinned productive controllers'),(None,None,None))
         self.assertEqual(self.claim({top:'added'},{'kappa':'37/12500'},title='κ = 0.00296',judge='Claude reads no claim.')[2],'Claude reads no claim.')
 
+    def test_a_zero_denominator_never_fails_the_refresh(self):
+        # Reviewer, 2026-10-21: Fraction('1/0') raises. A contributor's "1/0" is no value.
+        top='research/x/RESULT.json'
+        for zero in ['1/0','1/00','0/0']:
+            with self.subTest(zero=zero):
+                self.assertEqual(self.claim({top:'added'},{'kappa':zero},title='Query thinning')[:2],(None,None))
+                self.assertEqual(self.claim({top:'added'},{'endpoint':{'kappa':zero}},title='κ = 0.003')[0],None)
+                score,path,reason=self.claim({'research/x/CLAIM.json':'added'},{'kappa':zero})
+                self.assertEqual((score,reason),(None,f'research/x/CLAIM.json kappa is not an exact rational.'))
+                self.assertEqual(self.claim({top:'added'},{'conditional_kappa':zero})[2],'research/x/RESULT.json conditional_kappa is not an exact rational.')
+                with patch.object(refresh,'content',lambda repo,p,sha:json.dumps({'kappa':zero}).encode()):
+                    self.assertIsNone(refresh.decided_package({'number':1,'head':{'sha':'c'*40}},'1/2',lambda m:[['added',top]]))
+        self.assertFalse(refresh.claim_judge.agrees('1/0','1/2'));self.assertFalse(refresh.claim_judge.agrees('κ = 1/00','1/2'))
+        self.assertIsNotNone(refresh.EXACT_RATIONAL.fullmatch('7/010'))  # a padded nonzero denominator is fine
+
     def test_a_decided_result_json_binds_its_nested_value(self):
         path='research/pr4359-p6-fresh/RESULT.json'
         pr={'number':4414,'head':{'sha':'c'*40}}
