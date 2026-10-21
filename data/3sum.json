@@ -543,6 +543,42 @@
       }
     },
     {
+      "id": "direct-issue-31",
+      "kind": "improvement",
+      "score": "192027945701/100000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-21T02:14:32Z",
+      "spec_version": "1",
+      "title": "fringewidth direct 3sum submission",
+      "authors": [
+        {
+          "name": "fringewidth",
+          "url": "https://github.com/fringewidth"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/31",
+      "source_commit": "d13cca02e9d682815dc62f9efe4718960a555365",
+      "artifact": {
+        "path": "sources/direct-issue-31-submission.json",
+        "sha256": "5a43aef36fd804368289fdd145ce187dd2217604f144eaafd5f00a9ce5bef5cb"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/31",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-21T02:14:32Z",
+      "site_observed_at": "2026-10-21T02:20:52Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/fringewidth/3sum-bound/blob/d13cca02e9d682815dc62f9efe4718960a555365/Submission.lean"
+      }
+    },
+    {
       "id": "direct-issue-4",
       "kind": "improvement",
       "score": "981/500",
@@ -840,6 +876,23 @@
       "credit_note": "This is Joshua Wharton's Lean Verified 1.9202796 proof (submission #26) with sharper margins in its exponent constants, which lowers the proved exponent to 1.920279461. The construction and the proof steps are c0ldzy17's, through Hrishik Sai Bojnal's 1.9203 proof (submission #18) and Joshua Wharton's tighter log and entropy certificates; Hrishik Sai Bojnal changed 16 of its 1201 Lean files, which hold the margins and the exported bound.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39469071264"
     },
+    "direct-issue-31": {
+      "checked_at": "2026-10-21",
+      "source_url": "https://github.com/fringewidth/3sum-bound/blob/d13cca02e9d682815dc62f9efe4718960a555365/Submission.lean",
+      "repo": "fringewidth/3sum-bound",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sum/word-ram/v1",
+      "publication_date": "2026-10-21T02:14:32Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/31",
+      "direct_submission": true,
+      "route": "issue"
+    },
     "direct-issue-4": {
       "checked_at": "2026-10-21",
       "source_url": "https://github.com/c0ldzy17/three-sum-lean/blob/2b639655e07421b9ac743de9090459bab473a7c0/Submission.lean",
@@ -877,5 +930,5 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38567645711"
     }
   },
-  "updated_at": "2026-10-21T00:21:41Z"
+  "updated_at": "2026-10-21T02:20:52Z"
 }
