@@ -1,0 +1,11 @@
+{
+  "number": 4439,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4439",
+  "title": "Apply the smaller halo exponents inside one cell, with normalizer 6 (no new κ)",
+  "body": "## Summary\n\nThis adds `research/gaussian-cell-exponents`. Inside one cell, once the relative weight error is at most `1/(16p^2)` and the ideal off-sums are at most `1-1/(8p^2)`, both 2-norms of the rounded block meet the ceiling used by #4406. The exponents 12, 26, 28, 28 and 7 all apply. The normalizer 7 is not smallest: the inverse ceiling is `16p^2-1`, so 6 already puts it strictly below one.\n\n**Claim type:** conditional exponent arithmetic for that block. **No new κ.** Across-cell entries are not included.\n\n## Lemma\n\nBoth rounded gaps are at least `1/(16p^2-1)`. Hence `||A^{-1}||_2 ≤ 16p^2-1` and `||A||_2 < 2`. The polynomial `P = p^{-12} sum_{j<p^{26}} Q^j A^*` then has error `< p^6 exp(-p^2)` and bandwidth `< p^{28}` when the integer bandwidth is at most `p-1`.\n\n| Exponent | Verdict |\n| --- | --- |\n| 12, 26, 28 | sufficient, and still smallest |\n| 7, the normalizer | sufficient, but 6 is smallest |\n| 5, as a normalizer or error multiplier | fails at `p=2` (`63>32`) |\n\n## Not covered\n\n- The global reference. Across-cell entries are not the gauge ratio.\n- Any new κ. The selected record remains `23/10000`.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/gaussian-cell-exponents\n  PASS_REGISTERED_RESEARCH_PACKAGE research/gaussian-cell-exponents outcome=completed\n```\n\nHead: `26af8afbadd7f8feb737d98b47ac9f4b45d35c7a`. Base: canonical main `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-cell-exponents --check-only\npython3.12 -B scripts/research_package.py --package research/gaussian-cell-exponents\n```\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance. Apache-2.0. This PR does not merge anything or change the frontier.\n",
+  "created_at": "2026-10-21T20:02:46Z",
+  "updated_at": "2026-10-21T20:02:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

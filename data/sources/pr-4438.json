@@ -1,0 +1,11 @@
+{
+  "number": 4438,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4438",
+  "title": "Bound the within-cell column gap by a relative weight error of 1/(16p^2) (no new κ)",
+  "body": "## Summary\n\nThis adds `research/gaussian-gauge-column`. Inside one phase cell the rounded block is `diag(ahat) Ghat diag(ahat)^{-1}`. A relative weight error of `1/(16p^2)` preserves a column gap above `1/(16p^2)`. The gauge audit's allowance `ε ≤ 1/2` does not.\n\n**Claim type:** a written transfer. **No new κ.** Across-cell entries are not bounded.\n\n## Lemma\n\nWith `β_{i+h} = β_i + θ h`, the ideal entry factors as `(a_i/a_{i+h}) exp(-a ρ h^2)`. If `Ghat` is a downward rounding of that kernel and `(1-ε) a ≤ ahat ≤ a`, a within-cell column off-sum is at most the ideal off-sum divided by `1-ε`.\n\nWhen the ideal off-sum is at most `1 - 1/(8p^2)`, the budget `ε ≤ 1/(16p^2)` leaves gap at least `1/(16p^2 - 1)`. The smallest integer setup constant for which `2^{-C p}` meets that budget at every integer `p ≥ 2` is `C = 3`. The note's unnamed `C` is not claimed to be this large.\n\nThe downstream row bound does not substitute for this. Charging a band of `2p-1` entries with row mass `1/(16p)` exceeds the ideal gap `1/(8p^2)`.\n\n## Not covered\n\n- Across-cell entries, which use the downward original entry rather than this ratio.\n- The exponents in #4406, and any new κ. The selected record remains `23/10000`.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/gaussian-gauge-column\n  PASS_REGISTERED_RESEARCH_PACKAGE research/gaussian-gauge-column outcome=completed\n```\n\nHead: `6157a47bfe169cd9c5f666f85ab8caa929e1174f`. Base: canonical main `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-gauge-column --check-only\npython3.12 -B scripts/research_package.py --package research/gaussian-gauge-column\n```\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance. Apache-2.0. This PR does not merge anything or change the frontier.\n",
+  "created_at": "2026-10-21T19:56:30Z",
+  "updated_at": "2026-10-21T19:56:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
