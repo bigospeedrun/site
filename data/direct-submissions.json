@@ -10,6 +10,36 @@
         "commit": "f9357424312209f85e0c7e28dce0e6bb01986608",
         "bound": "2532237/2000000000",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-30-f6956e257a09187d89724f65290015e3256dab6ca7d7e9059a84cb81c38ab22c",
+        "problem_id": "exact-dft/uniform-exact-arithmetic",
+        "score": "2532237/2000000000",
+        "score_relation": "attained",
+        "source_commit": "f9357424312209f85e0c7e28dce0e6bb01986608",
+        "source_url": "https://github.com/ptweezy/exact-dft-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "ptweezy",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39515983587",
+        "checked_at": "2026-10-21T00:36:13.342413Z",
+        "issue_created_at": "2026-10-20T23:35:08Z",
+        "issue_updated_at_at_verification": "2026-10-20T23:35:08Z",
+        "issue_updated_at_at_import": "2026-10-21T00:36:32Z",
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-30-39515983587-1.json",
+        "receipt_sha256": "44b2b723c70b2be895df39ad0fef154ce2a18f026533167b52be35c8eb3d146c",
+        "policy_hash": "733d90d46e3189ac73f9e256ceb32632957595788d3f30edf458a5816faa4503",
+        "result_artifact_id": 12312415601,
+        "controller_fingerprint": "a34e12cce2fe571a9c0f7b8dc144571f9a2e7f62ae92091b07fd8824364f4900",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-28": {
@@ -989,6 +1019,48 @@
         "policy_hash": "c24085e74bf5bb48f73278fa71ae9387f673c03e95dfa2652f4566fdf114c043",
         "result_artifact_id": 12302090844,
         "controller_fingerprint": "87c5308b6da7e22ce671930aa249a17c6b2a1740f999a826b160b1e4237a1271",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-30:f6956e257a09187d89724f65290015e3256dab6ca7d7e9059a84cb81c38ab22c": {
+      "key": "direct-issue-30",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "repo_url": "https://github.com/ptweezy/exact-dft-lean",
+        "commit": "f9357424312209f85e0c7e28dce0e6bb01986608",
+        "bound": "2532237/2000000000",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-30-f6956e257a09187d89724f65290015e3256dab6ca7d7e9059a84cb81c38ab22c",
+        "problem_id": "exact-dft/uniform-exact-arithmetic",
+        "score": "2532237/2000000000",
+        "score_relation": "attained",
+        "source_commit": "f9357424312209f85e0c7e28dce0e6bb01986608",
+        "source_url": "https://github.com/ptweezy/exact-dft-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "ptweezy",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39515983587",
+        "checked_at": "2026-10-21T00:36:13.342413Z",
+        "issue_created_at": "2026-10-20T23:35:08Z",
+        "issue_updated_at_at_verification": "2026-10-20T23:35:08Z",
+        "issue_updated_at_at_import": "2026-10-21T00:36:32Z",
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-30-39515983587-1.json",
+        "receipt_sha256": "44b2b723c70b2be895df39ad0fef154ce2a18f026533167b52be35c8eb3d146c",
+        "policy_hash": "733d90d46e3189ac73f9e256ceb32632957595788d3f30edf458a5816faa4503",
+        "result_artifact_id": 12312415601,
+        "controller_fingerprint": "a34e12cce2fe571a9c0f7b8dc144571f9a2e7f62ae92091b07fd8824364f4900",
         "pr_identity": null,
         "source_file": "Submission.lean"
       }
