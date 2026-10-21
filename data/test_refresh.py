@@ -454,7 +454,9 @@ class RefreshTests(unittest.TestCase):
         def content(repo,path,sha):
             if path=='README.md':return (source/('sources/'+repo.replace('/','__')+'__README.md')).read_bytes()
             if path=='certificates/selected-result.json':return (source/f'sources/crocswap-selected-{sha}.json').read_bytes()
-            if path.endswith('/CLAIM.json'):raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')  # offline
+            # Offline: a package file (CLAIM.json, or RESULT.json since 2026-10-20) is a 404. A fresh
+            # decision on a RESULT.json package reads it in decided_package (#4405/#4412/#4414, 2026-10-21).
+            if path.endswith(('/CLAIM.json','/RESULT.json')):raise RuntimeError(f'GitHub GET failed: repos/{repo}/contents/{path} (HTTP 404)')
             return (source/f'sources/crocswap-certificate-{sha}.json').read_bytes()
         # The index omits PR bodies; the API returns them, so add them back from pr-<n>.json.
         pulls=[p|{'body':refresh.load(source,f"sources/pr-{p['number']}.json")['body']} for p in refresh.load(source,'sources/crocswap-pulls.json')]
