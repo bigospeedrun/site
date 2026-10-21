@@ -251,6 +251,17 @@ class RefreshTests(unittest.TestCase):
         self.assertFalse(refresh.claim_judge.agrees('1/0','1/2'));self.assertFalse(refresh.claim_judge.agrees('κ = 1/00','1/2'))
         self.assertIsNotNone(refresh.EXACT_RATIONAL.fullmatch('7/010'))  # a padded nonzero denominator is fine
 
+    def test_claim_state_turns_an_unexpected_package_error_into_a_reason(self):
+        # Lead belt, 2026-10-21: a bad package value can never fail the hourly refresh.
+        p={'number':4500,'title':'κ = 0.003','body':'','head':{'sha':'d'*40}}
+        def boom(error):
+            def evaluate():raise error
+            return evaluate
+        score,reason,*_=refresh.claim_state(p,{},{},boom(ZeroDivisionError('x')))
+        self.assertEqual((score,reason),(None,'Reading the PR package failed (ZeroDivisionError); review required.'))
+        score,reason,*_,retry,decision=refresh.claim_state(p,{},{},boom(RuntimeError('GitHub GET failed (HTTP 502)')))
+        self.assertIsNone(score);self.assertIsInstance(reason,refresh.claim_judge.Retry);self.assertTrue(retry)
+
     def test_a_decided_result_json_binds_its_nested_value(self):
         path='research/pr4359-p6-fresh/RESULT.json'
         pr={'number':4414,'head':{'sha':'c'*40}}

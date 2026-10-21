@@ -355,7 +355,15 @@ def claim_state(p, prior, decisions, evaluate, leader=None):
     elif prior and not claim_head and prior['source_commit'] == head_sha and n <= LAST_TITLE_PARSED_PR:
         pass  # Unchanged since before structured claims: not a claim.
     else:
-        score, claim_path, reason = evaluate()
+        try:
+            score, claim_path, reason = evaluate()
+        except RuntimeError as error:
+            # A GitHub read of this PR's package failed: no verdict, read again next run. The
+            # listing reads outside evaluate() still fail the run, so an outage stays visible.
+            score, claim_path, reason = None, None, claim_judge.Retry(f'Reading the PR package failed ({type(error).__name__}).')
+        except Exception as error:
+            # Belt (Lead, 2026-10-21): no package content may fail the hourly refresh; the lead reads it.
+            score, claim_path, reason = None, None, f'Reading the PR package failed ({type(error).__name__}); review required.'
         claim_head, claim_text = head_sha, text_sha
         # A check without a verdict (API failure, no key, call budget) runs again next
         # run. Meanwhile a row listed by an earlier agreement keeps its last agreed score,
