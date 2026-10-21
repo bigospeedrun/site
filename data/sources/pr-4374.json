@@ -1,0 +1,11 @@
+{
+  "number": 4374,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4374",
+  "title": "This section's polynomial-inverse error is strictly below 2^{-95} (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the degree-18 Taylor sum of `exp(361)` equals `877674189458811120675057777198923075106017017/492490285056000`, which is strictly greater than `2^{95}*(319/100) = 3159222980256290461542565019648/25`.\n- The degree-17 partial sum is strictly below that target, and the next Taylor term is positive, so `(319/100) exp(-361) < 2^{-95}`. This section's polynomial-inverse error is strictly below that majorant, hence strictly below `2^{-95}`.\n- No new kappa is claimed. The selected record is unchanged. This is the case `C=5` on one normalized section, and `Q` is not formed.\n- The parent commits are #4367, #4368 and #4369. This pull request adds `research/gaussian-origin-two-power-c5` and replays those predecessors.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-two-power-c5/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-two-power-c5`\n- [ ] Maintainer replay of the registered package\n\nMade with [Cursor](https://cursor.com)\n",
+  "created_at": "2026-10-21T15:40:18Z",
+  "updated_at": "2026-10-21T15:40:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

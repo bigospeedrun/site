@@ -1,0 +1,11 @@
+{
+  "number": 4401,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4401",
+  "title": "(319/100) exp(-361) is not strictly below 2^{-532} (no new κ)",
+  "body": "## Summary\n- The degree-419 remainder envelope of `exp(361)` is strictly below `2^{532}*(319/100)`, so `(319/100) exp(-361)` is not strictly below `2^{-532}`. No partial sum of `exp(361)` exceeds that target. The section error remains below the looser majorant; this package does not raise it above `2^{-532}`. No new kappa is claimed. `Q` is not formed. No larger `C` is left open. The exact rationals are in the package verifier.\n- The immediate predecessor pull request is #4400. The branch also contains the earlier open two-power packages back through #4367. This pull request adds `research/gaussian-origin-two-power-c28`.\n\n## Test plan\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-two-power-c28`\n- [ ] Maintainer replay of the registered package\n\nMade with [Cursor](https://cursor.com)\n",
+  "created_at": "2026-10-21T15:52:30Z",
+  "updated_at": "2026-10-21T15:52:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
