@@ -1,0 +1,11 @@
+{
+  "number": 4354,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4354",
+  "title": "Direct elimination puts the inverse 1-norm strictly between 281/100 and 282/100 (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the same rational elimination of the normalized Schur section on `0,1,2,7,8,9` puts the inverse 1-norm strictly between `281/100` and `282/100`.\n- The interval residual has 1-norm below `10^{-11}`. The certified norm is strictly below the Neumann ceiling `3938`, by a factor greater than `1396`.\n- No new kappa is claimed. The selected record is unchanged. This is one normalized section, not an all-size inverse bound.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-inverse-one/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-inverse-one`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T14:10:16Z",
+  "updated_at": "2026-10-21T14:10:16Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
