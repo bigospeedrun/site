@@ -1,5 +1,5 @@
 """GitHub REST GET only. Uses GITHUB_TOKEN when supplied; public reads work without it."""
-import base64,json,os,time
+import base64,hashlib,json,os,re,time
 from urllib.parse import urlencode,quote
 from urllib.request import Request,urlopen
 from urllib.error import HTTPError, URLError
@@ -39,7 +39,19 @@ def pages(path,params=None,limit=30):
         if len(data)<100:return out
     raise RuntimeError('GitHub pagination limit reached')
 
+MAX_BLOB_BYTES=20*1024*1024
+GIT_SHA1=re.compile(r'[0-9a-f]{40}')
+
 def content(repo,path,sha):
     data=api(f'repos/{repo}/contents/{quote(path,safe="/")}',{'ref':sha})
-    if data.get('encoding')!='base64':raise ValueError('Unsupported GitHub content encoding')
-    return base64.b64decode(data['content'])
+    if data.get('encoding')=='base64':return base64.b64decode(data['content'])
+    # The contents API sends encoding "none" for files over 1 MB: read the git blob and check its hash.
+    if data.get('encoding')!='none' or data.get('type')!='file':raise ValueError('Unsupported GitHub content encoding')
+    blob_sha,size=data.get('sha'),data.get('size')
+    if not isinstance(blob_sha,str) or not GIT_SHA1.fullmatch(blob_sha):raise ValueError('GitHub content has no blob sha')
+    if type(size) is not int or not 0<=size<=MAX_BLOB_BYTES:raise ValueError('GitHub content is too large')
+    blob=api(f'repos/{repo}/git/blobs/{blob_sha}')
+    if blob.get('encoding')!='base64':raise ValueError('Unsupported GitHub blob encoding')
+    raw=base64.b64decode(blob['content'])
+    if len(raw)!=size or hashlib.sha1(b'blob %d\0'%len(raw)+raw).hexdigest()!=blob_sha:raise ValueError('GitHub blob does not match its sha')
+    return raw

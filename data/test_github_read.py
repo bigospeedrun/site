@@ -1,4 +1,6 @@
 """Offline regression checks for transient GitHub GET failures."""
+import base64
+import hashlib
 import io
 import unittest
 from http.client import RemoteDisconnected, IncompleteRead
@@ -46,5 +48,32 @@ class GitHubReadTests(unittest.TestCase):
                     github_read.api('test')
                 self.assertEqual(get.call_count,1)
                 sleep.assert_not_called()
+
+    def large_file(self, raw, blob_sha=None, size=None, blob_raw=None):
+        """Contents API answer for a file over 1 MB, then its git blob."""
+        sha=hashlib.sha1(b'blob %d\0'%len(raw)+raw).hexdigest()
+        blob_sha=sha if blob_sha is None else blob_sha
+        listing={'type':'file','encoding':'none','content':'','sha':blob_sha,'size':len(raw) if size is None else size}
+        blob={'sha':blob_sha,'encoding':'base64','content':base64.encodebytes(raw if blob_raw is None else blob_raw).decode()}
+        return [listing,blob]
+
+    def test_large_file_reads_the_hash_checked_git_blob(self):
+        raw=b'{"endpoint":{"kappa":"3001053/1000000000"}}'+b' '*1_421_000
+        with patch.object(github_read,'api',side_effect=self.large_file(raw)) as get:
+            self.assertEqual(github_read.content('o/r','research/x/RESULT.json','c'*40),raw)
+        sha=hashlib.sha1(b'blob %d\0'%len(raw)+raw).hexdigest()
+        self.assertEqual([c.args[0] for c in get.call_args_list],['repos/o/r/contents/research/x/RESULT.json',f'repos/o/r/git/blobs/{sha}'])
+
+    def test_large_file_rejects_a_bad_blob(self):
+        raw=b'{"kappa":"1/2"}'
+        cases={'hash':self.large_file(raw,blob_raw=b'{"kappa":"1/3"}'),
+               'size':self.large_file(raw,size=len(raw)+1),
+               'no sha':self.large_file(raw,blob_sha='../../x'),
+               'cap':self.large_file(raw,size=github_read.MAX_BLOB_BYTES+1)}
+        for name,answers in cases.items():
+            with self.subTest(name), patch.object(github_read,'api',side_effect=answers) as get:
+                with self.assertRaises(ValueError):
+                    github_read.content('o/r','RESULT.json','c'*40)
+                self.assertEqual(get.call_count,2 if name in ('hash','size') else 1)
 
 if __name__=='__main__':unittest.main()
