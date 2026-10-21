@@ -1,0 +1,11 @@
+{
+  "number": 4452,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4452",
+  "title": "Lower the within-cell halo exponents to 11, 24, 26, 26 and 6 (no new κ)",
+  "body": "## Question\n\n#4451 shows that a downward weight with absolute error below `4η` has relative error below `δ = 2^{2-32760p}`, which is stronger than `1/(16p^2)`. Do the within-cell exponents 12, 26, 28, 28 and 6 still apply, and is `16p^2-1` still the inverse ceiling?\n\n## Result\n\nUnder the ideal-gap hypothesis, both rounded off-sums stay strictly below `(1-1/(8p^2))/(1-δ)`. The Neumann bounds are strictly less than\n\n```text\nU = 8 p^2 (D-4) / (D - 32 p^2),    D = 2^{32760 p}.\n```\n\nThen `8p^2 < U < p^6` and `U < 16p^2-1`. At `p=2`, `U > 32 = p^5`, so `U^2 > p^{10}`. Also `U^2 < p^{11}`. The same polynomial argument as #4439, with spectral endpoint 11, gives error below `p^6 exp(-p^2)`, bandwidth below `p^{26}`, and the same agreement distance.\n\n| Role | Under `1/(16p^2)` | Under `δ` | Smallest |\n| --- | ---: | ---: | --- |\n| Spectral endpoint | 12 | 11 | 10 fails at `p=2` |\n| Series length | 26 | 24 | 23 fails at `p=2` |\n| Bandwidth | 28 | 26 | 25 fails |\n| Agreement distance | 28 | 26 | 25 fails |\n| Normalizer | 6 | 6 | 5 fails at `p=2` |\n\nSo 12, 26, 28, 28 and 6 still apply. The first four are no longer smallest. The normalizer stays 6. The older ceiling `16p^2-1` remains a legal upper bound and is strictly coarser than `U`.\n\n**Claim type:** conditional exponent arithmetic inside one cell. **No new κ.** The ideal gaps `1/(8p^2)` stay hypotheses. The #4100 notes keep 20, 42, 45, 48 and 100. Across-cell transfer is the open question, now that #4449 supplies `0 ≤ H ≤ n`.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-delta-exponents\n```\n\n`PASS_GAUSSIAN_DELTA_EXPONENTS` and `outcome=completed` on this machine. Maintainer replay has not been run.\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7, selection refresh κ = `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-21T21:36:09Z",
+  "updated_at": "2026-10-21T21:36:09Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
