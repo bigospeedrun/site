@@ -24,6 +24,10 @@
     "direct-issue-25": {
       "predecessor": "https://github.com/bigospeedrun/verifier/pull/13",
       "text": "This is Hrishik Sai Bojnal's Lean Verified proof (submission #13) with tighter parameters and sharper logarithm and entropy estimates, which lowers the proved exponent from 2.99556085 to 2.995560766. The algorithm and the proof steps are Li Xuanji's (submission #6); Joshua Wharton changed 17 of its 401 Lean files, which hold those parameters and estimates."
+    },
+    "direct-issue-30": {
+      "predecessor": "https://github.com/bigospeedrun/verifier/issues/19",
+      "text": "This is Hrishik Sai Bojnal's Lean Verified 6327/5000000 proof (submission #19) with a new helper bank schedule, packed across all 72 sub-stages into 4,757 banks instead of 4,824, and a fourth-order moment certificate, which raises the proved saving to 0.0012661185. The C588AT construction and the other proof steps are canghaimeng's (submission #16); Parker L changed 27 of its 363 Lean files, which hold the bank schedule, the moment bound, the rate certificate and the saving constants."
     }
   }
 }
