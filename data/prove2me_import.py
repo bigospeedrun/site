@@ -252,7 +252,7 @@ def verify_campaign(board, files, get, today):
         require(sha(body) == digest, f'{path} changed')
 
 
-def verify_entry(entry, board, files):
+def verify_entry(entry, board, files, higher_is_better=False):
     """Check one reviewed goal and its accepted solution against the pinned hashes."""
     theorem, solution = entry['theorem'], entry['solution']
     header, body = files.read(theorem['statement_path'])
@@ -268,6 +268,18 @@ def verify_entry(entry, board, files):
         require(all(i in closure or i == b'Mathlib' or i.startswith(b'Mathlib.') for i in imports), f'{theorem["name"]} imports changed')
     # An entry whose goal states its value another way (a log ratio, a power) carries its own reviewed pattern.
     pattern = entry.get('statement_pattern', board.get('statement_pattern', r'SolvedInTime \(?{value}\b'))
+    if '{value}' not in pattern:
+        # The pattern no longer ties the statement to the value, so the reviewer states the number the goal
+        # has: an exact fraction equal to the value or, on a board where higher is better, the decimal of a goal
+        # like log A / log B, of which the value is the start (the goal then proves at least the value).
+        number = entry.get('statement_value')
+        require(isinstance(number, str) and number, f'entry {entry["value"]} has its own statement pattern but no statement_value')
+        try:
+            same = Fraction(number) == Fraction(entry['value'])
+        except (ValueError, ZeroDivisionError):
+            same = False
+        require(same or (higher_is_better and re.fullmatch(r'\d+\.\d+', number) and number.startswith(entry['value'])),
+                f'entry {entry["value"]}: statement_value {safe_text(number, 60)} does not match the value')
     require(re.search(pattern.replace('{value}', re.escape(entry['value'])).encode(), body), f'{theorem["name"]} does not state {entry["value"]}')
     header, body = files.read(solution['path'])
     require(header.get('status', '').startswith('ACCEPTED'), f'{solution["path"]} status is {header.get("status")!r}')
@@ -298,7 +310,7 @@ def check_board(slug, board, doc, files, get, today='9999-12-31'):
                 known.append((utc(entry['solved_at']), value))
             continue
         theorem = entry['theorem']
-        verify_entry(entry, board, files)
+        verify_entry(entry, board, files, doc['score']['direction'] == 'higher-is-better')
         solved = utc(entry['solved_at'])
         same = [r for r in records if Fraction(r['score']) == value]
         if entry['action'] in ('link', 'upgrade'):
@@ -366,12 +378,16 @@ def check_other(slug, board, root, files, get, today):
                 known.append((utc(entry['solved_at']), value))
             continue
         require(entry['action'] == 'row', f'unknown action {entry["action"]!r}')
-        verify_entry(entry, board, files)
+        verify_entry(entry, board, files, True)
         solved = utc(entry['solved_at'])
         earlier = [number for at, number in known if at <= solved]
         earlier_lv = [number for at, number in known_lv if at <= solved]
-        require(all(value > number + OTHER_EPSILON for number in earlier) or all(value > number + OTHER_EPSILON for number in earlier_lv),
-                f'entry {entry["value"]} was not the best result at its solved time, and not the best Lean Verified result either')
+        # The page ranks by the number it shows, so the shown (cut off) number must win the same way as the value.
+        shown = Fraction(entry.get('display_value', entry['value']))
+        for label, number in (('value', value), ('shown number', shown)):
+            require(all(number > other + OTHER_EPSILON for other in earlier) or all(number > other + OTHER_EPSILON for other in earlier_lv),
+                    f'entry {entry["value"]} was not the best result at its solved time, and not the best Lean Verified result either'
+                    + ('' if label == 'value' else ' (as shown on the page)'))
         plan['claims'].append(entry)
         known_lv.append((solved, value))
         known.append((solved, value))

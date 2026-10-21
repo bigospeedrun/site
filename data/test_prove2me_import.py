@@ -288,6 +288,19 @@ class Prove2meImportTest(unittest.TestCase):
         self.assertIn('does not state 2.9983', self.f.run()[2]['apsp'])
         entry['statement_pattern'] = r'SolvedInTime \(Real\.log 3 / Real\.log 2\)'
         self.f.save_trust()
+        # A pattern without {value} needs the number the goal has.
+        self.assertIn('no statement_value', self.f.run()[2]['apsp'])
+        for number in ('2.99', '3/2', 'x'):
+            entry['statement_value'] = number
+            self.f.save_trust()
+            self.assertIn('does not match the value', self.f.run()[2]['apsp'], number)
+        # An exact fraction equal to the value is fine. A decimal that starts with the value is a goal that proves a
+        # weaker bound on a lower-is-better board (APSP), so it holds there.
+        entry['statement_value'] = '2.99830000001'
+        self.f.save_trust()
+        self.assertIn('does not match the value', self.f.run()[2]['apsp'])
+        entry['statement_value'] = '29983/10000'
+        self.f.save_trust()
         self.assertEqual(self.f.run()[2], {})
         entry['statement_pattern'] = r'SolvedInTime \(Real\.log 5 / Real\.log 2\)'
         self.f.save_trust()
@@ -630,6 +643,13 @@ class OtherBoundsImportTest(unittest.TestCase):
         self.assertIn('3 days after it was proved', self.go('2026-10-23T00:00:00Z')[2]['other-row'])
 
     def test_a_long_value_may_be_shown_cut_off_but_not_rounded_up(self):
+        # Make room below 2.007 so that its cut-off form 2.00 still wins.
+        path = self.root.parent / 'src' / 'lib' / 'other-bounds.json'
+        data = json.loads(path.read_text())
+        data['families'][0]['baseline']['value'] = '\\approx1.9'
+        data['families'][0]['claims'][0]['display'] = '\\approx1.5'
+        path.write_text(json.dumps(data))
+        self.trust['boards']['other-row']['entries'][0]['unsound'] = True
         entry = self.trust['boards']['other-row']['entries'][1]
         entry['display_value'] = '2.00'
         (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
@@ -639,6 +659,25 @@ class OtherBoundsImportTest(unittest.TestCase):
             entry['display_value'] = bad
             (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
             self.assertIn('is not the value cut off', self.go()[2]['other-row'])
+
+    def test_a_decimal_statement_value_is_fine_on_a_higher_is_better_board(self):
+        entry = self.trust['boards']['other-row']['entries'][1]
+        entry['statement_pattern'] = r'AchievesExponent \(\s*2\.007\b'
+        (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+        self.assertIn('no statement_value', self.go()[2]['other-row'])
+        for number, ok in (('2.0070001', True), ('2.00', False), ('2.1', False)):
+            entry['statement_value'] = number
+            (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+            self.assertEqual('other-row' not in self.go()[2], ok, number)
+
+    def test_the_shown_number_must_win_like_the_value(self):
+        entry = self.trust['boards']['other-row']['entries'][2]
+        entry['display_value'] = '2.0'
+        (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+        self.assertIn('(as shown on the page)', self.go()[2]['other-row'])
+        entry['display_value'] = '2.02'
+        (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+        self.assertEqual(self.go()[2], {})
 
     def test_text_with_html_characters_holds_the_board(self):
         entry = self.trust['boards']['other-row']['entries'][1]
