@@ -629,6 +629,17 @@ class OtherBoundsImportTest(unittest.TestCase):
         self.assertEqual(self.go('2026-10-22T00:00:00Z')[2], {})
         self.assertIn('3 days after it was proved', self.go('2026-10-23T00:00:00Z')[2]['other-row'])
 
+    def test_a_long_value_may_be_shown_cut_off_but_not_rounded_up(self):
+        entry = self.trust['boards']['other-row']['entries'][1]
+        entry['display_value'] = '2.00'
+        (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+        claim = self.go()[1]['boards']['other-row']['claims'][0]
+        self.assertEqual((claim['value'], claim['display'], claim['bound']), ('2.007', '\\ge 2.00', 'b^{2.00}'))
+        for bad in ('2.01', '2.0070', '2'):
+            entry['display_value'] = bad
+            (self.root / 'prove2me-trust.json').write_text(json.dumps(self.trust))
+            self.assertIn('is not the value cut off', self.go()[2]['other-row'])
+
     def test_text_with_html_characters_holds_the_board(self):
         entry = self.trust['boards']['other-row']['entries'][1]
         for field, change in [('note', lambda: entry.__setitem__('note', 'a <b>bold</b> note')), ('author name', lambda: entry['authors'][0].__setitem__('name', 'a&b'))]:

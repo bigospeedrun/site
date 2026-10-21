@@ -387,6 +387,9 @@ def claim_for(slug, board, entry, trust):
         require(not re.search(r'[<>&]', text), f'entry {entry["value"]}: the {label} has a character (< > &) that the page cannot show as text')
     mission_url = 'https://prove2.me/missions/' + entry['mission_id']
     key = 'prove2me-' + board['family'] + '-' + entry['value'].replace('.', '-')
+    # The page shows a lower bound, so a long value may be shown cut off (rounded down), never up.
+    shown = entry.get('display_value', entry['value'])
+    require(re.fullmatch(r'\d+\.\d+', shown) and entry['value'].startswith(shown), f'entry {entry["value"]}: display_value {shown!r} is not the value cut off')
     receipt = dict(schema_version=1, source='prove2.me', reviewed_at=trust['reviewed_at'], reviewed_by=trust['reviewed_by'],
                    campaign=board['campaign'], mission_id=entry['mission_id'], mission_url=mission_url,
                    attested_value=entry['value'], solved_at=entry['solved_at'], statement_form=board['statement_form'],
@@ -396,12 +399,12 @@ def claim_for(slug, board, entry, trust):
     path = 'sources/' + key + '.json'
     names = entry['authors']
     claim = dict(author=names[0]['name'], handle='prove2me-' + entry['value'].replace('.', '-'), value=entry['value'],
-                 display='\\ge ' + entry['value'], date=zulu(entry['solved_at']), dateSource=theorem['url'], dateKind='first-stated',
+                 display='\\ge ' + shown, date=zulu(entry['solved_at']), dateSource=theorem['url'], dateKind='first-stated',
                  url=theorem['url'], lean=True,
                  leanNote='Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.',
                  evidence='lean-verified' if LEAN_VERIFIED else 'claimed', note=entry['note'], authors=names,
                  proofScope='The Lean theorem ' + theorem['name'] + ' on prove2.me states this exponent. Its accepted proof is by ' + ', '.join(n['name'] for n in names) + '.',
-                 bound=board['bound_template'].replace('{value}', entry['value']), prove2me=True, receiptSha256=sha(raw))
+                 bound=board['bound_template'].replace('{value}', shown), prove2me=True, receiptSha256=sha(raw))
     return claim, {path: raw}
 
 
