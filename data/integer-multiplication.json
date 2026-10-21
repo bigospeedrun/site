@@ -107,7 +107,7 @@
       "id": "crocswap-frozen-154",
       "kind": "improvement",
       "score": "1/22835963083295358096932575511191922182123945984",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-08T21:34:39.207006Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-08T21:34:39.207006Z",
@@ -132,18 +132,16 @@
       },
       "evidence": {
         "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
-        "theorem": null,
+        "theorem": "IntMul.Kappa.campaign_bound_inv_two_pow_154",
         "certificate_path": null
       },
-      "dependencies": [
-        {
-          "id": "openai-109",
-          "statement": "The OpenAI #109 multiplication framework and this patch's retained analytic and fixed-tape transfer obligations hold.",
-          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
-          "status": "unverified"
-        }
-      ],
-      "source_commit": "d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0"
+      "dependencies": [],
+      "source_commit": "d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-20T11:36:33Z",
+        "receipt_path": "sources/prove2me-integer-multiplication-crocswap-frozen-154.json"
+      }
     },
     {
       "id": "crocswap-balanced-153",
@@ -191,7 +189,7 @@
       "id": "crocswap-same-network-129",
       "kind": "improvement",
       "score": "1/680564733841876926926749214863536422912",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-08T21:34:39.207006Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-08T21:34:39.207006Z",
@@ -216,18 +214,16 @@
       },
       "evidence": {
         "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
-        "theorem": null,
+        "theorem": "IntMul.Kappa.campaign_bound_inv_two_pow_129",
         "certificate_path": null
       },
-      "dependencies": [
-        {
-          "id": "openai-109",
-          "statement": "The OpenAI #109 multiplication framework and this patch's retained analytic and fixed-tape transfer obligations hold.",
-          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
-          "status": "unverified"
-        }
-      ],
-      "source_commit": "d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0"
+      "dependencies": [],
+      "source_commit": "d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-20T14:11:51Z",
+        "receipt_path": "sources/prove2me-integer-multiplication-crocswap-same-network-129.json"
+      }
     },
     {
       "id": "crocswap-h46-111",
@@ -5208,7 +5204,7 @@
       "id": "swapnil-round-6",
       "kind": "improvement",
       "score": "3666565558019/100000000000000000",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-08T14:01:26Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-08T21:34:39.207006Z",
@@ -5233,18 +5229,16 @@
       },
       "evidence": {
         "paper_url": "https://github.com/Swapnil-jain/integer-mult-kappa/blob/f2176bc1124821bf17eb63725bd366d7bdc020a3/README.md",
-        "theorem": null,
+        "theorem": "IntMul.Kappa.jain_round6",
         "certificate_path": null
       },
-      "dependencies": [
-        {
-          "id": "swapnil-transfer",
-          "statement": "The inherited OpenAI fixed-tape reduction, all-size transfer and source-specific interfaces hold; round seven also assumes stage two is the complement time-reversal of stage one.",
-          "source_url": "https://github.com/Swapnil-jain/integer-mult-kappa/blob/741e7aa078392553815df7926ee17ac5e25a8c38/README.md",
-          "status": "unverified"
-        }
-      ],
-      "source_commit": "f2176bc1124821bf17eb63725bd366d7bdc020a3"
+      "dependencies": [],
+      "source_commit": "f2176bc1124821bf17eb63725bd366d7bdc020a3",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-21T00:20:46Z",
+        "receipt_path": "sources/prove2me-integer-multiplication-swapnil-round-6.json"
+      }
     },
     {
       "id": "swapnil-round-7",
@@ -39927,17 +39921,19 @@
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
       "site_badge": false,
       "eligible_for_record": true,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source).",
       "repo": "CrocSwap/integer-mult-bounds",
       "date_precision": "Checkpoint publication time unchecked; submitted_at is observation time.",
       "comparison_key": "crocswap/integer-multiplication-v1",
       "upstream_selected": false,
       "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
       "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "site_tier": "verified",
       "publication_date_precision": "unknown",
       "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
-      "race_repo": "CrocSwap/integer-mult-bounds"
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "receipt_url": "https://prove2.me/theorems/694f2f2b-9cc6-4b1b-90d1-2ed30eb888cf",
+      "prove2me_upgrade": true
     },
     "crocswap-balanced-153": {
       "checked_at": "2026-10-08",
@@ -39961,17 +39957,19 @@
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0/README.md",
       "site_badge": false,
       "eligible_for_record": true,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source).",
       "repo": "CrocSwap/integer-mult-bounds",
       "date_precision": "Checkpoint publication time unchecked; submitted_at is observation time.",
       "comparison_key": "crocswap/integer-multiplication-v1",
       "upstream_selected": false,
       "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
       "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "site_tier": "verified",
       "publication_date_precision": "unknown",
       "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
-      "race_repo": "CrocSwap/integer-mult-bounds"
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "receipt_url": "https://prove2.me/theorems/af57528d-b969-4af1-a0de-88fff035c113",
+      "prove2me_upgrade": true
     },
     "crocswap-h46-111": {
       "checked_at": "2026-10-08",
@@ -40275,14 +40273,16 @@
       "source_url": "https://github.com/Swapnil-jain/integer-mult-kappa/blob/f2176bc1124821bf17eb63725bd366d7bdc020a3/README.md",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source).",
       "repo": "Swapnil-jain/integer-mult-kappa",
       "comparison_key": "swapnil/independent-assumptions-unreviewed",
       "comparison_status": "Related listing only; no reviewed compatibility with CrocSwap.",
       "date_precision": "README commit committer timestamp, not scientific priority.",
       "upstream_tier": "claimed",
-      "site_tier": "claimed",
-      "publication_date_precision": "unknown"
+      "site_tier": "verified",
+      "publication_date_precision": "unknown",
+      "receipt_url": "https://prove2.me/theorems/9963d73f-fab7-44ad-b490-192b4d9f47b1",
+      "prove2me_upgrade": true
     },
     "swapnil-round-7": {
       "checked_at": "2026-10-08",
@@ -58768,5 +58768,5 @@
       "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-10-21T06:17:20Z"
+  "updated_at": "2026-10-21T06:36:18Z"
 }

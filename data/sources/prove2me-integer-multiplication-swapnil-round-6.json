@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "a411477a-bae1-44a4-b4f4-1791af7b398f",
+    "slug": "integer-multiplication-kappa",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+  },
+  "mission_id": "e901a985-a077-435a-bd78-2df1c12fb4f3",
+  "mission_url": "https://prove2.me/missions/e901a985-a077-435a-bd78-2df1c12fb4f3",
+  "attested_value": "0.00003666565558019",
+  "solved_at": "2026-10-21T00:20:46.619637+00:00",
+  "statement_form": "IntMul.KappaBound (1 / 2 ^ 182): one deterministic k-tape Turing machine (k >= 2: a read-only input tape, an output tape and k-2 work tapes, a fixed finite alphabet, Montanaro conventions) that for every n >= 1 and all x, y in {0,1}^n halts on input x#y with the output bin_2n(val(x) val(y)), in worst-case time at most c n (lg n)^(1 - kappa) for n >= n0, with lg n = max(ceil(log2 n), 1) and kappa = 2^-182. That is OpenAI Theorem 1 and our page statement (a Turing machine with a fixed finite alphabet and a fixed number of one-dimensional tapes). Definitions Def_IntMul_MultitapeModel pinned by hash; it has no instances, notations or axioms (reviewed 2026-10-19).",
+  "same_proof": "The goal source cites S. Jain, integer-mult-kappa, commit f2176bc, which is the source of our row swapnil-round-6 (Swapnil-jain/integer-mult-kappa at commit f2176bc1124821bf17eb63725bd366d7bdc020a3). The value is the same: 3666565558019/10^17. The goal is KappaBound (3666565558019 / 10^17) on the pinned Def_IntMul_MultitapeModel. The accepted proof (xuanji, solution 2, 189 lines) uses the accepted prove2.me theorem jain_round6_framework (proved 2026-10-21 00:15 UTC, 1744 lines). The row stays a related listing (eligible_for_record false); only its Lean status changes. Reviewed 2026-10-21.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "IntMul.Kappa.jain_round6",
+    "url": "https://prove2.me/theorems/9963d73f-fab7-44ad-b490-192b4d9f47b1",
+    "statement_path": "envs/0df444a/Theorems/Thm_IntMul_Kappa_jain_round6.lean",
+    "statement_sha256": "de0657b62e75394204ab8225cb4614f6234247dfbb865fa1e5adc78d7767d889",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_IntMul_Kappa_jain_round6_2.lean",
+    "sha256": "840dbc8be709db0c05c9f3f568bcbc57f9bb5be4aa33ba15afb23fcbf5f757aa",
+    "author": "@xuanji"
+  },
+  "record_id": "swapnil-round-6",
+  "definitions": {
+    "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean": "107cd94171ccabed6eed73161d05d40551a953fa1d79020c1023c59c69d7c3f7"
+  },
+  "lean_verified": true
+}

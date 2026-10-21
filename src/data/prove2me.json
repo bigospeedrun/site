@@ -357,11 +357,9 @@
       ]
     },
     "other-block-sensitivity": {
-      "status": "held",
+      "status": "ok",
       "kind": "other",
       "family": "block-sensitivity",
-      "reason": "unreviewed proved entry 2.127294 (mission 6bd0fe14-da52-410f-91a7-44b92f7728a5)",
-      "since": "2026-10-21T06:21:40Z",
       "links": {},
       "rows": [],
       "claims": [
@@ -580,15 +578,64 @@
           "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.1301}",
           "prove2me": true,
           "receiptSha256": "79f259fe66eb0ddfc17476742b812d6fe17f962a576e20d81f099e15387301ba"
+        },
+        {
+          "author": "yousofy",
+          "handle": "prove2me-2-1303",
+          "value": "2.1303",
+          "display": "\\ge 2.1303",
+          "date": "2026-10-20T07:13:15Z",
+          "dateSource": "https://prove2.me/theorems/637bbe88-761a-4bb9-bad9-78a8c1bb90c7",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/637bbe88-761a-4bb9-bad9-78a8c1bb90c7",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "Coupled construction; its 84-line Lean proof uses the accepted prove2.me theorems coupled_gamma_periodic_seeds and finite_certificate.",
+          "authors": [
+            {
+              "name": "yousofy",
+              "url": "https://prove2.me/submissions/27e9bcac-bca9-497a-b928-de427b981c65"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.reach_21303_gamma on prove2.me states this exponent. Its accepted proof is by yousofy.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.1303}",
+          "prove2me": true,
+          "receiptSha256": "6378dbc124e2e13d21d8b48fcb79ac29fa4c8175c405b5b385ed876f73ca6f2e"
+        },
+        {
+          "author": "yousofy",
+          "handle": "prove2me-2-1308255793978239",
+          "value": "2.1308255793978239",
+          "display": "\\ge 2.130825",
+          "date": "2026-10-20T23:13:42Z",
+          "dateSource": "https://prove2.me/theorems/46659a00-722d-4dc9-b28e-ef02d6a0c9c2",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/46659a00-722d-4dc9-b28e-ef02d6a0c9c2",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "The goal states the exact exponent log(1522813785050025472152230187890625) / log(3738277295413674) = 2.13082557939782394763 (computed 2026-10-21); the listed value 2.1308255793978239 is below it. Its 32-line Lean proof uses the accepted prove2.me theorem reach_source_q5_3738277295413674_strict.",
+          "authors": [
+            {
+              "name": "yousofy",
+              "url": "https://prove2.me/submissions/5112fcc0-0c63-4f47-8b70-29327b2a8906"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.reach_source_q5_best_3738277295413674 on prove2.me states this exponent. Its accepted proof is by yousofy.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.130825}",
+          "prove2me": true,
+          "receiptSha256": "af609bed76d3d05fd524a738b7a729576a706b670fdbe85742625c5dc5f80213"
         }
       ]
     },
     "integer-multiplication": {
-      "status": "held",
-      "reason": "unreviewed proved entry 0.00003666565558019 (mission e901a985-a077-435a-bd78-2df1c12fb4f3)",
-      "since": "2026-10-21T06:21:40Z",
+      "status": "ok",
       "links": {
-        "openai-original-109": "https://prove2.me/theorems/60e37d6f-88a9-4bc4-b925-6e7ec3460fc3"
+        "openai-original-109": "https://prove2.me/theorems/60e37d6f-88a9-4bc4-b925-6e7ec3460fc3",
+        "crocswap-frozen-154": "https://prove2.me/theorems/694f2f2b-9cc6-4b1b-90d1-2ed30eb888cf",
+        "crocswap-same-network-129": "https://prove2.me/theorems/af57528d-b969-4af1-a0de-88fff035c113",
+        "swapnil-round-6": "https://prove2.me/theorems/9963d73f-fab7-44ad-b490-192b4d9f47b1"
       },
       "rows": []
     },

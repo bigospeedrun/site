@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "a411477a-bae1-44a4-b4f4-1791af7b398f",
+    "slug": "integer-multiplication-kappa",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+  },
+  "mission_id": "71a44432-5520-4352-822e-74636b589300",
+  "mission_url": "https://prove2.me/missions/71a44432-5520-4352-822e-74636b589300",
+  "attested_value": "0.0000000000000000000000000000000000000000000000437905770101505334663665494778098791025081856836411178674083838715559713339331437964574433863162994384765625",
+  "solved_at": "2026-10-20T11:36:33.989001+00:00",
+  "statement_form": "IntMul.KappaBound (1 / 2 ^ 182): one deterministic k-tape Turing machine (k >= 2: a read-only input tape, an output tape and k-2 work tapes, a fixed finite alphabet, Montanaro conventions) that for every n >= 1 and all x, y in {0,1}^n halts on input x#y with the output bin_2n(val(x) val(y)), in worst-case time at most c n (lg n)^(1 - kappa) for n >= n0, with lg n = max(ceil(log2 n), 1) and kappa = 2^-182. That is OpenAI Theorem 1 and our page statement (a Turing machine with a fixed finite alphabet and a fixed number of one-dimensional tapes). Definitions Def_IntMul_MultitapeModel pinned by hash; it has no instances, notations or axioms (reviewed 2026-10-19).",
+  "same_proof": "The goal source cites the OpenAI preprint (openai/math commit adc7f1241b42e322a6451854ab7e4b4c146bf78a, section 8) and the parameters of D. Colkitt et al., integer-mult-bounds, patch frozen-154, which is the source of our row (CrocSwap/integer-mult-bounds, frozen-154). The value is the same: 1/2^154. The goal is KappaBound (1/2^154) on the pinned Def_IntMul_MultitapeModel, the same statement form as the 1/2^182 entry. The accepted proof (marwahaha, 24 lines) uses accepted prove2.me theorems for the machine, the parameters and the table. Reviewed 2026-10-21.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "IntMul.Kappa.campaign_bound_inv_two_pow_154",
+    "url": "https://prove2.me/theorems/694f2f2b-9cc6-4b1b-90d1-2ed30eb888cf",
+    "statement_path": "envs/0df444a/Theorems/Thm_IntMul_Kappa_campaign_bound_inv_two_pow_154.lean",
+    "statement_sha256": "106d6ec26cc55533f92b0090b28f3bde465f917ff27be508170befb0daef5b19",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_IntMul_Kappa_campaign_bound_inv_two_pow_154.lean",
+    "sha256": "3e802b759107148f65ca58fe9a18d55c36cfd05157d40f2ea3a4cef5f0100504",
+    "author": "@marwahaha"
+  },
+  "record_id": "crocswap-frozen-154",
+  "definitions": {
+    "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean": "107cd94171ccabed6eed73161d05d40551a953fa1d79020c1023c59c69d7c3f7"
+  },
+  "lean_verified": true
+}

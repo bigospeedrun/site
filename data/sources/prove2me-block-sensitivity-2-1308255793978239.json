@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "9873ab8f-732c-478e-b068-f800ef18558e",
+    "slug": "block-sensitivity-vs-sensitivity",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+  },
+  "mission_id": "37b00999-311f-44e0-be58-190c4c998fd6",
+  "mission_url": "https://prove2.me/missions/37b00999-311f-44e0-be58-190c4c998fd6",
+  "attested_value": "2.1308255793978239",
+  "solved_at": "2026-10-20T23:13:42.768368+00:00",
+  "statement_form": "SensitivityCampaign.AchievesExponent a: for every epsilon > 0 and every S >= 2 there is a total Boolean function f on Fin n bits with sensitivity(f) >= S and sensitivity(f)^(a-epsilon) <= blockSensitivity(f). Sensitivity is the largest number of single bit flips that change f, and block sensitivity is the largest number of disjoint nonempty bit sets that each change f at one input (Def_SensitivitySeparation, reviewed 2026-10-19). That is our statement: bs(f) >= s(f)^(alpha - o(1)) for a family of total Boolean functions with s(f) -> infinity.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "SensitivityCampaign.reach_source_q5_best_3738277295413674",
+    "url": "https://prove2.me/theorems/46659a00-722d-4dc9-b28e-ef02d6a0c9c2",
+    "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_source_q5_best_3738277295413674.lean",
+    "statement_sha256": "ea0cc4d22f20cb5fd950180a4178757271836397e8867e9e0bb1256db2f9a931",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+      "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+    ],
+    "allowed_imports": [
+      "Theorems.Thm_SensitivityCampaign_finite_certificate",
+      "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_source_q5_best_3738277295413674.lean",
+    "sha256": "22c5988439b799b7f9eaad79bc0ba8a1dc5cab24eed95759cc63c6d23539b77d",
+    "author": "@yousofy",
+    "submission_url": "https://prove2.me/submissions/5112fcc0-0c63-4f47-8b70-29327b2a8906"
+  },
+  "definitions": {
+    "envs/0df444a/Definitions/Def_SensitivityCampaign.lean": "7cc4307ef9adf4ddc6cb355d159ba4ece3378249561c15fd2accc52d5c748532",
+    "envs/0df444a/Definitions/Def_SensitivitySeparation.lean": "2b76ae96c33e71832ccdf155581d27f80398281ae33cc0550c2ce0e0a32729b7"
+  },
+  "lean_verified": true
+}

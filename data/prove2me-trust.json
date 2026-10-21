@@ -342,13 +342,6 @@
      "note": "OpenAI baseline (depth-9 seed), already the baseline of this row; not better than the 2.00647 claim stated earlier."
     },
     {
-     "mission_id": "bf91bc07-0adc-4fa2-a84a-8be2017ea6c4",
-     "value": "2.006470828",
-     "solved_at": "2026-10-15T21:19:33.744458+00:00",
-     "action": "skip",
-     "note": "Depth-20 seed: the same construction and value as the robinkothari claim (2.00647, 2026-10-15 07:52 UTC), stated before. No proof evidence ties them, so no link."
-    },
-    {
      "mission_id": "f5ae229d-83a2-4c53-8ac7-6d3ddbc89bab",
      "value": "2.007",
      "solved_at": "2026-10-15T21:07:56.592986+00:00",
@@ -376,6 +369,13 @@
       }
      ],
      "note": "OpenAI construction at depth 20 with the schedule of the 2.007 mission."
+    },
+    {
+     "mission_id": "bf91bc07-0adc-4fa2-a84a-8be2017ea6c4",
+     "value": "2.006470828",
+     "solved_at": "2026-10-15T21:19:33.744458+00:00",
+     "action": "skip",
+     "note": "Depth-20 seed: the same construction and value as the robinkothari claim (2.00647, 2026-10-15 07:52 UTC), stated before. No proof evidence ties them, so no link."
     },
     {
      "mission_id": "46106f9d-3b6a-4b4d-bef4-f6438e700ee1",
@@ -411,13 +411,6 @@
      "note": "Finite seed certificate (prove2.me finite_certificate) with a larger depth."
     },
     {
-     "mission_id": "c1c25d27-13b0-41cc-b6fe-6acb1e3606e5",
-     "value": "2",
-     "solved_at": "2026-10-16T12:11:01.570072+00:00",
-     "action": "skip",
-     "note": "Classical Rubinstein exponent 2; not better than the baseline."
-    },
-    {
      "mission_id": "f90b4484-ea60-4703-9ab3-40b4d1817f7e",
      "value": "2.0391",
      "solved_at": "2026-10-16T10:49:55.436195+00:00",
@@ -449,6 +442,13 @@
       }
      ],
      "note": "Finite seed certificate with a further parameter choice."
+    },
+    {
+     "mission_id": "c1c25d27-13b0-41cc-b6fe-6acb1e3606e5",
+     "value": "2",
+     "solved_at": "2026-10-16T12:11:01.570072+00:00",
+     "action": "skip",
+     "note": "Classical Rubinstein exponent 2; not better than the baseline."
     },
     {
      "mission_id": "2dded06e-703e-4256-9ed3-a12b0eb9becb",
@@ -650,6 +650,87 @@
       }
      ],
      "note": "Coupled construction; its 84-line Lean proof uses the accepted prove2.me theorems coupled_n15_periodic_seeds and finite_certificate."
+    },
+    {
+     "mission_id": "a06e46ea-45f2-4026-975e-9004a9686e2b",
+     "value": "2.1303",
+     "solved_at": "2026-10-20T07:13:15.040641+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_21303_gamma",
+      "url": "https://prove2.me/theorems/637bbe88-761a-4bb9-bad9-78a8c1bb90c7",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_21303_gamma.lean",
+      "statement_sha256": "2085a5e3656f4c58bcc0e267a1ae2bcd0aebcdfe46e663dc4c7a0b90b248790a",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_21303_gamma.lean",
+      "sha256": "91f95b30958b2965a874bc19ec19b5cef2ea7ba52fa25faf46c667ce6b20e95d",
+      "author": "@yousofy",
+      "submission_url": "https://prove2.me/submissions/27e9bcac-bca9-497a-b928-de427b981c65"
+     },
+     "authors": [
+      {
+       "name": "yousofy",
+       "url": "https://prove2.me/submissions/27e9bcac-bca9-497a-b928-de427b981c65"
+      }
+     ],
+     "note": "Coupled construction; its 84-line Lean proof uses the accepted prove2.me theorems coupled_gamma_periodic_seeds and finite_certificate."
+    },
+    {
+     "mission_id": "6bd0fe14-da52-410f-91a7-44b92f7728a5",
+     "value": "2.127294",
+     "solved_at": "2026-10-20T18:39:49.730713+00:00",
+     "action": "skip",
+     "note": "Proved 2026-10-20 18:39 UTC, after the 2.1303 result (07:13 UTC), so it was not the best result when it was proved, and not the best Lean Verified result either. Its 13-line proof uses the accepted 2.1303 theorem. Reviewed 2026-10-21."
+    },
+    {
+     "mission_id": "39f5b058-cd5e-4919-8cf6-d5f6853ac7d6",
+     "value": "2.13",
+     "solved_at": "2026-10-20T18:40:06.550558+00:00",
+     "action": "skip",
+     "note": "Proved 2026-10-20 18:40 UTC, after the 2.1303 result (07:13 UTC), so it was not the best result when it was proved, and not the best Lean Verified result either. Its 13-line proof uses the accepted 2.1303 theorem. Reviewed 2026-10-21."
+    },
+    {
+     "mission_id": "37b00999-311f-44e0-be58-190c4c998fd6",
+     "value": "2.1308255793978239",
+     "display_value": "2.130825",
+     "solved_at": "2026-10-20T23:13:42.768368+00:00",
+     "action": "row",
+     "statement_pattern": "AchievesExponent \\(Real\\.log \\(1522813785050025472152230187890625 : ℝ\\) / Real\\.log \\(3738277295413674 : ℝ\\)\\)",
+     "theorem": {
+      "name": "SensitivityCampaign.reach_source_q5_best_3738277295413674",
+      "url": "https://prove2.me/theorems/46659a00-722d-4dc9-b28e-ef02d6a0c9c2",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_reach_source_q5_best_3738277295413674.lean",
+      "statement_sha256": "ea0cc4d22f20cb5fd950180a4178757271836397e8867e9e0bb1256db2f9a931",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ],
+      "allowed_imports": [
+       "Theorems.Thm_SensitivityCampaign_finite_certificate",
+       "Theorems.Thm_SensitivityCampaign_finite_certificate_log"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_reach_source_q5_best_3738277295413674.lean",
+      "sha256": "22c5988439b799b7f9eaad79bc0ba8a1dc5cab24eed95759cc63c6d23539b77d",
+      "author": "@yousofy",
+      "submission_url": "https://prove2.me/submissions/5112fcc0-0c63-4f47-8b70-29327b2a8906"
+     },
+     "authors": [
+      {
+       "name": "yousofy",
+       "url": "https://prove2.me/submissions/5112fcc0-0c63-4f47-8b70-29327b2a8906"
+      }
+     ],
+     "note": "The goal states the exact exponent log(1522813785050025472152230187890625) / log(3738277295413674) = 2.13082557939782394763 (computed 2026-10-21); the listed value 2.1308255793978239 is below it. Its 32-line Lean proof uses the accepted prove2.me theorem reach_source_q5_3738277295413674_strict."
     }
    ]
   },
@@ -688,6 +769,75 @@
      "solution": {
       "path": "envs/0df444a/Solutions/Sol_IntMul_Kappa_openai_theorem_1_4.lean",
       "sha256": "2811b0f3233c7ce7bb45c4f92d8c941e0454b123b438e212f49afe0079cb0703",
+      "author": "@xuanji"
+     }
+    },
+    {
+     "mission_id": "71a44432-5520-4352-822e-74636b589300",
+     "value": "0.0000000000000000000000000000000000000000000000437905770101505334663665494778098791025081856836411178674083838715559713339331437964574433863162994384765625",
+     "solved_at": "2026-10-20T11:36:33.989001+00:00",
+     "action": "upgrade",
+     "record_id": "crocswap-frozen-154",
+     "same_proof": "The goal source cites the OpenAI preprint (openai/math commit adc7f1241b42e322a6451854ab7e4b4c146bf78a, section 8) and the parameters of D. Colkitt et al., integer-mult-bounds, patch frozen-154, which is the source of our row (CrocSwap/integer-mult-bounds, frozen-154). The value is the same: 1/2^154. The goal is KappaBound (1/2^154) on the pinned Def_IntMul_MultitapeModel, the same statement form as the 1/2^182 entry. The accepted proof (marwahaha, 24 lines) uses accepted prove2.me theorems for the machine, the parameters and the table. Reviewed 2026-10-21.",
+     "statement_pattern": "KappaBound \\(\\(1 / 2 \\^ 154\\) : ℝ\\)",
+     "theorem": {
+      "name": "IntMul.Kappa.campaign_bound_inv_two_pow_154",
+      "url": "https://prove2.me/theorems/694f2f2b-9cc6-4b1b-90d1-2ed30eb888cf",
+      "statement_path": "envs/0df444a/Theorems/Thm_IntMul_Kappa_campaign_bound_inv_two_pow_154.lean",
+      "statement_sha256": "106d6ec26cc55533f92b0090b28f3bde465f917ff27be508170befb0daef5b19",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_IntMul_Kappa_campaign_bound_inv_two_pow_154.lean",
+      "sha256": "3e802b759107148f65ca58fe9a18d55c36cfd05157d40f2ea3a4cef5f0100504",
+      "author": "@marwahaha"
+     }
+    },
+    {
+     "mission_id": "01abd1d8-5ddc-42ba-af43-8522859dbe6b",
+     "value": "0.000000000000000000000000000000000000001469367938527859384960920671527807097273331945965109401885939632848021574318408966064453125",
+     "solved_at": "2026-10-20T14:11:51.02436+00:00",
+     "action": "upgrade",
+     "record_id": "crocswap-same-network-129",
+     "same_proof": "The goal source cites the OpenAI preprint (openai/math commit adc7f1241b42e322a6451854ab7e4b4c146bf78a, section 8) and the parameters of D. Colkitt et al., integer-mult-bounds, patch same-network-129, which is the source of our row (CrocSwap/integer-mult-bounds, same-network-129). The value is the same: 1/2^129. The goal is KappaBound (1/2^129) on the pinned Def_IntMul_MultitapeModel. The accepted proof (marwahaha, 24 lines) uses accepted prove2.me theorems for the machine, the parameters and the table. Reviewed 2026-10-21.",
+     "statement_pattern": "KappaBound \\(\\(1 / 2 \\^ 129\\) : ℝ\\)",
+     "theorem": {
+      "name": "IntMul.Kappa.campaign_bound_inv_two_pow_129",
+      "url": "https://prove2.me/theorems/af57528d-b969-4af1-a0de-88fff035c113",
+      "statement_path": "envs/0df444a/Theorems/Thm_IntMul_Kappa_campaign_bound_inv_two_pow_129.lean",
+      "statement_sha256": "f6ada23b195f40fd04c0b80986cb0739533392b8fa41b980da2d237a0ed80c1f",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_IntMul_Kappa_campaign_bound_inv_two_pow_129.lean",
+      "sha256": "2653231a7bb7746fd190fcdc4679c6b285581341271eb0714ccbfee24dbef445",
+      "author": "@marwahaha"
+     }
+    },
+    {
+     "mission_id": "e901a985-a077-435a-bd78-2df1c12fb4f3",
+     "value": "0.00003666565558019",
+     "solved_at": "2026-10-21T00:20:46.619637+00:00",
+     "action": "upgrade",
+     "record_id": "swapnil-round-6",
+     "same_proof": "The goal source cites S. Jain, integer-mult-kappa, commit f2176bc, which is the source of our row swapnil-round-6 (Swapnil-jain/integer-mult-kappa at commit f2176bc1124821bf17eb63725bd366d7bdc020a3). The value is the same: 3666565558019/10^17. The goal is KappaBound (3666565558019 / 10^17) on the pinned Def_IntMul_MultitapeModel. The accepted proof (xuanji, solution 2, 189 lines) uses the accepted prove2.me theorem jain_round6_framework (proved 2026-10-21 00:15 UTC, 1744 lines). The row stays a related listing (eligible_for_record false); only its Lean status changes. Reviewed 2026-10-21.",
+     "statement_pattern": "KappaBound \\(3666565558019 / 10 \\^ 17\\)",
+     "theorem": {
+      "name": "IntMul.Kappa.jain_round6",
+      "url": "https://prove2.me/theorems/9963d73f-fab7-44ad-b490-192b4d9f47b1",
+      "statement_path": "envs/0df444a/Theorems/Thm_IntMul_Kappa_jain_round6.lean",
+      "statement_sha256": "de0657b62e75394204ab8225cb4614f6234247dfbb865fa1e5adc78d7767d889",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_IntMul_MultitapeModel.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_IntMul_Kappa_jain_round6_2.lean",
+      "sha256": "840dbc8be709db0c05c9f3f568bcbc57f9bb5be4aa33ba15afb23fcbf5f757aa",
       "author": "@xuanji"
      }
     }
