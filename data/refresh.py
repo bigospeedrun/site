@@ -322,15 +322,26 @@ def silent_above(p, prior, leader):
     values = title_kappas(p['title'])
     return bool(values) and max(values) > leader
 
+def same_package(p, decision, files_of, others):
+    """The package an earlier head's approval refers to, when this head has the same bytes
+    at the same path; else None."""
+    path = decided_package(p, decision['score'], files_of, others)
+    try:
+        return path if path and content(CROC, path, decision['head']) == content(CROC, path, p['head']['sha']) else None
+    except (RuntimeError, ValueError):
+        return None
+
 def result_unread(p, prior):
     """A silent PR from RESULT_SINCE_PR on whose file list was read before RESULT.json
     support (#3945, #4076, #4088 and #4091 state their value only there)."""
     return (p['number'] >= RESULT_SINCE_PR and not prior.get('claim_files_result') and prior.get('claimed_score') is None
             and not prior.get('review_reason') and prior.get('upstream_status') != 'closed-unmerged')
 
-def claim_state(p, prior, decisions, evaluate, leader=None):
+def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
     """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
-    retry, decision). evaluate() reads the PR's package and runs the Claude check."""
+    retry, decision). evaluate() reads the PR's package and runs the Claude check.
+    same_package(decision) gives the decided package path when it is byte-identical at
+    the decided head and this head, else None."""
     n = p['number']; head_sha = p['head']['sha']
     text_sha = hashlib.sha256((p['title'] + '\n' + (p['body'] or '')).encode()).hexdigest()
     score, reason = None, None
@@ -340,6 +351,18 @@ def claim_state(p, prior, decisions, evaluate, leader=None):
         # The lead decided this head: no package read and no Claude call. The PR keeps
         # claim_decided, so deleting the decision makes the next run read it again.
         return decision['score'], None, claim_path if claim_head == head_sha else None, head_sha, text_sha, False, decision
+    earlier = max((d for (m, _), d in decisions.items() if m == n), key=lambda d: d.get('at') or '', default=None)
+    if (earlier and earlier['score'] and same_package and n not in NOT_CLAIMS
+            and set(title_kappas(p['title'])) == {Fraction(earlier['score'])}):
+        # A new head that leaves the approved package byte-identical, with a title that still
+        # states only the approved kappa, keeps the approval: no Claude call (#4440, Lead,
+        # 2026-10-21). Carried once per head and text; deleting the decision ends it.
+        if (prior.get('claim_decided') and claim_head == head_sha and claim_text == text_sha
+                and prior.get('claimed_score') == earlier['score']):
+            return earlier['score'], None, claim_path, head_sha, text_sha, False, earlier
+        path = same_package(earlier)
+        if path:
+            return earlier['score'], None, path, head_sha, text_sha, False, earlier
     if n in NOT_CLAIMS:
         pass
     elif (claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided')
@@ -487,7 +510,8 @@ def refresh(stage, now):
         others = {path: pr for path, pr in owners.items() if pr != n}
         score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
             p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others, files_of,
-                                                       [m for m in reversed(numbers) if m < n], leader), leader)
+                                                       [m for m in reversed(numbers) if m < n], leader), leader,
+            lambda d: same_package(p, d, files_of, others))
         # One lookup per decided head: claim_path_head records it, found or not.
         if decision and score and not claim_path and prior.get('claim_path_head') != head_sha:
             claim_path = decided_package(p, score, files_of, others)

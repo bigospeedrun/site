@@ -251,6 +251,53 @@ class RefreshTests(unittest.TestCase):
         self.assertFalse(refresh.claim_judge.agrees('1/0','1/2'));self.assertFalse(refresh.claim_judge.agrees('κ = 1/00','1/2'))
         self.assertIsNotNone(refresh.EXACT_RATIONAL.fullmatch('7/010'))  # a padded nonzero denominator is fine
 
+    def test_an_approval_carries_to_a_new_head_with_the_same_package(self):
+        # #4440 (2026-10-21): a docs-only push re-ran the Claude check, which read the unchanged body as no claim.
+        old,new='a'*40,'b'*40
+        p={'number':4440,'title':'Conditional κ = 0.00296 via query-thinned controllers','body':'','head':{'sha':new}}
+        approved={'pr':4440,'head':old,'score':'37/12500','at':'2026-10-21T20:45:00Z'}
+        decisions={(4440,old):approved}
+        path='research/query-thinned-controllers/RESULT.json'
+        evaluate=lambda:(None,path,'Claude reads the PR text as no new kappa claim.')
+        asked=[]
+        def same(result):
+            return lambda d:(asked.append(d['head']),result)[1]
+        score,reason,claim_path,claim_head,claim_text,retry,decision=refresh.claim_state(p,{},decisions,evaluate,None,same(path))
+        self.assertEqual((score,reason,claim_path,claim_head,retry,decision),('37/12500',None,path,new,False,approved))
+        self.assertEqual(asked,[old])
+        # Carried at this head and text: no package read on the next run.
+        prior={'claim_decided':True,'claim_head':new,'claim_text':claim_text,'claimed_score':'37/12500','claim_path':path}
+        self.assertEqual(refresh.claim_state(p,prior,decisions,lambda:self.fail('no read'),None,lambda d:self.fail('no read'))[:3],('37/12500',None,path))
+        # A changed package, a title with another or a second kappa, or a later dismissal: the usual read.
+        later={'pr':4440,'head':'d'*40,'score':None,'at':'2026-10-21T22:00:00Z'}
+        for case,q,ds,result in [('package',p,decisions,None),
+                                 ('title',p|{'title':'Conditional κ = 0.003'},decisions,path),
+                                 ('two kappas',p|{'title':'κ = 0.00296, after κ = 0.003'},decisions,path),
+                                 ('dismissed',p,decisions|{(4440,'d'*40):later},path)]:
+            with self.subTest(case):
+                asked.clear()
+                self.assertEqual(refresh.claim_state(q,{},ds,evaluate,None,same(result))[:2],(None,'Claude reads the PR text as no new kappa claim.'))
+                self.assertEqual(asked,[old] if case=='package' else [])
+        # An undated decision counts as the oldest; a PR in NOT_CLAIMS never carries.
+        undated={(4440,'e'*40):{'pr':4440,'head':'e'*40,'score':None}}
+        self.assertEqual(refresh.claim_state(p,{},decisions|undated,evaluate,None,same(path))[0],'37/12500')
+        with patch.dict(refresh.NOT_CLAIMS,{4440:'Not a claim.'}):
+            self.assertIsNone(refresh.claim_state(p,{},decisions,evaluate,None,lambda d:self.fail('no carry'))[0])
+
+    def test_same_package_compares_the_bytes_at_both_heads(self):
+        p={'number':4440,'head':{'sha':'b'*40}}
+        approved={'head':'a'*40,'score':'37/12500'}
+        path='research/x/RESULT.json'
+        for case,files,expected in [('same',{'a'*40:b'{"kappa":"37/12500"}','b'*40:b'{"kappa":"37/12500"}'},path),
+                                    ('changed',{'a'*40:b'{"kappa":"37/12500"} ','b'*40:b'{"kappa":"37/12500"}'},None),
+                                    ('gone',{'b'*40:b'{"kappa":"37/12500"}'},None)]:
+            def content(repo,name,sha):
+                self.assertEqual(name,path)
+                if sha not in files:raise RuntimeError('GitHub GET failed (HTTP 404)')
+                return files[sha]
+            with self.subTest(case),patch.object(refresh,'content',content):
+                self.assertEqual(refresh.same_package(p,approved,lambda m:[['added',path]],{}),expected)
+
     def test_claim_state_turns_an_unexpected_package_error_into_a_reason(self):
         # Lead belt, 2026-10-21: a bad package value can never fail the hourly refresh.
         p={'number':4500,'title':'κ = 0.003','body':'','head':{'sha':'d'*40}}
