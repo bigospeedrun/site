@@ -210,6 +210,39 @@ class RefreshTests(unittest.TestCase):
         score,path,reason=self.claim({own:'added'},{'conditional_kappa':'0.00173 approx'},title=title)
         self.assertEqual((score,path,reason),(None,own,f'{own} conditional_kappa is not an exact rational.'))
 
+    def test_a_result_json_kappa_field_equal_to_the_title_kappa_lists(self):
+        # Lead, 2026-10-21: the 1337isnot1337 packages (#4405-#4441) state their value outside
+        # conditional_kappa. A kappa field equal to a title kappa exactly is the package value.
+        top='research/query-thinned-controllers/RESULT.json'
+        self.assertEqual(self.claim({top:'added'},{'kappa':'37/12500'},title='Conditional κ = 0.00296 via query-thinned productive controllers')[:3],
+                         ('37/12500',top,None))
+        nested='research/pr4359-p7-padding/RESULT.json'
+        self.assertEqual(self.claim({nested:'added'},{'endpoint':{'kappa':'268647/100000000'}},title='Conditional κ = 0.00268647 via paid target padding')[:2],
+                         ('268647/100000000',nested))
+        refill='research/pr4359-compiler-refill/RESULT.json'
+        self.assertEqual(self.claim({refill:'added'},{'endpoint_refill':{'kappa':'230509/100000000'}},title='Refine PR4359: conditional κ = 0.00230509')[:2],
+                         ('230509/100000000',refill))
+        # #4441: two own packages, one matches the title; the other states only kappa_decimal.
+        thinned,boundary='research/fresh-helper-thinned/RESULT.json','research/fresh-helper-boundary/RESULT.json'
+        claims={thinned:{'kappa':'60021/20000000','kappa_decimal':'0.00300105'},boundary:{'kappa_decimal':'0.00272124'}}
+        self.assertEqual(self.claim({boundary:'added',thinned:'added'},claims=claims,title='Conditional κ = 0.00300105 (+4.105e-5 over #4440)')[:2],
+                         ('60021/20000000',thinned))
+        # A value the title does not state, or two files that match: the lead's queue as before.
+        score,path,reason=self.claim({top:'added'},{'kappa':'37/12500'},title='Conditional κ = 0.0030 via query thinning')
+        self.assertEqual((score,path),(None,None));self.assertIsNotNone(reason)
+        two={thinned:{'kappa':'60021/20000000'},boundary:{'endpoint':{'kappa':'60021/20000000'}}}
+        self.assertEqual(self.claim({boundary:'added',thinned:'added'},claims=two,title='κ = 0.00300105')[0],None)
+        # No kappa in the title: unchanged (silent), and a Claude disagreement still goes to the lead.
+        self.assertEqual(self.claim({top:'added'},{'kappa':'37/12500'},title='Query-thinned productive controllers'),(None,None,None))
+        self.assertEqual(self.claim({top:'added'},{'kappa':'37/12500'},title='κ = 0.00296',judge='Claude reads no claim.')[2],'Claude reads no claim.')
+
+    def test_a_decided_result_json_binds_its_nested_value(self):
+        path='research/pr4359-p6-fresh/RESULT.json'
+        pr={'number':4414,'head':{'sha':'c'*40}}
+        with patch.object(refresh,'content',lambda repo,p,sha:json.dumps({'endpoint':{'kappa':'267987/100000000'}}).encode()):
+            self.assertEqual(refresh.decided_package(pr,'267987/100000000',lambda m:[['added',path]]),path)
+            self.assertIsNone(refresh.decided_package(pr,'1/2',lambda m:[['added',path]]))
+
     def test_silent_pr_is_read_once_more_for_result_json(self):
         # #4088 and #4091 were read silent before RESULT.json support: read once more, from #3945 on.
         head='8'*40;title='Improve conditional κ with a mixed fourth staged entry (+8.696e-9)'

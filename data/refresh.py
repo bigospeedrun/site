@@ -133,6 +133,24 @@ class CappedFiles(list):
 def package_field(path):
     return PACKAGE_FIELD[path.rsplit('/', 1)[1]]
 
+# Other RESULT.json fields that state the package value (#4405 endpoint_refill.kappa, #4412-#4416
+# endpoint.kappa, #4440/#4441 a top-level kappa; 2026-10-21). They count only when they equal a
+# kappa the PR title states exactly (Lead: list that shape without a manual decision).
+RESULT_VALUE_FIELDS = (('kappa',), ('endpoint', 'kappa'), ('endpoint_refill', 'kappa'))
+MAX_OWN_RESULTS = 5
+EXACT_RATIONAL = re.compile(r'\d+(?:/\d+)?|\d*\.\d+')
+
+def result_values(obj):
+    """(field, value) of each exact rational a RESULT.json object states in RESULT_VALUE_FIELDS."""
+    found = []
+    for keys in RESULT_VALUE_FIELDS:
+        value = obj
+        for key in keys:
+            value = value.get(key) if isinstance(value, dict) else None
+        if isinstance(value, str) and len(value) <= MAX_SCORE_CHARS and EXACT_RATIONAL.fullmatch(value):
+            found.append(('.'.join(keys), value))
+    return found
+
 def claim_files(m, pulls_by_number, old, fetched):
     """[[status, path], ...] of the research/*/CLAIM.json and research/*/RESULT.json files
     PR m adds or changes at its head; cached in submissions (claim_files, claim_files_head,
@@ -159,10 +177,12 @@ def decided_package(p, score, files_of, others=()):
         if status != 'added' or path in others:
             continue
         try:
-            kappa = json.loads(content(CROC, path, p['head']['sha'])).get(package_field(path))
+            obj = json.loads(content(CROC, path, p['head']['sha']))
+            values = [obj.get(package_field(path))] + ([v for _, v in result_values(obj)] if RESULT_PATH.fullmatch(path) else [])
         except (ValueError, AttributeError, RuntimeError):
             continue
-        if isinstance(kappa, str) and len(kappa) <= MAX_SCORE_CHARS and re.fullmatch(r'\d+(?:/\d+)?|\d*\.\d+', kappa) and Fraction(kappa) == Fraction(score):
+        if any(isinstance(kappa, str) and len(kappa) <= MAX_SCORE_CHARS and EXACT_RATIONAL.fullmatch(kappa) and Fraction(kappa) == Fraction(score)
+               for kappa in values):
             return path
     return None
 
@@ -201,19 +221,30 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
         # No own CLAIM.json: one own RESULT.json that states a conditional_kappa is the package.
         # A RESULT.json without that field (most of them, 2026-10-20) leaves the rules below.
         result_own = owned(results)[1]
-        if len(result_own) == 1:
+        raws = {}
+        for path in result_own[:MAX_OWN_RESULTS]:
             try:
-                raw = content(CROC, result_own[0], head)
+                raws[path] = content(CROC, path, head)
             except RuntimeError as error:
                 if '(HTTP 404)' not in str(error):
                     raise
-                return None, result_own[0], claim_judge.Retry(f'{result_own[0]} is not readable at the PR head (HTTP 404).')
+                return None, path, claim_judge.Retry(f'{path} is not readable at the PR head (HTTP 404).')
+        def parsed(path):
             try:
-                stated = 'conditional_kappa' in json.loads(raw)
+                obj = json.loads(raws[path])
             except (ValueError, TypeError):
-                stated = False
-            if stated:
-                return package_value(stage, p, result_own[0], raw, names)
+                return {}
+            return obj if isinstance(obj, dict) else {}
+        if len(result_own) == 1 and 'conditional_kappa' in parsed(result_own[0]):
+            return package_value(stage, p, result_own[0], raws[result_own[0]], names)
+        # One own RESULT.json whose kappa field equals a kappa the title states exactly; among
+        # several own files (#4441), the one that matches. No match or two: the rules below.
+        titled = set(title_kappas(p['title'])) if names and len(result_own) <= MAX_OWN_RESULTS else set()
+        matches = [(path, field, value) for path in raws for field, value in result_values(parsed(path))
+                   if Fraction(value) in titled]
+        if titled and len({(path, Fraction(value)) for path, _, value in matches}) == 1:
+            path, field, value = matches[0]
+            return package_value(stage, p, path, raws[path], names, field, value)
     if len(added) == 1 and not own:
         path = added[0]
         return None, path, (f'{path} is already on main.' if holder[path] == 'main' else f'{path} belongs to {holder[path]}.')
@@ -253,14 +284,15 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
         return None, path, claim_judge.Retry(f'{path} is not readable at the PR head (HTTP 404).')
     return package_value(stage, p, path, raw, names)
 
-def package_value(stage, p, path, raw, names):
+def package_value(stage, p, path, raw, names, field=None, kappa=None):
     """(score, claim_path, reason) from the package file text: kappa in a CLAIM.json,
-    conditional_kappa in a RESULT.json."""
-    n = p['number']; head = p['head']['sha']; field = package_field(path)
-    try:
-        kappa = json.loads(raw).get(field)
-    except (ValueError, AttributeError):
-        return None, path, f'{path} is not a JSON object.'
+    conditional_kappa in a RESULT.json, or the given RESULT.json field and value."""
+    n = p['number']; head = p['head']['sha']; field = field or package_field(path)
+    if kappa is None:
+        try:
+            kappa = json.loads(raw).get(field)
+        except (ValueError, AttributeError):
+            return None, path, f'{path} is not a JSON object.'
     if kappa is None:
         return None, path, (f'{path} has no {field} field.' if names else None)
     # From here on the package states a kappa, so every failure goes to the lead.
@@ -480,7 +512,7 @@ def refresh(stage, now):
             m.update(checked_at=day, source_url=p['html_url'], pr_number=n, merged=bool(p['merged_at']), merged_at=p['merged_at'], closed_at=p['closed_at'], updated_at=p['updated_at'], eligible_for_record=bool(p['merged_at']), upstream_selected=False, publication_date=p['created_at'], publication_source_url=p['html_url'], race_event_at=p['created_at'])
             if new:
                 m.pop('upstream_readme', None)
-                m['score_source'] = f'{package_field(claim_path)} in {claim_path} at the PR head; source claim only' if claim_head and claim_path else 'Lead review decision; source claim only'
+                m['score_source'] = f"{'kappa' if CLAIM_PATH.fullmatch(claim_path) else 'stated kappa'} in {claim_path} at the PR head; source claim only" if claim_head and claim_path else 'Lead review decision; source claim only'
             records[rid] = r; metadata[rid] = m
         for rid in prior['record_ids'] if prior else []:
             if rid not in ids:
