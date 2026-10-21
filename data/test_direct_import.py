@@ -233,9 +233,18 @@ class DirectImportTests(unittest.TestCase):
 
     def test_input_parser_rejects_unbounded_and_ambiguous_data(self):
         with self.assertRaises(gate.Rejected):gate.read_json('{"bound":1,"bound":2}')
-        for bound in ['1e-3','1/0','-1','0.'+'1'*100,'9'*19]:
+        for bound in ['1e-3','1/0','-1','0.'+'1'*100,'9'*41,'1/'+'9'*41,'1'+'0'*40+'/3']:
             sub=copy.deepcopy(self.env['submission']);sub['bound']=bound
             with self.subTest(bound=bound),self.assertRaises(gate.Rejected):gate.normalize(sub)
+
+    def test_bounds_up_to_40_digits_per_integer_are_read_exactly(self):
+        # Issue #35 (2026-10-21): the reduced 3SUM bound needs 19 digits in each integer.
+        for problem,bound in [('3sum','4800698571997281331/2500000000000000000'),('dft','1/'+'9'*40),('dft','1'+'0'*38+'1/'+'3'+'0'*39)]:
+            sub=copy.deepcopy(self.env['submission']);sub.update(problem=problem,bound=bound)
+            with self.subTest(bound=bound):
+                self.assertEqual(gate.normalize(sub)['bound'],bound)
+                from fractions import Fraction
+                n,d=Fraction(bound).as_integer_ratio();self.assertEqual(f'{n}/{d}' if d!=1 else str(n),bound)
 
     def test_new_envelope_and_receipt_artifact_bindings(self):
         for key,value in [('problem_id','apsp/word-ram'),('score_relation','strict-upper-bound'),

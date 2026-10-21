@@ -71,7 +71,8 @@ def normalize(value):
     require(isinstance(value, dict) and fields <= value.keys() and not value.keys()-fields-{'entrypoint'}, 'Invalid submission fields')
     require(type(value['schema_version']) is int and value['schema_version'] == 1, 'Unsupported submission schema')
     require(isinstance(value['problem'], str) and value['problem'] in PROBLEMS, 'Unsupported problem')
-    require(isinstance(value['bound'], str) and re.fullmatch(r'(?:0|[1-9][0-9]{0,17})(?:/[1-9][0-9]{0,17})?', value['bound']), 'Invalid rational bound')
+    # At most 40 digits per integer (Nil, 2026-10-21: a reduced 3SUM bound needed 19, issue #35).
+    require(isinstance(value['bound'], str) and re.fullmatch(r'(?:0|[1-9][0-9]{0,39})(?:/[1-9][0-9]{0,39})?', value['bound']), 'Invalid rational bound')
     bound = Fraction(value['bound'])
     require(0 <= bound <= PROBLEMS[value['problem']][1], 'Bound outside model range')
     require(isinstance(value['repo_url'], str) and re.fullmatch(r'https://github\.com/[A-Za-z0-9][A-Za-z0-9_.-]{0,99}/[A-Za-z0-9][A-Za-z0-9_.-]{0,99}', value['repo_url']), 'Invalid source repository')
