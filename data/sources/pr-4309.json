@@ -1,0 +1,11 @@
+{
+  "number": 4309,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4309",
+  "title": "The translated Schur diagonals are positive and at most 1 (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, all six Schur diagonals on survivors `0,1,2,7,8,9` are strictly positive and at most 1.\n- Vertices 0 and 9 do not meet the interior, so those diagonals are exactly 1. The corrections at 1 and 8 lie strictly between `1/10^99` and `1/10^98`. The corrections at 2 and 7 lie strictly between `1/10^25` and `1/10^24`.\n- No new kappa is claimed. The selected record is unchanged. This is one Schur section, not a proof that the reference matrix has diagonal 1 after every elimination.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-diagonals/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-diagonals`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T06:46:45Z",
+  "updated_at": "2026-10-21T06:46:45Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

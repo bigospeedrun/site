@@ -1,0 +1,11 @@
+{
+  "number": 4315,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4315",
+  "title": "The normalized separator corners stay positive at half-bandwidth 3 (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, divide each Schur row on survivors `0,1,2,7,8,9` by its diagonal. The normalized corner from 1 to 8 lies strictly between `1/10^50` and `1/10^49`. The normalized corner from 8 to 1 lies strictly between `1/10^221` and `1/10^220`.\n- In survivor order those corners have distance 3. Every other survivor pair at distance greater than 2 is an exact zero before and after the positive row scaling, so the half-bandwidth is 3.\n- No new kappa is claimed. The selected record is unchanged. This is one normalized Schur section, not an all-size bandwidth theorem.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-bandwidth/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-bandwidth`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T07:09:53Z",
+  "updated_at": "2026-10-21T07:09:53Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

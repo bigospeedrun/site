@@ -1,0 +1,11 @@
+{
+  "number": 4310,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4310",
+  "title": "The normalized translated Schur rows stay below the displayed bound (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, divide each Schur row on survivors `0,1,2,7,8,9` by its diagonal. Every off-diagonal row sum is strictly below `exp(-2 a theta)+5 exp(-2 a)`.\n- Vertices 0 and 9 have diagonal exactly 1 and identically zero Schur correction, so the original exponent majorant still bounds those rows. The quotients at 1, 2, 7, and 8 use the enclosed off-sums divided by diagonal lower bounds from the corrections in `(1/10^99, 1/10^98)` and `(1/10^25, 1/10^24)`.\n- No new kappa is claimed. The selected record is unchanged. This is one normalized Schur section, not a proof of the note's all-size row gap.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-normalized/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-normalized`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T06:58:18Z",
+  "updated_at": "2026-10-21T06:58:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

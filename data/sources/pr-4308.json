@@ -1,0 +1,11 @@
+{
+  "number": 4308,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4308",
+  "title": "The translated Schur rows stay below the displayed Gaussian bound (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, every off-diagonal row sum of the Schur complement on survivors `0,1,2,7,8,9` is strictly below `exp(-2 a theta)+5 exp(-2 a)`, which equals `exp(-9 pi/722)+5 exp(-18 pi)` at these parameters.\n- Vertices 0 and 9 do not meet the interior, so their Schur rows are the original rows. The other four rows are strictly below `24/25`. The filled entry from vertex 2 to vertex 7 lies strictly between `3/10` and `2/5`.\n- No new kappa is claimed. The selected record is unchanged. This is one Schur section, not the all-size row-gap claim.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-schur-rows/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-schur-rows`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T06:40:46Z",
+  "updated_at": "2026-10-21T06:40:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 4306,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4306",
+  "title": "The translated prime-scale kernel keeps both separator corners positive (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, deleting `{3,4,5,6}` leaves both Schur directions between vertices 1 and 8 positive. The forward corner lies strictly between `1/10^50` and `1/10^49`. The reverse corner lies strictly between `1/10^221` and `1/10^220`. The half-bandwidth is 3.\n- The origin sits on vertex 0, so `t_8^2-t_1^2=63`. Vertex 1 meets the interior only at vertex 3, and vertex 8 meets it only at vertex 6.\n- No new kappa is claimed. The selected record is unchanged. This is one prime, one shift endpoint, one translated origin, and width 2, not the all-size bandwidth claim.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-corner/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-corner`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T06:19:06Z",
+  "updated_at": "2026-10-21T06:19:06Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

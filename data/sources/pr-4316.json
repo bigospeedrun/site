@@ -1,0 +1,11 @@
+{
+  "number": 4316,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4316",
+  "title": "The narrow Neumann bounds on this section are 5776, 200144176, and 5776*sqrt(34651) (no new κ)",
+  "body": "## Summary\n- At `p=19`, `beta0=-1/2`, bandwidth 2, and `t_i=i`, the normalized Schur section on `0,1,2,7,8,9` meets the pinned narrow Neumann hypotheses with survivor bandwidth `b=3` and `rho=5775/5776`.\n- The lemma's right-hand sides are `||H^{-1}||_infinity <= 5776`, `||H^{-1}||_1 <= 200144176`, and `||H^{-1}||_2 <= 5776*sqrt(34651)`. The integer `34651` is prime.\n- No new kappa is claimed. The selected record is unchanged. This applies the pinned lemma to one section; it does not prove the Neumann series.\n\n## Test plan\n- [x] `python3.12 -I -B research/gaussian-origin-neumann/verify.py`\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-origin-neumann`\n- [ ] Maintainer replay of the registered package\n\n\nMade with [Cursor](https://cursor.com)",
+  "created_at": "2026-10-21T07:13:35Z",
+  "updated_at": "2026-10-21T07:13:35Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
