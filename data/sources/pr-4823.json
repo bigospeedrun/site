@@ -1,0 +1,11 @@
+{
+  "number": 4823,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4823",
+  "title": "Record one leading-quarter n=8 parity prefix at 25/16 (no new κ)",
+  "body": "## Summary\n\nRecords one nested triangular prefix for the n=8 symbol `(1, 1/4, 1/16, 1/16, 1/16, 1/16, 1/16, 1/16)`. The degree-1 sign left open by #4822 is inside the active 128-symbol claim, so this package records one different magnitude. No new κ. The selected record stays `60403/20000000`.\n\nThe tail `l1` is `5/8`. The largest proper prefix is `25/16`, strictly above `3/2`. The right shear alone is `1373/1024`, the next four proper prefixes are `11/8`, and the next five are `23/16`. Eleven proper prefixes equal `25/16`. The even-child left shear is the step that crosses `3/2`. The completed product matches the reordered Toeplitz matrix and has infinity norm `13/8`.\n\nThis package branches from main `624de9dc66858af0945e5f8a0942488d62280d43`. It does not replay an unmerged predecessor.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-leading-quarter\n```\n\nObserved: `PASS_TRIANGULAR_PARITY_LEADING_QUARTER` and `outcome=completed`.\n",
+  "created_at": "2026-10-22T21:14:39Z",
+  "updated_at": "2026-10-22T21:14:39Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

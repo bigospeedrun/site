@@ -1,0 +1,11 @@
+{
+  "number": 4815,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4815",
+  "title": "Record one degree-6 sign n=8 parity prefix at 23/16 (no new κ)",
+  "body": "## Summary\n\nRecords one nested triangular prefix for the n=8 symbol `(1, 1/8, 1/16, 1/16, 1/16, 1/16, -1/16, 1/16)`. This is the degree-6 sign left open by #4812. No new κ. The selected record stays `60403/20000000`.\n\nThe tail `l1` is `1/2`. Every proper prefix has infinity norm at most `3/2`. The largest proper prefix is `23/16`. The right shear alone is `2521/2048`, the next four proper prefixes are `5/4`, and the next five are `21/16`. The even child is `(1, 1/16, 1/16, -1/16)`. Its left shear carries `-17/256` and still lifts `21/16` to `23/16`. The quotient is `(1/8, 7/128, 105/2048, 2087/32768)`. The completed product matches the reordered Toeplitz matrix and has infinity norm `3/2`.\n\nThis package branches from main `624de9dc66858af0945e5f8a0942488d62280d43`. It does not replay an unmerged predecessor.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-degree-six-sign\n```\n\nObserved: `PASS_TRIANGULAR_PARITY_DEGREE_SIX_SIGN` and `outcome=completed`.\n",
+  "created_at": "2026-10-22T20:38:44Z",
+  "updated_at": "2026-10-22T20:38:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
