@@ -1,0 +1,11 @@
+{
+  "number": 4656,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4656",
+  "title": "Absorb one heavy slice by the factor-8 gate (no new κ)",
+  "body": "## Summary\n\nOne heavy slice fits the factor-8 gate. For integers `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0`, whenever `p ≥ max(64, 4K + 2C)` and `8 g ceil(log2 p) ≤ p`,\n\n```text\n(p^{10})^{g-1} p^6 (1 + p^4) exp(K p - p^2) < 2^{-C p}.\n```\n\nThe exponent spends `10 g L`, so the gate gives `80 g L ≤ 10 p`. Eight times the exponent is then at most `10 p + 8 - 4 p^2`. The polynomial `4 p^2 - 10 p - 16` equals `15728` at `p = 64` and increases by `8 p - 6`, so the exponent is at most `-C p - 1`.\n\nAt `p = 112` and `g = 2`, `8 g L = 112 ≤ 112` while `9 g L = 126 > 112`, and the exponent is `-12403`. This `8` multiplies `g L`. The coefficient-9 monomials in #4495 still use `16 g L ≤ p`, because `9 > 8`. At `p = 2` and `g = 1` the factor-8 hypothesis fails, and `e < 3` puts the slice above `1`.\n\nThe `g` copies under this gate stay open. The trailing bound `p^{10}`, the section error, and the ceiling `9 p^2` stay hypotheses. This package does not prove `||H^{-1}||_2 ≤ p^{10}`. No new κ. The selected record on this base is `60403/20000000`. This answers the open question of #4531. It branches from the fetched main `b58ad9ef4` and does not replay that unmerged package. The predecessor was pinned to the older main `f9f85c1e`.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-slice-eight-gate`\n- [x] Prints `PASS_GAUSSIAN_SLICE_EIGHT_GATE` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `b58ad9ef4d4e861b0eaa5dba41742bdc072dca51`, priority revision 7. Upstream fetched at 2026-10-22T14:29:21Z was that commit. The pre-submit fetch, reread at 2026-10-22T14:31:01Z, was unchanged, and the four pinned blobs match. κ remains `60403/20000000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T14:31:21Z",
+  "updated_at": "2026-10-22T14:31:21Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

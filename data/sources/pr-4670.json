@@ -1,0 +1,11 @@
+{
+  "number": 4670,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4670",
+  "title": "Absorb g copies of the heavy slice by the factor-5 gate (no new κ)",
+  "body": "## Summary\n\nThe `g` copies of the heavy slice fit the factor-5 gate. For integers `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0`, whenever `p ≥ max(64, 4K + 2C)` and `5 g ceil(log2 p) ≤ p`, `g` copies of\n\n```text\n(p^{10})^{g-1} p^6 (1 + p^4) exp(K p - p^2)\n```\n\nare strictly below `2^{-C p}`. The gate forces `g < 2^L`, so the copies add one `L`. For `p ≥ 64`, `8 L ≤ p`, and `40 L` becomes `5 p`. Five times the eighths is then at most `85 p + 40 - 20 p^2`. The polynomial `20 p^2 - 85 p - 80` equals `76400` at `p = 64` and increases by `40 p - 65`, so the exponent is at most `-C p - 1`.\n\nAt `p = 70` and `g = 2`, `5 g L = 70 ≤ 70` while `6 g L = 84 > 70`, and the copies exponent is `-4752`. This `5` multiplies `g L`. The coefficient-9 monomials in #4495 still use `16 g L ≤ p`, because `9 > 8`. At `p = 2` and `g = 2` the hypothesis fails. Since `e < 3`, two copies are larger than `1`.\n\nA factor smaller than `5` stays open. The trailing bound `p^{10}`, the section error, and the ceiling `9 p^2` stay hypotheses. This package does not prove `||H^{-1}||_2 ≤ p^{10}`. No new κ. The selected record is `60403/20000000`. This answers the open question of #4669. It branches from fetched main and does not replay that unmerged package.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-slice-five-copies`\n- [x] Prints `PASS_GAUSSIAN_SLICE_FIVE_COPIES` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `b58ad9ef4d4e861b0eaa5dba41742bdc072dca51`, priority revision 7. Upstream fetched at 2026-10-22T15:03:53Z was that commit. The pre-submit fetches at 2026-10-22T15:05:33Z and 2026-10-22T15:05:45Z were the same commit, and the pinned blobs match. κ remains `60403/20000000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T15:05:58Z",
+  "updated_at": "2026-10-22T15:05:58Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

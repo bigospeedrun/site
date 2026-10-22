@@ -1,0 +1,11 @@
+{
+  "number": 4673,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4673",
+  "title": "Absorb one heavy slice by the factor-4 gate (no new κ)",
+  "body": "## Summary\n\nOne heavy slice fits the factor-4 gate. For integers `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0`, whenever `p ≥ max(64, 4K + 2C)` and `4 g ceil(log2 p) ≤ p`,\n\n```text\n(p^{10})^{g-1} p^6 (1 + p^4) exp(K p - p^2)\n```\n\nis strictly below `2^{-C p}`. The exponent spends `10 g L`. Four times the eighths is `32 (E + C p)`. The gate gives `320 g L = 80 · 4 g L ≤ 80 p`. The identity `32 (2 K + C) = 16 (4 K + 2 C)` bounds the linear term by `16 p^2`. The sum is at most `-(16 p^2 - 80 p - 32)`. The polynomial `16 p^2 - 80 p - 64` equals `60352` at `p = 64` and increases by `32 p - 64`, so the exponent is at most `-C p - 1`.\n\nAt `p = 84` and `g = 3`, `4 g L = 84 ≤ 84` while `5 g L = 105 > 84`, and the exponent is `-6845`. The factor-5 comparison `400 g L ≤ 80 p` fails there: `8400 > 6720`. This `4` multiplies `g L`. The coefficient-9 monomials in #4495 still use `16 g L ≤ p`, because `9 > 8`. At `p = 2` and `g = 1` the hypothesis fails. Since `e < 3`, the slice `1088 exp(-4)` is larger than `1`.\n\nThe `g` copies under this gate stay open. The trailing bound `p^{10}`, the section error, and the ceiling `9 p^2` stay hypotheses. This package does not prove `||H^{-1}||_2 ≤ p^{10}`. No new κ. The selected record is `60403/20000000`. This answers the open question of #4670. It branches from fetched main and does not replay that unmerged package.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-slice-four-gate`\n- [x] Prints `PASS_GAUSSIAN_SLICE_FOUR_GATE` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `b58ad9ef4d4e861b0eaa5dba41742bdc072dca51`, priority revision 7. Upstream fetched at 2026-10-22T15:14:16Z was that commit. The pre-submit fetches at 2026-10-22T15:16:03Z and 2026-10-22T15:16:22Z were the same commit, and the pinned blobs match. κ remains `60403/20000000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T15:16:34Z",
+  "updated_at": "2026-10-22T15:16:34Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
