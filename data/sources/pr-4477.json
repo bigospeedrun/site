@@ -4,8 +4,8 @@
   "title": "Disposition receipt for the #4436 direct-flow chain (6 PRs; one withdrawn claim recorded)",
   "body": "## Summary\n\nThis adds `research/direct-flow-chain-receipt/`, a source-bound disposition receipt (overlap-receipt card) for zxv's #4436 and the five follow-ups around it: #4456, #4459, #4465, #4467 and #4476.\n\n**Claim type:** consolidation receipt. **No new κ.** It makes no closures and no merge recommendations.\n\n## Results\n\n- **Retention.** Nothing is retained on main. Only #4436 edits paths outside its package, and its two docs files conflict textually with the p17 chain (#4474).\n- **Contents.** The receipt maps what each PR establishes, with exact heads and blobs.\n- **Withdrawn claim.** The first version of #4459 (`04da76eb`) claimed a reduction to the boundary share. It is withdrawn: leaf exits dominate. The correction is at `488a75a9`.\n- **Where the chain stands.** The single-step refined induction certifies about 0.0008 by `N ≈ 3·10⁵`, has an asymptotic cap near 0.00257 < `s*` (saturation heuristic), and reaches 0.0023 only near `N ≈ 10^{940}`.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/direct-flow-chain-receipt --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/direct-flow-chain-receipt\n  PASS_REGISTERED_RESEARCH_PACKAGE research/direct-flow-chain-receipt outcome=completed\n```\n\nHead: `1e8e049f83e7d5605665224e4f1ee131ce442b8f`. Base: canonical main `2a13eb18`.\n\nPrepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-21T23:49:58Z",
-  "updated_at": "2026-10-21T23:56:50Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:06Z",
+  "merged_at": "2026-10-22T02:49:06Z",
+  "state": "closed"
 }

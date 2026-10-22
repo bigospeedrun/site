@@ -4,8 +4,8 @@
   "title": "Show the smallest Neumann coefficient is 9 (no new κ)",
   "body": "## Summary\n\nFor every integer `p ≥ 2`, the within-cell Neumann ceiling\n\n```text\nU = 8 p^2 (D - 4) / (D - 32 p^2),    D = 2^{32760 p},\n```\n\nsatisfies `8 p^2 < U < 9 p^2`. The smallest integer `c` with `U < c p^2` for every such `p` is therefore `9`. Every integer `c ≤ 8` fails because `U > 8 p^2`. The same `9 p^2` is strictly sharper than `16 p^2 - 1` and `p^6`.\n\nThis is a property of the formula. It is an inverse bound only when the #4452 gauge holds. The ideal gaps stay hypotheses. No new κ. The selected record remains `23/10000`.\n\nThis answers the open question of #4492. It does not replay #4452 or #4492. The tensor absorption and the Schur margin still use `10`.\n\n## Comparison\n\nWith a positive denominator, `U < 9 p^2` is equivalent to `8(D - 4) < 9(D - 32 p^2)`. The difference is\n\n```text\n9(D - 32 p^2) - 8(D - 4) = D - 288 p^2 + 32.\n```\n\nSo it is enough that `D > 288 p^2 - 32`. For `p ≥ 2`, `2^{2p} ≥ p^2 + 1`, hence `288 p^2 < 2^{2p+9}`. The exponent gap `32760 p - (2p + 9) = 32758 p - 9` is 65507 at `p = 2` and increases, so `2^{2p+9} < D`. The same estimate gives `D > 32 p^2`.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-neumann-nine`\n- [x] Prints `PASS_GAUSSIAN_NEUMANN_NINE` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7. Upstream fetched at 2026-10-22T01:42:53Z was still that commit, and the pre-submit fetch was unchanged.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
   "created_at": "2026-10-22T01:44:50Z",
-  "updated_at": "2026-10-22T01:44:50Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:05Z",
+  "merged_at": "2026-10-22T02:49:05Z",
+  "state": "closed"
 }

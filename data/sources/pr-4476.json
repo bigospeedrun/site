@@ -4,8 +4,8 @@
   "title": "Independently check #4436 §3 on raw p7: width factor, exact routing-slot identity, N log N growth (no new κ)",
   "body": "## Summary\n\nThis adds `research/direct-flow-width-check/`. It is an independent check of zxv's #4436 §3 (nested widths and complete count bounds) on raw p7. That section was left uncovered by my #4456, whose flow implementation this reuses.\n\n**Claim type:** an independent finite check plus an exact counting identity. **No new κ.**\n\n## Results (every rank 121 ≤ n ≤ 2000)\n\n- **Width factor.** `S_n ≤ C = W(W+P+1)^{h+1}`, with `W = 7688` and `P = 55998`. The worst `S_n/C` is `1.6·10⁻⁵`.\n- **New exact identity.** `sources + exits + 2·matched = U(W+P)`. So #4436's routing count equals `2(W+P)U − 2·matched` exactly, and is at most `2(W+P)U`.\n- **Growth.** `log B_N/(N log N)` is 1.09, 1.76, 1.96 and 2.03 at `N` = 500, 1,000, 1,500 and 2,000, and 2.07 at 3,000 locally. That is consistent with `exp(O(N log N))`, with a constant near 2.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/direct-flow-width-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/direct-flow-width-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/direct-flow-width-check outcome=completed\n```\n\nHead: `4e7022aa9128c8673d3e2024052b2deaa18cb6e4`. Base: canonical main `2a13eb18`.\n\nCredit: zxv (#4436) and Jacob Alan Sussman (Theorem 1G). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-21T23:48:24Z",
-  "updated_at": "2026-10-21T23:48:24Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:06Z",
+  "merged_at": "2026-10-22T02:49:06Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Place a core row past the agreement radius p^26 (no new κ)",
   "body": "## Question\n\n#4490 uses `||B - P|| < p^6 exp(-p^2)` on one core axis. Does a core row kept at distance `A = ceil(p^{48})` from every face lie past the within-cell agreement radius of #4452?\n\n## Result\n\nLet `p ≥ 2` and `0 ≤ W ≤ p - 1`. The bandwidth `R = (2 p^{24} - 1) W` satisfies `R < p^{26}`, because\n\n```text\np^{26} - (2 p^{24} - 1)(p - 1) = p^{24} ((p - 1)^2 + 1) + p - 1 > 0.\n```\n\nFor an integer `p`, `A = p^{48}`, and `p^{48} = p^{26} p^{22}` with `p^{22} ≥ 2^{22} > 1`. Thus `R < p^{26} < A`. The core row is strictly outside that bandwidth, so its section-polynomial row is the global polynomial row. Under the #4452 gauge, `||P - H_sec^{-1}||_2 < p^6 exp(-p^2)`.\n\nDistance `p^{25}` fails: at `p = 2` the loose radius is `2^{25} + 1`.\n\n**Claim type:** one distance comparison. **No new κ.** The ideal gaps stay hypotheses, and the operator bound is not re-proved. The #4100 notes still use `p^{10} exp(-p^2)`.\n\nThe locality audit already says `A` clears the written radius for `J = ceil(p^{42})`. This comparison is against the lowered radius `p^{26}`.\n\nThis branch starts from canonical main. It does not replay #4452.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-core-row\n```\n\n`PASS_GAUSSIAN_CORE_ROW` and `outcome=completed` on this machine. Maintainer replay has not been run.\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7, selection refresh κ = `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
   "created_at": "2026-10-22T01:33:09Z",
-  "updated_at": "2026-10-22T01:33:09Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:06Z",
+  "merged_at": "2026-10-22T02:49:06Z",
+  "state": "closed"
 }

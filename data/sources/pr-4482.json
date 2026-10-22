@@ -4,8 +4,8 @@
   "title": "Lower the core side exponent from 400 to 80 (no new κ)",
   "body": "## Question\n\n#4481 leaves HALO's core side `L = 2^{ceil(400 log2 p)}` in place. The volume bound has two sparse powers. Both are negative for group exponents `ε, β < 1` when `A = p^{48}` and `L ≥ p^{400}`. What is the smallest integer `C` that still does this when `A = p^{26}`?\n\n## Result\n\nWith `A = p^{26}` and `L ≥ p^C`, the powers are `ε + β + 78 - C` and `ε + 28 - C`. Both are negative for every `ε < 1` and `β < 1` precisely when `C ≥ 80`. At `ε = β = 3/4`, the exponent 79 gives `1/2`. The second power is negative as soon as `C ≥ 29`, so the first power is the binding one.\n\nThe same 80 gives `p^{80} > 4 p^{26}` for every integer `p ≥ 2`, and `g A/L` has exponent `-53` when `g ≤ p`. The written 400 still works and is larger. A uniform slack of 1 below zero needs 81; 80 is the smallest integer that makes both powers strictly negative.\n\n**Claim type:** exponent comparison for the sparse volume. **No new κ.** The agreement distance `p^{26}` stays a hypothesis. The tensor error `g p^{10 g} exp(-p^2)` is not retuned, and the #4100 notes are unchanged.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-core-side\n```\n\n`PASS_GAUSSIAN_CORE_SIDE` and `outcome=completed` on this machine. Maintainer replay has not been run.\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7, selection refresh κ = `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
   "created_at": "2026-10-22T00:47:38Z",
-  "updated_at": "2026-10-22T00:47:38Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:06Z",
+  "merged_at": "2026-10-22T02:49:06Z",
+  "state": "closed"
 }

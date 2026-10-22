@@ -4,8 +4,8 @@
   "title": "Independently check #4439/#4442: halo exponents 12, 26, 28, 28, 6 under eps = 1/(16p^2) (no new κ)",
   "body": "## Summary\n\nThis adds `research/eps-halo-exponent-check/`. It is an independent check of jwr404's #4439 (within one cell) and #4442 (across cells, downward reading), the halo exponents under the relative budget `ε = 1/(16p²)`. It is the ε-route counterpart of my #4460.\n\n**Claim type:** an independent check by separate code, with exact rationals. **No new κ.**\n\n## Results\n\nAll statements check out.\n\n- **Ceiling.** The split identity (grid-proved) gives `off ≤ (16p²−2)/(16p²−1)`, so the gap is exactly `1/(16p²−1)`.\n- **Exponents.** Endpoint 12, length 26, bandwidth and agreement 28, normalizer 6 (7 also works), exact for `p` in 2..64, with all-`p` arguments.\n- **Fails.** 11 and 5 at `p = 2`; 25 at `p = 2` (certified); 27 at `p = 2` (loose count) and for `p ≥ 3` (sharp count).\n- **#4442's extras.** The `p = 2` tightness `63·63 > 62·64` and the bare-kernel example (square gap 32/16 against 20/16) both hold.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/eps-halo-exponent-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/eps-halo-exponent-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/eps-halo-exponent-check outcome=completed   (<1 s, stdlib only)\n```\n\nHead: `0cf8e2b0722379e9195f855c6c28aeaffa39aebd`. Base: canonical main `2a13eb18`.\n\nCredit: James Reed (jwr404, #4439 and #4442). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-21T23:34:29Z",
-  "updated_at": "2026-10-21T23:34:29Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:06Z",
+  "merged_at": "2026-10-22T02:49:06Z",
+  "state": "closed"
 }

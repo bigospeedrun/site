@@ -1,0 +1,11 @@
+{
+  "number": 4511,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4511",
+  "title": "Attribute the three axis hypotheses on one core row (no new κ)",
+  "body": "## Summary\n\nA core row kept at distance `ceil(p^{48})` inherits four facts and leaves one bound open:\n\n1. **Row identity, with no gauge.** #4491 gives `R < p^{26} < p^{48} = A`. The section-polynomial row is the global polynomial row.\n2. **One section error, under the #4452 gauge.** #4491 gives `||P - H_sec^{-1}||_2 < ε`, with `ε = p^6 exp(-p^2)`. That is `||B - P|| < ε` for `B = H_sec^{-1}`.\n3. **Inverse ceiling, under the same gauge.** #4493 proves `U < 9 p^2` for every integer `p ≥ 2`. Under the gauge, the Neumann 1-norm and ∞-norm are strictly below `U`, so `||B|| ≤ 9 p^2`.\n4. **Approximant norm, under the same gauge.** #4509 turns that ceiling and that one error into `||P|| < 9 p^2 + ε`. The approximant is the polynomial.\n5. **Two-inverse difference.** `||B - C|| < 2 ε` still needs `||C - P|| < ε`. One core row does not supply it.\n\nThe integer shadow `|8 - 5| = |8 - 6| + |6 - 5|` separates the pieces. The ideal off-sums `1 - 1/(8 p^2)` stay a hypothesis. This package does not re-prove the radius, the coefficient 9, or the triangle, and it does not claim a new κ. The selected record remains `23/10000`.\n\nThis answers the open question of #4509. The next question is whether a second core row supplies the missing section error.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-axis-inheritance`\n- [x] Prints `PASS_GAUSSIAN_AXIS_INHERITANCE` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc`, priority revision 7. Upstream fetched at 2026-10-22T02:57:30Z was that commit, and the pre-submit fetch was unchanged. κ remains `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T03:01:38Z",
+  "updated_at": "2026-10-22T03:01:38Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

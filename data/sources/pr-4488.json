@@ -4,8 +4,8 @@
   "title": "Bound one tensor axis by two section errors (no new κ)",
   "body": "## Question\n\n#4487 bounds the scalar monomial `2g (10 p^2 + p^6 exp(-p^2))^{g-1} p^6 exp(-p^2)` and leaves open whether the tensor difference is at most that monomial. What does one axis of the product contribute?\n\n## Result\n\nLet `ε = p^6 exp(-p^2)`. If every axis satisfies `||B_i|| ≤ 10 p^2`, `||C_i|| ≤ 10 p^2 + ε` and `||B_i - C_i|| < 2 ε`, and if `||X ⊗ Y|| = ||X|| ||Y||`, then\n\n```text\n⊗_i B_i - ⊗_i C_i = sum_k T_k,\n```\n\nwith `T_k` changing only axis `k`. Each slice has norm strictly less than `2 (10 p^2 + ε)^{g-1} ε`, and the sum of the slices is strictly less than `2g (10 p^2 + ε)^{g-1} ε`.\n\nThe factor 2 is the sum of two section errors on the active axis. The scalar check is the one-dimensional case: for caps `10`, `11` and `2`, the three slices add to the product difference, and a `g = 1` difference of `3` exceeds the cap.\n\n**Claim type:** one telescoping bound. **No new κ.** The three axis inequalities stay hypotheses. The comparison with `2^{-C p}` is #4487 and is not re-proved. The #4100 notes are unchanged.\n\nThe locality audit already records this shape with `p^{10}` in place of `10 p^2` and `p^6`. This branch starts from canonical main. It does not replay #4487.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-tensor-axis\n```\n\n`PASS_GAUSSIAN_TENSOR_AXIS` and `outcome=completed` on this machine. Maintainer replay has not been run.\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7, selection refresh κ = `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
   "created_at": "2026-10-22T01:22:35Z",
-  "updated_at": "2026-10-22T01:22:35Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:06Z",
+  "merged_at": "2026-10-22T02:49:05Z",
+  "state": "closed"
 }

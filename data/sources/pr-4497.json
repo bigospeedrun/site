@@ -4,8 +4,8 @@
   "title": "Absorb the approximant base 9 p^2 + p^6 exp(-p^2) (no new κ)",
   "body": "## Summary\n\nUnder the same gate `p ≥ max(64, 4K + 2C)` and `16 g ceil(log2 p) ≤ p`,\n\n```text\ng (9 p^2 + p^6 exp(-p^2))^{g-1} p^6 exp(K p - p^2) < 2^{-C p}\n```\n\nfor integers `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0`. For every integer `p ≥ 64`, `p^6 exp(-p^2) < 1/2`, so\n\n```text\n9 p^2 + p^6 exp(-p^2) < 9 p^2 + 1 < 16 p^2.\n```\n\nThe comparison `9 p^2 + 1 < 16 p^2` is `1 < 7 p^2`. The base stays strictly below `16 p^2`, so the telescoping exponent is the same power of two already cleared for `(16 p^2)^{g-1}`, and it is at most `-C p - 4`.\n\nThe section ceiling `9 p^2` and the section error stay hypotheses. At `g = p^2` the approximant monomial is still greater than 1. No new κ. The selected record remains `23/10000`.\n\nThis answers the open question of #4496. It does not replay #4496. The face factor 2 is left open. #4486 is the same shape with coefficient 10.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-tensor-nine-approximant`\n- [x] Prints `PASS_GAUSSIAN_TENSOR_NINE_APPROXIMANT` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7. Upstream fetched at 2026-10-22T01:56:48Z was still that commit, and the pre-submit fetch was unchanged.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
   "created_at": "2026-10-22T01:58:34Z",
-  "updated_at": "2026-10-22T01:58:34Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T02:49:06Z",
+  "closed_at": "2026-10-22T02:49:05Z",
+  "merged_at": "2026-10-22T02:49:05Z",
+  "state": "closed"
 }
