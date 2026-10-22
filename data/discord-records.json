@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-4610",
+        "leader": "crocswap-pr-4568",
         "records": [
           {
             "id": "openai-original-109",
@@ -3943,7 +3943,7 @@
             "id": "crocswap-selected-20e1947e1f614a14",
             "score": "23/10000",
             "relation": "attained",
-            "evidence": "Human Verified",
+            "evidence": "Claimed",
             "authors": [
               "CrocSwap"
             ],
@@ -4030,14 +4030,14 @@
             "bound": "O(n log^(1 - 0.00302016597) n)"
           },
           {
-            "id": "crocswap-pr-4610",
-            "score": "37769/12500000",
+            "id": "crocswap-selected-c2b9008a02c3af75",
+            "score": "60403/20000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
-              "数原律"
+              "CrocSwap"
             ],
-            "bound": "O(n log^(1 - 0.00302152) n)"
+            "bound": "O(n log^(1 - 0.00302015) n)"
           }
         ],
         "table": "big-o"
@@ -4065,7 +4065,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-40",
+        "leader": "direct-pr-41",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -4233,11 +4233,21 @@
             "id": "direct-pr-40",
             "score": "26159999/10000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "Halit Ziya KARTAL"
             ],
             "bound": "O(n log^(1 - 0.0026159999) n)"
+          },
+          {
+            "id": "direct-pr-41",
+            "score": "30103/10000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Halit Ziya KARTAL"
+            ],
+            "bound": "O(n log^(1 - 0.0030103) n)"
           }
         ],
         "table": "big-o"
@@ -5778,7 +5788,9 @@
     "[\"exact-dft\",\"direct-pr-38\",\"1959540039/1000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-4568\",\"302016597/100000000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-pr-38\",\"1959540039/1000000000000\",\"attained\"]:lean",
-    "[\"integer-multiplication\",\"crocswap-pr-4610\",\"37769/12500000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-4610\",\"37769/12500000\",\"attained\"]:record",
+    "[\"exact-dft\",\"direct-pr-40\",\"26159999/10000000000\",\"attained\"]:lean",
+    "[\"exact-dft\",\"direct-pr-40\",\"26159999/10000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
@@ -5789,7 +5801,7 @@
       ]
     },
     {
-      "key": "[\"exact-dft\",\"direct-pr-40\",\"26159999/10000000000\",\"attained\"]:record",
+      "key": "[\"exact-dft\",\"direct-pr-41\",\"30103/10000000\",\"attained\"]:record",
       "slug": "exact-dft",
       "authors": [
         "Halit Ziya KARTAL"

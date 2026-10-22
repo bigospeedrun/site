@@ -13,51 +13,69 @@ starting with [the coordination guide](https://github.com/CrocSwap/integer-mult-
 New to the construction? Read [the bottleneck brief](docs/research/bottleneck-brief.md).
 Workflow feedback is welcome in [discussion #1200](https://github.com/CrocSwap/integer-mult-bounds/discussions/1200).
 
-## Current reviewed result: productive helper jobs
+## Current reviewed result: joint helper frames and query-thinned controllers
 
-**zxv's [#4359](https://github.com/CrocSwap/integer-mult-bounds/pull/4359)** gives
+**Cinna Davis's [#4470](https://github.com/CrocSwap/integer-mult-bounds/pull/4470)** gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{23}{10000}=0.0023>2^{-9}.
+\kappa=\frac{60403}{20000000}=0.00302015>2^{-9}.
 $$
 
-The construction makes helper arrays productive and compiles unequal jobs into
-one uniform recursive supplier. **Jacob Alan Sussman's mixed-target recursion**
-is the direct conceptual predecessor. It builds on the complex/native work of
-**Rohan Arun, Cinna Davis, David Ganz, Jeremy Kothe, Marius-Paul Dumitrean and
-Erwan Secousses**, the binary words of **eumemic and DreamingOfClouds**, and the
-outer/precision contributions of **Vlado-V, Chafik Boukhalfa and Zhihao Chen**.
-[Detailed contribution and verification credits](docs/research/community-productive4359-contributors.md).
+The construction jointly improves helper entrance, exit and contact frames,
+then uses a query-thinned 16-pair controller. It builds on Cinna's
+#4416/#4440/#4441/#4447 sequence, **zxv's productive-helper native construction
+and compiler machinery**, and **Jacob Alan Sussman's mixed-target recursion**.
+The earlier geometry, binary, native, precision and outer contributors retain
+full cumulative credit. [Detailed contribution map](docs/research/community-joint4470-contributors.md).
 
-A fresh sequential replay passed **23 stages** and compared **59 regenerated
-artifacts** under the documented metadata/compression normalization. The
-changed compiler, native lift, delayed BIT cover and outer-transfer interfaces
-received an AI-assisted mathematical review. **Ryanson Jonathan's #4404** adds
-a separately implemented exact flow/rank audit, also replayed locally.
+All **eight scoped, serial replays** passed in the changed-construction review,
+including native operators and phases, the complete recursive invoice,
+completion/compiler bounds, and the outer ledger. Independent audits by
+**Mihir Srivastava and Ryanson Jonathan** were replayed; **Mark / Matarener**
+identified the commutation question resolved by the stage-zero audits.
+The exact-source PR4359/PR4416 foundation reviews are reused explicitly.
 
-The result retains the analytic, exact-recovery, native-movement and fixed-tape
-hypotheses identified in the review. It is **not a complete Lean proof or an
-independent human verification of the multiplication theorem**. The winning
-uniform templates are algorithm-defined and astronomically large; they were
-not materialized. No practical speed improvement is claimed.
+The result retains the analytic, exact-recovery, native/all-column, whole-job,
+owned-erasure, precision and fixed-tape hypotheses identified in the review.
+It is **not a complete Lean proof or an independent human verification of the
+multiplication theorem**. The uniform templates are algorithm-defined and
+astronomically large; they were not materialized. No practical speed improvement
+is claimed.
 
 [Selected record](certificates/selected-result.json) ·
-[Proof review](docs/research/pr-intake-evidence/pr4359/PROOF-REVIEW.md) ·
-[Replay receipt](docs/research/pr-intake-evidence/pr4359/VALIDATION.json) ·
-[Integration receipt](docs/research/pr-intake-evidence/pr4359/INTEGRATION.json) ·
+[Proof review](docs/research/pr-intake-evidence/pr4470/PROOF-REVIEW.md) ·
+[Review replays](docs/research/pr-intake-evidence/pr4470/VALIDATION.json) ·
+[Selection/integration receipt](docs/research/pr-intake-evidence/pr4470/INTEGRATION.json) ·
 [Contributors](CONTRIBUTORS.md) · [PR ledger](docs/research/pr-ledger.md)
 
 ```sh
-# Python standard library; sequential replay in a fresh temporary directory.
-make frontier4359-verify
+# Fast source/metadata check and orientation; no operator replay.
+python3 -B scripts/research_selected_baseline.py
+# Serial changed-construction replay in a fresh export, with bounded memory.
+# Explicitly reuses the source-identical reviewed foundation.
+make frontier4470-verify
 ```
 
-The saving is about **37.5% larger** than the last selected #1094 checkpoint,
-and **32.9% larger** than Rohan's later #4181 conditional checkpoint. These
-compare exponent savings, not measured runtimes. Historical submissions retain
-their original status wording; the selected record is the current authority.
-Unrelated H-branch research in the imported archive is not a selected result.
+The exponent saving is **31.31% larger** than the last selected 0.0023 checkpoint
+and **12.42% larger** than the intermediate reviewed 0.00268647 checkpoint.
+These compare exponent savings, not measured runtimes. Later compiler-size
+proposals #4483/#4507 are not required for this selection.
+Frozen source notes retain their submission-time status; the selected record
+and integration receipt identify the current publication.
+
+## Historical checkpoint: productive helper jobs
+
+**zxv's #4359** reached κ = 0.0023 using Jacob Alan Sussman's mixed-target
+recursion and the cumulative native/outer lineage. Its 23-stage, 59-artifact
+replay, proof review and credits remain preserved in the
+[frozen checkpoint](certificates/checkpoints/frontier4359.json),
+[review](docs/research/pr-intake-evidence/pr4359/PROOF-REVIEW.md) and
+[contributor map](docs/research/community-productive4359-contributors.md).
+`make frontier4359-verify` remains the historical replay. Cinna Davis's #4416
+and zxv's #4433 subsequently supported the reviewed 0.00268647 intermediate
+checkpoint; their [review](docs/research/pr-intake-evidence/pr4416/PROOF-REVIEW.md)
+remains part of the current source-bound foundation.
 
 ## Historical checkpoint: rare-pattern T16 owner exchanges
 
