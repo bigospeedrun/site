@@ -83382,10 +83382,10 @@
   {
     "number": 4533,
     "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4533",
-    "title": "Sharper #4483 witnesses: p16 rank 2^1587000000 (was 2^2800000000), p7 2^2253000000, same κ (compiler improvement, no new κ)",
+    "title": "Sharper #4483 witnesses: p16 2^1587000000, native4453 2^713000000, p7 2^2253000000, same κ (compiler improvement, no new κ)",
     "state": "open",
     "created_at": "2026-10-22T04:10:54Z",
-    "updated_at": "2026-10-22T04:10:54Z",
+    "updated_at": "2026-10-22T04:41:07Z",
     "closed_at": null,
     "merged_at": null,
     "user": {
@@ -83393,7 +83393,7 @@
       "html_url": "https://github.com/pinterbanget"
     },
     "head": {
-      "sha": "5cc8d42370a1e0f8595b0c6d603cb9fcfc12c675"
+      "sha": "e9e9f244108ab4c21f0293cbfca9cfc3206e772a"
     },
     "base": {
       "ref": "main"
@@ -83414,6 +83414,126 @@
     },
     "head": {
       "sha": "90505ab1667e94f8e99aa497f9f76ed24fb74dcc"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4535,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4535",
+    "title": "Improve conditional multiplication kappa to 0.003020165 via critical-root transfer",
+    "state": "open",
+    "created_at": "2026-10-22T04:18:44Z",
+    "updated_at": "2026-10-22T04:47:41Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "hexapode",
+      "html_url": "https://github.com/hexapode"
+    },
+    "head": {
+      "sha": "a6d7237f697185e857090e174c23c1cb22c6563c"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4536,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4536",
+    "title": "Independently check #4535's arithmetic (κ = 0.003020165): critical root, gap 377e-12, mirror, absorption, binding outer row (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T04:40:36Z",
+    "updated_at": "2026-10-22T04:40:36Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "26502792b9d46fc353fc7b092de070a675264fd8"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4537,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4537",
+    "title": "Independently certify #4532's finite figures: abstract witness, counterexample, p7/p16 root applications (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T04:45:12Z",
+    "updated_at": "2026-10-22T04:45:12Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "530a5b6d2ae7ee0a1eccc88975a170cf39b60b94"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4538,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4538",
+    "title": "Word RAM transfer: finite TM compiler, checked logarithmic-width bridge and native kernels",
+    "state": "open",
+    "created_at": "2026-10-22T04:46:30Z",
+    "updated_at": "2026-10-22T04:46:30Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "Dugongue",
+      "html_url": "https://github.com/Dugongue"
+    },
+    "head": {
+      "sha": "dffc7939519e486ebeb97aff315ce01e067d4728"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4539,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4539",
+    "title": "Independently replay #4534's noncommuting p16 identity in the free algebra: all 1,024 entries, chronology-sensitive (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T04:47:54Z",
+    "updated_at": "2026-10-22T04:47:54Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "84c19218bca3b2c963e98a545481f32d78e77b17"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4540,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4540",
+    "title": "Noncommuting controller identity for all p ≤ 14 (91 cases) via a support-injectivity reduction (answers #4534 Q2 empirically; no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T05:14:28Z",
+    "updated_at": "2026-10-22T05:14:28Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "59a4595eeb90810c6c4b56749824e793d170eb85"
     },
     "base": {
       "ref": "main"

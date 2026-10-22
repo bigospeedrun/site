@@ -1,23 +1,23 @@
 {
-  "sha": "f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc",
-  "node_id": "C_kwDOU-508toAKGY5Zjg1YzFlNGZhMWU5NTVmZjM5ZjEwZmNhNDQ3ZTNlMmE0ZTRhZGM",
+  "sha": "f626db5c3a3d781d8f7695038776c621651f75e1",
+  "node_id": "C_kwDOU-508toAKGY2MjZkYjVjM2EzZDc4MWQ4Zjc2OTUwMzg3NzZjNjIxNjUxZjc1ZTE",
   "commit": {
     "author": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-22T02:50:42Z"
+      "date": "2026-10-22T05:13:36Z"
     },
     "committer": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-10-22T02:50:42Z"
+      "date": "2026-10-22T05:13:48Z"
     },
-    "message": "Record 65 merged contributions and remaining queue obligations [skip ci]",
+    "message": "Review conditional PR4470 construction and source-bound audit coverage",
     "tree": {
-      "sha": "37c5507761551cc69bebb31d0591f9566071f426",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/37c5507761551cc69bebb31d0591f9566071f426"
+      "sha": "3fa822e76ec02678afaa4d1bf80992c5e1ab64e4",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/3fa822e76ec02678afaa4d1bf80992c5e1ab64e4"
     },
-    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc",
+    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/f626db5c3a3d781d8f7695038776c621651f75e1",
     "comment_count": 0,
     "verification": {
       "verified": false,
@@ -27,9 +27,9 @@
       "verified_at": null
     }
   },
-  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc",
-  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc",
-  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/comments",
+  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f626db5c3a3d781d8f7695038776c621651f75e1",
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/f626db5c3a3d781d8f7695038776c621651f75e1",
+  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f626db5c3a3d781d8f7695038776c621651f75e1/comments",
   "author": {
     "login": "Mister-Meeseeks",
     "id": 18204987,
@@ -74,71 +74,280 @@
   },
   "parents": [
     {
-      "sha": "b1857553b7ea74493b01080c67842e2b4a0dfea0",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/b1857553b7ea74493b01080c67842e2b4a0dfea0",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/b1857553b7ea74493b01080c67842e2b4a0dfea0"
+      "sha": "f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc"
     }
   ],
   "stats": {
-    "total": 122,
-    "additions": 94,
-    "deletions": 28
+    "total": 1527,
+    "additions": 1486,
+    "deletions": 41
   },
   "files": [
     {
-      "sha": "5642960c52d30dce3eab94c26c2c62f385f16ec5",
+      "sha": "6e53bdc2654d6c3c798ade78de3240b9c56e02de",
+      "filename": "docs/research/current-status.md",
+      "status": "modified",
+      "additions": 12,
+      "deletions": 0,
+      "changes": 12,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fcurrent-status.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fcurrent-status.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fcurrent-status.md?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "06b78a1e2b4a6aeae28707b59093d133995c8d37",
       "filename": "docs/research/pr-intake-checkpoint.json",
       "status": "modified",
-      "additions": 41,
-      "deletions": 15,
-      "changes": 56,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-checkpoint.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-checkpoint.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-checkpoint.json?ref=f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc"
+      "additions": 21,
+      "deletions": 26,
+      "changes": 47,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-checkpoint.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-checkpoint.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-checkpoint.json?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
     },
     {
-      "sha": "b2767ae8ea7bc79c7a1237ea36d983ae00cbae07",
+      "sha": "34fdb38bbeb01b05b17cbaf2f5cafca59643e105",
       "filename": "docs/research/pr-intake-decisions.json",
       "status": "modified",
-      "additions": 14,
-      "deletions": 6,
+      "additions": 15,
+      "deletions": 5,
       "changes": 20,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-decisions.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-decisions.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-decisions.json?ref=f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc"
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-decisions.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-decisions.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-decisions.json?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
     },
     {
-      "sha": "1bbbeebb0d7d9307e5c6ed9e92eeaa3a1f7947a2",
-      "filename": "docs/research/pr-intake-evidence/queue-oct21e-20261021-checks.txt",
-      "status": "modified",
-      "additions": 3,
-      "deletions": 0,
-      "changes": 3,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct21e-20261021-checks.txt",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct21e-20261021-checks.txt",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct21e-20261021-checks.txt?ref=f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc"
-    },
-    {
-      "sha": "ad3a58e53a53838a38d9cff60c24ec14b6a3294e",
-      "filename": "docs/research/pr-intake-evidence/queue-oct21f-closures.json",
+      "sha": "f4dc043b6d35cae2811c9bcc064e04877f9e0549",
+      "filename": "docs/research/pr-intake-evidence/pr4470/PROOF-REVIEW.md",
       "status": "added",
-      "additions": 21,
+      "additions": 211,
       "deletions": 0,
-      "changes": 21,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct21f-closures.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct21f-closures.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-oct21f-closures.json?ref=f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc"
+      "changes": 211,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FPROOF-REVIEW.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FPROOF-REVIEW.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FPROOF-REVIEW.md?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
     },
     {
-      "sha": "17d85ef4eb75c45329c7a26269f00dc6b2001d94",
+      "sha": "ce4d217ee8a9bedb2c9ce6dc6aa4ed3585462d8c",
+      "filename": "docs/research/pr-intake-evidence/pr4470/REPRODUCE.md",
+      "status": "added",
+      "additions": 50,
+      "deletions": 0,
+      "changes": 50,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FREPRODUCE.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FREPRODUCE.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FREPRODUCE.md?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "4a59acdb3ce4982cfe1c5abc8be7d44139c776f4",
+      "filename": "docs/research/pr-intake-evidence/pr4470/REVIEWED-SOURCES.json",
+      "status": "added",
+      "additions": 129,
+      "deletions": 0,
+      "changes": 129,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FREVIEWED-SOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FREVIEWED-SOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FREVIEWED-SOURCES.json?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "d6305e66f0cdc03c2a25feb4146ab31fd5cdb399",
+      "filename": "docs/research/pr-intake-evidence/pr4470/SOURCE-REUSE.json",
+      "status": "added",
+      "additions": 511,
+      "deletions": 0,
+      "changes": 511,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FSOURCE-REUSE.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FSOURCE-REUSE.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FSOURCE-REUSE.json?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "ad28ff3491a2d5ae0caef508f61277e56ed86e4e",
+      "filename": "docs/research/pr-intake-evidence/pr4470/VALIDATION.json",
+      "status": "added",
+      "additions": 242,
+      "deletions": 0,
+      "changes": 242,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FVALIDATION.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FVALIDATION.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2FVALIDATION.json?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "a2c9340d8196ce8417fce296e7dabd675e0258c5",
+      "filename": "docs/research/pr-intake-evidence/pr4470/all-final-transports.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fall-final-transports.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fall-final-transports.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fall-final-transports.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "ac356b6fb7d49078281fd00447b1e56950202f15",
+      "filename": "docs/research/pr-intake-evidence/pr4470/all_final_transports.py",
+      "status": "added",
+      "additions": 32,
+      "deletions": 0,
+      "changes": 32,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fall_final_transports.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fall_final_transports.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fall_final_transports.py?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "f6fd4908212891a0314e8cc39605a62901e6b01b",
+      "filename": "docs/research/pr-intake-evidence/pr4470/arithmetic.log",
+      "status": "added",
+      "additions": 7,
+      "deletions": 0,
+      "changes": 7,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Farithmetic.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Farithmetic.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Farithmetic.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "6859c3ea409df703ccf4b72d7b150fa044c79bff",
+      "filename": "docs/research/pr-intake-evidence/pr4470/dependencies.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fdependencies.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fdependencies.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fdependencies.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "d36c5649cbac40aa139441b9ff33ea88508fb08d",
+      "filename": "docs/research/pr-intake-evidence/pr4470/forced-translation-input-attempt.log",
+      "status": "added",
+      "additions": 14,
+      "deletions": 0,
+      "changes": 14,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fforced-translation-input-attempt.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fforced-translation-input-attempt.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fforced-translation-input-attempt.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "30cbaff41ef63281e379a908a3ced230ad788e19",
+      "filename": "docs/research/pr-intake-evidence/pr4470/forced-translation.log",
+      "status": "added",
+      "additions": 30,
+      "deletions": 0,
+      "changes": 30,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fforced-translation.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fforced-translation.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fforced-translation.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "filename": "docs/research/pr-intake-evidence/pr4470/independent-arithmetic-120s.log",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-arithmetic-120s.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-arithmetic-120s.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-arithmetic-120s.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "3ae5a361a0d65b5b289a4c0d083e364c76bf79ef",
+      "filename": "docs/research/pr-intake-evidence/pr4470/independent-arithmetic.log",
+      "status": "added",
+      "additions": 16,
+      "deletions": 0,
+      "changes": 16,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-arithmetic.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-arithmetic.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-arithmetic.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "0927bd666606cd8810f1104ffc85ede329703b8b",
+      "filename": "docs/research/pr-intake-evidence/pr4470/independent-frame-path-attempt.log",
+      "status": "added",
+      "additions": 12,
+      "deletions": 0,
+      "changes": 12,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-frame-path-attempt.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-frame-path-attempt.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-frame-path-attempt.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "740b872561c8f206143ef0f1aff23f3add9a7c14",
+      "filename": "docs/research/pr-intake-evidence/pr4470/independent-frame.log",
+      "status": "added",
+      "additions": 136,
+      "deletions": 0,
+      "changes": 136,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-frame.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-frame.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Findependent-frame.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "a46f3f9d9044c600f0de7006c1d71d496f7caa56",
+      "filename": "docs/research/pr-intake-evidence/pr4470/native.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fnative.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fnative.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fnative.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "filename": "docs/research/pr-intake-evidence/pr4470/redundant-full-attempt.log",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fredundant-full-attempt.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fredundant-full-attempt.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fredundant-full-attempt.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "218dba35ce636e61511cbf881c431ece7c312000",
+      "filename": "docs/research/pr-intake-evidence/pr4470/run_bounded.py",
+      "status": "added",
+      "additions": 20,
+      "deletions": 0,
+      "changes": 20,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Frun_bounded.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Frun_bounded.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Frun_bounded.py?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "37e2692e06365fdfebedbfa63085d2105386106b",
+      "filename": "docs/research/pr-intake-evidence/pr4470/stage-zero.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fstage-zero.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fstage-zero.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr4470%2Fstage-zero.log?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "52a287dc1e8e538b2c2277b97cc73ae4089ce835",
+      "filename": "docs/research/pr-intake-state.json",
+      "status": "modified",
+      "additions": 7,
+      "deletions": 3,
+      "changes": 10,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-state.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-intake-state.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-state.json?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
+    },
+    {
+      "sha": "e2ed42b1b71892bd539a9fe061bf7ea989b20ecc",
       "filename": "docs/research/pr-ledger.json",
       "status": "modified",
-      "additions": 15,
+      "additions": 17,
       "deletions": 7,
-      "changes": 22,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-ledger.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc/docs%2Fresearch%2Fpr-ledger.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-ledger.json?ref=f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc"
+      "changes": 24,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-ledger.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f626db5c3a3d781d8f7695038776c621651f75e1/docs%2Fresearch%2Fpr-ledger.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-ledger.json?ref=f626db5c3a3d781d8f7695038776c621651f75e1"
     }
   ]
 }

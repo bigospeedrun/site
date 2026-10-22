@@ -1,0 +1,11 @@
+{
+  "number": 4537,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4537",
+  "title": "Independently certify #4532's finite figures: abstract witness, counterexample, p7/p16 root applications (no new κ)",
+  "body": "## Summary\n\nThis adds `research/gate-existence-check/`. It is an independent certified recomputation of the finite figures in dillona's #4532 (adaptive gates at a moment crossing), the compiler that #4535's κ = 0.003020165 rests on.\n\n**Claim type:** an independent certified recomputation. **No new κ.**\n\n## Results\n\nAll of #4532's tables reproduce.\n\n- **Abstract witness** (`T(1/2) = P(1/2) = 68`): mean gap 4.765 ≥ 4; `U = 0.6223559 < .622356`; `V = 0.6603487 < .660349`; mirror 0.010664 ≤ 1/80 < capacity 1/32; tangent cover holds; **recurrence bound 272.8579195 > 272.857919**, against the required 155/3.\n- **Counterexample.** `T(1/2 − λ)e^{λμ_P} = 8 + 136·16^{−λ} > 8 = P(1/2)` for every `λ > 0`, and the mirror ratio is exactly 1/17 < 1/16.\n- **Root applications:**\n\n  | | gap | mirror | capacity | D | required |\n  | --- | ---: | ---: | ---: | ---: | ---: |\n  | p7 | 1.723542 | .320851 | .984544 | .028590 | .023329 |\n  | p16 | 1.042285 | .562814 | .982102 | .048546 | .042808 |\n\n  The guards also hold on the critical covers.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/gate-existence-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/gate-existence-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/gate-existence-check outcome=completed   (~25 s, stdlib only)\n```\n\nHead: `530a5b6d2ae7ee0a1eccc88975a170cf39b60b94`. Base: canonical main `f9f85c1e`.\n\n## Not covered\n\n- #4532's theorem itself: the integral identities, the existence argument and the critical-endpoint majorant.\n\nCredit: dillona (#4532) and zxv (#4483). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T04:45:12Z",
+  "updated_at": "2026-10-22T04:45:12Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
