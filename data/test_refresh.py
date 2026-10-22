@@ -254,6 +254,19 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(self.claim({result:'added',arith:'added'},claims={result:{'conditional_kappa':'1/400'},arith:{'kappa':'1/300'}},title='Query thinning')[:2],('1/400',result))
         self.assertEqual(self.claim({result:'added',arith:'added'},claims={result:{'status':'done'},arith:{'kappa':'3021569/1000000000'}},title=title)[:2],(None,None))
 
+    def test_every_package_file_name_refresh_reads_passes_the_submissions_schema(self):
+        # #4635, 2026-10-22: refresh read ARITHMETIC.json, the schema allowed only CLAIM/RESULT, and the run went red.
+        from jsonschema import Draft202012Validator, FormatChecker
+        root=Path(refresh.__file__).resolve().parent
+        schema=json.loads((root/'schemas/submissions-v1.json').read_text())
+        subs=json.loads((root/'submissions.json').read_text())
+        for name in refresh.PACKAGE_FIELD:
+            path=f'research/native-provider-lift/{name}'
+            self.assertTrue(refresh.CLAIM_PATH.fullmatch(path) or refresh.RESULT_PATH.fullmatch(path),name)
+            item=dict(subs['items'][0],claim_path=path,claim_files=[['added',path]],claim_files_head='a'*40,claim_files_result=True)
+            with self.subTest(name):
+                Draft202012Validator(schema,format_checker=FormatChecker()).validate(dict(subs,items=[item]))
+
     def test_a_zero_denominator_never_fails_the_refresh(self):
         # Reviewer, 2026-10-21: Fraction('1/0') raises. A contributor's "1/0" is no value.
         top='research/x/RESULT.json'

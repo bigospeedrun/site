@@ -54,7 +54,7 @@
           "note": {},
           "claim_path": {
             "type": "string",
-            "pattern": "^research/[^/]+/(?:CLAIM|RESULT)\\.json$"
+            "pattern": "^research/[^/]+/(?:CLAIM|RESULT|ARITHMETIC)\\.json$"
           },
           "claim_head": {
             "type": "string",
@@ -84,7 +84,7 @@
                 },
                 {
                   "type": "string",
-                  "pattern": "^research/[^/]+/(?:CLAIM|RESULT)\\.json$"
+                  "pattern": "^research/[^/]+/(?:CLAIM|RESULT|ARITHMETIC)\\.json$"
                 }
               ],
               "minItems": 2,
