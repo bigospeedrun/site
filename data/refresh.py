@@ -20,8 +20,10 @@ CLAIM_PATH = re.compile(r'research/[^/]+/CLAIM\.json')
 # Packages without a CLAIM.json state their value as conditional_kappa in RESULT.json
 # (staged544 chain, #3945..#4181, 2026-10-20). Lead ruling 2026-10-20: read it when a PR
 # has no own CLAIM.json, with the same ownership rules and the Claude title check.
-RESULT_PATH = re.compile(r'research/[^/]+/RESULT\.json')
-PACKAGE_FIELD = {'CLAIM.json': 'kappa', 'RESULT.json': 'conditional_kappa'}
+# Lead, 2026-10-22: a package without RESULT.json may state its value in ARITHMETIC.json
+# (#4610, #4626); it is read like a RESULT.json, only in a folder with no RESULT.json.
+RESULT_PATH = re.compile(r'research/[^/]+/(?:RESULT|ARITHMETIC)\.json')
+PACKAGE_FIELD = {'CLAIM.json': 'kappa', 'RESULT.json': 'conditional_kappa', 'ARITHMETIC.json': 'conditional_kappa'}
 # The first PR with a RESULT.json conditional_kappa (#3945; none on CrocSwap main before
 # it, and none in the 73 open silent PRs, checked 2026-10-20). Silent PRs from this
 # number on, read before RESULT.json support, are read once more.
@@ -216,6 +218,8 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None):
                 break
         return holder, [path for path in added if path not in holder]
     results = [path for status, path in files if status == 'added' and RESULT_PATH.fullmatch(path)]
+    with_result = {path.rsplit('/', 1)[0] for path in results if path.endswith('/RESULT.json')}
+    results = [path for path in results if path.endswith('/RESULT.json') or path.rsplit('/', 1)[0] not in with_result]
     files = [[status, path] for status, path in files if CLAIM_PATH.fullmatch(path)]
     added = [path for status, path in files if status == 'added']
     holder, own = owned(added)

@@ -240,6 +240,20 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(self.claim({top:'added'},{'kappa':'37/12500'},title='Query-thinned productive controllers'),(None,None,None))
         self.assertEqual(self.claim({top:'added'},{'kappa':'37/12500'},title='κ = 0.00296',judge='Claude reads no claim.')[2],'Claude reads no claim.')
 
+    def test_an_arithmetic_json_kappa_equal_to_the_title_kappa_lists(self):
+        # Lead, 2026-10-22: #4610 and #4626 state their value in ARITHMETIC.json, with no RESULT.json.
+        arith='research/helper621-warp-combination/ARITHMETIC.json'
+        title='Improve conditional kappa to 0.003021569 with helper621 and a funded compiler gap'
+        self.assertEqual(self.claim({arith:'added'},{'kappa':'3021569/1000000000'},title=title)[:3],('3021569/1000000000',arith,None))
+        # #4610: two own ARITHMETIC.json packages; the one the title states is the package.
+        round2,round3='research/kappa-interface-round2-20261022/ARITHMETIC.json','research/kappa-round3-warp-20261022/ARITHMETIC.json'
+        claims={round2:{'kappa':'37769/12500000'},round3:{'kappa':'9443/3125000'}}
+        self.assertEqual(self.claim({round2:'added',round3:'added'},claims=claims,title='Conditional κ = 0.00302176 (+0.00000024)')[:2],('9443/3125000',round3))
+        # Beside a RESULT.json in the same folder it is not read: the RESULT.json rules stay as they were.
+        result='research/helper621-warp-combination/RESULT.json'
+        self.assertEqual(self.claim({result:'added',arith:'added'},claims={result:{'conditional_kappa':'1/400'},arith:{'kappa':'1/300'}},title='Query thinning')[:2],('1/400',result))
+        self.assertEqual(self.claim({result:'added',arith:'added'},claims={result:{'status':'done'},arith:{'kappa':'3021569/1000000000'}},title=title)[:2],(None,None))
+
     def test_a_zero_denominator_never_fails_the_refresh(self):
         # Reviewer, 2026-10-21: Fraction('1/0') raises. A contributor's "1/0" is no value.
         top='research/x/RESULT.json'
@@ -301,6 +315,10 @@ class RefreshTests(unittest.TestCase):
                 return files[sha]
             with self.subTest(case),patch.object(refresh,'content',content):
                 self.assertEqual(refresh.same_package(p,approved,lambda m:[['added',path]],{}),expected)
+        # The carry-forward reads an ARITHMETIC.json package too (#4610, 2026-10-22).
+        arith='research/x/ARITHMETIC.json'
+        with patch.object(refresh,'content',lambda repo,name,sha:b'{"kappa":"37/12500"}'):
+            self.assertEqual(refresh.same_package(p,approved,lambda m:[['added',arith]],{}),arith)
 
     def test_claim_state_turns_an_unexpected_package_error_into_a_reason(self):
         # Lead belt, 2026-10-21: a bad package value can never fail the hourly refresh.
