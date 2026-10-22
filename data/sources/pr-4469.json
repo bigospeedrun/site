@@ -1,0 +1,11 @@
+{
+  "number": 4469,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4469",
+  "title": "Independently check #4438: within-cell gauge column transfer (C = 3 least, equality at p = 2; no new κ)",
+  "body": "## Summary\n\nThis adds `research/gauge-column-check/`. It is an independent check of jwr404's #4438, the within-cell gauge column transfer for `diag(â)Ĝdiag(â)^{−1}`.\n\n**Claim type:** an independent check by separate code, with exact rationals where possible. **No new κ.**\n\n## Results\n\nAll of #4438's statements check out.\n\n- **Factorization.** `n_{i,h} = (a_i/a_{i+h})exp(−aρh²)` with `a_i = exp(aβ_i²/θ)`. It holds on 2,000 random constant-phase runs from LOG-A's entry law, with log error ≤ `6·10⁻¹³`.\n- **Column bound.** The `1/(1−ε)` bound holds on the random rounded blocks, with maximum ratio 0.99977, so it is nearly tight.\n- **Ceiling.** The gap is exactly `1/(16p²−1)` at `ε = 1/(16p²)`, and `ε = 1/2` leaves none.\n- **Setup constant.** `C = 3` is the least integer with `2^{−Cp} ≤ 1/(16p²)`. Note that it holds with **equality at `p = 2`**, so there is no slack there.\n- **Downstream comparison.** `p(2p−1) > 2` holds.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/gauge-column-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/gauge-column-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/gauge-column-check outcome=completed   (~1 s, stdlib only)\n```\n\nHead: `baf56b163de5981ade5afa28f75bbd7e019f8b65`. Base: canonical main `2a13eb18`.\n\nCredit: James Reed (jwr404, #4438). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-21T23:32:55Z",
+  "updated_at": "2026-10-21T23:32:55Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

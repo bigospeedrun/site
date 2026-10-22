@@ -1,0 +1,11 @@
+{
+  "number": 4468,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4468",
+  "title": "Independently check #4437: the ideal column majorant holds (and is attained) across g = 2 steps (no new κ)",
+  "body": "## Summary\n\nThis adds `research/column-cut-check/`. It is an independent numerical check of jwr404's #4437: the ideal column majorant `e^{−2aθ} + e^{−2a(1−θ)} + 2e^{−2a}/(1−e^{−4a})` holds for every column of the ideal narrow matrix, including `g = 2` steps.\n\n**Claim type:** an independent numerical check with explicit tolerances. **No new κ.**\n\n## Results\n\nThe matrix is built directly from LOG-A's entry law, not from #4437's code.\n\n- **Majorant.** **192,000 interior columns, 55,515 of them meeting `g = 2`,** are all within the majorant. The grid covers `p ∈ {2,3,5,10}`, `a` at both GAUSSIAN ends and three values outside, four `θ`, and 20 phases. A local run of 704,000 columns agrees.\n- **Sharpness.** The majorant is **attained**: the maximum ratio is 1.0 to floating precision.\n- **Landing intervals.** #4437's table of incoming/outgoing `g` against `β_j` holds at every column.\n- **Gap.** `1 − M > 1/(8p²)` at the worst corners for every `p` up to 10⁴, with minimum `8p²·gap = 26.3`. The perturbation step holds as well.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/column-cut-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/column-cut-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/column-cut-check outcome=completed   (~5 s, stdlib only)\n```\n\nHead: `b5f7fbbb4a4a778f78da69ee1a5d965a6af081ad`. Base: canonical main `2a13eb18`.\n\n## Not covered\n\n- An all-`p` proof of the gap; #4437's written argument covers that.\n- The rounded `H`.\n- Any new κ.\n\nCredit: James Reed (jwr404, #4437, building on #4402). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-21T23:26:49Z",
+  "updated_at": "2026-10-21T23:26:49Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

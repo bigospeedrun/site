@@ -1,0 +1,11 @@
+{
+  "number": 4475,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4475",
+  "title": "Independently recount #4450's THREE-base paid census (3,554 calls, rank mass 5,157, both orientations; no new κ)",
+  "body": "## Summary\n\nThis adds `research/three-base-census-recount/`. It is an independent recount of mihir-s-05's #4450, the THREE-base supplier's paid-event census, by separately written GF(2) code.\n\n**Claim type:** an independent recount. **No new κ.**\n\n## Results\n\nEverything is identical in both orientations and matches #4450 exactly.\n\n- **Frames and events.** All 1,159 frame bases are independent. Every paid `climb` and `center` event moves between nested frames, and its recomputed dimension gap equals the declared rank.\n- **Split profile.** {1:2487, 2:713, 3:232, 4:102, 5:28}. The 16 center events coalesce in adjacent pairs to give the **unsplit profile {1:2487, 2:713, 3:224, 4:102, 5:20, 8:8}: 3,554 calls, rank mass 5,157**.\n- **Per-phase table.** A, B, cleanup tail and final all match.\n- **Helper increments** (fields 224..631): {5:28, 6:18, 7:56, 8:93, 9:213}, mass 3,301.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/three-base-census-recount --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/three-base-census-recount\n  PASS_REGISTERED_RESEARCH_PACKAGE research/three-base-census-recount outcome=completed\n```\n\nHead: `7bc7f069615d57e34c0992a33b115976fe0ff346`. Base: canonical main `2a13eb18`.\n\nCredit: mihir-s-05 (#4450). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-21T23:45:47Z",
+  "updated_at": "2026-10-21T23:45:47Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

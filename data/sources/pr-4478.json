@@ -1,0 +1,11 @@
+{
+  "number": 4478,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4478",
+  "title": "Independently check #4470's arithmetic (κ = 0.00302015): invoice, local change, root bracket, tails (no new κ)",
+  "body": "## Summary\n\nThis adds `research/pr4470-arithmetic-check/`. It is an independent arithmetic check of 1337isnot1337's #4470 (conditional κ = 0.00302015, joint helper boundaries), using certified interval logarithms. It follows #4455, which checks the p17 chain.\n\n**Claim type:** an independent arithmetic check. **No new κ.**\n\n## Results\n\nEverything checked reproduces #4470's printed numbers.\n\n- **p16 invoice.** 64,620 paid jobs, 10,928 fields, masses 239,886/239,134, surplus 752.\n- **Local change against #4447.** 53 fewer paid jobs per call, and both rank masses rise by 37. The surplus-gain polynomial `17 + 126·2^t − 50·3^t − 42·4^t + 2·5^t − 22·7^t + 5·8^t + 17·9^t`, derived independently from the two profiles, vanishes at `t = 1` and is positive on a grid of `(0,1)`.\n- **Root.** The certified bracket `(0.0030201659770, 0.0030201659771)` holds.\n- **Tails** at the tested saving `604031/200000000`: `α < 1 − 10⁻⁹`, `γ = 0.956177 < 0.97`, `δ = 0.958284 < 0.97`, matching the printed values.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/pr4470-arithmetic-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/pr4470-arithmetic-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/pr4470-arithmetic-check outcome=completed   (~2 s, stdlib only)\n```\n\nHead: `2c5e773ce7dcbe3210605a7261d0c016e4031726`. Base: canonical main `2a13eb18`.\n\n## Not covered\n\n- The logarithmic compiler.\n- The outer rows.\n- The native word and the controller.\n\nCredit: 1337isnot1337 (#4470). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T00:05:20Z",
+  "updated_at": "2026-10-22T00:12:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

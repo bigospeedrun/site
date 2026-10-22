@@ -1,0 +1,11 @@
+{
+  "number": 4474,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4474",
+  "title": "Disposition receipt for the p17 κ ≈ 0.003 PR chain (stacked content, pin-only differences, docs conflict with #4436)",
+  "body": "## Summary\n\nThis adds `research/p17-chain-receipt/`, a source-bound disposition receipt (overlap-receipt card) for the 10 open PRs of the p17 κ ≈ 0.003 chain and its independent checks. It makes no closures, no merge recommendations and no judgement of the κ claims.\n\n**Claim type:** consolidation receipt. **No new κ.**\n\n## Findings\n\n- **Retention.** Nothing is retained on main.\n- **Stacked content, not git ancestry.** #4440, #4441, #4446, #4447 and #4453 agree blob-for-blob on **44 shared paths**, including `research/query-thinned-controllers` and the docs edits. #4440's paths are a subset of #4441's, #4446's and #4447's.\n- **Only two shared paths differ:** `historical-1042-link/SOURCES.json` and `test-suite-locale-reads/SOURCES.json`, and **only in per-PR `pin` fields** (`git_blob` and `sha256` agree).\n- **Docs conflict with #4436.** All five carry identical edits to `docs/ci-verification.md` and `docs/research/current-status.md`, which differ from #4436's edits of the same files.\n- **Unique content.** #4446 adds `kappa-hybrid-controller`, #4447 `missing-join-frame` and #4453 `native-lattice-retiming`. #4440 and #4441 add nothing beyond the shared stack.\n- **Coverage map.** #4448, #4455, #4457, #4464 and #4466, per claim.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/p17-chain-receipt --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/p17-chain-receipt\n  PASS_REGISTERED_RESEARCH_PACKAGE research/p17-chain-receipt outcome=completed\n```\n\nHead: `383f4f8825b1bf134206786e71d2a526de338982`. Base: canonical main `2a13eb18`.\n\nPrepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-21T23:42:54Z",
+  "updated_at": "2026-10-22T00:13:33Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

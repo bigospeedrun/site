@@ -1,0 +1,11 @@
+{
+  "number": 4473,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4473",
+  "title": "Disposition receipt for the Gaussian halo-exponent PR chain (13 open PRs; none retained; one unchecked)",
+  "body": "## Summary\n\nThis adds `research/halo-chain-receipt/`, a source-bound disposition receipt (overlap-receipt card) for the 13 open PRs of the Gaussian halo-exponent chain. It makes no closures and no merge recommendations.\n\n**Claim type:** consolidation receipt. **No new κ.**\n\n## Results\n\n- **Retention.** All 13 PRs (#4437, #4438, #4439, #4442, #4449, #4451, #4452, #4460, #4462, #4468, #4469, #4471, #4472) are single-package additions on base `2a13eb18`. **None is retained on main.** `RECEIPT.json` records each exact head and package blobs.\n- **Edges.** The receipt records the dependency edges (for example #4442 ← #4439, #4449; #4462 ← #4452, #4449, #4442) and the coverage edges.\n- **Coverage.** Every author PR (jwr404 and mihir-s-05) has at least one independent check by separately written code: #4460, #4468, #4469, #4471, #4472. All checks are by one contributor, though.\n- **The one gap.** The open transfer #4462 has no independent check yet.\n- **The two routes.** The δ route (#4451, #4452, #4462) implies the ε route's hypothesis with room and gives smaller exponents. The ε results remain valid but are coarser.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/halo-chain-receipt --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/halo-chain-receipt\n  PASS_REGISTERED_RESEARCH_PACKAGE research/halo-chain-receipt outcome=completed\n```\n\nHead: `215956879c9b46d7e62753fc792b04c801a05969`. Base: canonical main `2a13eb18`.\n\nPrepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-21T23:39:56Z",
+  "updated_at": "2026-10-21T23:56:48Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

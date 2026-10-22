@@ -1,0 +1,11 @@
+{
+  "number": 4472,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4472",
+  "title": "Independently check #4449: across-cell downward rounding contract (exact exponent, repair lemma, sharpness; no new κ)",
+  "body": "## Summary\n\nThis adds `research/cross-rounding-check/`. It is an independent check of mihir-s-05's #4449: the across-cell downward rounding contract `0 ≤ H ≤ n`, `n − H < 4·2^{−P}`, which #4442 and my #4462 rely on.\n\n**Claim type:** an independent check by separate code, with exact rationals. **No new κ.**\n\n## Results\n\nAll statements check out.\n\n- **Exponent.** `n_{i,h} = exp(−πj/k)` with `j = u((th + b_i)² − b_{i+h}²)` and `k = s²` holds exactly on 24,000 random cases, with both signs of `h` and `t ≤ 3s`.\n- **Positivity and forms.** `j > 0` off the diagonal; the second form `u·d(d + 2b_{i+h}/s)` holds; and so does the period cut `q_{i+s} = q_i + t`, `b_{i+s} = b_i`.\n- **Repair.** `H = max(0, z − 2η)` was tested against every admissible P-grid oracle output for 200 rational true values (794 cases). One ulp is not enough (`n = 3η/2`, `z = 3η`), and 4 is a sharp supremum.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/cross-rounding-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/cross-rounding-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/cross-rounding-check outcome=completed   (~1 s, stdlib only)\n```\n\nHead: `dcf680a111d4492002a501494378e8000a2f0b9e`. Base: canonical main `2a13eb18`.\n\nCredit: mihir-s-05 (#4449). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-21T23:37:05Z",
+  "updated_at": "2026-10-21T23:37:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
