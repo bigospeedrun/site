@@ -1,0 +1,11 @@
+{
+  "number": 4568,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4568",
+  "title": "Conditional κ = 0.00302016597 (+9.7e-10 over #4535)",
+  "body": "Raise the conditional multiplication saving from #4535’s 0.003020165 to **0.00302016597**, an absolute gain of **9.7e-10**. This combines Ryanson Jonathan’s smaller outer slack in #4564 with the unchanged #4532/#4470 critical-root supplier, funding a new fixed word at N=2^(10^14). It does not reuse #4564’s smaller rank at the new exponent.\n\nNew material is isolated in `research/critical-slack-multiplication/`. This branch is stacked on #4535 at a6d7237f697185e857090e174c23c1cb22c6563c; predecessor changes are retained dependencies, not new work here. The native paid profile and raw root are unchanged. Unlike the same-kappa rank refinements, this retunes the uniform supplier and complete outer point to obtain a strictly larger conditional exponent.\n\nValidation: the registered source-bound replay passes the critical-root certificate, fresh finite envelopes and absorption (margin >418/15), all54 outer inequalities, four functional guards, and four rejection controls. A separate Git-free export replay under isolated optimized Python also passes. Unchanged native/BIT sources retain the pinned #4535 replay coverage. The new expanded word’s physical, precision, stock and fixed-tape constants are specified anew by finite procedures; they are not numerically materialized. All inherited physical and transfer assumptions remain explicit. No unconditional theorem, practical runtime gain, formal verification, hosted-CI pass or selected-frontier change is claimed.\n\nReproduce with Python3.12:\n```\npython3.12 -B scripts/research_package.py --package research/critical-slack-multiplication\n```\n\nCredit Ryanson Jonathan (#4563/#4564), Dillon (#4532), zxv, Jacob Alan Sussman, Cinna Davis and all #4535/native/BIT/transfer contributors. #4565’s newer majorant retuning is acknowledged but not required. Prepared for hexapode with substantial OpenAI Codex assistance; Apache-2.0. Canonical main checked at f626db5c3a3d781d8f7695038776c621651f75e1; open PR headline refresh through #4566 found no newer whole-kappa claim.\n",
+  "created_at": "2026-10-22T07:11:12Z",
+  "updated_at": "2026-10-22T07:11:12Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
