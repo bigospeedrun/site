@@ -1,0 +1,11 @@
+{
+  "number": 4484,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4484",
+  "title": "Absorb the factor (10 p^2)^g in the tensor error (no new κ)",
+  "body": "## Question\n\n#4482 leaves HALO's tensor error as `g p^{10 g} exp(-p^2)`. Once the inverse ceiling is `10 p^2`, does `g log p = o(p)` still put `g (10 p^2)^g exp(-p^2)`, times a global factor `exp(K p)`, below `2^{-C p}` for every fixed `C`?\n\n## Result\n\nLet `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0` be integers, and let `L = ceil(log2 p)`. If `p ≥ max(64, 4K + 2C)` and `16 g L ≤ p`, then\n\n```text\ng (10 p^2)^g exp(K p - p^2) < 2^{-C p}.\n```\n\nWhenever `g log p = o(p)`, every fixed pair `K, C` meets that gate for large `p`. The written exponent 10 is not required for this absorption. The gate is not optional for every `g`: at `g = p^2` the substituted error is greater than 1 for every integer `p ≥ 2`.\n\n**Claim type:** one absorption bound. **No new κ.** The per-axis ceiling `10 p^2` stays a hypothesis. The `g`-fold shape `g (10 p^2)^{g-1} p^6 exp(-p^2)` is not proved here, and the #4100 notes are unchanged.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-tensor-error\n```\n\n`PASS_GAUSSIAN_TENSOR_ERROR` and `outcome=completed` on this machine. Maintainer replay has not been run.\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7, selection refresh κ = `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T00:58:33Z",
+  "updated_at": "2026-10-22T00:58:33Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

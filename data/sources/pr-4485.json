@@ -1,0 +1,11 @@
+{
+  "number": 4485,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4485",
+  "title": "Absorb the telescoping factor (10 p^2)^{g-1} p^6 (no new κ)",
+  "body": "## Question\n\n#4484 absorbs `g (10 p^2)^g exp(-p^2)` when `p ≥ max(64, 4K + 2C)` and `16 g ceil(log2 p) ≤ p`. A `g`-fold triangle inequality carries `g - 1` inverse ceilings and one section error. Does `g (10 p^2)^{g-1} p^6 exp(-p^2)` stay below `2^{-C p}` under that same gate?\n\n## Result\n\nLet `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0` be integers, and let `L = ceil(log2 p)`. If `p ≥ max(64, 4K + 2C)` and `16 g L ≤ p`, then\n\n```text\ng (10 p^2)^{g-1} p^6 exp(K p - p^2) < 2^{-C p}.\n```\n\nThe case `K = 0` is the monomial in the question. Relative to #4484 the extra factor is `p^4 / 10`, and it fits the same power-of-two budget: the exponent is at most `-C p - 4`. Whenever `g log p = o(p)`, every fixed pair `K, C` meets the gate for large `p`. At `g = p^2` the telescoping error is greater than 1 for every integer `p ≥ 2`.\n\n**Claim type:** one absorption bound. **No new κ.** The ceiling `10 p^2` and the section error `p^6 exp(-p^2)` stay hypotheses. Replacing a ceiling by the approximant norm `10 p^2 + p^6 exp(-p^2)` is not proved here, and the #4100 notes are unchanged.\n\nThis branch starts from canonical main. It does not replay #4484.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/gaussian-tensor-fold\n```\n\n`PASS_GAUSSIAN_TENSOR_FOLD` and `outcome=completed` on this machine. Maintainer replay has not been run.\n\nBase `2a13eb1827784206202db90e5dc8327cf8a250db`, priority revision 7, selection refresh κ = `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T01:05:37Z",
+  "updated_at": "2026-10-22T01:05:37Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
