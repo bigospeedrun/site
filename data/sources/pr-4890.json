@@ -1,0 +1,11 @@
+{
+  "number": 4890,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4890",
+  "title": "Record one positive-quarter degree-6 n=8 parity prefix at 25/16 (no new κ)",
+  "body": "## Summary\n\nRecords one n=8 parity prefix for `(1, 1/4, -1/16, -1/16, -1/16, -1/16, -1/16, 1/16)`, the degree-6 sign left open by #4889. The tail `l1` is `5/8`. The largest proper-prefix infinity norm is `25/16`, strictly above `3/2`. The proper-prefix norms match #4889: `1379/1024` once, `11/8` four times, `23/16` five times, and `25/16` eleven times. The factors do not. The even child changes to `(1, -1/16, -1/16, -1/16)`, the even child of #4872. The right shear matches #4889 because it drops the changed quotient entry. The even left shear changes from `15/256` to `-17/256` and still lifts `23/16` to `25/16`. The completed product matches the reordered Toeplitz matrix and has infinity norm `13/8`.\n\nNo new κ. The selected record stays `60403/20000000`. Base `624de9dc66858af0945e5f8a0942488d62280d43`. This branch starts at fetched main and does not stack on an unmerged predecessor. It does not enumerate the 128-symbol sign family, spend `p^100`, or change the selected frontier.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-positive-quarter-degree-six-sign\n```\n\nThat replay passed locally and printed `PASS_TRIANGULAR_PARITY_POSITIVE_QUARTER_DEGREE_SIX_SIGN`.\n",
+  "created_at": "2026-10-22T23:09:44Z",
+  "updated_at": "2026-10-22T23:09:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 4886,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4886",
+  "title": "Record one positive-quarter odd-sixteenth n=8 parity prefix at 25/16 (no new κ)",
+  "body": "## Summary\n\nRecords one n=8 parity prefix for `(1, 1/4, -1/16, -1/16, 1/16, 1/16, 1/16, 1/16)`, the odd sixteenth left open by #4884. The tail `l1` is `5/8`. The largest proper-prefix infinity norm is `25/16`, strictly above `3/2`. The first proper prefix is `1373/1024`, the next four are `11/8`, the next five are `23/16`, and eleven proper prefixes equal `25/16`. That norm list matches #4823. The factors do not: the even child still matches #4836, the opening shear carries `-3/64` and `45/1024`, and the Schur right shear is not the identity. The `15/256` factor no longer reaches `93/64`. The completed product matches the reordered Toeplitz matrix and has infinity norm `13/8`.\n\nNo new κ. The selected record stays `60403/20000000`. Base `624de9dc66858af0945e5f8a0942488d62280d43`. This branch starts at fetched main and does not stack on an unmerged predecessor. It does not enumerate the 128-symbol sign family, spend `p^100`, or change the selected frontier.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-positive-quarter-odd-sixteenth\n```\n\nThat replay passed locally and printed `PASS_TRIANGULAR_PARITY_POSITIVE_QUARTER_ODD_SIXTEENTH`.\n",
+  "created_at": "2026-10-22T22:56:02Z",
+  "updated_at": "2026-10-22T22:56:02Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

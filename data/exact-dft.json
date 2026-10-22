@@ -872,6 +872,42 @@
         "checked_at": "2026-10-22T13:32:43.335095Z",
         "receipt_path": "sources/direct-pr-41-39777069258-1-final.json"
       }
+    },
+    {
+      "id": "direct-pr-43",
+      "kind": "improvement",
+      "score": "30201599/10000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-22T22:38:37Z",
+      "spec_version": "1",
+      "title": "ptweezy direct dft submission",
+      "authors": [
+        {
+          "name": "ptweezy",
+          "url": "https://github.com/ptweezy"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/43",
+      "source_commit": "8de7345cc7bc1234561c025f2feeb3bf135e37c3",
+      "artifact": {
+        "path": "sources/direct-pr-43-submission.json",
+        "sha256": "7372fb7bc093f8ed1f556b1cb3670a4187db1de564ea6429fcba63756a53d754"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/43",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-22T22:38:37Z",
+      "site_observed_at": "2026-10-22T23:21:48Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/blob/8de7345cc7bc1234561c025f2feeb3bf135e37c3/submissions/dft/ptweezy-dft-tight302/Submission.lean"
+      }
     }
   ],
   "record_metadata": {
@@ -1285,7 +1321,24 @@
       "route": "pull_request",
       "credit_note": "This is HalitZiyaKARTAL's own Lean Verified 26159999/10000000000 proof (submission #40) with different Fourier and certificate files, which raises the proved saving to 0.0030103. The construction is Jacob Sussman's (submission #29): 348 of this proof's 430 files are byte-identical to his, and HalitZiyaKARTAL changed the other 82, which hold the Fourier files, the certificate data and the exported bound.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39777069258"
+    },
+    "direct-pr-43": {
+      "checked_at": "2026-10-22",
+      "source_url": "https://github.com/bigospeedrun/verifier/blob/8de7345cc7bc1234561c025f2feeb3bf135e37c3/submissions/dft/ptweezy-dft-tight302/Submission.lean",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-10-22T22:38:37Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/43",
+      "direct_submission": true,
+      "route": "pull_request"
     }
   },
-  "updated_at": "2026-10-22T14:22:41Z"
+  "updated_at": "2026-10-22T23:21:48Z"
 }

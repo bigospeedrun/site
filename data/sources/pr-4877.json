@@ -1,0 +1,11 @@
+{
+  "number": 4877,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4877",
+  "title": "Record one degree-7 quarter n=8 parity prefix at 25/16 (no new κ)",
+  "body": "## Summary\n\nRecords one n=8 parity prefix for `(1, -1/4, -1/16, -1/16, -1/16, -1/16, -1/16, -1/16)`, the last sixteenth left open by #4872. The tail `l1` is `5/8`. The largest proper-prefix infinity norm is `25/16`, strictly above `3/2`. The proper-prefix norms match #4872: `1445/1024` five times, `23/16` four times, `187/128` once, and `25/16` eleven times. The even child and the Schur child match #4872. The last quotient entry changes from `603/16384` to `-1445/16384`, and that value appears only in the final left shear. The completed product matches the reordered Toeplitz matrix and has infinity norm `13/8`.\n\nNo new κ. The selected record stays `60403/20000000`. Base `624de9dc66858af0945e5f8a0942488d62280d43`. This branch starts at fetched main and does not stack on an unmerged predecessor. It does not enumerate the 128-symbol sign family, spend `p^100`, or change the selected frontier.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-quarter-degree-seven-sign\n```\n\nThat replay passed locally and printed `PASS_TRIANGULAR_PARITY_QUARTER_DEGREE_SEVEN_SIGN`.\n",
+  "created_at": "2026-10-22T22:45:31Z",
+  "updated_at": "2026-10-22T22:45:31Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
