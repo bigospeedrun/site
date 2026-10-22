@@ -274,6 +274,30 @@
       "by": "BOS Lead Dev",
       "at": "2026-10-22T10:50:00Z",
       "note": "Own package research/kappa-interface-round2-20261022/ARITHMETIC.json (no CLAIM.json or RESULT.json); its top-level kappa 37769/12500000 (= outer.parameters.kappa) equals the title kappa 0.00302152. Conditional, same sense as all CrocSwap IM rows. Open: Claimed, new IM leader over #4535. Prepared by BOS Data Pipeline."
+    },
+    {
+      "pr": 4596,
+      "head": "477232ced13ec75fa40e0451ad1377db54c9d385",
+      "score": null,
+      "by": "BOS Lead Dev",
+      "at": "2026-10-22T12:45:00Z",
+      "note": "New head; same reading as the 406aae3 dismissal. RESULT.json still states only floats (kappa_quotient now 0.0114177...) and no exact kappa 0.0034; the body still says the controller needs a contract change before it can price it. Not a claim at this head. Prepared by BOS Data Pipeline."
+    },
+    {
+      "pr": 4610,
+      "head": "1eb8da6cfb35512c0cc2533413e5ca42f48e13c6",
+      "score": "9443/3125000",
+      "by": "BOS Lead Dev",
+      "at": "2026-10-22T12:45:00Z",
+      "note": "New head and new title value (0.00302152 -> 0.00302176). The new own package research/kappa-round3-warp-20261022/ARITHMETIC.json has top-level kappa 9443/3125000 (= outer.parameters.kappa), equal to the title kappa 0.00302176; the round2 package keeps 37769/12500000. Conditional, same sense as all CrocSwap IM rows. Open: Claimed, IM leader. Prepared by BOS Data Pipeline."
+    },
+    {
+      "pr": 4626,
+      "head": "e4413c43eeaacdd20be123fdd7d7add53427f028",
+      "score": "3021569/1000000000",
+      "by": "BOS Lead Dev",
+      "at": "2026-10-22T12:45:00Z",
+      "note": "Own package research/helper621-warp-combination/ARITHMETIC.json (no CLAIM.json or RESULT.json); its top-level kappa 3021569/1000000000 (= outer.parameters.kappa) equals the title kappa 0.003021569. Built on #4610's round2 geometry. Conditional, same sense as all CrocSwap IM rows. Open: Claimed, below #4610 at 0.00302176. Prepared by BOS Data Pipeline."
     }
   ]
 }
