@@ -4035,7 +4035,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-29",
+        "leader": "direct-pr-37",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -4085,7 +4085,7 @@
             "authors": [
               "jacobalansussman"
             ],
-            "bound": "O(n log^(1 - 0.0007474) n)"
+            "bound": "O(n log^(1 - 0.0007474546) n)"
           },
           {
             "id": "shea256-exact-dft-round11-2026",
@@ -4106,7 +4106,7 @@
               "jacobalansussman",
               "chafreaky"
             ],
-            "bound": "O(n log^(1 - 0.0007547) n)"
+            "bound": "O(n log^(1 - 0.000754736) n)"
           },
           {
             "id": "jacob-sussman-exact-dft-e8-2026",
@@ -4116,7 +4116,7 @@
             "authors": [
               "jacobalansussman"
             ],
-            "bound": "O(n log^(1 - 0.0008762) n)"
+            "bound": "O(n log^(1 - 0.0008762478) n)"
           },
           {
             "id": "shea256-exact-dft-complex588-2026",
@@ -4127,7 +4127,7 @@
               "jeremykothe2",
               "Ryan Shea"
             ],
-            "bound": "O(n log^(1 - 0.001233) n)"
+            "bound": "O(n log^(1 - 0.0012331685) n)"
           },
           {
             "id": "direct-issue-16",
@@ -4147,7 +4147,7 @@
             "authors": [
               "Hrishik Sai Bojnal"
             ],
-            "bound": "O(n log^(1 - 0.001265) n)"
+            "bound": "O(n log^(1 - 0.0012654) n)"
           },
           {
             "id": "direct-issue-30",
@@ -4157,7 +4157,7 @@
             "authors": [
               "Parker L"
             ],
-            "bound": "O(n log^(1 - 0.001266) n)"
+            "bound": "O(n log^(1 - 0.0012661185) n)"
           },
           {
             "id": "direct-pr-29",
@@ -4167,7 +4167,7 @@
             "authors": [
               "jacobalansussman"
             ],
-            "bound": "O(n log^(1 - 0.001788) n)"
+            "bound": "O(n log^(1 - 0.0017887045) n)"
           },
           {
             "id": "direct-pr-3",
@@ -4177,7 +4177,17 @@
             "authors": [
               "Nil Mamano"
             ],
-            "bound": "O(n log^(1 - 0.001022) n)"
+            "bound": "O(n log^(1 - 0.0010221076) n)"
+          },
+          {
+            "id": "direct-pr-37",
+            "score": "17887049/10000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Parker L"
+            ],
+            "bound": "O(n log^(1 - 0.0017887049) n)"
           }
         ],
         "table": "big-o"
@@ -5711,7 +5721,8 @@
     "[\"integer-multiplication\",\"crocswap-pr-4416\",\"268647/100000000\",\"attained\"]:record",
     "[\"3sum\",\"direct-issue-35\",\"4800698571997281331/2500000000000000000\",\"attained\"]:lean",
     "[\"other-quasi-riemann\",\"HaileyStorm:8747729897/10000000000\",\"8747729897/10000000000\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-4470\",\"60403/20000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-4470\",\"60403/20000000\",\"attained\"]:record",
+    "[\"exact-dft\",\"direct-pr-37\",\"17887049/10000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {

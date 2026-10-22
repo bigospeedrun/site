@@ -1,0 +1,11 @@
+{
+  "number": 4494,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4494",
+  "title": "Compile native dyadic blocks: 766 → 698 scalar allowance (no new κ)",
+  "body": "Ordinary rational rank bases can introduce non-native coefficients such as 1/3. This package uses integer unimodular column operations to factor every dyadic matrix M as U V with rank(M) columns, dyadic U and integral V, then emits a sequential one-temporary shear program with every clear and coefficient charged.\n\nFour disjoint windows in the actual retained native source have complete scalar allowance **766 → 698 per orientation**. This is a 68-unit local upper-bound reduction beyond repeated-edge coalescing; one window has rank two. It adds at most one reusable owned field, no temporary productive credit and no recursive jobs. It is not a best scalar rewrite or a κ improvement.\n\n```sh\npython3.12 -B scripts/research_package.py --package research/dyadic-block-compiler\n```\n\nThe standard-library replay authenticates the original source and pricing function, locates both actual orientations, checks independent ranks and all 160 local persistent/dirty-owned columns, and verifies 200 additional dyadic matrix cases plus invalid-alternative controls. Registered, isolated optimized, committed-byte and Git-free export checks pass on Windows. Linux execution remains untested.\n\nPROOF.md proves termination, alphabet preservation, the complete local operator identity and inverse-transpose construction. RESULT.json includes the emitted programs. General nonidentity query-rank declarations remain explicit caller premises; all four applications use the exact identity query. Complete caller stock, native/global admission and all asymptotic obligations remain separate.\n\nThis extends #4489's shared-bridge handoff, with source credit to zxv and the retained native/compiler authors, Jacob Alan Sussman, Cinna Davis and #4359/#4416/#4440/#4441/#4447/#4470. Integer reduction and rank factorization are classical, with no priority claim. Substantial OpenAI assistance; Apache-2.0. No selected-frontier change.\n",
+  "created_at": "2026-10-22T01:45:54Z",
+  "updated_at": "2026-10-22T01:45:54Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -698,6 +698,42 @@
         "checked_at": "2026-10-11T14:04:34.709092Z",
         "receipt_path": "sources/direct-pr-3-38142057874-1-final.json"
       }
+    },
+    {
+      "id": "direct-pr-37",
+      "kind": "improvement",
+      "score": "17887049/10000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-22T01:56:58Z",
+      "spec_version": "1",
+      "title": "ptweezy direct dft submission",
+      "authors": [
+        {
+          "name": "ptweezy",
+          "url": "https://github.com/ptweezy"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/37",
+      "source_commit": "6e0b482509e8143b74d983d5212af37c4d759f47",
+      "artifact": {
+        "path": "sources/direct-pr-37-submission.json",
+        "sha256": "424b4b6d7a3d9344cd5a455289732687e822b9eeca1d2c1ab0cf0a60d44770ce"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/37",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-22T01:56:58Z",
+      "site_observed_at": "2026-10-22T02:22:57Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/blob/6e0b482509e8143b74d983d5212af37c4d759f47/submissions/dft/ptweezy-lever-nb1/Submission.lean"
+      }
     }
   ],
   "record_metadata": {
@@ -1034,7 +1070,24 @@
       "direct_submission": true,
       "route": "pull_request",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38142057874"
+    },
+    "direct-pr-37": {
+      "checked_at": "2026-10-22",
+      "source_url": "https://github.com/bigospeedrun/verifier/blob/6e0b482509e8143b74d983d5212af37c4d759f47/submissions/dft/ptweezy-lever-nb1/Submission.lean",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-10-22T01:56:58Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/37",
+      "direct_submission": true,
+      "route": "pull_request"
     }
   },
-  "updated_at": "2026-10-22T00:22:35Z"
+  "updated_at": "2026-10-22T02:22:57Z"
 }
