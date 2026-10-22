@@ -76,19 +76,28 @@ test('the number of tunnels is limited; a closed tunnel frees its place', async 
  } finally { r.close(); }
 });
 
-test('an idle tunnel closes, and a busy one closes at its lifetime', async () => {
- const r = await setup({'api.anthropic.com': ['160.79.104.10']}, {idleMs: 150, lifetimeMs: 600});
+// Each limit gets its own proxy, and the other limit is far away, so a slow machine cannot make
+// one limit close the tunnel in place of the other. Only the lifetime test has a lower bound.
+test('an idle tunnel closes long before its lifetime', async () => {
+ const r = await setup({'api.anthropic.com': ['160.79.104.10']}, {idleMs: 150, lifetimeMs: 20_000});
  try {
   const idle = await r.tunnel('api.anthropic.com:443');
   const started = Date.now();
   await closed(idle.socket);
-  assert.ok(Date.now() - started < 500, 'idle close');
-  const busy = await r.tunnel('api.anthropic.com:443');
+  assert.ok(Date.now() - started < 10_000, 'idle close');
+ } finally { r.close(); }
+});
+
+test('a busy tunnel closes at its lifetime, not before', async () => {
+ const r = await setup({'api.anthropic.com': ['160.79.104.10']}, {idleMs: 5_000, lifetimeMs: 600});
+ try {
+  // The lifetime clock starts inside the proxy, after this timestamp, so a slow tunnel setup cannot shorten the measurement.
   const begin = Date.now();
+  const busy = await r.tunnel('api.anthropic.com:443');
   const traffic = setInterval(() => busy.socket.write('x'), 50);
   await closed(busy.socket);
   clearInterval(traffic);
   const lived = Date.now() - begin;
-  assert.ok(lived >= 500 && lived < 1500, `lifetime ${lived} ms`);
+  assert.ok(lived >= 550 && lived < 4_000, `lifetime ${lived} ms`);
  } finally { r.close(); }
 });
