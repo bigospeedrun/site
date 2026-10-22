@@ -1,0 +1,11 @@
+{
+  "number": 4707,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4707",
+  "title": "Tighten conditional critical-root transfer to kappa = 0.0030201659769 (exact arithmetic)",
+  "body": "## Summary\nThis contributes an isolated, exact-rational **conditional arithmetic** tightening to ? = **0.0030201659769**, beyond the currently open #4568 ? = 0.00302016597.\n\nIt keeps the selected PR #4470 native supplier and the conditional #4532 critical-root / #4535 all-size transfer interfaces unchanged. It does **not** claim a new native word, unconditional integer-multiplication theorem, or formally accepted record.\n\n## Exact verification\n- Reconstructs 10,928 productive fields and 64,620 paid jobs using independent Fraction moment intervals, bracketing the raw ? crossing within (0.0030201659770, 0.0030201659771).\n- Shows a positive paid-vs-productive moment at the proposed uniform saving ? + 6?10??? = 0.003020165976906.\n- Verifies all 54 strict outer inequalities, four functional guards, and nine cost margins as exact rational inequalities.\n- Pays the critical-root logarithmic absorption using fixed rank N = 2^(10^15), with a conservative positive surplus > 68/3.\n- Provides a self-contained Python 3.11/3.13 CI workflow, with no additional Python dependencies.\n\n## Reproduce\n```bash\npython -I -B research/p16-tight-transfer-20261022/frontier_rational_gate.py\npython -I -B research/p16-tight-transfer-20261022/critical_root_tight_transfer.py\n```\n\n## Scope and credit\nAll inherited physical-native, independent all-column, owner/host/precision, tape, analytic and arbitrary-height compiler proof obligations remain inherited and **are not independently discharged** by this submission. The result is a conditional parameter certificate pending review.\n\nBased directly on current upstream main with a four-file isolated diff. Credit #4470, #4532, #4535, #4564, #4568, Cinna Davis, Dillon, zxv, Jacob Alan Sussman, Ryanson Jonathan, hexapode and earlier contributors. New research prepared for @Chrisbryan17 with GPT-6 assistance. Apache-2.0.\n\nReview welcome, especially the critical-root lemma applicability and outer-ledger transcription.",
+  "created_at": "2026-10-22T17:00:38Z",
+  "updated_at": "2026-10-22T17:01:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
