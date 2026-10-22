@@ -70,6 +70,8 @@ class Importer:
         # Verified outcome; on 2026-10-17 an open-only read dropped the 3SUM leader.
         issues=self.api.pages(PREFIX+'issues',{'state':'all'})
         prs=self.api.pages(PREFIX+'pulls',{'state':'all'})
+        self.listed={('direct-pr-' if 'pull_request' in i else 'direct-issue-')+str(i['number']) for i in issues}
+        self.listed|={'direct-pr-'+str(p['number']) for p in prs}
         for item in issues:
             if 'pull_request' in item:continue
             if item['number'] in SMOKE_NUMBERS or is_test_submission(item):
@@ -234,7 +236,15 @@ class Importer:
     def collect(self):
         path=self.root/'direct-submissions.json'
         previous=json.loads(path.read_text()) if path.exists() else {}
-        claims=self.verify(self.discover(),previous)
+        discovered=self.discover()
+        # 2026-10-22 16:18Z: GitHub listed no verifier issue at all for one read, so the
+        # refresh dropped 13 rows (the 3SUM leader among them). An issue or PR is never
+        # removed from these lists, so a known submission that is missing means the read
+        # is incomplete: keep the previous bundle (main() exits 1; the step is soft).
+        missing=sorted(set(previous.get('entries',{}))-self.listed)
+        if missing:
+            raise ValueError(f'GitHub lists {len(missing)} known submission(s) no more ({", ".join(missing[:5])}); preserve previous data')
+        claims=self.verify(discovered,previous)
         return claims
 
 def row_for(key,claim,now,old=None,note=None):

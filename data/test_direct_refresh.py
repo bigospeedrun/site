@@ -23,6 +23,12 @@ class DiscoveryAPI:
         raise AssertionError(path)
 
 class RefreshTests(unittest.TestCase):
+    def collector(self,api):
+        """An importer with no previous direct-submissions.json, for collect() on a fake listing."""
+        temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup)
+        root=Path(temp.name);(root/'direct-trust.json').write_bytes((ROOT/'direct-trust.json').read_bytes())
+        return r.Importer(api,root)
+
     def issue(self,number=5,**kwargs):
         body=(ROOT/'direct-fixtures/issue-form-body.txt').read_text()
         return dict(number=number,state='open',title='[Lean submission] DFT',body=body,labels=[],
@@ -43,7 +49,7 @@ class RefreshTests(unittest.TestCase):
         issue=self.issue();test=self.issue(1);labeled=self.issue(6);labeled['labels']=[{'name':'test'}]
         invalid=self.issue(7);invalid['body']=invalid['body'].replace('1/1000','2/2000')
         flagged=self.issue(8,test_only=True)
-        importer=r.Importer(DiscoveryAPI([issue,test,labeled,invalid,flagged]))
+        importer=self.collector(DiscoveryAPI([issue,test,labeled,invalid,flagged]))
         claims=importer.collect()
         self.assertEqual(set(claims),{'direct-issue-5'})
         row,meta,_=r.row_for('direct-issue-5',claims['direct-issue-5'],'2026-10-11T00:00:00Z')
@@ -80,13 +86,30 @@ class RefreshTests(unittest.TestCase):
         importer=r.Importer(DiscoveryAPI([edited]))
         self.assertEqual(importer.verify(importer.discover(),previous),{})
 
+    def test_a_listing_without_a_known_submission_keeps_the_previous_bundle(self):
+        # 2026-10-22 16:18Z: GitHub listed no verifier issue for one read; the refresh dropped 13 rows,
+        # among them the 3SUM leader direct-issue-18, and the receipt page test failed the hourly run.
+        pr=dict(number=6,state='closed',merged=False,labels=[],head={'sha':'a'*40},user={'login':'alice'},
+                created_at='2026-10-10T12:00:00Z',html_url='https://github.com/bigospeedrun/verifier/pull/6')
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            (root/'direct-trust.json').write_bytes((ROOT/'direct-trust.json').read_bytes())
+            entries={'direct-issue-5':dict(route='issue'),'direct-pr-6':dict(route='pull_request')}
+            (root/'direct-submissions.json').write_text(json.dumps(dict(schema_version=1,entries=entries,final_states={})))
+            for issues in ([],[dict(number=6,pull_request={})]):
+                with self.subTest(issues=issues),self.assertRaisesRegex(ValueError,r'1 known submission.*direct-issue-5.*preserve previous data'):
+                    r.Importer(DiscoveryAPI(issues,[pr]),root).collect()
+            # Listed again (open or closed): the usual reading, no error.
+            self.assertEqual(set(r.Importer(DiscoveryAPI([self.issue(5)],[pr]),root).collect()),{'direct-issue-5'})
+            self.assertEqual(r.Importer(DiscoveryAPI([dict(self.issue(5),state='closed')],[pr]),root).collect(),{})
+
     def test_open_pr_claim_and_closed_unmerged_drop(self):
         pr=dict(number=6,state='open',merged=False,labels=[],head={'sha':'a'*40},user={'login':'alice'},created_at='2026-10-10T12:00:00Z',html_url='https://github.com/bigospeedrun/verifier/pull/6')
         sub=dict(d.parse_body(self.issue()['body']),source_subdir='submissions/dft/alice-proof')
         with patch.object(r,'inspect_pr',return_value={'submission':sub}):
-            self.assertIn('direct-pr-6',r.Importer(DiscoveryAPI(prs=[pr])).collect())
+            self.assertIn('direct-pr-6',self.collector(DiscoveryAPI(prs=[pr])).collect())
             pr['state']='closed'
-            self.assertEqual(r.Importer(DiscoveryAPI(prs=[pr])).collect(),{})
+            self.assertEqual(self.collector(DiscoveryAPI(prs=[pr])).collect(),{})
 
     def test_reviewed_credit_note_survives_the_hourly_rebuild(self):
         fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
@@ -161,9 +184,9 @@ class RefreshTests(unittest.TestCase):
         for status in [404,503]:
             api=DiscoveryAPI([self.issue()])
             with patch.object(api,'json',side_effect=GitHubError(status)):
-                if status==404:self.assertEqual(r.Importer(api).collect(),{})
+                if status==404:self.assertEqual(self.collector(api).collect(),{})
                 else:
-                    with self.assertRaises(GitHubError):r.Importer(api).collect()
+                    with self.assertRaises(GitHubError):self.collector(api).collect()
 
     def test_exact_claim_and_verified_rows_validate_against_real_schemas(self):
         from jsonschema import Draft202012Validator,FormatChecker
