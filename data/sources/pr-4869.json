@@ -1,0 +1,11 @@
+{
+  "number": 4869,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4869",
+  "title": "Record one degree-5 quarter n=8 parity prefix at 25/16 (no new κ)",
+  "body": "## Summary\n\nRecords one n=8 parity prefix for `(1, -1/4, -1/16, -1/16, -1/16, -1/16, 1/16, 1/16)`, the degree-5 sign left open by #4838. The tail `l1` is `5/8`. The largest proper-prefix infinity norm is `25/16`, strictly above `3/2`. The first five proper prefixes are `1445/1024`, above `11/8` and below `23/16`. The next four are `23/16`, one proper prefix is `187/128`, and eleven proper prefixes equal `25/16`. The even child still matches #4838. The Schur right shear is not the identity. The completed product matches the reordered Toeplitz matrix and has infinity norm `13/8`.\n\nNo new κ. The selected record stays `60403/20000000`. Base `624de9dc66858af0945e5f8a0942488d62280d43`. This branch starts at fetched main and does not stack on an unmerged predecessor. It does not enumerate the 128-symbol sign family, spend `p^100`, or change the selected frontier.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-quarter-degree-five-sign\n```\n\nThat replay passed locally and printed `PASS_TRIANGULAR_PARITY_QUARTER_DEGREE_FIVE_SIGN`.\n",
+  "created_at": "2026-10-22T22:26:03Z",
+  "updated_at": "2026-10-22T22:26:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
