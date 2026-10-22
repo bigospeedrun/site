@@ -4,8 +4,8 @@
   "title": "Refine #4597's Schur commutator bound for projectors: odd-codimension parity theorem and minimal binary/ternary sharpness witnesses (no new κ)",
   "body": "A partial answer to **#4597's open question 2**, on sharp Schur-commutator bounds for projectors over a fixed field. No new κ.\n\n## Parity theorem (written proof, any field)\n\nThe commutator of two idempotents is singular in odd dimension. The proof:\n\n- u = (s−z)² is central in F̄⟨s,z⟩/(s²−s, z²−z);\n- each quotient by u − λ has dimension at most 4, so every simple module has dimension at most 2;\n- the commutator vanishes on 1-dimensional factors.\n\nHence, for commuting idempotents P and Q,\n\n**rank [S,Z] ≤ min(2d, 2⌊(n−d)/2⌋).**\n\nThis strictly improves #4597's bound when n−d is odd and n−d ≤ 2d. For example, at n = 5, d = 2 it drops from 3 to 2. A general commuting pair reaching rank 3 there confirms that idempotence is needed.\n\n## Small-field sharpness\n\nEach \"max\" below is exhaustive over all commuting idempotent pairs. Each attained rank is an explicit witness.\n\n- **d = 1, rank 2:**\n  - F₅ reaches it at n = 3;\n  - F₃ has max 1 at n = 3 and first reaches rank 2 at n = 4;\n  - **F₂** has max 1 at n = 3 and 4, and **first reaches rank 2 at n = 5**.\n- **d = 2 over F₂:**\n  - max 1 at n = 4;\n  - rank 2 at n = 5, which equals the refined bound;\n  - **rank 4 = 2d at n = 6**.\n- **F₅, n = 5, d = 2:** rank 2, which equals the refined bound.\n\n`research/schur-projector-refinement/verify.py` uses the standard library only and takes about 50 s.\n\n## Limitations\n\n- **Coverage.** Minimal dimensions are established only where exhaustive data exists. There is no closed form for every field and every (n, d).\n- **Not claimed.** A density, a caller, a supplier or κ.\n\n## Open question\n\nOver F₂, is the refined bound attained for every d once n ≥ 3d? A possible first step is a tensor construction.\n\nCredit: petalas (Nick Petalas) for #4597 and #4278. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: eb5ccf9288808d973551e6264300d30d2f6e48a0\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T09:56:38Z",
-  "updated_at": "2026-10-22T09:56:38Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:22Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }

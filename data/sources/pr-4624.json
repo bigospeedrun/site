@@ -4,8 +4,8 @@
   "title": "Three short rows realize every unit for every m>=6, nothing for m<=5 (#4600 OQ2 answered in the row model; no new κ)",
   "body": "This answers **#4600's open question 2** (@petalas) within #4280's row model. **Three short rows realize every unit coefficient for every m ≥ 6**, and every nonzero c for every m ≥ 7. For m ≤ 5, no nonzero c is realized with three short rows, so the threshold is sharp. No new κ.\n\n## Construction (m ≥ 14)\n\nTake λ = (m−1, m−2, 3) and ρ = (m, 3t, 2t, padding ≤ 2t).\n\n- **Choice of t.** t = 1, unless c = −1. Then t is a unit with 2 ≤ t < m/3: t = 2 for odd m, t = 3 when 3 ∤ m, and otherwise the smallest prime not dividing m.\n- **Choice of β.** β = (balanced block of sum X + 2m, balanced middle of sum S, X, 0), where X ≡ c·t⁻¹ lies in [1, m−2] and S ≡ −2(X + 2m) with S just above (m−5)X.\n- **Result.** B(3) ≡ X, B(m−2) ≡ −X and B(m−1) ≡ B(m) ≡ 0, so the coefficient is tX = c.\n\n## Checks\n\n- **Construction:** fully written, including the monotonicity step (with X = m − k, the excess (−3k mod m) fits under (m−5)·⌊2k/3⌋). It is also checked for every nonzero c and every 14 ≤ m ≤ 200.\n- **Exact enumeration** of the whole model for m ≤ 13. It also gives the m ≤ 5 negative result.\n- **Fixed-shape dynamic programme** for m ≤ 30, as a cross-check.\n\nTogether with #4622 (two short rows exactly when gcd(c, m) ≥ 3), the short-row complexity of every coefficient is now determined in the row model.\n\n`research/three-short-row-units/verify.py` uses the standard library only and takes about 20 s.\n\n## Limitations\n\n- **Inherited model.** The row model and its converse come from #4280.\n- **Not claimed.** Call counts beyond #4600's.\n\nCredit: petalas (Nick Petalas) for #4600 and #4280. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 7e1b48989382f91b55ab51c10756880e5c6e7801\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T10:42:52Z",
-  "updated_at": "2026-10-22T10:55:38Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:28:28Z",
+  "closed_at": "2026-10-22T19:28:28Z",
+  "merged_at": "2026-10-22T19:28:28Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Navigation receipt for pinterbanget's 37 session PRs (#4513-#4591): subjects, types, merge-relevant edges (no new κ)",
   "body": "## Summary\n\nThis adds `research/session-receipt-20261022/`, a **navigation receipt** for the 37 open PRs I opened in one donated session, #4513–#4591, as of 08:45 UTC. It is for intake. For each PR it records the head, package(s), subject, type and a one-line description. It also records the edges that matter when merging. **No new κ. No closures recommended.**\n\n## Merge-relevant edges\n\n- **#4535 rank chain (same κ).** #4563 (13×) → #4564 (`d = 10^−12`, 34×) → #4565 (retuned majorant, 85×). #4565's verifier reproduces the other two as controls, so if only one is wanted, #4565 carries all three numbers.\n- **#4568 (hexapode)** builds on #4564. #4570 checks #4568 and gives a 6.9× smaller rank via #4565.\n- **#4554 (Dugongue)** has an independent check of every constructive component: #4556–#4562 and #4566.\n- **#4567 and mihir-s-05's #4581** agree exactly in all 128 windows. #4567 also covers nonadjacent pairs, `|c| ≤ 3` and retiming.\n- **#4532.** #4537 (finite figures) and #4569 (written proof) are complementary. #4591 covers the #4483 Chernoff layer that #4532 inherits.\n\nTypes: 27 checks, 4 extensions, 3 same-κ rank reductions, 1 negative result, 1 receipt and 1 repair, across 57 packages in 12 subject groups.\n\n```text\npython3.12 -B scripts/research_package.py --package research/session-receipt-20261022\n  PASS_REGISTERED_RESEARCH_PACKAGE research/session-receipt-20261022 outcome=completed\n```\n\nThe verifier checks internal consistency only (SHAs, distinct PRs and packages, edges, coverage set), so it replays after merges.\n\nHead: `8ef033ed69204b9d48a877e213c93f9147c063ec`. Base: canonical main `f626db5c`.\n\nPrepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T08:40:25Z",
-  "updated_at": "2026-10-22T08:40:25Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:23Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }

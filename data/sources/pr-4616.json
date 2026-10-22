@@ -4,8 +4,8 @@
   "title": "Independently check #4610's warp substitution: 34 of 72 G maps changed, all invertible and frame-transporting; 17,453 scalar opcodes unchanged, 422 labels; 3,298 paid calls (no new κ)",
   "body": "Independent Python check of intqwq's #4610 warp-substitution claims. The comparison runs between its vendored emitted word (blob `79dad65b`, SHA256-pinned) and PR4470's word from main's pinned constructor. **Every checked claim holds.** No new κ.\n\n`research/pr4610-warp-substitution-check/verify.py` uses the standard library only and takes about 2 s.\n\n## Results\n\n- **Warp maps.** All 72 G maps are invertible on F₂⁹ and map their input frame **onto** their output frame. Exactly **34** changed, and op, lender and B_pos are unchanged for all 72.\n- **Scalars.** In both orientations, all **17,453 scalar opcodes and coefficients are unchanged, in order**, and exactly **422** frame labels differ.\n- **Paid calls.** Climbs go from 3,302 to 3,290, so paid calls go from **3,310 to 3,298**.\n- **Other events.** Adapter, warp, phase and centre counts are unchanged.\n\nTogether with #4614 (endpoint frames and profile) and #4615 (raw crossing), every structural and arithmetic statement of #4610 checked so far holds.\n\n## Not covered\n\n- absolute phases and monomial lowering;\n- the symbolic endpoint identity;\n- contract admissibility of generator substitution, which is the maintainers' call.\n\nCredit: intqwq (#4610) and Cinna Davis (#4470). Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 5c051ee2c79a399246af3ecff8f067ec51264a42\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T10:18:30Z",
-  "updated_at": "2026-10-22T10:18:30Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:22Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }

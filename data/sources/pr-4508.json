@@ -4,8 +4,8 @@
   "title": "Bound one tensor axis by two section errors at ceiling 9 (no new κ)",
   "body": "## Summary\n\nUnder the hypotheses `||B_i|| ≤ 9 p^2`, `||C_i|| ≤ 9 p^2 + ε` and `||B_i - C_i|| < 2 ε`, with `ε = p^6 exp(-p^2)` and `||X ⊗ Y|| = ||X|| ||Y||`,\n\n```text\n⊗_i B_i - ⊗_i C_i = sum_k T_k,\n||T_k|| < 2 (9 p^2 + ε)^{g-1} ε,\n||⊗_i B_i - ⊗_i C_i|| < 2 g (9 p^2 + ε)^{g-1} ε.\n```\n\nThe factor 2 is two section errors on the active axis. HALO's `2g` rectangles stay a volume partition. The scalar shadow uses caps `9`, `10` and `2`; the displayed factors are `8, 7, 6` and `7, 9, 5`. A difference of size `3` exceeds the cap `2` when `g = 1`.\n\nThe three norm hypotheses are not proved. The comparison with `2^{-C p}` is #4506 and is not re-proved. No new κ. The selected record remains `23/10000`.\n\nThis answers the open question of #4506. It does not replay #4506. #4488 is the same telescope at ceiling `10 p^2`. Splitting one axis through the section polynomial is left open.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-tensor-nine-axis`\n- [x] Prints `PASS_GAUSSIAN_TENSOR_NINE_AXIS` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `bbde3b0bedb8f7ce17159dfbe913b7e3e5194bab`, priority revision 7. Upstream had moved from `2a13eb18`; κ stayed `23/10000`. The pre-submit fetch `f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc` left the HALO blob `5f601b3c8ac368aa79aa1007effe5933a360237b` and the selected-result blob `ed33caef5c5827693e9572d252a66f99cbb73d40` unchanged, so this package keeps the `bbde3b0` baseline.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
   "created_at": "2026-10-22T02:52:19Z",
-  "updated_at": "2026-10-22T02:52:19Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:24Z",
+  "closed_at": "2026-10-22T19:19:24Z",
+  "merged_at": "2026-10-22T19:19:24Z",
+  "state": "closed"
 }

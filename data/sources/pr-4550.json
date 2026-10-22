@@ -4,8 +4,8 @@
   "title": "Disposition receipt for jwr404's 13-PR halo-absorption chain (no new κ)",
   "body": "## Summary\n\nThis adds `research/jwr-chain-receipt/`, a disposition receipt for jwr404's 13 open halo-absorption PRs: #4508, #4509, #4511, #4512, #4515, #4520, #4523, #4524, #4526, #4527, #4528, #4530 and #4531. **No new κ. No closures are recommended.**\n\n## Findings\n\n- **Nothing is retained yet.** None of the 13 packages is present at its merge base or on main `f626db5c`. Each PR is a single-package addition of 5 files. `RECEIPT.json` records exact heads, merge bases and per-file blobs.\n- **Answer chain.**\n  - 4506 (merged) → 4508 → 4509 → 4511 → 4512 → 4515.\n  - #4520, #4523 and #4524 are roots.\n  - 4524 → 4526 → 4527 → 4528 → 4530 → 4531.\n  - #4517 (mine, open) answers #4515, and #4520 cites it.\n- **Factor 9 versus factor 10.** #4530 and #4531 redo #4527 and #4528 with the factor-9 gate. The factor-10 statements remain valid but are coarser.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/jwr-chain-receipt\n  PASS_REGISTERED_RESEARCH_PACKAGE research/jwr-chain-receipt outcome=completed\n```\n\nThe verifier checks recorded at-base facts only, with no working-tree absence tests, so it stays replayable after these PRs merge. This follows the #4470 review of my earlier receipts.\n\n**Limitation:** this records structure and provenance only. It does not replay the mathematics of any of the PRs.\n\nHead: `a96f701475e6c5c73944a65e4bdc44b2ae2e7851`. Base: canonical main `f626db5c`.\n\nCredit for all listed results: jwr404. Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T06:00:17Z",
-  "updated_at": "2026-10-22T06:00:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:23Z",
+  "closed_at": "2026-10-22T19:19:23Z",
+  "merged_at": "2026-10-22T19:19:23Z",
+  "state": "closed"
 }

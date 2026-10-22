@@ -4,8 +4,8 @@
   "title": "Independently check #4535's arithmetic (κ = 0.003020165): critical root, gap 377e-12, mirror, absorption, binding outer row (no new κ)",
   "body": "## Summary\n\nThis adds `research/pr4535-arithmetic-check/`. It is an independent arithmetic check, with certified intervals, of hexapode's #4535 (conditional κ = 0.003020165 via #4532's critical-root compiler on #4470's unchanged p16 supplier).\n\n**Claim type:** an independent arithmetic check. **No new κ.**\n\n## Results\n\nEverything checked reproduces #4535.\n\n- **Critical exponent.** `[θ_lo, θ_hi]` brackets `T_θ = P_θ`, certified, and equals exactly 1 minus #4478's raw-root bracket.\n- **Saving order.** κ < uniform saving, and `t − θ_hi = 377/10¹²` exactly.\n- **Mirror at θ.** The worst window ratio is **0.56281 ≤ 141/250**, in the maximizing cell (1/48, 1/41).\n- **Absorption.** `ln A ≤ 13.6223` (matching `logA_upper`). The margin is 352.33 at `ln N = 10¹²` and **236.79 at the stated `N = 2^{10¹²}`**, monotone beyond.\n  - *Labelling note:* #4535's `margin_lower` is computed at `ln N = 10¹²`, not at `ln 2^{10¹²}`. It is still positive at the stated N.\n- **Outer rows.** 7 of the 9 rows exceed κ, and the **binding main-transform margin equals the reported 29969798347/10²⁰**. The parameter schedule is `κ + k·d`. The ξ rows are not recomputed because ξ is not printed.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/pr4535-arithmetic-check --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/pr4535-arithmetic-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/pr4535-arithmetic-check outcome=completed   (~10 s, stdlib only)\n```\n\nHead: `26502792b9d46fc353fc7b092de070a675264fd8`. Base: canonical main `f9f85c1e`.\n\n## Not covered\n\n- #4532's critical-root theorem.\n- The finite envelope.\n- The native and physical premises.\n\nCredit: hexapode (#4535), dillona (#4532) and #4470's lineage. Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T04:40:36Z",
-  "updated_at": "2026-10-22T05:56:10Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:24Z",
+  "closed_at": "2026-10-22T19:19:23Z",
+  "merged_at": "2026-10-22T19:19:23Z",
+  "state": "closed"
 }

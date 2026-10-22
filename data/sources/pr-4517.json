@@ -4,8 +4,8 @@
   "title": "Core-row operator lift: HALO's tensor bound needs no off-core polynomial estimate (answers #4515; no new κ)",
   "body": "## Summary\n\nThis adds `research/core-row-operator-lift/`. It answers the open question of jwr404's #4515. HALO's tensor bound needs **no** bound on `‖P_sec − P_global‖₂` off the core rows, because HALO only keeps core outputs and the lift holds there.\n\n**Claim type:** a written lemma with exact rational controls. **No new κ.**\n\n## Lemma\n\nLet `Π_i` be the kept-row projection on axis `i`. Assume `‖B_i − P_sec‖ < ε`, `‖P_glob − C_i‖ < ε`, HALO's row identity `Π_i P_sec = Π_i P_glob`, and `‖B_i‖, ‖C_i‖ ≤ M`. Then\n\n```text\n‖Π_i(B_i − C_i)‖₂ < 2ε,    ‖⊗Π_iB_i − ⊗Π_iC_i‖₂ < 2g·M^{g−1}·ε,    ⊗Π_iB_i = (⊗Π_i)(⊗B_i).\n```\n\nThe key fact is `‖ΠX‖₂ ≤ ‖X‖₂`, by the Gram identity `XᵀX − (ΠX)ᵀ(ΠX) = ((I−Π)X)ᵀ((I−Π)X)`. The result is slightly sharper than #4508, since no `+ε` enters the base.\n\n## Exact controls\n\n- The Gram certificate and the two-error split, on 40 random rational cases.\n- The mixed-product rule and the exact restricted telescope, for `g = 2, 3`.\n- #4515's two examples: they fail the unrestricted lift but satisfy the restricted one.\n- HALO's phrases are pinned.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/core-row-operator-lift --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/core-row-operator-lift\n  PASS_REGISTERED_RESEARCH_PACKAGE research/core-row-operator-lift outcome=completed   (<1 s, stdlib only)\n```\n\nHead: `2280cd7a4c8238232f641cc0249280dfcae6e8c7`. Base: canonical main `f9f85c1e`.\n\nCredit: James Reed (jwr404, #4488–#4515) and HALO (#4100 notes). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T03:17:49Z",
-  "updated_at": "2026-10-22T03:17:49Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:24Z",
+  "closed_at": "2026-10-22T19:19:24Z",
+  "merged_at": "2026-10-22T19:19:24Z",
+  "state": "closed"
 }

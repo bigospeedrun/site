@@ -4,8 +4,8 @@
   "title": "Two short rows realize c iff gcd(c,m) >= 3 (#4600 OQ1): necessity proof and explicit construction for every m (no new κ)",
   "body": "This answers **#4600's open question 1** (@petalas) completely, within #4280's row model: **exactly two short rows realize c ≠ 0 if and only if gcd(c, m) ≥ 3.** No new κ.\n\n## Necessity (written proof)\n\nIf gcd(c, m) = 2, #4600's condition forces both short rows to have length m/2. Then:\n\n- (r₁ − r₂)·m/2 ≡ 0, so r₁ + r₂ is even;\n- 2B(m/2) ≡ 0.\n\nTogether these give c = −(r₁ + r₂)·B(m/2) ≡ 0. Units are already excluded by #4600.\n\n## Sufficiency (explicit construction, every m)\n\nLet g = gcd(c, m), d = m/g and c = g·r. Take:\n\n- λ = (m, m−d, d, 0, …);\n- ρ = (m−g, g, 0, …);\n- β = ((g+1)^r, g^(d−r), M, 1^r, 0^(d−r)), where M is the balanced block of length (g−2)d and sum m − 2r.\n\nThen B(d) = m + r, B(m−d) = 2m − r and B(m) = 2m, all congruences hold, and the coefficient is g·r = c.\n\n## Checks\n\n- **Construction:** verified for all 4,626 pairs (m, c) with m ≤ 200.\n- **Exact enumeration** of the whole profile model for m ≤ 12 agrees.\n- **The annihilator condition alone is not sufficient.** For example, m = 6 with c = 2 or 4, and m = 12 with c = 2 or 10.\n- **#4600's family** m = 8t, c = 4t is checked for t ≤ 64.\n\n`research/two-short-row-coefficients/verify.py` uses the standard library only and takes about 3 s.\n\n## Limitation\n\nThe row model and its converse are inherited from #4280. Call counts beyond #4600's are not claimed.\n\nCredit: petalas (Nick Petalas) for #4600 and #4280. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 47cc973ac1e0b4970c33b37d2b65afdc4f300a04\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T10:33:13Z",
-  "updated_at": "2026-10-22T10:55:36Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:28:28Z",
+  "closed_at": "2026-10-22T19:28:28Z",
+  "merged_at": "2026-10-22T19:28:28Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Independently check #4583's union header: separate codec, exact width chain, cutoff and β binding (no new κ)",
   "body": "## Summary\n\nThis adds `research/pr4583-header-check/`, an independent check of mihir-s-05's #4583 (head `8d259a89`). #4583 gives a serialized PR4100 sparse-union header of `H = 2gh + g + 2⌈log₂(g+1)⌉ + 2` bits, shows `H ≤ 810 p^β log₂ p = o(p)` at #4100's core side, and gives the explicit cutoff `p ≥ 2^(40·10^30)`. **All checked claims are confirmed. No new κ.**\n\n## Checks\n\n- **Separate codec** from #4583's field table.\n  - 2,888 round trips, including every boundary subset of a small domain, with every width equal to `H`.\n  - 2,094 active-header checks: active axis, keep decision and active ordinal.\n  - 3,600 rejected corruptions.\n- **Exact width chain**, 6,448 cases. `h = ⌈400 log₂ p⌉` is computed as `(p^400 − 1).bit_length()`. Then `H ≤ 2gh + 5g`, and `H ≤ 810·g·t_lo` with `t_lo < log₂ p`.\n- **Cutoff and binding.**\n  - `δ = 3/10^30` is bound to the pinned #4100 ledger's `β` and its `group_headers` slack, and `L = 2^⌈400 log₂ p⌉` to `GAUSSIAN.md`.\n  - `δ·t0 = 120`, with `810·t0 < 2^115` and `1620·t0 < 2^116`.\n  - The tail is monotone.\n\n```text\npython3.12 -B scripts/research_package.py --package research/pr4583-header-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/pr4583-header-check outcome=completed   (<1 s, stdlib only)\n```\n\n**Limitation:** the tape-simulator adaptation and the reader-cost accounting in #4583 are out of scope.\n\nHead: `e7538ae03738d903d1fb6bfde970573c31bda71b`. Base: canonical main `f626db5c`.\n\nCredit: mihir-s-05 (#4583); the #4100, #4327 and #4376 lineage. Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T08:32:39Z",
-  "updated_at": "2026-10-22T08:32:39Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:23Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }

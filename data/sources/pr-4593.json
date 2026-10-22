@@ -4,8 +4,8 @@
   "title": "Independently check #4521's expanded rank-mass identity with my own #4436 flow: 12/12 exact totals match (no new κ)",
   "body": "## Summary\n\nThis adds `research/pr4521-expanded-count-check/`, an independent check of Dillon's #4521 (head `d72f2282`). #4521 checks #4436's fully expanded rank-mass identity `B_n·n − P_n = Δ·Q_n` and `U_n ≤ Q_n ≤ B_n·n/Δ`, with nested widths. Using **my own** #4436 flow (from my #4456 checks), with nothing imported from #4521 or #4436, the exact big-integer totals **match all 12 of #4521's published SHA256 hashes**. **No new κ.**\n\n## Checks\n\n- **Every rank.** The identity and bounds hold exactly, child batches are integral, and ranks strictly descend.\n- **Exact totals.** `B`, `P`, `Q` and `U` match in bit length and SHA256 for two toy rules at rank 100, and for raw p7 (bound to main) at rank 1000, where `B` has 17,504 bits and `P` 17,514.\n\n```text\npython3.12 -B scripts/research_package.py --package research/pr4521-expanded-count-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/pr4521-expanded-count-check outcome=completed   (~3 s, stdlib only)\n```\n\n**Limitations:**\n- The checks are finite ranks; the all-rank induction is #4521's.\n- #4521's \"routes\" count is not recomputed.\n\nHead: `d6370b47b1217db2483b6d4fc0d45ecf690d8946`. Base: canonical main `f626db5c`.\n\nCredit: Dillon (#4521), zxv (#4436), Jacob Alan Sussman, Cinna Davis. Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T08:51:09Z",
-  "updated_at": "2026-10-22T08:51:09Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:23Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }

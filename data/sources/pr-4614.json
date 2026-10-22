@@ -4,8 +4,8 @@
   "title": "Scoped check of #4610: all 632 endpoint frames equal PR4470's, profile arithmetic exact, moment improvement proved on (0,1) (no new κ)",
   "body": "Scoped independent check of intqwq's #4610 (head `4b4c75bc`), which claims conditional κ 0.00302152 via changed warp maps. The parts checked all hold. No new κ.\n\n`research/pr4610-endpoint-profile-check/verify.py` uses the standard library only and takes about 2 s. #4610's emitted `ACTUAL-WORD.json.gz` is vendored (blob `79dad65b`, SHA256-pinned), and its canonical payload hash equals #4610's frozen `4409d2d9…`.\n\n## Endpoint frames\n\nThis is the test #4596 failed (#4604).\n\n- **Frames.** All 632 start and final frames equal PR4470's as subspaces of F₂⁹. PR4470's frames come from main's pinned constructor.\n- **Interfaces.** Ports, v and h are unchanged, while the warps do change.\n- **Contrast with #4596.** Unlike the span{511} quotient, the substituted generators keep every output chart.\n\n## Profile arithmetic\n\n- **Profile.** The emitted local profile is exactly Pnew.\n- **Difference.** Pold − Pnew = 12(3H1 − 2H2 − H3 + H4).\n- **Totals.** Rank mass is unchanged at 5,327, with 12 fewer jobs per call. Over the controller that gives 64,620 → 64,404.\n\n## Moment positivity (written proof)\n\nWith x = 2^a and c = log₂3, the difference is 3 − 2·2^a − 3^a + 4^a = (x−1)² + 2 − x^c.\n\n- **Convex:** this function is convex on [1, 2], because c < 2 (3 < 4).\n- **Decreasing:** its derivative at x = 2 is negative, because c > 4/3 (27 > 16).\n- **Conclusion:** its value at x = 2 is 0. So the difference is positive for every 0 < t < 1.\n\n## Not covered\n\n- native phase lowering;\n- the Lean certificates;\n- the outer crossing interval;\n- whether substituting generators of the free-group identity is admissible under the supplier contract. That is the maintainers' call.\n\nCredit: intqwq (#4610) and Cinna Davis (#4470). Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: b14d286c6e0276db052249929e1cbd2427975cfe\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T10:14:16Z",
-  "updated_at": "2026-10-22T10:14:16Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:22Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }

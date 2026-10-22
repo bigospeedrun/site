@@ -4,8 +4,8 @@
   "title": "Independently replay #4534's noncommuting p16 identity in the free algebra: all 1,024 entries, chronology-sensitive (no new κ)",
   "body": "## Summary\n\nThis adds `research/free-controller-replay/`. It is an independent free-algebra replay of the noncommuting-stage theorem in Dugongue's #4534: #4470's p16 controller stays exactly diagonalizable with pairwise noncommuting `D_s` that commute with the central `Q`. It extends my commutative replay #4516 to ordered words.\n\n**Claim type:** an independent exact replay. **No new κ.**\n\n## Results\n\n- **The identity.** `L·W·R = diag(q^{ε_i} d_{w_i})` holds in **all 1,024 entries**, coefficient by coefficient over ordered words in `ℚ⟨d_s⟩[q, q^{−1}]`, using #4534's certificate (vendored, SHA256-pinned).\n- **Chronology.** Reversing the idle words breaks 212 entries, so the check is sensitive to chronology.\n- **Structure.** Exponents are 16 of each sign. `G = (32, 31, 29, …, 1, 0)`, and the other 15 words are contiguous prefixes or suffixes of `G`.\n- **Boundaries.** `L` and `R` are invertible, and they and their inverses are dyadic.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/free-controller-replay --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/free-controller-replay\n  PASS_REGISTERED_RESEARCH_PACKAGE research/free-controller-replay outcome=completed   (~1 s, stdlib only)\n```\n\nHead: `84c19218bca3b2c963e98a545481f32d78e77b17`. Base: canonical main `f9f85c1e`.\n\n## Not covered\n\n- #4534's adapter, retiming and lazy-response tools.\n- Any physical noncommuting `D_s`.\n\nCredit: Dugongue (#4534) and Cinna Davis (#4470). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T04:47:54Z",
-  "updated_at": "2026-10-22T04:47:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:24Z",
+  "closed_at": "2026-10-22T19:19:24Z",
+  "merged_at": "2026-10-22T19:19:23Z",
+  "state": "closed"
 }

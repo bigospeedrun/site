@@ -4,8 +4,8 @@
   "title": "Independently check #4554's linear-program lowering (PHASE-TABLES §2, §4): exact induction, random programs, FFT instantiation (no new κ)",
   "body": "## Summary\n\nThis adds `research/pr4554-lowering-check/`, an independent check of `PHASE-TABLES.md` §2 (finite-precision lowering of linear straight-line programs) and §4 (perturbed shear denominators) in Dugongue's #4554 (head `4f46c6a9`). With #4556–#4562, **every constructive component of #4554 now has an independent check.** All checked claims are confirmed. No new κ.\n\n## Checks\n\n- **Induction steps.** They hold exactly in rationals for all `h ≤ 200` across a grid of `C0` (1,200 cases):\n  - magnitudes `≤ N^b C^h`;\n  - the closed form `ε(V+1)(C0+3)^(h+1)` dominates both the add step and the scale step `(C0+1)E + εV + ε`.\n- **Random programs.** 60 random layered ADD/SUB/SCALE programs ran in exact rationals against a rounded, perturbed-scalar copy. Every node is within the error bound (worst ratio 0.0094) and the magnitude bound.\n- **FFT DAGs.** On radix-2 FFT DAGs up to `N = 512`, the observed error lies below the sharper `FFT-ERROR.md` chain (my #4557), which lies below the §2 bound. The §2 bound is valid but very loose here, 2·10^9 against an observed 3·10^−6 at `N = 512`. That fits its role as a generic `O(log N)`-bits certificate.\n- **Bilinear extension and §4.** The bilinear product extension and the perturbed shear denominators (`≥ 3/4` and `≥ 1/2`) hold in 2,000 cases.\n\n```text\npython3.12 -B scripts/research_package.py --package research/pr4554-lowering-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/pr4554-lowering-check outcome=completed   (~1 s, stdlib only)\n```\n\n**Limitation:** the checks are finite; the universal statement rests on the written induction, whose steps are checked exactly.\n\nHead: `d1f2fa275dbd3388190e6ff30499b7ea90562575`. Base: canonical main `f626db5c`.\n\nCredit: Dugongue (#4554). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T07:06:19Z",
-  "updated_at": "2026-10-22T07:06:20Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:23Z",
+  "closed_at": "2026-10-22T19:19:23Z",
+  "merged_at": "2026-10-22T19:19:23Z",
+  "state": "closed"
 }

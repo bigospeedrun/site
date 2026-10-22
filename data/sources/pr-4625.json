@@ -4,8 +4,8 @@
   "title": "Independently check #4623's idle-mass bookkeeping (177,408 - 141,568 = 35,840 = M_p) and its C=.006/.007 tangent bounds (no new κ)",
   "body": "Independent check of dillona's #4623 (head `fd5d3be1`), BUDGET.md. **The checked parts reproduce.** No new κ.\n\n## Results\n\n- **Masses.** From main's pinned `CONTROLLER.json`, the main target mass is **177,408** and the idle mass is **141,568**. Their difference, **35,840**, equals the determinant formula M_p = 2v[p + b(p+2)].\n- **Tangent bounds.** A 40-digit Decimal engine, independent of #4623's integer-root grid, reproduces A and B_J to every printed digit, and all are negative:\n  - complex, C = .006: A = −2.6366097978 and B_J = −132.6282065738;\n  - BIT, C = .007: A = −3.5731057049 and B_J = −133.1717283853.\n\n`research/pr4623-budget-check/verify.py` uses the standard library only and runs in under 1 s.\n\n- **Monotone extension (separator premise).** The signed equal-rank terms of h lie on the correct side of the separator (6 for complex, 7.5 for BIT), as do the Jensen base and the thin queries. So the exclusion extends to every larger saving.\n\n## Not checked\n\n- the decoder and repeated-evaluation barriers;\n- the precision lemma.\n\nCredit: dillona (Dillon) for #4623; Cinna Davis and the controller lineage. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 8738cbbbe8f5b5cc6e4a069873fc1305909d6c9c\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T10:57:34Z",
-  "updated_at": "2026-10-22T10:58:20Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:28:28Z",
+  "closed_at": "2026-10-22T19:28:28Z",
+  "merged_at": "2026-10-22T19:28:28Z",
+  "state": "closed"
 }

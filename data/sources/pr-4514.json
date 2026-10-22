@@ -4,8 +4,8 @@
   "title": "Independently recompute #4510's suffix error bounds: 1,328 δ / 4,879 δ, rewrite-invariant (no new κ)",
   "body": "## Summary\n\nThis adds `research/suffix-error-recount/`. It is an independent recomputation of Dugongue's #4510, the suffix-weighted logical error bounds for the complete THREE-base native word, using separately written reverse-response code under #4510's own model.\n\n**Claim type:** an independent recomputation. **No new κ.**\n\n## Results\n\n- **Worst outputs.** The worst persistent-output ADD+SCALE weight is **1,328** forward and **4,879** backward, in both the original and the #4505-rewritten words. That gives 11 and 13 extra logical-defect bits.\n- **ADD-only.** The backward worst goes 4,308 → 4,300, and the initial-input factor is 2.\n- **Effect of the rewrite.** 33 forward and 90 backward rows change. The largest increases are 2 and 12, as #4510 reports; the largest decreases, 109/4 and 4, are new information.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/suffix-error-recount --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/suffix-error-recount\n  PASS_REGISTERED_RESEARCH_PACKAGE research/suffix-error-recount outcome=completed   (~3 s, stdlib only)\n```\n\nHead: `c8c010c7392cd7c17a1c17a908c08bc11293c20a`. Base: canonical main `f9f85c1e`.\n\n## Not covered\n\n- The physical and recursive defect contracts.\n- The feedback theorem.\n\nCredit: Dugongue (#4510). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T03:09:20Z",
-  "updated_at": "2026-10-22T03:09:20Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:24Z",
+  "closed_at": "2026-10-22T19:19:24Z",
+  "merged_at": "2026-10-22T19:19:24Z",
+  "state": "closed"
 }

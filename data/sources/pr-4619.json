@@ -4,8 +4,8 @@
   "title": "Classify #4598's 24 five-request decompositions: 2 stars + 10 char-2 mixed + 12 Hamiltonian-cycle pentagons (#4598 OQ1; no new κ)",
   "body": "This answers **#4598's open question 1** (@petalas): a structural explanation of the 24 five-rectangle decompositions of J − I₅ over F₂ behind the 2,880 headers. No new κ.\n\n## Classification\n\nUnder S₅ × transposition there are exactly three orbits, 24 = 2 + 10 + 12:\n\n- **Stars (2, giving 240 headers):** the row star and the column star.\n- **Mixed (10, giving 1,200 headers):** for a centre c, the rectangle {c} × (V∖c) together with (V∖{c,y}) × {c,y} for each y ≠ c, and the transposes. Column c is covered 1 + 3 times, so these are **characteristic-2 only**.\n- **Pentagons (12, giving 1,440 headers):** one for each undirected Hamiltonian 5-cycle of K₅. The S sets are the cycle edges, and each T is the pair of outer neighbours of its edge. These have stabiliser D₅, sum to J − I **over ℤ**, and include #4598's hand counterexample.\n\n## Verification\n\n`research/five-request-decomposition-structure/verify.py` uses the standard library only and takes about 1 s. It runs its own enumeration and checks that:\n\n- the explicit families partition the 24;\n- the orbits are exactly these families;\n- the integer and mod-2 sums behave as stated.\n\n## Open question\n\nDoes a star/centre/cycle pattern extend to k = 6? This needs an enumeration over 602 rectangles.\n\nCredit: petalas (Nick Petalas) for #4598 and #4275. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 0f62abfdbb7e24659b218aa20cfbaefc7d771f4b\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T10:26:37Z",
-  "updated_at": "2026-10-22T10:26:37Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:28:28Z",
+  "closed_at": "2026-10-22T19:28:28Z",
+  "merged_at": "2026-10-22T19:28:28Z",
+  "state": "closed"
 }

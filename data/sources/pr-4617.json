@@ -4,8 +4,8 @@
   "title": "Binary commuting projectors attain the Schur-commutator bound 2d for every d at n=5d (follow-up to #4597 OQ2 and #4609; no new κ)",
   "body": "A follow-up to **#4597's open question 2** and my #4609. **Over F₂, commuting projectors attain the Schur-commutator bound 2d for every d**, at n = 5d. No new κ.\n\n## Proof\n\nTensor #4609's F₂ witness at n = 5, d = 1 with I_d.\n\n- **Inputs.** P ⊗ I_d and Q ⊗ I_d are commuting idempotents with leading blocks I_d.\n- **Complements.** Their Schur complements are S ⊗ I_d and Z ⊗ I_d.\n- **Rank.** The commutator is [S,Z] ⊗ I_d, of rank 2d. This equals the refined bound min(2d, 2⌊4d/2⌋) = 2d.\n\n`research/binary-projector-sharpness/verify.py` checks d = 1, …, 4. It uses the standard library only and runs in well under 1 s.\n\n## Limitation\n\nThe minimal n is open. n = 5d suffices, but d = 2 already reaches rank 4 at n = 6 (#4609).\n\nCredit: petalas (Nick Petalas) for #4597 and #4278. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 96c01a2124e234d798e9e97643c20fb5b430840d\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T10:20:05Z",
-  "updated_at": "2026-10-22T10:20:05Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:22Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }

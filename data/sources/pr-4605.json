@@ -4,8 +4,8 @@
   "title": "Independently recount #4598's binary threshold headers by exact pair convolution: 2/12/48/2,880 for k=2..5, brute-force-checked on GL_3/GL_4 (no new κ)",
   "body": "Independent recount of petalas's #4598 (head `c80f445e`), which counts the five-request binary threshold headers. **It agrees: 2,880 at k = 5.** No new κ.\n\n**Method** (`research/pr4598-header-recount/verify.py`, standard library, about 9 s). It deliberately avoids #4598's route: no J − I decomposition, no rank/idempotence argument, no rectangle-subset search and no imports from #4598.\n\n- **Guard condition.** G P_t G⁻¹ = I − g_t h_tᵀ, so each minor is 1 − Σ_{i≤j} h_t[i] g_t[i].\n- **Headers as pairs.** Headers correspond to pairs (X, Y) with YX = I_k.\n- **Count.** It is an exact ordered convolution of k+1 rank-≤1 increments. Each increment is weighted by its factor pairs, the first k must have a zero diagonal, and the total must be I_k. The convolution is evaluated by meet-in-the-middle.\n\n**Results**\n\n| k | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|\n| passing headers | 2 | 12 | 48 | **2,880** |\n\n- **Brute force** from the leading-minor definition over all of GL₃ and GL₄ agrees. The GL₄ check uses both coordinate requests and a non-coordinate orthogonal family.\n- **Failure control.** Dropping the order-3 guard at k = 3 gives 252 by both routes.\n- **Zero increments contribute 0** at every k. This independently confirms #4598's no-zero-increment step.\n- **Density** 1/6,999,552. The 2·k! pattern (240) fails at k = 5.\n\n**Limitations.** This covers only the stated header problem, and brute force stops at GL₄. #4598's 24-subset listing and its hand counterexample are not re-checked.\n\n**Open question:** k = 6, which needs a mod-p Walsh–Hadamard version over 2^36 cells.\n\nCredit: petalas (Nick Petalas) for #4598 and #4275; Cinna Davis for the request context. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: fe99331d0735c7a3d61babedb003188a1bfaa815\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-22T09:32:04Z",
-  "updated_at": "2026-10-22T09:32:04Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-22T19:19:22Z",
+  "closed_at": "2026-10-22T19:19:22Z",
+  "merged_at": "2026-10-22T19:19:22Z",
+  "state": "closed"
 }
