@@ -84065,7 +84065,7 @@
     "title": "Close local improvements on #4470: shear rewrites (128 windows, 88 nonadjacent, len 6, |c|<=3) and 1- and 2-contact retiming - all 0 (no new κ)",
     "state": "open",
     "created_at": "2026-10-22T07:10:52Z",
-    "updated_at": "2026-10-22T08:08:05Z",
+    "updated_at": "2026-10-22T08:48:42Z",
     "closed_at": null,
     "merged_at": null,
     "user": {
@@ -84073,7 +84073,7 @@
       "html_url": "https://github.com/pinterbanget"
     },
     "head": {
-      "sha": "58695721e3cf9d5101440dd53a3ea5bbcc0e9313"
+      "sha": "353ae6430787b348630e603bfe54e4311953fdcc"
     },
     "base": {
       "ref": "main"
@@ -84162,10 +84162,10 @@
   {
     "number": 4580,
     "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4580",
-    "title": "Price the p3 H-branch boundary at kappa 0.00302015 (322/397 calls) and close three decoder routes (no new κ)",
+    "title": "Price the p3 H-branch boundary at kappa 0.00302015 (322/397 calls) and close four repair routes (no new κ)",
     "state": "open",
     "created_at": "2026-10-22T08:04:13Z",
-    "updated_at": "2026-10-22T08:04:13Z",
+    "updated_at": "2026-10-22T08:25:49Z",
     "closed_at": null,
     "merged_at": null,
     "user": {
@@ -84173,7 +84173,7 @@
       "html_url": "https://github.com/Matarener"
     },
     "head": {
-      "sha": "62545a031ca0ba0df661e5325f83e00e73043ad0"
+      "sha": "c9ce308ca82ed0ad3f1128c6e666537b63a7569c"
     },
     "base": {
       "ref": "main"
@@ -84285,7 +84285,7 @@
     "title": "Prove quasipolynomial bound for chronological batch widths (no new κ)",
     "state": "open",
     "created_at": "2026-10-22T08:15:19Z",
-    "updated_at": "2026-10-22T08:15:19Z",
+    "updated_at": "2026-10-22T08:20:58Z",
     "closed_at": null,
     "merged_at": null,
     "user": {
@@ -84294,6 +84294,186 @@
     },
     "head": {
       "sha": "aadb7bc59390683450b1969e4632f546929dc569"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4587,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4587",
+    "title": "Independently cross-check all-length receiver floors and two pinned certificates",
+    "state": "open",
+    "created_at": "2026-10-22T08:19:21Z",
+    "updated_at": "2026-10-22T08:19:21Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "mihir-s-05",
+      "html_url": "https://github.com/mihir-s-05"
+    },
+    "head": {
+      "sha": "4f05085bfd3ef9f7ab54a4c30c0d6bd84bd4333c"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4588,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4588",
+    "title": "Independently check #4586's width-growth lemmas with separate flow/width code (raw p7 to rank 4000): all hold (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T08:23:26Z",
+    "updated_at": "2026-10-22T08:23:26Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "2f6578907b7f8718a13921552cc3069d3908e936"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4589,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4589",
+    "title": "Independently check #4580's p3 H-branch budget (322/397) with own certified powers; note two rounded bracket endpoints (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T08:29:25Z",
+    "updated_at": "2026-10-22T08:29:25Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "fd9f28beff7d03464d5a07cbdb00c38f431a1613"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4590,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4590",
+    "title": "Independently check #4583's union header: separate codec, exact width chain, cutoff and β binding (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T08:32:39Z",
+    "updated_at": "2026-10-22T08:32:39Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "e7538ae03738d903d1fb6bfde970573c31bda71b"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4591,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4591",
+    "title": "Independently check #4483's identity (2) and Chernoff bounds (7)-(9) on actual flows (p7, p16): all hold with wide margins (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T08:37:38Z",
+    "updated_at": "2026-10-22T09:10:54Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "84c0fb3a39bcb1e4b8c48892bfdd8a6e7ae58a50"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4592,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4592",
+    "title": "Navigation receipt for pinterbanget's 37 session PRs (#4513-#4591): subjects, types, merge-relevant edges (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T08:40:25Z",
+    "updated_at": "2026-10-22T08:40:25Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "8ef033ed69204b9d48a877e213c93f9147c063ec"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4593,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4593",
+    "title": "Independently check #4521's expanded rank-mass identity with my own #4436 flow: 12/12 exact totals match (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T08:51:09Z",
+    "updated_at": "2026-10-22T08:51:09Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "d6370b47b1217db2483b6d4fc0d45ecf690d8946"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4594,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4594",
+    "title": "Soundness check of #4585's coarsened partitions against exact geometry: all 235 realisable profiles covered (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T09:08:05Z",
+    "updated_at": "2026-10-22T09:08:05Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "a42b7a976d7d653e3f9650f5a1ae956e9f3ffa15"
+    },
+    "base": {
+      "ref": "main"
+    }
+  },
+  {
+    "number": 4595,
+    "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4595",
+    "title": "Independently recount #4545's PR4470 transport census: 3,302/2,856 per orientation, 406 new pairs vs PR4447 (no new κ)",
+    "state": "open",
+    "created_at": "2026-10-22T09:13:38Z",
+    "updated_at": "2026-10-22T09:13:38Z",
+    "closed_at": null,
+    "merged_at": null,
+    "user": {
+      "login": "pinterbanget",
+      "html_url": "https://github.com/pinterbanget"
+    },
+    "head": {
+      "sha": "618096061351465f38ddbdf437cb35c898451298"
     },
     "base": {
       "ref": "main"

@@ -1,0 +1,11 @@
+{
+  "number": 4595,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4595",
+  "title": "Independently recount #4545's PR4470 transport census: 3,302/2,856 per orientation, 406 new pairs vs PR4447 (no new κ)",
+  "body": "## Summary\n\nThis adds `research/pr4545-transport-census-check/`, an independent recount of the transport census in Clear1nsight's #4545 (head `6034837d`), using my own frame tracking on main's pinned #4470 constructor. The constructor also emits the pre-patch PR4447 word. **All recounted figures are confirmed. No new κ.**\n\n| | #4470 forward | #4470 backward | PR4447 word |\n|---|---:|---:|---:|\n| transport occurrences | **3,302** | **3,302** | 3,355 |\n| distinct `(E, F)` pairs | **2,856** | **2,856** | 2,934 |\n\n- **New pairs.** There are **406** distinct pairs new relative to PR4447, compared by exact ordered frame bases. The same 406 arise in both orientations.\n- **Helper owners.** There are 408 among 632 persistent fields.\n\n```text\npython3.12 -B scripts/research_package.py --package research/pr4545-transport-census-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/pr4545-transport-census-check outcome=completed   (~2 s, stdlib only)\n```\n\n**Limitation:** #4545's 17 helper-boundary recipes and its recipe matching are not recounted, and physical recipes are not re-lowered.\n\nHead: `618096061351465f38ddbdf437cb35c898451298`. Base: canonical main `f626db5c`.\n\nCredit: Clear1nsight (#4545), Cinna Davis (#4470). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T09:13:38Z",
+  "updated_at": "2026-10-22T09:13:38Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 4588,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4588",
+  "title": "Independently check #4586's width-growth lemmas with separate flow/width code (raw p7 to rank 4000): all hold (no new κ)",
+  "body": "## Summary\n\nThis adds `research/pr4586-width-growth-check/`, an independent check of mihir-s-05's #4586 (head `aadb7bc5`): `log B_N = O((1+log N)^(d+2))` for #4507's chronological batch widths. #4586 checks its lemmas on a copy of #4507's own generator. This package uses **separately written code**: my default-height flow (from my #4456 checks of #4436) and my width recurrence (from my check of #4507). The raw p7 rule is bound to main's `higher-moment-strictification/RESULT.json`. **All checked claims are confirmed. No new κ.**\n\n## Checks (raw p7, through rank 4000, 611,342 batch constraints)\n\n- **`B_1000`.** It has **2,524 bits**, as #4586 and #4507 report.\n- **Rank descent.** Every recursive rank in `J_n` is at most `⌊(m−1)n/m⌋`.\n- **(4).** `B_n | L_N^D(n)` holds for every `n ≤ 4000`, by gcd stripping with no factoring.\n- **(2).** The depth bound `D(n)` holds.\n- **Source-state lemma.** The flow at `n` equals the flow at `m·t`, with `t` the largest `Π`-smooth integer at most `⌊n/m⌋` and `Π = {2,3,5,7,11,19,41}`. This holds at **every** rank in range.\n- **(5).** The counting bound holds: `|H(M)| = 27 ≤ 576`.\n- **Explicit exponent.** It is `211·32·45 = 303,840` at `N = 1000`, exactly as #4586 states.\n\n```text\npython3.12 -B scripts/research_package.py --package research/pr4586-width-growth-check\n  PASS_REGISTERED_RESEARCH_PACKAGE research/pr4586-width-growth-check outcome=completed   (~25 s, stdlib only)\n```\n\n**Limitations:**\n- The written proof is #4586's. This package checks its finite consequences on a separate implementation.\n- Physical contracts are out of scope.\n\nHead: `2f6578907b7f8718a13921552cc3069d3908e936`. Base: canonical main `f626db5c`.\n\nCredit: mihir-s-05 (#4586), the #4507 width construction, and #4436's flow lineage. Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T08:23:26Z",
+  "updated_at": "2026-10-22T08:23:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
