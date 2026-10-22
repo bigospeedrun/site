@@ -37888,6 +37888,48 @@
         }
       ],
       "source_commit": "b269a729bc27ff3415e2b873ad00730ea6bc1a58"
+    },
+    {
+      "id": "crocswap-pr-4610",
+      "kind": "improvement",
+      "score": "37769/12500000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-22T10:02:07Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-22T10:02:07Z",
+      "site_observed_at": "2026-10-22T11:17:22Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4610"
+      },
+      "spec_version": "1",
+      "title": "Increase conditional kappa to 0.00302152 with changed warp maps and Lean certificates",
+      "authors": [
+        {
+          "name": "intqwq",
+          "url": "https://github.com/intqwq"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4610",
+      "artifact": {
+        "path": "sources/pr-4610.json",
+        "sha256": "f8c289dec919b8746e2dcc4e9e9e8b792542e0ca85126dedd360814b84bae835"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4610",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4610",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "4b4c75bc0fd64d3eee54029e8d2fab834251fca6"
     }
   ],
   "record_metadata": {
@@ -40973,7 +41015,7 @@
       "source_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 4222422970/2^46 (about 6e-05), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ 4b9ea4b, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit had not finished (checked 2026-10-22)); it is not our exact multitape statement and we have not rerun it.",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 4222422970/2^46 (about 6e-05), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ 4b9ea4b, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit failed (checked 2026-10-22)); it is not our exact multitape statement and we have not rerun it.",
       "comparison_key": "openai/original-109",
       "date_precision": "Manuscript dated September 23, 2026; submitted_at is observation time.",
       "upstream_tier": "claimed",
@@ -59830,7 +59872,35 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-10-22T07:11:12Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-4610": {
+      "checked_at": "2026-10-22",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4610",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 4610,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-10-22T10:02:07Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "Lead review decision; source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-10-22T10:02:07Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4610",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-10-22T10:02:07Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-10-22T10:17:28Z"
+  "updated_at": "2026-10-22T11:17:22Z"
 }

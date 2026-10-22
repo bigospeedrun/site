@@ -559,13 +559,13 @@
       },
       "verification": {
         "decision": "lean-verified",
-        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
-        "checked_at": "2026-10-22T09:47:03.909037Z",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-10-22T10:19:13.570283Z",
         "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39746589640",
-        "receipt_path": "sources/direct-pr-38-39746589640-1-lean.json",
-        "receipt_sha256": "8abd804c2942648720cd8b8bd0a0d56264438a496b8bf7f3092ad59b1a9843fc",
+        "receipt_path": "sources/direct-pr-38-39746589640-1-final.json",
+        "receipt_sha256": "7840ac077b370448dbcd0d89d161f883122805428f356c4395aa2aa57e6da9d4",
         "policy_hash": "024adedc20356fcf988fd413622f97588d7856b714fc5213db0fe6e6a0c65d09",
-        "result_artifact_id": 12416299048,
+        "result_artifact_id": 12419265075,
         "controller_fingerprint": "597e39e938d4727401a3afe28c9de979a08c9fc462f1b00ab44cc2de52612f55",
         "pr_identity": {
           "number": 38,
@@ -1462,6 +1462,37 @@
           "head": "6e0b482509e8143b74d983d5212af37c4d759f47",
           "changed_files_sha256": "c3a920eab429d7a8e7fe853d23f725742aba24c66ab47ecb9d074c7c91e4b2ef",
           "controller": "5a0203a9ccc3911b71ef90582afde0ec064689c0"
+        },
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-pr-38:e24c33e2e22d49e0b04cbbecf118d3507938e839a53f6e2dcb4c3dbde92ac968": {
+      "key": "direct-pr-38",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "bound": "1959540039/1000000000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "1ebc6da5c05cf2bfea58eab0a993a90397269e91",
+        "authors": [],
+        "source_subdir": "submissions/dft/halitziyakartal-halitziyav2-headcut"
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-10-22T10:19:13.570283Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39746589640",
+        "receipt_path": "sources/direct-pr-38-39746589640-1-final.json",
+        "receipt_sha256": "7840ac077b370448dbcd0d89d161f883122805428f356c4395aa2aa57e6da9d4",
+        "policy_hash": "024adedc20356fcf988fd413622f97588d7856b714fc5213db0fe6e6a0c65d09",
+        "result_artifact_id": 12419265075,
+        "controller_fingerprint": "597e39e938d4727401a3afe28c9de979a08c9fc462f1b00ab44cc2de52612f55",
+        "pr_identity": {
+          "number": 38,
+          "head": "1ebc6da5c05cf2bfea58eab0a993a90397269e91",
+          "changed_files_sha256": "effb9dbbf792e7c174887e0e8208474400d510fd7f8c7b1e02774c20bd3d4c92",
+          "controller": "bf0ea2aa30311d3679caf40fa759a0548b2c8e25"
         },
         "source_file": "Submission.lean"
       }

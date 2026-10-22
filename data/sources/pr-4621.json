@@ -1,0 +1,11 @@
+{
+  "number": 4621,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4621",
+  "title": "Partially check #4603's query-shear floor: exact Laurent identity, 15 disjoint ADD/IDLE windows in the pinned controller, merge saving 0.70 < 1 (no new κ)",
+  "body": "Partial independent check of Matarener's #4603 (head `caab2b42`), the p16 query-shear floor. **The three checked statements hold.** No new κ.\n\n`research/pr4603-shear-floor-check/verify.py` uses the standard library only and takes about 1 s. Nothing is imported from #4603.\n\n## Results\n\n1. **Exact identity.** S_x(−Q)·S_y(Q⁻¹) = signed_swap·diag(Q⁻¹,Q)·S_x(Q) holds, checked with exact Laurent-polynomial arithmetic. The product is [[0,−Q],[Q⁻¹,1]], and a wrong-sign control is rejected.\n2. **Window premise,** on main's pinned complex controller:\n   - between each of the 15 shears and the last full call on its own pair there are **only ADD and IDLE** events;\n   - the 15 windows are pairwise disjoint.\n\n   So any scheme paying at least 1 per window pays at least 15, which the controller attains. An inserted SIGNED_SWAP is detected.\n3. **Merge bound.** Merging 112 rank-one jobs into 14 rank-eight jobs saves **0.701 < 1** unit of moment at the current root.\n\n## Not covered\n\n- the fusion Q-coefficient ranks;\n- the distinct-line census;\n- the BIT controller's windows;\n- the parity model's rules.\n\nCredit: Matarener (Mark) for #4603; 1337isnot1337 / Cinna Davis and zxv for the controllers. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: fe0419b0b2b24e996479625d45d0d22146071b25\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T10:30:35Z",
+  "updated_at": "2026-10-22T10:30:35Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
