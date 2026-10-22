@@ -1,0 +1,11 @@
+{
+  "number": 4833,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4833",
+  "title": "Record one negative-quarter n=8 parity prefix at 25/16 (no new κ)",
+  "body": "## Summary\n\nRecords one n=8 parity prefix for `(1, -1/4, 1/16, 1/16, 1/16, 1/16, 1/16, 1/16)`, the sign left open by #4823. The tail `l1` is `5/8`. The largest proper-prefix infinity norm is `25/16`, the same cap as the positive quarter and strictly above `3/2`. The first five proper prefixes are `1435/1024`, the next four are `23/16`, one proper prefix is `185/128`, and eleven proper prefixes equal `25/16`. The completed product matches the reordered Toeplitz matrix and has infinity norm `13/8`.\n\nNo new κ. The selected record stays `60403/20000000`. Base `624de9dc66858af0945e5f8a0942488d62280d43`. This branch starts at fetched main and does not stack on an unmerged predecessor. It does not enumerate the 128-symbol sign family, spend `p^100`, or change the selected frontier.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-negative-quarter\n```\n\nThat replay passed locally and printed `PASS_TRIANGULAR_PARITY_NEGATIVE_QUARTER`.\n",
+  "created_at": "2026-10-22T21:20:26Z",
+  "updated_at": "2026-10-22T21:20:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
