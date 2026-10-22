@@ -1,0 +1,11 @@
+{
+  "number": 4522,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4522",
+  "title": "Independently recount #4518's Levi-adaptive gauges: allowance 157,970/158,018, suffix 4,871, interval optimum verified (no new κ)",
+  "body": "## Summary\n\nThis adds `research/levi-gauge-recount/`. It is an independent recount of Dugongue's #4518 (Levi-adaptive gauges, scalar allowance 666 → 616), using separately written code: my #4513 segment replay, my #4514 suffix responses, and a new exhaustive check of #4518's interval theorem. #4518's `NATIVE.json` is vendored, SHA256-pinned and marked `-text`.\n\n**Claim type:** an independent recount. **No new κ.**\n\n## Results\n\n| | forward | backward |\n| --- | ---: | ---: |\n| allowance original → #4505 → #4518 | 158,120 → 158,020 → **157,970** | 158,168 → 158,068 → **158,018** |\n| worst suffix ADD+SCALE (#4510 model) | 1,328 | **4,871** (from 4,879) |\n\n- **Logical correctness.** Non-scalar events are unchanged. The one changed scalar segment (4,208 → 4,212) has the identical exact linear effect on all 411 touched fields.\n- **Interval theorem.** `C + min_{L≤0≤H}[4(H−L) + 2Σ dist(s_i,[L,H])]` equals an exhaustive Dijkstra search over gauge walks and add orders on 400 random instances.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/levi-gauge-recount --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/levi-gauge-recount\n  PASS_REGISTERED_RESEARCH_PACKAGE research/levi-gauge-recount outcome=completed   (a few seconds, stdlib only)\n```\n\nHead: `2b255adbf8fb8f4bac69fec5f24355f3af4ee3d4`. Base: canonical main `f9f85c1e`.\n\nCredit: Dugongue (#4518, building on #4502 and #4505). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T03:23:57Z",
+  "updated_at": "2026-10-22T03:23:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

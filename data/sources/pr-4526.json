@@ -1,0 +1,11 @@
+{
+  "number": 4526,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4526",
+  "title": "Absorb the heaviest trailing p^10 slice (no new κ)",
+  "body": "## Summary\n\nThe heaviest trailing slice fits the same four-bit gate. Because `p^8 ≥ 256 > 9`, a factor `p^{10}` is heavier than `9 p^2`, so the `k = 1` slice dominates. Under\n\n```text\np ≥ max(64, 4K + 2C)    and    16 g ceil(log2 p) ≤ p,\n```\n\nboth\n\n```text\n(p^{10})^{g-1} p^6 (1 + p^4) exp(K p - p^2)\n```\n\nand its `g` copies are strictly below `2^{-C p}`. Dropping the `1` in `1 + p^4` leaves exactly `p^{10 g}`. The extra factor is strictly below `2^{4 L + 1}`, so the slice is strictly below `2^{10 g L + 1}`. Eight times the exponent is at most `-8`, and the exponent is at most `-C p - 1`. The `g` copies add one `L`, which `8 L ≤ p` pays for, and they stay at most `-C p - 1` as well.\n\nAt `p = 2` and `g = 2` the published gate fails and the slice already exceeds `2^{10} > 1`. This package does not reduce the gate factor from `16` to `10`.\n\nThe trailing bound `p^{10}`, the section error, and the ceiling `9 p^2` stay hypotheses. This package does not prove `||H^{-1}||_2 ≤ p^{10}`. No new κ. The selected record remains `23/10000`. This answers the open question of #4524. It branches from fetched main and does not replay that unmerged package.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-heavy-slice`\n- [x] Prints `PASS_GAUSSIAN_HEAVY_SLICE` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc`, priority revision 7. Upstream fetched at 2026-10-22T03:32:42Z was that commit. The pre-submit fetch in this round was unchanged, and the four pinned blobs match. κ remains `23/10000`. A #1166 reread at 2026-10-22T03:36:10Z still has #4524 as the latest note on this slice.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T03:36:55Z",
+  "updated_at": "2026-10-22T03:36:55Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

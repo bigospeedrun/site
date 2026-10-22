@@ -1,0 +1,11 @@
+{
+  "number": 4530,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4530",
+  "title": "Absorb one heavy slice by the factor-9 gate (no new κ)",
+  "body": "## Summary\n\nOne heavy slice fits the factor-9 gate. For integers `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0`, whenever `p ≥ max(64, 4K + 2C)` and `9 g ceil(log2 p) ≤ p`,\n\n```text\n(p^{10})^{g-1} p^6 (1 + p^4) exp(K p - p^2) < 2^{-C p}.\n```\n\nNine times the eighths is `72 (E + C p)`. The gate gives `720 g L = 80 · 9 g L ≤ 80 p`, so that multiple is at most `80 p + 72 - 36 p^2`. The polynomial `36 p^2 - 80 p - 144` equals `142192` at `p = 64` and increases by `72 p - 44`, so the exponent is at most `-C p - 1`.\n\nAt `p = 65` and `g = 1`, `9 g L = 63 ≤ 65` while `10 g L = 70 > 65`, and the exponent is `-4154`. The factor-10 line `80 g L ≤ 8 p` fails there (`560 > 520`). The published coefficient-9 monomial gate remains `16 g L ≤ p`, because that `9` is the ceiling in `9 p^2`. At `p = 2` and `g = 1` the factor-9 hypothesis fails, and `e < 3` puts the slice above `1`.\n\nThe `g` copies under this gate stay open. The trailing bound `p^{10}`, the section error, and the ceiling `9 p^2` stay hypotheses. This package does not prove `||H^{-1}||_2 ≤ p^{10}`. No new κ. The selected record remains `23/10000`. This answers the open question of #4528. It branches from fetched main and does not replay that unmerged package.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-slice-nine-gate`\n- [x] Prints `PASS_GAUSSIAN_SLICE_NINE_GATE` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc`, priority revision 7. Upstream fetched at 2026-10-22T03:50:29Z was that commit. The pre-submit fetch, reread at 2026-10-22T03:51:50Z, was unchanged, and the four pinned blobs match. κ remains `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T03:52:11Z",
+  "updated_at": "2026-10-22T03:52:11Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

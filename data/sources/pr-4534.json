@@ -1,0 +1,11 @@
+{
+  "number": 4534,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4534",
+  "title": "Frame-aware native construction lemmas and exact p16 certificates (no new κ)",
+  "body": "This adds four sufficient construction tools for changing the native circuit: a p16 identity with noncommuting stages, unequal-chart monomial adapters, complete owned-response retiming, and deferred-response coefficient propagation. The exact application checks all 1,024 p16 matrix entries and 5,056 response coefficients, with orientation, chronology and injection corruption controls.\r\n\r\nThere is **no new κ**. The unfunded owned-center candidate from discovery is excluded. The package is self-contained, preserves source hashes and attribution, and distinguishes copied native receipts from fresh certificate checks. No Lean, independent human acceptance, Linux-hosted run or complete multiplication theorem is claimed.\r\n\r\nValidation: registered Python 3.12 replay, isolated optimized standalone execution, committed-byte preflight, and Git-free exported replay with an input-corruption rejection check. Reproduce with:\r\n\r\n```sh\r\npython3.12 scripts/research_package.py --package research/frame-aware-native\r\n```\r\n\r\nCredit: Cinna Davis's #4470 and #4440/#4441/#4447 lineage; zxv's native/compiler work; Jacob Alan Sussman's #4268 mixed-target recursion; and the retained scalar, Clifford, geometry, physical and outer-ledger sources. #4516 supplies an independent commutative-controller replay. Prepared for Dugongue with substantial OpenAI assistance, using one primary worker and three collaborating agents.\r\n",
+  "created_at": "2026-10-22T04:17:22Z",
+  "updated_at": "2026-10-22T04:17:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

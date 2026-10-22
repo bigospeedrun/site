@@ -1,0 +1,11 @@
+{
+  "number": 4519,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4519",
+  "title": "Independently recompute #4507's chronological batch widths (p7 rank 1000: 17,504 -> 2,524 bits; 175 vs 700; no new κ)",
+  "body": "## Summary\n\nThis adds `research/batch-width-recount/`. It is an independent recomputation of mihir-s-05's #4507, the least chronological batch widths for #4436's direct mixed flow. It uses my independent #4436 flow and a separately written per-cut enumerator.\n\n**Claim type:** an independent recomputation. **No new κ.**\n\n## Results\n\nAll of #4507's numbers reproduce.\n\n- **Exits.** Aggregate per-cut exits equal the flow's exits at every rank.\n- **Toy widths** for `{2:4,3:1} ← {1:6,2:2}` through rank 12: `…, 4375, 110600`. The counterexample also reproduces: **pooled multiplier 175 against chronological 700**, because eight rank-8 leaf cuts each hold one job.\n- **Fixtures at rank 100.** 433 → 42 bits (95 of 96 ranks strictly reduced) and 1,002 → 88 bits (97 of 98).\n- **Raw p7 at rank 1,000.** **17,504 → 2,524 bits**, with the factor in `[2^14980, 2^14981)` and strict reduction at 879 of 880 ranks. Every new width divides the nested width.\n\n## Evidence\n\n```text\npython3.12 -B scripts/research_package.py --package research/batch-width-recount --check-only\n  PASS_PACKAGE_METADATA_AND_PINS (not a mathematical acceptance check)\npython3.12 -B scripts/research_package.py --package research/batch-width-recount\n  PASS_REGISTERED_RESEARCH_PACKAGE research/batch-width-recount outcome=completed   (~1 s, stdlib only)\n```\n\nHead: `915b94b890cde927fba98e02db32ae2864f6bf05`. Base: canonical main `f9f85c1e`.\n\nCredit: mihir-s-05 (#4507) and zxv (#4436). Prepared by Ryanson Jonathan with substantial Claude Code (Claude Opus 5.5) assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T03:20:57Z",
+  "updated_at": "2026-10-22T03:20:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 4527,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4527",
+  "title": "Absorb the heavy slice by the factor-10 gate (no new κ)",
+  "body": "## Summary\n\nThe heavy slice fits the factor-10 gate. For integers `p ≥ 2`, `g ≥ 1`, `K ≥ 0` and `C ≥ 0`, whenever `p ≥ max(64, 4K + 2C)` and `10 g ceil(log2 p) ≤ p`,\n\n```text\n(p^{10})^{g-1} p^6 (1 + p^4) exp(K p - p^2) < 2^{-C p}.\n```\n\nEight times the exponent is at most `8 p + 8 - 4 p^2`. The polynomial `4 p^2 - 8 p - 16` equals `15856` at `p = 64` and increases by `8 p - 4`, so the exponent is at most `-C p - 1`.\n\nAt `p = 64` and `g = 1`, `10 g L = 60 ≤ 64` while `16 g L = 96 > 64`, and the exponent is `-4035`. The published coefficient-9 gate remains `16 g L ≤ p`. At `p = 2` and `g = 1` the factor-10 hypothesis fails. The series bound `e < 3` gives `exp(4) < 81 < 1088`, so that slice is larger than `1`.\n\nThe `g` copies under this gate stay open. The trailing bound `p^{10}`, the section error, and the ceiling `9 p^2` stay hypotheses. This package does not prove `||H^{-1}||_2 ≤ p^{10}`. No new κ. The selected record remains `23/10000`. This answers the open question of #4526. It branches from fetched main and does not replay that unmerged package.\n\n## Test plan\n\n- [x] `python3.12 -B scripts/research_package.py --package research/gaussian-slice-ten-gate`\n- [x] Prints `PASS_GAUSSIAN_SLICE_TEN_GATE` and `outcome=completed`\n- [ ] Maintainer replay was not run\n\nBase `f9f85c1e4fa1e955ff39f10fca447e3e2a4e4adc`, priority revision 7. Upstream fetched at 2026-10-22T03:40:55Z was that commit. The pre-submit fetch, reread at 2026-10-22T03:44:15Z, was unchanged, and the four pinned blobs match. κ remains `23/10000`.\n\nPrepared by James Reed with substantial Cursor Grok 4.7 assistance.\n",
+  "created_at": "2026-10-22T03:44:35Z",
+  "updated_at": "2026-10-22T03:44:35Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
