@@ -5,14 +5,15 @@
 # Run:   docker run --rm --read-only --cap-drop ALL --memory 384m -p 127.0.0.1:3200:3000 \
 #          --env-file <root-only env file with ANTHROPIC_API_KEY, DISCORD_WEBHOOK_URL,
 #          DISCORD_CHAT_LOG_WEBHOOK_URL> bigospeedrun-site
+# Node 22.23.4 fixes CVE-2026-111497 (Brotli decoder, 2026-10-21); bump the tag and digest together.
 # Memory limit 384 MiB (compose.yaml); the V8 heap cap below keeps Node under it.
 
-FROM node:22-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 AS deps
+FROM node:22.23.4-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d AS deps
 WORKDIR /app
 COPY server/package.json server/package-lock.json ./
 RUN npm ci --omit=dev --ignore-scripts --no-audit --no-fund
 
-FROM node:22-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+FROM node:22.23.4-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000 NODE_OPTIONS=--max-old-space-size=256
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
