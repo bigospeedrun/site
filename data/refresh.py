@@ -77,7 +77,7 @@ def board_leader(problem):
               and not (r['id'].startswith('crocswap-') and r.get('upstream_status') == 'closed-unmerged')]
     return max(scores, default=None)
 
-TITLE_KAPPA = re.compile(r'(?:κ|kappa)\W{0,12}?(\d*\.\d+(?:\s*(?:e|[·×x*]\s*10\^?)\s*-?\d+)?|\d+/\d+)', re.I)
+TITLE_KAPPA = re.compile(r'(?:κ|kappa)\W{0,12}?(?:\bto\s+)?(\d*\.\d+(?:\s*(?:e|[·×x*]\s*10\^?)\s*-?\d+)?|\d+/\d+)', re.I)
 
 def title_kappas(title):
     """The kappa values a title names (routing only; a title never lists a row)."""

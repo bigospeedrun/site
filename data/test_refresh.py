@@ -170,6 +170,10 @@ class RefreshTests(unittest.TestCase):
         other={'research/x/CLAIM.json':'modified'}
         self.assertIsNotNone(run('conditional κ = 0.0016',files=other,claim={'kappa':'1/1000'})[2])
         self.assertEqual(refresh.title_kappas('κ = 7.44714499357628·10⁻⁴ and kappa 1/1000'),[refresh.Fraction('7.44714499357628e-4'),refresh.Fraction(1,1000)])
+        # "kappa to <value>" (#4535, 2026-10-22); "to" must be a word of its own.
+        self.assertEqual(refresh.title_kappas('Improve conditional multiplication kappa to 0.003020165 via critical-root transfer'),[refresh.Fraction('0.003020165')])
+        self.assertEqual(refresh.title_kappas('Raise κ To 7.0829157e-4'),[refresh.Fraction('7.0829157e-4')])
+        self.assertEqual(refresh.title_kappas('kappa total 0.5 and kappa toward 0.4'),[])
         problem={'records':[{'id':'classical-baseline','score':'0'},{'id':'crocswap-pr-9','score':'1/2','upstream_status':'closed-unmerged'},
                             {'id':'crocswap-pr-10','score':'1/100','upstream_status':'open'},{'id':'repro','score':'1/3'}],
                  'record_metadata':{'repro':{'reproduction_of':'x'}}}
