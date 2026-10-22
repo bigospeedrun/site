@@ -1,0 +1,11 @@
+{
+  "number": 4615,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4615",
+  "title": "Independently recompute #4610's raw crossing in 50-digit Decimal from the pinned controller: 0.00302155511 inside its bracket, PR4535 root reproduced (no new κ)",
+  "body": "Independent recomputation of intqwq's #4610 raw crossing. This closes the item my #4614 left open. **It agrees.** No new κ.\n\n`research/pr4610-crossing-recompute/verify.py` uses the standard library only and runs in under 1 s.\n\n## Method\n\n- **Histograms.** Target and paid histograms are rebuilt from main's pinned `joint-helper-lattice/CONTROLLER.json`, covering 18 calls, 15 shears, 15 idles and the diagonal terms. They combine Pnew with the unchanged helper list.\n- **Root.** The crossing is found by bisection in 50-digit Decimal arithmetic. This engine differs from #4610's Fraction intervals, and nothing is imported from #4610.\n\n## Results\n\n- **Pnew root:** 0.00302155511144…, inside #4610's (0.0030215551, 0.0030215552).\n- **Control:** Pold reproduces PR4535's 0.00302016597701….\n- **Counts:** paid calls 64,404 vs 64,620; rank-mass surplus 752.\n- **κ selection:** κ = ⌊root·10⁸⌋ − 3 = 0.00302152.\n- **Failure control:** dropping the idle charges moves the root far above the bracket.\n\n## Not covered\n\n- the 54 outer-ledger checks;\n- native phase lowering;\n- the Lean certificates;\n- contract admissibility.\n\nCredit: intqwq (#4610) and Cinna Davis (#4470). Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 29e1120baeec37959095c08ccfbc64ab6193d440\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T10:16:14Z",
+  "updated_at": "2026-10-22T10:16:14Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

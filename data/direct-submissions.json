@@ -534,6 +534,18 @@
         "source_file": "Submission.lean"
       }
     },
+    "direct-pr-40": {
+      "route": "pull_request",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "bound": "26159999/10000000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "cf335b916babec40d3424b0b4199b98f0741a939",
+        "authors": [],
+        "source_subdir": "submissions/dft/halitziyakartal-halitziyav3-tensor"
+      }
+    },
     "direct-pr-38": {
       "route": "pull_request",
       "submission": {
@@ -544,6 +556,24 @@
         "commit": "1ebc6da5c05cf2bfea58eab0a993a90397269e91",
         "authors": [],
         "source_subdir": "submissions/dft/halitziyakartal-halitziyav2-headcut"
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "checked_at": "2026-10-22T09:47:03.909037Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39746589640",
+        "receipt_path": "sources/direct-pr-38-39746589640-1-lean.json",
+        "receipt_sha256": "8abd804c2942648720cd8b8bd0a0d56264438a496b8bf7f3092ad59b1a9843fc",
+        "policy_hash": "024adedc20356fcf988fd413622f97588d7856b714fc5213db0fe6e6a0c65d09",
+        "result_artifact_id": 12416299048,
+        "controller_fingerprint": "597e39e938d4727401a3afe28c9de979a08c9fc462f1b00ab44cc2de52612f55",
+        "pr_identity": {
+          "number": 38,
+          "head": "1ebc6da5c05cf2bfea58eab0a993a90397269e91",
+          "changed_files_sha256": "effb9dbbf792e7c174887e0e8208474400d510fd7f8c7b1e02774c20bd3d4c92",
+          "controller": "bf0ea2aa30311d3679caf40fa759a0548b2c8e25"
+        },
+        "source_file": "Submission.lean"
       }
     },
     "direct-pr-37": {

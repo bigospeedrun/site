@@ -4055,7 +4055,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-38",
+        "leader": "direct-pr-40",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -4213,11 +4213,21 @@
             "id": "direct-pr-38",
             "score": "1959540039/1000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "Halit Ziya KARTAL"
             ],
             "bound": "O(n log^(1 - 0.00195954) n)"
+          },
+          {
+            "id": "direct-pr-40",
+            "score": "26159999/10000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Halit Ziya KARTAL"
+            ],
+            "bound": "O(n log^(1 - 0.0026159999) n)"
           }
         ],
         "table": "big-o"
@@ -5755,7 +5765,9 @@
     "[\"exact-dft\",\"direct-pr-37\",\"17887049/10000000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-pr-37\",\"17887049/10000000000\",\"attained\"]:lean",
     "[\"integer-multiplication\",\"crocswap-pr-4535\",\"604033/200000000\",\"attained\"]:record",
-    "[\"exact-dft\",\"direct-pr-38\",\"1959540039/1000000000000\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-pr-38\",\"1959540039/1000000000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-4568\",\"302016597/100000000000\",\"attained\"]:record",
+    "[\"exact-dft\",\"direct-pr-38\",\"1959540039/1000000000000\",\"attained\"]:lean"
   ],
   "deferred": [
     {
@@ -5766,10 +5778,10 @@
       ]
     },
     {
-      "key": "[\"integer-multiplication\",\"crocswap-pr-4568\",\"302016597/100000000000\",\"attained\"]:record",
-      "slug": "integer-multiplication",
+      "key": "[\"exact-dft\",\"direct-pr-40\",\"26159999/10000000000\",\"attained\"]:record",
+      "slug": "exact-dft",
       "authors": [
-        "Pierre-Loic Doulcet"
+        "Halit Ziya KARTAL"
       ]
     }
   ]

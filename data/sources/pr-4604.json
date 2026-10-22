@@ -1,0 +1,11 @@
+{
+  "number": 4604,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4604",
+  "title": "Endpoint-frame audit of #4596: every main output chart changes under the span{511} quotient; replay checks only the word's own finals (no new κ)",
+  "body": "Adversarial audit of DaysSky's #4596, which quotients PR4470's word by span{511} and claims complex 0.0121 / outer κ 0.0034. **No κ is claimed here.** This is a scoped finding about the endpoint contract. It does not close #4596.\n\n**Evidence** (`research/pr4596-endpoint-frame-audit/verify.py`, standard library, about 2 s; #4596's QUOTIENT-WORD vendored with blob `5bc2bdaf` and its SHA256 pinned; PR4470's frames from main's pinned `native_joint.py`):\n\n- **PR4470:** mains 0–111 end in F₂⁹, and mains 112–223 end in 112 distinct hyperplanes that avoid 511.\n- **#4596:** all 224 mains end in the **same** frame, F₂⁸. Every main output frame changed. Only the padded helper 224 reaches F₂⁹.\n- **Why the frames collapse:** φ sends F₂⁹, and every 511-free hyperplane, onto F₂⁸.\n- **Why the replay still passes:** the pinned `verify_buffers.py` compares final frames with the word's **own** `canonical[\"final\"]` (line 207), and `expected()` takes no frame input. \"632/632 exact\" therefore certifies only the logical map.\n\n**Conditional consequence:** if the supplier contract is PR4470's endpoint, meaning each main field is delivered in its required chart, the quotient word does not meet it. Its lower paid profile then prices a different operator. Whether output charts are part of the contract is the maintainers' call.\n\n**Open question:** an operator-level endpoint check in literal replays, which would take the certificate's required final frames as an independent input.\n\nCredit: DaysSky (#4596) and Cinna Davis (#4470). Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: 6d4d72885351e01d0a2ce2b20419c0d84cb4949c\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T09:27:15Z",
+  "updated_at": "2026-10-22T09:27:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

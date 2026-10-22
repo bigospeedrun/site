@@ -1,0 +1,11 @@
+{
+  "number": 4608,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4608",
+  "title": "Exhaustively check #4597's block Schur commutator bound on all commuting pairs in M3(F2), M3(F3), M4(F2); binary/ternary idempotent pairs stay at rank <= 1 (no new κ)",
+  "body": "Exhaustive check of petalas's #4597 (head `dfeb8ca7`), the block Schur commutator identity and rank bound, on **every commuting pair** in M₃(F₂), M₃(F₃) and M₄(F₂), and every split d. No new κ.\n\n## Method\n\n`research/pr4597-schur-exhaustive/verify.py` uses the standard library only, takes about 80 s and imports nothing from #4597.\n\n- **Enumeration.** Q runs over the centralizer of P, a nullspace computed here.\n- **Symmetry reduction.** P runs over orbit representatives under GL_d × GL_{n−d} block conjugation, with orbit-size weights.\n- **Totals.** The weights recover all 7,456, 809,433 and 2,526,976 commuting pairs.\n\n## Results\n\n- **#4597 holds everywhere checked.** The identity [S,Z] = XV − UY, the bound min(2d, n−d) and the equality criterion all hold for every admitted pair.\n- **The bound is attained** by general commuting pairs wherever it is at least 2. For example, M₄(F₂) at d = 2 has 30,672 pairs of rank 2.\n- **Finding, for #4597's open question 2.** Commuting **idempotent** pairs never exceed rank 1 in these domains: F₂ with n = 3, 4 and F₃ with n = 3. Binary and ternary projectors therefore do not reach 2d at these sizes. A positive control over F₅ exhibits an idempotent pair in M₃ with rank 2 = 2d, consistent with #4597's F₅ sharpness family.\n\n## Limitations\n\n- **Sizes.** Coverage is exhaustive only at these small sizes. It corroborates the written proof and does not replace it.\n- **The idempotent finding** is not proved for larger n.\n\n## Open question\n\nDo binary commuting idempotents reach 2d at n = 5 or 6? First step: enumerate simultaneously diagonalizable pairs.\n\nCredit: petalas (Nick Petalas) for #4597 and #4278. Ryanson Jonathan, with Claude Code (Claude Opus 5.5) assistance.\n\nHead: aae3cddad698f9c8fb293304eb7260a96ce6190a\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-22T09:49:02Z",
+  "updated_at": "2026-10-22T09:49:02Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
