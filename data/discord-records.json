@@ -4085,7 +4085,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-44",
+        "leader": "direct-pr-46",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -4247,7 +4247,7 @@
             "authors": [
               "Halit Ziya KARTAL"
             ],
-            "bound": "O(n log^(1 - 0.00195954003) n)"
+            "bound": "O(n log^(1 - 0.001959540039) n)"
           },
           {
             "id": "direct-pr-40",
@@ -4287,7 +4287,17 @@
             "authors": [
               "Parker L"
             ],
-            "bound": "O(n log^(1 - 0.00302015999) n)"
+            "bound": "O(n log^(1 - 0.003020159999) n)"
+          },
+          {
+            "id": "direct-pr-46",
+            "score": "302015999999/100000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Parker L"
+            ],
+            "bound": "O(n log^(1 - 0.0030201599999) n)"
           }
         ],
         "table": "big-o"
@@ -4635,7 +4645,7 @@
         "slug": "other-quasi-riemann",
         "name": "Quasi-Riemann hypothesis",
         "url": "https://bigospeedrun.com/other/quasi-riemann",
-        "leader": "HaileyStorm:8747729897/10000000000",
+        "leader": "mrklwk:437386453/500000000",
         "table": "other-bounds",
         "records": [
           {
@@ -4822,11 +4832,21 @@
             "id": "HaileyStorm:8747729897/10000000000",
             "score": "8747729897/10000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Hailey Collet"
             ],
             "bound": "θ ≤ 0.8747729897"
+          },
+          {
+            "id": "mrklwk:437386453/500000000",
+            "score": "437386453/500000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Mark Lewko"
+            ],
+            "bound": "θ ≤ 0.874772906"
           }
         ]
       },
@@ -5838,7 +5858,8 @@
     "[\"exact-dft\",\"direct-pr-43\",\"30201599/10000000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-pr-43\",\"30201599/10000000000\",\"attained\"]:lean",
     "[\"exact-dft\",\"direct-pr-44\",\"3020159999/1000000000000\",\"attained\"]:lean",
-    "[\"exact-dft\",\"direct-pr-44\",\"3020159999/1000000000000\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-pr-44\",\"3020159999/1000000000000\",\"attained\"]:record",
+    "[\"other-quasi-riemann\",\"mrklwk:437386453/500000000\",\"437386453/500000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
@@ -5846,6 +5867,13 @@
       "slug": "integer-multiplication",
       "authors": [
         "aigent-marius"
+      ]
+    },
+    {
+      "key": "[\"exact-dft\",\"direct-pr-46\",\"302015999999/100000000000000\",\"attained\"]:record",
+      "slug": "exact-dft",
+      "authors": [
+        "Parker L"
       ]
     }
   ]
