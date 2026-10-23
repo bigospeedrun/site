@@ -287,6 +287,34 @@ class RefreshTests(unittest.TestCase):
         fresh.retain_outcome(key,changed,'lean',early,{'marker':'changed-source'})
         self.assertIn('verification',changed)
 
+    def test_a_derivation_hold_stays_claimed_until_the_lead_approves_its_digest(self):
+        sub=d.parse_body(self.issue()['body']);digest=d.sha(d.canonical(sub).encode());key='direct-issue-5'
+        verdict=dict(decision='lean-verified',reason='Lean and nanoda passed',id=f'direct-5-{digest}',derivation_hold=True)
+        importer=self.collector(DiscoveryAPI())
+        self.assertEqual(importer.derivation(key,verdict)['decision'],'held')
+        self.assertEqual(importer.derivation(key,dict(verdict,derivation_hold=False)),dict(verdict,derivation_hold=False))
+        claim=dict(route='issue',item=self.issue(),submission=sub)
+        for stage in ['lean','final']:importer.retain_outcome(key,claim,stage,importer.derivation(key,verdict),{'marker':stage})
+        self.assertNotIn('verification',claim)
+        row,meta,_=r.row_for(key,claim,'2026-10-23T00:00:00Z')
+        self.assertEqual((row['tier'],meta['proof_status']),('claimed',r.HELD_NOTE))
+        # Closed while held: not listed; a later refresh keeps the note from the stored final state.
+        previous=dict(entries={},final_states=copy.deepcopy(importer.final_states))
+        fresh=self.collector(DiscoveryAPI())
+        self.assertEqual(fresh.verify({key:dict(claim,closed=True)},previous),{})
+        reopened=dict(route='issue',item=self.issue(),submission=sub)
+        self.assertEqual(fresh.verify({key:reopened},previous)[key]['review_note'],r.HELD_NOTE)
+        # The lead's approval of this exact digest lists the result; another digest does not.
+        for listed,expected in [(digest,'lean-verified'),('0'*64,'held')]:
+            approver=self.collector(DiscoveryAPI())
+            (approver.root/'review-decisions.json').write_text(json.dumps({'approved':[],'derivations':[
+                {'id':key,'submission_sha256':listed,'decision':'approved','by':'BOS Lead Dev','at':'2026-10-23T00:00:00Z','note':'test'}]}))
+            approver=r.Importer(DiscoveryAPI(),approver.root)
+            self.assertEqual(approver.derivation(key,verdict)['decision'],expected)
+            claim=dict(route='issue',item=self.issue(),submission=sub)
+            approver.retain_outcome(key,claim,'final',approver.derivation(key,verdict),{'marker':'final'})
+            self.assertEqual('verification' in claim,expected=='lean-verified')
+
     def test_final_ambiguous_cannot_reuse_early_pass(self):
         importer=r.Importer(DiscoveryAPI())
         claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))

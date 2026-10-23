@@ -183,7 +183,10 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
     else:
         require(env.get('verification_stage', 'final') == 'final' and env.get('receipt',{}).get('verification_stage', 'final') == 'final', 'Final artifact has early stage')
     receipt = env.get('receipt', {})
-    require(isinstance(receipt, dict) and env.get('test_only') is False and env.get('importable') is True and env.get('status') != 'fixture_only' and not receipt.get('test_only'), 'Test replay is not importable')
+    held = derivation_hold(env.get('derivation'))
+    # A derivation hold is the only non-importable envelope admitted: direct_refresh.py keeps it
+    # off the board as Lean Verified until the lead approves it (review-decisions.json derivations).
+    require(isinstance(receipt, dict) and env.get('test_only') is False and env.get('importable') is (not held) and env.get('status') != 'fixture_only' and not receipt.get('test_only'), 'Test replay is not importable')
     receipt = checked_receipt(receipt_archive, receipt_artifact, env, run, revision)
     require(env.get('run_id') == run_id and env.get('run_attempt') == attempt and env.get('run_url') == run_url and env.get('verifier_commit') == revision, 'Envelope run mismatch')
     # A closed issue keeps its result: the verifier closes an issue after its final
@@ -220,8 +223,16 @@ def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt
                 workflow_conclusion=run.get('conclusion'), issue_submitter=env['issue_submitter_login'], receipt_url=run_url, checked_at=checked_at,
                 issue_created_at=issue.get('created_at'),
                 issue_updated_at_at_verification=env.get('issue_updated_at'),
-                issue_updated_at_at_import=issue.get('updated_at'),
+                issue_updated_at_at_import=issue.get('updated_at'), derivation_hold=held,
                 review_required=['authorship', 'first publication date', 'historical record eligibility'])
+
+
+def derivation_hold(report):
+    """The verifier's derivation report (scripts/derivation.py, marker bos-derivation-v1) found a
+    constants-only change of another author's verified submission. Results from verifiers before
+    the report have no such field: no hold."""
+    require(report is None or (isinstance(report, dict) and type(report.get('hold', False)) is bool), 'Invalid derivation report')
+    return bool(report and report.get('hold'))
 
 
 def validate_proof(submission, receipt, trust, revision, run_url):

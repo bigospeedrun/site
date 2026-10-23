@@ -5,7 +5,7 @@ import io
 import re
 import zipfile
 from direct_import import (REPOSITORY, WORKFLOW, REUSABLE, MAX_EVIDENCE_BYTES,
-    require, read_json, canonical, sha, normalize, is_test_submission, validate_proof)
+    require, read_json, canonical, sha, normalize, is_test_submission, validate_proof, derivation_hold)
 
 PUBLISHER='.github/workflows/pr-publish.yml'
 PREFIX='repos/'+REPOSITORY+'/'
@@ -110,8 +110,11 @@ def validate_pr_result(raw, result_artifact, env_name, pr, run, publisher, proof
     require(env.get('schema_version')==2 and env.get('route')=='pull_request' and request.get('route')=='pull_request','Wrong PR schema')
     require(pr.get('merged') is True and pr['state']=='closed','PR not API-confirmed merged')
     require((env.get('importable') is True and env.get('disposition')=='merge') or (not early and env.get('importable') is False and env.get('disposition') in ('blocked','keep_open')), 'Invalid PR disposition')
+    # A derivation hold keeps a passing PR open; a maintainer who accepts it merges by hand, after
+    # the publisher wrote its envelope. That merge is the lead decision (verifier pr_submissions.py).
+    held=env.get('disposition')=='keep_open' and derivation_hold(request.get('derivation')) and env.get('merge_commit') is None
     require(env.get('verification_stage','final') == ('lean' if early else 'final') and env.get('receipt',{}).get('verification_stage','final') == ('lean' if early else 'final'), 'Receipt stage mismatch')
-    require(env.get('merge_commit')==pr.get('merge_commit_sha') and re.fullmatch('[0-9a-f]{40}',pr.get('merge_commit_sha','')),'Merge identity mismatch')
+    require((held or env.get('merge_commit')==pr.get('merge_commit_sha')) and re.fullmatch('[0-9a-f]{40}',pr.get('merge_commit_sha') or ''),'Merge identity mismatch')
     require(env.get('publisher_commit')==publisher['head_sha'] and env.get('publisher_run_id')==str(publisher['id']) and env.get('publisher_run_attempt')==str(publisher['run_attempt']),'Publisher pin mismatch')
     name=f'pr-submission-{run["id"]}-{run["run_attempt"]}-publisher-{publisher["id"]}-{publisher["run_attempt"]}'
     require(result_artifact.get('name')==name and result_artifact.get('workflow_run',{}).get('id')==publisher['id'] and result_artifact['workflow_run'].get('head_sha')==publisher['head_sha'],'Publisher artifact identity mismatch')
@@ -135,5 +138,5 @@ def validate_pr_result(raw, result_artifact, env_name, pr, run, publisher, proof
     for name,digest in hashes.items():require(name in evidence and sha(evidence[name])==digest,'Receipt log hash mismatch')
     decision,reason,checked=validate_proof(layout['submission'],receipt,policy,run['head_sha'],run['html_url'])
     if env.get('disposition') == 'blocked': require(decision == 'blocked', 'Unsubstantiated rejection')
-    if env.get('disposition') == 'keep_open': require(decision == 'pending', 'Unsubstantiated suspension')
+    if env.get('disposition') == 'keep_open': require(decision in (('lean-verified', 'pending') if held else ('pending',)), 'Unsubstantiated suspension')
     return dict(decision=decision,reason=reason,checked_at=checked,receipt_url=run['html_url']),env,evidence

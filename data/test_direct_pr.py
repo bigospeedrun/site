@@ -88,6 +88,16 @@ class PRTests(unittest.TestCase):
         final['receipt']['theorems']['Race.bound']['nanoda_kernel']='passed'
         with self.assertRaises(d.Rejected):self.check(env=final)
 
+    def test_a_held_pr_counts_once_a_maintainer_merges_it_by_hand(self):
+        held=copy.deepcopy(self.env);held.update(importable=False,disposition='keep_open',merge_commit=None)
+        held['request']['derivation']={'status':'computed','hold':True}
+        self.assertEqual(self.check(env=held)[0]['decision'],'lean-verified')
+        with self.assertRaises(d.Rejected):self.check(env=held,pr=dict(self.pr,merged=False,state='open'))
+        # Without the hold, a passing keep_open result stays unsubstantiated, and a merge commit must match.
+        plain=copy.deepcopy(held);plain['request'].pop('derivation')
+        with self.assertRaises(d.Rejected):self.check(env=plain)
+        with self.assertRaises(d.Rejected):self.check(env=dict(copy.deepcopy(self.env),merge_commit=None))
+
     def test_only_merged_and_non_test(self):
         for change in [dict(state='open',merged=False),dict(merged=False),dict(merge_commit_sha='e'*40),dict(labels=[{'name':'test'}])]:
             with self.subTest(change=change),self.assertRaises(d.Rejected):self.check(pr={**self.pr,**change})

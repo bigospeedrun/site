@@ -24,6 +24,7 @@ ROOT=Path(__file__).resolve().parent
 SLUGS={'dft':'exact-dft','3sum':'3sum','apsp':'apsp'}
 # These hosted smoke identities are permanently excluded, even after label edits.
 SMOKE_NUMBERS={1,2}
+HELD_NOTE='Proof checks passed; held for a lead review of credit (derivation report). The submitted bound remains Claimed.'
 
 def untrusted_path(path):
     # No verifier script or workflow reads submissions or auto-research notes
@@ -37,6 +38,11 @@ class Importer:
         self.api=api;self.root=Path(root);self.trust={};self.runs={};self.files={};self.notes=[];self.final_states={}
         self.config=json.loads((self.root/'direct-trust.json').read_text())
         self.policy_hash=sha(canonical(self.config).encode())
+        # The lead approves a held issue result (derivation report) for its exact submission bytes: the digest
+        # is in the verifier's bos-direct-v1 result marker. A held PR is approved by merging it by hand.
+        decisions=self.root/'review-decisions.json'
+        listed=json.loads(decisions.read_text()).get('derivations',[]) if decisions.exists() else []
+        self.approved={(d['id'],d['submission_sha256']) for d in listed if d.get('decision')=='approved'}
 
     def trusted(self,revision):
         if revision not in self.trust:
@@ -129,6 +135,12 @@ class Importer:
                         changed_files_sha256=env.get('request',{}).get('changed_files_sha256'), controller=run.get('head_sha')) if env.get('route')=='pull_request' else None,
                     source_file=env.get('receipt',{}).get('profile',{}).get('solution_module','Submission').replace('.', '/')+'.lean')
 
+    def derivation(self,key,verdict):
+        """A passing issue result with a derivation hold is 'held' until the lead approves its submission digest."""
+        if verdict['derivation_hold'] and verdict['decision']=='lean-verified' and (key,verdict['id'].rsplit('-',1)[1]) not in self.approved:
+            return dict(verdict,decision='held',reason=HELD_NOTE)
+        return verdict
+
     def outcome_id(self,key,submission):
         return key+':'+sha(canonical(submission).encode())
 
@@ -147,6 +159,10 @@ class Importer:
         if verdict['decision']=='blocked':
             claim.pop('verification',None);claim['review_note']='Final nanoda check rejected this proof; the submitted bound remains Claimed.'
             self.notes.append(key+': nanoda rejected; Lean Verified removed; eligible row remains Claimed; publisher maintainer alert applies')
+        elif verdict['decision']=='held':
+            # Re-read at each refresh while the artifact lasts, so an approval lists it at the next run.
+            claim.pop('verification',None);claim['review_note']=HELD_NOTE
+            self.notes.append(key+': Lean checks passed; held for lead review (derivation report); decide in review-decisions.json derivations')
         elif verdict['decision']=='lean-verified':
             claim['verification']=evidence;claim.pop('review_note',None)
         else:claim.pop('verification',None)
@@ -176,6 +192,7 @@ class Importer:
                 if state and state['decision']!='lean-verified':
                     claim.pop('verification',None)
                     if state['decision']=='blocked':claim['review_note']='Final nanoda check rejected this proof; the submitted bound remains Claimed.'
+                    if state['decision']=='held':claim['review_note']=HELD_NOTE
         artifacts=self.api.pages(PREFIX+'actions/artifacts',key='artifacts')
         by_id={a['id']:a for a in artifacts}
         # Newest result for a source wins; process oldest first.
@@ -211,6 +228,7 @@ class Importer:
                         if name.endswith('-lean.json'):
                             publisher=self.run(int(env['publisher_run_id']));self.trusted(publisher['head_sha'])
                         verdict=validate_result(raw,item,run,artifact,self.trust,receipt_archive=proof_raw,receipt_artifact=proof_meta,publisher=publisher)
+                        verdict=self.derivation(key,verdict)
                     else:
                         publisher=self.run(int(env['publisher_run_id']));self.trusted(publisher['head_sha'])
                         layout=inspect_pr(self.api,item,env['request']['base_sha'])

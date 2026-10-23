@@ -119,6 +119,17 @@ class DirectImportTests(unittest.TestCase):
         self.assertEqual(production['receipt'], smoke['receipt'])
         self.assertEqual(self.check(env=production)['decision'], 'lean-verified')
 
+    def test_a_derivation_hold_is_admitted_only_as_a_non_importable_envelope(self):
+        # Verifier scripts/derivation.py: a held pass has importable false; results before the report have no field.
+        held=copy.deepcopy(self.env);held.update(importable=False,derivation={'status':'computed','hold':True})
+        result=self.check(env=held)
+        self.assertEqual((result['decision'],result['derivation_hold']),('lean-verified',True))
+        self.assertFalse(self.check()['derivation_hold'])
+        for bad in [dict(importable=True,derivation={'hold':True}),dict(importable=False,derivation={'hold':False}),
+                    dict(importable=False,derivation=None),dict(importable=False,derivation={'hold':'yes'}),dict(importable=False,derivation=[1])]:
+            with self.assertRaises(gate.Rejected):self.check(env=dict(copy.deepcopy(self.env),**bad))
+        self.assertFalse(self.check(env=dict(copy.deepcopy(self.env),derivation={'status':'no_match','hold':False}))['derivation_hold'])
+
     def test_early_issue_binds_publisher_stage_and_pending_reason(self):
         self.trust[self.revision]['publisher_workflow_id']=43
         publisher=dict(self.run,id=456,workflow_id=43,path='.github/workflows/pr-publish.yml',event='workflow_run',html_url='https://github.com/bigospeedrun/verifier/actions/runs/456')
