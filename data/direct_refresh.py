@@ -23,9 +23,10 @@ from direct_pr import PREFIX, archive_members, inspect_pr, validate_pr_result
 
 ROOT=Path(__file__).resolve().parent
 SLUGS={'dft':'exact-dft','3sum':'3sum','apsp':'apsp'}
-# Other bounds rows with a trusted verifier statement: a final Lean Verified result becomes a claim of
-# the row in direct-other.json (merged by src/lib/other-merge.ts); an open or failed submission is not
-# listed there, so its post waits until verification ends (Nil, 2026-10-23). bound: the row's form.
+# Other bounds rows with a trusted verifier statement: a Lean Verified result (from the Lean checkpoint
+# on, as on the boards; a later nanoda rejection removes it) becomes a claim of the row in
+# direct-other.json (merged by src/lib/other-merge.ts); an open, failed or held submission is not
+# listed there, so nothing posts before the proof check passes (Nil, 2026-10-23). bound: the row's form.
 OTHER={'average-sensitivity':dict(bound='\\mathrm{{AS}}(f)\\le {value}d\\sqrt n',
     statement='BigOSpeedrun.AverageSensitivity.Bound')}
 # These hosted smoke identities are permanently excluded, even after label edits.
@@ -318,7 +319,7 @@ def display_up(bound,places=6):
     return text+'0' if text.endswith('.') else text
 
 def other_claims(claims,withdrawn,notes):
-    """{'other-<slug>': {'claims': [...]}} for the final Lean Verified direct results of Other bounds rows."""
+    """{'other-<slug>': {'claims': [...]}} for the Lean Verified direct results of Other bounds rows."""
     boards={}
     for key,claim in sorted(claims.items()):
         sub=claim['submission'];proof=claim.get('verification')
