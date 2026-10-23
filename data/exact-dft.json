@@ -960,7 +960,7 @@
       "kind": "improvement",
       "score": "302015999999/100000000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-23T01:33:29Z",
       "spec_version": "1",
       "title": "ptweezy direct dft submission",
@@ -983,12 +983,17 @@
         "certificate_path": null
       },
       "dependencies": [],
-      "upstream_status": "open",
-      "upstream_status_at": "2026-10-23T01:33:29Z",
+      "upstream_status": "merged",
+      "upstream_status_at": "2026-10-23T02:24:47Z",
       "site_observed_at": "2026-10-23T01:44:20Z",
       "source": {
         "kind": "repo-artifact",
         "url": "https://github.com/bigospeedrun/verifier/blob/ceb21ca14cb144106f53ecc13f07ccf4a1572997/submissions/dft/ptweezy-dft-ceiling302016/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-23T02:37:50.600537Z",
+        "receipt_path": "sources/direct-pr-46-39884886354-1-final.json"
       }
     }
   ],
@@ -1445,18 +1450,19 @@
       "source_url": "https://github.com/bigospeedrun/verifier/blob/ceb21ca14cb144106f53ecc13f07ccf4a1572997/submissions/dft/ptweezy-dft-ceiling302016/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "eligible_for_record": true,
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
       "publication_date": "2026-10-23T01:33:29Z",
       "publication_date_precision": "date-time",
       "publication_date_role": "Submission opened",
       "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/46",
       "direct_submission": true,
-      "route": "pull_request"
+      "route": "pull_request",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39884886354"
     }
   },
-  "updated_at": "2026-10-23T01:44:20Z"
+  "updated_at": "2026-10-23T03:23:40Z"
 }
