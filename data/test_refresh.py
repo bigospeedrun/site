@@ -226,6 +226,10 @@ class RefreshTests(unittest.TestCase):
         refill='research/pr4359-compiler-refill/RESULT.json'
         self.assertEqual(self.claim({refill:'added'},{'endpoint_refill':{'kappa':'230509/100000000'}},title='Refine PR4359: conditional κ = 0.00230509')[:2],
                          ('230509/100000000',refill))
+        # #5377 (2026-10-23): the value nested as arithmetic.kappa.
+        owned='research/kappa-owned-relation-20261023/RESULT.json'
+        self.assertEqual(self.claim({owned:'added'},{'arithmetic':{'kappa':'60447/20000000','kappa_decimal':'.00302235'}},
+                                    title='Conditional κ = 0.00302235 (+5.742e-7 over #4610): one owned helper relation')[:2],('60447/20000000',owned))
         # #4441: two own packages, one matches the title; the other states only kappa_decimal.
         thinned,boundary='research/fresh-helper-thinned/RESULT.json','research/fresh-helper-boundary/RESULT.json'
         claims={thinned:{'kappa':'60021/20000000','kappa_decimal':'0.00300105'},boundary:{'kappa_decimal':'0.00272124'}}

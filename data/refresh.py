@@ -136,9 +136,10 @@ def package_field(path):
     return PACKAGE_FIELD[path.rsplit('/', 1)[1]]
 
 # Other RESULT.json fields that state the package value (#4405 endpoint_refill.kappa, #4412-#4416
-# endpoint.kappa, #4440/#4441 a top-level kappa; 2026-10-21). They count only when they equal a
-# kappa the PR title states exactly (Lead: list that shape without a manual decision).
-RESULT_VALUE_FIELDS = (('kappa',), ('endpoint', 'kappa'), ('endpoint_refill', 'kappa'))
+# endpoint.kappa, #4440/#4441 a top-level kappa; 2026-10-21; #5377/#5383/#5387 arithmetic.kappa,
+# 2026-10-23). They count only when they equal a kappa the PR title states exactly (Lead: list that
+# shape without a manual decision).
+RESULT_VALUE_FIELDS = (('kappa',), ('endpoint', 'kappa'), ('endpoint_refill', 'kappa'), ('arithmetic', 'kappa'))
 MAX_OWN_RESULTS = 5
 # A nonzero denominator: Fraction('1/0') raises, and a contributor's file must never fail the refresh
 # (Reviewer, 2026-10-21).
