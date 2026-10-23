@@ -1,0 +1,11 @@
+{
+  "number": 5166,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5166",
+  "title": "Pay the complete four-column binary-to-CRT-repair interface",
+  "body": "The actual CRT repair accepts 12-bit records, so a 48-bit dirty-back fiber cannot be passed as one record. This change pays the complete interface: consume the binary stream, demultiplex four physical columns, execute the unchanged repair four times on one reused bank, then reinterleave all 196608 output bits and erase the columns.\n\nThe proof covers arbitrary 12-bit payloads and every admitted fixed-geometry ROM. The 86,646-instruction program preserves borrowed headers/ROM, numeric backing identities and head conventions, and accounts for conversion tables, finite registers and erased retained backing. The canonical full run executes 674,212,875 instructions and 213,526,309 cell actions, including all 11,776 bad-address key calls. It consumes actual producer output bytes authenticated against an independent source endpoint.\n\nValidation: registered normal full replay passed in 163.63s; independent proof review and exhaustive 4,096-symbol adapter roundtrip passed. Final source-history and export checks passed. The optimized Git-free full replay passed in 163.33s with every file unchanged; six actual source, typed-receipt, mandatory-metadata and raw-byte mutations rejected and restored exactly. Only VALIDATION.md changed after cold replay, with scientific-byte equality checked. Details are in VALIDATION.md.\n\nThis remains a supplied-raw, fixed-geometry finite-symbol theorem. It does not claim simultaneous physical producer/consumer execution, whole-program binary lowering, dynamic physical compilation, variable-geometry E, or a selected-frontier/kappa improvement. Open next questions are retained explicitly.\n\nCoordination: https://github.com/CrocSwap/integer-mult-bounds/discussions/4709#discussioncomment-19144264\n\nCredit the retained CRT work and PR4637/4795/5105 source chain. Prepared by JoyboyBrian with substantial OpenAI Codex assistance; Apache-2.0. No independent human or proof-kernel acceptance is claimed.\n",
+  "created_at": "2026-10-23T11:32:01Z",
+  "updated_at": "2026-10-23T11:56:46Z",
+  "closed_at": "2026-10-23T11:56:46Z",
+  "merged_at": "2026-10-23T11:56:46Z",
+  "state": "closed"
+}

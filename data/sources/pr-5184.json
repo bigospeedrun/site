@@ -1,0 +1,11 @@
+{
+  "number": 5184,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5184",
+  "title": "Prove strict finite-block descent and exact infimum of the projection recurrence",
+  "body": "The source projection recurrence had an exact limit but no proof that its actual block-four top ratios decrease at every finite block. This proves strict descent for all m≥4 and therefore the exact unattained infimum 439277/149175.\n\nThe proof uses the weight h(r)=1−3/2^(r+1): interior weighted rows dominate in every upper tail, while two boundary inequalities follow from 22 exact rational checks plus a summable bound for all subsequent blocks. The strict top-ratio gap is an explicit positive rational expression. Nick Petalas's PR5151 supplies the credited exact limit; Jacob Alan Sussman's PR4628 and Maximilian Lutz's PR4643 supply the unchanged recurrence and seed.\n\nValidation: independent normalized Fraction recurrence and limit calculation; registered normal/optimized checks; source-history checks; official 11-file export; Git-free read-only normal/optimized replay; eight actual source/receipt/scientific corruptions rejected in both modes. An independent AI-assisted mathematical review checked the quantified argument. No proof-kernel or human review is claimed.\n\nThis is an arithmetic recurrence theorem. The inherited block-four hook-rank and representation premises remain explicit; no physical supplier, selected κ change, or complete multiplication theorem is asserted. Open next questions retain the unresolved hook-rank certificates.\n\nClaim: https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19144830\n\nPrepared by JoyboyBrian with substantial OpenAI Codex assistance; original contributor attribution and Apache-2.0 retained.\n\nConcurrent scope: Discussion5169 independently claimed finite formulas and this monotonicity question during our work. This package supplies the specific weighted-order monotonicity proof; general finite-size formulas remain separate.\n",
+  "created_at": "2026-10-23T11:58:35Z",
+  "updated_at": "2026-10-23T11:58:35Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

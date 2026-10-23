@@ -1,0 +1,11 @@
+{
+  "number": 5189,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5189",
+  "title": "Realize stable three-lane reversal with a paid fixed local program",
+  "body": "PR5148 attains the abstract stable-lane reversal pass bound but leaves physical lane assignment, merging, metadata, movement and cleanup unpaid. This package supplies one fixed419-instruction local program for its three-lane construction, with canonical binary runtime record width,15 fixed ports, partial-tail routing, preserved input and distinct output.\n\nFor every n>=0 and B>=1, the proof gives exact reversal, complete head/work restoration on valid inputs, action bound256((n+1)(B+1)(k+1)+B(L+1)+1), and retained tape backingK0+6nB+7n+B+2L+60. Here L=floor(log2 B)+1 and k=ceil(log3 n), with k0 for n0/1. Tape high-water capacity, runtime-width conversion and cleanup are charged. Malformed inputs may reject with partial work; transactional rollback is not claimed.\n\nValidation:492 translated-origin full-frame cases plus8 ternary-stage/binary-carry cases through n244/B1024; exact source n7 two-stage sequence;8 rejection/semantic-mutant controls. Registered normal/optimized checks, source-history/committed-byte validation, official export verification, and Git-free read-only normal/optimized replay pass. Actual missingSOURCES/missingRESULT/source-byte corruption/typed integer-to-float receipt controls reject.\n\nPackage: `research/physical-three-lane-reversal`. Base `a5df48c55ea806d7952b65acc9c76d878ff09b13`. [Canonical claim](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19144825). Credit Nick Petalas #5148, Matarener #3825, James Reed #3839 and retained PR5090 instruction semantics. JoyboyBrian with substantial OpenAI Codex assistance; Apache-2.0.\n\nThis is a scoped physical reversal theorem with finite corroboration. Complete bit-free supplier composition and heterogeneous runtime lane counts remain open. No universal multitape lower bound, numerical gain, selected-frontier change or proof-kernel acceptance is claimed.\n",
+  "created_at": "2026-10-23T12:05:16Z",
+  "updated_at": "2026-10-23T12:05:16Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

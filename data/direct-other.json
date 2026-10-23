@@ -1,4 +1,32 @@
 {
   "schema_version": 1,
-  "boards": {}
+  "boards": {
+    "other-average-sensitivity": {
+      "claims": [
+        {
+          "author": "Anchen0823",
+          "handle": "direct-issue-49",
+          "value": "1881/500",
+          "display": "3.762",
+          "date": "2026-10-23T12:08:12Z",
+          "dateSource": "https://github.com/bigospeedrun/verifier/issues/49",
+          "dateKind": "first-stated",
+          "url": "https://github.com/bigospeedrun/verifier/issues/49",
+          "lean": true,
+          "evidence": "lean-verified",
+          "note": "",
+          "authors": [
+            {
+              "name": "Anchen0823",
+              "url": "https://github.com/Anchen0823"
+            }
+          ],
+          "leanNote": "Yes: the Big O Speedrun verifier checked this Lean proof (Lean kernel and the permitted-axiom audit).",
+          "proofScope": "The verifier checked Race.bound : BigOSpeedrun.AverageSensitivity.Bound (1881/500) at commit cb8c10538e613329be16f9a949d0d75a4c7c67f0 of https://github.com/Anchen-AI4Math/average-sensitivity-lean.",
+          "bound": "\\mathrm{AS}(f)\\le 3.762d\\sqrt n",
+          "receiptPath": "sources/direct-issue-49-39951071637-1.json"
+        }
+      ]
+    }
+  }
 }
