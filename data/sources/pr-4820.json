@@ -4,8 +4,8 @@
   "title": "Record one degree-4 sign n=8 parity prefix at 23/16 (no new κ)",
   "body": "## Summary\n\nRecords one nested triangular prefix for the n=8 symbol `(1, 1/8, 1/16, 1/16, -1/16, 1/16, 1/16, 1/16)`. This is the degree-4 sign left open by #4816. No new κ. The selected record stays `60403/20000000`.\n\nThe tail `l1` is `1/2`. Every proper prefix has infinity norm at most `3/2`. The largest proper prefix is `23/16`. The right shear alone is `2553/2048`, below `5/4`. The next four proper prefixes are `5/4`, and the next five are `21/16`. The even child is `(1, 1/16, -1/16, 1/16)`. Its grandchild's left shear carries `-1/16` and still lifts `5/4` to `21/16`. The quotient is `(1/8, 7/128, 137/2048, 1767/32768)`. The completed product matches the reordered Toeplitz matrix and has infinity norm `3/2`.\n\nThis package branches from main `624de9dc66858af0945e5f8a0942488d62280d43`. It does not replay an unmerged predecessor.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-degree-four-sign\n```\n\nObserved: `PASS_TRIANGULAR_PARITY_DEGREE_FOUR_SIGN` and `outcome=completed`.\n",
   "created_at": "2026-10-22T20:59:57Z",
-  "updated_at": "2026-10-22T20:59:57Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-23T01:45:57Z",
+  "closed_at": "2026-10-23T01:45:57Z",
+  "merged_at": "2026-10-23T01:45:57Z",
+  "state": "closed"
 }

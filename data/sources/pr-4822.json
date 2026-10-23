@@ -4,8 +4,8 @@
   "title": "Record one degree-2 sign n=8 parity prefix at 23/16 (no new κ)",
   "body": "## Summary\n\nRecords one nested triangular prefix for the n=8 symbol `(1, 1/8, -1/16, 1/16, 1/16, 1/16, 1/16, 1/16)`. This is the degree-2 sign left open by #4821. No new κ. The selected record stays `60403/20000000`.\n\nThe tail `l1` is `1/2`. Every proper prefix has infinity norm at most `3/2`. The largest proper prefix is `23/16`. The proper-prefix norms match the degree-3 path: `2569/2048` five times, `21/16` four times, `169/128` once, then `23/16`. The even child is `(1, -1/16, 1/16, 1/16)`. Its right shear carries `-1/16` and does not lift the opening. The second quotient entry is `+9/128`, so the opening absolute norm stays `2569/2048`. The quotient is `(1/8, 9/128, 121/2048, 1769/32768)`. The completed product matches the reordered Toeplitz matrix and has infinity norm `3/2`.\n\nThis package branches from main `624de9dc66858af0945e5f8a0942488d62280d43`. It does not replay an unmerged predecessor.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-degree-two-sign\n```\n\nObserved: `PASS_TRIANGULAR_PARITY_DEGREE_TWO_SIGN` and `outcome=completed`.\n",
   "created_at": "2026-10-22T21:08:41Z",
-  "updated_at": "2026-10-22T21:08:41Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-23T01:45:57Z",
+  "closed_at": "2026-10-23T01:45:57Z",
+  "merged_at": "2026-10-23T01:45:57Z",
+  "state": "closed"
 }

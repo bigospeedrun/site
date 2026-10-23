@@ -4,8 +4,8 @@
   "title": "Record one positive-quarter degree-5 n=8 parity prefix at 25/16 (no new κ)",
   "body": "## Summary\n\nRecords one n=8 parity prefix for `(1, 1/4, -1/16, -1/16, -1/16, -1/16, 1/16, 1/16)`, the degree-5 sign left open by #4887. The tail `l1` is `5/8`. The largest proper-prefix infinity norm is `25/16`, strictly above `3/2`. The first proper prefix is `1379/1024`, below `11/8`. The next four are `11/8`, the next five are `23/16`, and eleven proper prefixes equal `25/16`. The even child stays `(1, -1/16, -1/16, 1/16)`. The opening shear carries `-51/1024`. The Schur left shear changes to the pair `-1/8`, `341/4096` and does not raise a running norm already at `25/16`. The completed product matches the reordered Toeplitz matrix and has infinity norm `13/8`.\n\nNo new κ. The selected record stays `60403/20000000`. Base `624de9dc66858af0945e5f8a0942488d62280d43`. This branch starts at fetched main and does not stack on an unmerged predecessor. It does not enumerate the 128-symbol sign family, spend `p^100`, or change the selected frontier.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/triangular-parity-positive-quarter-degree-five-sign\n```\n\nThat replay passed locally and printed `PASS_TRIANGULAR_PARITY_POSITIVE_QUARTER_DEGREE_FIVE_SIGN`.\n",
   "created_at": "2026-10-22T23:06:19Z",
-  "updated_at": "2026-10-22T23:06:19Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-23T01:48:15Z",
+  "closed_at": "2026-10-23T01:48:15Z",
+  "merged_at": "2026-10-23T01:48:15Z",
+  "state": "closed"
 }
