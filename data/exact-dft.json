@@ -17,7 +17,7 @@
     "minimum": "0",
     "maximum": "1"
   },
-  "checked_at": "2026-10-22",
+  "checked_at": "2026-10-23",
   "sources": [
     {
       "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/130.md",
@@ -878,7 +878,7 @@
       "kind": "improvement",
       "score": "30201599/10000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-22T22:38:37Z",
       "spec_version": "1",
       "title": "ptweezy direct dft submission",
@@ -901,12 +901,53 @@
         "certificate_path": null
       },
       "dependencies": [],
-      "upstream_status": "open",
-      "upstream_status_at": "2026-10-22T22:38:37Z",
+      "upstream_status": "merged",
+      "upstream_status_at": "2026-10-22T23:46:09Z",
       "site_observed_at": "2026-10-22T23:21:48Z",
       "source": {
         "kind": "repo-artifact",
         "url": "https://github.com/bigospeedrun/verifier/blob/8de7345cc7bc1234561c025f2feeb3bf135e37c3/submissions/dft/ptweezy-dft-tight302/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-23T00:00:52.818728Z",
+        "receipt_path": "sources/direct-pr-43-39867413691-1-final.json"
+      }
+    },
+    {
+      "id": "direct-pr-44",
+      "kind": "improvement",
+      "score": "3020159999/1000000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-22T23:55:38Z",
+      "spec_version": "1",
+      "title": "ptweezy direct dft submission",
+      "authors": [
+        {
+          "name": "ptweezy",
+          "url": "https://github.com/ptweezy"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/44",
+      "source_commit": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+      "artifact": {
+        "path": "sources/direct-pr-44-submission.json",
+        "sha256": "819453970c27c8e6b537d7bc433f0495cae3ec5d91719978abe3e63a0d0dc280"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/44",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-22T23:55:38Z",
+      "site_observed_at": "2026-10-23T00:25:49Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/blob/00af781c4658e47afb358a4bd5265fdc27ff0903/submissions/dft/ptweezy-dft-tight302016/Submission.lean"
       }
     }
   ],
@@ -1155,7 +1196,7 @@
       "verification_source_commit": "0a637219b43fb723f4ae7a180ec329549e7cc2aa"
     },
     "direct-issue-16": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/canghaimeng/exact-dft-lean/blob/5fea541a2a3134b656c7bbdb6bf0b759cf78cb5c/Submission.lean",
       "repo": "canghaimeng/exact-dft-lean",
       "site_badge": false,
@@ -1173,7 +1214,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39061582815"
     },
     "direct-issue-19": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/fringewidth/exact-dft-lean/blob/4263d8faad69c5bd9a17b8d0d3f85fdf68e30165/Submission.lean",
       "repo": "fringewidth/exact-dft-lean",
       "site_badge": false,
@@ -1192,7 +1233,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39211915423"
     },
     "direct-issue-30": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/ptweezy/exact-dft-lean/blob/f9357424312209f85e0c7e28dce0e6bb01986608/Submission.lean",
       "repo": "ptweezy/exact-dft-lean",
       "site_badge": false,
@@ -1211,7 +1252,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39515983587"
     },
     "direct-pr-29": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/607121a796548005a238a6e63589de866c9ab6f6/submissions/dft/jacobalansussman-lever-2979-full-cut/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1229,7 +1270,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39557579559"
     },
     "direct-pr-3": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/f9ffbc1f9dfbfaf84d819b087c999361d0fa3372/submissions/dft/nmamano-dft-record/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1247,7 +1288,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38142057874"
     },
     "direct-pr-37": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/6e0b482509e8143b74d983d5212af37c4d759f47/submissions/dft/ptweezy-lever-nb1/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1266,7 +1307,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39710519853"
     },
     "direct-pr-38": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/1ebc6da5c05cf2bfea58eab0a993a90397269e91/submissions/dft/halitziyakartal-halitziyav2-headcut/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1285,7 +1326,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39746589640"
     },
     "direct-pr-40": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/cf335b916babec40d3424b0b4199b98f0741a939/submissions/dft/halitziyakartal-halitziyav3-tensor/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1304,7 +1345,7 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39765675382"
     },
     "direct-pr-41": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/0c574321e757332ca225f7696c31d7617dfdfdf6/submissions/dft/halitziyakartal-halitziyav4-logception/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1323,8 +1364,26 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39777069258"
     },
     "direct-pr-43": {
-      "checked_at": "2026-10-22",
+      "checked_at": "2026-10-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/8de7345cc7bc1234561c025f2feeb3bf135e37c3/submissions/dft/ptweezy-dft-tight302/Submission.lean",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-10-22T22:38:37Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/43",
+      "direct_submission": true,
+      "route": "pull_request",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39867413691"
+    },
+    "direct-pr-44": {
+      "checked_at": "2026-10-23",
+      "source_url": "https://github.com/bigospeedrun/verifier/blob/00af781c4658e47afb358a4bd5265fdc27ff0903/submissions/dft/ptweezy-dft-tight302016/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
       "eligible_for_record": false,
@@ -1332,13 +1391,13 @@
       "upstream_tier": "claimed",
       "site_tier": "claimed",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
-      "publication_date": "2026-10-22T22:38:37Z",
+      "publication_date": "2026-10-22T23:55:38Z",
       "publication_date_precision": "date-time",
       "publication_date_role": "Submission opened",
-      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/43",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/44",
       "direct_submission": true,
       "route": "pull_request"
     }
   },
-  "updated_at": "2026-10-22T23:21:48Z"
+  "updated_at": "2026-10-23T00:25:49Z"
 }

@@ -1,0 +1,11 @@
+{
+  "number": 4926,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/4926",
+  "title": "Record the edge ratio against p/6400 (no new κ)",
+  "body": "## Result\n\nOn the edge layout `p = 2^{24} - 2 = 16777214`, `ell = 24`, `r_max = 4`, the envelope ratio is exactly 12. Then `12 · 6400 = 76800` is strictly below `p`, so `12 < p/6400`. The quotient is 218 with remainder 34814, and `p/6400 - 12 = 2609 + 2814/6400`.\n\nNo new κ. The selected exponent stays `60403/20000000`. `C_E` is not evaluated.\n\nThis answers the open question of PR #4925. The verifier rebuilds the layout from the constructor on main and does not replay that predecessor.\n\n## Test plan\n\n```sh\npython3.12 -B scripts/research_package.py --package research/crt-reservoir-edge-allowance\n```\n\nExpected token: `PASS_CRT_RESERVOIR_EDGE_ALLOWANCE threshold=76800 quotient=218 remainder=34814`.\n",
+  "created_at": "2026-10-23T00:14:42Z",
+  "updated_at": "2026-10-23T00:14:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

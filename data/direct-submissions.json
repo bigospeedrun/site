@@ -534,6 +534,18 @@
         "source_file": "Submission.lean"
       }
     },
+    "direct-pr-44": {
+      "route": "pull_request",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "bound": "3020159999/1000000000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+        "authors": [],
+        "source_subdir": "submissions/dft/ptweezy-dft-tight302016"
+      }
+    },
     "direct-pr-43": {
       "route": "pull_request",
       "submission": {
@@ -544,6 +556,24 @@
         "commit": "8de7345cc7bc1234561c025f2feeb3bf135e37c3",
         "authors": [],
         "source_subdir": "submissions/dft/ptweezy-dft-tight302"
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-10-23T00:00:52.818728Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39867413691",
+        "receipt_path": "sources/direct-pr-43-39867413691-1-final.json",
+        "receipt_sha256": "cdd9d0c3eadfb4ca08c58d5dd4f0dd1fd09a422607a7c62e95bad27842b7e1bb",
+        "policy_hash": "cb93afd9b2789f198968f2489ca2193e16e01e6cf328f81f5f50ea7e4c9a4307",
+        "result_artifact_id": 12468157449,
+        "controller_fingerprint": "ae4622ed85f3ea6b6c2833769c56085f3fb52c07f0797acf2d04e7cfd0c1bf9c",
+        "pr_identity": {
+          "number": 43,
+          "head": "8de7345cc7bc1234561c025f2feeb3bf135e37c3",
+          "changed_files_sha256": "5ad4d390b39302b1d18da5bcdcdf355f226ab8221c2e7e613fd9857936552378",
+          "controller": "c26f92d61c98092690e32a6901c5cdb5100120bf"
+        },
+        "source_file": "Submission.lean"
       }
     },
     "direct-pr-41": {
@@ -1615,6 +1645,37 @@
           "head": "0c574321e757332ca225f7696c31d7617dfdfdf6",
           "changed_files_sha256": "0c8daa75e8edb9aa599c4c49f186c44e91572504ecaae5563c64933e95e17138",
           "controller": "29921158c2555807c0b31c7979f97bd5199722a2"
+        },
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-pr-43:928b4eb972c8c5484b493f6c727b61e2a247980323ca131be7c38621e6104a8c": {
+      "key": "direct-pr-43",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "bound": "30201599/10000000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "8de7345cc7bc1234561c025f2feeb3bf135e37c3",
+        "authors": [],
+        "source_subdir": "submissions/dft/ptweezy-dft-tight302"
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-10-23T00:00:52.818728Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/39867413691",
+        "receipt_path": "sources/direct-pr-43-39867413691-1-final.json",
+        "receipt_sha256": "cdd9d0c3eadfb4ca08c58d5dd4f0dd1fd09a422607a7c62e95bad27842b7e1bb",
+        "policy_hash": "cb93afd9b2789f198968f2489ca2193e16e01e6cf328f81f5f50ea7e4c9a4307",
+        "result_artifact_id": 12468157449,
+        "controller_fingerprint": "ae4622ed85f3ea6b6c2833769c56085f3fb52c07f0797acf2d04e7cfd0c1bf9c",
+        "pr_identity": {
+          "number": 43,
+          "head": "8de7345cc7bc1234561c025f2feeb3bf135e37c3",
+          "changed_files_sha256": "5ad4d390b39302b1d18da5bcdcdf355f226ab8221c2e7e613fd9857936552378",
+          "controller": "c26f92d61c98092690e32a6901c5cdb5100120bf"
         },
         "source_file": "Submission.lean"
       }

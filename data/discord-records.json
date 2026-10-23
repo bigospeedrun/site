@@ -4085,7 +4085,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-43",
+        "leader": "direct-pr-44",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -4247,7 +4247,7 @@
             "authors": [
               "Halit Ziya KARTAL"
             ],
-            "bound": "O(n log^(1 - 0.00195954) n)"
+            "bound": "O(n log^(1 - 0.00195954003) n)"
           },
           {
             "id": "direct-pr-40",
@@ -4273,11 +4273,21 @@
             "id": "direct-pr-43",
             "score": "30201599/10000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "Parker L"
             ],
             "bound": "O(n log^(1 - 0.0030201599) n)"
+          },
+          {
+            "id": "direct-pr-44",
+            "score": "3020159999/1000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Parker L"
+            ],
+            "bound": "O(n log^(1 - 0.00302015999) n)"
           }
         ],
         "table": "big-o"
@@ -5825,7 +5835,8 @@
     "[\"exact-dft\",\"direct-pr-41\",\"30103/10000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-4610\",\"9443/3125000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-4610\",\"15108879/5000000000\",\"attained\"]:record",
-    "[\"exact-dft\",\"direct-pr-43\",\"30201599/10000000000\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-pr-43\",\"30201599/10000000000\",\"attained\"]:record",
+    "[\"exact-dft\",\"direct-pr-43\",\"30201599/10000000000\",\"attained\"]:lean"
   ],
   "deferred": [
     {
@@ -5833,6 +5844,13 @@
       "slug": "integer-multiplication",
       "authors": [
         "aigent-marius"
+      ]
+    },
+    {
+      "key": "[\"exact-dft\",\"direct-pr-44\",\"3020159999/1000000000000\",\"attained\"]:record",
+      "slug": "exact-dft",
+      "authors": [
+        "Parker L"
       ]
     }
   ]
