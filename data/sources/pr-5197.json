@@ -1,0 +1,11 @@
+{
+  "number": 5197,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5197",
+  "title": "Research: the seven separated A2 sites transfer to the PR3945 words",
+  "body": "## Contribution\n\n`research/separated-a2-pr3945-transfer` — a second, distinct finite result for the same chooser seed `05f92898273de33149bc662a2b87104d` (card `scalar-to-moment`, priority revision 7). **No new κ. The selected record is not edited.**\n\nThis is not the consecutive A1858 climb in PR #5195. [PR #4019](https://github.com/CrocSwap/integer-mult-bounds/pull/4019) certified seven separated sites only on the older PR3734 providers and left later-word applicability open.\n\n## Established result\n\nOn both frozen PR3945 words, the seven separated A2 sites occur at the published indices, and contracting them removes seven forward ADDs and five cleanup ADDs without changing the recursive frame histogram.\n\nThe same seven/five saving and an unchanged `{1:2440,2:725,3:224,4:102,5:20,8:8}` histogram reproduce on both PR3734 words. Both PR3945 words stay at `{1:2482,2:712,3:218,4:109,5:20,8:8}`. Each triple shares a frame, stays inside one warp segment, and has no intervening use of its three registers. Removing a different gate of the triple fails the rational map. Forgetting to remap the B warp cuts fails frame containment.\n\n## Limits\n\nNo paid frame transition is removed. Native, owner, precision, stock and tape are not priced. This is not a search for further sites. `make frontier4470-verify` was not run. Replay passed on Python 3.12: `PASS_SEPARATED_A2_PR3945_TRANSFER` and `PASS_REGISTERED_RESEARCH_PACKAGE`.\n\nClaim: https://github.com/CrocSwap/integer-mult-bounds/discussions/5196\n\nSubstantial AI assistance. No independent human or formal-kernel review. Apache-2.0. Author: Riquelme Soares (@hevlyo).\n",
+  "created_at": "2026-10-23T12:23:24Z",
+  "updated_at": "2026-10-23T13:09:36Z",
+  "closed_at": "2026-10-23T13:09:36Z",
+  "merged_at": "2026-10-23T13:09:35Z",
+  "state": "closed"
+}
