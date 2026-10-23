@@ -1,0 +1,11 @@
+{
+  "number": 5033,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5033",
+  "title": "Integrate opt-in prefix capacity into the corrected census successor",
+  "body": "## Summary\n\nAdd a source-bound maintained successor to the corrected union census, with PR5001 matching capacity explicitly opt-in. The existing `S=T=L/2` distinct-size gate proves its recursive prefixes simple; all other target splits bypass the predicate. Frozen engines and receipts stay unchanged.\n\n```text\ncorrected union census\n  unchanged cheap tests\n  optional capacity over actual functional splits\n  unchanged leaf, hit, shard and report behavior\n```\n\n## Evidence\n\n- **Before:** the maintained engine did not use PR5001's capacity theorem. **After:** exact complete restored/accepted leaf multisets agree between predecessor, successor off/on, and an independent simple-walk oracle in five domains through `n=5,L=12`; 436 kernel split checks and three lost-valid-completion mutation controls pass.\n- At `(5,12)`, no-budget nodes fall from 17,360 to 16,765, while five process-inclusive timing samples give medians 4.30 ms off and 6.44 ms on. Retain opt-in status; startup-dominated tiny domains establish no speedup or larger-runtime prediction.\n- Registered normal and `-O` replay pass. This is a scoped engine integration, not a seven-label census, new kappa, or full multiplication theorem.\n\n## Merge Danger\n\n**Door:** two-way\n\n**Blast Radius:** isolated\n\nOnly a new research package is added. The successor adds JSON status/counter fields; capacity stays disabled by default and is never called for repeat-capable target splits. Credit remains with Ali Romman, Nick Petalas, Mihir Srivastava, Ross Richardson, Nicholas Stone and the retained census authors. Prepared for JoyboyBrian with substantial OpenAI Codex assistance.\n",
+  "created_at": "2026-10-23T07:01:57Z",
+  "updated_at": "2026-10-23T07:14:45Z",
+  "closed_at": "2026-10-23T07:14:45Z",
+  "merged_at": "2026-10-23T07:14:44Z",
+  "state": "closed"
+}

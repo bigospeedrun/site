@@ -1,0 +1,11 @@
+{
+  "number": 5035,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5035",
+  "title": "Implement a conditional fixed-grid inverse-code kernel with paid cleanup",
+  "body": "## Summary\n\n```diff\n- Exact-rational A^-1 recoding with an unimplemented /52 operation\n+ Signed fixed-grid eight-mode kernel with bitwise /13, sharp error and paid owned writes\n```\n\nAdds one isolated conditional classical arithmetic package for the actual 112-owner source matrix. The error is at most `2*2^-P`, attained by `±26e0`; the complete sequential tariff is `N(2898W+5922)+18W+100`, with `W=bit_length(56H+2)+1` and nine reusable owned words.\n\n## Evidence\n\n- **Before:** PR4933 explicitly leaves denominator-52 implementation and precision pricing open; PR4940 open question 2 asks for a finite odd-division implementation.\n- **After:** Normal and `-O` registered replay pass all 12,544 source-matrix entries, 3,328 signed remainder cases, the sharp two-unit error fixtures, five semantic mutants and five input rejections. Commit-byte/source-history checks and Git-free exported replay pass.\n- The mandatory collision `recode(M[:,0])=recode(0)=0` distinguishes paid classical zero-writing from reversible uncomputation. The physical `C != A` caller binding remains open; this package does not fix PR4940 or change the selected frontier.\n\n## Merge Danger\n\n**Door:** Two-way\n\n**Blast Radius:** Research\n\nOnly a new scoped package is added. Its cost/error theorem assumes common-coordinate access and classical destructive owned writes; it is inapplicable to an ABI requiring reversible cleanup. No complete controller, compiler reserve, emitted RAM program, Lean theorem or new kappa is claimed. JoyboyBrian with substantial OpenAI Codex assistance; predecessor attribution is retained in the package.\n",
+  "created_at": "2026-10-23T07:06:38Z",
+  "updated_at": "2026-10-23T07:14:45Z",
+  "closed_at": "2026-10-23T07:14:45Z",
+  "merged_at": "2026-10-23T07:14:45Z",
+  "state": "closed"
+}

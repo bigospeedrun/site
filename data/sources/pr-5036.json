@@ -1,0 +1,11 @@
+{
+  "number": 5036,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5036",
+  "title": "Expose the coded reverse controller’s first physical substitution gap",
+  "body": "## Summary\n\n```text\nPR4933 backward FULL → literal PR4940 thin A^-1 source → x-only A/A^-1 boundary\nY-to-Y block: D(I-A^-1 C) ≠ 0\n```\n\nAdds a scoped source-bound counterexample package for PR4940 open question 1. The actual signed owner code has `C_01|1> = |22>/2`, while scalar `A_01|1> = -|1>/2`. The package counts the failed local recipe's queries, maps, ADDs, owned cleanup, scratch and denominator costs, and preserves every inherited helper and unresolved tariff. It does not rule out a changed whole-controller continuation or claim a new κ.\n\n## Evidence\n\n- **Before:** PR4940's 448×448 binding uses scalar Q and D, so it cannot test this physical code substitution.\n  **After:** Exact signed witness plus an independent 112-owner/512-address modular replay executes actual Q and all eight D axes and detects the nonzero residual; the scalar-A predecessor still cancels.\n- Registered normal and `-O` replay pass. Committed-byte/source-history preflight, deterministic export integrity and Git-free read-only normal/optimized replay pass (0.61 s / 0.70 s). Controls reject omitted K phase, C/Q commutation, old Y-only backward conjugation and arbitrary-helper erasure.\n- Original native/full-p19 replay, fixed-point odd division, tape/compiler admission, hosted CI and formal-kernel review remain unrun or unresolved. Credits retain SethBurkart123, Dillon, Dugongue, Cinna Davis, Cao Yifan, zxv, Jacob Alan Sussman and predecessor notices; substantial OpenAI Codex assistance is disclosed.\n\n## Merge Danger\n\n**Door:** two-way\n\n**Blast Radius:** research\n\nOne new isolated package. Frozen sources and the selected frontier are unchanged.\n",
+  "created_at": "2026-10-23T07:08:56Z",
+  "updated_at": "2026-10-23T07:14:45Z",
+  "closed_at": "2026-10-23T07:14:44Z",
+  "merged_at": "2026-10-23T07:14:44Z",
+  "state": "closed"
+}

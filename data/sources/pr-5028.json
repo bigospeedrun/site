@@ -1,0 +1,11 @@
+{
+  "number": 5028,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5028",
+  "title": "Reject nested Discussion replies before attempting a mutation",
+  "body": "When --reply-to names an existing reply, GitHub rejects the nested mutation and the helper reports an uncertain posting outcome. Inspect replyTo during destination preflight and reject this target before mutation, with the parent comment ID and URL so the caller can choose the supported thread. The helper does not silently redirect or rewrite the body; uncertain mutation handling remains unchanged.\r\n\r\nValidation: native Python 3.12.15, `python -X utf8 -B -m unittest tests.test_research_coordination -v`: 9 tests passed. The new regression refuses any mutation; existing wrong-thread, UTF-8/dry-run and no-retry controls pass. `git diff --check` passed.\r\n\r\nBased on canonical main f259dabc7d70e0db8d6d36bfda888f008bbfecc1. Live overlap refresh covered open and closed PRs and Discussions with complete pagination; two historical helper requests were found, no matching fix. Sparse local note coverage was only 3/6710 and is not a novelty certificate. This is a scoped verifier-engineering contribution, with no mathematical/frontier change. Credit retained helper and coordination authors; prepared with substantial OpenAI Codex assistance.\r\n",
+  "created_at": "2026-10-23T06:47:11Z",
+  "updated_at": "2026-10-23T07:14:45Z",
+  "closed_at": "2026-10-23T07:14:45Z",
+  "merged_at": "2026-10-23T07:14:44Z",
+  "state": "closed"
+}
