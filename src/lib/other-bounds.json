@@ -509,6 +509,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks that were incomplete when the pull request opened, and asks the tracker for its protected verification. The tracker's check results are on the pull request. No independent rerun.",
           "bound": "\\theta\\le 0.8747729897"
+        },
+        {
+          "author": "Mark Lewko",
+          "handle": "mrklwk",
+          "value": "437386453/500000000",
+          "display": "0.874772906",
+          "date": "2026-10-22T18:21:00-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/70",
+          "dateKind": "first-stated",
+          "url": "https://github.com/mrklwk/QuasiRiemannTracker/blob/58bda2db1e2049d8d8023db0b78c1b43dea5172b/submissions/lewko-acyclic-bootstrap-874772906/src/Candidate/Main.lean#L6-L11",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports local compilation and independent scope, hash and axiom audits with only the standard axioms, and says the tracker's admission check was still pending when the pull request opened. The tracker's check results are on the pull request. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 70,
+            "status": "open"
+          },
+          "note": "The author says it refines Hailey Collet's finite ordinary-source construction (PR #69) by optimizing its admissible parameters in two successive steps; it is a parameter improvement of existing machinery. It is 0.0000000837 below PR #69.",
+          "authors": [
+            {
+              "name": "Mark Lewko",
+              "url": "https://github.com/mrklwk"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local compilation and independent scope, hash and axiom audits with only the standard axioms, and says the tracker's admission check was still pending when the pull request opened. The tracker's check results are on the pull request. No independent rerun.",
+          "bound": "\\theta\\le 0.874772906"
         }
       ],
       "repos": [
@@ -585,7 +611,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "HaileyStorm"
+      "bestHandle": "mrklwk"
     },
     {
       "family": "005",
