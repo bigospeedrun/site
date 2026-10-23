@@ -38034,6 +38034,70 @@
         }
       ],
       "source_commit": "e4413c43eeaacdd20be123fdd7d7add53427f028"
+    },
+    {
+      "id": "crocswap-selected-f9b1a1082897cd6e",
+      "kind": "improvement",
+      "score": "15108879/5000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-10-23T20:19:22Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-23T20:19:22Z",
+      "site_observed_at": "2026-10-23T21:17:26Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/blob/1ec1119972c9aefe42525172d07b332fcff81cb4/certificates/selected-result.json"
+      },
+      "spec_version": "1",
+      "title": "CrocSwap reviewed conditional result: 15108879/5000000000",
+      "authors": [
+        {
+          "name": "CrocSwap community",
+          "url": "https://github.com/CrocSwap/integer-mult-bounds"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4610",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/5241",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4470",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4447",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4441",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4440",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4416",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4433",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4359",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4268",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/3945",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4085",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/2979",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4076",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/4088",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/1673",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/1758",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/1786",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/23",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/555",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/589"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/1ec1119972c9aefe42525172d07b332fcff81cb4/certificates/selected-result.json",
+      "artifact": {
+        "path": "sources/crocswap-selected-1ec1119972c9aefe42525172d07b332fcff81cb4.json",
+        "sha256": "f9ed52bb642cd1e1486cf2743557ac5fa23cf1514a3277d786a644e39a565038"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/1ec1119972c9aefe42525172d07b332fcff81cb4/certificates/selected-result.json",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "Maintainer-reviewed conditional PR4610 construction using the PR5241 independent audit. The five PR4470 framework assumptions are unchanged. Uniform words are not materialized.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/1ec1119972c9aefe42525172d07b332fcff81cb4/certificates/selected-result.json",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "1ec1119972c9aefe42525172d07b332fcff81cb4"
     }
   ],
   "record_metadata": {
@@ -41119,7 +41183,7 @@
       "source_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 4222422970/2^46 (about 6e-05), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ 6e34612, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit passed (checked 2026-10-23)); it is not our exact multitape statement and we have not rerun it.",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 4222422970/2^46 (about 6e-05), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ 583c95f, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit passed (checked 2026-10-23)); it is not our exact multitape statement and we have not rerun it.",
       "comparison_key": "openai/original-109",
       "date_precision": "Manuscript dated September 23, 2026; submitted_at is observation time.",
       "upstream_tier": "claimed",
@@ -60011,7 +60075,7 @@
         555,
         589
       ],
-      "upstream_selected": true
+      "upstream_selected": false
     },
     "crocswap-pr-4610": {
       "checked_at": "2026-10-23",
@@ -60068,7 +60132,45 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-10-22T11:18:01Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-selected-f9b1a1082897cd6e": {
+      "checked_at": "2026-10-23",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/1ec1119972c9aefe42525172d07b332fcff81cb4/certificates/selected-result.json",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Selected maintainer-reviewed conditional PR4610 construction, with independent PR5241 admission evidence and explicit inherited foundation reuse; not independently rerun",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "repo": "CrocSwap/integer-mult-bounds",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "date_precision": "Snapshot commit time; not scientific priority",
+      "source_prs": [
+        4610,
+        5241,
+        4470,
+        4447,
+        4441,
+        4440,
+        4416,
+        4433,
+        4359,
+        4268,
+        3945,
+        4085,
+        2979,
+        4076,
+        4088,
+        1673,
+        1758,
+        1786,
+        23,
+        555,
+        589
+      ],
+      "upstream_selected": true
     }
   },
-  "updated_at": "2026-10-23T20:17:30Z"
+  "updated_at": "2026-10-23T21:17:26Z"
 }
