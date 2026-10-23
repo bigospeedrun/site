@@ -1,0 +1,11 @@
+{
+  "number": 5064,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5064",
+  "title": "Checkpoint eight masked-decoder basis searches (exploratory; no new K)",
+  "body": "This preserves one bounded search for a cheaper masked E8 decoder: add a nonzero rank-one correction entirely inside an allowed off-mask rectangle, then reprice exact rational changes of the nine-factor basis. Changing the completed matrix distinguishes this from a root-code/all-pairs factorization floor.\n\nThe fixed pass used four P112 and four P120 rectangles, seed 20261023, and 32 accepted changes per instance. All P112 minima remained 64 and all P120 minima remained 72. The final factors passed the retained rational mask validation and two binary-rank oracles. The 246-second pass, accepted move traces, costs and factor fingerprints are checkpointed. No additional scientific search was run after it; publication changes only add source pinning, portable paths, explicit output selection and credit.\n\n**Exploratory checkpoint, no new K or decoder floor.** This is a restricted seeded local walk, not an exhaustive search of completions, bases or term counts. Final factor matrices are not embedded; reproducing the search requires a fresh output directory and can stop earlier on a slower machine under its five-minute wall limit. This checkpoint has no registered replay hook or hosted mathematical-verification claim. Source/module checks and the portable command's help/syntax path were checked; no full physical/native caller, phase, compiler or outer admission follows.\n\nCanonical investigation: https://github.com/CrocSwap/integer-mult-bounds/discussions/5048. The unchanged nine-factor route is stopped. A further attempt needs a changed completion/factorization premise and an optimistic budget capable of reaching 63/71 before expanding the search.\n\nCredit Philippe Van Velzen, the masked-e8-padding-transfer and P112 completion authors, DreamingOfClouds and the retained decoder/root geometry lineage. Prepared by Cinna Davis with substantial OpenAI Codex assistance. Apache-2.0; no independent scientific acceptance claimed.\n",
+  "created_at": "2026-10-23T07:44:58Z",
+  "updated_at": "2026-10-23T07:44:58Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
