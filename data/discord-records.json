@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-4610",
+        "leader": "crocswap-pr-5398",
         "records": [
           {
             "id": "openai-original-109",
@@ -4068,6 +4068,66 @@
               "CrocSwap"
             ],
             "bound": "O(n log^(1 - 0.0030217758) n)"
+          },
+          {
+            "id": "crocswap-pr-5377",
+            "score": "60447/20000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Ali Romman"
+            ],
+            "bound": "O(n log^(1 - 0.00302235) n)"
+          },
+          {
+            "id": "crocswap-pr-5383",
+            "score": "151333/50000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Ali Romman"
+            ],
+            "bound": "O(n log^(1 - 0.00302666) n)"
+          },
+          {
+            "id": "crocswap-pr-5387",
+            "score": "605334953/200000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "David Ganz"
+            ],
+            "bound": "O(n log^(1 - 0.003026674765) n)"
+          },
+          {
+            "id": "crocswap-pr-5390",
+            "score": "3783343460093/1250000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "David Ganz"
+            ],
+            "bound": "O(n log^(1 - 0.0030266747680744) n)"
+          },
+          {
+            "id": "crocswap-pr-5392",
+            "score": "12109/4000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Ali Romman"
+            ],
+            "bound": "O(n log^(1 - 0.00302725) n)"
+          },
+          {
+            "id": "crocswap-pr-5398",
+            "score": "302728823/100000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Ali Romman"
+            ],
+            "bound": "O(n log^(1 - 0.00302728823) n)"
           }
         ],
         "table": "big-o"
@@ -4439,7 +4499,7 @@
             ],
             "bound": "O(n^1.9992)",
             "verification": {
-              "state": "held",
+              "state": "pending",
               "since": "2026-10-23T20:07:56Z"
             }
           }
@@ -5866,7 +5926,8 @@
     "[\"other-quasi-riemann\",\"mrklwk:437386453/500000000\",\"437386453/500000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-pr-46\",\"302015999999/100000000000000\",\"attained\"]:lean",
     "[\"exact-dft\",\"direct-pr-46\",\"302015999999/100000000000000\",\"attained\"]:record",
-    "[\"other-average-sensitivity\",\"direct-issue-49:1881/500\",\"1881/500\",\"attained\"]:lean"
+    "[\"other-average-sensitivity\",\"direct-issue-49:1881/500\",\"1881/500\",\"attained\"]:lean",
+    "[\"integer-multiplication\",\"crocswap-pr-5398\",\"302728823/100000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
