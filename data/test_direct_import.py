@@ -130,6 +130,16 @@ class DirectImportTests(unittest.TestCase):
             with self.assertRaises(gate.Rejected):self.check(env=dict(copy.deepcopy(self.env),**bad))
         self.assertFalse(self.check(env=dict(copy.deepcopy(self.env),derivation={'status':'no_match','hold':False}))['derivation_hold'])
 
+    def test_average_sensitivity_target_and_reviewed_statement(self):
+        trust=json.loads((Path(__file__).with_name('direct-trust.json')).read_text())
+        profile=trust['profiles']['average-sensitivity']
+        raw=(FIXTURES/'VerifierStatement.lean').read_bytes()
+        self.assertEqual(gate.sha(raw),profile['challenge_sha256'])
+        sub=gate.normalize(dict(schema_version=1,problem='average-sensitivity',bound='1881/500',repo_url='https://github.com/u/p',commit='a'*40,authors=[]))
+        self.assertTrue(gate.challenge_bytes(sub,raw).endswith('theorem Race.bound : BigOSpeedrun.AverageSensitivity.Bound ((1881 : ℚ) / 500) := by\n  sorry\n'.encode()))
+        with self.assertRaises(gate.Rejected):
+            gate.normalize(dict(sub,bound='17/2'))
+
     def test_early_issue_binds_publisher_stage_and_pending_reason(self):
         self.trust[self.revision]['publisher_workflow_id']=43
         publisher=dict(self.run,id=456,workflow_id=43,path='.github/workflows/pr-publish.yml',event='workflow_run',html_url='https://github.com/bigospeedrun/verifier/actions/runs/456')

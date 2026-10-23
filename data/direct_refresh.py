@@ -13,6 +13,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from fractions import Fraction
 from datetime import datetime, timezone
 from direct_github import GitHub, GitHubError
 from direct_import import (REPOSITORY, PROBLEMS, Rejected, require, read_json, sha,
@@ -22,6 +23,11 @@ from direct_pr import PREFIX, archive_members, inspect_pr, validate_pr_result
 
 ROOT=Path(__file__).resolve().parent
 SLUGS={'dft':'exact-dft','3sum':'3sum','apsp':'apsp'}
+# Other bounds rows with a trusted verifier statement: a final Lean Verified result becomes a claim of
+# the row in direct-other.json (merged by src/lib/other-merge.ts); an open or failed submission is not
+# listed there, so its post waits until verification ends (Nil, 2026-10-23). bound: the row's form.
+OTHER={'average-sensitivity':dict(bound='\\mathrm{{AS}}(f)\\le {value}d\\sqrt n',
+    statement='BigOSpeedrun.AverageSensitivity.Bound')}
 # These hosted smoke identities are permanently excluded, even after label edits.
 SMOKE_NUMBERS={1,2}
 HELD_NOTE='Proof checks passed; held for a lead review of credit (derivation report). The submitted bound remains Claimed.'
@@ -305,6 +311,31 @@ def verification_state(key,claim,final_states):
     if (state and state['decision']=='held') or REVIEW_LABEL in labels:return 'held'
     return 'failed' if state and state['decision']!='lean-verified' else 'pending'
 
+def display_up(bound,places=6):
+    """A decimal of a lower-is-better coefficient, rounded up: a shown value never claims more than the proof."""
+    value=Fraction(bound);scaled=-((-value.numerator*10**places)//value.denominator)
+    text=f'{scaled//10**places}.{scaled%10**places:0{places}d}'.rstrip('0')
+    return text+'0' if text.endswith('.') else text
+
+def other_claims(claims,withdrawn,notes):
+    """{'other-<slug>': {'claims': [...]}} for the final Lean Verified direct results of Other bounds rows."""
+    boards={}
+    for key,claim in sorted(claims.items()):
+        sub=claim['submission'];proof=claim.get('verification')
+        if sub['problem'] not in OTHER or key in withdrawn or not proof or not re.fullmatch(r'direct-issue-[1-9][0-9]*',key):continue
+        item=claim['item'];login=item['user']['login']
+        require(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9-]{0,38}',login),'Invalid submitter login')
+        row=OTHER[sub['problem']];shown=display_up(sub['bound'])
+        note=notes.get(key,{}).get('text','')
+        require(not re.search(r'[<>&]',note),'A credit note has a character (< > &) that the page cannot show as text')
+        boards.setdefault('other-'+sub['problem'],{'claims':[]})['claims'].append(dict(
+            author=login,handle=key,value=sub['bound'],display=shown,date=item['created_at'],dateSource=item['html_url'],dateKind='first-stated',
+            url=item['html_url'],lean=True,evidence='lean-verified',note=note,authors=[dict(name=login,url='https://github.com/'+login)],
+            leanNote='Yes: the Big O Speedrun verifier checked this Lean proof (Lean kernel and the permitted-axiom audit).',
+            proofScope='The verifier checked Race.bound : '+row['statement']+' ('+sub['bound']+') at commit '+sub['commit']+' of '+sub['repo_url']+'.',
+            bound=row['bound'].format(value=shown),receiptPath=proof['receipt_path']))
+    return boards
+
 def prepare(root,claims,files,now,final_states=None,config=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
     suppressed=apply_bindings(documents,claims,final_states or {},config or {})
@@ -318,7 +349,7 @@ def prepare(root,claims,files,now,final_states=None,config=None):
         doc['records']=[r for r in doc['records'] if not doc['record_metadata'][r['id']].get('direct_submission')]
         doc['record_metadata']={k:v for k,v in doc['record_metadata'].items() if not v.get('direct_submission')}
         for key,claim in sorted(claims.items()):
-            if key in suppressed or key in withdrawn or SLUGS[claim['submission']['problem']]!=slug:continue
+            if key in suppressed or key in withdrawn or SLUGS.get(claim['submission']['problem'])!=slug:continue
             row,meta,source=row_for(key,claim,now,old.get(key),notes.get(key));files.update(source)
             meta['verification']=verification_state(key,claim,final_states)
             doc['records'].append(row);doc['record_metadata'][key]=meta
@@ -326,6 +357,7 @@ def prepare(root,claims,files,now,final_states=None,config=None):
         if doc!=prior:
             doc['updated_at']=now;doc['checked_at']=now[:10]
             files[slug+'.json']=json_bytes(doc)
+    files['direct-other.json']=json_bytes(dict(schema_version=1,boards=other_claims(claims,withdrawn,notes)))
     state=dict(schema_version=1,entries={k:{field:v for field,v in c.items() if field in ('route','submission','verification')} for k,c in claims.items()})
     state['final_states']=final_states or {}
     files['direct-submissions.json']=json_bytes(state)

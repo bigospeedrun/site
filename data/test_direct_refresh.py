@@ -315,6 +315,29 @@ class RefreshTests(unittest.TestCase):
             approver.retain_outcome(key,claim,'final',approver.derivation(key,verdict),{'marker':'final'})
             self.assertEqual('verification' in claim,expected=='lean-verified')
 
+    def test_an_other_bounds_result_is_listed_only_when_lean_verified(self):
+        # Verifier PR #15 (2026-10-23): average sensitivity is an Other bounds row, not a board.
+        body=('### Problem\n\naverage-sensitivity\n\n### Repository URL\n\nhttps://github.com/u/p\n\n### Commit SHA\n\n'+'a'*40+'\n\n### Bound\n\n1881/500\n')
+        sub=d.parse_body(body);item=dict(self.issue(60),body=body)
+        proof=dict(decision='lean-verified',receipt_path='sources/direct-issue-60-1-1-final.json')
+        claims={'direct-issue-60':dict(route='issue',item=item,submission=sub,verification=proof),
+                'direct-issue-61':dict(route='issue',item=self.issue(61),submission=dict(sub),verification=None)}
+        boards=r.other_claims(claims,{},{})
+        listed=boards['other-average-sensitivity']['claims']
+        self.assertEqual([c['handle'] for c in listed],['direct-issue-60'])
+        self.assertEqual((listed[0]['value'],listed[0]['display'],listed[0]['evidence'],listed[0]['url']),
+                         ('1881/500','3.762','lean-verified','https://github.com/bigospeedrun/verifier/issues/60'))
+        self.assertEqual(listed[0]['bound'],'\\mathrm{AS}(f)\\le 3.762d\\sqrt n')
+        self.assertEqual(r.other_claims(claims,{'direct-issue-60':'withdrawn'},{}),{})
+        self.assertEqual([r.display_up(v) for v in ['1881/500','3','1/3']],['3.762','3.0','0.333334'])
+        # No board row for it, and prepare writes the file.
+        temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);root=Path(temp.name)
+        for name in ['exact-dft.json','3sum.json','apsp.json','registry.json','direct-trust.json']:(root/name).write_bytes((ROOT/name).read_bytes())
+        files=r.prepare(root,{'direct-issue-60':claims['direct-issue-60']},{},'2026-10-23T12:00:00Z',{},json.loads((ROOT/'direct-trust.json').read_text()))
+        self.assertEqual(json.loads(files['direct-other.json'])['boards'],boards)
+        for slug in ['exact-dft','3sum','apsp']:
+            if slug+'.json' in files:self.assertNotIn('direct-issue-60',files[slug+'.json'].decode())
+
     def test_final_ambiguous_cannot_reuse_early_pass(self):
         importer=r.Importer(DiscoveryAPI())
         claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))

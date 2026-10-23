@@ -78,6 +78,23 @@
       "saving": "7547360/10000000000",
       "model": "OpenAI.PowerSaving.DFTProgram (exact scalar/index RAM; all positive lengths)",
       "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+    },
+    "average-sensitivity": {
+      "challenge_file": "challenges/average-sensitivity/VerifierStatement.lean",
+      "challenge_sha256": "7bdf2589dc16ce832a81f9e59de61e8c277ee51ac38a361705dfd1cd4fecc14b",
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "manifest_file": "profiles/anthropic-lake-manifest.json",
+      "tools_file": "profiles/anthropic-tools.json",
+      "solution_module": "Submission",
+      "source_roots": [
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "bound_kind": "coefficient",
+      "maximum": "8",
+      "upstream_commit": "1581d4cbdd69a0faf34b2089614fe2a814316a6a"
     }
   },
   "controller_blobs": {

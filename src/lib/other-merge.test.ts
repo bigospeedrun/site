@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import data from './other-bounds.json' with {type: 'json'};
-import {mergeProve2me, claimNumber} from './other-merge.ts';
+import {mergeProve2me, mergeDirect, claimNumber} from './other-merge.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import {otherFeedBoard} from './records-feed.ts';
 
@@ -48,4 +48,28 @@ test('a merged Lean Verified leader is a Lean Verified feed record; real data me
   assert.equal(board.records.find(r => r.id === board.leader)!.evidence, 'Lean Verified');
   const real = mergeProve2me(data as any, {boards: {'other-block-sensitivity': {claims: [claim('2.0635', '2026-10-18T04:29:35Z')]}}} as any);
   assert.equal((real.families.find((f: any) => f.slug === 'block-sensitivity') as any).bestHandle, 'prove2me-2-0635');
+});
+
+// Verifier PR #15 (2026-10-23): a final Lean Verified direct submission joins its Other bounds row.
+const lower = {families: [{slug: 'average-sensitivity', direction: 'lower', bestHandle: 'c', claims: [
+  {handle: 'c', value: '399/125', display: '3.192', date: '2026-10-19T11:44:32Z', evidence: 'claimed', url: 'https://example.org/c'}]}]};
+const direct = (n: number, value: string, display: string, extra: object = {}) => ({boards: {'other-average-sensitivity': {claims: [{author: 'u',
+  handle: 'direct-issue-' + n, value, display, date: '2026-10-23T12:00:00Z', dateSource: 'https://github.com/bigospeedrun/verifier/issues/' + n,
+  dateKind: 'first-stated', url: 'https://github.com/bigospeedrun/verifier/issues/' + n, lean: true, leanNote: 'Yes', evidence: 'lean-verified',
+  note: '', authors: [{name: 'u', url: 'https://github.com/u'}], proofScope: 'p', bound: 'b', ...extra}]}}});
+
+test('a Lean Verified direct submission joins its row and leads only when it is lower', () => {
+  const merged = mergeDirect(lower as any, direct(60, '3', '3.0') as any).families[0] as any;
+  assert.deepEqual(merged.claims.map((c: any) => c.handle), ['c', 'direct-issue-60']);
+  assert.equal(merged.bestHandle, 'direct-issue-60');
+  assert.equal((otherBoundLeader(merged) as any).evidence, 'lean-verified');
+  assert.equal((mergeDirect(lower as any, direct(60, '1881/500', '3.762') as any).families[0] as any).bestHandle, 'c');
+});
+
+test('a direct claim must link its own verifier issue and be Lean Verified', () => {
+  for (const bad of [direct(60, '3', '3.0', {url: 'https://github.com/bigospeedrun/verifier/issues/61'}), direct(60, '3', '3.0', {evidence: 'claimed'}),
+    direct(60, '3', '3.0', {handle: 'prove2me-3'}), direct(60, '3', '3.0', {note: 'a <b> note'})]) {
+    assert.equal((mergeDirect(lower as any, bad as any).families[0] as any).claims.length, 1);
+  }
+  assert.deepEqual(mergeDirect(lower as any, undefined), lower as any);
 });

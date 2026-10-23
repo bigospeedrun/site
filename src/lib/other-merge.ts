@@ -26,9 +26,25 @@ const valid = (claim: Claim & {note?: unknown; proofScope?: unknown; leanNote?: 
   /^https:\/\/prove2\.me\/theorems\/[0-9a-f-]{36}$/.test(claim.url) && ['claimed', 'lean-verified'].includes(claim.evidence) &&
   Number.isFinite(Date.parse(claim.date)) && claimNumber(claim) !== null;
 
+// A direct submission to the verifier (data/direct_refresh.py, data/direct-other.json): only a final Lean
+// Verified result is listed, as a claim with the handle of its issue that links the issue.
+const validDirect = (claim: Claim & {note?: unknown; proofScope?: unknown; leanNote?: unknown; authors?: {name?: unknown}[]}) =>
+  typeof claim?.handle === 'string' && /^direct-issue-[1-9][0-9]*$/.test(claim.handle) &&
+  claim.url === 'https://github.com/bigospeedrun/verifier/issues/' + claim.handle.slice('direct-issue-'.length) &&
+  claim.evidence === 'lean-verified' && plain(claim.note) && plain(claim.proofScope) && plain(claim.leanNote) &&
+  Array.isArray(claim.authors) && claim.authors.every(a => plain(a?.name)) && Number.isFinite(Date.parse(claim.date)) && claimNumber(claim) !== null;
+
+export function mergeDirect<D extends {families: Family[]}>(data: D, state: {boards?: Record<string, {claims?: Claim[]}>} | null | undefined): D {
+  return mergeImported(data, state, validDirect);
+}
+
 export function mergeProve2me<D extends {families: Family[]}>(data: D, state: {boards?: Record<string, {claims?: Claim[]}>} | null | undefined): D {
+  return mergeImported(data, state, valid);
+}
+
+function mergeImported<D extends {families: Family[]}>(data: D, state: {boards?: Record<string, {claims?: Claim[]}>} | null | undefined, accept: (claim: Claim) => boolean): D {
   const families = data.families.map(family => {
-    const imported = (state?.boards?.['other-' + family.slug]?.claims ?? []).filter(valid);
+    const imported = (state?.boards?.['other-' + family.slug]?.claims ?? []).filter(accept);
     if (!imported.length) return family;
     const known = new Set(family.claims.map(c => c.handle));
     const claims = [...family.claims, ...imported.filter(c => !known.has(c.handle))]
