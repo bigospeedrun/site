@@ -5,7 +5,7 @@ from unittest.mock import patch
 import refresh
 
 class RefreshTests(unittest.TestCase):
-    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None, judge=None, lower=None, claims=None, leader=None):
+    def claim(self, files, claim=None, state='open', title='Conditional κ = 0.0017', on_main=False, owners=None, judge=None, lower=None, claims=None, leader=None, listed=frozenset()):
         """Run package_claim on a fake PR 3200. files: {path: status}; claim: CLAIM.json object
         (claims: {path: object} when several differ); lower: {pr: {path: status}} of lower PRs;
         on_main: True, or the set of paths on main."""
@@ -26,7 +26,7 @@ class RefreshTests(unittest.TestCase):
         files_of=lambda m:refresh.claim_files(m,pulls_by_number,{},fetched)
         with tempfile.TemporaryDirectory() as temp,patch.object(refresh,'pages',pages),patch.object(refresh,'content',content),patch.object(refresh.claim_judge,'check',lambda *a:judge):
             stage=Path(temp);(stage/'sources').mkdir()
-            result=refresh.package_claim(stage,pr,'m'*40,owners or {},files_of,sorted((m for m in prs if m<3200),reverse=True),leader)
+            result=refresh.package_claim(stage,pr,'m'*40,owners or {},files_of,sorted((m for m in prs if m<3200),reverse=True),leader,listed)
             saved=(stage/'sources/pr-3200-claim.json').exists()
         self.assertEqual(saved,result[0] is not None)
         self.reads=reads
@@ -270,6 +270,28 @@ class RefreshTests(unittest.TestCase):
             item=dict(subs['items'][0],claim_path=path,claim_files=[['added',path]],claim_files_head='a'*40,claim_files_result=True)
             with self.subTest(name):
                 Draft202012Validator(schema,format_checker=FormatChecker()).validate(dict(subs,items=[item]))
+
+    def test_an_independent_validation_of_a_listed_value_is_silent(self):
+        # Lead, 2026-10-24: #5241, #5384, #5395, #5396, #5399 and #5400 validate listed values; none can be a record.
+        listed=frozenset({('crocswap-pr-5398',refresh.Fraction('0.00302728823')),('crocswap-pr-5387',refresh.Fraction('0.003026674765'))})
+        nested='research/owned-relation-independent-validation/capsule/research/x/RESULT.json'
+        title='Independently validate κ = 0.00302728823 for the direct backward caller'
+        self.assertEqual(self.claim({nested:'added'},{'kappa':'302728823/100000000000'},title=title,listed=listed),(None,None,None))
+        self.assertEqual(self.reads,[])  # decided from the title: no file read
+        # Its own package with the same value, as #5399: still silent, before the package and the Claude check.
+        own='research/owned-transpose-validation/RESULT.json'
+        self.assertEqual(self.claim({own:'added'},{'kappa':'302728823/100000000000'},title=title,listed=listed,judge='Claude reads no claim.'),(None,None,None))
+        # A NEW value in such a title still goes the usual way (here: the package lists it).
+        new='Independently validate κ = 0.0030273 with a tighter reserve'
+        self.assertEqual(self.claim({own:'added'},{'kappa':'30273/10000000'},title=new,listed=listed)[:2],('30273/10000000',own))
+        # Two values, one of them new: not silent. Without "Independently" at the start: the usual way.
+        two='Independently validate κ = 0.00302728823 and propose κ = 0.0030273'
+        self.assertNotEqual(self.claim({own:'added'},{'kappa':'30273/10000000'},title=two,listed=listed),(None,None,None))
+        # Its own listed row does not count: a listed validation-titled PR keeps its row at a new head.
+        self.assertIsNotNone(self.claim({own:'added'},{'kappa':'30273/10000000'},title=new,
+                                        listed=listed|{('crocswap-pr-3200',refresh.Fraction('0.0030273'))})[0])
+        plain='Validate κ = 0.00302728823 for the direct backward caller'
+        self.assertIsNotNone(self.claim({nested:'added'},{'kappa':'302728823/100000000000'},title=plain,listed=listed,leader=refresh.Fraction('0.003'))[2])
 
     def test_a_zero_denominator_never_fails_the_refresh(self):
         # Reviewer, 2026-10-21: Fraction('1/0') raises. A contributor's "1/0" is no value.
