@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {buildSystemPrompt, createKnowledge} from './chat-knowledge.ts';
 import {methodNoteFor} from './method-notes.ts';
-import type {RecordEntry} from './types.ts';
+import type {Problem, RecordEntry} from './types.ts';
 
 // A note on how a record is proved (data/method-notes.json) reaches the chat facts as `method` on a current
 // leader, and the prompt tells the bot to use it and to admit a gap. The tooltip text comes from the same field.
@@ -13,7 +13,7 @@ const record = (id: string, score: string, methodNote?: string): RecordEntry => 
   authors: [{name: 'author', url: 'https://github.com/author'}], evidence: [{name: 'Source', url: 'https://github.com/example/proof'}],
   dependencies: [], comparisonNote: '', title: id, predecessors: [], status: '', comparison: '', ...(methodNote ? {methodNote} : {}),
 });
-const board = (records: RecordEntry[]) => ({slug: 'exact-dft', title: 'Exact DFT', scope: 'Exact arithmetic', symbol: 'kappa', direction: 'higher-is-better', lastDataCheck: '2026-10-23', records});
+const board = (records: RecordEntry[]) => ({slug: 'exact-dft', title: 'Exact DFT', scope: 'Exact arithmetic', symbol: 'kappa', direction: 'higher-is-better', lastDataCheck: '2026-10-23', records}) as unknown as Problem;
 
 test('a leader with a method note carries it as method; a leader without one has no method field', () => {
   const withNote = createKnowledge([board([record('old', '1/100'), record('leader', '1/50', 'It runs a tensor power of a unit.')])], '2026-10-23');
