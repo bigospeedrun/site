@@ -278,13 +278,16 @@ def prepare(root,claims,files,now,final_states=None,config=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
     suppressed=apply_bindings(documents,claims,final_states or {},config or {})
     notes_path=root/'direct-notes.json'
-    notes=json.loads(notes_path.read_text())['notes'] if notes_path.exists() else {}
+    reviewed=json.loads(notes_path.read_text()) if notes_path.exists() else {}
+    notes=reviewed.get('notes',{})
+    # Submissions their submitter withdrew (data/direct-notes.json): no row, however often the claim is read again.
+    withdrawn=reviewed.get('withdrawn',{})
     for slug,doc in documents.items():
         old={r['id']:r for r in doc['records']}
         doc['records']=[r for r in doc['records'] if not doc['record_metadata'][r['id']].get('direct_submission')]
         doc['record_metadata']={k:v for k,v in doc['record_metadata'].items() if not v.get('direct_submission')}
         for key,claim in sorted(claims.items()):
-            if key in suppressed or SLUGS[claim['submission']['problem']]!=slug:continue
+            if key in suppressed or key in withdrawn or SLUGS[claim['submission']['problem']]!=slug:continue
             row,meta,source=row_for(key,claim,now,old.get(key),notes.get(key));files.update(source)
             doc['records'].append(row);doc['record_metadata'][key]=meta
         prior=json.loads((root/(slug+'.json')).read_text())

@@ -28,6 +28,13 @@ if (ROOT/'direct-notes.json').exists():
   assert re.fullmatch(r'direct-(issue|pr)-\d+',key),key
   assert re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/(issues|pull)/\d+',n['predecessor']),key
   assert 0<len(n['text'])<=500 and not re.search(r'[<>&\\$]',n['text']),key
+withdrawn={}
+if (ROOT/'direct-notes.json').exists():
+ # Direct submissions their submitter withdrew: the refresh lists no row for them, with the reason on record.
+ withdrawn=load('direct-notes.json').get('withdrawn',{})
+ for key,reason in withdrawn.items():
+  assert re.fullmatch(r'direct-(issue|pr)-\d+',key),key
+  assert 0<len(reason)<=500 and key not in load('direct-notes.json')['notes'],key
 print('Checked',registry['checked_at'])
 print('problem | verified | certified-conditional | claimed (observed maximum/minimum) | records')
 for entry in registry['problems']:
@@ -36,6 +43,7 @@ for entry in registry['problems']:
  assert records[0]['submitted_at'] is None
  assert isinstance(p['record_metadata']['classical-baseline']['publication_year'],int)
  for r in records:
+  assert r['id'] not in withdrawn,'Withdrawn submission listed: '+r['id']
   # An open endpoint (every saving below, or every exponent above, the score) is legal in
   # both directions; only a baseline must be attained.
   if r.get('score_relation')=='strict-upper-bound':assert r['kind']!='baseline',r['id']

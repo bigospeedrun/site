@@ -136,6 +136,34 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(kept['predecessors'],[note['predecessor']])
             self.assertEqual(board['record_metadata']['direct-issue-5']['credit_note'],note['text'])
 
+    def test_withdrawn_submission_has_no_row_on_any_rebuild_and_keeps_its_state(self):
+        # 2026-10-23: the submitter of three merged DFT PRs withdrew them. The refresh reads each claim every hour, so a
+        # row removed by hand would come back unless the reviewed list in data/direct-notes.json keeps it out.
+        fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
+        docs={slug:fixtures[slug] for slug in r.SLUGS.values()}
+        claim=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            for slug,doc in docs.items():(root/(slug+'.json')).write_bytes(r.json_bytes(doc))
+            (root/'registry.json').write_bytes(r.json_bytes({'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'}))
+            def rebuild(hour):
+                files=r.prepare(root,{'direct-issue-5':claim},{},f'2026-10-11T{hour}:00:00Z')
+                for path,raw in files.items():
+                    dest=root/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
+                return files
+            rows=lambda:[x['id'] for x in json.loads((root/'exact-dft.json').read_text())['records']]
+            rebuild('00')
+            self.assertIn('direct-issue-5',rows())
+            (root/'direct-notes.json').write_text(json.dumps({'schema_version':1,'notes':{},'withdrawn':{'direct-issue-5':'Withdrawn by its submitter.'}}))
+            first=rebuild('01')
+            self.assertIn('exact-dft.json',first);self.assertNotIn('direct-issue-5',rows())
+            self.assertNotIn('direct-issue-5',json.loads((root/'exact-dft.json').read_text())['record_metadata'])
+            for hour in ('02','03'):
+                self.assertNotIn('exact-dft.json',rebuild(hour),'a later read of the same claim must not bring the row back')
+            self.assertNotIn('direct-issue-5',rows())
+            # The claim and its verification stay in the saved state, so the importer still knows the submission.
+            self.assertIn('direct-issue-5',json.loads((root/'direct-submissions.json').read_text())['entries'])
+
     def test_closed_issues_removed_and_non_direct_rows_retained(self):
         fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
         docs={slug:fixtures[slug] for slug in r.SLUGS.values()}
