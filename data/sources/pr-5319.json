@@ -4,8 +4,8 @@
   "title": "Audit actual Schur boundary residual and inverse bound",
   "body": "The actual PR3851 boundary solver factors `round_P(S)`, then stores rounded pivot reciprocals. This package makes both roundings explicit and proves the conditional original-Schur error of the unchanged scalar `BandedSolve`:\n\n`T x-r = e_f + Lhat e_b`, with `Ueff_ii=1/round_P(1/U_ii)`, `||T^-1||<=32p`, and `||x-S^-1 r||<2^17 p^5 eta max(1,||r||)` for the stated production premises. The constant is already present in the retained RaD report; the contribution is the actual-caller bridge and discriminating residual evidence.\n\nIt executes a small actual old-H `Axis`/`Window` preparation and two unchanged scalar solver calls, reconstructs the Schur system independently with exact rationals, and separates initial-Schur, factor and online residual errors. Controls distinguish omitted initial rounding, a substituted rounded diagonal and premature upper-residual rounding. The frozen source and selected frontier are unchanged.\n\nValidation: source/metadata pins, complete registered replay, optimized replay, publication-byte/source-history preflight and a committed Git-free export replay. `RESULT.json` records the finite case and every observed residual. These are author checks with additional AI review, not independent human or formal verification.\n\nLimits: the global old-H gap, matching setup, factor caps, primitive arithmetic and storage widths remain explicit premises. Reduced `p=16,P=24` is a conformance fixture, not production accuracy evidence. Complete interior/Core/locality/tensor/CRT error and cost admission remain open.\n\n[Canonical scoped claim/result](https://github.com/CrocSwap/integer-mult-bounds/discussions/3664#discussioncomment-19150318). Fresh main base `ff3cc58e370d0f678e529246f8c73e8094e18fcf`, priority revision7; narrower #5081 OQ1, distinct from the separately completed conditional downstream tensor join. Credit: Jose Manuel/jmbarrancoml #3851, Chafik Boukhalfa #489 and physical-word/RaD lineage, James Reed's factor-margin audit, JoyboyBrian #5081/#5059, and retained notices. Prepared by Hiroki KUMAZAKI with substantial OpenAI Codex assistance; Apache-2.0.\n",
   "created_at": "2026-10-23T17:15:33Z",
-  "updated_at": "2026-10-23T17:15:33Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-23T18:37:52Z",
+  "closed_at": "2026-10-23T18:37:52Z",
+  "merged_at": "2026-10-23T18:37:52Z",
+  "state": "closed"
 }

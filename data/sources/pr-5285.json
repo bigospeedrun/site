@@ -4,8 +4,8 @@
   "title": "h=8 BIT receiver census of the PR555/PR589 family (negative result)",
   "body": "<!-- claude-projects-attribution: {\"github_login\":\"Matarener\"} -->\n_Requested by **Mark**_\n\nBefore: closed #4633 mentions \"292 other h = 8 words\" next to PR589's BIT word, with nothing behind the number, and nobody has checked whether PR555's L3 generator family holds a better BIT word.\n\nAfter: `research/bit-h8-receiver-census/` prices the whole family under the current p16 invoice. It covers all 17,478 admissible puncture sets, the 200 best sets × 31 receiver draws, and all 3^9 = 19,683 receiver choices of PR589's set. PR589's puncture set is the unique optimum. Some receivers of that set beat PR589's word by up to +0.030% (raw root 0.003465298186 vs 0.003464248972). The best one passes PR555's `xcheck_p.py`. That gain does not reach the current BIT head: receiver 89 rewrites helpers 413/469, the same carrier pair as #4183's retirement in the compact436 lineage. Receiver 51 alone survives the GL464 + 470 generator. Its additive transfer onto #4760 is +0.023%, below the 0.1% gate that #4760's `certify()` uses. **Negative result; selected κ and the BIT supplier are unchanged.**\n\nHow: the census reuses main's generator (`research/e8-bit-p111`), exporter (`e8-bit-carrier-skeleton`) and PR589 tuner (`e8-bit-p111-tuned`). The invoice is rebuilt exactly as `bit-compact-productive-controller/price.py` does, and roots are bracketed with its `exact_series.py`. `verify.py tables` checks the committed tables against the set enumeration, the root of every stored profile and the mass identity, and rebuilds six rows. `verify.py words` rebuilds PR589 (byte-identical), the published R437 hash and the receiver variants, and checks the collision and the stacking estimate. `test_verify.py` has eight rejecting controls. Local registered replay: `PASS_REGISTERED_RESEARCH_PACKAGE ... outcome=negative-result`; `check_research_commit.py --check-source-history` passes.\n\nCard: `selected-packing` (scope changed, explained in TASK.json). Prepared with substantial Claude Code assistance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-23T15:43:32Z",
-  "updated_at": "2026-10-23T15:43:32Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-23T18:37:53Z",
+  "closed_at": "2026-10-23T18:37:53Z",
+  "merged_at": "2026-10-23T18:37:53Z",
+  "state": "closed"
 }
