@@ -25,7 +25,16 @@
       "note": "Listed before 2026-10-17; dropped when verifier issues #4/#8/#14 were closed, back after they were reopened at 06:47Z."
     }
   ],
-  "rejected": [],
+  "rejected": [
+    {
+      "board": "exact-dft",
+      "id": "direct-pr-47",
+      "score": "82009/500000",
+      "by": "BOS Lead Dev",
+      "at": "2026-10-23T15:20:00Z",
+      "note": "Verifier PR #47 (ptweezy) was closed unmerged at 05:48Z after Lean rejected it; the direct importer no longer lists it, so the implausible-jump hold has nothing to review. Prepared by BOS Data Pipeline."
+    }
+  ],
   "claims": [
     {
       "pr": 3115,
@@ -370,6 +379,14 @@
       "by": "BOS Lead Dev",
       "at": "2026-10-23T03:45:00Z",
       "note": "Same shape as #4813-#4826 (hexapode): a local complex-unit schedule exponent (kappa = 0.4354 for a block-7 unit on C^128 (3-array, 9-call schedule)), not the whole multiplication saving; the PR adds no CLAIM.json, RESULT.json or ARITHMETIC.json, and it is closed unmerged. Not a claim for this board. Prepared by BOS Data Pipeline."
+    },
+    {
+      "pr": 5241,
+      "head": "13efb5fc5f3b7c14ec2cfa181dd9eb6480972cf2",
+      "score": null,
+      "by": "BOS Lead Dev",
+      "at": "2026-10-23T15:20:00Z",
+      "note": "Independent admission check of #4610 (research/final4610-independent-admission/CLAIM.json kappa 15108879/5000000000 = #4610's current value); the body proposes no new construction and no improvement on #4610. Not a new claim. Prepared by BOS Data Pipeline."
     }
   ]
 }
