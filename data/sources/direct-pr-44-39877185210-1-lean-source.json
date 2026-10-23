@@ -1,0 +1,3633 @@
+{
+  "envelope": {
+    "disposition": "merge",
+    "importable": true,
+    "merge_commit": "2bf9081896ef048dd100e0c3b5d1bb3579e940db",
+    "publisher_commit": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+    "publisher_run_attempt": "1",
+    "publisher_run_id": "39877283952",
+    "reason": "lean_and_axiom_passed_nanoda_pending",
+    "receipt": {
+      "artifact_sha256": {
+        "apt-tools.log": "7f4778d1106e545141945573cda98299a24a45b725e1fd807637f2cc01649400",
+        "apt-update.log": "336573c038be691bfdb17bce080d7ee5ffd2cf47f1f9cf13dccfbc317d710994",
+        "audit.log": "d9f5daf4fb688de9088cd2a3f1768d7c76c667a7876dba55df7416c93f2b2a70",
+        "build-comparator.log": "483e040d20c591f6b62ed85e4e729e0b3f773bb5e9a90cdaf4a181708228eaf9",
+        "build-lake-adapter.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build-landrun.log": "5e09e7add5ffb69e6ec818cd8417bef048ede8025e5a71a6dc067b62b9776191",
+        "build-nanoda.log": "5488eee2cd09515ba9fa820abcfea51373a21d6d4847e0c47dee9d1b2e65d63e",
+        "bwrap-apparmor-policy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cache-hash-metadata.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dependency-Cli-checkout.log": "c898721f43d1332795805fed225fb2ab0595c7b8a029c4a9e3c437473521b5e8",
+        "dependency-Cli-fetch.log": "9094417b7a563375dd9f98605caa2f2cb0cc73077b2c498eb7c101dc1bab279b",
+        "dependency-Cli-init.log": "806fb9690dbeea89238e99f8dd297b5af2e0e0f565af71af6f5626a6d61faf3e",
+        "dependency-LeanSearchClient-checkout.log": "7d98119a745a3443f54178ab9619295af66435d735ac04882e276a8a9bffaea1",
+        "dependency-LeanSearchClient-fetch.log": "5b5559b62e0b216d5e13b67a4ba1a230afd09f8c0995af59c8c828c43fc294b7",
+        "dependency-LeanSearchClient-init.log": "7da5337a0fc32514d71481e6bd805dea2161c22056ea299c1b9ad45e663240a9",
+        "dependency-Qq-checkout.log": "ad1b37dbf80199957a96283ccce1b75fb04305981124e49cbdc24d12437c8198",
+        "dependency-Qq-fetch.log": "13597b5d2e96d90eee3ebcc349f5dc29db0615761725a2bd30fd372e037695f3",
+        "dependency-Qq-init.log": "ffa3697aed5c4505fa7b759ea58199632d47708e338d7c844267b2c5754d61e1",
+        "dependency-aesop-checkout.log": "de5e1aa3ee75894a89798703b227a067c3e877d93dafb5419dc70b86ccc109a6",
+        "dependency-aesop-fetch.log": "88e03fded2183f72ff02d3f8bbf8f8bfb95b4bfd69babb6039e2df0cb7f1721e",
+        "dependency-aesop-init.log": "ddfe172f4b698d0ac102ac2178f4280b00372368ef06591a3952fcc668834fc3",
+        "dependency-batteries-checkout.log": "6816a3fef77fa1286c37b8e56ca42c77a51ad242dbb758bfd9f4de43ec50cb06",
+        "dependency-batteries-fetch.log": "116ec193ab5389d576971f2f8a288a9f9fe82744a84da6da90ce289f1e330eda",
+        "dependency-batteries-init.log": "2aba402bb7545f350f21c752a73448002dc8b209f4963bde1df90ea8266b5a91",
+        "dependency-importGraph-checkout.log": "6a4ee8a98d7afdb48cb4c55be58ed0efeaeeefdfb3bf6468909bec14e6aa28b4",
+        "dependency-importGraph-fetch.log": "7c91610e786ab9296071b4bebd42fc455236dd285c2d40beb476b5120c36e605",
+        "dependency-importGraph-init.log": "a48fa1c744a9cebca87074efdb8cfbcb7d6cbaae8af8d46f504f4223c9a551bc",
+        "dependency-mathlib-checkout.log": "a0bb7af7ae0fa5e2cc405332624d7b50a0ed8d31605c0b4b526558ffd20d50a1",
+        "dependency-mathlib-fetch.log": "56a9c709fa42a138a71cef4abafc00e97d480b8e106800c3c34fa21edbceed12",
+        "dependency-mathlib-init.log": "2bcb292b69734b9db2ced338b6ac726cedc20827a6780104169f95f2d66c1b73",
+        "dependency-plausible-checkout.log": "5c722697c8d43ea73fde7079343e63c3bb58b408427b579f6a98f114b2c27ae3",
+        "dependency-plausible-fetch.log": "58688df170d3968e90c11f7fe16f1957ca189393874ba37e84fae3631b9d6b26",
+        "dependency-plausible-init.log": "4077b7e1977b1b77945885d54ad3705e70446164adda8a0c5d8844827b97eb72",
+        "dependency-proofwidgets-checkout.log": "be10a7d449140089e34615969c9fe1a689688c806b5a3f09ce38b17fb6d28794",
+        "dependency-proofwidgets-fetch.log": "5bac8844efd0a2d90aa71757fd8825ed40852e654732b3e51c2e71184e330a1d",
+        "dependency-proofwidgets-init.log": "4c883bd1450aa7a672b32e14df04922d40e349467c3d76da18d2643ce6e1a397",
+        "elan-download.log": "79a3cff4dfd941c8b57004a29b2d352dcfb6c8c921940336c42dd10752de183e",
+        "elan-install.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elan-unpack.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lean-install.log": "ffdc126ce27bd88ee99ec6de79ca7843f993abe025753814384482d5c387339d",
+        "lean.log": "7c90b910b31b3dcc94dab42e03cf6dda660d84486cfb352d5be3092202a89a95",
+        "mathlib-cache.log": "474ab733852227fe825a12c7c7afc5dfbc91d285293be7a278b20396c296fa47",
+        "pr-request.json": "7e12263fa3586d9e52cbb8e8a787708b1e6cc75af0975eb7c745cc2c6eb7290c",
+        "runner-sdk-space.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sandbox-preflight.log": "41648742f98aab2171f9eb88297548170de3f3b760e7c07ef9fcc94aedd69355",
+        "source-sha256.json": "b1921876bd04210fc850760819acfe33b7d8d1da0e2f174acc7962bd5554b50f",
+        "submission-checkout.log": "7cee94c0b408710f7571e7ebabb781a30ee10e9f78801999dad0580841929530",
+        "submission-fetch.log": "c6cc574cd58952f44c9d30c15fa2acdb5be5e056ad99931aac61ad75da6c0ddb",
+        "submission-init.log": "b0cb466a875c47cba4ca64cba0f001ef50a616dc50516bac9b66fd30769c2e1c",
+        "tool-comparator-checkout.log": "3c2feb74939b9406dafa0cb51c8c8e3dfe3699b74c1601779505d0710b48e416",
+        "tool-comparator-fetch.log": "9261bb13765d6f67a340db2c08ec13cde32a1692ae58e6a0ec5aa9c47602c0da",
+        "tool-comparator-init.log": "8e15416f568c947d6b68e42b7ac7e7d538a5d80d8cf6cdd58d2dde6fc25a880d",
+        "tool-exporter-checkout.log": "d4f2490c3adcc8a16a8dfbe64d206920e721444b20d42612fae9a14686be2737",
+        "tool-exporter-fetch.log": "4679263f7ddb25fedf2f8f6fdefa03853ca318c1ca9b9e61b634e859cee32b2e",
+        "tool-exporter-init.log": "018b405fedf95d297837cdacc99659adb689b297c8717951de499143b20a5b6b",
+        "tool-landrun-checkout.log": "d79c67290ceb531c3a58de807a7fa90ffb38fef022cb06beb789045ad1150093",
+        "tool-landrun-fetch.log": "5236b9fb8cd4e085ff194e356bb8f7235b824d3598b30e372ba59a226fc326e8",
+        "tool-landrun-init.log": "a9eb19dc8f9948571af0e040de262ccf9b0afad041ed34b8a563ba78daac7eda",
+        "tool-nanoda-checkout.log": "000d4b6dbb65d8336c4d3b4f2cd3cb6a8afe417db3ac3e9d3822002d7e8db822",
+        "tool-nanoda-fetch.log": "552cb6d19400093c52a70dcbedcf542affd7d15ca22ade89b76553f1de38bd86",
+        "tool-nanoda-init.log": "0823fe50f87fc13c0edb7540c3847aa4be35620dabf31ab1809f8abaa36ccc6d",
+        "tool-sha256.json": "18ef3d6c15e770792484c5a05eb50c5382d2120d2c03d3f169948b2c304f02d7",
+        "trusted-lake-config.log": "355a9a028f81641782d75d6e6b58dec70f29d2f61238a9e271690259d9bf5680"
+      },
+      "axiom_audit": {
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "audit.log",
+        "memory_limit_bytes": 15032385536,
+        "reported_axioms": {
+          "Race.bound": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "sampled_peak_cgroup_bytes": 3374694400,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 24,
+        "status": "passed",
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 17.016
+      },
+      "checked_at": "2026-10-23T01:08:02.964921Z",
+      "finished_unix": 1792717682.964921,
+      "generated_challenge_sha256": "e9f5327caf51328bf6b453acfec62e0314f1ae87871ed2e9eb5bb7a496133bcd",
+      "kernels": {
+        "lean": {
+          "exit_code": 0,
+          "guard_stop": null,
+          "log": "lean.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "comparator_acceptance",
+          "sampled_peak_cgroup_bytes": 14710894592,
+          "sampled_peak_swap_bytes": 0,
+          "sampled_peak_tasks": 35,
+          "status": "passed",
+          "swap_limit_bytes": 0,
+          "systemd_result": "success",
+          "tasks_limit": 4096,
+          "wall_seconds": 2683.125
+        },
+        "nanoda": {
+          "reason": "advisory_queued",
+          "status": "pending"
+        }
+      },
+      "profile": {
+        "bound_kind": "saving",
+        "challenge_file": "challenges/dft/UniformFourier233.lean",
+        "challenge_sha256": "3a646acd3ac9cf6ff93e29cc363dbfea0c8953a2e1415f7965bd86e8b2ee62a3",
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "manifest_file": "profiles/lake-manifest.json",
+        "maximum": "1",
+        "solution_module": "Submission",
+        "source_roots": [
+          "Submission"
+        ],
+        "theorem_names": [
+          "Race.bound"
+        ],
+        "tools_file": "profiles/tools.json",
+        "upstream_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+      },
+      "request": {
+        "challenge_file": "challenges/dft/UniformFourier233.lean",
+        "commit": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+        "direct_submission": {
+          "authors": [],
+          "bound": "3020159999/1000000000000",
+          "commit": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+          "problem": "dft",
+          "repo_url": "https://github.com/bigospeedrun/verifier",
+          "schema_version": 1,
+          "source_subdir": "submissions/dft/ptweezy-dft-tight302016"
+        },
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "source_subdir": "submissions/dft/ptweezy-dft-tight302016",
+        "theorem_names": "Race.bound"
+      },
+      "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/39877185210",
+      "schema_version": 1,
+      "solution_dependencies": [],
+      "source_file_count": 429,
+      "started_unix": 1792714692.788569,
+      "status": "not_verified",
+      "steps": [
+        {
+          "exit_code": 0,
+          "name": "submission-init",
+          "wall_seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-fetch",
+          "wall_seconds": 1.265
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-checkout",
+          "wall_seconds": 0.346
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-update",
+          "wall_seconds": 5.911
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-tools",
+          "wall_seconds": 99.838
+        },
+        {
+          "exit_code": 0,
+          "name": "bwrap-apparmor-policy",
+          "wall_seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "name": "runner-sdk-space",
+          "wall_seconds": 59.643
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-download",
+          "wall_seconds": 0.52
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-unpack",
+          "wall_seconds": 0.072
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-install",
+          "wall_seconds": 0.007
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-install",
+          "wall_seconds": 12.076
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-init",
+          "wall_seconds": 0.171
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-fetch",
+          "wall_seconds": 0.32
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-checkout",
+          "wall_seconds": 0.013
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-init",
+          "wall_seconds": 0.089
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-fetch",
+          "wall_seconds": 0.288
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-checkout",
+          "wall_seconds": 0.02
+        },
+        {
+          "exit_code": 0,
+          "name": "build-comparator",
+          "wall_seconds": 6.556
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-init",
+          "wall_seconds": 0.092
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-fetch",
+          "wall_seconds": 0.378
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-checkout",
+          "wall_seconds": 0.088
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nanoda",
+          "wall_seconds": 26.434
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-fetch",
+          "wall_seconds": 0.309
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "build-landrun",
+          "wall_seconds": 8.965
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-fetch",
+          "wall_seconds": 7.785
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-checkout",
+          "wall_seconds": 0.552
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-fetch",
+          "wall_seconds": 0.317
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-fetch",
+          "wall_seconds": 0.345
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-checkout",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-fetch",
+          "wall_seconds": 0.377
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-checkout",
+          "wall_seconds": 0.008
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-fetch",
+          "wall_seconds": 0.583
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-checkout",
+          "wall_seconds": 0.03
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-fetch",
+          "wall_seconds": 0.368
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-checkout",
+          "wall_seconds": 0.012
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-fetch",
+          "wall_seconds": 0.33
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-fetch",
+          "wall_seconds": 0.466
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-checkout",
+          "wall_seconds": 0.015
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-fetch",
+          "wall_seconds": 0.279
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-checkout",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "mathlib-cache",
+          "wall_seconds": 47.821
+        },
+        {
+          "exit_code": 0,
+          "name": "cache-hash-metadata",
+          "wall_seconds": 0.365
+        },
+        {
+          "exit_code": 0,
+          "name": "build-lake-adapter",
+          "wall_seconds": 0.072
+        },
+        {
+          "exit_code": 0,
+          "name": "trusted-lake-config",
+          "wall_seconds": 1.776
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.023
+        }
+      ],
+      "test_only": false,
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "theorems": {
+        "Race.bound": {
+          "lean_kernel": "passed",
+          "nanoda_kernel": "pending",
+          "reported_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "timing_group": "shared theorem closure"
+        }
+      },
+      "tool_pins": {
+        "comparator": "d03acab154d269c06e60e4de7e4cc85deebff94b",
+        "elan_tar_sha256": "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63",
+        "elan_version": "v4.2.4",
+        "landrun": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+        "lean4export": "076e8e57707e813375e8f9da8bf989799ace9680",
+        "nanoda": "3a2407216ee84a75f9e1aead6803d0578be06ae7"
+      },
+      "total_wall_seconds": 2990.176,
+      "verification_stage": "lean",
+      "verifier_commit": "f13ec7987556a25f1526a5a9a5936f0d23653bf2"
+    },
+    "receipt_artifact": {
+      "digest": "sha256:c310e371f68e482ba96a5e18299f301c185a10a018dcf04e46c5257deb49a7e2",
+      "id": 12470589222,
+      "name": "pr-verification-39877185210-1-44-lean",
+      "url": "https://github.com/bigospeedrun/verifier/actions/runs/39877185210/artifacts/12470589222"
+    },
+    "receipt_sha256": "4a12f0c50e497907e5ae588b6e1706b9f4423814cc195068350f41e5bd7202af",
+    "request": {
+      "base_sha": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+      "changed_files": [
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission.lean",
+          "sha": "aaeeb3ecfed53e4aac508d6d5853fb7b1b18a64f",
+          "size": 25283
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierCircuit/Core.lean",
+          "sha": "60a4af2dae8058e57961ec9b7978b8535e5b5c9b",
+          "size": 1748
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/AddressTables.lean",
+          "sha": "3f59c9bf1220dde7a80dbe1720f7560979c639b2",
+          "size": 6584
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/BinaryBasis.lean",
+          "sha": "f5f049873ced0934ef67ad47d126e5c43260ecf6",
+          "size": 6779
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/BinaryFFT.lean",
+          "sha": "ea52a0a1af70e2fb8a5094707255cfa695d32f77",
+          "size": 5508
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/BinaryFrames.lean",
+          "sha": "62eef6bb6214ce529b40726208e7294baa5cc50e",
+          "size": 8650
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/BitLayout.lean",
+          "sha": "fdd135217ed5c98cb121b831b24310ae9a27c344",
+          "size": 6500
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ChineseRemainder.lean",
+          "sha": "e072b5a8b875a1bf31369a150fa7f1abfcd6f442",
+          "size": 6352
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ChirpConvolution.lean",
+          "sha": "c6128699cd63dd9857dbbbc423f00da3f796430a",
+          "size": 6283
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ChunkCompiler.lean",
+          "sha": "88a0538b170085f657628a8dc8544755e524a6a2",
+          "size": 9342
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ChunkPrograms.lean",
+          "sha": "e37b1592e37b64adb4f3cd55fbbc59806ebe9b79",
+          "size": 3001
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/CirculantUpdates.lean",
+          "sha": "f08e4ec811dcfd4cedaf50d41beda5400a1d6e99",
+          "size": 5004
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/CompilerEnvironment.lean",
+          "sha": "166f5f87fba2708e0e967115e7ce0d1e7b2a40bf",
+          "size": 7687
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/Cost.lean",
+          "sha": "8b8ad01a39e2698a1e654fef54bb3f74eab2fc9a",
+          "size": 5045
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/DirectionalWords.lean",
+          "sha": "c84c5f82ae8eeeaeee0ab827c7e4e53d528c467c",
+          "size": 8934
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/DisjointIntervals.lean",
+          "sha": "a35eadb59b1d8381e3d4f004154bf29e59cb5aab",
+          "size": 8290
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/FourierCompilation.lean",
+          "sha": "6e79cdd1ffc870f9917e6e21d86890e2fce04da9",
+          "size": 2936
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/FourierIdentities.lean",
+          "sha": "3536908d97e58d37471e3a087194c4ec18c3876b",
+          "size": 7945
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/FourierWords.lean",
+          "sha": "5ce622caa414a6879b8eb1e226b5ae00c6ec7aab",
+          "size": 4785
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/FrameLifting.lean",
+          "sha": "58a67581a0ed3b013c0533d4ca7b519c2c4d13a3",
+          "size": 8698
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/Goal.lean",
+          "sha": "dc81cd655437e7710860e9c2a867baae3dd6ee0b",
+          "size": 3533
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/IntegerPrograms.lean",
+          "sha": "beaece77788f88c5188e6fcd9d9aadb13ba18c63",
+          "size": 5567
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/IntervalEffects.lean",
+          "sha": "06a68ec79e59d62e266098d304aabb0b69460962",
+          "size": 5005
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/IntervalPrograms.lean",
+          "sha": "82370d42f0e5386c0bff747e85a1ccbbf337122f",
+          "size": 5443
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LayerCompilation.lean",
+          "sha": "974ddd9bb927ccf469b8b91c0de0340cc70452dd",
+          "size": 3867
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LayerPrograms.lean",
+          "sha": "e75ee34904604697ac8b2a5ee93fd18ede4dadb1",
+          "size": 4819
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LayerWords.lean",
+          "sha": "4889b70fd7f9c358fe17cab38db01e62b7ea3c56",
+          "size": 10207
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/Layout.lean",
+          "sha": "cf3937f751d3f8622c9443b47b641b78783b0628",
+          "size": 8097
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LayoutPrograms.lean",
+          "sha": "4554d5196033ecf6a0d5212da6d5ec76e86b60e3",
+          "size": 6652
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LengthSelection.lean",
+          "sha": "f8ff54511b03d2d3e63ede858bca85dd8d4ab2b8",
+          "size": 9466
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LocalCompiler.lean",
+          "sha": "834e81beede33dd5cc06826e11a46b949b422236",
+          "size": 5959
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LocalPreparation.lean",
+          "sha": "978137145e0ca288c3dd925cc8d372362cb6ba72",
+          "size": 6379
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/LoopBounds.lean",
+          "sha": "04274a1d12a08997a50de01a05c4916442af3f9a",
+          "size": 6986
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/Main.lean",
+          "sha": "5cc3a03c6b1d118e87152ba08300cf2ba6690d52",
+          "size": 6497
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/MeasuredFit.lean",
+          "sha": "709900f0cda64c296dad5fe40416541708536f16",
+          "size": 7961
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/MeasuredPrograms.lean",
+          "sha": "cc9430e31c6eb800d636598796fd1dca082ad824",
+          "size": 6519
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/Merged1.lean",
+          "sha": "92acf11b97f953c96a1598bca2fe5f14e0e16a8d",
+          "size": 38371
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/Merged2.lean",
+          "sha": "733498f5c9d8b1b5f88cf2a2f9d022f1b90b5d3d",
+          "size": 38967
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/NetworkInvocation.lean",
+          "sha": "f2fb5b0cae3297e71c6a9177c3460ead9f2c7feb",
+          "size": 5234
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/NetworkLabels.lean",
+          "sha": "39817524d33f017075cc09845721d0c85da30122",
+          "size": 7653
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/NetworkRoles.lean",
+          "sha": "e7ea96cec143823a4ceb1c796d910f50634ebd54",
+          "size": 9464
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/NetworkStages.lean",
+          "sha": "eadb71a3d3973895293d1d782866a8ed632fff12",
+          "size": 9517
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/NewtonFactorization.lean",
+          "sha": "78f2d01e001a72b368ab4d4cb6e1d871dff54b17",
+          "size": 7455
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/PackingPrograms.lean",
+          "sha": "9f74d2fd62e15b8cad08fa9e7b34e49a8e83f577",
+          "size": 5321
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ParameterPrograms.lean",
+          "sha": "c34d0e700f3ed98f785c6016845ba96efc33cc53",
+          "size": 2743
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/PolynomialBounds.lean",
+          "sha": "6f41a0edb5f1e235347334eaa59df8bc417f91ad",
+          "size": 3347
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/PolynomialPrograms.lean",
+          "sha": "ebef436a80894d68648689bcb783a160e680ca85",
+          "size": 7659
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/PowerTables.lean",
+          "sha": "7baa8cb532d6db9033a6b24e15c1dbfb5cd11fa3",
+          "size": 4827
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/PrefixTraversal.lean",
+          "sha": "ead41eafac418a261403a862bf2b4cf6f8b6544a",
+          "size": 2912
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/PrimeSelection.lean",
+          "sha": "8604677917efa8d6669e0f305dad3ea99f63df3c",
+          "size": 3463
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ProductMatrix.lean",
+          "sha": "210f24f373c45f78d563e8276659b686dc9e8dfb",
+          "size": 2378
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ProgramBounds.lean",
+          "sha": "eecd918b15b281de3b70d4cefead6d650424a847",
+          "size": 7092
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ProgramConstruction.lean",
+          "sha": "27d72a170a6ae4673c5a120fb11eaaf515b8bc41",
+          "size": 7798
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/RAM.lean",
+          "sha": "f106bdd1f34d25cc0a5135366c333e19a8efb78f",
+          "size": 9986
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/RecursionBounds.lean",
+          "sha": "a374540692fdf5e8a0dd66ff2829a353883fbbb8",
+          "size": 8071
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/RegisterBounds.lean",
+          "sha": "80370a9d487e26807a0fb5a979bd330b1bd66801",
+          "size": 5859
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/RootPreparation.lean",
+          "sha": "421b1c805e5cc609e53b2e49de7cc79903df905f",
+          "size": 9328
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ScalarNetwork.lean",
+          "sha": "4a955f79c409f60086225160895e69bf7752c923",
+          "size": 5324
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ScalarPreparation.lean",
+          "sha": "30564b54e6b3860916ea347f281dd49e0f99bf5a",
+          "size": 5108
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/SectorAlgorithm.lean",
+          "sha": "8a48c128b9b7e66ecb0d640457fd62d1932f5407",
+          "size": 10037
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/SectorIdentities.lean",
+          "sha": "6de7c345544adc8205d9c24dacef44cafcd0df09",
+          "size": 12454
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/SectorPacking.lean",
+          "sha": "5c411106e444ad18cf0a52c5a81193408f0fc432",
+          "size": 16550
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/SectorPrograms.lean",
+          "sha": "a68b0be7374b8f2ad26e6fb38be3c1242760b7c0",
+          "size": 5543
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/SynchronizedAlgorithm.lean",
+          "sha": "72f954fce6da906dba6edbb5cbf537d6627ff8b9",
+          "size": 5827
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/TensorAlgorithm.lean",
+          "sha": "ab5357556754ff625392e3afaeb5672b2c3891fc",
+          "size": 5523
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/TensorCertificate.lean",
+          "sha": "b060be93bc28ad1ef6be9d6c6e0b6da6527a83a4",
+          "size": 8351
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/TensorFibers.lean",
+          "sha": "f315bfcca7de8e67f8d20f102825bcbcccb2af12",
+          "size": 5062
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/TensorIndexing.lean",
+          "sha": "bcdf81a85c9124fbe6a7efa85cdd1ee3e80ed2df",
+          "size": 9674
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/TensorProgram.lean",
+          "sha": "91ec9810d623b11d9d24e5bf50cac41db763e8ec",
+          "size": 5154
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/TensorSaving.lean",
+          "sha": "7a3ef049555d04f78f8689a6683f4407ccd86723",
+          "size": 5473
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ToeplitzCompiler.lean",
+          "sha": "d893192e8db28314aa6a6272a1883164a477eedf",
+          "size": 7822
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ToeplitzIdentities.lean",
+          "sha": "fa3dc817cd7b9d525f4443e715ac06c08ec78d7f",
+          "size": 4415
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ToeplitzLayers.lean",
+          "sha": "bb60220ac362ee0e9bc210a394bcb74d63ed0a73",
+          "size": 6444
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ToeplitzPreparation.lean",
+          "sha": "1ae5dbfee3a879d88360def32b11e778fd42bd93",
+          "size": 7040
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/ToeplitzUpdates.lean",
+          "sha": "6775933aa864bd96b6202cffa41222491a9fd8ce",
+          "size": 9352
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/TraversalPrograms.lean",
+          "sha": "adff5787a9f83af1b35d019d27bb714fcbdd442c",
+          "size": 5514
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/WordCompilation.lean",
+          "sha": "aeffb81e0801f32cdeb03dcf023c9c735cfc5ee3",
+          "size": 5782
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/WordPrograms.lean",
+          "sha": "9820946ff5e037bd1f952a42c7d09c14c73b897c",
+          "size": 6494
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/WorkBounds.lean",
+          "sha": "00d467e42c3b72b77efcc586e698a640352e0182",
+          "size": 8126
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/WorkingCompiler.lean",
+          "sha": "118e2b95e7b8c1f17bfc3840ece9f1a56f8a826a",
+          "size": 7086
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/WorkingPreparation.lean",
+          "sha": "9d546d7ac0866b7755d08cc4f4ab3f6d722ae578",
+          "size": 8717
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/OAI/Computability/FourierTransform/WorkingTransform.lean",
+          "sha": "4a81aefaa0ade024755b89233d1b8cbeea058a63",
+          "size": 5283
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/WHTCheck/Solution.lean",
+          "sha": "e4b5268f3bda33749aa84a146e78874223fca832",
+          "size": 23053
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bank401/Adapt.lean",
+          "sha": "e052b63e7143ca291669acbedfba0b3b9c3b5c7c",
+          "size": 9855
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bank401/Frames.lean",
+          "sha": "351160c6fbb08137c5604bc452a67c8049af418e",
+          "size": 10264
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Address.lean",
+          "sha": "055298230f24ccb60ea1db85e6400c8e019c26c1",
+          "size": 7398
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Batches.lean",
+          "sha": "ac1f08d5a9817aaefc02356cecd7123e4e6e81ee",
+          "size": 16053
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Bridge.lean",
+          "sha": "02371a6b32ce6bdcad623d463f3110f9556b4859",
+          "size": 13829
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Engine.lean",
+          "sha": "c0cbef2172ae1e13d09d84b964f1d9a9beccb77b",
+          "size": 16450
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Extras.lean",
+          "sha": "3bad1031788341f0c4166260cee0920ae50c0a51",
+          "size": 4604
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Frames.lean",
+          "sha": "26f60240284de710c0dcc58942c7fb34635392ab",
+          "size": 14609
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Majorant.lean",
+          "sha": "6a66f67b5d1ec5c744196e6be3d7ec0cfc6304d1",
+          "size": 7592
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Paths.lean",
+          "sha": "84386fd09630abde85e2c00758fb9283fbb0ce6b",
+          "size": 17823
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Peel.lean",
+          "sha": "11d242b43f25b938a55f0b7c1d03c5c4e86a9a4e",
+          "size": 5471
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Port.lean",
+          "sha": "11eb400abc8e106169201cf0378e90f530547db5",
+          "size": 5169
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Recursion.lean",
+          "sha": "a7150628ded1212332b121ae4ad0991ec6df45ed",
+          "size": 17277
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Split.lean",
+          "sha": "713719c925e169a16f1e7c5e9f4d5064a0b172d8",
+          "size": 10513
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/WHT.lean",
+          "sha": "21d2ab4ee7dfe7b39ef871311ff9a4dae3913eae",
+          "size": 11388
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Block/Word.lean",
+          "sha": "fa0a8271e8a71cea4445bf97974289711a2c93b0",
+          "size": 8520
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BlockAccounting/Moment.lean",
+          "sha": "5fd59d63723930215f9b0dd9eafabf1ef9fc8eda",
+          "size": 6383
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BlockAccounting/Moment4.lean",
+          "sha": "037131399298d6a67c16a570cf5fae0a68dd0784",
+          "size": 2985
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BlockAccounting/Sharp.lean",
+          "sha": "cd460cb88560cc0c0f449b28602300cf11de619c",
+          "size": 3551
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BlockAccounting/Steps.lean",
+          "sha": "bc1cbd66be7a9838842a95472f08fa9558dde1ac",
+          "size": 2781
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BlockApply/Copies.lean",
+          "sha": "b87c0242559cf3055c7c904cbeb21efcd14e2dda",
+          "size": 13767
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BlockApply/Exact.lean",
+          "sha": "4f55dc140e4d4ee0d825b2482205d6baa15c5e93",
+          "size": 29606
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge/Cert.lean",
+          "sha": "1ab611f26b5d296369a0991fb6504517e980e890",
+          "size": 10157
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge/Inv.lean",
+          "sha": "c302d2b87ab9595fc7cfcab9032de366006c1c39",
+          "size": 7597
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge/Net.lean",
+          "sha": "6f3e20021db1c8741f95fb3ec020f6b5eeb68dc5",
+          "size": 17066
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge/Roles.lean",
+          "sha": "02eabb3cbda255938bc613f299a0f5c4b24ceea6",
+          "size": 12390
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge377/Bank.lean",
+          "sha": "0976fc3d60c9729975496fbe82bdccb2bd078db3",
+          "size": 967
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge377/Sweep.lean",
+          "sha": "3d96c5fec850e0f10b49b972187ccda71964b827",
+          "size": 5007
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge377/WinC.lean",
+          "sha": "d65a4fd06236ffc9b3d1d067b34de783999bf071",
+          "size": 5787
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/End.lean",
+          "sha": "8b99a35b47ce5c7d466765d0acef50242983b5c7",
+          "size": 7221
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/GGeom.lean",
+          "sha": "ecfff8c5b0e789c4f1793d9aa5cc9029259bff28",
+          "size": 24505
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/GStage.lean",
+          "sha": "9d1c25ddd704d6ae7dc4561b67e4a88c9260e09b",
+          "size": 25625
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/Gates.lean",
+          "sha": "ad416d6c1b6f2740768041c023bff3c5595b13e8",
+          "size": 13154
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/Merged1.lean",
+          "sha": "b324b3107906082a900ad60fa544f6522ca372df",
+          "size": 70795
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/Roles.lean",
+          "sha": "5b0fb380ded2666e8bd80071f7e3a30f162ed6cb",
+          "size": 24291
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/Sched.lean",
+          "sha": "c4863b09c2ecfac27c918545461a40800f210900",
+          "size": 7700
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Bridge401/StageE.lean",
+          "sha": "7fe79108872863d8cfeb986d519894c32a6e67c5",
+          "size": 3784
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BridgeC/Bank.lean",
+          "sha": "91e393a2e838ff48d284b8e9bb6efeabfc39dec1",
+          "size": 15082
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BridgeC/Blocks.lean",
+          "sha": "73d1d56d1775d02fa939d20d46e7d8d382b488bc",
+          "size": 13398
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BridgeC/Stage.lean",
+          "sha": "29fbbbb8158366e28683c6da08d3622cde800137",
+          "size": 24379
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BridgeGeom/B2.lean",
+          "sha": "0f557106f09b777e56801a1c117bdf34d1f95e75",
+          "size": 5523
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BridgeGeom/Blocks.lean",
+          "sha": "6252e9e94ff620c75b0dc812106fc1243371ba69",
+          "size": 15131
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BridgeGeom/Net.lean",
+          "sha": "2e75fcc0b79859e1183c57e0375bd03f1f9655d5",
+          "size": 10834
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/BridgeGeom/Stage.lean",
+          "sha": "6b07481be2544e2782367f7731f0095352da5d14",
+          "size": 28032
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/Glue.lean",
+          "sha": "0a830916b3f02aece4e522e4a9052a82f7950acc",
+          "size": 8797
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/Live.lean",
+          "sha": "9de91dff548ecba812a4f83eef117b8b0011ea37",
+          "size": 8559
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/Pack.lean",
+          "sha": "15e1be8cf3367ee9ae155ac4675fa47efe43dc54",
+          "size": 8756
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/PhasedInv.lean",
+          "sha": "b1a0aac8c184f2afb7f997d75fecf7f10d9c980b",
+          "size": 8875
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/Phases.lean",
+          "sha": "8d16eddd99920559ffd1546d084a6df546d968bc",
+          "size": 8809
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/Ring.lean",
+          "sha": "e5313b79831bd31836ded9cf7fbf658a91f091e8",
+          "size": 6602
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/Scat.lean",
+          "sha": "4284e2d976b3ec4846906eda4f391974fab2790b",
+          "size": 8469
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Carrier/Sched.lean",
+          "sha": "047c79e2cdd9a65b9baca74c4116bc367730ed29",
+          "size": 8278
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/CCert.lean",
+          "sha": "ca0db2a9116fdf1c6638fc5bd2651e8bb3c864ad",
+          "size": 5896
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/Mat.lean",
+          "sha": "3ef05bf9667267ac7b5ff353a365ab7dee5c0424",
+          "size": 5804
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/Roles.lean",
+          "sha": "5f858d2897b3ac8b3e97773fa368f8dc30df4f5e",
+          "size": 3585
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/Routes.lean",
+          "sha": "ff33c3b1759744cf5204c4d4d156613a06151568",
+          "size": 6961
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/ScalDef.lean",
+          "sha": "cda40586713700de288c1147b6c0c66ffd7c6182",
+          "size": 7076
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/ScalFin.lean",
+          "sha": "fc59f81b3af8342453c6526a7807916cd77d7664",
+          "size": 7794
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/ScalId.lean",
+          "sha": "123191b66d4e4c8d796a067f66c182e49868eb21",
+          "size": 7362
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/ScalOps.lean",
+          "sha": "c3bf2f4c69cea506a7f76779d907ebcd33a468ad",
+          "size": 10542
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/ScalRun.lean",
+          "sha": "b108b54adf92b67ee05188edb81ff4ca5cbfdfc1",
+          "size": 10623
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/ScalSound.lean",
+          "sha": "bf8ffc2e19c7ac3d90d32ef7156140352014686f",
+          "size": 7391
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/Scat.lean",
+          "sha": "5dd828562e1f737658334ed06e5104f7478043c9",
+          "size": 6374
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/CarrierCheck/Valid.lean",
+          "sha": "53345d9562b96af7853a0f9cb6448a21b51f21b0",
+          "size": 17829
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/Chunks.lean",
+          "sha": "1e5670161f6a9a21f5d12094e382e88a629f04de",
+          "size": 29372
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/Hist.lean",
+          "sha": "cc42413bf4fdedef342e8281abb93bb1c429969c",
+          "size": 9318
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/Ranks.lean",
+          "sha": "4d16859466e8fcc98a098ff3d0637e9e40213561",
+          "size": 6349
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/Split.lean",
+          "sha": "1cca7641a816672bbca3698fc4e94a1a465097f5",
+          "size": 14077
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/SplitDef.lean",
+          "sha": "d0b0f3a910a9be2f934790193f09b875bf33a6b4",
+          "size": 2177
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/XCirc.lean",
+          "sha": "907833f8632dbb93b61f2928a35854cfcde39c71",
+          "size": 16097
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/XG.lean",
+          "sha": "0880e0372fec849902b9d3527f613b6a9a87a8da",
+          "size": 16988
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/XInvocation.lean",
+          "sha": "d4bb37967006f342ef5f5f30929560e6e1af5ec1",
+          "size": 15052
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Combine/XNetwork.lean",
+          "sha": "f29af5b63a3690a5a69ab4c21e5cce0d9d4f8d0a",
+          "size": 17341
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/FoldRate/Arith.lean",
+          "sha": "074a0b94aac212b05eead79220361f1f46611735",
+          "size": 6159
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/FoldRate/Group.lean",
+          "sha": "02bb34c7ec8620f0fecfd5ca7d681b84830db5ec",
+          "size": 14023
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/FourierT16A8Z/Goal.lean",
+          "sha": "a69a30f3c227b8b6627cf2d42f6f4844c0cd989d",
+          "size": 1445
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/FourierT16A8Z/Main.lean",
+          "sha": "18c93063af7bbf88c1258064ad156408789e3c48",
+          "size": 9336
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/FourierT16A8Z/Merged1.lean",
+          "sha": "5a4c458a08dbaa553a1ce9a14a63ae9c00a41dfd",
+          "size": 28471
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/FourierT16A8Z/Merged2.lean",
+          "sha": "35d73d7d95656ec9c3d5e58a7ac82cb1b32f73b1",
+          "size": 66584
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/FourierT16A8Z/WorkingTransform.lean",
+          "sha": "732c47089caab9b8acdee8eb9ba6d9927672074f",
+          "size": 6658
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Fresh/Helpers.lean",
+          "sha": "6e914e872fd29d983ede2d6ff959dccb0efac503",
+          "size": 7351
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/G18/Geom.lean",
+          "sha": "e150fae0e66100fbb20fb6127cba38e2ff826615",
+          "size": 33678
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/G18/Lemmas.lean",
+          "sha": "817d286be8df9f0d7a37246a5b848cbd21baeb7c",
+          "size": 7791
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/End.lean",
+          "sha": "5812fdc6f0245617000ec2829db7d19c9e7cfb0b",
+          "size": 3645
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/Geom.lean",
+          "sha": "d9ed8627f1706758e85b7d94a031fec05901eacd",
+          "size": 9589
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/Inv.lean",
+          "sha": "7d4a12d97fcd3a0311a3500871e5cf4c9418b0d7",
+          "size": 7567
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/InvThm.lean",
+          "sha": "bf7fb9a50dd0a99af87329c0f726478f7da8f32c",
+          "size": 8274
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/Merged1.lean",
+          "sha": "db4fd1776efa14fa9162e23a5e2f0293c36d5091",
+          "size": 23977
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/Phased.lean",
+          "sha": "86431a4948443077b2fd7bf135b14408ee653ef3",
+          "size": 8815
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/Stage.lean",
+          "sha": "675961bb002f05d4a902c03e038f6c50a2c58079",
+          "size": 7878
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/Win.lean",
+          "sha": "d7eb44bbdf06b79e48c424593252cfb080e94c2b",
+          "size": 6293
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Chain/WinB.lean",
+          "sha": "0531ba77a3aef131496efcd64cd527a18c034bc6",
+          "size": 6034
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Count.lean",
+          "sha": "80da21d548ad8f28eefe75b0024d81265ad234a7",
+          "size": 1754
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z.lean",
+          "sha": "d88a809eb508d8d89efb78b712f5b0a7f362ac92",
+          "size": 532
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z/D0.lean",
+          "sha": "e9771a32a507655e626da5ae49edfda6bad533de",
+          "size": 696673
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z/D1.lean",
+          "sha": "bcfab8b666d4484f0dcfe80a1a76d0d78ac05cf1",
+          "size": 701086
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z/D2.lean",
+          "sha": "35359877ac5ad8c42890967f953083105a57b8b0",
+          "size": 694640
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z/D3.lean",
+          "sha": "9a65d66a8f1d27f5d11d85e8648a849758825f44",
+          "size": 700865
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z/D4.lean",
+          "sha": "fe34e702f631b1654f8f483e8a14bbc86e7a8d67",
+          "size": 698544
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z/D5.lean",
+          "sha": "20ef7ab1dc5ad2f9974dbd6f2a4f73e5c3ff41c4",
+          "size": 698939
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979Z/D6.lean",
+          "sha": "a758a674cbdca200626ee94f780c944ab5a12505",
+          "size": 252253
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZEnds.lean",
+          "sha": "b8788c09ea5089fb03fe203286e038982e0afc32",
+          "size": 749
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZFp.lean",
+          "sha": "61484bf75c2e52b458629dcfc51c234d91fae519",
+          "size": 793
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZHist.lean",
+          "sha": "275ae1fae7fe96587eefdbb8983c9ae81ffe555b",
+          "size": 1740
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZLab.lean",
+          "sha": "d4a1bb77be511ebf391bf2eb49f2320163c33795",
+          "size": 730
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZLabB.lean",
+          "sha": "d4721d8fa0fe530d404d05920c55c8d6f320e59a",
+          "size": 742
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZRes.lean",
+          "sha": "9f319870c3e6dd403cc3199162bb3f9a88222a46",
+          "size": 961
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZRows.lean",
+          "sha": "a8a02ac56134aefd0f57824a41f6970c22789fe6",
+          "size": 1327
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZScB.lean",
+          "sha": "2e91a8bf8309ce41d93269f18268a9180a118d74",
+          "size": 742
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZScF.lean",
+          "sha": "e41a191bc6869967afd884614eda5f1052e80e7c",
+          "size": 736
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZSchedR.lean",
+          "sha": "ddee5498e22abe07cbc7da7bde169a2d179cb613",
+          "size": 1761
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZTab0.lean",
+          "sha": "e19ab64d7ebc4805f18c10ad9210ca9883ed549b",
+          "size": 706
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZTab1.lean",
+          "sha": "95fb8648e5f512fd34efa0263adddaf0df1ae93a",
+          "size": 706
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZTab2.lean",
+          "sha": "0d1d55c080aa62d0528d2a58e553b5bc698e29a5",
+          "size": 706
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZTab3.lean",
+          "sha": "47ce85eb408c18ec0ff88c75d7c9e995bd6b6925",
+          "size": 706
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZWC.lean",
+          "sha": "59de7c6358ebd88191e836aded1d48878f9d5a23",
+          "size": 2181
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Gen/S2979ZWT.lean",
+          "sha": "f7f3b1d6c48b3cd195a717e723095c4e37d17a7c",
+          "size": 666
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Glue.lean",
+          "sha": "60e17dc16320492ab123628001381ad77229471d",
+          "size": 3938
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Price.lean",
+          "sha": "5daeef9412055f829cbdd859cd39451b78a7e7ce",
+          "size": 1149
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/Raw.lean",
+          "sha": "499fa67e88ebfe0ad777081cb61def3f74de81ba",
+          "size": 3312
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/S2979ZGlue401.lean",
+          "sha": "7fdfe6d9b65eedf8bc9d543294305555ccde2e2b",
+          "size": 3341
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Data/S2979ZPrice.lean",
+          "sha": "ffbced7c1e52ea930f7e2f304a14fbbe526de190",
+          "size": 1415
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Bits.lean",
+          "sha": "f8cc994dee5daff263ad6bf3cfafa495f61cd4c8",
+          "size": 5193
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Canon.lean",
+          "sha": "5de2e374f101f09f1948d8a691ecd8ef372098bf",
+          "size": 7437
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Def.lean",
+          "sha": "bde2a7e9548999b779038645e75bdb391bc1761d",
+          "size": 7027
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Elim.lean",
+          "sha": "aa838cb1288dc51f3c7aefcd066597866d85ac1c",
+          "size": 8605
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/EndDef.lean",
+          "sha": "7b31d8846c3e34236f632da7dfd3ba2d17a6b862",
+          "size": 3368
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/EndSound.lean",
+          "sha": "ab8ce082231ebcae3589ca85407beec74750dadc",
+          "size": 5905
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Ends.lean",
+          "sha": "1e4a3b0d686ba721cd5ff981ee5a6ce213e4f5be",
+          "size": 6349
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Main.lean",
+          "sha": "ef2537666235aa6aca0cdf74c5274d547b8d634b",
+          "size": 8324
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Route.lean",
+          "sha": "8622d0d77567ac9a1a51b568888f039537a2ac4e",
+          "size": 8522
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/RouteRun.lean",
+          "sha": "1c793f1dc8736e527a003a0ea333892f353a7bee",
+          "size": 8021
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Sound.lean",
+          "sha": "c4a845953de21db12188b947f7294d9615ab8378",
+          "size": 9176
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Labels/Spec.lean",
+          "sha": "a671688c5ff4546d01e6bc1e08bf5b55ce4cd92f",
+          "size": 7608
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Bits.lean",
+          "sha": "9000f5f0e3236e4c77591da1f2b1c45d9bac779c",
+          "size": 9652
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Cols.lean",
+          "sha": "20f7f548cc4305683aed3a878f8187a4dded6792",
+          "size": 6499
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Def.lean",
+          "sha": "2e3cf9f2492617fca7471d2edf000aaf459c1c95",
+          "size": 12134
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Id.lean",
+          "sha": "13d664ca98eb3627e0439e666a754aae59b72258",
+          "size": 9215
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Main.lean",
+          "sha": "e97c5ca97d9b839e26035c81016c149fb30411e3",
+          "size": 9118
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Mat3.lean",
+          "sha": "36f01c58584d0775738fca8a2b63e146b42b7e45",
+          "size": 6600
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Merged1.lean",
+          "sha": "583c65549a2277b302cd3da066bbbc2f5a05b376",
+          "size": 51427
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Roles.lean",
+          "sha": "adb8fe48a0ec789be214437f5d02eb4426476d67",
+          "size": 8427
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GCert/Scalar/Seg.lean",
+          "sha": "ae617fa5ef35bb8fba55bd29deefaa8f68a2856b",
+          "size": 3763
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/AltBlock.lean",
+          "sha": "257a1d3aa16b0fbeed04a523a343938e85584f25",
+          "size": 5777
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Base.lean",
+          "sha": "46491c421d674092f9408b97dc0c96e757124ff7",
+          "size": 6804
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Basic.lean",
+          "sha": "61541eca090fdfa050d86a838d66cccd6e328a3f",
+          "size": 4796
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Climb.lean",
+          "sha": "3ee0a2568aeff0e5d426b1f95c590c13b1a3f126",
+          "size": 5995
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Core.lean",
+          "sha": "b9f3f23cb1a8e9675ddb8a7fb00d7e6beb3e7af2",
+          "size": 6577
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Cross.lean",
+          "sha": "1f9a067959fb746408253782b2a1d2fd8224aa6d",
+          "size": 7116
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Entry.lean",
+          "sha": "4daf64e6d657ced189632b7a1190995006fa52c3",
+          "size": 4407
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Fibre.lean",
+          "sha": "86c5315a2a4fa70c4ab1a36aee71ebfba1459857",
+          "size": 7432
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/FreeLift.lean",
+          "sha": "15cedbb51a6d5d159d3da868f727230835eb79bb",
+          "size": 7751
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Old.lean",
+          "sha": "b167d733769d638322603f9d28e7ccb112c079e7",
+          "size": 5970
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Pair.lean",
+          "sha": "c2957513230639c93b2aab3baf719c7d53603a0b",
+          "size": 7085
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Rep.lean",
+          "sha": "53c941946851f8a4baa8989750ef492d6cd5c814",
+          "size": 6371
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/RepFree.lean",
+          "sha": "bfc800f530e73a2f357569c8b0068d44616fa660",
+          "size": 7690
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Clifford/Step.lean",
+          "sha": "602faacb633d6ae84bb9145552b81992ff354e82",
+          "size": 6737
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Adapt.lean",
+          "sha": "a432dd2d3200d7859b3833adca42590697e58825",
+          "size": 8335
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Cert.lean",
+          "sha": "d1dc4e104ecf97a991334784937b26f97993667a",
+          "size": 9644
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Free.lean",
+          "sha": "9c0734949971cdca5d5dc89a60e152d592ee825f",
+          "size": 5547
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Group.lean",
+          "sha": "83946e2dd87ad0041f674a378af5372e6430d0cb",
+          "size": 7400
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Letters.lean",
+          "sha": "52e5b1758ec2b74e98138db4e4269018edb79c5f",
+          "size": 8757
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Level.lean",
+          "sha": "6f994846cb6a289202e4f9ee2917172a2388e1a9",
+          "size": 7311
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Main.lean",
+          "sha": "a60f7d8cf47bf072c8491dd03a719080db79fc97",
+          "size": 6014
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Over.lean",
+          "sha": "734693f8ef7df5abfb1a765bc4ead2cd5813226b",
+          "size": 8167
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Recursion.lean",
+          "sha": "51dfaa630eee52f450eef3d97e491f49fb6ed76f",
+          "size": 8194
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Route.lean",
+          "sha": "43dd79b029b998a25564e9df0fb263abd37515d6",
+          "size": 4842
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Engine/Sweep.lean",
+          "sha": "95b5b9902eec022e6ae1b656b067552aae101cd8",
+          "size": 5433
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/All.lean",
+          "sha": "393a45d53a2743c6f870fcf7343bf7e1324bdd40",
+          "size": 1727
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/BXMap.lean",
+          "sha": "7eb1e75b2e345d04d6286aaaa2f9e8782256dcca",
+          "size": 5155
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/Calc.lean",
+          "sha": "b123cc57d2d05ef36fa2b049260957991e5778ad",
+          "size": 8437
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/Conj.lean",
+          "sha": "b83e4f5565967c71a289114d9cc9e0d5939a4f4c",
+          "size": 5364
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/ConjB.lean",
+          "sha": "664b2aab32313da667d58c264622e1505ded42eb",
+          "size": 4413
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/Embed.lean",
+          "sha": "99df4cab5f3fbc08fedfe2c6013fc29c437b9aa0",
+          "size": 8039
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/GCalc.lean",
+          "sha": "dbbe289174634a31efb255c9e44e72b0f48ec82f",
+          "size": 4378
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/GCarrier.lean",
+          "sha": "ce37678de8017a51ceee6ae00fe26d8d865a6699",
+          "size": 8675
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/GXMap.lean",
+          "sha": "f60ca5c8cf7396f09858c516eb60044769ebd807",
+          "size": 8350
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/GeomOld.lean",
+          "sha": "8837ea83f15c8140a0d88e31134b336b666d4edf",
+          "size": 1501
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/Maps.lean",
+          "sha": "399dd4a202d59222d486bea1ef0e9c2cfe51a3a2",
+          "size": 5840
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/Proj.lean",
+          "sha": "897c8d3bf6d117c9de81442482d7b2011593c7e1",
+          "size": 6512
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/Quad.lean",
+          "sha": "94dacfe14cc06e004b0ca473936f6086712805d8",
+          "size": 9156
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/Sched.lean",
+          "sha": "d2aeec18f50bc60aa46a63424384fea42f1b21a3",
+          "size": 6977
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/SchedR.lean",
+          "sha": "340b9ab7c399ab11c1b6eae7fbe82ec9e489f2db",
+          "size": 4897
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/StageA.lean",
+          "sha": "37fe652e420dc2c0669abfde6245b3d511e8f773",
+          "size": 4803
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/StageB.lean",
+          "sha": "d070f27639933bf8c00286c592881e8f4cd496fd",
+          "size": 7551
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/StageBFull.lean",
+          "sha": "1cda5ca58a140c9f51c500159e0d6774b60bbf09",
+          "size": 4203
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Labels/StageBSem.lean",
+          "sha": "39063e6ab3cdda9515a282186288a54ac10d8ca0",
+          "size": 5502
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Top/Api.lean",
+          "sha": "ac713d8e5cc3315cd3d2af4028dce120b76392a9",
+          "size": 5242
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Top/Assemble.lean",
+          "sha": "78a31998d8c08a6230f3e1a4babdeda5925d7328",
+          "size": 8235
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Top/Menu.lean",
+          "sha": "22ac7259c6f27fa2922210f01bd7626fc59a1897",
+          "size": 7628
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/GFrame/Top/Stage.lean",
+          "sha": "fb1ab2464930865ca2ae7f693685676926a02c77",
+          "size": 2074
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Gauge/Defs.lean",
+          "sha": "498c1c2385dcd02bb357d83d6a6544fb277c2300",
+          "size": 5085
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Gauge/ECheck.lean",
+          "sha": "6f95d00a22cea518a40daffddc7f897605cc76ef",
+          "size": 12892
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Gauge/Glue.lean",
+          "sha": "45099ecbab1d86bc71cef45601f9e4f0ce9d2436",
+          "size": 4600
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Gauge/Iface.lean",
+          "sha": "2709ae34e2b29460cdeb684d0d1bfcb88c8755c4",
+          "size": 523
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Gauge/Inv.lean",
+          "sha": "0e11c4f5a7579e503d276ae4e589347264d15ba6",
+          "size": 18477
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Gauge/Labels.lean",
+          "sha": "55827370d9bfe16a4c19d96499d7e1a48ff7d8ea",
+          "size": 11244
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Gauge/Step.lean",
+          "sha": "f2201f13b3a2f2bd2e691b82b2ce8a077fe31467",
+          "size": 2178
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLow/ExitEnd.lean",
+          "sha": "17205857b23de9f6f71a514200f17681cd90996d",
+          "size": 7579
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLow/LabelsX.lean",
+          "sha": "aa671e736fbf9f102c00cc5b71483f1f18ba75c1",
+          "size": 25076
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/Data.lean",
+          "sha": "f7a61a5ebe72a5975d529694e9bb2f41340ac3be",
+          "size": 2621
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/Inv.lean",
+          "sha": "63c12b459ddd446e1c484effbb7604305d57d92d",
+          "size": 14472
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/InvMain.lean",
+          "sha": "852c684d23a1341ecb0f679537b78e8fb2967c2a",
+          "size": 16168
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/LabK.lean",
+          "sha": "1bba3cd48f21176ecbee9d7c601efdbb8881d124",
+          "size": 5342
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/LabSound.lean",
+          "sha": "8f7ca782fbc8c7edbe22a9de353e7af509712842",
+          "size": 19953
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/Main.lean",
+          "sha": "dd5b837db2bdcca3cde87ff47a915ccb54fbfb12",
+          "size": 8558
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/Route.lean",
+          "sha": "552440ce2b1a129c9f567abf1eba3ef9cac09534",
+          "size": 14848
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/ScalK.lean",
+          "sha": "0155014134832bda2969a0d4f23db68399c286c3",
+          "size": 8679
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/ScalSound.lean",
+          "sha": "df274dd17c6565dad4b995544ab909650d8b5e6b",
+          "size": 31912
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/KLowW/Win.lean",
+          "sha": "d549c218bf5f8fa41e6074d0dbb476f2f86be597",
+          "size": 8609
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Bound.lean",
+          "sha": "158d88b669051933f1eb04753bb3909a3c8b2d88",
+          "size": 28949
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Bridge/Core.lean",
+          "sha": "3c2a4e61586f5320ce1b3002a2e4ddba3f4c7f7b",
+          "size": 34129
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Bridge/CoreK.lean",
+          "sha": "1da1363f01a8cf38d7b7fed8387b944282a68ee9",
+          "size": 5035
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Flow.lean",
+          "sha": "ee319585d96f2caf3d51f02a8151af2c9fd615e8",
+          "size": 23043
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/HeadM1.lean",
+          "sha": "79ad34d53b0270f52c5b65bfe6864417fe0f0c5c",
+          "size": 40783
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/LemmaA.lean",
+          "sha": "956d024791c6f9e2b2cb38773f9ffd925ef19abe",
+          "size": 6643
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/MultiTarget.lean",
+          "sha": "f339407dd6e718f592f0d5b927db4bb1203088ed",
+          "size": 11638
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Phi.lean",
+          "sha": "ab6ca66a07f5c44e9b86b80d85a82d0a52e076c7",
+          "size": 11196
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/ClassSide.lean",
+          "sha": "363d793485b5b0fd7311bf13292b7fff958002d3",
+          "size": 9884
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/ClassTabs.lean",
+          "sha": "7fb40eb4e9b0ed5df7fc4f73cd8c57f80cfbc9f8",
+          "size": 20258
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/ClsDom.lean",
+          "sha": "b1b378d6f41573d75eb7b9cde62adeae578f0fb9",
+          "size": 5663
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/CostC.lean",
+          "sha": "06337a895c1ee75d9e4b526013b8a21afc1b6df8",
+          "size": 11571
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/Glue.lean",
+          "sha": "96e66b4980688882c89267662b4b15e45fd984cb",
+          "size": 10979
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/Loops.lean",
+          "sha": "0ccbc70d46db9e6796e3ca7dbf5c38b435f93c10",
+          "size": 11550
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/Merged1.lean",
+          "sha": "2f1f96fd9d6d8cc760d33cd88deadf8be90fbcc7",
+          "size": 78505
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/Merged2.lean",
+          "sha": "c3ab03567470dec539f23e1fe78ead1980df578b",
+          "size": 119516
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/Sem.lean",
+          "sha": "02423680864f9405db124f81c503d4f92bfcd8dc",
+          "size": 12734
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/Prog/Seq.lean",
+          "sha": "7b8b80ab05ab4437764682c1a7bbc0660860bc2e",
+          "size": 6385
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/SeamConst.lean",
+          "sha": "d71d61a0f6bb1cc6cd21ca26a8566bd82244a0b3",
+          "size": 4999
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Mixed/TwoTarget.lean",
+          "sha": "55001c023541899dffa260cd9a8ee8d2421551f2",
+          "size": 4121
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Adapter.lean",
+          "sha": "cb915ac66ad8d24e89f22db5390b55dd20c2c045",
+          "size": 14550
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Bill.lean",
+          "sha": "c97f6b78cd326ba4031aac0d7719d5dc2a161410",
+          "size": 24392
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Bridge.lean",
+          "sha": "b5400a20e6153bb2fbc6bd024ceff2903acc12e5",
+          "size": 20033
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/BridgeTwo.lean",
+          "sha": "483b77022356f6aea880a629e310f2e1529d773f",
+          "size": 2847
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Close.lean",
+          "sha": "7f01678df7067f81b14e05aef8b9ed1c436c28e7",
+          "size": 13285
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/EngineClose.lean",
+          "sha": "f37c5fc715845bc4116f3d926fc760edcd0c8a9d",
+          "size": 6513
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/EngineFinal.lean",
+          "sha": "3a7d12eadeb388ad3623ae4270ecd3f0f644be85",
+          "size": 1923
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Final.lean",
+          "sha": "ff88f19ac354e82fcd4241b52b0214b0b7ddd768",
+          "size": 1926
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Fuel.lean",
+          "sha": "55fbff42203ee65cd6f6e64f35d2f991e3864e7c",
+          "size": 6065
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Jobs.lean",
+          "sha": "0dd63bd6031200637b99ac2e2cce5f367064ca03",
+          "size": 12455
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Match.lean",
+          "sha": "d977b00903a6115db589802d6280ebcfa241beb2",
+          "size": 8671
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Naive.lean",
+          "sha": "78d0587a2581bf5c4002a4bde99275b6b711a85e",
+          "size": 3110
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Poly.lean",
+          "sha": "74776e60017f1c9d8c88ff32cbf72e615d15ee45",
+          "size": 3058
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/SeamCost.lean",
+          "sha": "423af645cc909915d8c469f963cccfbab3936cd6",
+          "size": 7108
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/SeamPort.lean",
+          "sha": "58f598e9727ab3b8e8b44b6cc705e09941bc0a27",
+          "size": 4467
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/SeamProg.lean",
+          "sha": "88dfead4dd463c8b7d356932f2bf760e86f9f4b7",
+          "size": 3931
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/TopBody.lean",
+          "sha": "2be5600bbb412a65105fbaefb3474586a444ffb0",
+          "size": 43339
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/TopCount.lean",
+          "sha": "0c528f33764b26469d7c030dcf3cba68709235d6",
+          "size": 28289
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/TopCountM.lean",
+          "sha": "7af2ff5a8f920e6fd92280d3fdf7df990f5a0bf1",
+          "size": 6868
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/TopDesc.lean",
+          "sha": "5b489406657f8a96d9c45db8e79c5a604d728983",
+          "size": 5984
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/TopDom.lean",
+          "sha": "873b48ebc33ca4250e9f44325916fca3ce6b035f",
+          "size": 8141
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/TopMain.lean",
+          "sha": "a205bba3457c2120183e66725892cbf1327d8e51",
+          "size": 19413
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/TopRest.lean",
+          "sha": "2598be14883410e4da66f0f5c16eaea5ca625688",
+          "size": 6657
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/MixedCost/Wire.lean",
+          "sha": "9ef6ebccca65fc556d7c7a5e49eeb34ae304430a",
+          "size": 4888
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/CertGen.lean",
+          "sha": "ffa1efa6ab1c4c36866d1277dc6e78ff825a23ee",
+          "size": 5538
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Ctrl.lean",
+          "sha": "2785247589d471a09ef0a9edc3aa3fb0ee8ea07b",
+          "size": 1072346
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/RawZ.lean",
+          "sha": "12ef8fc24c15fd4b35cbc5b78085fe02616ad31c",
+          "size": 8858
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Roles.lean",
+          "sha": "cf989af76e6f1eeecab07ebe0c219078388088da",
+          "size": 5628
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Seg.lean",
+          "sha": "1beb7dc55a4adde020be2316da435007f46a33fb",
+          "size": 17371
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Stage.lean",
+          "sha": "883c06b48b0650aeaa1b2e81f0c4a0c6313b89c6",
+          "size": 11009
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Stages.lean",
+          "sha": "08a56bc8ca29516b4cb041941f0ba98c095aaeac",
+          "size": 43674
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Thin.lean",
+          "sha": "7161c9490d4390933beef5f9536a576a1f2522e5",
+          "size": 9537
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/View.lean",
+          "sha": "a43c4a3f6399b359d46eb6d32a13c5786e1c50df",
+          "size": 17904
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Windows.lean",
+          "sha": "e1dead955d1d0bd7d61c7c8702c5d7daf1485e3e",
+          "size": 50915
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P16A8/Word.lean",
+          "sha": "3b3c824f8ea2da009415800ae9077142bc11c740",
+          "size": 411884
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P3/Ctrl4.lean",
+          "sha": "f14615e67d75f9aef82bddf2af4ef37bc084d5e1",
+          "size": 24025
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Basis.lean",
+          "sha": "2e8904b3504d32cfd898bbd444b8c0ff2642a75a",
+          "size": 5028
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/CertGen.lean",
+          "sha": "4a6fe7dee2675187a23a073388f38421d4eba0b4",
+          "size": 6469
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Fresh.lean",
+          "sha": "bfca027b3904719f94c284bf846b2a87bdcf514b",
+          "size": 3565
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Geom401.lean",
+          "sha": "656bbc992a936da04b3c3b0622e5d55a9f31aabf",
+          "size": 19610
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/LFBaseZ.lean",
+          "sha": "436a7514a76ecc6478cced165d76242586ae67da",
+          "size": 5519
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/ORoute.lean",
+          "sha": "93153f2522eb864214349652f2f63eeba430a341",
+          "size": 6587
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/OpSem.lean",
+          "sha": "a3b7300cf76afdda81de481d66eebc13c59d1c2f",
+          "size": 8757
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Roles.lean",
+          "sha": "365e407be2a3b6ebbccf0b54c423282866de2602",
+          "size": 4705
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/S8.lean",
+          "sha": "c31e15064e3c10bfe297517383242a716b74ba99",
+          "size": 4028
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Seg.lean",
+          "sha": "bdbbef0ca30142f018ea138c2fdd331e3f444f88",
+          "size": 19790
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Stage.lean",
+          "sha": "8eebbe9439e01bc8b35def39d1ab105e1e47b557",
+          "size": 11314
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Stages.lean",
+          "sha": "f78b3daa9eb89025c67654695342d42788d76fd1",
+          "size": 20673
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/View.lean",
+          "sha": "3bb5d1846bbccb9004d94ad81ac14d75dc90d4e6",
+          "size": 21209
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Windows.lean",
+          "sha": "123da7a9b1671ee2a2754b383ac5ec58a93ba809",
+          "size": 26252
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/P4L/Word.lean",
+          "sha": "9c7a2dfed9b9bfe7d98266482e546bb4d2150d8a",
+          "size": 97824
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/PWGen/Fp.lean",
+          "sha": "45c21b394838498bcda0af51ce4da876c99f36a5",
+          "size": 3194
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/PWGen/Res.lean",
+          "sha": "95b5a2a402e1632dfe5640fe80da2cbca420d38e",
+          "size": 2320
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/PWGen/Roles.lean",
+          "sha": "17a4ab2937bf5c144e6d403b705a4e764a265d33",
+          "size": 3638
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/PWGen/S2979ZOne.lean",
+          "sha": "fa6bc5b6480bed7d01ee800e54caa1601be719d0",
+          "size": 738
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/Basic.lean",
+          "sha": "e0b1634d31deeb25ab52705cc1e5f62562d04d38",
+          "size": 4875
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/Erase.lean",
+          "sha": "c7ce1cd3b43b6ad9c6d3c1f81f9ec8276dfebc09",
+          "size": 7359
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/F3.lean",
+          "sha": "ec2aacfd68695cdb2b31271db8c5722ffdd62637",
+          "size": 4272
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/FrameAlg.lean",
+          "sha": "fe20aaccccd044ae22928d2f2c0a46fabe10bd0c",
+          "size": 5907
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/Geom3.lean",
+          "sha": "8688da3e964b15be10ad741ebccd84bda29f9c5e",
+          "size": 15013
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/GeomBase.lean",
+          "sha": "737ba94a53098160157db146a5102cee534b7dcc",
+          "size": 9753
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/GeomNet.lean",
+          "sha": "7667d456df214af4f15b8ff93bf51cfa52113aa4",
+          "size": 20166
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/SCert.lean",
+          "sha": "4f2efe26dc45465c9050815a80b7dd7601dcbc3f",
+          "size": 11311
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/SNet.lean",
+          "sha": "78d7131619a46fa5fa048f33c1ff86fec2f2d51a",
+          "size": 11944
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Reframe/Shared.lean",
+          "sha": "efc48025cff1c6d2db4e200ef0d28b19c3d313b0",
+          "size": 14073
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Scratch/Engine.lean",
+          "sha": "13c2da9ff8831f333e707dfb49a783e22aff2fae",
+          "size": 71057
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Bits.lean",
+          "sha": "711c5954410a4b4e26e9519f36dd36540475ca8e",
+          "size": 16078
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Check.lean",
+          "sha": "017374c1834bbca53b878541b77eb79b8aa78309",
+          "size": 11278
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Circ.lean",
+          "sha": "d66cafa4dabb806de1d413ea7aa0b1aeea578391",
+          "size": 29009
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Impl.lean",
+          "sha": "d56d4f5b3541b811a773e6e37b70ad87339145a5",
+          "size": 39283
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Mats.lean",
+          "sha": "23a98e651eea4bbf9419654180af1e081856fd66",
+          "size": 8819
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Net.lean",
+          "sha": "94b6725dd01cdb9eba1847ae22b262a1bb6dc81c",
+          "size": 5015
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/PCert.lean",
+          "sha": "aa14dcae5636e891fd100b72d751f86c55219343",
+          "size": 4117
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Phase.lean",
+          "sha": "b5e89eea0195cbd662c4d264b82ea5c6ee1c7197",
+          "size": 4762
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Proj.lean",
+          "sha": "952a364debc411fe63a1ea25395c7de9ea11b9e0",
+          "size": 17974
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Scalar.lean",
+          "sha": "052b3891375dfde6f32c4025ab1a5117e57ef1e5",
+          "size": 30140
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/ScalarDef.lean",
+          "sha": "3b5bd7a8abe30f195d149cfbc6738348980895dd",
+          "size": 5563
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumChecker/Sound.lean",
+          "sha": "dd32df3a2bc03d2c9f8ab1c4ff4dc17b0fd28c08",
+          "size": 11809
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumStructured/Certificate.lean",
+          "sha": "3d51df16adae7f893eb212e7c478e80a64939685",
+          "size": 14845
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumStructured/GPath.lean",
+          "sha": "fa73ccbc97007e4c713096e637e9dc88f28d9bf3",
+          "size": 16570
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumStructured/Invocation.lean",
+          "sha": "b707bbee1142b8f58e04ccac2d28f05c8832c6cd",
+          "size": 27192
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumStructured/Labels.lean",
+          "sha": "073b2a98e1ea03d93241bb51469cd893194bc0da",
+          "size": 21327
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/SharedSumStructured/Network.lean",
+          "sha": "483826d2fe8257207e09aea993d79c4acb95757b",
+          "size": 18861
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/T16A8Z/Engine.lean",
+          "sha": "21d9096cadff6545f0bf39f0929148f74d27e16a",
+          "size": 989
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/T16A8Z/Hole.lean",
+          "sha": "bae724fcf12835f1a1161562928ab754a861d576",
+          "size": 2497
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/T16A8Z/RawCert.lean",
+          "sha": "e75180c7f871a774cce5628b90287e4066af3edb",
+          "size": 1368
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/T16A8Z/Stmt.lean",
+          "sha": "e96ab3c8eeb58dce60bae8ceeae06d8ddfd74b7d",
+          "size": 2545
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/T16A8Z/TensorG.lean",
+          "sha": "c72f5ea74b6514108b06e3be45a98f285dc2873f",
+          "size": 1594
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/Basic.lean",
+          "sha": "cf1af900f91045f9bb5f46bd58a59ad85b11df16",
+          "size": 8618
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/DigitSem.lean",
+          "sha": "53a6310b1cb2561db3913ce8b341eb4693c0c362",
+          "size": 11165
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/EngOf.lean",
+          "sha": "3dc03454130cf18001f74922c3c7919e6f222d96",
+          "size": 13537
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/Lift.lean",
+          "sha": "fb5a4e3db3d33b7ec89b161368b4c7335d0d1cd8",
+          "size": 2525
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/P16A8ZEngine.lean",
+          "sha": "e6fe845fba2f3be78e561622b1f4b181a905c18c",
+          "size": 11772
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/Power.lean",
+          "sha": "460a8bf51ef55d378c9fd7167f5359ed755f4f8f",
+          "size": 5624
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/Product.lean",
+          "sha": "57ffa7748802a8d116cce7bf6a052c16d0c0576e",
+          "size": 28435
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/Strict.lean",
+          "sha": "1758f3f701d8662850934824ddbb4a5f6076ac9b",
+          "size": 13545
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorEng/Transport.lean",
+          "sha": "bfe8b0cbb97796e502991b6952aa26692bb0667c",
+          "size": 22569
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorProto/P16A8ZRate.lean",
+          "sha": "79ecf1142fe875ddf5bb541cc4be0b05e2134fed",
+          "size": 24236
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/TensorProto/Strictify.lean",
+          "sha": "bb5d65421de58e8e7c2568842ed9b57c0ffd4a7c",
+          "size": 20525
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Warp/KLW.lean",
+          "sha": "66bed02bfe6693d081ca51a1d776d6c64ce0f4ee",
+          "size": 9791
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Warp/Sem.lean",
+          "sha": "5e54cd12bb1c471d70914619918b38834d4437f8",
+          "size": 16739
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Warp/Win.lean",
+          "sha": "9ee2e9aa326a16b1090f3e9b4f01a6e067b7d06e",
+          "size": 1910
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/Warp/Word.lean",
+          "sha": "2afbe00023d7efcf193de595301ebf2059e82da6",
+          "size": 9705
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHost/Frames.lean",
+          "sha": "7e060f24cb7299cfce06730f4cc4495593b1b0b2",
+          "size": 18534
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHost/HRoles.lean",
+          "sha": "23c153ed30460b37645f5d13914d9a83927025f4",
+          "size": 42687
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHost/HSched.lean",
+          "sha": "adea7606d4ed94a4215a7210c7b54b0b74468fa2",
+          "size": 6289
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHost/HostK.lean",
+          "sha": "a91a8c88cae25c4cd9d0f030377ecbc058eb0eae",
+          "size": 3747
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHostD/FramesK.lean",
+          "sha": "56e545ebf1564faecd24ea32807e48e2c1283d2b",
+          "size": 13590
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHostD/HGeom.lean",
+          "sha": "d695f9fba49319598e12b4075fa32d325aee9a66",
+          "size": 78495
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHostD/HSchedD.lean",
+          "sha": "dcdc94c601b983a5a00333e864991069b3bc9087",
+          "size": 2915
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHostD/Merged1.lean",
+          "sha": "f73b8a671aa75130b72a0b3549cbf1dda33765fa",
+          "size": 112053
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHostD/Prov.lean",
+          "sha": "e01b2f6c202a76185e15828d4354bb2abb9b8563",
+          "size": 8541
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHostR/HSchedR.lean",
+          "sha": "afa4300dc23f6c62d53e3e4c461a84f76c5cc2f2",
+          "size": 5961
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/Work/XHostT/TProvW.lean",
+          "sha": "2615cfa702b98387e4819f172b4b227d8414b7ca",
+          "size": 28788
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/XExit/Halves.lean",
+          "sha": "52a4f8eedb8019eb6c962a8acd9540b1a765820f",
+          "size": 30053
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/Submission/XExit/Pack.lean",
+          "sha": "eb0e3d01aa15ac2326566b240ed10a7164f412f9",
+          "size": 15232
+        },
+        {
+          "mode": "100644",
+          "path": "submissions/dft/ptweezy-dft-tight302016/manifest.json",
+          "sha": "be518adc454b7073f2228c2e3a58448f1fe45438",
+          "size": 54
+        }
+      ],
+      "changed_files_sha256": "c38ebc9128ac221f11ea861fc98ff9431ee3dddbb4572befc0c177d1d8337bee",
+      "gate": "ready",
+      "head_sha": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+      "inputs": {
+        "challenge_file": "challenges/dft/UniformFourier233.lean",
+        "commit": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+        "direct_submission": {
+          "authors": [],
+          "bound": "3020159999/1000000000000",
+          "commit": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+          "problem": "dft",
+          "repo_url": "https://github.com/bigospeedrun/verifier",
+          "schema_version": 1,
+          "source_subdir": "submissions/dft/ptweezy-dft-tight302016"
+        },
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "source_subdir": "submissions/dft/ptweezy-dft-tight302016",
+        "theorem_names": "Race.bound"
+      },
+      "manifest_sha256": "d3b75c16fa0b6414d8ea4260b0eba0b6d824b4769a75793596fdbe2a12e5ce44",
+      "manifest_utf8": "{\"problem\":\"dft\",\"bound\":\"3020159999/1000000000000\"}\r\n",
+      "pr_created_at": "2026-10-22T23:55:38Z",
+      "pr_number": 44,
+      "pr_submitter_login": "ptweezy",
+      "pr_url": "https://github.com/bigospeedrun/verifier/pull/44",
+      "reason": "record_gate",
+      "record_gate": {
+        "any_lean_verified_at_bound": true,
+        "checked_at": "2026-10-23T00:18:12.241250Z",
+        "data_sha256": "b9331f5949693513f63d61ed631a78318fe4b3fa98fe7d9744a04696305eea3a",
+        "leader_ids": [
+          "direct-pr-41"
+        ],
+        "problem_id": "exact-dft/uniform-exact-arithmetic",
+        "schema_version": 1,
+        "score": "30103/10000000",
+        "score_relation": "attained",
+        "site_commit": "4ff663db2927e09db15869a660697ebad6418550"
+      },
+      "route": "pull_request",
+      "schema_version": 2,
+      "source_subdir": "submissions/dft/ptweezy-dft-tight302016",
+      "submission": {
+        "authors": [],
+        "bound": "3020159999/1000000000000",
+        "commit": "00af781c4658e47afb358a4bd5265fdc27ff0903",
+        "problem": "dft",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "schema_version": 1,
+        "source_subdir": "submissions/dft/ptweezy-dft-tight302016"
+      },
+      "submission_sha256": "89a22a34cdc76f297f5d751994fe8ead860e5d1b7d2b0640223de604fb300f77",
+      "test_only": false,
+      "verifier_commit": "f13ec7987556a25f1526a5a9a5936f0d23653bf2"
+    },
+    "route": "pull_request",
+    "run_attempt": "1",
+    "run_id": "39877185210",
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/39877185210",
+    "schema_version": 2,
+    "test_only": false,
+    "verification_stage": "lean",
+    "verifier_commit": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+    "workflow_conclusion": null,
+    "workflow_path": ".github/workflows/submissions.yml"
+  },
+  "verification_run": {
+    "id": 39877185210,
+    "name": "Verify direct submissions",
+    "node_id": "WFR_kwLOVDiv6M8AAAAJSN2Oug",
+    "head_branch": "main",
+    "head_sha": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+    "path": ".github/workflows/submissions.yml",
+    "display_title": "Verify direct submissions",
+    "run_number": 637,
+    "event": "workflow_dispatch",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847968,
+    "check_suite_id": 108083424840,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAZKkYuSA",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877185210",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/39877185210",
+    "pull_requests": [],
+    "created_at": "2026-10-23T00:17:02Z",
+    "updated_at": "2026-10-23T01:22:24Z",
+    "actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [
+      {
+        "path": "bigospeedrun/verifier/.github/workflows/submission-check.yml@f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+        "sha": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+        "ref": "refs/heads/main"
+      }
+    ],
+    "run_started_at": "2026-10-23T00:17:02Z",
+    "triggering_actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877185210/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877185210/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/108083424840",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877185210/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877185210/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877185210/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847968",
+    "head_commit": {
+      "id": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+      "tree_id": "c87ba38a4fff689da6b4b52065e7ec3b2c9069e2",
+      "message": "DFT submission: saving 30201599/10000000000 (#43)",
+      "timestamp": "2026-10-22T23:46:09Z",
+      "author": {
+        "name": "Parker L",
+        "email": "ptweezy@cronstable.dev"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  },
+  "result_artifact": {
+    "id": 12471276073,
+    "node_id": "MDg6QXJ0aWZhY3QxMjQ3MTI3NjA3Mw==",
+    "name": "pr-submission-39877185210-1-publisher-39877283952-1",
+    "size_in_bytes": 21678,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12471276073",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12471276073/zip",
+    "expired": false,
+    "digest": "sha256:31cec630972874ed60ff18dbfece09221292f25c1360b81327fc9a329190e798",
+    "created_at": "2026-10-23T01:08:34Z",
+    "updated_at": "2026-10-23T01:08:34Z",
+    "expires_at": "2027-01-21T00:18:01Z",
+    "workflow_run": {
+      "id": 39877283952,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "f13ec7987556a25f1526a5a9a5936f0d23653bf2"
+    }
+  },
+  "proof_artifact": {
+    "id": 12470589222,
+    "node_id": "MDg6QXJ0aWZhY3QxMjQ3MDU4OTIyMg==",
+    "name": "pr-verification-39877185210-1-44-lean",
+    "size_in_bytes": 850291,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12470589222",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/12470589222/zip",
+    "expired": false,
+    "digest": "sha256:c310e371f68e482ba96a5e18299f301c185a10a018dcf04e46c5257deb49a7e2",
+    "created_at": "2026-10-23T01:08:04Z",
+    "updated_at": "2026-10-23T01:08:04Z",
+    "expires_at": "2027-01-21T00:17:03Z",
+    "workflow_run": {
+      "id": 39877185210,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "f13ec7987556a25f1526a5a9a5936f0d23653bf2"
+    }
+  },
+  "publisher_run": {
+    "id": 39877283952,
+    "name": "Publish submission PR result",
+    "node_id": "WFR_kwLOVDiv6M8AAAAJSN8QcA",
+    "head_branch": "main",
+    "head_sha": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+    "path": ".github/workflows/pr-publish.yml",
+    "display_title": "Publish submission PR result",
+    "run_number": 1315,
+    "event": "workflow_run",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847965,
+    "check_suite_id": 108083694780,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAZKkpMvA",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877283952",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/39877283952",
+    "pull_requests": [],
+    "created_at": "2026-10-23T00:18:01Z",
+    "updated_at": "2026-10-23T01:08:37Z",
+    "actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-10-23T00:18:01Z",
+    "triggering_actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877283952/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877283952/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/108083694780",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877283952/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877283952/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/39877283952/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847965",
+    "head_commit": {
+      "id": "f13ec7987556a25f1526a5a9a5936f0d23653bf2",
+      "tree_id": "c87ba38a4fff689da6b4b52065e7ec3b2c9069e2",
+      "message": "DFT submission: saving 30201599/10000000000 (#43)",
+      "timestamp": "2026-10-22T23:46:09Z",
+      "author": {
+        "name": "Parker L",
+        "email": "ptweezy@cronstable.dev"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  }
+}
