@@ -1,0 +1,11 @@
+{
+  "number": 5123,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5123",
+  "title": "Repair standalone and historical-role fixtures after repository binding",
+  "body": "The repository-root binding repair in #5102 was archived before its test-fixture follow-up landed. One standalone cp1252 overlap fixture copied `find_overlap.py` without its new shared helper. Seven historical source-role assertions were instead stopped by the unrelated changed checker input. Copy the standalone helper closure and restore the exact manifest-pinned checker blob only inside those disposable historical-role fixtures, so they exercise their intended predicates again.\n\nThe original eight hosted test failures were reproduced. All37 affected methods pass under normal and optimized Python; the same37 optimized methods were rerun on canonical20a1e31 after this follow-up was isolated. The planner succeeds. No production code, frozen package, source pin, scientific receipt or replay policy changes; no historical scientific batches are rerun locally.\n\nThe actual frozen `isolated-descendant-bytecode` package still rejects `working source drift: scripts/check_research_commit.py` introduced by #5102. This PR documents that remaining incompatibility rather than repinning or suppressing it. Correcting the test fixture is not evidence of a successful historical package replay. Native Windows remains unrun.\n\nPrepared by JoyboyBrian with substantial OpenAI Codex assistance; Apache-2.0. Retains the original runner, source-role and onboarding test authors. This is the focused follow-up to the same investigation and does not count as a newly claimed research task.\n\nHosted source-only diagnosis: plan PASS; overlap-path-index rejects an inherited base-to-recorded-blob mismatch in scripts/find_overlap.py, and research-package-pin-batching rejects an onboarding input already drifted at exact parent20a1. Both errors reproduce against parent bytes before any verifier executes. These remain failed scientific replays; no frozen pin is changed.\n",
+  "created_at": "2026-10-23T09:52:13Z",
+  "updated_at": "2026-10-23T10:03:11Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
