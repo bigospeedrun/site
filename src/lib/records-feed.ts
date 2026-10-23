@@ -3,13 +3,17 @@ import {evidenceName,evidenceLevels} from './evidence.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import type {Problem,RecordEntry} from './types';
 
-export interface FeedRecord {id:string; score:string; relation:string; evidence:string; authors:string[]; bound:string}
+// verification: a Claimed direct submission (bigospeedrun/verifier issue or PR) whose Lean check has not
+// passed: 'pending' while it runs (since: the submission time), 'failed' after a final failed outcome,
+// 'held' while a maintainer reviews it (derivation hold or the verifier's review label).
+export interface FeedVerification {state:'pending'|'failed'|'held'; since:string}
+export interface FeedRecord {id:string; score:string; relation:string; evidence:string; authors:string[]; bound:string; verification?:FeedVerification}
 // table: the landing-page table of the board. 'big-o' (also when absent, in older
 // snapshots) posts to the Big O records channel; 'other-bounds' to the Other bounds one.
 export type FeedTable='big-o'|'other-bounds';
 export interface FeedBoard {slug:string; name:string; url:string; leader:string|null; records:FeedRecord[]; table?:FeedTable}
 export interface FeedSnapshot {schema_version:1; boards:FeedBoard[]}
-export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]; deferred?:{key:string;slug:string;authors:string[]}[]}
+export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]; deferred?:{key:string;slug:string;authors:string[];hold?:true}[]}
 export interface FeedMessage {key:string; content:string; x_text?:string; authors?:string[]; table?:FeedTable}
 export interface RecordPost {key:string; text:string; x_text:string; posted_at:string; authors?:string[]}
 export function appendRecordPost(previous:RecordPost[],entry:FeedMessage,postedAt:string):RecordPost[] {
@@ -40,10 +44,11 @@ export function plainBound(slug:string,score:string,relation='attained',digits?:
  if(slug==='subset-sum')return epsilon?`O(2^((${value} + epsilon)n))${epsilon}`:`O(2^(${value}n))`;
  return epsilon?`O(n^(${value} + epsilon))${epsilon}`:`O(n^${value})`;
 }
-export function feedBoard(problem:Pick<Problem,'slug'|'direction'>,records:Pick<RecordEntry,'id'|'score'|'scoreRelation'|'date'|'repoId'|'evidenceLevel'|'authors'>[],name:string):FeedBoard {
+export function feedBoard(problem:Pick<Problem,'slug'|'direction'>,records:(Pick<RecordEntry,'id'|'score'|'scoreRelation'|'date'|'repoId'|'evidenceLevel'|'authors'>&Partial<Pick<RecordEntry,'verification'>>)[],name:string):FeedBoard {
  const digits=boundPrecision(records.map(r=>r.score),problem.slug==='integer-multiplication'||problem.slug==='exact-dft');
  return {slug:problem.slug,name,url:`https://bigospeedrun.com/${problem.slug}`,leader:ranked(records,problem.direction)[0]?.record.id??null,
- records:records.map(r=>({id:r.id,score:r.score,relation:r.scoreRelation??'attained',evidence:evidenceName(r.evidenceLevel),authors:r.authors.map(a=>a.name),bound:plainBound(problem.slug,r.score,r.scoreRelation,digits)}))};
+ records:records.map(r=>({id:r.id,score:r.score,relation:r.scoreRelation??'attained',evidence:evidenceName(r.evidenceLevel),authors:r.authors.map(a=>a.name),bound:plainBound(problem.slug,r.score,r.scoreRelation,digits),
+  ...(r.verification&&evidenceName(r.evidenceLevel)==='Claimed'?{verification:r.verification}:{})}))};
 }
 // A plain-text form of a site bound (KaTeX source) for Discord and X posts.
 export function plainTex(tex:string):string {
@@ -76,6 +81,7 @@ export function otherFeedBoard(row:OtherRow):FeedBoard {
    authors:c.authors.map(a=>a.name),bound:plainTex(c.bound)}))};
 }
 const isOther=(slug:string)=>slug.startsWith('other-');
+export const HOLD_LIMIT=24*60*60*1000;
 function identity(board:FeedBoard,record:FeedRecord):string {return JSON.stringify([board.slug,record.id,record.score,record.relation]);}
 function eventKey(board:FeedBoard,record:FeedRecord):string {return identity(board,record)+':'+(record.evidence==='Lean Verified'?'lean':'record');}
 function clean(text:string):string {return text.replace(/[<>@]/g,' ').replace(/\s+/g,' ').trim();}
@@ -152,14 +158,28 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
    const gainedLean=record.evidence==='Lean Verified'&&prior?.evidence!=='Lean Verified';
    const key=eventKey(board,record);
    const waiting=record.id===board.leader&&deferred.has(key);
+   // A held direct claim (below) that now leads with Lean Verified posts once, as a new record.
+   const held=record.id===board.leader&&key!==identity(board,record)+':record'&&deferred.get(identity(board,record)+':record')?.hold===true;
    // Rows imported from prove2.me (data/prove2me_import.py) are old results. When its
    // LEAN_VERIFIED switch flips, a row that does not lead its board posts nothing.
    if(gainedLean&&!newLeader&&!waiting&&record.id.startsWith('prove2me-')&&record.id!==board.leader){reserved.add(key);continue;}
-   if((newLeader||gainedLean||waiting)&&!reserved.has(key)){
+   if((newLeader||gainedLean||waiting||held)&&!reserved.has(key)){
     const boundKey=postedBoundKey(key);
     if(announced.has(boundKey)){reserved.add(key);deferred.delete(key);continue;}
     const verifiedUpgrade=gainedLean&&announced.has(postedBoundKey(identity(board,record)+':record'));
-    const isNew=(newLeader||waiting)&&!verifiedUpgrade;
+    const isNew=(newLeader||waiting||held)&&!verifiedUpgrade;
+    // Nil, 2026-10-23: a direct submission goes to verification automatically, so its new-leader
+    // post waits until verification ends: a pass posts once (above), a failure never posts, and a
+    // check still running after HOLD_LIMIT posts as Claimed. The hold is a deferred entry, not a
+    // reservation, and is decided again on every plan.
+    const hold=record.verification;
+    if(isNew&&hold&&record.evidence==='Claimed'){
+     if(hold.state==='failed'){reserved.add(key);deferred.delete(key);continue;}
+     const since=Date.parse(hold.since);
+     // A held submission (a suspected copy under review) never posts as a claim; after approval it
+     // gains Lean Verified and posts once as a new record.
+     if(hold.state==='held'||!Number.isFinite(since)||now-since<HOLD_LIMIT){deferred.set(key,{key,slug:board.slug,authors:record.authors,hold:true});continue;}
+    }
     if(isNew&&lastValue.get(board.slug)===record.bound){reserved.add(key);deferred.delete(key);continue;}
     const group=authorKey(board.slug,record.authors);
     if(isNew&&now-(lastAccepted.get(group)??-Infinity)<3*60*60*1000){

@@ -274,6 +274,19 @@ def row_for(key,claim,now,old=None,note=None):
         meta['receipt_url']=proof['receipt_url']
     return row,meta,{path:raw}
 
+REVIEW_LABEL='verification-needs-review'
+
+def verification_state(key,claim,final_states):
+    """passed (a Lean Verified receipt), held (a derivation hold, or the verifier's review label on the
+    issue or PR), failed (a final outcome for these exact submission bytes that is not Lean Verified)
+    or pending. The records feed holds a pending direct claim's post until its verification ends, and
+    a held one until the lead approves it (Nil and Lead, 2026-10-23)."""
+    if claim.get('verification'):return 'passed'
+    state=(final_states or {}).get(key+':'+sha(canonical(claim['submission']).encode()))
+    labels={l.get('name') for l in claim['item'].get('labels') or [] if isinstance(l,dict)}
+    if (state and state['decision']=='held') or REVIEW_LABEL in labels:return 'held'
+    return 'failed' if state and state['decision']!='lean-verified' else 'pending'
+
 def prepare(root,claims,files,now,final_states=None,config=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
     suppressed=apply_bindings(documents,claims,final_states or {},config or {})
@@ -289,6 +302,7 @@ def prepare(root,claims,files,now,final_states=None,config=None):
         for key,claim in sorted(claims.items()):
             if key in suppressed or key in withdrawn or SLUGS[claim['submission']['problem']]!=slug:continue
             row,meta,source=row_for(key,claim,now,old.get(key),notes.get(key));files.update(source)
+            meta['verification']=verification_state(key,claim,final_states)
             doc['records'].append(row);doc['record_metadata'][key]=meta
         prior=json.loads((root/(slug+'.json')).read_text())
         if doc!=prior:

@@ -103,6 +103,30 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(set(r.Importer(DiscoveryAPI([self.issue(5)],[pr]),root).collect()),{'direct-issue-5'})
             self.assertEqual(r.Importer(DiscoveryAPI([dict(self.issue(5),state='closed')],[pr]),root).collect(),{})
 
+    def test_verification_state_marks_pending_failed_and_passed_direct_rows(self):
+        # Nil, 2026-10-23: the records feed holds a direct claim's post until its verification ends.
+        sub=d.parse_body(self.issue()['body']);claim=dict(route='issue',item=self.issue(),submission=sub)
+        outcome=lambda decision:{'direct-issue-5:'+d.sha(d.canonical(sub).encode()):dict(key='direct-issue-5',submission=sub,decision=decision,evidence={})}
+        self.assertEqual(r.verification_state('direct-issue-5',claim,{}),'pending')
+        for decision in ('blocked','rejected'):
+            self.assertEqual(r.verification_state('direct-issue-5',claim,outcome(decision)),'failed')
+        self.assertEqual(r.verification_state('direct-issue-5',claim,outcome('lean-verified')),'pending')
+        self.assertEqual(r.verification_state('direct-issue-5',claim,outcome('held')),'held')
+        labelled=dict(claim,item=dict(self.issue(),labels=[{'name':'verification-needs-review'}]))
+        self.assertEqual(r.verification_state('direct-issue-5',labelled,{}),'held')
+        self.assertEqual(r.verification_state('direct-issue-5',dict(claim,verification={'receipt_path':'x'}),{}),'passed')
+        # An edited submission is a new source: an old failure does not mark it.
+        edited=dict(claim,submission=dict(sub,bound='1/1001'))
+        self.assertEqual(r.verification_state('direct-issue-5',edited,outcome('blocked')),'pending')
+        fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            for slug in r.SLUGS.values():(root/(slug+'.json')).write_bytes(r.json_bytes(fixtures[slug]))
+            (root/'registry.json').write_bytes(r.json_bytes({'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'}))
+            files=r.prepare(root,{'direct-issue-5':claim},{},'2026-10-11T00:00:00Z',outcome('blocked'))
+            meta=json.loads(files['exact-dft.json'])['record_metadata']['direct-issue-5']
+            self.assertEqual(meta['verification'],'failed')
+
     def test_open_pr_claim_and_closed_unmerged_drop(self):
         pr=dict(number=6,state='open',merged=False,labels=[],head={'sha':'a'*40},user={'login':'alice'},created_at='2026-10-10T12:00:00Z',html_url='https://github.com/bigospeedrun/verifier/pull/6')
         sub=dict(d.parse_body(self.issue()['body']),source_subdir='submissions/dft/alice-proof')

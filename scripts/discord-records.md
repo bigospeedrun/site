@@ -72,3 +72,16 @@ announced or reserved stays reserved, and a merge of the current leader posts no
 A result first seen as already merged and leading posts as a new record with its level.
 Check a deploy with `node --experimental-strip-types scripts/discord-records.ts dry-run
 <batch>` after `npm run build`: it must plan 0 messages.
+
+As of 2026-10-23 (Nil), a direct submission (an issue or PR in bigospeedrun/verifier, which goes to
+our Lean verification automatically) does not post as a new claim while its verification runs.
+`data/direct_refresh.py` writes `verification` (`pending`, `failed` or `passed`) on each direct row's
+metadata; the feed carries `pending` or `failed` with the submission time for a Claimed direct row.
+The planner keeps such a new leader in the deferred list, marked `hold`, without reserving it. When the
+row gains Lean Verified while it leads, one post goes out as "New record" (with Lean Verified status)
+instead of "New claim" then "Record verified" (#35, 2026-10-21). A failed check reserves the event, so it
+never posts; a withdrawn submission leaves the board and posts nothing. A check still pending 24 hours
+after the submission (`HOLD_LIMIT`) posts as Claimed. A `held` submission (a derivation hold, or the verifier's
+`verification-needs-review` label) never posts while held, with no 24-hour limit; once the lead approves it,
+it gains Lean Verified and posts once by the usual rule (New record if it leads, else Record verified). The three-hour author window and the event keys
+are unchanged. CrocSwap, Other bounds tracker, prove2.me and written-proof claims post as before.

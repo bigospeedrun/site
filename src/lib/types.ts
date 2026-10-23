@@ -9,6 +9,8 @@ export interface RecordEntry {
  status: string; comparisonNote: string; creditNote?: string; upstreamStatus: string; upstreamSelected?: boolean; comparison: string; eligible: boolean; raceEventAt?: string; rerunStatus?: {state:string;checked_at?:string;receipt_path?:string|null};
  provenance?: { model?: string; harness?: string; container_digest?: string; logs?: string[] };
  prove2me?: boolean; prove2meUrl?: string;
+ // A Claimed direct submission whose verifier check has not passed (record_metadata.verification).
+ verification?: { state: 'pending' | 'failed' | 'held'; since: string };
 }
 export interface Repo { name: string; owner: string; url: string; ownerUrl: string; submission?: string; rules?: string; agents?: string; open: boolean; mode: string }
 export interface Problem {

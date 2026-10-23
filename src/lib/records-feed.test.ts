@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength,otherFeedBoard,plainTex} from './records-feed.ts';
+import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength,otherFeedBoard,plainTex,HOLD_LIMIT} from './records-feed.ts';
 import type {OtherClaim,OtherRow} from './records-feed.ts';
 import type {FeedSnapshot,FeedBoard,FeedRecord} from './records-feed.ts';
 const row=(id='a',evidence='Claimed',score='1/1000'):FeedRecord=>({id,evidence,score,relation:'attained',authors:['Alice'],bound:plainBound('exact-dft',score)});
@@ -428,4 +428,78 @@ test('Other bounds: a claim that becomes Human Verified posts nothing, for a pas
  // A result first seen already merged and leading posts as a new record, with its level.
  const fresh=plan(afterLead.state,both(main,otherFeedBoard(otherRow([merged(old),merged(lead),merged(claim('carol','0.8747'))],'carol'))),[],start+180000);
  assert.equal(fresh.messages.length,1);assert.match(fresh.messages[0].content,/\*\*New record\*\* .*by carol \| Human Verified/);
+});
+
+// Nil, 2026-10-23: a direct submission (bigospeedrun/verifier) goes to verification automatically; its post
+// waits until verification ends. #35 on 2026-10-21 posted New claim and then Record verified 86 min later.
+test('a direct claim posts once when verification ends: pass is New record, failure or withdrawal posts nothing',()=>{
+ const t0=Date.parse('2026-10-21T19:50:00Z'),hour=60*60*1000;
+ const direct=(evidence='Claimed',state:'pending'|'failed'='pending'):FeedRecord=>({...row('direct-issue-35',evidence,'1/900'),authors:['fringewidth'],
+  ...(evidence==='Claimed'?{verification:{state,since:'2026-10-21T19:50:00Z'}}:{})});
+ const initial=baseline(snapshot());
+ const pending=plan(initial,snapshot(board([row(),direct()],'direct-issue-35')),[],t0+10*60*1000);
+ assert.deepEqual(pending.messages,[]);
+ const claimKey='["exact-dft","direct-issue-35","1/900","attained"]:record';
+ assert.ok(!pending.state.reserved.includes(claimKey));
+ assert.deepEqual(pending.state.deferred?.map(e=>e.key),[claimKey]);
+ const still=plan(pending.state,snapshot(board([row(),direct()],'direct-issue-35')),[],t0+hour);
+ assert.deepEqual(still.messages,[]);
+ // Pass: one New record post, Lean Verified status, and nothing more after it.
+ const passed=plan(still.state,snapshot(board([row(),direct('Lean Verified')],'direct-issue-35')),[],t0+90*60*1000);
+ assert.equal(passed.messages.length,1);
+ assert.equal(passed.messages[0].key,'["exact-dft","direct-issue-35","1/900","attained"]:lean');
+ assert.match(passed.messages[0].content,/^\*\*New record\*\* .*\| Lean Verified \|/);
+ assert.ok(passed.messages[0].x_text?.startsWith('New record!'));
+ assert.ok(passed.state.reserved.includes(claimKey));
+ assert.equal(passed.state.deferred,undefined);
+ assert.deepEqual(plan(passed.state,snapshot(board([row(),direct('Lean Verified')],'direct-issue-35')),[],t0+2*hour).messages,[]);
+ // Failure: nothing, now or later.
+ const failed=plan(still.state,snapshot(board([row(),direct('Claimed','failed')],'direct-issue-35')),[],t0+2*hour);
+ assert.deepEqual(failed.messages,[]);
+ assert.ok(failed.state.reserved.includes(claimKey));
+ assert.deepEqual(plan(failed.state,snapshot(board([row(),direct('Claimed','failed')],'direct-issue-35')),[],t0+30*hour).messages,[]);
+ // Withdrawn: the row leaves the board; nothing posts.
+ assert.deepEqual(plan(still.state,snapshot(),[],t0+2*hour).messages,[]);
+ // Still running after the hold limit: posts once as a claim.
+ const late=plan(still.state,snapshot(board([row(),direct()],'direct-issue-35')),[],t0+HOLD_LIMIT);
+ assert.equal(late.messages.length,1);
+ assert.match(late.messages[0].content,/^\*\*New claim\*\* .*\| Claimed \|/);
+ assert.deepEqual(plan(late.state,snapshot(board([row(),direct()],'direct-issue-35')),[],t0+HOLD_LIMIT+hour).messages,[]);
+ // Claims without our verification post at once, as before.
+ const crocswap=plan(initial,snapshot(board([row(),row('crocswap-pr-9','Claimed','1/900')],'crocswap-pr-9')),[],t0);
+ assert.match(crocswap.messages[0].content,/^\*\*New claim\*\*/);
+});
+test('a held direct claim keeps the 3-hour author window when it passes',()=>{
+ const t0=Date.parse('2026-10-21T19:50:00Z'),hour=60*60*1000;
+ const direct=(evidence='Claimed'):FeedRecord=>({...row('direct-issue-35',evidence,'1/900'),authors:['Alice'],...(evidence==='Claimed'?{verification:{state:'pending' as const,since:'2026-10-21T19:50:00Z'}}:{})});
+ const posts=[{key:'["exact-dft","a","1/1000","attained"]:record',posted_at:'2026-10-21T19:00:00Z',authors:['Alice']}];
+ const held=plan(baseline(snapshot()),snapshot(board([row(),direct()],'direct-issue-35')),posts,t0);
+ const early=plan(held.state,snapshot(board([row(),direct('Lean Verified')],'direct-issue-35')),posts,t0+hour);
+ assert.deepEqual(early.messages,[]);
+ const later=plan(early.state,snapshot(board([row(),direct('Lean Verified')],'direct-issue-35')),posts,t0+3*hour);
+ assert.equal(later.messages.length,1);
+ assert.match(later.messages[0].content,/^\*\*New record\*\*/);
+});
+test('the feed carries verification only for Claimed direct rows',()=>{
+ const base={scoreRelation:'attained' as const,date:'2026-10-21',repoId:1,authors:[{name:'A'}]};
+ const b=feedBoard({slug:'exact-dft',direction:'higher-is-better'},[
+  {...base,id:'direct-issue-35',score:'1/900',evidenceLevel:'claimed',verification:{state:'pending',since:'2026-10-21T19:50:00Z'}},
+  {...base,id:'direct-issue-36',score:'1/800',evidenceLevel:'lean-verified',verification:{state:'pending',since:'2026-10-21T19:50:00Z'}},
+  {...base,id:'crocswap-pr-9',score:'1/700',evidenceLevel:'claimed'}] as any,'Fourier Transform');
+ assert.deepEqual(b.records.map(r=>r.verification?.state),['pending',undefined,undefined]);
+});
+test('a held direct submission never posts while held; after approval a leader posts one New record',()=>{
+ const t0=Date.parse('2026-10-23T05:00:00Z'),hour=60*60*1000;
+ const copy=(evidence='Claimed'):FeedRecord=>({...row('direct-pr-46',evidence,'1/900'),authors:['Bob'],...(evidence==='Claimed'?{verification:{state:'held' as const,since:'2026-10-23T05:00:00Z'}}:{})});
+ const held=plan(baseline(snapshot()),snapshot(board([row(),copy()],'direct-pr-46')),[],t0);
+ assert.deepEqual(held.messages,[]);
+ const long=plan(held.state,snapshot(board([row(),copy()],'direct-pr-46')),[],t0+HOLD_LIMIT+30*hour);
+ assert.deepEqual(long.messages,[]);
+ assert.deepEqual(long.state.deferred?.map(e=>e.hold),[true]);
+ const approved=plan(long.state,snapshot(board([row(),copy('Lean Verified')],'direct-pr-46')),[],t0+60*hour);
+ assert.equal(approved.messages.length,1);
+ assert.match(approved.messages[0].content,/^\*\*New record\*\* .*\| Lean Verified \|/);
+ // Approved while another row leads: the usual Lean upgrade post.
+ const behind=plan(long.state,snapshot(board([row('a','Claimed','1/800'),copy('Lean Verified')],'a')),[],t0+60*hour);
+ assert.deepEqual(behind.messages.map(m=>m.content.split(' |')[0]),['**New claim**','**Record verified**']);
 });
