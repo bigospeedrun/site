@@ -1,0 +1,11 @@
+{
+  "number": 5157,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5157",
+  "title": "Prove the two-direction P112 swap deficit vanishes",
+  "body": "The two-sided P112 reduction in PR3154 leaves a swap-support deficit when projective outside-direction classes cannot be colored globally. This proves that the deficit vanishes for every two-dimensional outside space under the source's exact separator hypotheses: connected components of the orthogonality graph alternate between two projective classes and admit a support-compatible partition. The proof covers any coefficient field and any number of classes; the column statement follows identically.\n\nThe package pins RDEP2 and the actual P112 geometry. It checks all 12,544 root/label pairings, a six-root case where the global class graph is a triangle, and every four-vertex separator configuration over F₂ and F₃. A separate exhaustive functional/list-color solver agrees on 843 and 2,644 admissible cases. These are controls for the written proof, not a finite proof of the all-field statement.\n\nThis removes only the s=2 row / t=2 column deficit in DR′. All other F/O/XM/SH deductions and source normal-form hypotheses remain; it does not reopen the completed one-sided ledger or prove C(P112) ≥ 64, a supplier, or a new κ.\n\nValidation: four registered normal/optimized checks, metadata/source-history and 13-file official export passed. Git-free read-only cold runs passed; altered source/geometry, a missing receipt, bool/int receipt substitution, and deletion of the separator premise were rejected. No Lean, solver, historical suite or heavy replay. Original unmerged source provenance is retained; cold replay uses identical vendored bytes in this branch's own history.\n\nCredits: DreamingOfClouds (PR3154/PR717), Mihir Srivastava (retained exact geometry package). New proof and controls by JoyboyBrian with substantial OpenAI Codex (Astra) assistance. AI-assisted review is not human or proof-assistant acceptance.\n",
+  "created_at": "2026-10-23T11:14:06Z",
+  "updated_at": "2026-10-23T11:14:06Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
