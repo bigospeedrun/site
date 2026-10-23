@@ -45,6 +45,11 @@ class Importer:
     def __init__(self, api, root=ROOT):
         self.api=api;self.root=Path(root);self.trust={};self.runs={};self.files={};self.notes=[];self.final_states={}
         self.config=json.loads((self.root/'direct-trust.json').read_text())
+        # claimed_only() verdicts by item: {number: {version, updated_at, claimed_only}}. A new comment, label
+        # or edit changes updated_at and reads the comments again; an untouched closed item costs no read.
+        state=self.root/'direct-submissions.json'
+        self.claimed_seen=json.loads(state.read_text()).get('claimed_only_cache',{}) if state.exists() else {}
+        self.claimed_cache={}
         self.policy_hash=sha(canonical(self.config).encode())
         # The lead approves a held issue result (derivation report) for its exact submission bytes: the digest
         # is in the verifier's bos-direct-v1 result marker. A held PR is approved by merging it by hand.
@@ -137,14 +142,22 @@ class Importer:
         after PR #52). Only comments of the workflow bot count."""
         item=claim['item'];number=item['number']
         if claim['route']=='issue':
-            marker=f"<!-- bos-claimed-v1 {number} {sha(canonical(claim['submission']).encode())} -->"
+            version=sha(canonical(claim['submission']).encode())
+            marker=f"<!-- bos-claimed-v1 {number} {version} -->"
             match=lambda body:body.startswith(marker)
         else:
-            marker=f"<!-- bos-pr-v2 {number} {item['head']['sha']} -->"
+            version=item['head']['sha']
+            marker=f"<!-- bos-pr-v2 {number} {version} -->"
             match=lambda body:body.startswith(marker) and 'PR proof result: **claimed_only**.' in body
-        comments=self.api.pages(PREFIX+f'issues/{number}/comments')
-        return any((c.get('user') or {}).get('login')=='github-actions[bot]' and (c.get('user') or {}).get('type')=='Bot'
-                   and match(c.get('body') or '') for c in comments)
+        seen=self.claimed_seen.get(str(number))
+        if seen and seen.get('version')==version and seen.get('updated_at')==item.get('updated_at') and item.get('updated_at'):
+            result=seen['claimed_only'] is True
+        else:
+            comments=self.api.pages(PREFIX+f'issues/{number}/comments')
+            result=any((c.get('user') or {}).get('login')=='github-actions[bot]' and (c.get('user') or {}).get('type')=='Bot'
+                       and match(c.get('body') or '') for c in comments)
+        self.claimed_cache[str(number)]=dict(version=version,updated_at=item.get('updated_at'),claimed_only=result)
+        return result
 
     def evidence(self,key,env,run,artifact,proof_artifact,result_raw,proof_raw,verdict,publisher=None):
         identity=f'{key}-{run["id"]}-{run["run_attempt"]}'+('-'+env['verification_stage'] if env.get('verification_stage') else '')
@@ -366,7 +379,7 @@ def other_claims(claims,withdrawn,notes):
             bound=row['bound'].format(value=shown),receiptPath=proof['receipt_path']))
     return boards
 
-def prepare(root,claims,files,now,final_states=None,config=None):
+def prepare(root,claims,files,now,final_states=None,config=None,claimed_cache=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
     suppressed=apply_bindings(documents,claims,final_states or {},config or {})
     notes_path=root/'direct-notes.json'
@@ -390,6 +403,7 @@ def prepare(root,claims,files,now,final_states=None,config=None):
     files['direct-other.json']=json_bytes(dict(schema_version=1,boards=other_claims(claims,withdrawn,notes)))
     state=dict(schema_version=1,entries={k:{field:v for field,v in c.items() if field in ('route','submission','verification')} for k,c in claims.items()})
     state['final_states']=final_states or {}
+    if claimed_cache:state['claimed_only_cache']=dict(sorted(claimed_cache.items(),key=lambda kv:int(kv[0])))
     files['direct-submissions.json']=json_bytes(state)
     if any(slug+'.json' in files for slug in SLUGS.values()):
         registry=json.loads((root/'registry.json').read_text());registry['updated_at']=now;registry['checked_at']=now[:10]
@@ -420,7 +434,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--check-only',action='store_true');args=parser.parse_args()
     importer=Importer(GitHub());claims=importer.collect()
     now=datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
-    files=prepare(ROOT,claims,importer.files,now,importer.final_states,importer.config)
+    files=prepare(ROOT,claims,importer.files,now,importer.final_states,importer.config,importer.claimed_cache)
     from maintainer_import import collect_maintainer
     files=collect_maintainer(importer,files,now)
     transaction(ROOT,files,args.check_only)

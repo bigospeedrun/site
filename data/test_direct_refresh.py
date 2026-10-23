@@ -122,6 +122,39 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual('direct-pr-52' in claims,kept)
             if kept:self.assertEqual((claims['direct-pr-52']['closed'],claims['direct-pr-52']['claimed_only']),(True,True))
 
+    def test_the_claimed_only_verdict_is_cached_per_version_and_update_time(self):
+        # Lead, 2026-10-23: the site read the comments of every closed unmerged PR each hour.
+        pr=dict(number=52,state='closed',merged=False,head={'sha':'c'*40},labels=[],user={'login':'alice'},updated_at='2026-10-23T20:00:00Z')
+        bot=lambda body:{'user':{'login':'github-actions[bot]','type':'Bot'},'body':body}
+        layout=dict(submission=dict(d.parse_body(self.issue()['body']),repo_url='https://github.com/bigospeedrun/verifier',commit='c'*40))
+        report=[bot('<!-- bos-pr-v2 52 '+'c'*40+' -->\nPR proof result: **claimed_only**. Bound below the record.')]
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);(root/'direct-trust.json').write_bytes((ROOT/'direct-trust.json').read_bytes())
+            def discover(item,comments):
+                reads=[];api=DiscoveryAPI([],[item]);pages=api.pages
+                def read(path,params=None,key=None):
+                    if path.endswith('/comments'):reads.append(path);return comments
+                    return pages(path,params,key)
+                api.pages=read
+                importer=r.Importer(api,root)
+                with patch.object(r,'inspect_pr',return_value=layout):claims=importer.discover()
+                (root/'direct-submissions.json').write_text(json.dumps({'entries':{},'claimed_only_cache':importer.claimed_cache}))
+                return 'direct-pr-52' in claims,len(reads)
+            self.assertEqual(discover(pr,report),(True,1))
+            self.assertEqual(discover(pr,[]),(True,0))  # cached: no read
+            self.assertEqual(discover(dict(pr,updated_at='2026-10-23T21:00:00Z'),[]),(False,1))  # touched: read again
+            self.assertEqual(discover(dict(pr,updated_at='2026-10-23T22:00:00Z'),report),(True,1))
+            self.assertEqual(discover(dict(pr,updated_at='2026-10-23T22:00:00Z',head={'sha':'d'*40}),report),(False,1))  # another head
+        # prepare() writes the cache into direct-submissions.json.
+        fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            for slug in r.SLUGS.values():(root/(slug+'.json')).write_bytes(r.json_bytes(fixtures[slug]))
+            (root/'registry.json').write_bytes(r.json_bytes({'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'}))
+            cache={'52':dict(version='c'*40,updated_at='2026-10-23T20:00:00Z',claimed_only=True)}
+            files=r.prepare(root,{},{},'2026-10-23T22:00:00Z',{},{},cache)
+            self.assertEqual(json.loads(files['direct-submissions.json'])['claimed_only_cache'],cache)
+
     def test_a_listing_without_a_known_submission_keeps_the_previous_bundle(self):
         # 2026-10-22 16:18Z: GitHub listed no verifier issue for one read; the refresh dropped 13 rows,
         # among them the 3SUM leader direct-issue-18, and the receipt page test failed the hourly run.
