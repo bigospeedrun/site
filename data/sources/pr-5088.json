@@ -1,0 +1,11 @@
+{
+  "number": 5088,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5088",
+  "title": "Checkpoint symmetric two-star P112 supports and inconclusive COPY63 search",
+  "body": "This checkpoints a changed masked P112 decoder support dictionary: symmetric intersections of at most two original C/N root stars, with repeated occurrences and mixed COPY ranks 6–9. An exact standard-library replay rebuilds all 16,556 supports, their separate binary prices and frame-hit counts, and all 262,928 orthogonal cliques. The known coordinate control costs 64 and passes every clique; an omitted coordinate and an underpriced COPY are rejected.\n\nThe sole 90-second single-thread MILP invocation used diagonal, orthogonal-pair and eight-frame rank constraints at cost at most 63. It returned a time limit with no incumbent and no bound. The measured call took 105 seconds including solver overhead. **This is an inconclusive bounded discovery checkpoint, not an infeasibility proof, decoder, physical supplier or new K.** No coefficient synthesis or unchanged-dictionary rerun follows.\n\nThe support dictionary differs from PR5064's nine-factor completion walk and from the original-star and maximal-functional-slice theorems. Exact sources, coverage limits, solver status, commands and remaining coefficient/native/precision/compiler/outer obligations are in `research/masked-two-star-supports`. The selected record is unchanged.\n\nValidation: Python 3.12 registered replay and isolated optimized replay pass; committed-byte and full-source-history preflight passes; the official 12-file portable export and integrity check pass. No selected cold replay, independent scientific review or theorem acceptance is claimed.\n\nCanonical claim: https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19141745. Credit DreamingOfClouds, themilkman216, Navinor, David Arias, Hanson Sun, Philippe Van Velzen and the retained support/frame/geometry authors. Prepared by Cinna Davis with substantial OpenAI Codex assistance. Apache-2.0.\n",
+  "created_at": "2026-10-23T08:41:32Z",
+  "updated_at": "2026-10-23T08:44:13Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

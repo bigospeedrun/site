@@ -4,8 +4,8 @@
   "title": "Prove two-stage physical codes resist fixed scalar postdecoding (no new κ)",
   "body": "PR4933 leaves products of physical terminal codes open after its one-stage support obstruction. This proves that the two-distinct-stage products in its actual negative output banks 0 and 8, and their required inverse postdecoders, cannot be implemented by a fixed finite scalar/monomial word uniformly in digit-column width.\n\nAn explicit marker column isolates intermediate owner 31 in all four forward/inverse sign cases. One row then has at least `4^(f-1)` nonzero input coordinates, forcing at least `2(f-1)` scalar ADDs. The scalar owner coefficients are applied once; the proof never tensors a sum. The same-stage inverse cancellation is a positive control.\n\nOnly `research/two-stage-coded-terminal/` changes. The exact source-pinned standard-library replay checks all 112 paths, the actual signed normalizers, the scalar inverse and an independent Q/K evaluator, with finite tensor corroboration through width four. Registered normal and optimized replay, committed-byte/source-history preflight, official export integrity and Git-free normal/optimized replay passed. The exported cold runs took 21.382 and 19.987 seconds.\n\nThis closes one concrete free postdecoding route. It does not bound paid Gaussian decoding, classify longer products, exclude a changed whole controller or recursive job family, or provide a new κ. The selected conditional κ remains 0.00302015. Full supplier/controller/outer replay, formal-kernel acceptance and independent human review are not claimed; hosted CI is separate.\n\nCredit Dillon/PR4933, Dugongue/PR4929, JoyboyBrian/PR5036, Cinna Davis/PR4694/4698 and PR4440/4470, Cao Yifan/PR4610, zxv, Jacob Alan Sussman, Ryanson Jonathan and the retained native/compiler/precision lineage. Prepared by Cinna Davis/1337isnot1337 with substantial OpenAI Codex assistance; no subagents; Apache-2.0.\n",
   "created_at": "2026-10-23T07:47:55Z",
-  "updated_at": "2026-10-23T07:47:55Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-23T08:19:41Z",
+  "closed_at": "2026-10-23T08:19:41Z",
+  "merged_at": "2026-10-23T08:19:41Z",
+  "state": "closed"
 }
