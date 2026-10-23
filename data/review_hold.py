@@ -125,6 +125,18 @@ def review(root, now, published_board=published):
         if changed:
             board['records'] = kept
             dump(root, path, board)
+    # A held direct submission whose claim the direct importer no longer keeps (a PR closed unmerged, an
+    # issue closed without a final Lean Verified result) has nothing left to review: its hold drops (exact-dft
+    # direct-pr-47, 2026-10-23, stayed listed after its PR was closed). direct-submissions.json is rebuilt
+    # every run, and a failed direct step keeps the previous bundle, so a missing entry is not a read error.
+    # A withdrawn one (direct-notes.json withdrawn) keeps its entry by design but leaves the board: it drops too.
+    direct = load(root, 'direct-submissions.json')
+    withdrawn = (load(root, 'direct-notes.json') or {}).get('withdrawn', {})
+    if direct is not None:
+        for k, h in list(pending.items()):
+            gone = h['id'] not in direct.get('entries', {}) or h['id'] in withdrawn
+            if h['id'].startswith('direct-') and gone and k not in approved:
+                del pending[k]
     holds = sorted(pending.values(), key=lambda h: (h['held_at'], h['board'], h['id']))
     dump(root, HOLDS, {'holds': holds})
     return holds

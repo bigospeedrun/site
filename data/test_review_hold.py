@@ -79,6 +79,24 @@ class ReviewHoldTests(unittest.TestCase):
         self.assertEqual(self.run_review(), [])
         self.assertIn('crocswap-pr-3200', self.ids('im.json'))
 
+    def test_a_direct_hold_drops_when_its_submission_is_gone(self):
+        # exact-dft direct-pr-47 (2026-10-23): the PR closed after Lean rejected it; the hold stayed listed.
+        self.add('im.json', record('direct-pr-47', '1/10'))
+        review_hold.dump(self.root, 'direct-submissions.json', {'entries': {'direct-pr-47': {}}})
+        self.assertEqual([h['id'] for h in self.run_review()], ['direct-pr-47'])
+        review_hold.dump(self.root, 'direct-submissions.json', {'entries': {}})
+        self.assertEqual(self.run_review('2026-10-17T04:00:00Z'), [])
+        self.assertNotIn('direct-pr-47', self.ids('im.json'))
+        # A withdrawn submission keeps its entry but leaves the board: its hold drops too.
+        self.add('im.json', record('direct-pr-44', '1/10'))
+        review_hold.dump(self.root, 'direct-submissions.json', {'entries': {'direct-pr-44': {}}})
+        self.assertEqual([h['id'] for h in self.run_review()], ['direct-pr-44'])
+        review_hold.dump(self.root, 'direct-notes.json', {'withdrawn': {'direct-pr-44': 'Withdrawn by its submitter.'}})
+        self.assertEqual(self.run_review(), [])
+        # A CrocSwap hold does not depend on the direct state.
+        self.add('im.json', record('crocswap-pr-3093', '1/10'))
+        self.assertEqual([h['id'] for h in self.run_review()], ['crocswap-pr-3093'])
+
     def test_rejected_hold_stays_off(self):
         self.add('im.json', record('crocswap-pr-3093', '1/10'))
         self.run_review()
