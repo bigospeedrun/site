@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "boards": {
+    "matrix-multiplication": {
+      "openai-matrix-nine-fourths-2026": "OpenAI's paper describes matrix multiplication by a tensor, a three-way array of numbers, and bounds it with explicit reductions between tensors together with numerical invariants that compare them. It derives inequalities for multiplying polynomials, then uses how those values grow to bound matrix multiplication. The key step separates blocks that already use independent variables in two of the three directions."
+    },
+    "exact-dft": {
+      "direct-pr-41": "This proof reuses Jacob Sussman's recursion for the exact Fourier transform and plugs in a larger building block taken from the integer multiplication line of work. The block is repeated many times, and Lean files check the repeated block and the rate the construction certifies. The stated saving is kept just below that rate."
+    },
+    "3sum": {
+      "direct-issue-35": "The algorithm and its running-time accounting come from earlier entries by c0ldzy17 and Joshua Wharton. This version tunes the algorithm's parameters more finely so that its two largest cost terms nearly match, computes the logarithm bounds to more digits and tightens the safety margins. Lean checks that the resulting exponent holds."
+    },
+    "apsp": {
+      "joshuaqfex-apsp-2026": "The author found better tuning values for the all-pairs shortest paths construction of earlier entries. A Lean file checks 47 inequalities on those values and the exact identities between the construction's stages. The bound stays conditional: the written proof that the algorithm reaches those costs, and the cost accounting in the problem's machine model, are not checked in Lean."
+    },
+    "subset-sum": {
+      "yannouli-subset-sum-0-4876723-2026": "The author improves Joshua Wharton's conditional method, which itself improves a manuscript by a-kapila. The new part is a rule for where one filter's certificates start and stop, plus new parameter margins. A written note proves it and a script with exact fractions confirms the numbers. The full running-time claim stays conditional on unproved claims from the earlier work about how the algorithm is implemented."
+    }
+  },
+  "board_notes": {
+    "integer-multiplication": [
+      {
+        "repo": "CrocSwap/integer-mult-bounds",
+        "text": "Records from this repository build on OpenAI's multiplication method. An author changes the construction's parameters or interfaces and re-checks that the inequalities still hold, usually with Lean files. The bounds are conditional on OpenAI's reduction of fixed-tape multiplication and on the interfaces each submission cites. The repository's maintainer reviews a submission by merging it. We have not rerun the checks ourselves."
+      }
+    ]
+  }
+}

@@ -15,7 +15,8 @@ const pending=new Map();
 // prove2me.json holds reviewed prove2.me links (data/prove2me_import.py) and other-reviews.json the status of the
 // review pull requests of Other bounds rows (data/other_reviews.py); older bundles have neither. direct-other.json holds the
 // Lean Verified direct submissions of Other bounds rows (data/direct_refresh.py); bundles before 2026-10-23 have none.
-const names=['registry.json','submissions.json','chart-cross-check.json',...registry.problems.map(p=>p.data_file),...['prove2me.json','other-reviews.json','direct-other.json'].filter(name=>existsSync(resolve(source,name)))];
+// method-notes.json holds the reviewed note on how a record is proved, by board and row id; bundles before 2026-10-23 have none.
+const names=['registry.json','submissions.json','chart-cross-check.json',...registry.problems.map(p=>p.data_file),...['prove2me.json','other-reviews.json','direct-other.json','method-notes.json'].filter(name=>existsSync(resolve(source,name)))];
 // src/lib/prove2me-campaigns.ts lists the prove2.me campaigns that data/prove2me-trust.json reviews, by board
 // (the race slug, or other-<slug> for an Other bounds row). The pages link each race to its campaign. It is a
 // .ts file in src/lib because the site image copies only src/lib/*.ts, and the site server imports it.

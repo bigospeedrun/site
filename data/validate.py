@@ -35,12 +35,29 @@ if (ROOT/'direct-notes.json').exists():
  for key,reason in withdrawn.items():
   assert re.fullmatch(r'direct-(issue|pr)-\d+',key),key
   assert 0<len(reason)<=500 and key not in load('direct-notes.json')['notes'],key
+# Reviewed notes on how a record is proved, by board slug and row id, and board notes for every row of one repository
+# (data/method-notes.json): plain text for a tooltip and for the chat facts. The text rules are asserts. A noted row that
+# is not on its board is only a warning: rows leave a board by themselves (a withdrawn submission, a closed issue, a hold),
+# and the hourly refresh runs this check, so a missing row must not stop it.
+method_notes={}
+note_text=lambda text:isinstance(text,str) and text==text.strip() and 0<len(text)<=500 and not re.search(r'[<>&\\$\n]',text)
+if (ROOT/'method-notes.json').exists():
+ method_notes=load('method-notes.json')
+ assert method_notes['schema_version']==1 and set(method_notes)<={'schema_version','boards','board_notes'}
+ slugs={e['slug'] for e in registry['problems']}
+ assert set(method_notes.get('boards',{}))<=slugs and set(method_notes.get('board_notes',{}))<=slugs,'Method notes for an unknown board'
+ for board,notes in method_notes.get('boards',{}).items():
+  for row_id,text in notes.items():assert note_text(text),(board,row_id)
+ for board,shared in method_notes.get('board_notes',{}).items():
+  for note in shared:
+   assert set(note)=={'repo','text'} and re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',note['repo']) and note_text(note['text']),(board,note.get('repo'))
 print('Checked',registry['checked_at'])
 print('problem | verified | certified-conditional | claimed (observed maximum/minimum) | records')
 for entry in registry['problems']:
  p=load(entry['data_file']);validate(p,load('schemas/problem-v1.json'));assert p['problem_id']==entry['problem_id'];assert p['model']['id']==p['problem_id'].split('/')[1]
  records=p['records'];ids=[r['id'] for r in records];assert len(ids)==len(set(ids));assert set(ids)==set(p['record_metadata']);assert records[0]['kind']=='baseline'
  assert records[0]['submitted_at'] is None
+ for row_id in sorted(set(method_notes.get('boards',{}).get(entry['slug'],{}))-set(ids)):print('Warning: method note for a row that is not on the board:',entry['slug'],row_id)
  assert isinstance(p['record_metadata']['classical-baseline']['publication_year'],int)
  for r in records:
   assert r['id'] not in withdrawn,'Withdrawn submission listed: '+r['id']
