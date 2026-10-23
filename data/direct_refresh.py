@@ -31,6 +31,7 @@ OTHER={'average-sensitivity':dict(bound='\\mathrm{{AS}}(f)\\le {value}d\\sqrt n'
     statement='BigOSpeedrun.AverageSensitivity.Bound')}
 # These hosted smoke identities are permanently excluded, even after label edits.
 SMOKE_NUMBERS={1,2}
+CLAIMED_ONLY_NOTE='Submitted bound; it did not beat the best Lean Verified result, so no proof run started.'
 HELD_NOTE='Proof checks passed; held for a lead review of credit (derivation report). The submitted bound remains Claimed.'
 
 def untrusted_path(path):
@@ -106,7 +107,17 @@ class Importer:
             if number in SMOKE_NUMBERS or is_test_submission(listing):
                 self.notes.append(f'Excluded test PR #{number}');continue
             pr=self.api.json(PREFIX+f'pulls/{number}')
-            if is_test_submission(pr) or (pr['state']=='closed' and not pr.get('merged')):continue
+            if is_test_submission(pr):continue
+            if pr['state']=='closed' and not pr.get('merged'):
+                # A PR closed after the verifier's claimed-only report for its head stays a Claimed claim.
+                try:
+                    if self.claimed_only(dict(route='pull_request',item=pr)):
+                        layout=inspect_pr(self.api,pr)
+                        claims['direct-pr-'+str(number)]=dict(route='pull_request',item=pr,submission=layout['submission'],layout=layout,
+                                                             closed=True,claimed_only=True)
+                except (Rejected,ValueError,KeyError,TypeError):
+                    self.notes.append(f'Ignored invalid closed PR #{number}')
+                continue
             try:
                 # Closed PR base can include its own merge; use original base from
                 # receipts later. Open PR claims use the API base observed now.
@@ -118,6 +129,22 @@ class Importer:
             except (Rejected,ValueError,KeyError,TypeError):
                 self.notes.append(f'Ignored invalid PR #{number}')
         return claims
+
+    def claimed_only(self,claim):
+        """The verifier's own claimed-only report for this exact version: on an issue the bos-claimed-v1 reply
+        with its submission digest, on a PR the final bos-pr-v2 result for its head that says claimed_only. The
+        verifier closes such a submission right after that report; it stays listed as Claimed (Lead, 2026-10-23,
+        after PR #52). Only comments of the workflow bot count."""
+        item=claim['item'];number=item['number']
+        if claim['route']=='issue':
+            marker=f"<!-- bos-claimed-v1 {number} {sha(canonical(claim['submission']).encode())} -->"
+            match=lambda body:body.startswith(marker)
+        else:
+            marker=f"<!-- bos-pr-v2 {number} {item['head']['sha']} -->"
+            match=lambda body:body.startswith(marker) and 'PR proof result: **claimed_only**.' in body
+        comments=self.api.pages(PREFIX+f'issues/{number}/comments')
+        return any((c.get('user') or {}).get('login')=='github-actions[bot]' and (c.get('user') or {}).get('type')=='Bot'
+                   and match(c.get('body') or '') for c in comments)
 
     def evidence(self,key,env,run,artifact,proof_artifact,result_raw,proof_raw,verdict,publisher=None):
         identity=f'{key}-{run["id"]}-{run["run_attempt"]}'+('-'+env['verification_stage'] if env.get('verification_stage') else '')
@@ -249,6 +276,8 @@ class Importer:
         for key,claim in claims.items():
             if not claim.get('submission') or claim.get('exclude'):continue
             if claim.get('closed') and not self.final_verified(key,claim):
+                if claim.get('claimed_only') or (claim['route']=='issue' and self.claimed_only(claim)):
+                    claim['claimed_only']=True;claim['review_note']=CLAIMED_ONLY_NOTE;kept[key]=claim;continue
                 self.notes.append(key+': closed without a final Lean Verified result; not listed');continue
             kept[key]=claim
         return kept
@@ -284,7 +313,7 @@ def row_for(key,claim,now,old=None,note=None):
         authors=[dict(name=login,url='https://github.com/'+login)],predecessors=[note['predecessor']] if note else [],submission_url=item['html_url'],
         source_commit=sub['commit'],artifact=dict(path=path,sha256=sha(raw)),
         evidence=dict(paper_url=item['html_url'],theorem='Race.bound',certificate_path=None),dependencies=[],
-        upstream_status='merged' if route=='pull_request' and item.get('merged') else 'open',
+        upstream_status='merged' if route=='pull_request' and item.get('merged') else 'closed-unmerged' if route=='pull_request' and claim.get('closed') else 'open',
         upstream_status_at=item.get('merged_at') or item['created_at'],site_observed_at=old['site_observed_at'] if old else now,
         source=dict(kind='repo-artifact',url=source))
     meta=dict(checked_at=now[:10],source_url=source,repo=sub['repo_url'].removeprefix('https://github.com/'),

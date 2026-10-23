@@ -16,6 +16,7 @@ class DiscoveryAPI:
         if path.endswith('/issues'):return self.issues
         if path.endswith('/pulls'):return self.prs
         if path.endswith('/actions/artifacts'):return []
+        if path.endswith('/comments'):return []  # No bot report: a closed claim stays off unless Lean Verified.
         raise AssertionError(path)
     def json(self,path,params=None):
         if '/commits/' in path:return {'sha':path.rsplit('/',1)[1]}
@@ -85,6 +86,41 @@ class RefreshTests(unittest.TestCase):
         edited=closed(5);edited['body']=edited['body'].replace('1/1000','1/1001')
         importer=r.Importer(DiscoveryAPI([edited]))
         self.assertEqual(importer.verify(importer.discover(),previous),{})
+
+    def test_a_closed_claimed_only_submission_stays_listed_by_the_bots_own_marker(self):
+        # Lead, 2026-10-23 (after PR #52): the verifier closes a claimed-only submission; it stays Claimed.
+        sub=d.parse_body(self.issue()['body']);digest=d.sha(d.canonical(sub).encode())
+        bot=lambda body:{'user':{'login':'github-actions[bot]','type':'Bot'},'body':body}
+        def run(comments,closed_issue=True):
+            api=DiscoveryAPI([dict(self.issue(5),state='closed' if closed_issue else 'open')])
+            pages=api.pages
+            api.pages=lambda path,params=None,key=None:comments if path.endswith('/comments') else pages(path,params,key)
+            importer=r.Importer(api)
+            return importer.verify(importer.discover(),{})
+        claimed=bot(f'<!-- bos-claimed-v1 5 {digest} -->\nThis submission is listed as Claimed.')
+        kept=run([claimed])
+        self.assertEqual(set(kept),{'direct-issue-5'})
+        row,meta,_=r.row_for('direct-issue-5',kept['direct-issue-5'],'2026-10-23T00:00:00Z')
+        self.assertEqual((row['tier'],meta['proof_status']),('claimed',r.CLAIMED_ONLY_NOTE))
+        # Another version's digest, or the same text from another account: not listed once closed.
+        self.assertEqual(run([bot('<!-- bos-claimed-v1 5 '+'0'*64+' -->')]),{})
+        self.assertEqual(run([dict(claimed,user={'login':'mallory','type':'User'})]),{})
+        self.assertEqual(set(run([],closed_issue=False)),{'direct-issue-5'})  # An open issue needs no marker.
+
+    def test_a_closed_pr_is_kept_only_after_the_bots_claimed_only_result_for_its_head(self):
+        pr=dict(number=52,state='closed',merged=False,head={'sha':'c'*40},labels=[],user={'login':'alice'})
+        bot=lambda body:{'user':{'login':'github-actions[bot]','type':'Bot'},'body':body}
+        layout=dict(submission=dict(d.parse_body(self.issue()['body']),repo_url='https://github.com/bigospeedrun/verifier',commit='c'*40))
+        for comments,kept in [([bot('<!-- bos-pr-v2 52 '+'c'*40+' -->\nPR proof result: **claimed_only**. Bound below the record.')],True),
+                              ([bot('<!-- bos-pr-v2 52 '+'c'*40+' -->\nPR proof result: **keep_open**. Receipt run mismatch.')],False),
+                              ([bot('<!-- bos-pr-v2 52 '+'d'*40+' -->\nPR proof result: **claimed_only**.')],False)]:
+            api=DiscoveryAPI([],[pr])
+            pages=api.pages
+            api.pages=lambda path,params=None,key=None,comments=comments:comments if path.endswith('/comments') else pages(path,params,key)
+            with patch.object(r,'inspect_pr',return_value=layout):
+                claims=r.Importer(api).discover()
+            self.assertEqual('direct-pr-52' in claims,kept)
+            if kept:self.assertEqual((claims['direct-pr-52']['closed'],claims['direct-pr-52']['claimed_only']),(True,True))
 
     def test_a_listing_without_a_known_submission_keeps_the_previous_bundle(self):
         # 2026-10-22 16:18Z: GitHub listed no verifier issue for one read; the refresh dropped 13 rows,
