@@ -71,6 +71,29 @@
           "proofScope": "The verifier checked Race.bound : BigOSpeedrun.AverageSensitivity.Bound (2351/625) at commit 0b73c641c8069619da5baa64af5eeb95b72a56a4 of https://github.com/darkhipo/average-sensitivity-lean.",
           "bound": "\\mathrm{AS}(f)\\le 3.7616d\\sqrt n",
           "receiptPath": "sources/direct-issue-55-40048795384-1.json"
+        },
+        {
+          "author": "darkhipo",
+          "handle": "direct-issue-56",
+          "value": "75231/20000",
+          "display": "3.76155",
+          "date": "2026-10-24T02:38:43Z",
+          "dateSource": "https://github.com/bigospeedrun/verifier/issues/56",
+          "dateKind": "first-stated",
+          "url": "https://github.com/bigospeedrun/verifier/issues/56",
+          "lean": true,
+          "evidence": "lean-verified",
+          "note": "This is Anchen0823's Lean Verified \\(\\frac{1881}{500}\\) proof (submission #49), as sharpened by darkhipo in submissions #54 and #55, with a few more of its internal constants changed, so the final constant becomes \\(\\frac{75231}{20000}\\); no other proof step changes.",
+          "authors": [
+            {
+              "name": "darkhipo",
+              "url": "https://github.com/darkhipo"
+            }
+          ],
+          "leanNote": "Yes: the Big O Speedrun verifier checked this Lean proof (Lean kernel and the permitted-axiom audit).",
+          "proofScope": "The verifier checked Race.bound : BigOSpeedrun.AverageSensitivity.Bound (75231/20000) at commit d75231bc19b4d3d8974cf5329ba23c3dd492de4f of https://github.com/darkhipo/average-sensitivity-lean.",
+          "bound": "\\mathrm{AS}(f)\\le 3.76155d\\sqrt n",
+          "receiptPath": "sources/direct-issue-56-40055030850-1.json"
         }
       ]
     }

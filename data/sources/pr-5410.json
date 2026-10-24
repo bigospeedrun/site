@@ -4,8 +4,8 @@
   "title": "Treat the selected record as provenance in 99 replay checks (no new κ)",
   "body": "## What changes\n\n99 `verify.py` files in research packages I authored. No other file changes.\n\n- The live check `selected = json.loads(... certificates/selected-result.json ...)` plus `kappa == \"<old value>\"` is removed. A one-line comment replaces it.\n- In 4 files the pin loop also hashed `usage: \"provenance\"` rows against the working tree. Those files now skip non-`input` rows, matching the other 95.\n\nResults, `RESULT.json`, `SOURCES.json`, `VERIFY.json`, pins and evidence are all unchanged.\n\n## Why\n\n[`docs/research/research-package-guide.md`](https://github.com/CrocSwap/integer-mult-bounds/blob/main/docs/research/research-package-guide.md) says the selected record is historical provenance, \"so future priority changes do not invalidate a package\". Each of these packages already pins `certificates/selected-result.json` as `usage: \"provenance\"`, and `scripts/research_package.py` checks it at `base_commit` through Git. The verifiers asserted the live κ anyway, so every frontier change broke them. On main 1ec111997:\n\n- 63 assert `60403/20000000` and broke at the #4610 admission.\n- 34 had already failed since the `23/10000` era.\n- 2 assert an even older value, `836330098538459/500000000000000000`.\n\nRe-pinning to the new κ would break again at the next frontier change, so this removes the live dependency instead.\n\n## Validation\n\nOn this branch (main 1ec111997 + this commit), CPython 3.12:\n\n- `python3.12 -I -B <package>/verify.py`: **99/99 pass**. All 99 failed before this change.\n- `python3 -B scripts/research_package.py --package <package> --check-only`: 99/99 `PASS_PACKAGE_METADATA_AND_PINS`. This includes the base-commit provenance check of the selected record.\n\nCI will replay all 99 packages because they changed. The heaviest is `two-three-cycle-additivity`, with a 600 s budget. The total declared budget is 8,280 s.\n\n## Scope\n\nThis is replay maintenance only. No mathematical claim, κ or frontier changes. Other contributors' packages with the same pattern are not touched.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-24T00:12:44Z",
-  "updated_at": "2026-10-24T00:13:18Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-24T02:54:33Z",
+  "closed_at": "2026-10-24T02:54:33Z",
+  "merged_at": "2026-10-24T02:54:33Z",
+  "state": "closed"
 }

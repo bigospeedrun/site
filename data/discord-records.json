@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-5270",
+        "leader": "crocswap-pr-5413",
         "records": [
           {
             "id": "openai-original-109",
@@ -1055,7 +1055,7 @@
             "relation": "attained",
             "evidence": "Claimed",
             "authors": [
-              "sreekanth nair"
+              "sree"
             ],
             "bound": "O(n log^(1 - 0.001330733966732373) n)"
           },
@@ -1175,7 +1175,7 @@
             "relation": "attained",
             "evidence": "Claimed",
             "authors": [
-              "sreekanth nair"
+              "sree"
             ],
             "bound": "O(n log^(1 - 0.00137255015936798) n)"
           },
@@ -1235,7 +1235,7 @@
             "relation": "attained",
             "evidence": "Claimed",
             "authors": [
-              "sreekanth nair"
+              "sree"
             ],
             "bound": "O(n log^(1 - 0.001435468764627892) n)"
           },
@@ -1875,7 +1875,7 @@
             "relation": "attained",
             "evidence": "Human Verified",
             "authors": [
-              "sreekanth nair"
+              "sree"
             ],
             "bound": "O(n log^(1 - 0.001613569610580215) n)"
           },
@@ -4073,7 +4073,7 @@
             "id": "crocswap-pr-5377",
             "score": "60447/20000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Ali Romman"
             ],
@@ -4083,7 +4083,7 @@
             "id": "crocswap-pr-5383",
             "score": "151333/50000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Ali Romman"
             ],
@@ -4093,7 +4093,7 @@
             "id": "crocswap-pr-5387",
             "score": "605334953/200000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "David Ganz"
             ],
@@ -4103,7 +4103,7 @@
             "id": "crocswap-pr-5390",
             "score": "3783343460093/1250000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "David Ganz"
             ],
@@ -4113,7 +4113,7 @@
             "id": "crocswap-pr-5392",
             "score": "12109/4000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Ali Romman"
             ],
@@ -4123,21 +4123,21 @@
             "id": "crocswap-pr-5398",
             "score": "302728823/100000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
               "Ali Romman"
             ],
             "bound": "O(n log^(1 - 0.00302728823) n)"
           },
           {
-            "id": "crocswap-pr-5270",
-            "score": "951999/280000000",
+            "id": "crocswap-pr-5413",
+            "score": "605457647/200000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Human Verified",
             "authors": [
-              "DaysSky"
+              "Chris R"
             ],
-            "bound": "O(n log^(1 - 0.0033999964285714285714) n)"
+            "bound": "O(n log^(1 - 0.003027288235) n)"
           }
         ],
         "table": "big-o"
@@ -5278,6 +5278,16 @@
               "darkhipo"
             ],
             "bound": "AS(f) ≤ 3.7616d sqrt(n)"
+          },
+          {
+            "id": "direct-issue-56:75231/20000",
+            "score": "75231/20000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "darkhipo"
+            ],
+            "bound": "AS(f) ≤ 3.76155d sqrt(n)"
           }
         ]
       },
@@ -5961,7 +5971,8 @@
     "[\"other-average-sensitivity\",\"direct-issue-54:37619/10000\",\"37619/10000\",\"attained\"]:lean",
     "[\"other-average-sensitivity\",\"direct-issue-55:2351/625\",\"2351/625\",\"attained\"]:lean",
     "[\"integer-multiplication\",\"crocswap-pr-5270\",\"951999/280000000\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-5413\",\"605457647/200000000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-5413\",\"605457647/200000000000\",\"attained\"]:record",
+    "[\"other-average-sensitivity\",\"direct-issue-56:75231/20000\",\"75231/20000\",\"attained\"]:lean"
   ],
   "deferred": [
     {

@@ -1,6 +1,48 @@
 {
   "schema_version": 1,
   "entries": {
+    "direct-issue-56": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "average-sensitivity",
+        "repo_url": "https://github.com/darkhipo/average-sensitivity-lean",
+        "commit": "d75231bc19b4d3d8974cf5329ba23c3dd492de4f",
+        "bound": "75231/20000",
+        "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-56-04fc1b293c32df733e0448cd14c65596544ee3036508f307864ba60bce00154f",
+        "problem_id": "other/average-sensitivity",
+        "score": "75231/20000",
+        "score_relation": "attained",
+        "source_commit": "d75231bc19b4d3d8974cf5329ba23c3dd492de4f",
+        "source_url": "https://github.com/darkhipo/average-sensitivity-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "darkhipo",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/40055030850",
+        "checked_at": "2026-10-24T02:48:04.239747Z",
+        "issue_created_at": "2026-10-24T02:38:43Z",
+        "issue_updated_at_at_verification": "2026-10-24T02:38:54Z",
+        "issue_updated_at_at_import": "2026-10-24T02:48:32Z",
+        "derivation_hold": true,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-56-40055030850-1.json",
+        "receipt_sha256": "63c09ed7c21a524cc4001cb10105752d1c085f5eb2ab68c040c0cb8aa2df3810",
+        "policy_hash": "e1f171520b92ec9e48117fdb1caa3431465b24f74bd7be60356e46251b4c2ac8",
+        "result_artifact_id": 12544844262,
+        "controller_fingerprint": "76182813955c67ee6be07e03104d27f6396105983ffe69bcdbb3d3c64567a37a",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
     "direct-issue-55": {
       "route": "issue",
       "submission": {
@@ -2053,6 +2095,49 @@
         "policy_hash": "e1f171520b92ec9e48117fdb1caa3431465b24f74bd7be60356e46251b4c2ac8",
         "result_artifact_id": 12543190097,
         "controller_fingerprint": "99ba79307d9377168015c7434cb79808104f23197a3097092db5fb45da1ee4a2",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-56:04fc1b293c32df733e0448cd14c65596544ee3036508f307864ba60bce00154f": {
+      "key": "direct-issue-56",
+      "submission": {
+        "schema_version": 1,
+        "problem": "average-sensitivity",
+        "repo_url": "https://github.com/darkhipo/average-sensitivity-lean",
+        "commit": "d75231bc19b4d3d8974cf5329ba23c3dd492de4f",
+        "bound": "75231/20000",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-56-04fc1b293c32df733e0448cd14c65596544ee3036508f307864ba60bce00154f",
+        "problem_id": "other/average-sensitivity",
+        "score": "75231/20000",
+        "score_relation": "attained",
+        "source_commit": "d75231bc19b4d3d8974cf5329ba23c3dd492de4f",
+        "source_url": "https://github.com/darkhipo/average-sensitivity-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "darkhipo",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/40055030850",
+        "checked_at": "2026-10-24T02:48:04.239747Z",
+        "issue_created_at": "2026-10-24T02:38:43Z",
+        "issue_updated_at_at_verification": "2026-10-24T02:38:54Z",
+        "issue_updated_at_at_import": "2026-10-24T02:48:32Z",
+        "derivation_hold": true,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-56-40055030850-1.json",
+        "receipt_sha256": "63c09ed7c21a524cc4001cb10105752d1c085f5eb2ab68c040c0cb8aa2df3810",
+        "policy_hash": "e1f171520b92ec9e48117fdb1caa3431465b24f74bd7be60356e46251b4c2ac8",
+        "result_artifact_id": 12544844262,
+        "controller_fingerprint": "76182813955c67ee6be07e03104d27f6396105983ffe69bcdbb3d3c64567a37a",
         "pr_identity": null,
         "source_file": "Submission.lean"
       }
