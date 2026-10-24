@@ -63,9 +63,34 @@ test('the rule needs a direction and numbers; rows that would not post do not co
  before.reserved.push(key(r62));
  const next = plan(before, snapshot(board([lead, r60, r62], lead.id, 'lower')), [], NOW);
  assert.deepEqual(next.messages.map(m => m.key), [key(r60)]);
- // Rows that already were Lean Verified do not count either.
- const oldState = state(board([lead, r62], lead.id, 'lower'));
- assert.deepEqual(plan(oldState, snapshot(board([lead, r60, r62], lead.id, 'lower')), [], NOW).messages.map(m => m.key), [key(r60)]);
+ // A row that was Lean Verified before is not a new row: it posts nothing, and it does not join the pass.
+ const r59 = row(59, '37615400/10000000');
+ const oldState = state(board([lead, r59], lead.id, 'lower'));
+ assert.deepEqual(plan(oldState, snapshot(board([lead, r59, r60], lead.id, 'lower')), [], NOW).messages.map(m => m.key), [key(r60)]);
+});
+
+test('a row that gains Lean Verified alone, later, does not post when the same authors already have an at-least-as-good Lean Verified row', () => {
+ const later = (saved: FeedRecord[], now: FeedRecord[], direction: FeedDirection | 'none' = 'lower') =>
+  plan(state(board([lead, ...saved], lead.id, direction === 'none' ? undefined : direction)), snapshot(board([lead, ...saved, ...now], lead.id, direction === 'none' ? undefined : direction)), [], NOW);
+ // #61 (a worse score than #62) comes back alone after #62 is listed.
+ const late = later([r62], [r61]);
+ assert.deepEqual(late.messages, []);
+ assert.ok(late.state.reserved.includes(key(r61)));
+ // At an equal score the earlier row stays the record.
+ assert.deepEqual(later([r62], [row(64, '376153979/100000000')]).messages, []);
+ // A strictly better row posts, and so does the same score on another author list.
+ assert.deepEqual(later([r60], [r62]).messages.map(m => m.key), [key(r62)]);
+ assert.deepEqual(later([r62], [row(65, '37615398/10000000', ['someone'])]).messages.length, 1);
+ // The direction decides: on a higher-is-better board the worse row is the lower one.
+ assert.deepEqual(later([r60], [r62], 'higher').messages, []);
+ // A saved row that is not a number hides nothing.
+ assert.equal(later([row(66, 'about 3.7')], [r61]).messages.length, 1);
+ // Without a direction every row posts, as before.
+ assert.equal(later([r62], [r61], 'none').messages.length, 1);
+ // The late row is checked against the Lean Verified row, not against a Claimed row of the same authors.
+ assert.equal(later([row(67, '37615300/10000000', ['darkhipo'], 'Claimed')], [r61]).messages.length, 1);
+ // A row of the pass that is worse than the saved row is dropped; the better one of the pass still posts.
+ assert.deepEqual(later([r61], [r60, r62]).messages.map(m => m.key), [key(r62)]);
 });
 
 test('a leader that is not the best row of its list is reserved, and the best row posts as a verified record', () => {

@@ -164,34 +164,48 @@ function ratio(score:string):[bigint,bigint]|null {
  if(decimal)return [BigInt(decimal[1]+(decimal[2]??'')),10n**BigInt((decimal[2]??'').length)];
  return null;
 }
-// Burst of sharpenings (darkhipo's average-sensitivity rounds #60-#62, 2026-10-24, Lead): rows of one board with the
-// exact same author list that gain Lean Verified in one pass post only the best by the board's direction. Returns the
-// event keys of the others, which are reserved without a post. Only rows that would post count (not reserved, not
-// announced). A board without direction, or a group with a score that is not a number, supersedes nothing.
+// Burst of sharpenings (darkhipo's average-sensitivity rounds #60-#63, 2026-10-24, Lead): rows of one board with the
+// exact same author list that gain Lean Verified post only the best by the board's direction. Returns the event keys
+// of the others, which are reserved without a post. Two cases: (1) in one pass, only the best of the rows that gain
+// Lean Verified posts; (2) a row that gains Lean Verified does not post when a row with the same author list was
+// already Lean Verified in the saved state and is at least as good (so a late row of a burst posts nothing).
+// Only rows that would post count as gaining (not reserved, not announced). A board without direction, or a score
+// that is not a number, supersedes nothing.
 function superseded(board:FeedBoard,old:FeedBoard|undefined,reserved:Set<string>,announced:Set<string>):Set<string> {
  const result=new Set<string>();
  if(!board.direction)return result;
+ const wasLean=(record:FeedRecord)=>old?.records.find(r=>identity(old,r)===identity(board,record))?.evidence==='Lean Verified';
  const groups=new Map<string,FeedRecord[]>();
+ const existing=new Map<string,FeedRecord[]>();
  for(const record of board.records){
-  const prior=old?.records.find(r=>identity(old,r)===identity(board,record));
-  if(record.evidence!=='Lean Verified'||prior?.evidence==='Lean Verified')continue;
+  if(record.evidence!=='Lean Verified')continue;
+  const group=JSON.stringify(record.authors);
+  if(wasLean(record)){existing.set(group,[...(existing.get(group)??[]),record]);continue;}
   const key=eventKey(board,record);
   if(reserved.has(key)||announced.has(postedBoundKey(key)))continue;
-  const group=JSON.stringify(record.authors);
   groups.set(group,[...(groups.get(group)??[]),record]);
  }
- for(const rows of groups.values()){
+ // Is the score of record a better than b by the direction? At an equal score: an attained row beats an open endpoint.
+ const better=(a:FeedRecord,b:FeedRecord)=>{
+  const [an,ad]=ratio(a.score)!,[bn,bd]=ratio(b.score)!,x=an*bd,y=bn*ad;
+  if(x!==y)return board.direction==='higher'?x>y:x<y;
+  return a.relation==='attained'&&b.relation!=='attained';
+ };
+ // At least as good: not worse, whatever the relation.
+ const atLeastAsGood=(a:FeedRecord,b:FeedRecord)=>{
+  const [an,ad]=ratio(a.score)!,[bn,bd]=ratio(b.score)!,x=an*bd,y=bn*ad;
+  return x===y||(board.direction==='higher'?x>y:x<y);
+ };
+ for(const [group,gaining] of groups){
+  const prior=(existing.get(group)??[]).filter(r=>ratio(r.score));
+  let rows=gaining.filter(r=>ratio(r.score));
+  if(rows.length<gaining.length&&gaining.length>1)continue;
+  for(const record of rows)if(prior.some(p=>atLeastAsGood(p,record)))result.add(eventKey(board,record));
+  rows=rows.filter(r=>!result.has(eventKey(board,r)));
   if(rows.length<2)continue;
-  const values=rows.map(r=>ratio(r.score));
-  if(values.some(v=>v===null))continue;
   // The best score; at an equal score an attained row beats an open endpoint, then the first row stays.
-  const better=(i:number,j:number)=>{
-   const [an,ad]=values[i]!,[bn,bd]=values[j]!,x=an*bd,y=bn*ad;
-   if(x!==y)return board.direction==='higher'?x>y:x<y;
-   return rows[i].relation==='attained'&&rows[j].relation!=='attained';
-  };
   let best=0;
-  for(let i=1;i<rows.length;i++)if(better(i,best))best=i;
+  for(let i=1;i<rows.length;i++)if(better(rows[i],rows[best]))best=i;
   rows.forEach((record,i)=>{if(i!==best)result.add(eventKey(board,record));});
  }
  return result;
