@@ -8,6 +8,7 @@
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
         "leader": "crocswap-pr-5440",
+        "direction": "higher",
         "records": [
           {
             "id": "openai-original-109",
@@ -4167,6 +4168,7 @@
         "name": "Matrix Multiplication",
         "url": "https://bigospeedrun.com/matrix-multiplication",
         "leader": "openai-matrix-nine-fourths-2026",
+        "direction": "lower",
         "records": [
           {
             "id": "openai-matrix-nine-fourths-2026",
@@ -4186,6 +4188,7 @@
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
         "leader": "direct-pr-41",
+        "direction": "higher",
         "records": [
           {
             "id": "exact-dft-2026",
@@ -4377,6 +4380,7 @@
         "name": "3SUM",
         "url": "https://bigospeedrun.com/3sum",
         "leader": "direct-issue-35",
+        "direction": "lower",
         "records": [
           {
             "id": "anthropic-2026",
@@ -4541,6 +4545,7 @@
         "name": "APSP",
         "url": "https://bigospeedrun.com/apsp",
         "leader": "joshuaqfex-apsp-2026",
+        "direction": "lower",
         "records": [
           {
             "id": "anthropic-2026",
@@ -4681,6 +4686,7 @@
         "name": "Subset Sum",
         "url": "https://bigospeedrun.com/subset-sum",
         "leader": "yannouli-subset-sum-0-4876723-2026",
+        "direction": "lower",
         "records": [
           {
             "id": "subset-sum-2026",
@@ -4731,6 +4737,7 @@
         "url": "https://bigospeedrun.com/other/quasi-riemann",
         "leader": "mrklwk:437386453/500000000",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "aster2024:\\sigma^{\\dagger}",
@@ -4940,6 +4947,7 @@
         "url": "https://bigospeedrun.com/other/catalan",
         "leader": "slitsey:728",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "rohitkrjha:100000000",
@@ -5119,6 +5127,7 @@
         "url": "https://bigospeedrun.com/other/primitive-roots",
         "leader": "Rogerhu12:1",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "Rogerhu12:1",
@@ -5138,6 +5147,7 @@
         "url": "https://bigospeedrun.com/other/matroid-prophet",
         "leader": "canghaimeng:165971304277649481670619/324956758716416046811841770291200",
         "table": "other-bounds",
+        "direction": "higher",
         "records": [
           {
             "id": "shea256:9652683394380719/637507023635152349901619200",
@@ -5227,6 +5237,7 @@
         "url": "https://bigospeedrun.com/other/contingency-tables",
         "leader": "EcoDataLab:80{,}000d^{17}",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "EcoDataLab:80{,}000d^{17}",
@@ -5246,6 +5257,7 @@
         "url": "https://bigospeedrun.com/other/average-sensitivity",
         "leader": "canghaimeng:399/125",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "log-prathm:3.83",
@@ -5328,6 +5340,26 @@
               "darkhipo"
             ],
             "bound": "AS(f) ≤ 3.76154d sqrt(n)"
+          },
+          {
+            "id": "direct-issue-60:37615399/10000000",
+            "score": "37615399/10000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "darkhipo"
+            ],
+            "bound": "AS(f) ≤ 3.76154d sqrt(n)"
+          },
+          {
+            "id": "direct-issue-62:376153979/100000000",
+            "score": "376153979/100000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "darkhipo"
+            ],
+            "bound": "AS(f) ≤ 3.76154d sqrt(n)"
           }
         ]
       },
@@ -5337,6 +5369,7 @@
         "url": "https://bigospeedrun.com/other/block-sensitivity",
         "leader": "prove2me-2-131121719190:2.131121719190",
         "table": "other-bounds",
+        "direction": "higher",
         "records": [
           {
             "id": "robinkothari:\\log B/\\log A,\\quad A=44\\cdot9^{441},\\quad B=9^{42}(2\\cdot9^{42}+1)^{20}",
@@ -5486,6 +5519,7 @@
         "url": "https://bigospeedrun.com/other/van-der-waerden",
         "leader": "DaysSky:1/9",
         "table": "other-bounds",
+        "direction": "higher",
         "records": [
           {
             "id": "rohanarun:1/25",
@@ -5535,6 +5569,7 @@
         "url": "https://bigospeedrun.com/other/sidorenko",
         "leader": "rohanarun:189",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "rohanarun:189",
@@ -5554,6 +5589,7 @@
         "url": "https://bigospeedrun.com/other/unit-distance-grid",
         "leader": "rohanarun:8\\cdot4=32",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "rohanarun:8\\cdot4=32",
@@ -5573,6 +5609,7 @@
         "url": "https://bigospeedrun.com/other/snaky",
         "leader": "shjvandekamp:19",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "gotrevor:20",
@@ -5603,6 +5640,7 @@
         "url": "https://bigospeedrun.com/other/ordered-matrix-removal",
         "leader": "shea256:9",
         "table": "other-bounds",
+        "direction": "lower",
         "records": [
           {
             "id": "VladimirReshetnikov:25",
@@ -5652,6 +5690,7 @@
         "url": "https://bigospeedrun.com/other/heilbronn-triangle",
         "leader": "canghaimeng:2/100866719",
         "table": "other-bounds",
+        "direction": "higher",
         "records": [
           {
             "id": "littleBro:1/(498\\cdot379^{17}+7)",
@@ -5751,6 +5790,7 @@
         "url": "https://bigospeedrun.com/other/haldane-gap",
         "leader": "amachino:0.1515",
         "table": "other-bounds",
+        "direction": "higher",
         "records": [
           {
             "id": "amachino:0.1515",
@@ -6026,7 +6066,9 @@
     "[\"other-catalan\",\"slitsey:728\",\"728\",\"attained\"]:record",
     "[\"other-block-sensitivity\",\"prove2me-2-131121719190:2.131121719190\",\"2.131121719190\",\"attained\"]:lean",
     "[\"integer-multiplication\",\"crocswap-pr-5440\",\"951999/280000000\",\"attained\"]:record",
-    "[\"other-average-sensitivity\",\"direct-issue-58:188077/50000\",\"188077/50000\",\"attained\"]:lean"
+    "[\"other-average-sensitivity\",\"direct-issue-58:188077/50000\",\"188077/50000\",\"attained\"]:lean",
+    "[\"other-average-sensitivity\",\"direct-issue-60:37615399/10000000\",\"37615399/10000000\",\"attained\"]:lean",
+    "[\"other-average-sensitivity\",\"direct-issue-62:376153979/100000000\",\"376153979/100000000\",\"attained\"]:lean"
   ],
   "deferred": [
     {
