@@ -1,4 +1,4 @@
-import {ranked,boundPrecision,boundExponent,scientificSaving} from './ranking.ts';
+import {ranked,boundPrecision,boundExponent,scientificSaving,displayDigits} from './ranking.ts';
 import {evidenceName,evidenceLevels} from './evidence.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import type {Problem,RecordEntry} from './types';
@@ -32,10 +32,10 @@ function decimalSaving(score:string,digits:number):string {
  if(point>=raw.length)return raw+'0'.repeat(point-raw.length);
  return raw.slice(0,point)+'.'+raw.slice(point);
 }
-export function plainBound(slug:string,score:string,relation='attained',digits?:number):string {
+export function plainBound(slug:string,score:string,relation='attained',digits?:number,shown?:string):string {
  const kappa=slug==='integer-multiplication'||slug==='exact-dft';
  const precision=digits??boundPrecision([score],kappa);
- const rounded=kappa?decimalSaving(score,precision):boundExponent(score,false,precision);
+ const rounded=shown??(kappa?decimalSaving(score,precision):boundExponent(score,false,precision));
  const value=rounded.includes('.')?rounded.replace(/0+$/,'').replace(/\.$/,''):rounded;
  const epsilon=relation==='strict-upper-bound'?', for every fixed epsilon > 0':'';
  if(kappa)return `O(n log^(1 - ${value}${epsilon? ' + epsilon':''}) n)${epsilon}`;
@@ -49,6 +49,40 @@ export function feedBoard(problem:Pick<Problem,'slug'|'direction'>,records:(Pick
  return {slug:problem.slug,name,url:`https://bigospeedrun.com/${problem.slug}`,leader:ranked(records,problem.direction)[0]?.record.id??null,
  records:records.map(r=>({id:r.id,score:r.score,relation:r.scoreRelation??'attained',evidence:evidenceName(r.evidenceLevel),authors:r.authors.map(a=>a.name),bound:plainBound(problem.slug,r.score,r.scoreRelation,digits),
   ...(r.verification&&evidenceName(r.evidenceLevel)==='Claimed'?{verification:r.verification}:{})}))};
+}
+// A post's value never claims more than the proof (Lead, 2026-10-24): rounded down on a higher-is-better
+// kappa board, up on a lower-is-better exponent board. sig: significant digits; places: decimal places.
+export function directedDecimal(score:string,up:boolean,{sig,places}:{sig?:number;places?:number}):string {
+ const [ns,ds='1']=score.split('/');const n=BigInt(ns),d=BigInt(ds);
+ if(n===0n)return '0';
+ let shift:number;
+ if(places!==undefined)shift=places;
+ else{
+  let e:number;const q=n/d;
+  if(q>0n)e=q.toString().length-1;
+  else{let k=0,t=n*10n;while(t<d){t*=10n;k++;}e=-(k+1);}
+  shift=(sig??3)-1-e;
+ }
+ const num=shift>=0?n*10n**BigInt(shift):n,den=shift>=0?d:d*10n**BigInt(-shift);
+ let m=num/den;if(up&&m*den!==num)m+=1n;
+ let text=m.toString();
+ if(shift<=0)return text+'0'.repeat(-shift);
+ if(text.length<=shift)text='0'.repeat(shift-text.length+1)+text;
+ return (text.slice(0,text.length-shift)+'.'+text.slice(text.length-shift)).replace(/0+$/,'').replace(/\.$/,'');
+}
+// The bound text of a post on a Big O board: digits from the new bound and the row it beats (the best other
+// row), at least 3, and more while the two would look equal, up to the site's table cap (displayDigits.table),
+// so rows that agree beyond the cap still show the same value. The site tables keep their board precision.
+export function postBound(board:FeedBoard,record:FeedRecord):string {
+ const kappa=board.slug==='integer-multiplication'||board.slug==='exact-dft';
+ const up=!kappa;
+ const others=board.records.filter(r=>r.score!==record.score||r.relation!==record.relation);
+ const better=(a:string,b:string)=>{const [an,ad='1']=a.split('/'),[bn,bd='1']=b.split('/');const x=BigInt(an)*BigInt(bd),y=BigInt(bn)*BigInt(ad);return kappa?x>y:x<y;};
+ const beaten=others.reduce<FeedRecord|undefined>((best,r)=>!best||better(r.score,best.score)?r:best,undefined);
+ const shown=(score:string,digits:number)=>directedDecimal(score,up,kappa?{sig:digits}:{places:digits});
+ let digits=3;
+ while(beaten&&digits<displayDigits.table&&shown(record.score,digits)===shown(beaten.score,digits))digits++;
+ return plainBound(board.slug,record.score,record.relation,digits,shown(record.score,digits));
 }
 // A plain-text form of a site bound (KaTeX source) for Discord and X posts.
 export function plainTex(tex:string):string {
@@ -180,7 +214,8 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
      // gains Lean Verified and posts once as a new record.
      if(hold.state==='held'||!Number.isFinite(since)||now-since<HOLD_LIMIT){deferred.set(key,{key,slug:board.slug,authors:record.authors,hold:true});continue;}
     }
-    if(isNew&&lastValue.get(board.slug)===record.bound){reserved.add(key);deferred.delete(key);continue;}
+    const posted=isOther(board.slug)?record:{...record,bound:postBound(board,record)};
+    if(isNew&&lastValue.get(board.slug)===posted.bound){reserved.add(key);deferred.delete(key);continue;}
     const group=authorKey(board.slug,record.authors);
     if(isNew&&now-(lastAccepted.get(group)??-Infinity)<3*60*60*1000){
      deferred.set(key,{key,slug:board.slug,authors:record.authors});continue;
@@ -195,7 +230,7 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
       reserved.add(oldKey);deferred.delete(oldKey);
      }
     }
-    messages.push({key,content:message(board,record,isNew),x_text:xMessage(board,record,isNew),authors:record.authors,...(board.table?{table:board.table}:{})});
+    messages.push({key,content:message(board,posted,isNew),x_text:xMessage(board,posted,isNew),authors:record.authors,...(board.table?{table:board.table}:{})});
    }
   }
  }

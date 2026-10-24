@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength,otherFeedBoard,plainTex,HOLD_LIMIT} from './records-feed.ts';
+import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength,otherFeedBoard,plainTex,HOLD_LIMIT,postBound,directedDecimal} from './records-feed.ts';
 import type {OtherClaim,OtherRow} from './records-feed.ts';
 import type {FeedSnapshot,FeedBoard,FeedRecord} from './records-feed.ts';
 const row=(id='a',evidence='Claimed',score='1/1000'):FeedRecord=>({id,evidence,score,relation:'attained',authors:['Alice'],bound:plainBound('exact-dft',score)});
@@ -213,10 +213,12 @@ test('X new-record wording matches the approved template and preserves Discord t
  const text=xMessage(b,r);
  assert.equal(text,'New claim!\n\nProblem: Integer Multiplication\nNew value: O(n log^(1 - 0.00137255015936798) n)\nPlayer: sreekanth nair\nStatus: Claimed (not verified)');
  assert.ok(xPostLength(text)<=280);
+ // A post shows its own short bound (postBound), not the board's table text.
+ const posted={...r,bound:postBound({...b,records:[r]},r)};
  const planned=plan(baseline({schema_version:1,boards:[]}),snapshot({...b,records:[r]})).messages[0];
- assert.equal(planned.content,message(b,r));assert.equal(planned.x_text,text);
+ assert.equal(planned.content,message(b,posted));assert.equal(planned.x_text,xMessage(b,posted));
  const saved=appendRecordPost([],planned,'2026-10-11T00:00:00.000Z')[0];
- assert.equal(saved.text,message(b,r));assert.equal(saved.x_text,text);
+ assert.equal(saved.text,message(b,posted));assert.equal(saved.x_text,xMessage(b,posted));
 });
 
 test('X verified posts use Value, the site evidence label, and comma-separated Players',()=>{
@@ -333,12 +335,12 @@ test('all six boards send one compact colored embed and keep exact accepted and 
   const posts:ReturnType<typeof appendRecordPost>=[];
   const result=await deliver('https://discord.com/api/webhooks/123/fake',[entry],(async(_url,options)=>{
    const payload=JSON.parse(String(options?.body));
-   assert.deepEqual(payload,{content:'',embeds:[{description:message(b,b.records[0]),color}],allowed_mentions:{parse:[]}});
+   assert.deepEqual(payload,{content:'',embeds:[{description:message(b,{...b.records[0],bound:postBound(b,b.records[0])}),color}],allowed_mentions:{parse:[]}});
    assert.doesNotMatch(payload.embeds[0].description,/\n/);
    return new Response('',{status:200});
   }) as typeof fetch,accepted=>posts.push(...appendRecordPost([],accepted,'2026-10-13T00:00:00.000Z')));
   assert.deepEqual(result,{sent:1,failed:0});assert.equal(posts.length,1);
-  assert.equal(posts[0].text,entry.content);assert.equal(posts[0].x_text,xMessage(b,b.records[0]));
+  assert.equal(posts[0].text,entry.content);assert.equal(posts[0].x_text,xMessage(b,{...b.records[0],bound:postBound(b,b.records[0])}));
   assert.equal(posts[0].key,entry.key);
  }
 });
@@ -502,4 +504,22 @@ test('a held direct submission never posts while held; after approval a leader p
  // Approved while another row leads: the usual Lean upgrade post.
  const behind=plan(long.state,snapshot(board([row('a','Claimed','1/800'),copy('Lean Verified')],'a')),[],t0+60*hour);
  assert.deepEqual(behind.messages.map(m=>m.content.split(' |')[0]),['**New claim**','**Record verified**']);
+});
+
+// Lead, 2026-10-24: #5270 posted 0.0033999964285714285714 (the board precision, pinned at its cap by old rows that agree
+// for 70+ digits). A post takes its digits from the new bound and the row it beats, rounded so it never claims more.
+test('a post shows the digits that separate it from the row it beats, rounded never stronger',()=>{
+ const im=(records:FeedRecord[],leader:string):FeedBoard=>({slug:'integer-multiplication',name:'Integer Multiplication',url:'https://bigospeedrun.com/integer-multiplication',leader,records});
+ const k=(id:string,score:string):FeedRecord=>({id,score,relation:'attained',evidence:'Claimed',authors:['A'],bound:plainBound('integer-multiplication',score,'attained',20)});
+ const old=im([k('crocswap-pr-5398','302728823/100000000000')],'crocswap-pr-5398');
+ const now=im([k('crocswap-pr-5398','302728823/100000000000'),k('crocswap-pr-5270','951999/280000000')],'crocswap-pr-5270');
+ const m=plan(baseline(snapshot(old)),snapshot(now)).messages;
+ assert.equal(m.length,1);assert.match(m[0].content,/`O\(n log\^\(1 - 0\.00339\) n\)`/);  // 0.0033999964... rounded DOWN, not 0.0034
+ // A lower-is-better board rounds UP, and a tie at 3 places adds digits: 1.920279 vs 1.921 shows 1.9203.
+ const e=(id:string,score:string):FeedRecord=>({id,score,relation:'attained',evidence:'Claimed',authors:['B'],bound:plainBound('3sum',score)});
+ const sum=(records:FeedRecord[],leader:string):FeedBoard=>({slug:'3sum',name:'3SUM',url:'https://bigospeedrun.com/3sum',leader,records});
+ const b1=sum([e('x','1921/1000')],'x'),b2=sum([e('x','1921/1000'),e('y','1920279/1000000')],'y');
+ const s=plan(baseline(snapshot(b1)),snapshot(b2)).messages;
+ assert.match(s[0].content,/`O\(n\^1\.9203\)`/);
+ assert.equal(directedDecimal('1920279/1000000',true,{places:3}),'1.921');assert.equal(directedDecimal('1920279/1000000',false,{places:3}),'1.92');
 });
