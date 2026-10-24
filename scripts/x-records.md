@@ -55,6 +55,8 @@ this step, in a normal reviewed site commit (one commit per delete):
 1. Run the `x-delete` workflow with the tweet id (an id that this log shows as `posted`).
 2. In a worktree of site `main`, run `node --experimental-strip-types scripts/mark-deleted.ts <tweet id> "<one line reason>"`.
    It writes both marks and uses the time of the run. A Discord post that was deleted by hand needs no other step.
+   A post that exists only on Discord (no entry in `data/x-posts.json`) cannot be marked by `scripts/mark-deleted.ts`:
+   edit `deleted_at` and `deleted_reason` on its key in `data/records-posts.json` by hand.
 3. To post the same record again, take its key out of `reserved` and add it to `deferred` in
    `data/discord-records.json` (see `scripts/discord-records.md`), in the same commit.
 4. Send the commit to the reviewer. The lead pushes it.
