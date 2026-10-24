@@ -27,7 +27,8 @@ if (ROOT/'direct-notes.json').exists():
  for key,n in load('direct-notes.json')['notes'].items():
   assert re.fullmatch(r'direct-(issue|pr)-\d+',key),key
   assert re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/(issues|pull)/\d+',n['predecessor']),key
-  assert 0<len(n['text'])<=500 and not re.search(r'[<>&\\$]',n['text']),key
+  # Plain text, except that a note on an Other bounds row may hold KaTeX between \( and \) (the page renders it with inlineMath).
+  assert 0<len(n['text'])<=500 and not re.search(r'[<>&$]',n['text']) and not re.search(r'\\',re.sub(r'\\\(.*?\\\)','',n['text'],flags=re.S)),key
 withdrawn={}
 if (ROOT/'direct-notes.json').exists():
  # Direct submissions their submitter withdrew: the refresh lists no row for them, with the reason on record.

@@ -398,6 +398,11 @@ class RefreshTests(unittest.TestCase):
                          ('1881/500','3.762','lean-verified','https://github.com/bigospeedrun/verifier/issues/60'))
         self.assertEqual(listed[0]['bound'],'\\mathrm{AS}(f)\\le 3.762d\\sqrt n')
         self.assertEqual(r.other_claims(claims,{'direct-issue-60':'withdrawn'},{}),{})
+        # A reviewed credit note on an Other bounds row reaches the claim, with its KaTeX (the page renders it with inlineMath).
+        note=dict(predecessor='https://github.com/bigospeedrun/verifier/issues/49',text="This is a Lean Verified \\(\\frac{1881}{500}\\) proof with its final constant lowered.")
+        noted=r.other_claims(claims,{},{'direct-issue-60':note})['other-average-sensitivity']['claims'][0]
+        self.assertEqual(noted['note'],note['text'])
+        with self.assertRaises(r.Rejected):r.other_claims(claims,{},{'direct-issue-60':dict(note,text='A <b>tag</b>')})
         self.assertEqual([r.display_up(v) for v in ['1881/500','3','1/3']],['3.762','3.0','0.333334'])
         # No board row for it, and prepare writes the file.
         temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);root=Path(temp.name)
