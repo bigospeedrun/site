@@ -7,7 +7,7 @@ import type {Problem,RecordEntry} from './types';
 // passed: 'pending' while it runs (since: the submission time), 'failed' after a final failed outcome,
 // 'held' while a maintainer reviews it (derivation hold or the verifier's review label).
 export interface FeedVerification {state:'pending'|'failed'|'held'; since:string}
-export interface FeedRecord {id:string; score:string; relation:string; evidence:string; authors:string[]; bound:string; verification?:FeedVerification}
+export interface FeedRecord {id:string; score:string; relation:string; evidence:string; authors:string[]; bound:string; display?:string; verification?:FeedVerification}
 // table: the landing-page table of the board. 'big-o' (also when absent, in older
 // snapshots) posts to the Big O records channel; 'other-bounds' to the Other bounds one.
 export type FeedTable='big-o'|'other-bounds';
@@ -77,16 +77,43 @@ export function directedDecimal(score:string,up:boolean,{sig,places}:{sig?:numbe
 // The bound text of a post on a Big O board: digits from the new bound and the row it beats (the best other
 // row), at least 3, and more while the two would look equal, up to the site's table cap (displayDigits.table),
 // so rows that agree beyond the cap still show the same value. The site tables keep their board precision.
-export function postBound(board:FeedBoard,record:FeedRecord):string {
+export function postBound(board:FeedBoard,record:FeedRecord,minDigits=3):string {
  const kappa=board.slug==='integer-multiplication'||board.slug==='exact-dft';
  const up=!kappa;
  const others=board.records.filter(r=>r.score!==record.score||r.relation!==record.relation);
  const better=(a:string,b:string)=>{const [an,ad='1']=a.split('/'),[bn,bd='1']=b.split('/');const x=BigInt(an)*BigInt(bd),y=BigInt(bn)*BigInt(ad);return kappa?x>y:x<y;};
  const beaten=others.reduce<FeedRecord|undefined>((best,r)=>!best||better(r.score,best.score)?r:best,undefined);
  const shown=(score:string,digits:number)=>directedDecimal(score,up,kappa?{sig:digits}:{places:digits});
- let digits=3;
+ let digits=Math.min(minDigits,displayDigits.table);
  while(beaten&&digits<displayDigits.table&&shown(record.score,digits)===shown(beaten.score,digits))digits++;
  return plainBound(board.slug,record.score,record.relation,digits,shown(record.score,digits));
+}
+// The bound text of a Lean Verified post on an Other bounds board (Lead, 2026-10-24, after the #62 post that showed the
+// same 3.76154 as the #58 post): the same digits rule as postBound. The row it beats is the best Lean Verified row of the
+// board before this pass (old). The claim's display decimal in the bound is replaced by the fewest decimal places (at
+// least 3) that separate the new score from that row, rounded toward the weaker bound: up on a lower-is-better board,
+// down on a higher-is-better one. minPlaces raises the floor (the safety net in plan). Returns the bound unchanged when
+// there is no such row, no direction, no plain decimal display in the bound, or a score that is not a number.
+export function otherPostBound(board:FeedBoard,old:FeedBoard|undefined,record:FeedRecord,minPlaces=0):string {
+ const display=record.display,value=ratio(record.score);
+ if(!board.direction||!display||!value||!/^\d+\.\d+$/.test(display)||record.bound.split(display).length!==2)return record.bound;
+ const up=board.direction==='lower';
+ const fraction=(score:string)=>{const v=ratio(score);return v?`${v[0]}/${v[1]}`:null;};
+ const mine=fraction(record.score)!;
+ let beaten:string|undefined;
+ for(const r of old?.records??[]){
+  if(r.evidence!=='Lean Verified'||identity(old!,r)===identity(board,record))continue;
+  const other=ratio(r.score);
+  if(!other)continue;
+  if(!beaten)beaten=fraction(r.score)!;
+  else{const [bn,bd]=ratio(beaten)!,x=other[0]*bd,y=bn*other[1];if(board.direction==='higher'?x>y:x<y)beaten=fraction(r.score)!;}
+ }
+ if(!beaten&&!minPlaces)return record.bound;
+ const shown=(score:string,places:number)=>directedDecimal(score,up,{places});
+ let places=Math.min(displayDigits.table,Math.max(3,minPlaces));
+ while(beaten&&places<displayDigits.table&&shown(mine,places)===shown(beaten,places))places++;
+ const text=shown(mine,places);
+ return record.bound.replace(display,text.includes('.')?text:text+'.0');
 }
 // A plain-text form of a site bound (KaTeX source) for Discord and X posts.
 export function plainTex(tex:string):string {
@@ -116,7 +143,7 @@ export function otherFeedBoard(row:OtherRow):FeedBoard {
  const leader=otherBoundLeader(row);
  return {slug:'other-'+row.slug,name:row.name,url:`https://bigospeedrun.com/other/${row.slug}`,leader:leader?id(leader):null,table:'other-bounds',...(row.direction==='lower'||row.direction==='higher'?{direction:row.direction}:{}),
   records:row.claims.map(c=>({id:id(c),score:c.value,relation:c.display.startsWith('<')?'strict-upper-bound':'attained',evidence:level(c.evidence),
-   authors:c.authors.map(a=>a.name),bound:plainTex(c.bound)}))};
+   authors:c.authors.map(a=>a.name),bound:plainTex(c.bound),...(c.display?{display:c.display}:{})}))};
 }
 const isOther=(slug:string)=>slug.startsWith('other-');
 export const HOLD_LIMIT=24*60*60*1000;
@@ -276,7 +303,20 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
      // gains Lean Verified and posts once as a new record.
      if(hold.state==='held'||!Number.isFinite(since)||now-since<HOLD_LIMIT){deferred.set(key,{key,slug:board.slug,authors:record.authors,hold:true});continue;}
     }
-    const posted=isOther(board.slug)?record:{...record,bound:postBound(board,record)};
+    // Digits (Lead, 2026-10-24): a Lean Verified post shows the digits that separate it from the best Lean Verified row
+    // before this pass. Safety net: when the text still equals a live post, one more digit each round; if no round gives a
+    // new text, nothing posts (X refuses an identical text; the #62 post of 2026-10-24 got a 403 that way).
+    const build=(extra:number)=>{
+     const places=extra&&record.display?.includes('.')?record.display.split('.')[1].length+extra:0;
+     const row=isOther(board.slug)?(record.evidence==='Lean Verified'?{...record,bound:otherPostBound(board,old,record,places)}:record):{...record,bound:postBound(board,record,3+extra)};
+     return {row,content:message(board,row,isNew),x_text:xMessage(board,row,isNew)};
+    };
+    let built=build(0);
+    const boardPosts=live.filter(post=>JSON.parse(post.key.slice(0,post.key.lastIndexOf(':')))[0]===board.slug);
+    const taken=(m:{content:string;x_text:string})=>boardPosts.some(post=>post.text===m.content||post.x_text===m.x_text);
+    for(let extra=1;extra<=displayDigits.table&&taken(built);extra++)built=build(extra);
+    if(taken(built)){reserved.add(key);deferred.delete(key);continue;}
+    const posted=built.row;
     if(isNew&&lastValue.get(board.slug)===posted.bound){reserved.add(key);deferred.delete(key);continue;}
     const group=authorKey(board.slug,record.authors);
     if(isNew&&now-(lastAccepted.get(group)??-Infinity)<3*60*60*1000){
@@ -292,7 +332,7 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
       reserved.add(oldKey);deferred.delete(oldKey);
      }
     }
-    messages.push({key,content:message(board,posted,isNew),x_text:xMessage(board,posted,isNew),authors:record.authors,...(board.table?{table:board.table}:{})});
+    messages.push({key,content:built.content,x_text:built.x_text,authors:record.authors,...(board.table?{table:board.table}:{})});
    }
   }
  }
