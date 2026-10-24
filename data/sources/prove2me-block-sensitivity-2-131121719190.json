@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "9873ab8f-732c-478e-b068-f800ef18558e",
+    "slug": "block-sensitivity-vs-sensitivity",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "lower",
+    "value_direction": "higher"
+  },
+  "mission_id": "97a69a02-18f0-49b7-a242-c7b7d7a97300",
+  "mission_url": "https://prove2.me/missions/97a69a02-18f0-49b7-a242-c7b7d7a97300",
+  "attested_value": "2.131121719190",
+  "solved_at": "2026-10-23T06:01:15.308109+00:00",
+  "statement_form": "SensitivityCampaign.AchievesExponent a: for every epsilon > 0 and every S >= 2 there is a total Boolean function f on Fin n bits with sensitivity(f) >= S and sensitivity(f)^(a-epsilon) <= blockSensitivity(f). Sensitivity is the largest number of single bit flips that change f, and block sensitivity is the largest number of disjoint nonempty bit sets that each change f at one input (Def_SensitivitySeparation, reviewed 2026-10-19). That is our statement: bs(f) >= s(f)^(alpha - o(1)) for a family of total Boolean functions with s(f) -> infinity.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "SensitivityCampaign.paley11987_four_phase",
+    "url": "https://prove2.me/theorems/17127cc8-197a-4d2c-a452-3f589d1cd3b1",
+    "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_paley11987_four_phase.lean",
+    "statement_sha256": "c3abbb49e29141acde4cd4da8ea42c1f361b77a329620d1d2cfc111afc3cd4e4",
+    "definitions": [
+      "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+      "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+    ]
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_paley11987_four_phase.lean",
+    "sha256": "7d61000bc001b82f4075693714afbc703605960ba79a7c2f7bc76bf41acdb49e",
+    "author": "@yousofy",
+    "submission_url": "https://prove2.me/submissions/de91c83c-2076-430d-98ac-0ed12f876008"
+  },
+  "definitions": {
+    "envs/0df444a/Definitions/Def_SensitivityCampaign.lean": "7cc4307ef9adf4ddc6cb355d159ba4ece3378249561c15fd2accc52d5c748532",
+    "envs/0df444a/Definitions/Def_SensitivitySeparation.lean": "2b76ae96c33e71832ccdf155581d27f80398281ae33cc0550c2ce0e0a32729b7"
+  },
+  "lean_verified": true
+}

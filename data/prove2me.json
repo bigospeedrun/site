@@ -357,11 +357,9 @@
       ]
     },
     "other-block-sensitivity": {
-      "status": "held",
+      "status": "ok",
       "kind": "other",
       "family": "block-sensitivity",
-      "reason": "unreviewed proved entry 2.131121719190 (mission 97a69a02-18f0-49b7-a242-c7b7d7a97300)",
-      "since": "2026-10-24T06:26:03Z",
       "links": {},
       "rows": [],
       "claims": [
@@ -628,6 +626,30 @@
           "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.130825}",
           "prove2me": true,
           "receiptSha256": "af609bed76d3d05fd524a738b7a729576a706b670fdbe85742625c5dc5f80213"
+        },
+        {
+          "author": "yousofy",
+          "handle": "prove2me-2-131121719190",
+          "value": "2.131121719190",
+          "display": "\\ge 2.131121719190",
+          "date": "2026-10-23T06:01:15Z",
+          "dateSource": "https://prove2.me/theorems/17127cc8-197a-4d2c-a452-3f589d1cd3b1",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/17127cc8-197a-4d2c-a452-3f589d1cd3b1",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "The goal states the exponent 2131121719190/10^12 = 2.131121719190 exactly (reviewed 2026-10-24). Its 125-line Lean proof uses the accepted prove2.me theorems paley11987_actual_seeds and achieves_strict_from_seeds, which build the Paley-11987 four-phase construction; the proof file has no sorry or axiom.",
+          "authors": [
+            {
+              "name": "yousofy",
+              "url": "https://prove2.me/submissions/de91c83c-2076-430d-98ac-0ed12f876008"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.paley11987_four_phase on prove2.me states this exponent. Its accepted proof is by yousofy.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.131121719190}",
+          "prove2me": true,
+          "receiptSha256": "01886dee34450fb612675701130f0c28ce1984fd65d46653a53b08bf6bf150fd"
         }
       ]
     },

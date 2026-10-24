@@ -732,6 +732,37 @@
      ],
      "note": "The goal states the exact exponent log(1522813785050025472152230187890625) / log(3738277295413674) = 2.13082557939782394763 (computed 2026-10-21); the listed value 2.1308255793978239 is below it. Its 32-line Lean proof uses the accepted prove2.me theorem reach_source_q5_3738277295413674_strict.",
      "statement_value": "2.13082557939782394763"
+    },
+    {
+     "mission_id": "97a69a02-18f0-49b7-a242-c7b7d7a97300",
+     "value": "2.131121719190",
+     "solved_at": "2026-10-23T06:01:15.308109+00:00",
+     "action": "row",
+     "statement_pattern": "AchievesExponent \\(2131121719190 / 1000000000000 : ℝ\\)",
+     "theorem": {
+      "name": "SensitivityCampaign.paley11987_four_phase",
+      "url": "https://prove2.me/theorems/17127cc8-197a-4d2c-a452-3f589d1cd3b1",
+      "statement_path": "envs/0df444a/Theorems/Thm_SensitivityCampaign_paley11987_four_phase.lean",
+      "statement_sha256": "c3abbb49e29141acde4cd4da8ea42c1f361b77a329620d1d2cfc111afc3cd4e4",
+      "definitions": [
+       "envs/0df444a/Definitions/Def_SensitivityCampaign.lean",
+       "envs/0df444a/Definitions/Def_SensitivitySeparation.lean"
+      ]
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_SensitivityCampaign_paley11987_four_phase.lean",
+      "sha256": "7d61000bc001b82f4075693714afbc703605960ba79a7c2f7bc76bf41acdb49e",
+      "author": "@yousofy",
+      "submission_url": "https://prove2.me/submissions/de91c83c-2076-430d-98ac-0ed12f876008"
+     },
+     "authors": [
+      {
+       "name": "yousofy",
+       "url": "https://prove2.me/submissions/de91c83c-2076-430d-98ac-0ed12f876008"
+      }
+     ],
+     "note": "The goal states the exponent 2131121719190/10^12 = 2.131121719190 exactly (reviewed 2026-10-24). Its 125-line Lean proof uses the accepted prove2.me theorems paley11987_actual_seeds and achieves_strict_from_seeds, which build the Paley-11987 four-phase construction; the proof file has no sorry or axiom.",
+     "statement_value": "2.131121719190"
     }
    ]
   },
