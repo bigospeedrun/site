@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {credentials,secretNames,oauthHeader,prepare,sendBatch,endpoint} from './x-posts.ts';
+import {credentials,secretNames,oauthHeader,prepare,sendBatch,endpoint,deleteTweet} from './x-posts.ts';
 import type {XLog} from './x-posts.ts';
 const c={key:'test-key',secret:'test-secret',token:'test-token',tokenSecret:'test-token-secret'};
 const posts=Array.from({length:7},(_,i)=>({key:String(i),x_text:'New claim!\n\nProblem: 3SUM\nNew value: O(n^1.962)\nPlayer: Alice\nStatus: Claimed (not verified)'}));
@@ -102,4 +102,22 @@ test('non-billing 403 remains failed and response text never reaches logs',async
  await sendBatch(c,batch,log,()=>{},{send:(async()=>new Response('{"detail":"Permission denied: private-value"}',{status:403})) as typeof fetch,report:line=>reports.push(line)});
  assert.equal(log['0'].status,'failed');assert.equal(log['0'].code,403);
  assert.deepEqual(reports,['X failed: HTTP 403']);
+});
+
+// Lead, 2026-10-24: a one-off delete of a post this repository sent (CrocSwap #5270 was posted by mistake).
+test('a one-off delete signs a DELETE, only deletes a logged post, and never prints a body',async()=>{
+ const log:XLog={'k':{status:'posted',at,id:'2113819596109070789'},'u':{status:'unknown',at,id:'42'}};
+ const calls:{url:string;method?:string;auth:string}[]=[];
+ const send=(status:number,body:unknown)=>(async(url:RequestInfo|URL,init?:RequestInit)=>{calls.push({url:String(url),method:init?.method,auth:String((init?.headers as Record<string,string>).Authorization)});return new Response(JSON.stringify(body),{status});}) as typeof fetch;
+ assert.equal(await deleteTweet(c,'2113819596109070789',log,send(200,{data:{deleted:true}})),'X post deleted');
+ assert.deepEqual([calls[0].url,calls[0].method],['https://api.x.com/2/tweets/2113819596109070789','DELETE']);
+ // The signature base uses DELETE, not POST.
+ const post=oauthHeader(c,calls[0].url,'n','1');const del=oauthHeader(c,calls[0].url,'n','1',{},'DELETE');
+ assert.notEqual(post,del);
+ assert.equal(await deleteTweet(c,'2113819596109070789',log,send(403,{detail:'secret body'})),'X delete failed: HTTP 403');
+ assert.equal(await deleteTweet(c,'2113819596109070789',log,send(200,{data:{deleted:false}})),'X delete: unexpected confirmation');
+ // Refused before any request: a bad id, an id that is not logged as posted, an unfinished entry.
+ const before=calls.length;
+ for(const id of ['','abc','0','12/34','1'.repeat(26),'999','42'])await assert.rejects(deleteTweet(c,id,log,send(200,{})));
+ assert.equal(calls.length,before);
 });

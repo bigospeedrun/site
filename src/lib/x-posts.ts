@@ -9,12 +9,12 @@ export function credentials(env:Record<string,string|undefined>):Credentials|und
  return {key:env.X_API_KEY!,secret:env.X_API_KEY_SECRET!,token:env.X_ACCESS_TOKEN!,tokenSecret:env.X_ACCESS_TOKEN_SECRET!};
 }
 const encode=(value:string)=>encodeURIComponent(value).replace(/[!'()*]/g,char=>'%'+char.charCodeAt(0).toString(16).toUpperCase());
-export function oauthHeader(c:Credentials,url=endpoint,nonce=randomBytes(24).toString('hex'),timestamp=String(Math.floor(Date.now()/1000)),form:Record<string,string>={}):string {
+export function oauthHeader(c:Credentials,url=endpoint,nonce=randomBytes(24).toString('hex'),timestamp=String(Math.floor(Date.now()/1000)),form:Record<string,string>={},method='POST'):string {
  const oauth:Record<string,string>={oauth_consumer_key:c.key,oauth_nonce:nonce,oauth_signature_method:'HMAC-SHA1',oauth_timestamp:timestamp,oauth_token:c.token,oauth_version:'1.0'};
  const parsed=new URL(url);
  const parameters=[...parsed.searchParams,...Object.entries(form),...Object.entries(oauth)].map(([k,v])=>[encode(k),encode(v)]).sort((a,b)=>a[0]<b[0]?-1:a[0]>b[0]?1:a[1]<b[1]?-1:a[1]>b[1]?1:0).map(pair=>pair.join('=')).join('&');
  // JSON request bodies are not included in OAuth 1.0a signature parameters.
- const base=['POST',parsed.origin+parsed.pathname,parameters].map(encode).join('&');
+ const base=[method,parsed.origin+parsed.pathname,parameters].map(encode).join('&');
  oauth.oauth_signature=createHmac('sha1',encode(c.secret)+'&'+encode(c.tokenSecret)).update(base).digest('base64');
  return 'OAuth '+Object.entries(oauth).sort().map(([k,v])=>`${encode(k)}="${encode(v)}"`).join(', ');
 }
@@ -68,4 +68,18 @@ export async function sendBatch(c:Credentials,batch:XEntry[],log:XLog,save:(log:
   }catch{report('X unknown outcome; invalid confirmation; key will not be retried');}
   save(log);
  }
+}
+
+// A one-off correction (Lead, 2026-10-24, after #5270): delete a post that this repository sent. Only an id that
+// data/x-posts.json logs as posted may be deleted, and a response body is never printed.
+export async function deleteTweet(c:Credentials,id:string,log:XLog,send:typeof fetch=fetch):Promise<string> {
+ if(!/^[1-9][0-9]{0,24}$/.test(id))throw new Error('Invalid tweet id');
+ if(!Object.values(log).some(entry=>entry.status==='posted'&&entry.id===id))throw new Error('The id is not a post of this repository');
+ const url=`https://api.x.com/2/tweets/${id}`;
+ const response=await send(url,{method:'DELETE',redirect:'error',signal:AbortSignal.timeout(15000),headers:{Authorization:oauthHeader(c,url,undefined,undefined,{},'DELETE')}});
+ if(!response.ok)return `X delete failed: HTTP ${response.status}`;
+ try{
+  const body=await response.json() as {data?:{deleted?:boolean}};
+  return body.data?.deleted===true?'X post deleted':'X delete: unexpected confirmation';
+ }catch{return 'X delete: unexpected confirmation';}
 }

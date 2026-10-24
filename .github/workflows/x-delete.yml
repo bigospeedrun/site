@@ -1,0 +1,38 @@
+name: Delete one X record post
+# One-off correction (Lead, 2026-10-24, after CrocSwap #5270): a maintainer dispatches this with the tweet id of a
+# post that data/x-posts.json logs as posted. Nothing else runs: no data is read or written, and the run
+# prints only the result line.
+on:
+  workflow_dispatch:
+    inputs:
+      tweet_id:
+        description: Tweet id (digits) of a record post logged as posted in data/x-posts.json
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: x-delete
+  cancel-in-progress: false
+jobs:
+  delete:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          check-latest: true
+      - name: Delete the post
+        env:
+          TWEET_ID: ${{ inputs.tweet_id }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: node --experimental-strip-types scripts/x-delete.ts "$TWEET_ID"
