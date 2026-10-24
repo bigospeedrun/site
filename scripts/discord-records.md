@@ -28,6 +28,14 @@ This avoids duplicates when Discord accepted a message but the response was lost
 The step reports sent/failed counts. The repository stores reservations, not false
 claims of successful delivery. Do not delete reservation keys to replay old posts.
 
+A post that was deleted by hand (a mistaken post, for example CrocSwap #5270, 2026-10-24) is marked in
+`data/records-posts.json` and `data/x-posts.json` with `deleted_at` and `deleted_reason`. The planner then
+treats it as never announced: it is not the board's last post (the same-value rule) and it does not
+announce its bound. It still counts for the 3 hour throttle. To post the same record again, take its key out
+of `reserved` and add it to `deferred` (a leader that already led in the saved snapshot posts as a waiting
+leader), in the same commit as the mark. The mark is written by `scripts/mark-deleted.ts`, in a reviewed commit by the
+agent that ran the delete (steps in `scripts/x-records.md`); a Discord post is deleted by hand.
+
 Local dry run after `npm run build`:
 
 ```sh

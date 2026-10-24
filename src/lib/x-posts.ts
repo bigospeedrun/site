@@ -2,7 +2,7 @@ import {createHmac,randomBytes} from 'node:crypto';
 export const endpoint='https://api.x.com/2/tweets';
 export const secretNames=['X_API_KEY','X_API_KEY_SECRET','X_ACCESS_TOKEN','X_ACCESS_TOKEN_SECRET'] as const;
 export interface Credentials {key:string;secret:string;token:string;tokenSecret:string}
-export type XLog=Record<string,{status:'posted'|'skipped'|'unknown'|'failed';at:string;id?:string;reason?:string;code?:number}>;
+export type XLog=Record<string,{status:'posted'|'skipped'|'unknown'|'failed';at:string;id?:string;reason?:string;code?:number;deleted_at?:string;deleted_reason?:string}>;
 export interface XEntry {key:string;x_text?:string}
 export function credentials(env:Record<string,string|undefined>):Credentials|undefined {
  if(secretNames.some(name=>!env[name]?.trim()))return;
@@ -82,4 +82,14 @@ export async function deleteTweet(c:Credentials,id:string,log:XLog,send:typeof f
   const body=await response.json() as {data?:{deleted?:boolean}};
   return body.data?.deleted===true?'X post deleted':'X delete: unexpected confirmation';
  }catch{return 'X delete: unexpected confirmation';}
+}
+
+// After a delete (Lead, 2026-10-24): mark the post as deleted in the X log and in the record post log, so that the
+// records planner treats it as never announced (see plan in records-feed.ts). The status stays 'posted'.
+export function markTweetDeleted<P extends {key:string;deleted_at?:string;deleted_reason?:string}>(log:XLog,posts:P[],id:string,at:string,reason:string):{log:XLog;posts:P[]} {
+ const key=Object.keys(log).find(k=>log[k].status==='posted'&&log[k].id===id);
+ if(key===undefined)throw new Error('The id is not a post of this repository');
+ if(!reason.trim()||/[\r\n]/.test(reason)||reason.length>200)throw new Error('Invalid delete reason');
+ return {log:{...log,[key]:{...log[key],deleted_at:at,deleted_reason:reason}},
+  posts:posts.map(post=>post.key===key?{...post,deleted_at:at,deleted_reason:reason}:post)};
 }

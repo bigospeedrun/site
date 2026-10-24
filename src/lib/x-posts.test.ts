@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {credentials,secretNames,oauthHeader,prepare,sendBatch,endpoint,deleteTweet} from './x-posts.ts';
+import {credentials,secretNames,oauthHeader,prepare,sendBatch,endpoint,deleteTweet,markTweetDeleted} from './x-posts.ts';
 import type {XLog} from './x-posts.ts';
 const c={key:'test-key',secret:'test-secret',token:'test-token',tokenSecret:'test-token-secret'};
 const posts=Array.from({length:7},(_,i)=>({key:String(i),x_text:'New claim!\n\nProblem: 3SUM\nNew value: O(n^1.962)\nPlayer: Alice\nStatus: Claimed (not verified)'}));
@@ -120,4 +120,17 @@ test('a one-off delete signs a DELETE, only deletes a logged post, and never pri
  const before=calls.length;
  for(const id of ['','abc','0','12/34','1'.repeat(26),'999','42'])await assert.rejects(deleteTweet(c,id,log,send(200,{})));
  assert.equal(calls.length,before);
+});
+
+// Lead, 2026-10-24: after a delete, the post is marked in both logs so the records planner stops counting it.
+test('a delete marks the post in the X log and the record post log, and only a logged post',()=>{
+ const log:XLog={'a':{status:'posted',at,id:'111'},'b':{status:'posted',at,id:'222'},'u':{status:'unknown',at,id:'333'}};
+ const posts=[{key:'a',text:'t'},{key:'b',text:'t'}];
+ const marked=markTweetDeleted(log,posts,'111','2026-10-24T05:00:00.000Z','posted by mistake');
+ assert.deepEqual(marked.log.a,{status:'posted',at,id:'111',deleted_at:'2026-10-24T05:00:00.000Z',deleted_reason:'posted by mistake'});
+ assert.deepEqual(marked.posts[0],{key:'a',text:'t',deleted_at:'2026-10-24T05:00:00.000Z',deleted_reason:'posted by mistake'});
+ assert.deepEqual([marked.log.b,marked.posts[1]],[log.b,posts[1]]);
+ assert.equal(log.a.deleted_at,undefined);
+ for(const id of ['','999','333'])assert.throws(()=>markTweetDeleted(log,posts,id,'now','why'));
+ for(const reason of ['',' ','a\nb','x'.repeat(201)])assert.throws(()=>markTweetDeleted(log,posts,'111','now',reason),/reason/);
 });

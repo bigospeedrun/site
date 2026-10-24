@@ -44,3 +44,42 @@ test('the same value on another board, or on Discord-only posts, is compared per
  const discordOnly = {...posted(before, old, '2026-10-14T18:22:00Z'), x_text: undefined};
  assert.equal(plan(baseline(snapshot(before)), snapshot(after), [discordOnly], now).messages.length, 0);
 });
+
+// CrocSwap #5440 (2026-10-24): the #5270 post was deleted by hand, and #5440 showed the same value, so the planner
+// marked it done without a post. A deleted post no longer counts as the last post or as an announcement.
+test('a deleted post is not the last post of its board and does not announce its bound', () => {
+ const before = board([old], old.id), after = board([old, tiny], tiny.id);
+ const now = Date.parse('2026-10-15T01:20:00Z');
+ const last = posted(before, old, '2026-10-14T18:22:00Z');
+ const deleted = {...last, deleted_at: '2026-10-14', deleted_reason: 'posted by mistake'};
+ // Same value as the last post: no post. The same post, deleted: the new leader posts.
+ assert.equal(plan(baseline(snapshot(before)), snapshot(after), [last], now).messages.length, 0);
+ const result = plan(baseline(snapshot(before)), snapshot(after), [deleted], now);
+ assert.equal(result.messages.length, 1);
+ assert.equal(result.messages[0].key, JSON.stringify(['integer-multiplication', tiny.id, tiny.score, 'attained']) + ':record');
+ // A later post of the same board is the last post again: a post that shows its value is still suppressed.
+ const newer = {...posted(before, tiny, '2026-10-14T20:00:00Z'), key: JSON.stringify(['integer-multiplication', 'other', 'x', 'attained']) + ':record'};
+ assert.equal(plan(baseline(snapshot(before)), snapshot(after), [deleted, newer], now).messages.length, 0);
+ // The same exact bound (id aside) as a deleted post is no longer announced either.
+ const twin = {...tiny, id: 'crocswap-pr-2221'};
+ const same = plan(baseline(snapshot(before)), snapshot(board([old, twin], twin.id)), [{...deleted, key: JSON.stringify(['integer-multiplication', 'crocswap-pr-2220', tiny.score, 'attained']) + ':record'}], now);
+ assert.equal(same.messages.length, 1);
+ const kept = plan(baseline(snapshot(before)), snapshot(board([old, twin], twin.id)), [{...last, key: JSON.stringify(['integer-multiplication', 'crocswap-pr-2220', tiny.score, 'attained']) + ':record'}], now);
+ assert.deepEqual(kept.messages, []);
+});
+
+test('a deleted post still counts for the 3 hour throttle, and a waiting leader posts after it', () => {
+ const before = board([old], old.id), after = board([old, tiny], tiny.id);
+ const deleted = {...posted(before, old, '2026-10-15T00:00:00Z'), deleted_at: '2026-10-15'};
+ const key = JSON.stringify(['integer-multiplication', tiny.id, tiny.score, 'attained']) + ':record';
+ // The leader already led in the saved snapshot; the state holds it as waiting (not reserved).
+ const saved = baseline(snapshot(after));
+ const state = {...saved, reserved: saved.reserved.filter(k => k !== key), deferred: [{key, slug: 'integer-multiplication', authors: tiny.authors}]};
+ const early = plan(state, snapshot(after), [deleted], Date.parse('2026-10-15T01:20:00Z'));
+ assert.deepEqual(early.messages, []);
+ assert.equal(early.state.deferred?.length, 1);
+ const late = plan(state, snapshot(after), [deleted], Date.parse('2026-10-15T03:30:00Z'));
+ assert.equal(late.messages.length, 1);
+ assert.equal(late.state.deferred, undefined);
+ assert.ok(late.state.reserved.includes(key));
+});

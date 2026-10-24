@@ -47,6 +47,18 @@ The existing workflow concurrency group serializes senders. The old webhook and
 browser poster are unchanged; the lead must retire them when this API path goes
 live. The API log is separate from the browser poster's state.
 
+A post that was deleted keeps `status: posted` and gets `deleted_at` and `deleted_reason`, in this log and on
+the same key in `data/records-posts.json`. The records planner ignores a post with `deleted_at`. The `x-delete`
+workflow holds the X secrets, so it has read access only and writes no mark. The agent that ran the delete does
+this step, in a normal reviewed site commit (one commit per delete):
+
+1. Run the `x-delete` workflow with the tweet id (an id that this log shows as `posted`).
+2. In a worktree of site `main`, run `node --experimental-strip-types scripts/mark-deleted.ts <tweet id> "<one line reason>"`.
+   It writes both marks and uses the time of the run. A Discord post that was deleted by hand needs no other step.
+3. To post the same record again, take its key out of `reserved` and add it to `deferred` in
+   `data/discord-records.json` (see `scripts/discord-records.md`), in the same commit.
+4. Send the commit to the reviewer. The lead pushes it.
+
 Signing reference and public test fixture:
 https://docs.x.com/fundamentals/authentication/oauth-1-0a/creating-a-signature
 JSON body fields are excluded from OAuth signature parameters.

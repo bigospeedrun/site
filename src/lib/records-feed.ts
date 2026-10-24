@@ -15,7 +15,9 @@ export interface FeedBoard {slug:string; name:string; url:string; leader:string|
 export interface FeedSnapshot {schema_version:1; boards:FeedBoard[]}
 export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]; deferred?:{key:string;slug:string;authors:string[];hold?:true}[]}
 export interface FeedMessage {key:string; content:string; x_text?:string; authors?:string[]; table?:FeedTable}
-export interface RecordPost {key:string; text:string; x_text:string; posted_at:string; authors?:string[]}
+// deleted_at: the post was taken down by hand (or by the x-delete workflow). The planner then treats it as never
+// announced: it no longer blocks the same bound (announced) or the same shown value (lastValue).
+export interface RecordPost {key:string; text:string; x_text:string; posted_at:string; authors?:string[]; deleted_at?:string; deleted_reason?:string}
 export function appendRecordPost(previous:RecordPost[],entry:FeedMessage,postedAt:string):RecordPost[] {
  if(previous.some(post=>post.key===entry.key))return previous.slice(-500);
  return [...previous,{key:entry.key,text:entry.content,x_text:entry.x_text??entry.content,posted_at:postedAt,...(entry.authors?{authors:entry.authors}:{})}].slice(-500);
@@ -155,11 +157,14 @@ function postedValue(post:Partial<RecordPost>):string|undefined {
 }
 export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<RecordPost,'key'>&Partial<RecordPost>)[]=[],now=Date.now()):{state:FeedState;messages:FeedMessage[]} {
  const reserved=new Set(previous.reserved),messages:FeedMessage[]=[];
- const announced=new Set(posts.map(post=>postedBoundKey(post.key)));
+ // A deleted post (Lead, 2026-10-24, after #5270) says nothing public any more, so it is no announcement.
+ // It still counts for the 3 h throttle below: the post did reach its channel for a while.
+ const live=posts.filter(post=>!post.deleted_at);
+ const announced=new Set(live.map(post=>postedBoundKey(post.key)));
  // Shown values have a display cap, so a new leader can show the same value as the last
  // post for its board. That post would say nothing new, and X refuses it as a duplicate.
  const lastValue=new Map<string,string>();
- for(const post of posts){const value=postedValue(post);if(value)lastValue.set(JSON.parse(post.key.slice(0,post.key.lastIndexOf(':')))[0],value)}
+ for(const post of live){const value=postedValue(post);if(value)lastValue.set(JSON.parse(post.key.slice(0,post.key.lastIndexOf(':')))[0],value)}
  const deferred=new Map((previous.deferred??[]).map(entry=>[entry.key,entry]));
  // The throttle group: on a Big O board, the board and its exact author list (3 hours from
  // that group's last accepted post); on an Other bounds board, the board alone (at most one
