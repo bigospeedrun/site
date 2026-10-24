@@ -979,6 +979,28 @@
           ],
           "proofScope": "The supplied Lean code proves the rational-approximation bounds for all sufficiently large natural denominators and all integer numerators, with exponents 740 and 2220. The author reports that both pass Lean’s main kernel and the standard-axiom audits; the independent-kernel and comparator checks are pending. No site rerun. The author’s CI had not finished for this commit when we listed it.",
           "bound": "\\mu(G)\\le 740"
+        },
+        {
+          "author": "S. Litsey",
+          "handle": "slitsey",
+          "value": "728",
+          "display": "728",
+          "date": "2026-10-23T16:18:43Z",
+          "dateSource": "https://github.com/slitsey/catalan-irrationality-measure/commit/9c40581c55bd84d78b77d9848edcd14cca00c0bf",
+          "dateKind": "first-stated",
+          "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/9c40581c55bd84d78b77d9848edcd14cca00c0bf/CatalanMeasure/G728/Final.lean#L11-L13",
+          "lean": true,
+          "leanNote": "Lean states and proves the bound for all sufficiently large denominators and all integer numerators. The author reports that it passes Lean\u2019s main kernel with only the standard axioms; the author\u2019s CI for the latest commit was still running when we listed it, and no independent-kernel or comparator check is reported. No site rerun.",
+          "evidence": "claimed",
+          "note": "The README gives the limiting exponent \\(46673820/64169\\approx 727.36\\), so \\(\\mu(G)\\le 728\\). Its energy estimate uses trial sequences with 640 Chebyshev coefficients and 56 geometric terms. We did not check that the README exponent matches the constants in the Lean files.",
+          "authors": [
+            {
+              "name": "S. Litsey",
+              "url": "https://github.com/slitsey"
+            }
+          ],
+          "proofScope": "The supplied Lean code proves the rational-approximation bound with exponent 728 (theorem catalan_irrationalityMeasure_728) for all sufficiently large natural denominators and all integer numerators. The author reports that it passes Lean\u2019s main kernel and the standard-axiom audit; the independent-kernel and comparator checks are not reported. No site rerun.",
+          "bound": "\\mu(G)\\le 728"
         }
       ],
       "repos": [
