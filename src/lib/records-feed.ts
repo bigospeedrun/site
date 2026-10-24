@@ -11,7 +11,9 @@ export interface FeedRecord {id:string; score:string; relation:string; evidence:
 // table: the landing-page table of the board. 'big-o' (also when absent, in older
 // snapshots) posts to the Big O records channel; 'other-bounds' to the Other bounds one.
 export type FeedTable='big-o'|'other-bounds';
-export interface FeedBoard {slug:string; name:string; url:string; leader:string|null; records:FeedRecord[]; table?:FeedTable}
+// direction: which score is better on the board. Absent in older snapshots: then no row of the board is superseded (see plan).
+export type FeedDirection='lower'|'higher';
+export interface FeedBoard {slug:string; name:string; url:string; leader:string|null; records:FeedRecord[]; table?:FeedTable; direction?:FeedDirection}
 export interface FeedSnapshot {schema_version:1; boards:FeedBoard[]}
 export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]; deferred?:{key:string;slug:string;authors:string[];hold?:true}[]}
 export interface FeedMessage {key:string; content:string; x_text?:string; authors?:string[]; table?:FeedTable}
@@ -48,7 +50,7 @@ export function plainBound(slug:string,score:string,relation='attained',digits?:
 }
 export function feedBoard(problem:Pick<Problem,'slug'|'direction'>,records:(Pick<RecordEntry,'id'|'score'|'scoreRelation'|'date'|'repoId'|'evidenceLevel'|'authors'>&Partial<Pick<RecordEntry,'verification'>>)[],name:string):FeedBoard {
  const digits=boundPrecision(records.map(r=>r.score),problem.slug==='integer-multiplication'||problem.slug==='exact-dft');
- return {slug:problem.slug,name,url:`https://bigospeedrun.com/${problem.slug}`,leader:ranked(records,problem.direction)[0]?.record.id??null,
+ return {slug:problem.slug,name,url:`https://bigospeedrun.com/${problem.slug}`,leader:ranked(records,problem.direction)[0]?.record.id??null,direction:problem.direction==='higher-is-better'?'higher':'lower',
  records:records.map(r=>({id:r.id,score:r.score,relation:r.scoreRelation??'attained',evidence:evidenceName(r.evidenceLevel),authors:r.authors.map(a=>a.name),bound:plainBound(problem.slug,r.score,r.scoreRelation,digits),
   ...(r.verification&&evidenceName(r.evidenceLevel)==='Claimed'?{verification:r.verification}:{})}))};
 }
@@ -107,12 +109,12 @@ export function plainTex(tex:string):string {
 // so it never meets a Big O slug. A claim's id is its author handle and exact value: a later
 // date edit keeps the id. The leader is the row's newest claim by its best author.
 export interface OtherClaim {handle:string; value:string; display:string; bound:string; evidence:string; date:string; authors:{name:string}[]}
-export interface OtherRow {slug:string; name:string; bestHandle:string; claims:OtherClaim[]}
+export interface OtherRow {slug:string; name:string; bestHandle:string; claims:OtherClaim[]; direction?:string}
 export function otherFeedBoard(row:OtherRow):FeedBoard {
  const id=(c:OtherClaim)=>c.handle+':'+c.value;
  const level=(e:string)=>evidenceLevels.some(l=>l.id===e)?evidenceName(e as typeof evidenceLevels[number]['id']):'Claimed';
  const leader=otherBoundLeader(row);
- return {slug:'other-'+row.slug,name:row.name,url:`https://bigospeedrun.com/other/${row.slug}`,leader:leader?id(leader):null,table:'other-bounds',
+ return {slug:'other-'+row.slug,name:row.name,url:`https://bigospeedrun.com/other/${row.slug}`,leader:leader?id(leader):null,table:'other-bounds',...(row.direction==='lower'||row.direction==='higher'?{direction:row.direction}:{}),
   records:row.claims.map(c=>({id:id(c),score:c.value,relation:c.display.startsWith('<')?'strict-upper-bound':'attained',evidence:level(c.evidence),
    authors:c.authors.map(a=>a.name),bound:plainTex(c.bound)}))};
 }
@@ -155,6 +157,45 @@ function postedBoundKey(key:string):string {
 function postedValue(post:Partial<RecordPost>):string|undefined {
  return post.x_text?.match(/^(?:New value|Value): (.*)$/m)?.[1]??post.text?.match(/`([^`]*)`/)?.[1];
 }
+// A score as a fraction: 'n', 'n/d' or a decimal 'n.m'. null for any other text.
+function ratio(score:string):[bigint,bigint]|null {
+ const fraction=score.match(/^(\d+)\/(\d+)$/),decimal=score.match(/^(\d+)(?:\.(\d+))?$/);
+ if(fraction&&BigInt(fraction[2])>0n)return [BigInt(fraction[1]),BigInt(fraction[2])];
+ if(decimal)return [BigInt(decimal[1]+(decimal[2]??'')),10n**BigInt((decimal[2]??'').length)];
+ return null;
+}
+// Burst of sharpenings (darkhipo's average-sensitivity rounds #60-#62, 2026-10-24, Lead): rows of one board with the
+// exact same author list that gain Lean Verified in one pass post only the best by the board's direction. Returns the
+// event keys of the others, which are reserved without a post. Only rows that would post count (not reserved, not
+// announced). A board without direction, or a group with a score that is not a number, supersedes nothing.
+function superseded(board:FeedBoard,old:FeedBoard|undefined,reserved:Set<string>,announced:Set<string>):Set<string> {
+ const result=new Set<string>();
+ if(!board.direction)return result;
+ const groups=new Map<string,FeedRecord[]>();
+ for(const record of board.records){
+  const prior=old?.records.find(r=>identity(old,r)===identity(board,record));
+  if(record.evidence!=='Lean Verified'||prior?.evidence==='Lean Verified')continue;
+  const key=eventKey(board,record);
+  if(reserved.has(key)||announced.has(postedBoundKey(key)))continue;
+  const group=JSON.stringify(record.authors);
+  groups.set(group,[...(groups.get(group)??[]),record]);
+ }
+ for(const rows of groups.values()){
+  if(rows.length<2)continue;
+  const values=rows.map(r=>ratio(r.score));
+  if(values.some(v=>v===null))continue;
+  // The best score; at an equal score an attained row beats an open endpoint, then the first row stays.
+  const better=(i:number,j:number)=>{
+   const [an,ad]=values[i]!,[bn,bd]=values[j]!,x=an*bd,y=bn*ad;
+   if(x!==y)return board.direction==='higher'?x>y:x<y;
+   return rows[i].relation==='attained'&&rows[j].relation!=='attained';
+  };
+  let best=0;
+  for(let i=1;i<rows.length;i++)if(better(i,best))best=i;
+  rows.forEach((record,i)=>{if(i!==best)result.add(eventKey(board,record));});
+ }
+ return result;
+}
 export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<RecordPost,'key'>&Partial<RecordPost>)[]=[],now=Date.now()):{state:FeedState;messages:FeedMessage[]} {
  const reserved=new Set(previous.reserved),messages:FeedMessage[]=[];
  // A deleted post (Lead, 2026-10-24, after #5270) says nothing public any more, so it is no announcement.
@@ -190,12 +231,14 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
    for(const r of board.records)if(r.id===board.leader||r.evidence==='Lean Verified')reserved.add(eventKey(board,r));
    continue;
   }
+  const lesser=superseded(board,old,reserved,announced);
   for(const record of board.records){
    const prior=old?.records.find(r=>identity(old,r)===identity(board,record));
    const oldLeader=old?.records.find(r=>r.id===old.leader);
    const newLeader=record.id===board.leader&&(!oldLeader||identity(old!,oldLeader)!==identity(board,record));
    const gainedLean=record.evidence==='Lean Verified'&&prior?.evidence!=='Lean Verified';
    const key=eventKey(board,record);
+   if(lesser.has(key)){reserved.add(key);deferred.delete(key);continue;}
    const waiting=record.id===board.leader&&deferred.has(key);
    // A held direct claim (below) that now leads with Lean Verified posts once, as a new record.
    const held=record.id===board.leader&&key!==identity(board,record)+':record'&&deferred.get(identity(board,record)+':record')?.hold===true;

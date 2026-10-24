@@ -36,6 +36,14 @@ of `reserved` and add it to `deferred` (a leader that already led in the saved s
 leader), in the same commit as the mark. The mark is written by `scripts/mark-deleted.ts`, in a reviewed commit by the
 agent that ran the delete (steps in `scripts/x-records.md`); a Discord post is deleted by hand.
 
+A burst of sharpenings (darkhipo's average-sensitivity rounds #60 to #62, 2026-10-24, Lead) can land in one
+refresh. Rows of one board with the exact same author list (same names, same order) that gain Lean Verified in
+one pass post only the best by the board's `direction` (`lower` or `higher`, in the feed board; an older snapshot
+has none and supersedes nothing). The other rows are reserved without a post, so a later pass does not post them.
+Only rows that would post count: a row that is already reserved or announced, or already Lean Verified, is not
+compared. Authors that differ, in names or in number, never compete. A score that is not a number (not `n`,
+`n/d` or `n.m`) in a group switches the rule off for that group.
+
 Local dry run after `npm run build`:
 
 ```sh
