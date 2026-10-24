@@ -156,7 +156,8 @@ class ReviewHoldTests(unittest.TestCase):
         holds = review_hold.load(review_hold.ROOT, review_hold.HOLDS)
         decisions = review_hold.load(review_hold.ROOT, review_hold.DECISIONS)
         self.assertIsInstance(holds['holds'], list)
-        self.assertEqual(set(decisions), {'approved', 'rejected', 'claims'})
+        # derivations: the lead's releases of verifier derivation holds (read by direct_refresh.py, 2026-10-24).
+        self.assertTrue({'approved', 'rejected', 'claims'} <= set(decisions) <= {'approved', 'rejected', 'claims', 'derivations'}, sorted(decisions))
 
 if __name__ == '__main__':
     unittest.main()
