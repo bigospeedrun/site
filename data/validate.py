@@ -29,6 +29,11 @@ if (ROOT/'direct-notes.json').exists():
   assert re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/(issues|pull)/\d+',n['predecessor']),key
   # Plain text, except that a note on an Other bounds row may hold KaTeX between \( and \) (the page renders it with inlineMath).
   assert 0<len(n['text'])<=500 and not re.search(r'[<>&$]',n['text']) and not re.search(r'\\',re.sub(r'\\\(.*?\\\)','',n['text'],flags=re.S)),key
+  # Board rows (dft, 3sum, apsp) show a note as plain tooltip text, so a note with TeX belongs to an Other bounds problem.
+  # A key the saved state does not know yet cannot be told apart; the first refresh that lists it checks again.
+  if '\\' in n['text']:
+   known=load('direct-submissions.json')['entries'].get(key)
+   assert not known or known['submission']['problem'] not in ('dft','3sum','apsp'),'TeX in the note of a board row: '+key
 withdrawn={}
 if (ROOT/'direct-notes.json').exists():
  # Direct submissions their submitter withdrew: the refresh lists no row for them, with the reason on record.
