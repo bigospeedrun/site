@@ -81,6 +81,11 @@ test('a row that gains Lean Verified alone, later, does not post when the same a
  // A strictly better row posts, and so does the same score on another author list.
  assert.deepEqual(later([r60], [r62]).messages.map(m => m.key), [key(r62)]);
  assert.deepEqual(later([r62], [row(65, '37615398/10000000', ['someone'])]).messages.length, 1);
+ // #63 (3.76153978, reduced form) is better than a saved #62 (3.76153979) on a lower-is-better board: it posts.
+ const r63 = row(63, '188076989/50000000');
+ assert.deepEqual(later([r62], [r63]).messages.map(m => m.key), [key(r63)]);
+ // #61 and #63 together after #62: only #63 posts.
+ assert.deepEqual(later([r62], [r61, r63]).messages.map(m => m.key), [key(r63)]);
  // The direction decides: on a higher-is-better board the worse row is the lower one.
  assert.deepEqual(later([r60], [r62], 'higher').messages, []);
  // A saved row that is not a number hides nothing.
