@@ -293,6 +293,23 @@ class RefreshTests(unittest.TestCase):
         plain='Validate κ = 0.00302728823 for the direct backward caller'
         self.assertIsNotNone(self.claim({nested:'added'},{'kappa':'302728823/100000000000'},title=plain,listed=listed,leader=refresh.Fraction('0.003'))[2])
 
+    def test_a_draft_pr_created_from_5270_on_is_silent_until_it_is_ready_for_review(self):
+        # Nil, 2026-10-24: #5270 was a draft that its author did not mean as a claim. Lead: only PRs created at
+        # or after it; the ~50 early CrocSwap drafts keep their rows.
+        head='c'*40
+        new={'number':5270,'title':'Certify conditional kappa 0.0033999964','body':'Draft.','head':{'sha':head},'draft':True,'created_at':'2026-10-23T15:13:18Z'}
+        decisions={(5270,head):{'pr':5270,'head':head,'score':'951999/280000000','at':'2026-10-24T02:05:00Z'}}
+        silent=(None,None,None,None,None,False,None)
+        # A new draft is silent, even with a decision, and records no head.
+        self.assertEqual(refresh.claim_state(new,{},decisions,lambda:self.fail('no read')),silent)
+        # An old listed draft stays: the draft flag does not touch it.
+        old=dict(new,number=148,created_at='2026-10-12T00:00:00Z')
+        self.assertEqual(refresh.claim_state(old,{},{},lambda:('1/500','research/x/CLAIM.json',None))[0],'1/500')
+        # A new draft that becomes ready for review is read again and lists.
+        ready=dict(new,draft=False)
+        self.assertEqual(refresh.claim_state(ready,{},{},lambda:('951999/280000000','research/x/RESULT.json',None))[0],'951999/280000000')
+        self.assertEqual(refresh.claim_state(ready,{},decisions,lambda:self.fail('decided'))[0],'951999/280000000')
+
     def test_a_zero_denominator_never_fails_the_refresh(self):
         # Reviewer, 2026-10-21: Fraction('1/0') raises. A contributor's "1/0" is no value.
         top='research/x/RESULT.json'
@@ -468,12 +485,13 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(refresh.claim_state(old_p,{'source_commit':head,'claimed_score':'1/7'},{},evaluate(listed))[0],'1/7')
         self.assertEqual(refresh.claim_state(p|{'number':3115},{'source_commit':head,'claimed_score':'1/7'},{},evaluate((None,None,'no package')))[:2],(None,'no package'))
 
-    def listing(self,stored,intake,full=None,updated=(),now='2026-10-18T05:17:00Z',fail=None,deleted=None,drop_body=None):
+    def listing(self,stored,intake,full=None,updated=(),now='2026-10-18T05:17:00Z',fail=None,deleted=None,drop_body=None,legacy=False):
         """Run list_pulls on a temp stage: stored PR index, intake, the full API list, and
         the PRs the updated-desc listing returns (newest first)."""
         with tempfile.TemporaryDirectory() as temp:
             stage=Path(temp);(stage/'sources').mkdir()
-            refresh.dump(stage,'sources/crocswap-pulls.json',[refresh.pull_index(p) for p in stored])
+            # legacy: an index cached before the draft flag existed (before 2026-10-24).
+            refresh.dump(stage,'sources/crocswap-pulls.json',[{k:v for k,v in refresh.pull_index(p).items() if not (legacy and k=='draft')} for p in stored])
             refresh.dump(stage,'sources/intake.json',intake)
             for p in stored:
                 if p['number']!=drop_body:refresh.dump(stage,f"sources/pr-{p['number']}.json",{'body':p['body']})
@@ -513,6 +531,20 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(info['pulls_watermark'],'2026-10-18T05:40:00Z')
         # A new UTC day reads the full list again.
         self.assertEqual(self.listing(stored,intake,full=stored,now='2026-10-19T00:17:00Z')[2][0][0],'full')
+
+    def test_an_index_without_the_draft_flag_forces_one_full_listing(self):
+        # Reviewer, 2026-10-24: a post-#5270 draft that the incremental listing does not return would be taken for a
+        # ready PR from the cache. Until every stored entry has the flag, the full list is read.
+        stored=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,251)]
+        intake={'pulls_watermark':'2026-10-18T05:00:00Z','pulls_full_at':'2026-10-18T00:17:00Z'}
+        draft=dict(self.pr(5270,'2026-10-18T01:13:00Z'),draft=True,created_at='2026-10-23T15:13:18Z')
+        pulls,info,calls=self.listing(stored+[draft],intake,full=stored+[draft],updated=[],now='2026-10-18T06:17:00Z',legacy=True)
+        self.assertEqual(calls[0][0],'full')
+        self.assertTrue(next(p for p in pulls if p['number']==5270)['draft'])
+        self.assertTrue(refresh.is_silent_draft(next(p for p in pulls if p['number']==5270)))
+        # With the flag everywhere, the same-day run is incremental again.
+        pulls,info,calls=self.listing(stored,intake,updated=[],now='2026-10-18T06:17:00Z')
+        self.assertEqual(calls,[('page',1)])
 
     def test_incremental_pages_until_the_watermark(self):
         stored=[self.pr(n,'2026-10-17T10:00:00Z') for n in range(1,301)]

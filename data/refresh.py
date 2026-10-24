@@ -114,7 +114,7 @@ def pull_index(p):
     return {'number': p['number'], 'html_url': p['html_url'], 'title': p['title'], 'state': p['state'],
             'created_at': p['created_at'], 'updated_at': p['updated_at'], 'closed_at': p['closed_at'], 'merged_at': p['merged_at'],
             'user': {'login': p['user']['login'], 'html_url': p['user']['html_url']}, 'head': {'sha': p['head']['sha']},
-            'base': {'ref': (p.get('base') or {}).get('ref')}}
+            'base': {'ref': (p.get('base') or {}).get('ref')}, 'draft': p.get('draft') is True}
 
 def exists(repo, path, sha):
     try:
@@ -354,12 +354,23 @@ def result_unread(p, prior):
     return (p['number'] >= RESULT_SINCE_PR and not prior.get('claim_files_result') and prior.get('claimed_score') is None
             and not prior.get('review_reason') and prior.get('upstream_status') != 'closed-unmerged')
 
+# Draft PRs created from #5270's created_at on are silent; earlier drafts (about 50 early CrocSwap rows, 2026-10-24)
+# keep their rows (Lead, 2026-10-24). The same cut applies to verifier PRs (direct_refresh.py).
+DRAFT_SINCE = '2026-10-23T15:13:18Z'
+
+def is_silent_draft(pr):
+    return bool(pr.get('draft')) and str(pr.get('created_at') or '') >= DRAFT_SINCE
+
 def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
     """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
     retry, decision). evaluate() reads the PR's package and runs the Claude check.
     same_package(decision) gives the decided package path when it is byte-identical at
     the decided head and this head, else None."""
     n = p['number']; head_sha = p['head']['sha']
+    if is_silent_draft(p):
+        # Nil, 2026-10-24 (#5270): a draft PR is not a claim: not queued, not listed, not posted, whatever a
+        # decision says. No head is recorded, so it is read again once it is marked ready for review.
+        return None, None, None, None, None, False, None
     text_sha = hashlib.sha256((p['title'] + '\n' + (p['body'] or '')).encode()).hexdigest()
     score, reason = None, None
     claim_path, claim_head, claim_text = prior.get('claim_path'), prior.get('claim_head'), prior.get('claim_text')
@@ -431,7 +442,10 @@ def list_pulls(stage, now, force_full=False):
     intake = load(stage, 'sources/intake.json')
     stored = {p['number']: p for p in load(stage, 'sources/crocswap-pulls.json')}
     watermark = intake.get('pulls_watermark')
-    full = force_full or not watermark or (intake.get('pulls_full_at') or '')[:10] != now[:10]
+    # A stored entry without the draft flag (cached before 2026-10-24) forces one full listing, so that a draft
+    # created after #5270 is not taken for a ready PR from the cache (Reviewer, 2026-10-24).
+    full = (force_full or not watermark or (intake.get('pulls_full_at') or '')[:10] != now[:10]
+            or any('draft' not in p for p in stored.values()))
     deleted = set(intake.get('pulls_deleted') or [])
     listing = dict(pulls_watermark=watermark, pulls_full_at=intake.get('pulls_full_at'), pulls_incomplete=None,
                    pulls_deleted=sorted(deleted))
@@ -503,7 +517,7 @@ def refresh(stage, now):
         heads[repo] = head
         repo_meta[repo] = meta
     decisions = {(d['pr'], d['head']): d for d in (load(stage, DECISIONS) if (stage / DECISIONS).exists() else {}).get('claims', [])}
-    fingerprint = hashlib.sha256(json.dumps({'importer_version':IMPORTER_VERSION,'prompt_version':claim_judge.PROMPT_VERSION,'decisions':sorted(map(list, decisions)),'heads': {repo: h['sha'] for repo,h in heads.items()}, 'pulls': [{k:p[k] for k in ('number','title','body','updated_at','merged_at','closed_at','state')} | {'head_sha':p['head']['sha']} for p in pulls]}, sort_keys=True).encode()).hexdigest()
+    fingerprint = hashlib.sha256(json.dumps({'importer_version':IMPORTER_VERSION,'prompt_version':claim_judge.PROMPT_VERSION,'decisions':sorted(map(list, decisions)),'heads': {repo: h['sha'] for repo,h in heads.items()}, 'pulls': [{k:p[k] for k in ('number','title','body','updated_at','merged_at','closed_at','state')} | {'head_sha':p['head']['sha'],'draft':p.get('draft') is True} for p in pulls]}, sort_keys=True).encode()).hexdigest()
     # A PR whose Claude check gave no verdict is read again even when nothing changed.
     if load(stage, 'sources/intake.json').get('fingerprint') == fingerprint and not any(s.get('claim_retry') for s in subs['items']):
         dump(stage, 'sources/intake.json', load(stage, 'sources/intake.json') | pull_listing)

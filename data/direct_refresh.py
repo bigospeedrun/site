@@ -19,6 +19,7 @@ from direct_github import GitHub, GitHubError
 from direct_import import (REPOSITORY, PROBLEMS, Rejected, require, read_json, sha,
     canonical, parse_body, is_test_submission, validate_result)
 from pr_record_binding import apply_bindings
+from refresh import is_silent_draft
 from direct_pr import PREFIX, archive_members, inspect_pr, validate_pr_result
 
 ROOT=Path(__file__).resolve().parent
@@ -126,7 +127,10 @@ class Importer:
             try:
                 # Closed PR base can include its own merge; use original base from
                 # receipts later. Open PR claims use the API base observed now.
-                if pr['state']=='open':
+                if pr['state']=='open' and is_silent_draft(pr):
+                    # Nil, 2026-10-24: a draft PR is not a claim; it is read again once it is ready for review.
+                    self.notes.append(f'Draft PR #{number}: not a claim until it is ready for review')
+                elif pr['state']=='open':
                     layout=inspect_pr(self.api,pr)
                     claims['direct-pr-'+str(number)]=dict(route='pull_request',item=pr,submission=layout['submission'],layout=layout)
                 elif pr.get('merged'):

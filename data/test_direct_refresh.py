@@ -196,6 +196,17 @@ class RefreshTests(unittest.TestCase):
             meta=json.loads(files['exact-dft.json'])['record_metadata']['direct-issue-5']
             self.assertEqual(meta['verification'],'failed')
 
+    def test_a_draft_verifier_pr_created_from_5270_on_is_not_a_claim_until_ready(self):
+        pr=dict(number=60,state='open',merged=False,draft=True,labels=[],head={'sha':'a'*40},user={'login':'alice'},created_at='2026-10-24T00:00:00Z',html_url='https://github.com/bigospeedrun/verifier/pull/60')
+        sub=dict(d.parse_body(self.issue()['body']),source_subdir='submissions/dft/alice-proof')
+        with patch.object(r,'inspect_pr',return_value={'submission':sub}):
+            importer=self.collector(DiscoveryAPI(prs=[pr]))
+            self.assertEqual(importer.collect(),{})
+            self.assertTrue(any('Draft PR #60' in n for n in importer.notes))
+            self.assertIn('direct-pr-60',self.collector(DiscoveryAPI(prs=[dict(pr,draft=False)])).collect())
+            # An older draft is read as before.
+            self.assertIn('direct-pr-60',self.collector(DiscoveryAPI(prs=[dict(pr,created_at='2026-10-20T00:00:00Z')])).collect())
+
     def test_open_pr_claim_and_closed_unmerged_drop(self):
         pr=dict(number=6,state='open',merged=False,labels=[],head={'sha':'a'*40},user={'login':'alice'},created_at='2026-10-10T12:00:00Z',html_url='https://github.com/bigospeedrun/verifier/pull/6')
         sub=dict(d.parse_body(self.issue()['body']),source_subdir='submissions/dft/alice-proof')
