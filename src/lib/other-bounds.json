@@ -535,6 +535,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local compilation and independent scope, hash and axiom audits with only the standard axioms, and says the tracker's admission check was still pending when the pull request opened. The tracker's check results are on the pull request. No independent rerun.",
           "bound": "\\theta\\le 0.874772906"
+        },
+        {
+          "author": "Slayer",
+          "handle": "Rexyysilent",
+          "value": "21869322649/25000000000",
+          "display": "0.87477290596",
+          "date": "2026-10-24T11:51:24-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/71",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/5c8b17807e9d11f500d79de487fa38ace7265bfb/submissions/slayer-recost-0p87477290596/src/Candidate/Main.lean#L6-L10",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks of the finite certificates and the accounted induction, with only the standard axioms, and says the full analytic endpoint was not compiled locally. The author says the hosted admission run for the head timed out on its time budget. The tracker's maintainer merged the pull request on 2026-10-25. The tracker's check results are on the pull request. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 71,
+            "status": "open"
+          },
+          "note": "The author says this is a parameter improvement of existing machinery, not a new analytic method. It starts from Hailey Collet's PR #69 theorem, recosts its 221 ordinary-source nodes, and reuses Mark Lewko's PR #70 return template with new exact certificates. It is 0.00000000004 below PR #70.",
+          "authors": [
+            {
+              "name": "Slayer",
+              "url": "https://github.com/Rexyysilent"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks of the finite certificates and the accounted induction, with only the standard axioms, and says the full analytic endpoint was not compiled locally. The author says the hosted admission run for the head timed out on its time budget. The tracker's maintainer merged the pull request on 2026-10-25. The tracker's check results are on the pull request. No independent rerun.",
+          "bound": "\\theta\\le 0.87477290596"
         }
       ],
       "repos": [
@@ -611,7 +637,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "mrklwk"
+      "bestHandle": "Rexyysilent"
     },
     {
       "family": "005",
