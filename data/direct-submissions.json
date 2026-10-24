@@ -1,6 +1,17 @@
 {
   "schema_version": 1,
   "entries": {
+    "direct-issue-55": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "average-sensitivity",
+        "repo_url": "https://github.com/darkhipo/average-sensitivity-lean",
+        "commit": "0b73c641c8069619da5baa64af5eeb95b72a56a4",
+        "bound": "2351/625",
+        "authors": []
+      }
+    },
     "direct-issue-54": {
       "route": "issue",
       "submission": {
@@ -13,7 +24,7 @@
       },
       "verification": {
         "decision": "lean-verified",
-        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
         "id": "direct-54-aca63c8c21af08b0b7ad2c8093ae267e04dad3a90fdedc3eacd8e84dc11d33f9",
         "problem_id": "other/average-sensitivity",
         "score": "37619/10000",
@@ -24,20 +35,20 @@
         "workflow_conclusion": "success",
         "issue_submitter": "darkhipo",
         "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/40043727633",
-        "checked_at": "2026-10-24T00:19:15.301446Z",
+        "checked_at": "2026-10-24T00:20:35.713874Z",
         "issue_created_at": "2026-10-23T23:52:04Z",
         "issue_updated_at_at_verification": "2026-10-24T00:11:34Z",
-        "issue_updated_at_at_import": "2026-10-24T00:12:02Z",
+        "issue_updated_at_at_import": "2026-10-24T00:20:54Z",
         "derivation_hold": false,
         "review_required": [
           "authorship",
           "first publication date",
           "historical record eligibility"
         ],
-        "receipt_path": "sources/direct-issue-54-40043727633-1-lean.json",
-        "receipt_sha256": "d5849e233c8a8198710d52185ea500e724797316cbaf4feebc9f7789c1dba933",
+        "receipt_path": "sources/direct-issue-54-40043727633-1.json",
+        "receipt_sha256": "3311fb2ab02deae7cdba56f59715487f760f68c9ffec39cc036580153341eb04",
         "policy_hash": "ea16c34b3e0ffb818163419664ffc29422ddd116d3c276c06023ae060d7dcd70",
-        "result_artifact_id": 12541085104,
+        "result_artifact_id": 12540443565,
         "controller_fingerprint": "99ba79307d9377168015c7434cb79808104f23197a3097092db5fb45da1ee4a2",
         "pr_identity": null,
         "source_file": "Submission.lean"
@@ -1925,6 +1936,49 @@
         "policy_hash": "4fdf399e8ca7f25fd55aa7f83f1b1c72b565831af2a46a25d61d579cc00fddb6",
         "result_artifact_id": 12500234394,
         "controller_fingerprint": "025e9afb2c6b6be4c0b6a1a93a3f43a7109c9000bd8e22062c5bcecaeeca6c3f",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-54:aca63c8c21af08b0b7ad2c8093ae267e04dad3a90fdedc3eacd8e84dc11d33f9": {
+      "key": "direct-issue-54",
+      "submission": {
+        "schema_version": 1,
+        "problem": "average-sensitivity",
+        "repo_url": "https://github.com/darkhipo/average-sensitivity-lean",
+        "commit": "9d83ae4e64ece993122a97dc771caeece5e938cf",
+        "bound": "37619/10000",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-54-aca63c8c21af08b0b7ad2c8093ae267e04dad3a90fdedc3eacd8e84dc11d33f9",
+        "problem_id": "other/average-sensitivity",
+        "score": "37619/10000",
+        "score_relation": "attained",
+        "source_commit": "9d83ae4e64ece993122a97dc771caeece5e938cf",
+        "source_url": "https://github.com/darkhipo/average-sensitivity-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "darkhipo",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/40043727633",
+        "checked_at": "2026-10-24T00:20:35.713874Z",
+        "issue_created_at": "2026-10-23T23:52:04Z",
+        "issue_updated_at_at_verification": "2026-10-24T00:11:34Z",
+        "issue_updated_at_at_import": "2026-10-24T00:20:54Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-54-40043727633-1.json",
+        "receipt_sha256": "3311fb2ab02deae7cdba56f59715487f760f68c9ffec39cc036580153341eb04",
+        "policy_hash": "ea16c34b3e0ffb818163419664ffc29422ddd116d3c276c06023ae060d7dcd70",
+        "result_artifact_id": 12540443565,
+        "controller_fingerprint": "99ba79307d9377168015c7434cb79808104f23197a3097092db5fb45da1ee4a2",
         "pr_identity": null,
         "source_file": "Submission.lean"
       }
