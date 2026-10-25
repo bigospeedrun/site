@@ -1001,6 +1001,28 @@
           ],
           "proofScope": "The supplied Lean code proves the rational-approximation bound with exponent 728 (theorem catalan_irrationalityMeasure_728) for all sufficiently large natural denominators and all integer numerators. The author reports that it passes Lean\u2019s main kernel and the standard-axiom audit; the independent-kernel and comparator checks are not reported. No site rerun.",
           "bound": "\\mu(G)\\le 728"
+        },
+        {
+          "author": "S. Litsey",
+          "handle": "slitsey",
+          "value": "590",
+          "display": "590",
+          "date": "2026-10-24T09:34:20-07:00",
+          "dateSource": "https://github.com/slitsey/catalan-irrationality-measure/commit/0ca005dc2d7bd07bf3d9dedb4a9c55c7be7a425f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/54dab9e2e1caa57c031aed0447beb231294445b0/CatalanMeasure/GenD/D58/Main590.lean#L35-L41",
+          "lean": true,
+          "leanNote": "Lean states and proves the bound for all sufficiently large denominators and all integer numerators. The author reports that it is kernel-checked with only the standard axioms; the author’s CI for the latest commit was still running when we listed it, and no independent-kernel or comparator result is reported. No site rerun.",
+          "evidence": "claimed",
+          "note": "The README gives the limiting exponent \\(53\\rho/\\eta\\approx 589.19\\), so \\(\\mu(G)\\le 590\\), for the design \\((58, 9, 3, 5, 3)\\). Its energy estimate uses trial sequences with 160 Chebyshev coefficients and 75 geometric terms. We did not check that the README exponent matches the constants in the Lean files.",
+          "authors": [
+            {
+              "name": "S. Litsey",
+              "url": "https://github.com/slitsey"
+            }
+          ],
+          "proofScope": "The supplied Lean code proves the rational-approximation bound with exponent 590 (theorem catalan_irrationalityMeasure_590) for all sufficiently large natural denominators and all integer numerators. The author reports that it is kernel-checked with only the standard axioms; the independent-kernel and comparator checks are not reported. No site rerun.",
+          "bound": "\\mu(G)\\le 590"
         }
       ],
       "repos": [
