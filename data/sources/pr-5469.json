@@ -1,0 +1,11 @@
+{
+  "number": 5469,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5469",
+  "title": "Research (no κ claim): b = ZQY needs ≥ 112 paid jobs per FULL; #5415's exit is optimal; structural-lever obstructions",
+  "body": "**No κ claim.** This answers zxv's #5428 target 1 (the encoded-output exit) and screens the other structural levers on the #5413 caller.\n\n**Main theorem.** Every exact, width-uniform producer of **b = Z·Q·Y** from post-return data needs **≥ 112 paid jobs per backward FULL**. The bound holds for any rank, any operator and any sharing pattern: butterflies, block transforms, joint diagonalisation and shared higher-rank intermediates are all covered.\n- The whole #5415 exit needs ≥ 120, so **#5415's 120-H1 exit is optimal**.\n- The break-even is τ = 63.52 H1 per FULL, so this route cannot pass U = 0.00302728825.\n- This extends #5427, which shows b is not free, to paid producers.\n- The proof uses a coset-span lemma. The 112 coset directions (56 per mode) are computed exactly over ℚ with the repository's `clifford_exact` evaluator, including absolute phase.\n- Controls: three sanity targets give 8, 8 and 0; 300 random programs never beat the lemma; making one C gate free breaks it.\n\n**Other levers.**\n- Rank-9 helpers have **no free split point** in either orientation (exact replay on all 632 registers).\n- A bought exit needs ≥ 15 modes per FULL; the #5402 family has 8.\n- A productive centre payload earns 0; query-shear deletion breaks the rank-mass balance; query/local fusion is illegal.\n- Defragmentation is closed at a fixed operation set.\n\n**Open.** The only remaining b-route uses a pre-return copy of y: 8×H8 = 63.598 against τ = 63.523, a loss of 0.076 per FULL. That is the centre-interface lever (#4694/#4698/#4700).\n\nPackage: `research/encoded-exit-obstructions/` (README, R16/R17 notes, tools, expected outputs). Companion notes: #5465 (reorder/re-frame ceilings) and #5462 (owned-relation optimum).\n\n**AI disclosure:** prepared by Joel Pulikkan (GamingPuzzled) with Claude Opus 5.5 (Anthropic) via Claude Code. Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-25T02:09:28Z",
+  "updated_at": "2026-10-25T02:09:28Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
