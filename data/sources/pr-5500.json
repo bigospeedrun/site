@@ -1,0 +1,11 @@
+{
+  "number": 5500,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5500",
+  "title": "Bound actual rounded old-H Schur elimination and source LU growth",
+  "body": "The original-H residual consumer explicitly retained positive pivots and LU factor caps for the exact factors of the first truncated Schur matrix. This package derives them from the original producer’s positive diagonal, row gap `1/(8p)`, norm below two, toward-zero truncation, and stated boundary geometry.\n\nThe proof preserves row gaps and charges elimination multipliers against decreasing row mass. Besides recovering the retained caps, it gives `||L|| <= 32p` and `||U^-1|| <= 512p²`, uniformly in boundary size. The original encoded Axis/Window adapter observes the actual Doolittle write order and compares it with independent rational Schur elimination; finite source execution is kept separate from the quantified proof.\n\nValidation: 144 exact signed rational systems / 504 elimination stages; actual encoded Axis/Window normal replay (181.715s) and final optimized read-only Git-free export replay (128.314s), with identical receipts and all 30 LU write states checked. Eight normal/optimized source/receipt mutation controls, typed JSON distinctions, committed-source history and explicit-input-ref export checks pass.\n\nScope: the global original-H coefficient/gap/norm proof, carve bandwidth and full source arithmetic contracts remain explicit premises. No online solve, changed precision policy, cheaper setup, full-Core headroom or selected-frontier update is claimed. Open next questions identify the remaining production coefficient and period-cut geometry binding.\n\nJoyboyBrian, with substantial OpenAI Codex assistance. Retains the physical producer by Jose Manuel/jmbarrancoml (PR3851), the released factor-cap question by Hiroki KUMAZAKI/kumagi (PR5319), distinct factor-margin work by James Reed, and the attributed Gaussian/physical-word lineage. Apache-2.0; frozen sources unchanged.\n",
+  "created_at": "2026-10-25T04:37:59Z",
+  "updated_at": "2026-10-25T04:37:59Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
