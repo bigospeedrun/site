@@ -4,8 +4,8 @@
   "title": "Research (no κ claim): reorder, re-frame and re-ranking ceilings on the #4610 productive-helper word",
   "body": "**No κ claim.** These are screening ceilings on Cao Yifan's #4610 round-three productive-helper word, which the current #5413 caller still uses. They show where the remaining headroom is *not*.\n\n| Lever | Result |\n|---|---|\n| Productive re-ranking (finish rank-4/7/8 helpers as rank 9) | always loses (strict subadditivity of x^(1−C)) |\n| Longer controllers and query thinning | already closed by #4658/#4659/#4664/#4666/#4674 |\n| One climb per register; free reorder | ceilings 0.00715 and 0.00711 (not reachable) |\n| Reorder within the exact commutation poset, dimension-only | 0.00331 / 0.00323, but does not lift to real subspaces (332 clashes) |\n| **Reorder within the poset + re-frame, exact subspace LP (3.03M variables)** | **≤ 1.17 cost units per local, κ ≤ ≈ 0.003107** |\n| Exact subspace MIP, restricted and medium domains | **the current word is optimal (gap 0)** |\n| Non-commuting swaps with exact correction ADDs | 0 gains |\n\n**Why.** Each register climbs in 3–9 steps because a scalar ADD needs both operands at the identical frame. The helper frames forced in every valid reordering already cost 3458.82 of 3464.74. Further gains need a redesigned helper factorization, not reordering. Together with #5462 (the owned-relation optimum), this maps the edits on this word that are exhausted.\n\nEverything is in `research/frontier-word-reorder-ceilings/`: README, R12/R13 notes, a working digest of the accounting, tools, logs and solutions. Most bounds are floating-point screens; the README labels which are exact. The positive control `realize.py` rebuilds the current word exactly and passes both native interpreters on all 632 columns.\n\n**AI disclosure:** prepared by Joel Pulikkan (GamingPuzzled) with Claude Opus 5.5 (Anthropic) via Claude Code. Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-24T23:27:13Z",
-  "updated_at": "2026-10-24T23:27:13Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-25T14:17:24Z",
+  "closed_at": "2026-10-25T14:17:24Z",
+  "merged_at": "2026-10-25T14:17:24Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Refine the complete fixed CRT repair into literal binary control",
   "body": "PR5105 already executes the complete fixed CRT repair in a finite-symbol model; its explicit remaining binary-alphabet obligation includes stencil products and tape-role registers. This lowers the entire exact 8,242-instruction source program to 557,123 literal bit instructions using the unchanged PR4982 executor. The written successful-domain simulation gives `T_binary <= 101391*T_source + 29679`, including finite-control initialization and erasure. It preserves arbitrary opaque12-bit records, the admitted32-bit ROM, physical head alignment and source ownership.\n\nValidation: registered Python3.12 replay and optimized replay pass;63 independent instruction/alias/dispatch cases, exact record-code inventory, wrong-role/stride/control/relocation faults, dirty-control initialization and typed-receipt controls pass. Actual producer and complete actual key-cut comparisons check2,862 and43,130 source boundaries respectively on persistent encoded tapes. Separate AI peer review independently checked all8,242 generated block boundaries and normal/optimized replay. Committed-byte/source-history checks, the official28-file export with explicit input ref, Git-free optimized replay, source-corruption rejection and typed-receipt-corruption rejection pass.\n\n**The full binary layer was not executed.** Whole-program correctness is conditional on the pinned source theorem plus the written per-step proof. The binary scanner, all2,944 keys and whole sorting/reinsertion endpoint are not advertised as replayed. Input/ROM serialization, raw-S production, variable geometry, blank owned backing and the absence of malformed-input rollback remain explicit. No new κ, selected-frontier update, independent human acceptance or formal-kernel proof is claimed.\n\nTwo substantive commits separate the compiler/proof/source binding from independent controls and the reproducible receipt. Retains PR5105/4982/5015 and the complete credited CRT/key/scanner/repair lineage; Apache-2.0. Prepared by JoyboyBrian with substantial OpenAI Codex assistance.\n\nCanonical claim: https://github.com/CrocSwap/integer-mult-bounds/discussions/4709#discussioncomment-19172880\n",
   "created_at": "2026-10-25T04:04:06Z",
-  "updated_at": "2026-10-25T04:04:06Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-25T14:17:24Z",
+  "closed_at": "2026-10-25T14:17:23Z",
+  "merged_at": "2026-10-25T14:17:23Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Execute the actual Gaussian RHS with a charged two-column physical kernel",
   "body": "The actual Gaussian first-pass caller supplies real and imaginary RHS columns. The padded inverse-block consumer nevertheless computes all B columns. This package adds a physical two-column kernel that checks inactive inputs, preserves the original active-term order and rounding, and emits the complete padded output. B≤2 delegates to the original kernel.\n\nThe source-relative proof gives the zero-column invariant and complete local arithmetic/movement tariff. For B>2, the complete scalar count falls from 2(2K−1)B³ to 4(2K−1)B². The actual-Core B=4 fixture lowers complete consumer reads/writes/unit moves from 7,017,713 to 4,200,707 and retained owner backing from 9,953 to 9,731 cells. Exact padded output, protected tapes and same-owner reuse agree. The cross-block B4 case lowers total work from 21,413,925 to 12,862,809 and backing from 13,697 to 13,511 cells. B1/B2 preserve output with small dispatch overhead; no saving is claimed there.\n\nValidation: normal four-case execution passed in 16.176s; the final committed Git-free export passed optimized full typed-receipt replay in 16.601s. Committed bytes/source history (33 files), explicit-input export integrity, package metadata and four actual CLI source-binding rejection controls pass. Independent optimized B4 replay and six physical controls also pass. The larger fixture tests a nonzero cross-block dependency; B1/B2 test fallback. Retained/adapted PR5483 helper hashes are authenticated separately, with predecessor attribution and self-contained runtime bytes.\n\nThis is a scoped ordinary arithmetic improvement, not a recursive paid-profile or κ improvement. LU(round_P(S)) is the supplied factor reference; no equivalence with the scalar BandedSolve rounding contract or complete normalized Core integration is claimed. Owned scratch retains the original blank-entry premise; arbitrary disjoint dirty spectators are preserved.\n\nClaim: https://github.com/CrocSwap/integer-mult-bounds/discussions/4182#discussioncomment-19173186\n\nJoyboyBrian, with substantial OpenAI Codex assistance; Apache-2.0 and predecessor attribution retained.\n",
   "created_at": "2026-10-25T04:36:11Z",
-  "updated_at": "2026-10-25T04:36:11Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-25T14:17:24Z",
+  "closed_at": "2026-10-25T14:17:23Z",
+  "merged_at": "2026-10-25T14:17:23Z",
+  "state": "closed"
 }
