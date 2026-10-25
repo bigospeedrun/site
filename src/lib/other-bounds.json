@@ -561,6 +561,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks of the finite certificates and the accounted induction, with only the standard axioms, and says the full analytic endpoint was not compiled locally. The author says the hosted admission run for the head timed out on its time budget. The tracker's maintainer merged the pull request on 2026-10-25. The tracker's check results are on the pull request. No independent rerun.",
           "bound": "\\theta\\le 0.87477290596"
+        },
+        {
+          "author": "Sil",
+          "handle": "TheSil",
+          "value": "1749387/2000000",
+          "display": "0.8746935",
+          "date": "2026-10-25T10:42:55-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/74",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/82cba497ae4a5c7a8cb5908da90e6e9cdb7ba4fb/submissions/sil-fourth-power-20261025/src/Candidate/Main.lean#L9-L15",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's prepare, test, admission and verify checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-25. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 74,
+            "status": "open"
+          },
+          "note": "The author says it transfers normalized Gauss sums to fourth powers, keeps the original restricted source and its natural zeros, and combines the resulting mixed moment with an exact finite return certificate and a Mellin argument for the same source. It builds on OpenAI's framework and reuses source, counting and transport results from Hailey Collet's PR #69, with the two-level affine bound from PR #67 through PR #69's bootstrap modules. It is 0.0000794 below PR #71.",
+          "authors": [
+            {
+              "name": "Sil",
+              "url": "https://github.com/TheSil"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The tracker's prepare, test, admission and verify checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-25. No independent rerun.",
+          "bound": "\\theta\\le 0.8746935"
         }
       ],
       "repos": [
@@ -637,7 +663,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "Rexyysilent"
+      "bestHandle": "TheSil"
     },
     {
       "family": "005",
