@@ -4,8 +4,8 @@
   "title": "Fix wordram-ntt-kernel VERIFY.json input path (unbreaks CI planner)",
   "body": "Since #5466, `research/wordram-ntt-kernel/VERIFY.json` declares the input `\"MANIFEST.json\"`. The CI planner (`scripts/research_package.py` → `require_tracked_input`) needs an exact Git-tracked repo path, so the onboarding tests `test_research_matrix_batches` (`test_grouped_cli_output_keeps_total_package_count`, `test_nested_workflow_change_selects_every_registered_package`) now fail on the **plan** job of every new PR (e.g. #5553, #5556).\n\nOne-line fix: `\"MANIFEST.json\"` → `\"research/wordram-ntt-kernel/MANIFEST.json\"`. No scientific change. Locally `python3 -B -m unittest tests.test_research_matrix_batches` passes (5 tests).\n\nPrepared by DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
   "created_at": "2026-10-25T15:00:38Z",
-  "updated_at": "2026-10-25T15:00:38Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-25T17:05:45Z",
+  "closed_at": "2026-10-25T17:05:45Z",
+  "merged_at": "2026-10-25T17:05:45Z",
+  "state": "closed"
 }

@@ -1,0 +1,11 @@
+{
+  "number": 5559,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5559",
+  "title": "Research: partial theorems on the P112 decoder wall (no kappa)",
+  "body": "## Research package: partial theorems on the P112 decoder wall (no kappa)\n\nMethods package for the `complex-rank-shape-decoder` card (scope recorded as `changed`): exact lower bounds showing masked P112 decoders cannot cost less than 64 in the covered cases.\n\nCovered: every decoder with at most 8 rank-1 terms (C >= 64 for m <= 8); MIX-8 for mixed rectangle/Ferrers-atom decoders with at most 8 pieces; rank-8 nine-term decoders (CORE3 / CORE-RES / R8); KFAM T-block cost C(T) = 8 for COVERSAT orbits 0, 1, 3, 4 and CT8. Orbit 2 of COVERSAT, rank-9 nine-term decoders, m >= 10 and mixed decoders with 9 or more pieces are open (see \"Open next questions\" in the README).\n\nNo supplier, no coefficients, no kappa claim. Part of the proof is conditional (stated precisely in the README).\n\nVerification:\n- `python3 scripts/research_package.py --package research/p112-decoder-wall-partial --check-only` passes.\n- The registered replay is one stdlib step (CT8 exact LP-dual certificates, about 1 s). The full replay (numpy, pynauty, kissat, drat-trim, about 49 min with 4 jobs) is a documented local check with exact commands; saved log and receipt are in `data/`.\n- An independent AI audit (WALL-AUDIT) re-derived and re-ran selected parts. No human or formal proof review is claimed.\n\nAlso includes a one-line cherry-pick fixing the `wordram-ntt-kernel` VERIFY.json input path.\n\nPrepared by DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-25T16:26:15Z",
+  "updated_at": "2026-10-25T17:05:45Z",
+  "closed_at": "2026-10-25T17:05:45Z",
+  "merged_at": "2026-10-25T17:05:45Z",
+  "state": "closed"
+}
