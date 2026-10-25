@@ -4,8 +4,8 @@
   "title": "Sharp one-qubit full-Clifford tensor threshold: width 5",
   "body": "The full one-qubit Gaussian-dyadic Clifford alphabet has sharp pointwise tensor-independence threshold **5**. This improves the n=1 sufficient threshold 8 of Ali Romman's #5526, pinned at `45f7de73b168721cdf7ec8c1769b1b594493716a`.\n\nThe isolated `research/full-clifford-one-qubit` package contains a standalone exact verifier, its saved output and the short argument: 96 lifts / 24 projective classes; Gram ranks `4,10,20,23,24,24,24,24,24` at widths 1..9; positive-definiteness propagation by Schur products; an explicit width-4 null witness. Applying the predecessor's phase Fourier step gives the fixed-residual test window **5..8**, and the same-residue witness excludes any universal test confined below width 8.\n\nSol's normal and optimized CPython 3.12.10 runs agree byte-for-byte. They include 1,152 independently constructed literal tensor Gram entries at widths 4 and 5, all 96 unitarity checks, and the width-4/width-8 witness. Reproduce with `python -I -O -W error research/full-clifford-one-qubit/clifford-experiment.py`. Astra checked the frozen implementation and existing evidence briefly for obvious errors; no full replay or deep theorem audit is claimed. The package does not opt into registered replay CI.\n\nScope is algebra only: no new kappa, supplier, physical invoice, selected cold replay, formal-kernel or independent human acceptance. The README gives exact source pins, limitations and the next question. The smaller monomial results #5521/#5522/#5529/#5542 and DLamdata's #5547 general audit retain credit. Canonical coordination: [Discussion #5236](https://github.com/CrocSwap/integer-mult-bounds/discussions/5236). Targeted all-state PR/Issue and Discussion searches found no equivalent result in inspected coverage; historical diffs and unpublished work remain outside that coverage.\n\nPrepared for MatShep with substantial OpenAI Codex assistance; Apache-2.0. Base `32890bc5de034ab8fc93ac88ead7279a6a416d04`, priority revision 7. No predecessor or selected-frontier files are changed.\n",
   "created_at": "2026-10-25T12:08:55Z",
-  "updated_at": "2026-10-25T12:08:55Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-25T14:19:12Z",
+  "closed_at": "2026-10-25T14:19:11Z",
+  "merged_at": "2026-10-25T14:19:11Z",
+  "state": "closed"
 }
