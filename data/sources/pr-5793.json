@@ -1,0 +1,11 @@
+{
+  "number": 5793,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5793",
+  "title": "Synthesize optimal weighted reversible binary words with full endpoint replay",
+  "body": "Add a bounded constructor for optimal reversible binary linear words with custom XOR/SWAP alphabets and positive integer prices. It searches the full generated finite group, emits a complete potential/closure certificate, and replays the attaining word literally on every input. A closed set excluding the target proves unreachability in the declared alphabet.\n\nSix tests pass normally and under -O on CPython 3.12.14. Every one of the 168 three-role endpoints agrees with an independent truth-table shortest-path oracle. The four-role case covers all 20160 invertible maps and certifies six XORs for full reversal. Tests also cover a cheaper XOR implementation of an expensive SWAP, restricted alphabets, singular targets, false words/potentials and portable source-hash replay.\n\nCredit classical finite-group search and the existing zero-frame feedback censuses, whose larger six/eight-role unit-cost source contracts remain separate. Limits: four arbitrary roles, 18 distinct generators and costs in 1..10^9. No clean ancillas, hidden basis permutations, frame changes or free restoration are introduced. Native phases, tensor semantics and complete caller prices require their own checks. Minimum scalar cost is not a kappa result.\n\nFresh main/priorities/overlap checked at both checkpoints. Canonical scope https://github.com/CrocSwap/integer-mult-bounds/discussions/5776. No frontier change; hosted CI and independent review remain pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `9ddb022cc1d879a5d3173f8f1f526a2ff504e7b3`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
+  "created_at": "2026-10-26T18:56:19Z",
+  "updated_at": "2026-10-26T18:56:19Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

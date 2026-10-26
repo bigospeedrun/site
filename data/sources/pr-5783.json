@@ -1,0 +1,11 @@
+{
+  "number": 5783,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5783",
+  "title": "Certify global optima for submodular binary frame cost tables",
+  "body": "Generalize the finite graph-cut step used by source-specific coframe research into a reusable checked optimizer. Unary and pair costs may be signed integers; fixed choices remain fixed. Each pair must satisfy the submodular inequality. An exact flow/cut certificate proves the global minimum over the full declared binary class.\n\nSix tests pass normally and under -O on CPython 3.12.14. They cover all 81 small pair tables, every assignment in their reduction checks, 100 signed six-choice graphs against complete enumeration, a 512-choice flow path, 8192 pair terms, fixed-choice penalties and forged flow/assignment/cost receipts.\n\nThe initial 128-choice scope was expanded to 512 so the tool can cover the size of the existing 423-frame example. This changes no source word. Credit the classical cut reduction and Dinic method, Dugongue general coframe-cut work and PR5698 restricted coframe optimization with retained native lineage. The guide explains exact integer scaling and why rounded power-cost tables need separate error bounds. Source-to-table validity, higher-order interactions, native legality and compiler costs remain outside this interface. No new kappa or frontier change.\n\nFresh main, priorities and overlap checked at both checkpoints. Canonical scope https://github.com/CrocSwap/integer-mult-bounds/discussions/5776. Hosted CI and independent review remain pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `ec03a200d9f98b627a3afd608cf36b418a1d5866`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
+  "created_at": "2026-10-26T18:29:56Z",
+  "updated_at": "2026-10-26T18:29:56Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

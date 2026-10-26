@@ -1,0 +1,11 @@
+{
+  "number": 5791,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5791",
+  "title": "Construct minimum-cost binary query bases with exchange certificates",
+  "body": "A dependent query pool can contain expensive redundant acquisitions. Add an exact constructor for a minimum-cost basis of its whole binary span, together with XOR expressions for every query and dual coordinate forms. The checker uses no sorting or elimination: it checks independence, full coverage and every possible improving basis exchange.\n\nSix tests pass normally and under -O on CPython 3.12.14. All 2187 assignments of costs 0,1,2 to the seven nonzero three-bit vectors agree with complete enumeration of their 28 bases. Tests also cover 4096 queries at width 256, zero/duplicate vectors, false coordinate witnesses and a valid independent basis rejected because a cheaper exchange exists. Saved CLI certificates bind exact input bytes.\n\nThe guide proves the price-prefix optimality condition and gives a constructive example. This uses classical linear matroid greedy selection and fundamental circuits. Limits: 4096 queries, 256 coordinates, integer acquisition costs through 10^12. Reconstruction XOR costs, partial-span targets, native phases, physical delivery and restoration remain separate. No new kappa or frontier change.\n\nFresh main/priorities/overlap checked at both checkpoints. Canonical scope https://github.com/CrocSwap/integer-mult-bounds/discussions/5776. Hosted CI and independent review remain pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `cd314cb7f14511196060fc3c6261e2bf5fb80de4`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
+  "created_at": "2026-10-26T18:45:33Z",
+  "updated_at": "2026-10-26T18:45:33Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
