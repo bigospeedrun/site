@@ -1,0 +1,11 @@
+{
+  "number": 5659,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5659",
+  "title": "Restore selected #5599 evidence links in CI documentation",
+  "body": "## Change and mathematical scope\n\nThe shared research CI planner fails `test_current_ci_section_matches_selected_record` after the #5599 promotion because the current section of `docs/ci-verification.md` omits the selected proof-review and source-manifest links. Add those two links so readers and the existing regression test can resolve the evidence named by `certificates/selected-result.json`.\n\n## Task and overlap\n\nScope unchanged: this one-file documentation repair follows [aliromman's CI handoff](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19187115), with [coordination here](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19187733). Base: canonical main `df0137efd35e11b4445734bf612bdd4c7ebc330c`; fresh all-state PR searches found no overlapping repair. The selected result, source evidence and workflow behavior are unchanged.\n\n## Validation\n\nValidation on CPython 3.12.14, macOS:\n\n```sh\npython3 -B -m unittest discover -s tests -p test_research_current_status.py -v\ngit diff --check\n```\n\nBefore the change, the six-test module failed exactly the `review` and `source_manifest` subcases. After the change, all six tests pass, including checks that both destinations exist and match the selected record. No scientific replay or full shared suite was run for this navigation-only repair; hosted CI remains to be checked.\n\n## Credit\n\nCredit @aliromman for diagnosing and reporting the failure. Prepared by apoursh with substantial OpenAI Codex assistance, including separate agent checks of the diagnosis and overlap. Apache-2.0.\n",
+  "created_at": "2026-10-26T03:31:19Z",
+  "updated_at": "2026-10-26T03:31:19Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
