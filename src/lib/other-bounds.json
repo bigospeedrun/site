@@ -587,6 +587,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The tracker's prepare, test, admission and verify checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-25. No independent rerun.",
           "bound": "\\theta\\le 0.8746935"
+        },
+        {
+          "author": "Arvi",
+          "handle": "ArviFoxy",
+          "value": "349843/400000",
+          "display": "0.8746075",
+          "date": "2026-10-25T13:53:06-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/76",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/01c21abe8547304d033798ae7e4752dba4038209/submissions/arvi-repeated-marks-on-sil-face-20261025/src/Candidate/Main.lean#L15-L21",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's hosted verify run for the head was cancelled. Its admission check passed on a receipt of an independent check of the head, which the tracker's maintainer published (Comparator with Lean, nanoda and con-ron). The maintainer merged the pull request on 2026-10-26. No rerun by us.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 76,
+            "status": "open"
+          },
+          "note": "The author says it starts the repeated-mark face family of its PR #73 on the fourth-power source face of Sil's PR #74, at the point where the face family is tangent to the continuum flow, and closes with a new final return. It builds on OpenAI's framework and reuses source, NF and return results from Hailey Collet's PR #69. It is 0.0000860 below PR #74.",
+          "authors": [
+            {
+              "name": "Arvi",
+              "url": "https://github.com/ArviFoxy"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's hosted verify run for the head was cancelled. Its admission check passed on a receipt of an independent check of the head, which the tracker's maintainer published (Comparator with Lean, nanoda and con-ron). The maintainer merged the pull request on 2026-10-26. No rerun by us.",
+          "bound": "\\theta\\le 0.8746075"
         }
       ],
       "repos": [
@@ -663,7 +689,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "TheSil"
+      "bestHandle": "ArviFoxy"
     },
     {
       "family": "005",
