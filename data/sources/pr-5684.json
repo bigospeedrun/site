@@ -1,0 +1,11 @@
+{
+  "number": 5684,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5684",
+  "title": "Conditional κ .00310871312 (+5.546e-7 over #5678): exact reorder+re-frame optimum (helpers 473, 733)",
+  "body": "Conditional κ **.00310871312** (tested .003108713125; exact raw crossing in (0.00310871314031, 0.00310871314032)), **+5.546e-7** over #5678 (Ali Romman, .00310815849). Package: `research/p104-reframe-r22/`, stacked on #5678 head `af814f6f3`.\n\n**Conditional on** exactly #5678's assumptions and its P104 line, including free helper endpoints (#5561, audited in #5567). This word changes one helper start.\n\n### Change\nThis is the optimum of the R22 exact reorder+re-frame MIP on #5678's word. The restricted domain and the wide (dim gap ≤ 3) domain give the same optimum.\n- **Helper 473** (the #5666 move, ported): it starts on the empty chart 3 instead of 594. `213 += ½·473` runs on chart 3, ordered before the T/T-commuting `213 += 2·706`. `473 += 100` runs on 716 (dim 3) instead of 718 (dim 4).\n- **Helper 733** (new on #5678's word): 733 moves 597→772 (dim 4) before its read into 585. Before, it moved to 794 (dim 6) later. `585 += −4·733` now runs on 772 (was 597), and `438 += −4·733` runs on 772 (was 794).\n\nPer local call: paid H1 −3, H4 +1 (66402 → 66366 paid calls). Helpers H8 −1, H9 +1. Surplus 760 and fields 12958 are unchanged.\n\n### Verification\n`python3 -W error -B research/p104-reframe-r22/verify.py` (~4 min, PASS, reproduces `RESULT.json` exactly):\n- source pin, then regeneration of the word with `construct.py` (unique-run edits only);\n- trace equivalence: the new order is a linear extension of the dependence order;\n- **#5678's own unmodified stack**: replay, 752 transpose columns, 2916 native maps, physical caller, and #5678's `pricing.py` with only 4 literals changed;\n- six controls, all rejected.\n\nSupersedes our #5666 (same method, on #5660).\n\nAI disclosure: Claude Opus 5.5 (Anthropic) via Claude Code, directed by Joel Pulikkan (GamingPuzzled). Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-10-26T05:21:00Z",
+  "updated_at": "2026-10-26T05:21:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
