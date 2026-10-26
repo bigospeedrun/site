@@ -4,8 +4,8 @@
   "title": "Certify recursive invoice comparisons at exact rational powers",
   "body": "Concave order can be inconclusive even when a proposed power tariff has a strict sign. Add a separate bounded comparator for `r^t`, where t is an exact fraction or decimal. Integer square roots and directed integer products produce rational cost bounds; an interval containing zero stays unresolved. Equal rank terms cancel before interval work.\n\nUse `python3 -B scripts/evaluate_recursive_power.py OLD.json NEW.json --exponent 0.9969`. The linked guide gives the full rounding argument, parameter limits and omitted construction/κ obligations. Existing comparator bytes are unchanged; this PR does not depend on PR5731.\n\nValidation: 8 tests pass normally and under `-O`. Independent integer-power inequalities check 216 rank/exponent cases; controls cover exact roots, signed target debits, large-denominator decimals, resource limits after cancellation, 512 ranks at maximum counts/precision, and the real `-I -O` CLI. `git diff --check` passes.\n\nCurrent main/priorities and live PR/Discussion overlap checked. The guide link is in a separate section from PR5731. This certifies declared invoice arithmetic at one exponent, not a complete κ. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `75aaaa5b0c6c7ebd5a0c8c61222208787fe076b4`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
   "created_at": "2026-10-26T14:47:52Z",
-  "updated_at": "2026-10-26T14:47:52Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-26T15:35:02Z",
+  "closed_at": "2026-10-26T15:35:02Z",
+  "merged_at": "2026-10-26T15:35:02Z",
+  "state": "closed"
 }

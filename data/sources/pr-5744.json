@@ -4,8 +4,8 @@
   "title": "Check declared replay inputs in offline research exports",
   "body": "A self-consistent bundle receipt can still omit a file declared by its bundled VERIFY.json. Add optional `check --check-inputs` validation for declared input presence, duplicate/canonical paths and undeclared external files. The manifest reread must match the checked payload hash. The command performs no extraction, execution or Git call; default integrity checking remains unchanged.\n\nUse `python3 -B scripts/export_research_package.py check bundle.tar --check-inputs`. The CLI links a guide with the limits and the distinction between declared coverage and full runtime dependency discovery. This PR starts from main and does not depend on PR5728.\n\nValidation: all 32 export tests pass on Python 3.12; the 6 new tests pass under `-O`. Independently constructed coherent archives test missing inputs, extra files, invalid/duplicate declarations, resource bounds and changed manifest bytes. The real optimized CLI passes with Git absent from PATH. `git diff --check` passes.\n\nFresh main/priorities and live PR/Discussion overlap checked. PR5728 edits separate receipt-type validation. No scientific replay, commit authentication or new κ is claimed. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `5e8f76a5e26da67bf8ad7468d2331523793452ad`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
   "created_at": "2026-10-26T15:18:35Z",
-  "updated_at": "2026-10-26T15:18:35Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-26T15:35:02Z",
+  "closed_at": "2026-10-26T15:35:02Z",
+  "merged_at": "2026-10-26T15:35:02Z",
+  "state": "closed"
 }

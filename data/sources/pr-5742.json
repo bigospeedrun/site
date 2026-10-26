@@ -4,8 +4,8 @@
   "title": "Preserve overlap evidence when cache publication fails",
   "body": "A serialization or write failure can leave a partial temporary cache file. A failed cache replacement can also return newly fetched data while warning that the old source was retained. Clean up staging across the whole write operation, and publish a source into the in-memory snapshot only after its atomic file write succeeds.\n\nValidation: all 100 overlap-consumer tests pass on Python 3.12; the 5 new tests pass under `-O`. Injected partial serialization, disk-full and replace failures preserve the destination and close/remove staging files. A failed refresh retains the same old evidence in memory and on disk; an initial failure reports no usable snapshot. `git diff --check` passes.\n\nFresh main/priorities and live PR/Discussion overlap checked. This is a separate persistence scope from PR5723 cache parsing; it starts from main and does not depend on that PR. No interprocess cache-locking claim is made. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `79789e1fae2d1c478ec98902eda11916006655b9`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
   "created_at": "2026-10-26T15:09:11Z",
-  "updated_at": "2026-10-26T15:09:11Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-26T15:35:02Z",
+  "closed_at": "2026-10-26T15:35:02Z",
+  "merged_at": "2026-10-26T15:35:02Z",
+  "state": "closed"
 }

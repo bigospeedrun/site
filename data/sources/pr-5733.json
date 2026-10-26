@@ -4,8 +4,8 @@
   "title": "Combine recursive invoices with exact multiplicities and source receipts",
   "body": "Repeated components currently require manual paid/target histogram edits before comparison. Add `combine_recursive_invoices.py` to sum both sides with positive integer multiplicities under one matching declared contract. It writes a normal comparator-compatible invoice to stdout and an exact input/output hash receipt to stderr. No output is emitted until all terms and aggregate limits pass.\n\nUse `python3 -B scripts/combine_recursive_invoices.py --term 3 A.json --term 2 B.json > combined.json 2> receipt.json`. The guide states the independent physical-composition and target-ownership obligations. κ values must not be added. Existing comparator bytes are unchanged.\n\nValidation: 15 invoice/comparator tests pass on Python 3.12; the 5 new tests also pass under `-O`. Controls replay costs under independent tariffs, preserve input data, check duplicate terms, reject overflow/contract changes and bind real isolated optimized CLI output bytes to its receipt. A late invalid term emits no partial invoice. `git diff --check` passes.\n\nFresh main, priority revision 7, live PR paths and Discussions checked. Guide additions occupy a separate section from PR5731/5732; there is no dependency on them. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `470df91df2ab6e4ada410f6635e7159bf076a5e5`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
   "created_at": "2026-10-26T14:53:18Z",
-  "updated_at": "2026-10-26T14:53:18Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-26T15:35:02Z",
+  "closed_at": "2026-10-26T15:35:02Z",
+  "merged_at": "2026-10-26T15:35:02Z",
+  "state": "closed"
 }
