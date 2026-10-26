@@ -4,8 +4,8 @@
   "title": "Bound overlap refreshes when GraphQL cursors stop advancing",
   "body": "A missing or repeated GraphQL cursor can keep the overlap refresh in an endless loop. Add progress checks to the outer PR connection and all three Discussion pagination levels. Each connection tracks its own cursors, so independent threads can use the same cursor text.\n\nValidation: all 98 overlap-consumer tests pass on Python 3.12. The new regressions also pass under `-O`: missing, empty, non-string, repeated and non-adjacent cursor cycles stop after bounded calls. A failed nested refresh preserves the old complete source. Existing multi-page fixtures still recover every record. `git diff --check` passes.\n\nOverlap: fresh main, all open PR heads/file lists and recent Discussion activity checked. PR5723 changes cache validation in a separate part of the same tool; this PR starts from main and does not depend on it. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `209f7ca1e77e6619d6540d7430e4688f2e0f543c`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
   "created_at": "2026-10-26T14:24:12Z",
-  "updated_at": "2026-10-26T14:24:12Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-26T15:22:42Z",
+  "closed_at": "2026-10-26T15:22:42Z",
+  "merged_at": "2026-10-26T15:22:41Z",
+  "state": "closed"
 }

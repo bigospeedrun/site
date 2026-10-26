@@ -4,8 +4,8 @@
   "title": "Conditional κ .00310680117 (+3.784e-8 over #5660): exact reorder lowers helper 473's start",
   "body": "Conditional κ **.00310680117** (tested .003106801175; exact raw crossing in (0.00310680119019, 0.00310680119020)), **+3.784e-8** over #5660 (Ali Romman, .00310676333). Package: `research/p104-reframe-r22/`, stacked on #5660 head `3b0b4f37d`.\n\n**Conditional on** exactly #5660's assumptions and its P104 line, including free helper endpoints (#5561, audited in #5567). This word changes one helper start.\n\n### Change\nThis is the optimum of the R22 exact reorder+re-frame MIP on the newest P104 words (the method gave +4.09e-6 on #5580 earlier). On #5627, #5650 and #5660 the restricted and the wide (dim gap ≤ 3) domains give the same optimum. It is a move none of #5643/#5644/#5650/#5660 made:\n- Helper 473 starts on the empty chart 3 (dim 0) instead of 594 (dim 1). Its credit goes from H8 to H9.\n- `213 += ½·473` runs on chart 3, ordered before the T/T-commuting `213 += 2·706` and its `MOVE 213 3→594`.\n- `473 += 100` runs on 716 (dim 3) instead of 718 (dim 4), so `MOVE 100 716→718` disappears.\n\nPer local call: paid H1 −2, H3 +1 (66474 → 66456 paid calls). Helpers H8 −1, H9 +1. Surplus 760 and fields 12958 are unchanged.\n\n### Verification\n`python3 -W error -B research/p104-reframe-r22/verify.py` (~4 min, PASS, reproduces `RESULT.json` exactly):\n- source pin, then regeneration of the word with `construct.py` (unique-run edits only);\n- trace equivalence: the new order is a linear extension of the dependence order;\n- **#5660's own unmodified stack**: replay, 752 transpose columns, 2915 native maps, physical caller, and #5660's `pricing.py` with only 4 literals changed (claim/tested, previous, paid total);\n- six controls, all rejected.\n\nThe same construction on #5650's word gives .00310648252, verified on #5650's stack.\n\nAI disclosure: Claude Opus 5.5 (Anthropic) via Claude Code, directed by Joel Pulikkan (GamingPuzzled). Apache-2.0.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
   "created_at": "2026-10-26T04:10:48Z",
-  "updated_at": "2026-10-26T04:10:48Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-26T15:22:43Z",
+  "closed_at": "2026-10-26T15:22:43Z",
+  "merged_at": "2026-10-26T15:22:43Z",
+  "state": "closed"
 }

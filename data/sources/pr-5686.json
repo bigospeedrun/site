@@ -4,8 +4,8 @@
   "title": "Fix standalone Word RAM package registration",
   "body": "The previous Word RAM archive registration used a standalone `VERIFY.json` as if it were a generic registered research package. Its `inputs` entry was not repository-relative, so the shared planner failed before any selected package replay; changing only that path would then make the generic validator reject this legacy package's non-generic schema.\n\nThis maintenance PR preserves the standalone capsule and removes the accidental generic registration:\n\n- rename `VERIFY.json` byte-identically to `STANDALONE-VERIFY.json`;\n- update only the standalone `MANIFEST.json` inventory key and its README descriptor reference;\n- keep every mathematical source, data file, result, license and attribution byte unchanged;\n- leave the shared planner and generic schema gates unchanged.\n\nValidation from the exact current main base `df0137efd35e11b4445734bf612bdd4c7ebc330c`:\n\n- the original current package fails its own integrity check exactly at the stale `VERIFY.json` inventory entry;\n- the repaired standalone verifier passes its complete normal replay in 7.6 seconds (8 NTT tests, 65,537 RAM slices, 5,096 butterfly cases and 277 whole-program cases);\n- its intentional Python `-O` rejection remains intact;\n- all 32 manifest hashes pass after replay;\n- the actual planner selects no generic package for this metadata-only change, while shared-control planning completes with 3,353 registered packages and excludes the legacy Word RAM capsule;\n- `scripts/research_package.py --changed-since HEAD^ --explain-plan ...` returns an empty replay matrix.\n\nThis corrects CI registration metadata only. It does not claim a new κ, scientific admission, or a complete multiplication theorem.\n",
   "created_at": "2026-10-26T05:28:31Z",
-  "updated_at": "2026-10-26T12:05:18Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-26T15:22:42Z",
+  "closed_at": "2026-10-26T15:22:42Z",
+  "merged_at": "2026-10-26T15:22:42Z",
+  "state": "closed"
 }
