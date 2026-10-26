@@ -1,0 +1,11 @@
+{
+  "number": 5728,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5728",
+  "title": "Require unambiguous, typed metadata in research export receipts",
+  "body": "The offline bundle check accepts a Boolean or floating-point size when it compares equal to an integer size. It also accepts duplicate JSON keys and commit labels between 40 and 64 characters that cannot be Git object IDs. Require integer sizes and modes, exact 40/64-character IDs, and unique JSON keys. Check the committed manifest is an object before reading its inputs.\n\nValidation: all 31 export tests pass. The 5 new metadata tests also pass under `-O`, including independently built archives with false/float sizes, float modes, duplicate receipt keys and invalid object-ID lengths. Existing deterministic exports, split input refs, binary bytes, modes and path checks still pass. `git diff --check` passes.\n\nCurrent main/priorities and live open PR paths and Discussions were checked. No active PR touches this exporter. These checks validate archive consistency; they do not authenticate Git history or prove a research claim. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `70441d90c78bdfc48aed772d2b45e05d5a38e4fb`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
+  "created_at": "2026-10-26T14:34:20Z",
+  "updated_at": "2026-10-26T14:34:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 5723,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5723",
+  "title": "Handle malformed overlap cache sections without losing usable evidence",
+  "body": "A valid JSON cache such as `[]` makes `find_overlap.py` fail with an AttributeError before it can report overlap coverage. Validate the cache envelope and each used source before search. Invalid sections get a warning and unknown coverage; valid sections remain available. An offline read leaves the cache file unchanged.\n\nValidation: reproduced the original crash against unchanged main. All 100 tests that import the overlap tool pass on Python 3.12 normally and with `-O`. The update retains optional fields in legacy snapshots; one old Discussion fixture now includes the fields that a real cache record contains. New cases cover malformed roots, source/record containers, timestamps, path lists and online replacement. `git diff --check` passes.\n\nThis is a contributor-tool fix. It adds no mathematical claim. The complete cached overlap search and a fresh open-PR/file and recent-Discussion check found no matching active scope. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `2fb3301904c371c739a77e11b8937401914ab1ef`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
+  "created_at": "2026-10-26T14:18:32Z",
+  "updated_at": "2026-10-26T14:22:43Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

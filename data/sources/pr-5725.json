@@ -1,0 +1,11 @@
+{
+  "number": 5725,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5725",
+  "title": "Exclude directory aliases from local overlap evidence",
+  "body": "The local overlap search checks only whether each note itself is a symlink. A linked package or ledger directory can therefore supply external bytes as local research evidence. Use the existing repository path validator for every note, including parent components. A skipped tracked note remains an explicit coverage gap.\n\nValidation: all 99 overlap-consumer tests pass on Python 3.12. Four new tests also pass under `-O`, covering external and internal directory aliases, linked leaf files, non-file notes, a linked checkout root, a linked ledger directory, and a tracked note whose parent is replaced by a link. `git diff --check` passes. Native Windows junction behavior uses the existing shared validator; no native Windows run was made.\n\nOverlap: refreshed main and priority revision 7; live open-PR paths and recent Discussions checked. PR5723 and PR5724 touch separate parts of this tool. This PR is independent of both. Hosted CI is pending.\n\nBase: `df0137efd35e11b4445734bf612bdd4c7ebc330c`. Verified head: `c0610143960f61d9fc44b2cf4e531e6a2d5eef39`.\n\nPrepared for aliromman with OpenAI Codex assistance. Existing tool and predecessor credits remain in place. No selected-frontier change.\n",
+  "created_at": "2026-10-26T14:26:36Z",
+  "updated_at": "2026-10-26T14:26:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
