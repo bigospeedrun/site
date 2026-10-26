@@ -1,0 +1,11 @@
+{
+  "number": 5759,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5759",
+  "title": "Select compatible invoice edits with an exhaustive optimum certificate",
+  "body": "The new selector combines independent changes to one complete invoice under declared integer resource capacities. It enumerates every subset of up to 16 edits, rejects double spending of original paid/target inventory, and returns the best complete bill with a rigorous global optimum enclosure. This helps contributors find larger gains across compatible edits.\n\nThe included example chooses two gains of 4 over a competing gain of 7. Validation includes 25 independent exhaustive oracles, the full 65,536-subset limit, precision ambiguity, exact ties, resource and inventory failures, and an isolated optimized CLI with source hashes. All 7 tests pass normally and under -O on Python 3.12.\n\nThe guide supplies the pruning and interval argument, limits, attribution, and open source-binding questions. The optimum is finite and conditional on the declared independent edits and complete capacities. This does not certify a physical construction or increase κ. Live main/priorities/overlap were refreshed for this contribution; coordination: Discussion #5752.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `3c84a45ca05ed8982f4c0d6975d00a3b29af0f24`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
+  "created_at": "2026-10-26T16:51:57Z",
+  "updated_at": "2026-10-26T16:51:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

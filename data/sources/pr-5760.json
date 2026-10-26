@@ -1,0 +1,11 @@
+{
+  "number": 5760,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5760",
+  "title": "Construct and independently replay concave rank-transfer plans",
+  "body": "The new planner turns equal-mass majorization into explicit integer transfers. It stores paid transfers in reverse and target transfers forward, so both give the correct sign for paid cost minus target credit. A separate --verify path checks each step and its exact endpoint against the input invoices.\n\nThis makes the required rank changes concrete for source designers. The guide proves construction termination and the concave-cost implication, and states the physical map, ownership, fee and compiler obligations that remain. It also credits classical majorization, PR122, and the existing invoice tools.\n\nValidation: 6 tests pass normally and under -O on Python 3.12, including all 390 equal-mass four-slot pairs over ranks 0..4 (221 valid plans), independent hinge checks, bad certificates, the 2048-slot boundary, and isolated CLI generation/replay with byte hashes. No κ or selected-frontier claim. Latest main and overlap checked; canonical coordination: Discussion #5752.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `9cdb8e777a6d98ee43a50f8041b0e89002483cfe`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
+  "created_at": "2026-10-26T16:57:44Z",
+  "updated_at": "2026-10-26T16:57:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

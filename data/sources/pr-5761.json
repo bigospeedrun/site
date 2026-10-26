@@ -1,0 +1,11 @@
+{
+  "number": 5761,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5761",
+  "title": "test: preserve legacy routing coverage after priority revision 8",
+  "body": "Priority revision 8 uses the selected-baseline command directly, but the current-assignment tests still expected 16 generic rewrites and four historical rewrites. On unchanged main `de5ec2e7a6074068452f45b1a191b5c72832df4a`, this produces eight failures and two errors and stops CI before scientific replay.\n\nThis repair retains two exact revision-7 cards as explicit fixtures. It checks both historical routes through the real CLIs, checks all 22 live cards for unchanged receipt fields, and checks each distinct direct command through both CLIs. Missing-file, sparse omission, ordinary deletion, staged-replacement, nonexact-command and atomic-receipt controls remain active. Repeated commands share one CLI case; every live card still gets its own field check. Production scripts and the catalogue are unchanged.\n\nValidation: all 12 current-assignment tests pass under Python 3.14.7 and Python 3.12.14, including an isolated optimized run. All 16 related assignment tests pass under Python 3.12.14. The two fixture card objects and source SHA256 match the pinned revision-7 catalogue exactly. `git diff --check` passes. Full hosted-plan status is pending; no mathematical replay or new κ is claimed.\n\n[Fixture provenance and commands](https://github.com/aliromman/integer-mult-bounds/blob/ba8a9e640e1983f3c29993fefa3f46e8ed03313a/tests/fixtures/README.md). This resolves the explicit remaining CI handoff in [Discussion #5722](https://github.com/CrocSwap/integer-mult-bounds/discussions/5722); [canonical investigation #5758](https://github.com/CrocSwap/integer-mult-bounds/discussions/5758). It is separate from PR5749's test-file discovery rename.\n\nBase `de5ec2e7a6074068452f45b1a191b5c72832df4a`, priority 8. Credit the original catalogue, routing and test authors, including Douglas Colkitt, Ali Romman and Mihir Srivastava, and the released contributor-tool handoff. New repair: Ali Romman with substantial OpenAI Codex assistance; no subagents. Apache-2.0. The selected frontier is unchanged.\n",
+  "created_at": "2026-10-26T17:00:27Z",
+  "updated_at": "2026-10-26T17:00:27Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

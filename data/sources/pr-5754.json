@@ -1,0 +1,11 @@
+{
+  "number": 5754,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5754",
+  "title": "Substitute recursive jobs with matched-target and fee accounting",
+  "body": "Adding two recursive invoices does not describe substitution: the outer paid demand and the inner target that serves it must both be removed. Add a checked substitution CLI that consumes one matching target per replaced job, retains all other productive targets and adds an explicit fee invoice once.\n\nThe output remains a standard invoice for the existing comparison tools. Source and output hashes, multiplicities and scales are in a separate receipt. The exact identity is `F_new(t) = F_outer(t) + sum copies * scale^t * F_inner(t) + F_fees(t)`. Integer scales, available demand, compatible declarations, strict child-rank reduction and all output limits are checked before writing.\n\nValidation: six new tests pass normally and under optimized Python 3.12. They cover literal multiple-target accounting, 144 models with 432 exact moment identities, repeated demands, unchanged inputs, circular/missing interfaces, fractional scales, fee credits, overflow and no partial CLI output. Five existing composition tests and `git diff --check` pass.\n\nScope: arithmetic composition under declared contracts. Matching native interfaces, scale lifting, independent coproduct ownership and completeness of fees remain physical proof obligations. An empty explicit fee invoice does not prove free adaptation. The guide includes the identity and open next questions. No κ or selected-frontier claim.\n\nThis builds on the existing signed-invoice and integer-composition tools. PR4167's actual closed-primitive protocol is distinct and unchanged. The canonical scope is Discussion5752; live main, priorities8, open PRs and recent Discussions were refreshed. Bounded file-list coverage and API failures remain disclosed. Hosted CI and independent review are pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `b00030ff4a084b2302d7cdf23258ab6fcb6e4b64`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
+  "created_at": "2026-10-26T16:36:04Z",
+  "updated_at": "2026-10-26T16:36:04Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
