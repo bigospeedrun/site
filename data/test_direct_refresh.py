@@ -414,7 +414,13 @@ class RefreshTests(unittest.TestCase):
         noted=r.other_claims(claims,{},{'direct-issue-60':note})['other-average-sensitivity']['claims'][0]
         self.assertEqual(noted['note'],note['text'])
         with self.assertRaises(r.Rejected):r.other_claims(claims,{},{'direct-issue-60':dict(note,text='A <b>tag</b>')})
-        self.assertEqual([r.display_up(v) for v in ['1881/500','3','1/3']],['3.762','3.0','0.333334'])
+        self.assertEqual([r.display_up(v) for v in ['1881/500','3','1/3','5999999/2000000','2999999999/1000000000']],['3.762','3','0.333334','3.0','3.0'])
+        # Catalan (opened 2026-10-27) is an Other bounds row too: an exponent bound mu(G).
+        cat=dict(sub,problem='catalan',bound='1091')
+        listed=r.other_claims({'direct-issue-70':dict(route='issue',item=self.issue(70),submission=cat,verification=proof)},{},{})['other-catalan']['claims']
+        self.assertEqual((listed[0]['handle'],listed[0]['value'],listed[0]['bound']),('direct-issue-70','1091','\\mu(G)\\le 1091'))
+        self.assertEqual(listed[0]['display'],'1091')
+        self.assertIn('BigOSpeedrun.Catalan.Bound (1091)',listed[0]['proofScope'])
         # No board row for it, and prepare writes the file.
         temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);root=Path(temp.name)
         for name in ['exact-dft.json','3sum.json','apsp.json','registry.json','direct-trust.json']:(root/name).write_bytes((ROOT/name).read_bytes())

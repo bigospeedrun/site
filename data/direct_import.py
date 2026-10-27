@@ -20,7 +20,9 @@ AXIOMS = {'propext', 'Classical.choice', 'Quot.sound'}
 PROBLEMS = {'dft': ('exact-dft/uniform-exact-arithmetic', 1),
             '3sum': ('3sum/word-ram', 2), 'apsp': ('apsp/word-ram', 3),
             # An Other bounds row with a trusted statement (verifier PR #15): a coefficient from 0 to 8.
-            'average-sensitivity': ('other/average-sensitivity', 8)}
+            'average-sensitivity': ('other/average-sensitivity', 8),
+            # An Other bounds row (verifier profile catalan, split build): an irrationality exponent from 0 to 10^8.
+            'catalan': ('other/catalan', 100000000)}
 MAX_BYTES = 2_000_000
 
 class Rejected(ValueError):
@@ -144,6 +146,8 @@ theorem Race.bound : ∃ order solve W, DFTProgram order solve W ∧
 '''
     elif submission['problem'] == 'average-sensitivity':
         target = f'theorem Race.bound : BigOSpeedrun.AverageSensitivity.Bound (({n} : ℚ) / {d}) := by\n  sorry\n'
+    elif submission['problem'] == 'catalan':
+        target = f'theorem Race.bound : BigOSpeedrun.Catalan.Bound (({n} : ℚ) / {d}) := by\n  sorry\n'
     else:
         problem = 'ThreeSum' if submission['problem'] == '3sum' else 'APSP'
         target = f'theorem Race.bound : EndStatement.{problem}.SolvedInTime (({n} : Rat) / {d}) := by\n  sorry\n'

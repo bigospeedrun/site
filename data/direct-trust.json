@@ -95,6 +95,24 @@
       "bound_kind": "coefficient",
       "maximum": "8",
       "upstream_commit": "1581d4cbdd69a0faf34b2089614fe2a814316a6a"
+    },
+    "catalan": {
+      "challenge_file": "challenges/catalan/Statement.lean",
+      "challenge_sha256": "9ba7370f1256ef680ccf674e653b5456735c478f9ac80fcffc90f130ac4a2ce6",
+      "lean_toolchain": "leanprover/lean4:v4.34.1",
+      "manifest_file": "profiles/lake-manifest.json",
+      "tools_file": "profiles/tools.json",
+      "solution_module": "Submission",
+      "source_roots": [
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "bound_kind": "exponent",
+      "maximum": "100000000",
+      "upstream_commit": "50672b810873d8371b2b6bdd0057bb6cb2e3da24",
+      "runner": "github-split"
     }
   },
   "controller_blobs": {

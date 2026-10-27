@@ -66,6 +66,18 @@ test('a Lean Verified direct submission joins its row and leads only when it is 
   assert.equal((mergeDirect(lower as any, direct(60, '1881/500', '3.762') as any).families[0] as any).bestHandle, 'c');
 });
 
+// Catalan (opened 2026-10-27): the hand rows and a direct integer bound are whole numbers ("590", "1091").
+test('an integer direct claim on the Catalan row is listed and leads only when it is lower', () => {
+  const catalan = {families: [{slug: 'catalan', direction: 'lower', bestHandle: 'slitsey', claims: [
+    {handle: 'slitsey', value: '590', display: '590', date: '2026-10-24T18:34:00Z', evidence: 'claimed', url: 'https://example.org/s'}]}]};
+  const on = (value: string) => ({boards: {'other-catalan': direct(70, value, value).boards['other-average-sensitivity']}});
+  const merged = mergeDirect(catalan as any, on('1091') as any).families[0] as any;
+  assert.deepEqual(merged.claims.map((c: any) => c.handle).sort(), ['direct-issue-70', 'slitsey']);
+  assert.equal(merged.bestHandle, 'slitsey');
+  assert.equal((mergeDirect(catalan as any, on('580') as any).families[0] as any).bestHandle, 'direct-issue-70');
+  assert.equal(claimNumber({value: '590', display: '590'}), 590);
+});
+
 test('a direct claim must link its own verifier issue and be Lean Verified', () => {
   for (const bad of [direct(60, '3', '3.0', {url: 'https://github.com/bigospeedrun/verifier/issues/61'}), direct(60, '3', '3.0', {evidence: 'claimed'}),
     direct(60, '3', '3.0', {handle: 'prove2me-3'}), direct(60, '3', '3.0', {note: 'a <b> note'})]) {

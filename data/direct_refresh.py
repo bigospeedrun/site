@@ -29,7 +29,8 @@ SLUGS={'dft':'exact-dft','3sum':'3sum','apsp':'apsp'}
 # direct-other.json (merged by src/lib/other-merge.ts); an open, failed or held submission is not
 # listed there, so nothing posts before the proof check passes (Nil, 2026-10-23). bound: the row's form.
 OTHER={'average-sensitivity':dict(bound='\\mathrm{{AS}}(f)\\le {value}d\\sqrt n',
-    statement='BigOSpeedrun.AverageSensitivity.Bound')}
+    statement='BigOSpeedrun.AverageSensitivity.Bound'),
+    'catalan':dict(bound='\\mu(G)\\le {value}',statement='BigOSpeedrun.Catalan.Bound')}
 # These hosted smoke identities are permanently excluded, even after label edits.
 SMOKE_NUMBERS={1,2}
 CLAIMED_ONLY_NOTE='Submitted bound; it did not beat the best Lean Verified result, so no proof run started.'
@@ -359,8 +360,11 @@ def verification_state(key,claim,final_states):
     return 'failed' if state and state['decision']!='lean-verified' else 'pending'
 
 def display_up(bound,places=6):
-    """A decimal of a lower-is-better coefficient, rounded up: a shown value never claims more than the proof."""
-    value=Fraction(bound);scaled=-((-value.numerator*10**places)//value.denominator)
+    """A decimal of a lower-is-better bound, rounded up: a shown value never claims more than the proof.
+    An integer bound shows as the integer (1091, as the Catalan rows show 590; lead, 2026-10-27)."""
+    value=Fraction(bound)
+    if value.denominator==1:return str(value.numerator)
+    scaled=-((-value.numerator*10**places)//value.denominator)
     text=f'{scaled//10**places}.{scaled%10**places:0{places}d}'.rstrip('0')
     return text+'0' if text.endswith('.') else text
 

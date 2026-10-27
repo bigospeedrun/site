@@ -15,7 +15,10 @@ export function claimNumber(claim: Pick<Claim, 'display' | 'value'>): number | n
   const decimal = /\d+\.\d+/.exec(claim.display);
   if (decimal) return Number(decimal[0]);
   const fraction = /^\s*(\d+)\/(\d+)\s*$/.exec(claim.value);
-  return fraction ? Number(fraction[1]) / Number(fraction[2]) : null;
+  if (fraction) return Number(fraction[1]) / Number(fraction[2]);
+  // A whole number (the Catalan rows: "590"; a direct integer bound: "1091"), as other-rank.ts reads it.
+  const whole = /^\s*(\d+)\s*$/.exec(claim.display) ?? /^\s*(\d+)\s*$/.exec(claim.value);
+  return whole ? Number(whole[1]) : null;
 }
 
 // The row page writes note and proofScope as HTML after its math step, which escapes only math:

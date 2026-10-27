@@ -140,6 +140,22 @@ class DirectImportTests(unittest.TestCase):
         with self.assertRaises(gate.Rejected):
             gate.normalize(dict(sub,bound='17/2'))
 
+    def test_catalan_target_and_reviewed_statement(self):
+        # Opened 2026-10-27 after the split-build smoke (verifier run 40497685416, issue #68): its receipt's
+        # generated challenge for bound 1091 has sha256 665c79be..., and its profile carries runner github-split.
+        trust=json.loads((Path(__file__).with_name('direct-trust.json')).read_text())
+        profile=trust['profiles']['catalan']
+        raw=(FIXTURES/'Statement.lean').read_bytes()
+        self.assertEqual(gate.sha(raw),profile['challenge_sha256'])
+        self.assertEqual((profile['runner'],profile['maximum'],profile['lean_toolchain']),('github-split','100000000','leanprover/lean4:v4.34.1'))
+        sub=gate.normalize(dict(schema_version=1,problem='catalan',bound='1091',repo_url='https://github.com/u/p',commit='a'*40,authors=[]))
+        generated=gate.challenge_bytes(sub,raw)
+        self.assertTrue(generated.endswith('theorem Race.bound : BigOSpeedrun.Catalan.Bound ((1091 : ℚ) / 1) := by\n  sorry\n'.encode()))
+        self.assertEqual(gate.sha(generated),'665c79be55f9940f1410fe849439e9dc260418ff9b160909c0f756eff1dc02a6')
+        self.assertEqual(gate.PROBLEMS['catalan'],('other/catalan',100000000))
+        with self.assertRaises(gate.Rejected):
+            gate.normalize(dict(sub,bound='100000001'))
+
     def test_early_issue_binds_publisher_stage_and_pending_reason(self):
         self.trust[self.revision]['publisher_workflow_id']=43
         publisher=dict(self.run,id=456,workflow_id=43,path='.github/workflows/pr-publish.yml',event='workflow_run',html_url='https://github.com/bigospeedrun/verifier/actions/runs/456')
