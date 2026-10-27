@@ -6,13 +6,14 @@ import {math, inlineMath} from '../../lib/math';
 import {localTimeFallback} from '../../lib/freshness';
 import {boardUrl} from '../../lib/board';
 import {rankOtherClaims} from '../../lib/other-rank';
-import {prove2meCampaignForOther} from '../../lib/submission';
+import {prove2meCampaignForOther, verifierUrl, verifierIssueUrl, verifierOtherRows} from '../../lib/submission';
 import {otherReviewPrUrl, type OtherClaimReview, type OtherReviewRepository} from '../../lib/evidence';
 export function getStaticPaths(){return data.families.map(family=>({params:{slug:family.slug},props:{family}}));}
 const {family:f}=Astro.props;
 const board=boardUrl('other-'+f.slug);
 const hasLean=f.claims.some(c=>c.evidence==='lean-verified');
 const campaign=prove2meCampaignForOther(f.slug);
+const verifierRow=verifierOtherRows[f.slug];
 const ranked=rankOtherClaims(f.claims,f.direction);
 const repo=(f as {reviewRepository?:OtherReviewRepository}).reviewRepository;
 // The merged pull request a Human Verified claim links to.
@@ -26,7 +27,8 @@ const reviewUrl=(c:object)=>{const review=(c as {review?:OtherClaimReview}).revi
     <li><strong>What counts as <a href="/about#evidence-levels" class="human-verified">Human Verified</a>:</strong> A result is Human Verified when <a href={repo.url} target="_blank" rel="noopener">{repo.name}</a>, an independently owned repository, merges its pull request. The level label links to the merged pull request.</li>
     <li><strong>What counts as <a href="/about#evidence-levels" class="claimed">Claimed</a>:</strong> Any other published result, including an open pull request to that repository. Its authors published it, and we have not checked it.</li>
     {hasLean&&<li><strong>What counts as <a href="/about#evidence-levels" class="lean-verified">Lean Verified</a>:</strong> A result proved on <a href="https://prove2.me" target="_blank" rel="noopener">prove2.me</a>, where Lean checks each proof, once we review that its Lean statement is this statement.</li>}
-  </ul>:<p>{hasLean?<>A result proved on <a href="https://prove2.me" target="_blank" rel="noopener">prove2.me</a>, where Lean checks each proof, is <a href="/about#evidence-levels" class="lean-verified">Lean Verified</a> once we review that its Lean statement is this statement. The other results are </>:<>These results are </>}<a href="/about#evidence-levels" class="claimed">Claimed</a>: their authors published them, and we have not checked them.</p>}
+  </ul>:<p>{verifierRow?<>A result is <a href="/about#evidence-levels" class="lean-verified">Lean Verified</a> when <a href={verifierUrl} target="_blank" rel="noopener">our verifier</a> checks its Lean proof against our Lean statement of this bound. The other results are </>:hasLean?<>A result proved on <a href="https://prove2.me" target="_blank" rel="noopener">prove2.me</a>, where Lean checks each proof, is <a href="/about#evidence-levels" class="lean-verified">Lean Verified</a> once we review that its Lean statement is this statement. The other results are </>:<>These results are </>}<a href="/about#evidence-levels" class="claimed">Claimed</a>: their authors published them, and we have not checked them.</p>}
+  {verifierRow&&<p>Submit a Lean proof through a <a href={verifierIssueUrl} target="_blank" rel="noopener">submission issue</a> on our verifier.{verifierRow.guide&&<> The <a href={verifierRow.guide} target="_blank" rel="noopener">conversion guide</a> shows how to move an existing proof repository into the layout that the verifier reads.</>}</p>}
   {campaign&&<p><strong>prove2.me:</strong> Results proved in <a href={campaign} target="_blank" rel="noopener">its campaign for this race</a> show here after we review the statement.</p>}
   {board&&<p>People and their agents post about this race on <a href={board}>its board</a>.</p>}
   <div class="results-scroll" role="region" aria-label={'Claims for '+f.name} tabindex="0"><table>

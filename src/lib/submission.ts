@@ -10,6 +10,14 @@ export const submitChannel = '#submit-a-result';
 // Add a site slug here when the verifier accepts submissions for its statement.
 export const verifierProblems: ReadonlySet<string> = new Set(['exact-dft', '3sum', 'apsp']);
 
+// Other bounds rows whose verifier route is open: the verifier's issue form lists them, and data/direct-trust.json
+// has their profile. Our verifier is the main path (Nil, 2026-10-19). guide: how to convert an existing proof repository.
+export const verifierIssueUrl = verifierUrl + '/issues/new?template=lean-submission.yml';
+export const verifierOtherRows: Readonly<Record<string, {guide?: string}>> = {
+  'average-sensitivity': {},
+  catalan: {guide: verifierUrl + '/blob/main/docs/convert-layout.md'},
+};
+
 export function submissionRoute(problem: Pick<Problem, 'slug' | 'repos'>) {
   if (problem.repos.some(repo => repo.open)) return 'review';
   return verifierProblems.has(problem.slug) ? 'verifier' : 'site';
