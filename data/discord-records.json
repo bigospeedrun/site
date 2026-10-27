@@ -4762,6 +4762,26 @@
         "table": "big-o"
       },
       {
+        "slug": "3sat",
+        "name": "3-SAT",
+        "url": "https://bigospeedrun.com/3sat",
+        "leader": "openai-eth-2026",
+        "direction": "higher",
+        "records": [
+          {
+            "id": "openai-eth-2026",
+            "score": "1/2",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "OpenAI"
+            ],
+            "bound": "O*(2^(n/(log n)^(0.5 - o(1))))"
+          }
+        ],
+        "table": "big-o"
+      },
+      {
         "slug": "other-quasi-riemann",
         "name": "Quasi-Riemann hypothesis",
         "url": "https://bigospeedrun.com/other/quasi-riemann",
@@ -6014,26 +6034,6 @@
             "display": "0.1515"
           }
         ]
-      },
-      {
-        "slug": "3sat",
-        "name": "3-SAT",
-        "url": "https://bigospeedrun.com/3sat",
-        "leader": "openai-eth-2026",
-        "direction": "higher",
-        "records": [
-          {
-            "id": "openai-eth-2026",
-            "score": "1/2",
-            "relation": "attained",
-            "evidence": "Claimed",
-            "authors": [
-              "OpenAI"
-            ],
-            "bound": "O*(2^(n/(log n)^(0.5 - o(1))))"
-          }
-        ],
-        "table": "big-o"
       }
     ]
   },
