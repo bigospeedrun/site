@@ -4,8 +4,8 @@
   "title": "Construct and independently replay concave rank-transfer plans",
   "body": "The new planner turns equal-mass majorization into explicit integer transfers. It stores paid transfers in reverse and target transfers forward, so both give the correct sign for paid cost minus target credit. A separate --verify path checks each step and its exact endpoint against the input invoices.\n\nThis makes the required rank changes concrete for source designers. The guide proves construction termination and the concave-cost implication, and states the physical map, ownership, fee and compiler obligations that remain. It also credits classical majorization, PR122, and the existing invoice tools.\n\nValidation: 6 tests pass normally and under -O on Python 3.12, including all 390 equal-mass four-slot pairs over ranks 0..4 (221 valid plans), independent hinge checks, bad certificates, the 2048-slot boundary, and isolated CLI generation/replay with byte hashes. No κ or selected-frontier claim. Latest main and overlap checked; canonical coordination: Discussion #5752.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `9cdb8e777a6d98ee43a50f8041b0e89002483cfe`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n\n\nValidation closeout: the ten independent patches apply cleanly together. The combined Python 3.12.14 run passes all 69 new tests and 35 existing checks, normally and under `-O`; the optional SymPy check is skipped. All 6 new tests in this PR also pass in the [hosted planning log](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40364124375/job/121717080318). The planning job reports eight failures and two errors in unchanged `test_research_current_assignment`; the full unchanged module reproduces those same failures locally on priority revision 8. The downstream replay job is skipped. This is not a green hosted workflow. Combined evidence and remaining obligations are in [Discussion #5752](https://github.com/CrocSwap/integer-mult-bounds/discussions/5752).\n",
   "created_at": "2026-10-26T16:57:44Z",
-  "updated_at": "2026-10-26T17:47:48Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

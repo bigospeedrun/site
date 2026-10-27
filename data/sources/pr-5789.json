@@ -4,8 +4,8 @@
   "title": "Export exact rational rank and complete kernel certificates",
   "body": "Add a portable exact certificate interface for linear interface searches. The output gives independent pivot coordinates, a rank factorization and complete left/right kernel bases. A separate checker uses products and free-coordinate identities; it does not rerun Gaussian elimination.\n\nSix tests pass normally and under -O on CPython 3.12.14. They compare all 512 binary three-by-three matrices and 60 rational rectangular matrices with independent permutation-minor enumeration; cover nonleading pivot rows, zero/full rank and the 64-by-64 bound; reject corrupted inverse/factor/kernel witnesses; and replay saved CLI certificates from an unrelated directory with exact byte hashes.\n\nThe guide explains both rank bounds and why the kernel bases are complete. This is classical elimination and rank factorization, with the repository source-specific audits retaining their credit. Bounds are 64 rows/columns and input rational numerator/denominator magnitudes at most 10^9. Rational growth can increase cost. Rational rank does not supply dyadic completion, native delivery, productive target independence or a complete physical invoice. No new kappa or frontier change.\n\nFresh main and live/historical overlap checked before work and submission. Canonical scope https://github.com/CrocSwap/integer-mult-bounds/discussions/5776. All 6 new tests pass in the [hosted plan](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40384237927/job/121788152387) at this head. The plan fails on the unchanged assignment module (8 failures and 2 errors); replay is skipped. The existing fix is [PR #5761](https://github.com/CrocSwap/integer-mult-bounds/pull/5761). Independent review remains pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `c282c77bf89c001816c241a013e16441a649936e`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n\nExact certificate rationals have a 6000-bit numerator/denominator budget. Larger outputs fail before serialization and emit no partial certificate.\n",
   "created_at": "2026-10-26T18:40:41Z",
-  "updated_at": "2026-10-26T19:20:33Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

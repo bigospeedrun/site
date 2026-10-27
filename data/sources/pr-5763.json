@@ -4,8 +4,8 @@
   "title": "Allocate optimal weighted helper pools with independent replay certificates",
   "body": "This allocator turns declared weighted helper lifetimes into reusable slot ranges and a minimum-capacity certificate. A separate occupancy replay checks range coverage and collisions, then verifies a simultaneous live set whose total width equals the pool size. It supports very large widths without allocating one object per unit.\n\nSeven tests pass normally and under -O on Python 3.12: 364 exhaustive small schedules, 100 random 40-lifetime schedules, the 512-lifetime/10^60-width boundary, fragmented reuse, malformed certificates, and isolated CLI hashes. A source-pinned fixture copies PR5717's eleven local owned lifetimes and proves the same two-field minimum. The source bytes and extraction are documented; native/source cleanup was not rerun.\n\nThe minimum is for fixed half-open lifetimes and freely assignable, possibly noncontiguous slots. It does not optimize chronology or prove source reuse safety, route cost, or κ. Credits retain T74 PR2655 and the P104 PR5717 audit. Current main/priorities/overlap checked; scoped coordination in Discussion #5752.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `cee2336bc3a20c586b1dbb55152d97a114c657a6`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n\n\nValidation closeout: the ten independent patches apply cleanly together. The combined Python 3.12.14 run passes all 69 new tests and 35 existing checks, normally and under `-O`; the optional SymPy check is skipped. All 7 new tests in this PR also pass in the [hosted planning log](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40365871816/job/121723284171). The planning job reports eight failures and two errors in unchanged `test_research_current_assignment`; the full unchanged module reproduces those same failures locally on priority revision 8. The downstream replay job is skipped. This is not a green hosted workflow. Combined evidence and remaining obligations are in [Discussion #5752](https://github.com/CrocSwap/integer-mult-bounds/discussions/5752).\n",
   "created_at": "2026-10-26T17:08:45Z",
-  "updated_at": "2026-10-26T17:47:54Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

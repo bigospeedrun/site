@@ -4,8 +4,8 @@
   "title": "Prune invoice search pools with exact retained dominance witnesses",
   "body": "Candidate searches can waste expensive power and native checks on bills that are uniformly dominated. Add a bounded pool reducer that keeps the exact concave-order frontier and emits a retained witness for every removed input. It includes target credits, preserves incomparable bills, and identifies equal signed bills without treating their physical implementations as equivalent.\n\nSeven focused tests pass normally and under -O on CPython3.12.14. They cover all70 four-member pools from eight independent small invoices, the256-input limit at rank10^9, credits, equal net bills with different gross counts, malformed contracts, complete coverage, forged evidence and isolated CLI input hashes. The witness checker uses the existing pairwise comparator independently of the producer sweep.\n\nLimits:256 invoices,8192 union rank knots; source legality and complete invoice assumptions remain external. Mixed hinges do not prove power crossings. No new kappa. Guide includes the proof, limits, next source-binding step and classical/P104 predecessor credit. Fresh main and overlap checked before work and submission. Canonical claim: https://github.com/CrocSwap/integer-mult-bounds/discussions/5776. All 7 new tests pass in the [hosted plan](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40376268720/job/121760036916) at this head. The plan fails on the unchanged assignment module (8 failures and 2 errors); replay is skipped. The existing fix is [PR #5761](https://github.com/CrocSwap/integer-mult-bounds/pull/5761). Independent review remains pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `86342a33c04c72a52ddecf70b8f4b1dcb8304cef`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
   "created_at": "2026-10-26T18:16:21Z",
-  "updated_at": "2026-10-26T19:20:17Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

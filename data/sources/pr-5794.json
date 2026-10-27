@@ -4,8 +4,8 @@
   "title": "Construct minimum-precision dyadic parameters with complete exclusion proofs",
   "body": "Rational parameter points can require unsupported denominators. Add an exact dyadic feasibility constructor for bounded linear regions, including strict inequalities. Nested grids permit binary search on precision. A feasible point plus a complete exclusion tree for the preceding grid proves the minimum; the checker verifies interval bounds and complete integer-box partitions without searching.\n\nSix tests pass normally and under -O on CPython 3.12.14. They compare 120 regions with complete finite-grid enumeration, check strict boundaries and deliberate budget exhaustion, reject false points/exclusion trees/brackets, and cover eight parameters with 64 rows. The frozen interval [0.0031,0.00310045] needs exactly 20 bits, with 3251/1048576; precision 19 has an empty integer box. The upper endpoint comes from the pinned selected record and is not a new kappa claim.\n\nLimits: eight parameters, 64 rows, common precision through 30 and 50000 search nodes. A finite-grid exclusion does not exclude real points or finer grids. Unresolved searches retain proven bounds and make no minimum claim. Source constraints, nonlinear terms, physical precision and full compiler costs remain separate. The guide includes the proof, next steps and classical branch-and-bound attribution.\n\nFresh main/priorities/overlap checked at both checkpoints. Canonical scope https://github.com/CrocSwap/integer-mult-bounds/discussions/5776. Selected frontier unchanged. All 6 new tests pass in the [hosted plan](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40383175615/job/121784469978) at this head. The plan fails on the unchanged assignment module (8 failures and 2 errors); replay is skipped. The existing fix is [PR #5761](https://github.com/CrocSwap/integer-mult-bounds/pull/5761). Independent review remains pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `b67e65c5fcc313f3fcb1e92b199025a63cc1dec7`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
   "created_at": "2026-10-26T19:02:41Z",
-  "updated_at": "2026-10-26T19:20:45Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

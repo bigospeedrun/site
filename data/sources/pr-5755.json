@@ -4,8 +4,8 @@
   "title": "Rule out fixed rank-one active repair with a 101-channel bound",
   "body": "The active-restoration frontier leaves nine or more jointly noisy channels open. This package rules out the fixed rank-one, immutable-payload subfamily: mode 5 requires at least 50 providers, and the full eight-mode correction requires at least 101, even with arbitrary repeated chronological additive contacts and joint nuisance cancellation.\n\nThe source-bound verifier enumerates 115 rank-one charts over 1,090 contact intervals and checks exact weighted-cover certificates for the necessary restored-Y invariant. It also verifies the normalization and geometry of the tempting pure-Y cleanup route. Dropped-restoration and expanded-chart negative controls demonstrate the limits of the certificate.\n\nThis complements Ali Romman's #5745 and follows #5720. It does not exclude higher-rank or mixed-rank channels, moving frames, feedback-dependent payloads, changed native words, or separately paid final Y transports. It produces no new kappa bound.\n\nValidation: normal and optimized registered replay pass; committed-byte/source-history preflight passes; official export integrity and Git-free read-only cold replay pass. An independent backward-adjoint calculation agrees with every chart support and the 50/101 certificates.\n",
   "created_at": "2026-10-26T16:43:56Z",
-  "updated_at": "2026-10-26T16:43:56Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:04Z",
+  "closed_at": "2026-10-27T13:41:04Z",
+  "merged_at": "2026-10-27T13:41:04Z",
+  "state": "closed"
 }

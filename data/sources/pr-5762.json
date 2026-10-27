@@ -4,8 +4,8 @@
   "title": "Compute exact two-fee tradeoff regions for concave invoice gains",
   "body": "The new fee-region tool prices two paid fee patterns together against a complete invoice change. Exact hinge inequalities and rational polygon clipping return the full feasible tradeoff region, binding ranks, and an optional whole-fee budget with a next-count rejection witness. This can guide route/restoration choices before a full caller replay.\n\nSix tests pass normally and under -O on Python 3.12. They compare 30 random regions to independent pairwise line intersections and 1,080 direct integer-grid tariff checks, then cover fractional vertices, zero slack, mismatched or credited fees, large counts, limits, and isolated CLI input hashes.\n\nThe guide proves sufficiency/completeness for the stated increasing-concave tariff class and explains why it is stronger than an all-power test. Physical fee completeness, source maps and κ admission remain open obligations. Current main/priorities/overlap rechecked. Coordination: Discussion #5752.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `dc75e2175b09e9c270ff10ecb61075ed1411b414`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n\n\nValidation closeout: the ten independent patches apply cleanly together. The combined Python 3.12.14 run passes all 69 new tests and 35 existing checks, normally and under `-O`; the optional SymPy check is skipped. All 6 new tests in this PR also pass in the [hosted planning log](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40365023207/job/121720621294). The planning job reports eight failures and two errors in unchanged `test_research_current_assignment`; the full unchanged module reproduces those same failures locally on priority revision 8. The downstream replay job is skipped. This is not a green hosted workflow. Combined evidence and remaining obligations are in [Discussion #5752](https://github.com/CrocSwap/integer-mult-bounds/discussions/5752).\n",
   "created_at": "2026-10-26T17:02:29Z",
-  "updated_at": "2026-10-26T17:47:52Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

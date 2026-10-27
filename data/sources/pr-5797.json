@@ -4,8 +4,8 @@
   "title": "Add measured low-compression replay for the complete G20 candidate",
   "body": "The complete PR5708 G20 replay spends substantial time recompressing temporary artifacts. This package runs the unchanged source verifier with two explicitly bound producer variants that change only the gzip setting. All 102 source files remain pinned and unchanged. All twelve output comparisons, 317004 events, 56223 source descriptors, the complete bill and the source rejection controls remain.\n\nTwelve fresh serial Python3.12 processes compare the unmodified source with levels 1, 2 and 0. Default level 1 reduces the local median from 22.2141s to 17.8863s (**1.242x**); all three matched source/level 1 blocks improve. Individual timings vary and overlap. The three temporary gzip files grow from 7.00 MB to 9.58 MB. Level 0 needs 132.03 MB and has no consistent timing advantage. Raw codec measurements and all complete timings are retained; no speed guarantee on another host is claimed.\n\nValidation: registered complete replay; six producer-mutation controls; exact equality of all 102 source Git entries with PR5708 head 829d01fc031f7323ffcfa423fdfd1f24dcbe3190; committed-byte and mode preflight; sealed export replay in isolated optimized Python with an empty PATH, read-only files and source-corruption rejection. [Package and commands](https://github.com/CrocSwap/integer-mult-bounds/tree/f6fdeb5037bc59ed4c58fe3c52d088eaa2e91117/research/g20-compression-replay).\n\nScope: a measured verifier optimization for one frozen candidate. The ordinary component remains .003507719059749; no new kappa, selected-frontier update, supplier admission or independent human acceptance. Full publication ancestry was not checked in this shallow checkout. Hosted scientific success is not implied. [Canonical Discussion5790](https://github.com/CrocSwap/integer-mult-bounds/discussions/5790) records the fresh-main/overlap check and the released earlier CI scope.\n\nCredit the PR5708/5679 authors, Dugongue, ai-nanachi and all retained source notices. This optimization is by Ali Romman with substantial OpenAI Codex assistance; no subagents. Apache-2.0.\n",
   "created_at": "2026-10-26T19:10:23Z",
-  "updated_at": "2026-10-26T19:10:23Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Replay exact LP bounds, infeasibility witnesses and improving rays",
   "body": "The new standalone checker validates certificates for max c*x subject to A*x<=b and x>=0. It reports exact primal/dual residuals and gaps, or verifies a Farkas infeasibility witness or a feasible improving ray. This lets candidate and resource optimizers use external solvers without trusting their numerical acceptance thresholds.\n\nSeven tests pass normally and under -O on Python 3.12. Coverage includes 81 independently enumerated box optima, a nontrivial rational fee optimum, nonzero bound gaps, both Farkas sign conditions, a required feasible ray origin, strict rational boundaries, malformed dimensions, and isolated CLI byte binding.\n\nThe guide contains the short algebraic proofs, input contract, limits, and open source-containment obligation. This certifies only the declared continuous LP. It does not establish a physical family bound or new κ. Main and overlap refreshed; coordination: Discussion #5752.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `91b934dcc20971697613c86aa353598f8739c001`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n\n\nValidation closeout: the ten independent patches apply cleanly together. The combined Python 3.12.14 run passes all 69 new tests and 35 existing checks, normally and under `-O`; the optional SymPy check is skipped. All 7 new tests in this PR also pass in the [hosted planning log](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40366889682/job/121726906626). The planning job reports eight failures and two errors in unchanged `test_research_current_assignment`; the full unchanged module reproduces those same failures locally on priority revision 8. The downstream replay job is skipped. This is not a green hosted workflow. Combined evidence and remaining obligations are in [Discussion #5752](https://github.com/CrocSwap/integer-mult-bounds/discussions/5752).\n",
   "created_at": "2026-10-26T17:15:18Z",
-  "updated_at": "2026-10-26T17:47:57Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

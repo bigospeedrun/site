@@ -4,8 +4,8 @@
   "title": "Construct minimum-cost compatible assignments with Hall and dual certificates",
   "body": "Add a constructive exact matcher for finite source/consumer compatibility matrices. It returns a minimum-cost injective assignment or a concrete Hall shortage witness. Missing edges remain forbidden; no artificial finite cost can silently admit one. The separate checker verifies coverage, dual constraints and equal primal/dual totals without running the matcher.\n\nSix tests pass normally and under -O on CPython 3.12.14: all 512 three-by-three compatibility graphs, 80 rectangular cost matrices against enumeration, the 128-by-256 limit, nontrivial Hall shortages, mutated assignments/duals and isolated input-hash replay.\n\nThe guide gives the certificate argument, a working example and the source-binding next step. This uses the classical Hungarian method and Hall theorem; existing R420 target-pair work keeps its own construction credit. Bounds are 128 consumers, 256 distinct resources and integer costs in 0..10^12. Coupled constraints, hidden shared state, temporal reuse and actual native delivery remain outside this finite matrix model. No kappa claim or frontier change.\n\nFresh main/priorities/overlap checked at both checkpoints. Canonical scope: https://github.com/CrocSwap/integer-mult-bounds/discussions/5776. All 6 new tests pass in the [hosted plan](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40383578155/job/121785888362) at this head. The plan fails on the unchanged assignment module (8 failures and 2 errors); replay is skipped. The existing fix is [PR #5761](https://github.com/CrocSwap/integer-mult-bounds/pull/5761). Independent review remains pending.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `cb06de3a4f6e2a2c927eb3aa3f9f43a578f73a1f`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n",
   "created_at": "2026-10-26T18:25:25Z",
-  "updated_at": "2026-10-26T19:20:24Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

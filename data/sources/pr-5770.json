@@ -4,8 +4,8 @@
   "title": "Assemble complete invoices with source identity and coverage checks",
   "body": "The new assembler checks complete coverage of a pinned source inventory before combining named component bills. Each identity keeps its declared side and rank; assigned counts must sum exactly to its inventory count. The CLI checks actual source-file hashes and emits an ordinary invoice plus input/source/output receipts and per-component bills.\n\nSeven tests pass normally and under -O on Python 3.12: all 60 splits of a small mixed inventory, duplicate credit hidden by an unchanged histogram, omissions and malformed counts, changed/missing/duplicate source bindings, and isolated optimized CLI byte receipts. A 32-item fixture from the exact selected5599 RESULT bytes rebuilds five components and matches all 66,726 paid jobs and 13,048 target credits.\n\nCoverage is relative to the declared inventory. Source hashes do not prove that the inventory is physically complete or that separate IDs represent independent targets. The guide records those obligations, precise fixture derivation and predecessor attribution. No frontier or κ change. Latest main/priorities/overlap refreshed; final scoped claim in Discussion #5752.\n\nBase: `de5ec2e7a6074068452f45b1a191b5c72832df4a`. Verified head: `acd7f1d5c1c5c8a2ee3a3c2f33fcf740d9f67807`.\n\nPrepared for Ali Romman with substantial OpenAI Codex assistance. Retained tool and mathematical predecessor credits apply. No selected-frontier change.\n\n\nValidation closeout: the ten independent patches apply cleanly together. The combined Python 3.12.14 run passes all 69 new tests and 35 existing checks, normally and under `-O`; the optional SymPy check is skipped. All 7 new tests in this PR also pass in the [hosted planning log](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40370211583/job/121738600457). The planning job reports eight failures and two errors in unchanged `test_research_current_assignment`; the full unchanged module reproduces those same failures locally on priority revision 8. The downstream replay job is skipped. This is not a green hosted workflow. Combined evidence and remaining obligations are in [Discussion #5752](https://github.com/CrocSwap/integer-mult-bounds/discussions/5752).\n",
   "created_at": "2026-10-26T17:36:28Z",
-  "updated_at": "2026-10-26T17:48:06Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:03Z",
+  "closed_at": "2026-10-27T13:41:03Z",
+  "merged_at": "2026-10-27T13:41:03Z",
+  "state": "closed"
 }

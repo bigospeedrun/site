@@ -4,8 +4,8 @@
   "title": "Prove nine-channel delivery floor for monotone tariffs",
   "body": "## Result and scope\n\nFor the fixed PR #5745 source and immutable one-frame payload contract, at most nine channels cost at least 8 H8 for any positive nondecreasing tariff, including arbitrary temporal reuse and jointly canceled nuisance. The exact two-frame certificate covers 879 frames and 385,881 frame pairs. This does not establish a new multiplication exponent or cover changed source words, payloads, or moving frames.\n\n## Task and overlap\n\nBase: de5ec2e7a6074068452f45b1a191b5c72832df4a; predecessor #5745: e82b64e91e57c838ff2028bcf2219203966bf9ed. PR #5823 separately proposes an any-finite-channel result for concave power tariffs; its full certificate was not replayed here. This submission covers at most nine channels under the broader monotone tariff assumption.\n\n## Validation\n\nA separate all-event adjoint census and orthogonal projector reproduce the response spaces and pair result. Normal certificate generation and optimized verification passed with CPython 3.14.4. Reproduce: `python3 -B research/nine-channel-monotone-bound/verify.py` and `python3 -O -B research/nine-channel-monotone-bound/verify.py`. The proof and finite certificate remain without independent human or proof-kernel review.\n\n## Credit\n\nCredit Ali Romman, flyingviper, and the retained predecessor authors as detailed in PROOF.md. Prepared with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nFor arbitrary monotone tariffs, examine three-frame sums for ten or more channels, then check complete payload and cost. See README for scope and blockers.",
   "created_at": "2026-10-27T05:08:05Z",
-  "updated_at": "2026-10-27T05:08:05Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-27T13:41:02Z",
+  "closed_at": "2026-10-27T13:41:02Z",
+  "merged_at": "2026-10-27T13:41:01Z",
+  "state": "closed"
 }
