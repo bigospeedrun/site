@@ -17,6 +17,7 @@ const rows = [
   {slug:'3sum', classic:'O(n^2)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
   {slug:'apsp', classic:'O(n^3)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
   {slug:'subset-sum', classic:'O^*(2^{n/2})', breakthroughId:'subset-sum-2026', source:'https://github.com/openai/math/tree/main/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026'},
+  {slug:'3sat', classic:'O^*(1.307031578^n)', breakthroughId:'openai-eth-2026', source:'https://github.com/openai/math/tree/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026'},
 ].map(row=>{
   const problem=problems.find(p=>p.slug===row.slug)!;
   const records=boardRecords(problem);

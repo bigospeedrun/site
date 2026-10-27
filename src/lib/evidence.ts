@@ -31,7 +31,7 @@ export function isBoardEntry(slug:string,record:{id?:string;repo:string;upstream
 }
 
 export function isBreakthroughRecord(slug:string,id:string):boolean {
- const originals:Record<string,string>={'matrix-multiplication':'openai-matrix-nine-fourths-2026','integer-multiplication':'openai-original-109','exact-dft':'exact-dft-2026','3sum':'anthropic-2026','apsp':'anthropic-2026','subset-sum':'subset-sum-2026'};
+ const originals:Record<string,string>={'matrix-multiplication':'openai-matrix-nine-fourths-2026','integer-multiplication':'openai-original-109','exact-dft':'exact-dft-2026','3sum':'anthropic-2026','apsp':'anthropic-2026','subset-sum':'subset-sum-2026','3sat':'openai-eth-2026'};
  return originals[slug]===id;
 }
 export function isVisibleAtEvidence(record:{isBreakthrough?:boolean;evidenceLevel:string},levels:readonly string[]):boolean {

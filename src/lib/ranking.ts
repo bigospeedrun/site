@@ -104,6 +104,7 @@ function exactExponent(score:string,cap:number):string {
 export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number,cap:number=displayDigits.table):string {
  const exponent=kappa?'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);
  const power=exponent+(record.scoreRelation==='strict-upper-bound'||record.bound.includes('\\varepsilon')?'+\\varepsilon':'');
+ if(record.bound.includes('-o(1)'))return `O^*(2^{n/(\\log n)^{${exactExponent(record.score,cap)}-o(1)}})`;
  if(kappa||record.bound.includes('\\log'))return `O(n \\log^{${power}} n)`;
  if(record.bound.includes('2^{'))return `O${record.bound.startsWith('O^*')?'^*':''}(2^{${power.includes('+')?`(${power})`:power}n})`;
  return `O(n^{${power}})`;

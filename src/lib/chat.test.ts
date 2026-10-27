@@ -397,7 +397,7 @@ test('the chat accepts an Other bounds page as the visitor page and ignores unkn
 
 test('knowledge lists the problems in the order of the Problems menu (the race board copies it)', () => {
   const problem = (slug: string) => ({slug, title: slug, scope: '', symbol: 'exponent', direction: 'lower-is-better', lastDataCheck: '2026-10-16', records: []}) as unknown as Problem;
-  const shuffled = ['3sum', 'unlisted', 'subset-sum', 'integer-multiplication', 'directed-sssp', 'apsp', 'exact-dft', 'matrix-multiplication'].map(problem);
+  const shuffled = ['3sum', 'unlisted', 'subset-sum', 'integer-multiplication', 'directed-sssp', 'apsp', 'exact-dft', 'matrix-multiplication', '3sat'].map(problem);
   assert.deepEqual(createKnowledge(shuffled, '2026-10-16').problems.map(p => p.path),
     [...problemLinks.map(([slug]) => '/' + slug), '/unlisted']);
   // name: the landing table's name (the race board's title); a problem off the menu keeps its title.

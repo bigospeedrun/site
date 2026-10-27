@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "problem_id": "3sat/randomized-bit-model",
+  "model": {
+    "id": "randomized-bit-model",
+    "version": "1",
+    "description": "3-SAT: given a CNF formula on n variables with m clauses, each clause an OR of at most three literals (variables or negated variables), decide whether some assignment satisfies every clause. Time counts bit operations (equivalently, steps of a multitape Turing machine or a word RAM with O(log(n+m))-bit words, up to (n+m)^{O(1)} factors) on the standard encoding of the formula. The algorithm may use independent uniform random bits; on every input it must halt on every run within the time bound and answer correctly with probability at least 2/3. Deterministic algorithms qualify. One algorithm for all n and m.",
+    "definition_url": "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf"
+  },
+  "score": {
+    "id": "subexponential-log-exponent",
+    "version": "1",
+    "symbol": "alpha",
+    "definition": "Worst-case time (n+m)^{O(1)} 2^{n/(log n)^(alpha-o(1))} on every run: for every fixed epsilon>0, at most (n+m)^{O(1)} 2^{n/(log n)^(alpha-epsilon)} for all large n; per-input success probability at least 2/3.",
+    "direction": "higher-is-better",
+    "encoding": "rational-string",
+    "minimum": "0",
+    "maximum": "100"
+  },
+  "checked_at": "2026-10-27",
+  "sources": [
+    {
+      "url": "https://github.com/openai/math/tree/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026",
+      "checked_at": "2026-10-27"
+    },
+    {
+      "url": "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf",
+      "checked_at": "2026-10-27"
+    },
+    {
+      "url": "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/lean/ComparatorChallenges/SubexponentialSAT.lean",
+      "checked_at": "2026-10-27"
+    },
+    {
+      "url": "https://arxiv.org/abs/2607.10697",
+      "checked_at": "2026-10-27"
+    }
+  ],
+  "records": [
+    {
+      "id": "classical-baseline",
+      "kind": "baseline",
+      "score": "0",
+      "tier": "claimed",
+      "submitted_at": null,
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-27T03:00:00Z",
+      "site_observed_at": "2026-10-27T03:00:00Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.10697"
+      },
+      "spec_version": "1",
+      "title": "Tao Jiang and Shaowei Cai (2026, preprint), A Better Analysis For PPSZ For 3-SAT",
+      "authors": [
+        {
+          "name": "Tao Jiang and Shaowei Cai (2026, preprint), A Better Analysis For PPSZ For 3-SAT",
+          "url": "https://arxiv.org/abs/2607.10697"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://arxiv.org/abs/2607.10697",
+      "artifact": {
+        "path": "sources/3sat-baseline.json",
+        "sha256": "8e584438bbd77becd8d0ec41e5af1d5fd96e12908c2b5296f03821bd6a5380c1"
+      },
+      "evidence": {
+        "paper_url": "https://arxiv.org/abs/2607.10697",
+        "theorem": "Corollary 1.2",
+        "certificate_path": null
+      },
+      "dependencies": []
+    },
+    {
+      "id": "openai-eth-2026",
+      "kind": "improvement",
+      "score": "1/2",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-26T21:18:03Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-26T21:18:03Z",
+      "site_observed_at": "2026-10-27T03:00:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf"
+      },
+      "spec_version": "1",
+      "title": "OpenAI, The Exponential Time Hypothesis is False",
+      "authors": [
+        {
+          "name": "openai",
+          "url": "https://github.com/openai"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/README.md",
+      "artifact": {
+        "path": "sources/3sat-openai-eth-2026.json",
+        "sha256": "ba46c735f0aeacb7747b3eb45c4ba2646b6858fc12a1fcef8a3f6ee2652d65d5"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf",
+        "theorem": "Theorem 1.1",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a"
+    }
+  ],
+  "record_metadata": {
+    "classical-baseline": {
+      "checked_at": "2026-10-27",
+      "eligible_for_record": true,
+      "proof_status": "Preprint baseline (randomized PPSZ analysis); no site proof check.",
+      "publication_year": 2026,
+      "publication_date_precision": "year",
+      "publication_source_url": "https://arxiv.org/abs/2607.10697",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sat/randomized-bit-model/v1"
+    },
+    "openai-eth-2026": {
+      "checked_at": "2026-10-27",
+      "source_url": "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Source claim with a Lean formalization by the authors; not independently rerun by bigOspeedrun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sat/randomized-bit-model/v1",
+      "publication_date": "2026-10-26T21:18:03Z",
+      "publication_date_precision": "minute"
+    }
+  },
+  "updated_at": "2026-10-27T03:00:00Z"
+}

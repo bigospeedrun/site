@@ -96,7 +96,8 @@
         "subset-sum/randomized-word-ram",
         "integer-multiplication/multitape-tm",
         "exact-dft/uniform-exact-arithmetic",
-        "matrix-multiplication/arithmetic-circuit-complex"
+        "matrix-multiplication/arithmetic-circuit-complex",
+        "3sat/randomized-bit-model"
       ],
       "tracking_branch": "main",
       "listing_mode": "research-artifact",
@@ -109,7 +110,8 @@
         "subset-sum": "subset-sum/randomized-word-ram/v1/scope-v1",
         "integer-multiplication": "integer-multiplication/multitape-tm/v1/conditional-unreviewed",
         "exact-dft": "exact-dft/uniform-exact-arithmetic/v1/scope-v1",
-        "matrix-multiplication": "matrix-multiplication/arithmetic-circuit-complex/v1"
+        "matrix-multiplication": "matrix-multiplication/arithmetic-circuit-complex/v1",
+        "3sat": "3sat/randomized-bit-model/v1"
       },
       "checked_at": "2026-10-08",
       "source_url": "https://github.com/openai/math",
@@ -704,6 +706,13 @@
       "slug": "matrix-multiplication",
       "problem_id": "matrix-multiplication/arithmetic-circuit-complex",
       "data_file": "matrix-multiplication.json",
+      "status": "status-only",
+      "race_repo": null
+    },
+    {
+      "slug": "3sat",
+      "problem_id": "3sat/randomized-bit-model",
+      "data_file": "3sat.json",
       "status": "status-only",
       "race_repo": null
     }
