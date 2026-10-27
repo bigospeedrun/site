@@ -639,6 +639,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's hosted verify run for the head was cancelled. Its admission check passed on a receipt of an independent check of the head, which the tracker's maintainer published (Comparator with Lean, nanoda and con-ron). The maintainer merged the pull request on 2026-10-26. No rerun by us.",
           "bound": "\\theta\\le 0.8746075"
+        },
+        {
+          "author": "Sil",
+          "handle": "TheSil",
+          "value": "174799/200000",
+          "display": "0.873995",
+          "date": "2026-10-26T12:52:40-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/83",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/e2d2f9c79f06bb4b0972e6dcb89020f0976abf7a/submissions/sil-density-split-20261026/src/Candidate/Main.lean#L11-L16",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-27. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 83,
+            "status": "open"
+          },
+          "note": "The author says it starts from the fourth-power source of its PR #74, with the broadened interface of ArviFoxy's PR #76, and combines cube-free common-divisor averaging with a width-dependent density split. A finite bootstrap and two density-split transitions give a stronger ordinary source moment, and an all-shift physical return with exact rational certificates closes the bound. It builds on OpenAI's framework, the source, counting and return machinery of Hailey Collet's PR #69, and ArviFoxy's all-shift return technique (PR #76). It is 0.0006125 below PR #76.",
+          "authors": [
+            {
+              "name": "Sil",
+              "url": "https://github.com/TheSil"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-27. No independent rerun.",
+          "bound": "\\theta\\le 0.873995"
         }
       ],
       "repos": [
@@ -715,7 +741,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "ArviFoxy"
+      "bestHandle": "TheSil"
     },
     {
       "family": "005",
