@@ -665,6 +665,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-27. No independent rerun.",
           "bound": "\\theta\\le 0.873995"
+        },
+        {
+          "author": "Rohan Arun",
+          "handle": "rohanarun",
+          "value": "174797/200000",
+          "display": "0.873985",
+          "date": "2026-10-27T06:22:29-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/84",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/fe439f0b02c73d4ce7ac4389ce149c53b22a1c83/submissions/density-split-third-20261026/src/Candidate/Main.lean#L12-L17",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-27. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 84,
+            "status": "open"
+          },
+          "note": "The author says it is Sil's density-split proof (PR #83) with one more variable-density transition, and re-certifies the final all-shift physical return. It builds on Sil's PR #83 and PR #74, ArviFoxy's PR #76, Hailey Collet's PR #69 and OpenAI's framework. It is 0.0000100 below PR #83.",
+          "authors": [
+            {
+              "name": "Rohan Arun",
+              "url": "https://github.com/rohanarun"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-27. No independent rerun.",
+          "bound": "\\theta\\le 0.873985"
         }
       ],
       "repos": [
@@ -741,7 +767,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "TheSil"
+      "bestHandle": "rohanarun"
     },
     {
       "family": "005",
