@@ -105315,7 +105315,7 @@
       "title": "Add a mathematical atlas of shared queries, helper hubs and compiler routes",
       "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5803",
       "submitted_at": "2026-10-26T21:44:50Z",
-      "updated_at": "2026-10-26T21:44:50Z",
+      "updated_at": "2026-10-27T03:35:46Z",
       "source_commit": "0acda5ab421d28b98fdf916968696c8f9453376f",
       "upstream_status": "open",
       "upstream_status_at": "2026-10-26T21:44:50Z",
@@ -105668,7 +105668,7 @@
       "title": "Share complete P104 qualification: 33.7% less time, both literal oracles",
       "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5818",
       "submitted_at": "2026-10-27T02:35:06Z",
-      "updated_at": "2026-10-27T03:13:49Z",
+      "updated_at": "2026-10-27T03:54:29Z",
       "source_commit": "a0171b8d2f942cdfc5295307548fe484c570b1ba",
       "upstream_status": "open",
       "upstream_status_at": "2026-10-27T02:35:06Z",
@@ -105869,6 +105869,217 @@
         ]
       ],
       "claim_files_head": "baea91d8c0044a0036006bdd3b4d7bce3d6cf783",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5826,
+      "author": "aliromman",
+      "author_url": "https://github.com/aliromman",
+      "title": "Certify current P104 precision with additive COPY and reset residuals",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5826",
+      "submitted_at": "2026-10-27T03:18:26Z",
+      "updated_at": "2026-10-27T03:18:26Z",
+      "source_commit": "58f93cf41751920f3d6766a39caccc2974ce18b0",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T03:18:26Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "58f93cf41751920f3d6766a39caccc2974ce18b0",
+      "claim_text": "47198590c42ca6fd26db1f233d6d4bbdad7c50f76fffaec24b321f142512658a",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-noisy-copy-reset/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "58f93cf41751920f3d6766a39caccc2974ce18b0",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5827,
+      "author": "aliromman",
+      "author_url": "https://github.com/aliromman",
+      "title": "Conditional κ = 0.00312476680 (+5.8046936e-7 over #5811): unread path",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5827",
+      "submitted_at": "2026-10-27T03:19:10Z",
+      "updated_at": "2026-10-27T03:19:10Z",
+      "source_commit": "05cd36e5af06d7a3790e30ce3f449fa89b853768",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T03:19:10Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "05cd36e5af06d7a3790e30ce3f449fa89b853768",
+      "claim_text": "c0bb8148f8fd7b32599c9b214311d202d83b7cf759bc6de30e727532e4f1cc35",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-unread-path-resynthesis/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "05cd36e5af06d7a3790e30ce3f449fa89b853768",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5828,
+      "author": "aliromman",
+      "author_url": "https://github.com/aliromman",
+      "title": "Remove 1350 G20 ADDs through exact dependency-trace resynthesis",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5828",
+      "submitted_at": "2026-10-27T03:19:27Z",
+      "updated_at": "2026-10-27T03:19:27Z",
+      "source_commit": "fc24bd1fce81b3e40ba3fa544160d36da8d1cec2",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T03:19:27Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "fc24bd1fce81b3e40ba3fa544160d36da8d1cec2",
+      "claim_text": "45eea4dcbb9e5463ddc2a1516670fdefd895a1584885af9019e4f09211e17891",
+      "claim_files": [
+        [
+          "added",
+          "research/g20-trace-resynthesis/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "fc24bd1fce81b3e40ba3fa544160d36da8d1cec2",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5829,
+      "author": "aliromman",
+      "author_url": "https://github.com/aliromman",
+      "title": "Bind delayed-cover batches to recursive allocation and return",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5829",
+      "submitted_at": "2026-10-27T03:34:08Z",
+      "updated_at": "2026-10-27T03:34:08Z",
+      "source_commit": "3cc6efe2d21dfdcc036b7ba071780d77031e8282",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T03:34:08Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "3cc6efe2d21dfdcc036b7ba071780d77031e8282",
+      "claim_text": "df70460b491fb793cfc0c23778d46c39ad378e46d5c4c8a28b339e39f52d3396",
+      "claim_files": [
+        [
+          "added",
+          "research/delayed-cover-batch-allocation/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "3cc6efe2d21dfdcc036b7ba071780d77031e8282",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5830,
+      "author": "aliromman",
+      "author_url": "https://github.com/aliromman",
+      "title": "Save 438012 P104 scalar primitives with a complete optimal gauge construction",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5830",
+      "submitted_at": "2026-10-27T03:43:46Z",
+      "updated_at": "2026-10-27T03:43:46Z",
+      "source_commit": "dd3ffe4c1b391b8d757969a9aa9b2f7c02a32117",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T03:43:46Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "dd3ffe4c1b391b8d757969a9aa9b2f7c02a32117",
+      "claim_text": "1716c64ef8e71871546ec3cdd654cd1940edd92ac82d52804ed0a4bbfeffc2ed",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-complete-dyadic-gauges/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "dd3ffe4c1b391b8d757969a9aa9b2f7c02a32117",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5831,
+      "author": "aliromman",
+      "author_url": "https://github.com/aliromman",
+      "title": "Speed up complete P104 precision replay with proved exact integer arithmetic",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5831",
+      "submitted_at": "2026-10-27T03:52:19Z",
+      "updated_at": "2026-10-27T04:16:56Z",
+      "source_commit": "7c5eb98e7439d778141d63e801e53d4cd7e1d587",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T03:52:19Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "7c5eb98e7439d778141d63e801e53d4cd7e1d587",
+      "claim_text": "e8435cd7d5b86abdaef744ce5a0256963a65f66c6a2ddde89992f3976e148701",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-integer-error-replay/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "7c5eb98e7439d778141d63e801e53d4cd7e1d587",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5832,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Reuse literal gate setup: 25.9% less qualification time, full coverage",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5832",
+      "submitted_at": "2026-10-27T03:52:35Z",
+      "updated_at": "2026-10-27T04:04:07Z",
+      "source_commit": "d2012c1e58cf25825e9a004a80545aefec631886",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T03:52:35Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "d2012c1e58cf25825e9a004a80545aefec631886",
+      "claim_text": "85428166ccee7ecba592fbaed44da2378c2c03e91d339524fa54515cd9cdd8e0",
+      "claim_files": [],
+      "claim_files_head": "d2012c1e58cf25825e9a004a80545aefec631886",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 5833,
+      "author": "aliromman",
+      "author_url": "https://github.com/aliromman",
+      "title": "Construct P104 at the sharp amplification floor and optimal original-budget peak",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/5833",
+      "submitted_at": "2026-10-27T04:15:04Z",
+      "updated_at": "2026-10-27T04:15:04Z",
+      "source_commit": "25a580f54d7a0c39e10bc96a47a211b7ccd99eec",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-10-27T04:15:04Z",
+      "checked_at": "2026-10-27",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "25a580f54d7a0c39e10bc96a47a211b7ccd99eec",
+      "claim_text": "2ed826e123d35e669ec58d4e9f2c976c32b5fab8a648c658283480af26603e97",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-priced-amplification/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "25a580f54d7a0c39e10bc96a47a211b7ccd99eec",
       "claim_files_base": "main",
       "claim_files_result": true
     }
