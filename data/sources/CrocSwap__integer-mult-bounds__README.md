@@ -13,57 +13,52 @@ starting with [the coordination guide](https://github.com/CrocSwap/integer-mult-
 New to the construction? Read [the bottleneck brief](docs/research/bottleneck-brief.md).
 Workflow feedback is welcome in [discussion #1200](https://github.com/CrocSwap/integer-mult-bounds/discussions/1200).
 
-## Current reviewed result: P104 helper-subspace splitting
+## Current reviewed result: P104 twin-rung removal
 
-**Ali Romman's [#5599](https://github.com/CrocSwap/integer-mult-bounds/pull/5599)**,
-building on the community P104 construction and independent caller audits, gives
+**DreamingOfClouds' [#6030](https://github.com/CrocSwap/integer-mult-bounds/pull/6030)**,
+building on Ali Romman's construction/verification chain and the community P104 work, gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{62009}{20000000}=0.00310045>2^{-9}.
+\kappa=\frac{781451}{250000000}=0.003125804>2^{-9}.
 $$
 
-Thirteen helper-subspace splits introduce genuinely independent inputs and
-split productive targets without adding a paid Gaussian call. The complete
-caller counts **13,048 productive fields and 66,726 paid calls**; all added
-scalar work, normalizers, helper ownership and completion tails are included.
+A helper-rung removal and rerouted scalar program improve the fully charged
+invoice. The complete caller has **13,444 productive fields and 66,834 paid
+calls**. The exponent saving is about **0.81775% larger** than the preceding
+selected 0.00310045; this is not a practical runtime comparison.
 
-**Pierre-Loic Doulcet / hexapode** supplied the commuting-contact improvement;
-**GamingPuzzled**, **DreamingOfClouds**, and **thu-nmrc** supplied earlier handoff,
-endpoint and contact improvements. **Chris R / Clear1nsight** supplied the
-independent caller/native verification tools, and **Matarener** clarified and
-audited the endpoint contract. David Arias, Cinna Davis, Gareth Davidson,
-Cao Yifan, zxv, Jacob Alan Sussman and the cumulative native, BIT, compiler and
-analytic lineage retain credit. [Detailed contributor map](docs/research/community-p1045599-contributors.md).
+Full primary replays pass on macOS and Linux after a gzip-portability repair.
+The independent audit checks the complete word, invoice, all seven new native
+maps, and the physical caller. Its adapted caller reproduces the original
+positive control byte for byte; optimized and normal primary outputs agree.
+Local audit jobs ran serially with sampled 1 GiB descendant-memory limits.
 
-The full construction, original independent caller positive control, adapted
-caller and optimized construction replays all passed **serially on Linux**
-under a sampled 1 GiB memory cap. The original positive control matches its
-frozen output exactly. The preceding foundation is reused explicitly, under
-**the same five conditional framework assumptions**. This is not a complete
-Lean theorem or independent human verification of integer multiplication.
-The enormous uniform word and rounded multiplier were not materialized.
+**The same five conditional framework assumptions remain.** The enormous
+uniform word and rounded multiplier are not materialized. This is not a
+complete Lean theorem or independent human proof of integer multiplication.
 
-The exponent saving is about **2.41674% larger** than the preceding selected
-0.003027288235. This compares asymptotic exponents, not practical runtimes.
+Credit includes **DreamingOfClouds, Ali Romman, Mason Hale, Pierre-Loic Doulcet,
+Matarener and Chris R / Clear1nsight**, alongside the cumulative construction,
+BIT, compiler, native and analytic lineage. [Detailed contributor map](docs/research/community-p1046030-contributors.md).
 
 [Selected record](certificates/selected-result.json) ·
-[Proof review](docs/research/pr-intake-evidence/pr5599-completion/PROOF-REVIEW.md) ·
-[Linux validation](docs/research/pr-intake-evidence/pr5599-completion/VALIDATION.json) ·
-[Integration receipt](docs/research/pr-intake-evidence/pr5599-completion/INTEGRATION.json) ·
+[Application review](docs/research/pr-intake-evidence/pr6030-audit/PROOF-REVIEW.md) ·
+[Validation](docs/research/pr-intake-evidence/pr6030-audit/VALIDATION.json) ·
+[Integration](docs/research/pr-intake-evidence/pr6030-audit/INTEGRATION.json) ·
 [Contributors](CONTRIBUTORS.md) · [PR ledger](docs/research/pr-ledger.md)
 
 ```sh
 # Fast source/metadata check; no operator replay.
 python3 -B scripts/research_selected_baseline.py
-# Full serial, source-bound finite replay with independent caller controls.
-make frontier5599-verify
+# Full serial finite replay and independent controls.
+make frontier6030-verify
 ```
 
-The [PR5413 checkpoint](certificates/checkpoints/frontier5413.json) and its
-[review](docs/research/pr-intake-evidence/pr5413/PROOF-REVIEW.md) are preserved.
-Frozen sources retain their submission-time status; the selected record and
-integration receipt identify current publication and verification coverage.
+The [PR5599 checkpoint](certificates/checkpoints/frontier5599.json) and its
+[review](docs/research/pr-intake-evidence/pr5599-completion/PROOF-REVIEW.md)
+remain preserved. Frozen submissions keep their historical status; the selected
+record identifies the reviewed claim.
 
 ## Historical checkpoint: productive helper jobs
 
