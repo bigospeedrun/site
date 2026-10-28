@@ -1,0 +1,11 @@
+{
+  "number": 6106,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6106",
+  "title": "Preserve translation-induced scalar phases in affine native tags",
+  "body": "The retained PR3987 warp at offset426/phase1 lies outside PR4002's stated linear K/adjoint alphabet. This package extends its tag discipline to affine maps while retaining the translation-induced scalar: composition contributes 2(u dot b), and inversion uses A^-1 b plus the corresponding scalar and pulled-back tag.\n\nThe actual first warp is J_(A,426) Z_16; its retained inverse is J_(A^-1,330) Z_64. All512 basis columns agree, both inverse directions pass, and omission of the translation scalar/source phase or reuse of the forward inverse offset each breaks512 columns. The extra Z_2 gate is explicitly a calibration, not a claimed source adjacency.\n\nValidation: registeredPython3.12 normal and optimized replay; committed-byte/source-history preflight; official package export/check; Git-free normal and optimized replay; corrupt-source CLI rejection. Sources and selected result remain unchanged. Credit ToikY PR4002, Chris R / Clear1nsight PR3987, Dugongue PR3945/3929 and the retained native lineage. Prepared by JoyboyBrian with substantial OpenAI Codex assistance.\n\nThis is an algebraic side result, not a paid compiler integration, full native replay, supplier admission or new kappa. Open next question: authenticate and price one actual neighboring interface before proposing any saving.\n",
+  "created_at": "2026-10-28T06:30:03Z",
+  "updated_at": "2026-10-28T06:30:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

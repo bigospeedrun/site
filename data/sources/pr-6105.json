@@ -1,0 +1,11 @@
+{
+  "number": 6105,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6105",
+  "title": "Prove the exact 38-ADD floor for the full fixed G20 boundary",
+  "body": "The exact 32-wire G20 conversion boundary needs **38 unit ADDs per side**, even when gates connect the chain, exchange components and two untouched wires. This closes the full fixed-endpoint question left by [PR6081](https://github.com/CrocSwap/integer-mult-bounds/pull/6081), rather than adding component-local minima.\n\nThe inherited Bu–Fan–Joo connectivity/diagonal bound applies directly: each authenticated endpoint has 10 support components and 16 zero diagonals, hence 32−10+16=38. The literal source has eight SWAPs and fourteen ADDs, attaining 38 after expansion. The package includes the self-contained counting proof and preserves all source bytes.\n\nNormal/optimized registered checks pass, including literal endpoint and input-column replay, two support-graph algorithms, inverse composition and 76 gate-omission controls. Exact committed-byte/history/mode checks and official export integrity/input coverage pass at `5472e0fc07a79123cab5fdcdba78293095984552`; fresh read-only Git-free empty-PATH normal/optimized export replays also pass without changing files.\n\nReproduce: `python3.12 -B scripts/research_package.py --package research/g20-full-boundary-floor`.\n\nFixed physical endpoints and 32 independent wires only. Changed chain bases, extra scratch, nonlinear gates, nonunit tariffs and supplier/caller admission remain open. No new κ, selected-frontier change, full theorem or independent human/proof-kernel acceptance. Hosted CI is separate.\n\nCredit Ali Romman/PR5840, Charan ./PR5851, Nick Petalas/PR5942, JoyboyBrian/PR6081, Bu–Fan–Joo and retained G20 lineage. Prepared by JoyboyBrian with substantial OpenAI Codex assistance. [Advance claim](https://github.com/CrocSwap/integer-mult-bounds/discussions/5804#discussioncomment-19234839). Apache-2.0.\n",
+  "created_at": "2026-10-28T06:28:36Z",
+  "updated_at": "2026-10-28T06:28:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
