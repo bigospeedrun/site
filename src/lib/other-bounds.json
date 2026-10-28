@@ -691,6 +691,58 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-27. No independent rerun.",
           "bound": "\\theta\\le 0.873985"
+        },
+        {
+          "author": "SovereignSteak",
+          "handle": "SovereignSteak",
+          "value": "873981/1000000",
+          "display": "0.873981",
+          "date": "2026-10-27T19:32:08-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/85",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/277b813236a7ef4f72c4a1bcdbf78d390d5033f8/submissions/2026-10-28-density-split-fourth/src/Candidate/Main.lean#L12-L17",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 85,
+            "status": "open"
+          },
+          "note": "The author says it extends rohanarun's PR #84 with a fourth variable-density transition and a re-certified all-shift physical return. It builds on the framework and machinery of OpenAI, Sil, Hailey Collet, ArviFoxy and rohanarun. It is 0.0000040 below PR #84.",
+          "authors": [
+            {
+              "name": "SovereignSteak",
+              "url": "https://github.com/SovereignSteak"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "bound": "\\theta\\le 0.873981"
+        },
+        {
+          "author": "Jacob Sussman",
+          "handle": "jacobalansussman",
+          "value": "4369779/5000000",
+          "display": "0.8739558",
+          "date": "2026-10-27T19:42:06-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/86",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/dfbc51a29da6e55d6717482ebcd9e821ed3a8ee0/submissions/2026-10-28-density-split-fine-chain/src/Candidate/Main.lean#L10-L15",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-28. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 86,
+            "status": "open"
+          },
+          "note": "The author says it keeps Sil's density-split proof (PR #83) and runs its steps more times in smaller pieces: 30 native steps, the subface step and 46 small variable-density transitions, with new return constants and regenerated certificates. It builds on Sil's PR #74 and PR #83, ArviFoxy's PR #76, Hailey Collet's PR #69 and OpenAI's framework. It is 0.0000292 below PR #84.",
+          "authors": [
+            {
+              "name": "Jacob Sussman",
+              "url": "https://github.com/jacobalansussman"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-10-28. No independent rerun.",
+          "bound": "\\theta\\le 0.8739558"
         }
       ],
       "repos": [
@@ -767,7 +819,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "rohanarun"
+      "bestHandle": "jacobalansussman"
     },
     {
       "family": "005",
