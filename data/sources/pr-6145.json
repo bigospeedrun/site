@@ -1,0 +1,11 @@
+{
+  "number": 6145,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6145",
+  "title": "Conditional κ = 0.003127804 (+6.67e-7 over #6143): remove the 772/731 relay",
+  "body": "The 772/731 relay descent, eight arbitrary-input compensations and earlier 791 cleanup reduce complete paid calls 66,798→66,780, with 13,444 productive fields and peak storage 13 unchanged. Conditional κ = 0.003127804 (+0.000000667 over #6143); exact raw crossing (0.00312781137239, 0.00312781137240). This adds a distinct root to #6143 and changes reads outside #6136's chart-only search. Selected frontier unchanged.\n\nBase: 721c03822c421b7f7fcbb2598993b947c4d88419. Word: #6143 at 4cef86d87e47dfcc5a511c99c9f0067c861271b0 (vendored, off-main). Checker: #5827 at 05cd36e5af06d7a3790e30ce3f449fa89b853768. Published commit: f714f27d69e0e357ebea9cc2d29bca5b168b4c68.\n\nReproduce (Python 3.12 stdlib):\n`python3.12 -B scripts/research_package.py --package research/p104-owned772-relay-descent`\nExpected: `PASS_REGISTERED_RESEARCH_PACKAGE`.\n\nExecuted: full primary/caller, two exact engines, compiler and 54 strict + 4 functional outer checks; independent normal/-O 799-row replay and 2,048 dense native columns; 12 scalar/storage faults, two phase/sign faults and seven portability tests. Missing compensation, dirty COPY, peak-14 storage and phase-only corruption reject. Committed-byte, complete remote-tree and clean Git-free export checks pass; hosted CI not run.\n\nFive framework assumptions remain; uniform word and rounded multiplier are unmaterialized. Finite AI-assisted checks are not maintainer admission or a full theorem proof. [Proof, exact receipts, scope and all source pins](https://github.com/CubeJerry/integer-mult-bounds/tree/f714f27d69e0e357ebea9cc2d29bca5b168b4c68/research/p104-owned772-relay-descent).\n\nBy @CubeJerry with substantial OpenAI Codex assistance. Credit DreamingOfClouds (#6143/#6030/#5907), Ali Romman (#5827), Matarener, Clear1nsight, Douglas Colkitt and the retained lineage. Apache-2.0.",
+  "created_at": "2026-10-28T15:06:53Z",
+  "updated_at": "2026-10-28T15:06:53Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

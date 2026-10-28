@@ -1,0 +1,11 @@
+{
+  "number": 6148,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6148",
+  "title": "Exclude PR6111's eight-call half-frame candidate (No new κ)",
+  "body": "The profile (A,B,P,Q,R,S)=(1,3,0,1,1,2), R=2A, S=P/2, cannot realize the four-target BIT endpoint at any finite restored dirty width, even with free binary mixing. Two-use lattice descent contracts S,S to P and exposes rank 2<4. This resolves PR6111's specific open example, which passes determinant/support checks and even jointly satisfiable first-order equations. No new κ.\n\nBase: 721c03822c421b7f7fcbb2598993b947c4d88419.\nModel: PR2910 README blob 608a24af8bc3d27ee1554c94872601bb3a409f67.\nQuestion: PR6111 head 961b749fa40a1117d0746064528d2dfa290c57e0. Its theorem/code is not a dependency.\n\nReproduce (Python 3.12, stdlib):\n`python3 -I -B research/bit-two-use-lattice-descent/verify.py`\nExpected: PASS_BIT_TWO_USE_LATTICE_DESCENT, descent_rank=2<4.\n\nPassed: 22,168 projector triples; 9,120 block cases; two exact polynomial engines; 12 dirty-register positive endpoints; noncommuting-middle, deleted-call and half-frame controls; 7 CLI tests in normal/-O modes rejecting changed sources, repins and receipts. Registered replay, source ancestry/modes, and official Git-free export replay with empty PATH pass.\n\nThe written proof supplies arbitrary-width coverage; finite replay is regression evidence, not proof-assistant verification. No native supplier, physical cost reduction or full multiplier is claimed; the five framework assumptions remain. Hosted CI and selected cold replay are unclaimed.\n\nPrepared for @CubeJerry with substantial OpenAI Codex assistance. Credit JosieElliston/Claude (#6111), JoyboyBrian (#6104), apoursh (#6089), Nick Petalas (#2910), Cinna Davis (#2085/2112), Philippe Van Velzen and retained lineage. Classical block algebra is not claimed new.\n\nPublished commit d2cba5a85ff80532661f9370700abe6c3678aaf9; its complete tree matches the locally tested tree.\n[Proof, evidence, exact pins and handoff](https://github.com/CubeJerry/integer-mult-bounds/tree/d2cba5a85ff80532661f9370700abe6c3678aaf9/research/bit-two-use-lattice-descent).",
+  "created_at": "2026-10-28T15:15:02Z",
+  "updated_at": "2026-10-28T15:15:02Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
