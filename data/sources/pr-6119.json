@@ -1,0 +1,11 @@
+{
+  "number": 6119,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6119",
+  "title": "Audit deferred-row rounding: sharp error bounds and clean-return controls",
+  "body": "Adds one isolated numerical-interface audit. A sole rounding error of 1/2 in a temporary row causes retained error 2; final deletion is a norm-one projection, but internal errors need suffix accounting. The explicit two-phase model has sharp independent-defect bounds 1 (normalized) and 4 (raw). Retained-only tests can miss omitted cleanup. **No new κ.**\n\nThis complements PR6115's cost audit and credits PR6110's handoff and PR5081's computed-input error work. The selected fixed-grid program is unchanged; no bug in PR6030 is alleged.\n\nBase: `721c03822c421b7f7fcbb2598993b947c4d88419`. All eight input/source pins are in SOURCES.json. Published commit: `bdfe5a10d488b5f774e906d8d4588dc8da25e7ba`. Its complete tree `63636bc666c2fe62588971e6948c8c902a7ed343` equals the tested local tree.\n\nReproduce:\n`python3.12 -B scripts/research_package.py --package research/deferred-row-rounding-audit`\nExpected: PASS_DEFERRED_ROW_ROUNDING_AUDIT and PASS_ROW_ROUNDING_MUTATIONS in normal and optimized modes.\n\nExecuted: 208 exact matrix coefficients; sharp bound with attaining defects; all 6,561 nonlinear inputs, 81 dense cross-checks, 1,300 channel fixtures; ten actual private-copy faults rejected per mode. Metadata, committed bytes/source history, 17-file export and Git-free replay pass; exported hashes unchanged.\n\nScope: a conditional numerical lemma and explicit surrogate, not an emitted native caller. Actual gate-error/range bounds, physical disposal costs and all five framework assumptions remain. No selected cold replay, hosted CI, human review or proof-kernel acceptance claimed.\n\nPrepared by @CubeJerry with substantial OpenAI Codex assistance. Credit Vlado-V, zxv, DreamingOfClouds, Ali Romman, Douglas Colkitt, JosieElliston, DLamdata, JoyboyBrian and retained predecessors. Apache-2.0.\n\n[Proof, exact pins, limitations and validation](https://github.com/CubeJerry/integer-mult-bounds/tree/bdfe5a10d488b5f774e906d8d4588dc8da25e7ba/research/deferred-row-rounding-audit)",
+  "created_at": "2026-10-28T11:48:27Z",
+  "updated_at": "2026-10-28T11:48:27Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
