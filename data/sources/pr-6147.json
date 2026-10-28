@@ -4,8 +4,8 @@
   "title": "Save one boundary XOR with two independent output updates (no new kappa)",
   "body": "Four mandatory two-XOR children have exact adapter minima 2 with one hidden intermediate output and 3 with full observation: complete bills 10 versus 11. Both dirty workspace inputs return; the two output updates are independent. Resolves PR5968's rank-two question. No new κ.\n\nBase: 721c03822c421b7f7fcbb2598993b947c4d88419.\nInputs: base-pinned PR2020/PR5968 contracts. Exact Git/SHA256 pins, proof, recurrence, seed-57 search coverage and limitations: [research package](https://github.com/CubeJerry/integer-mult-bounds/tree/539d3613af45706182f9ecc0e5a77cd189314737/research/rank-two-observation-boundary).\n\nReproduce: `python3 -B scripts/research_package.py --package research/rank-two-observation-boundary`\nExpected: PASS_RANK_TWO_OBSERVATION_BOUNDARY (rank=2, partial=2, full=3), PASS_RANK_TWO_BOUNDARY_FAULTS and PASS_REGISTERED_RESEARCH_PACKAGE.\n\nPassed: 571 shorter schedules, 9,136 independent Boolean executions / 18,272 contract checks; normal/optimized modes; 18 private-copy fault rejections (omitted restoration, changed reader, visible hidden output, corrupt source and receipt). Committed bytes/history/modes and export integrity pass; Git-free normal/optimized replay leaves all 12 exported files unchanged.\n\nScope: fixed indivisible children, six adapters, characteristic two. Actual caller/observer, native, tape, ownership and precision costs remain open; all five framework assumptions remain. No unrestricted circuit optimum, selected cold replay, hosted CI or proof-kernel acceptance claimed.\n\nRemote commit 539d3613af45706182f9ecc0e5a77cd189314737; complete tree 41793a01bb042a924a0d4ea260fdebb26515d82a equals the tested tree.\n\nPrepared by @CubeJerry with substantial OpenAI Codex assistance. Credit Nick Petalas (#5968), commdata2338 (#2020), Aaron Wang/navinor, Adam Gall and Sagar Thakrar. Apache-2.0.",
   "created_at": "2026-10-28T15:11:07Z",
-  "updated_at": "2026-10-28T15:11:07Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-28T17:36:26Z",
+  "closed_at": "2026-10-28T17:36:25Z",
+  "merged_at": "2026-10-28T17:36:25Z",
+  "state": "closed"
 }

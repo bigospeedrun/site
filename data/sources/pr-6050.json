@@ -4,8 +4,8 @@
   "title": "Restore research CI navigation after the PR6030 selection",
   "body": "The [PR #6030](https://github.com/CrocSwap/integer-mult-bounds/pull/6030) promotion changes the selected record but leaves current CI navigation on [PR #5599](https://github.com/CrocSwap/integer-mult-bounds/pull/5599), and puts the decimal plus fraction inside one bold span where the current-status check expects the exact bold decimal. These two mismatches fail the shared onboarding job and skip scientific replay for new research PRs, including [PR #6047](https://github.com/CrocSwap/integer-mult-bounds/pull/6047) and [PR #6049](https://github.com/CrocSwap/integer-mult-bounds/pull/6049).\n\nAdd the current [PR #6030](https://github.com/CrocSwap/integer-mult-bounds/pull/6030) replay, review, validation and source-manifest links; retain the entire [PR #5599](https://github.com/CrocSwap/integer-mult-bounds/pull/5599) section as a historical checkpoint. Format the selected decimal separately from its unchanged fraction. No certificate, selected record, proof source or historical evidence is changed.\n\nValidation: all six existing tests in `test_research_current_status.py` pass on CPython 3.12.8; `git diff --check` passes. The failure is documented in [the hosted run](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40625338509). No supplier replay is required for these navigation edits.\n\n## Significance for researchers\n\nRestores the shared entry point for scientific replay after the selected-result update. It changes no mathematical claim or κ.\n\n## Open next questions\n\nFuture selected-result promotions should update these navigation sections alongside the selected record; the existing tests already enforce the contract.\n\nPrepared by [zxv](https://github.com/zxv) with substantial OpenAI Codex assistance.\n\nDependent archived jobs now run and expose stale source bindings: `historical-1042-link` and `test-suite-locale-reads` reject `docs/research/current-status.md`; `d8-mixed-target-seeda97c8e` rejects the already-current `autoresearch.md`. The current-status navigation tests pass. No frozen pin is migrated or weakened; disposition of those archived consumers is a separate maintainer task.\n",
   "created_at": "2026-10-28T03:19:37Z",
-  "updated_at": "2026-10-28T03:55:39Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-28T17:36:28Z",
+  "closed_at": "2026-10-28T17:36:28Z",
+  "merged_at": "2026-10-28T17:36:27Z",
+  "state": "closed"
 }

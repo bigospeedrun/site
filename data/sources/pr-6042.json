@@ -4,8 +4,8 @@
   "title": "Independently derive all 3,552 G20 MAIN-bank target ranks",
   "body": "Closes the specific checking gap in PR #5955 open question 2: independently derive the 3,552 MAIN-bank target ranks in each PR #5679/#5708 inventory from its retained controller. Every target matches; no discrepancy was found.\r\r\n\r\r\nThe checker reconstructs all 154 controller events and both boundary programs without importing predecessor code. It evaluates the 127 address-coordinate columns, then checks each target's bank, port, owner, operator and rank against the invoice. Under the retained orthogonal-block model, the ranks are 15, 22, 29, 36, 43, 50 and 57 (444 targets each), plus 64 and 127 (222 each).\r\r\n\r\r\nVerification at `49d91bc8fadb6b631059c576a4cb2120c40c189a`:\r\r\n\r\r\n- Registered normal and optimized checks pass on native Windows Python 3.12.15; 15 controls reject altered sources, controller endpoints, descriptors and invoices.\r\r\n- Committed-byte/source-history checks and official export integrity pass. Both modes pass in a fresh read-only Git-free export with unchanged input bytes.\r\r\n- [Hosted CI](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/40614441642) passed at this exact head: both planning and the registered scientific replay succeeded.\r\r\n\r\r\nReproduce: `python3.12 -B scripts/research_package.py --package research/g20-main-target-ranks`.\r\r\n\r\r\nThis verifies the formal endpoint and address-projector ranks. It does not independently establish their physical native implementation, global caller, paid costs or BIT/outer admission. The five framework assumptions remain; no new multiplication bound is claimed. The package README contains the scoped proof and remaining question; SOURCES.json retains exact source pins.\r\r\n\r\r\nCredit Matarener for the review and question; Ali Romman, Dugongue, ai-nanachi and the retained controller/native lineage for the constructions; JoyboyBrian for adjacent owner-binding work. New audit by Dennis / antunishdPursuit with substantial OpenAI Codex assistance, Apache-2.0. [Scope, overlap check and handoff](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19231258).\r\r\n",
   "created_at": "2026-10-28T01:20:22Z",
-  "updated_at": "2026-10-28T01:31:44Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-28T17:36:28Z",
+  "closed_at": "2026-10-28T17:36:28Z",
+  "merged_at": "2026-10-28T17:36:28Z",
+  "state": "closed"
 }

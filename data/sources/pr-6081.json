@@ -4,8 +4,8 @@
   "title": "Prove the joint G20 exchange floor: 18 ADDs even with cross-component gates",
   "body": "The three disconnected bank exchanges in PR5840 cannot be implemented with fewer than 18 unit ADDs, even when gates mix their twelve wires and arbitrary GL2 bases are allowed within each bank. This resolves the direct-sum question left by #5851/#5942 and the [released handoff](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19230486).\n\nThe proof applies the known connectivity/diagonal lower bound of Alan Bu, Evan Fan and Robert Joo ([arXiv:2408.07898](https://arxiv.org/abs/2408.07898), Lemma 3.6 and Theorem 5.2). The new contribution is its exact source application and certificate, not a new general CNOT bound. Of 46,656 allowed endpoint maps, exactly eight attain 18; every other endpoint needs at least 19. The source attains 18 on each side, giving a 36-ADD subtotal per port.\n\nValidation passes with Python 3.12: registered normal and optimized replay; literal source word/matrix binding; two graph algorithms; eight attaining words and inverse actions on every independent input column; 168 GL(3,2) states and 1,008 gate edges; gate omission and endpoint controls; committed bytes/source history; official export integrity; and an optimized read-only, Git-free, empty-PATH replay. The exported source-byte mutation rejects. Reproduce with `python3.12 -B scripts/research_package.py --package research/g20-joint-exchange-floor`.\n\nThis is a twelve-wire scalar result. It does not prove a global 32-wire minimum when gates also cross into the 18-wire chain component, change recursive paid ranks, admit a supplier or improve kappa. The five framework assumptions remain. External independent proof/code review and hosted CI are pending.\n\nCredit Ali Romman/#5840 and the retained G20 lineage, Charan ./#5851, Nick Petalas/#5942 and the handoff, and Bu–Fan–Joo for the general bound. Prepared by JoyboyBrian with substantial OpenAI Codex assistance. [Advance claim](https://github.com/CrocSwap/integer-mult-bounds/discussions/5804#discussioncomment-19233737).\n",
   "created_at": "2026-10-28T05:11:30Z",
-  "updated_at": "2026-10-28T05:28:08Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-28T17:36:28Z",
+  "closed_at": "2026-10-28T17:36:27Z",
+  "merged_at": "2026-10-28T17:36:27Z",
+  "state": "closed"
 }
