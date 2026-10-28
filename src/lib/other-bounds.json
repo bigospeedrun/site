@@ -700,9 +700,9 @@
           "date": "2026-10-27T19:32:08-07:00",
           "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/85",
           "dateKind": "first-stated",
-          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/277b813236a7ef4f72c4a1bcdbf78d390d5033f8/submissions/2026-10-28-density-split-fourth/src/Candidate/Main.lean#L12-L17",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/659086caf0108dbaec14362f8c3471f955c9d0f4/submissions/2026-10-28-density-split-fourth/src/Candidate/Main.lean#L12-L17",
           "lean": true,
-          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, verify and admission checks passed on the author's last commit, and the tracker's maintainer merged the pull request on 2026-10-28. No independent rerun.",
           "evidence": "claimed",
           "review": {
             "pr": 85,
@@ -715,7 +715,7 @@
               "url": "https://github.com/SovereignSteak"
             }
           ],
-          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, verify and admission checks passed on the author's last commit, and the tracker's maintainer merged the pull request on 2026-10-28. No independent rerun.",
           "bound": "\\theta\\le 0.873981"
         },
         {
@@ -821,6 +821,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
           "bound": "\\theta\\le 0.873945166"
+        },
+        {
+          "author": "SovereignSteak",
+          "handle": "SovereignSteak",
+          "value": "2731076077/3125000000",
+          "display": "0.87394434464",
+          "date": "2026-10-28T14:08:18-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/92",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/4f4e626c1e754a8eec830b991c38f4e1a295cac7/submissions/2026-10-28-density-ten/src/Candidate/Main.lean#L6-L11",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 92,
+            "status": "open"
+          },
+          "note": "The author says it combines ten exact improvements of PR #91: finer count and physical source chains from Jacob Sussman's PR #86, smaller reserves in the return and the floor row, and a re-certified return height. It builds on OpenAI, Hailey Collet, Sil, ArviFoxy, Jacob Sussman and rohanarun, and on its own PRs #89, #90 and #91. It is 0.00000082136 below PR #91. The tracker files say the argument keeps the preprint's 7/8 theorem and the inherited analytic machinery; the Lean theorem has no extra hypothesis.",
+          "authors": [
+            {
+              "name": "SovereignSteak",
+              "url": "https://github.com/SovereignSteak"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "bound": "\\theta\\le 0.87394434464"
         }
       ],
       "repos": [
