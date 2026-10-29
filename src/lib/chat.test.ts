@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import katex from 'katex';
-import {createChatHandler, createLimiter, validateMessages, sseData, CHAT_MODEL, FALLBACK_MODEL, MAX_BODY_BYTES, MAX_REPLY_CHARS} from './chat-handler.ts';
+import {createChatHandler, createLimiter, validateMessages, sseData, CHAT_MODEL, FALLBACK_MODEL, MAX_BODY_BYTES, MAX_REPLY_CHARS, modelName} from './chat-handler.ts';
 import {buildSystemPrompt, createKnowledge, pageText} from './chat-knowledge.ts';
 import {formatReply, safeLink} from './chat-format.ts';
 import type {Problem, RecordEntry} from './types.ts';
@@ -402,4 +402,11 @@ test('knowledge lists the problems in the order of the Problems menu (the race b
     [...problemLinks.map(([slug]) => '/' + slug), '/unlisted']);
   // name: the landing table's name (the race board's title); a problem off the menu keeps its title.
   assert.deepEqual(createKnowledge(shuffled, '2026-10-16').problems.map(p => p.name), [...problemLinks.map(([, label]) => label), 'unlisted']);
+});
+
+// The privacy page names the chat models from these constants (lead, 2026-10-29).
+test('the privacy page names the configured chat models', () => {
+  assert.equal(modelName(CHAT_MODEL), 'Claude Sonnet 5.5');
+  assert.equal(modelName(FALLBACK_MODEL), 'Claude Haiku 5.5');
+  assert.throws(() => modelName('gpt-5'));
 });

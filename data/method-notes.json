@@ -5,7 +5,7 @@
       "openai-matrix-nine-fourths-2026": "OpenAI's paper describes matrix multiplication by a tensor, a three-way array of numbers, and bounds it with explicit reductions between tensors together with numerical invariants that compare them. It derives inequalities for multiplying polynomials, then uses how those values grow to bound matrix multiplication. The key step separates blocks that already use independent variables in two of the three directions."
     },
     "exact-dft": {
-      "direct-pr-41": "This proof reuses Jacob Sussman's recursion for the exact Fourier transform and plugs in a larger building block taken from the integer multiplication line of work. The block is repeated many times, and Lean files check the repeated block and the rate the construction certifies. The stated saving is kept just below that rate."
+      "direct-pr-41": "This proof reuses Jacob Sussman's recursion for the exact Fourier transform with a larger building block from the integer multiplication line of work, repeated many times. Lean files check the repeated block and the rate that it certifies: a saving of 4719/1562500, about 0.00302016. The author stated the smaller saving 0.0030103 on purpose. It is the base-10 logarithm of 2 divided by 100, rounded to five significant digits, and the author chose it because the number looks fun."
     },
     "3sum": {
       "direct-issue-35": "The algorithm and its running-time accounting come from earlier entries by c0ldzy17 and Joshua Wharton. This version tunes the algorithm's parameters more finely so that its two largest cost terms nearly match, computes the logarithm bounds to more digits and tightens the safety margins. Lean checks that the resulting exponent holds."

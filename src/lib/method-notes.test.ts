@@ -32,6 +32,19 @@ test('the prompt sends how-proved questions to the method field and admits a mis
   assert.match(prompt, /If the entry has no method field, say that the site facts hold no method text/);
 });
 
+// The credit note that the record table shows (record_metadata credit_note) reaches the leader's facts as credit, with the
+// earlier entry it names as builtOn, so the bot can answer which entries a record builds on (lead, 2026-10-29).
+test('a leader with a credit note carries it as credit and builtOn; the prompt sends lineage questions there', () => {
+  const credited = {...record('leader', '1/50'), creditNote: 'It builds on submission #40.', predecessors: ['https://github.com/bigospeedrun/verifier/pull/40']};
+  const knowledge = createKnowledge([board([record('old', '1/100'), credited])], '2026-10-29');
+  const [leader] = knowledge.problems[0].current as {credit?: string; builtOn?: string}[];
+  assert.equal(leader.credit, 'It builds on submission #40.');
+  assert.equal(leader.builtOn, 'https://github.com/bigospeedrun/verifier/pull/40');
+  const [bare] = createKnowledge([board([record('leader', '1/50')])], '2026-10-29').problems[0].current as Record<string, unknown>[];
+  assert.equal('credit' in bare || 'builtOn' in bare, false);
+  assert.match(buildSystemPrompt(knowledge, '/', false), /For credit, or which earlier entries a record builds on, use the credit field/);
+});
+
 test('a row takes its own note, else the board note of its repository, else none', () => {
   const notes = {boards: {'integer-multiplication': {own: 'Its own note.', blank: '  '}}, board_notes: {'integer-multiplication': [{repo: 'CrocSwap/integer-mult-bounds', text: 'The CrocSwap note.'}]}};
   const note = (id: string, repo: string, slug = 'integer-multiplication') => methodNoteFor(notes, slug, id, repo);

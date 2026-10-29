@@ -2,6 +2,12 @@ import {buildSystemPrompt, isKnownPage, type ChatKnowledge} from './chat-knowled
 
 export const CHAT_MODEL = 'claude-sonnet-5-5';
 export const FALLBACK_MODEL = 'claude-haiku-5-5';
+// The name that the privacy page shows for a model ID: claude-sonnet-5-5 is Claude Sonnet 5.5.
+export function modelName(id: string): string {
+  const match = /^claude-([a-z]+)-(\d+)-(\d+)$/.exec(id);
+  if (!match) throw new Error('Unexpected model ID: ' + id);
+  return `Claude ${match[1][0].toUpperCase()}${match[1].slice(1)} ${match[2]}.${match[3]}`;
+}
 export const MAX_BODY_BYTES = 32_768;
 export const MAX_MESSAGE_CHARS = 2_000;
 export const MAX_HISTORY = 20;
