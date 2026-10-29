@@ -847,6 +847,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a full local build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
           "bound": "\\theta\\le 0.87394434464"
+        },
+        {
+          "author": "Arvi",
+          "handle": "ArviFoxy",
+          "value": "43693617/50000000",
+          "display": "0.87387234",
+          "date": "2026-10-28T18:23:28-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/94",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/e5a82f72d8ff39a3cc1ad044e6acd727e77a3fc4/submissions/2026-10-29-arvi-density/src/Candidate/Main.lean#L6-L11",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author says its local Lean build was still running when the pull request opened. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 94,
+            "status": "open"
+          },
+          "note": "The author says it counts the HIGH rows of Sil's density step with the repeated-mark count of its PR #76, lowers the density floor to 1/2 as in PR #90, and runs 129 exact marked steps from the boot face of Jacob Sussman's PR #86, with a regenerated five-branch return. It builds on OpenAI, Hailey Collet, Sil, Jacob Sussman and its own earlier repeated-mark work. It is 0.00007200464 below PR #92.",
+          "authors": [
+            {
+              "name": "Arvi",
+              "url": "https://github.com/ArviFoxy"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author says its local Lean build was still running when the pull request opened. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "bound": "\\theta\\le 0.87387234"
         }
       ],
       "repos": [
@@ -923,7 +949,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "SovereignSteak"
+      "bestHandle": "ArviFoxy"
     },
     {
       "family": "005",
