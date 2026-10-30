@@ -899,6 +899,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author says its local Lean build was still running when the pull request opened. The tracker's prepare, test, verify and admission checks passed on the head. The tracker's maintainer merged the pull request on 2026-10-29. No independent rerun.",
           "bound": "\\theta\\le 0.87387234"
+        },
+        {
+          "author": "Arvi",
+          "handle": "ArviFoxy",
+          "value": "43670599/50000000",
+          "display": "0.87341198",
+          "date": "2026-10-29T19:37:45-07:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/97",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/62b12e08066b0269a01f34696ace896e3cb5eb32/submissions/2026-10-30-arvi-selected-leaf/src/Candidate/Main.lean#L7-L12",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem. The author reports a local Lean build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 97,
+            "status": "open"
+          },
+          "note": "The author says it splits the energy of rows with a heavy prime-slot block into sixth-root classes and bounds each class by the selected sextic norm of Joseph Bebel's PR #93, so that the leaf of Sil's cube-free native step can use K = 501/1000 instead of 3/4. The faces of both lines follow by induction along each line, with no density chain, and the return of its PR #94 is retuned to the end face. It builds on OpenAI, Hailey Collet, Sil, Jacob Sussman, Joseph Bebel and its own earlier work. It is 0.00046036 below PR #94.",
+          "authors": [
+            {
+              "name": "Arvi",
+              "url": "https://github.com/ArviFoxy"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a local Lean build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head. The pull request is open and not merged. No independent rerun.",
+          "bound": "\\theta\\le 0.87341198"
         }
       ],
       "repos": [
