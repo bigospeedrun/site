@@ -1,0 +1,11 @@
+{
+  "number": 6287,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6287",
+  "title": "Prove sharp stability of the P104 support relaxation (no new κ)",
+  "body": "For any unit-diagonal matrix over any field, let s=m-2(n-r), with m ordered off-diagonal nonzeros. Deleting at most 2s matching row/column indices leaves singleton ones and reciprocal rank-one pairs; factor two is sharp. A mask-compatible P104 rank-56/support-97 example requires two deletions. New beyond #6275: quantitative stability, with a separate deterministic proof rather than its random-order argument.\n\nBase: 2485805a6d47f36ea83ddde6327d453ac82d44dc.\n#6275 comparison: 681c547a36e742eceebbde04cb427bcd10cd3293. Source hashes: SOURCES.json.\n\nReproduce (Python 3.12, stdlib):\n```sh\npython3 -B scripts/research_package.py --package research/p104-support-independent-audit\n```\nExpected: `PASS_REGISTERED_RESEARCH_PACKAGE`.\n\nExecuted: complete F2 matrices through n=4, F3 through n=3, 21,700 sparse n=5 binary matrices, 112 weighted cases; independent exhaustive 531,441 F3 n=4 matrices and 729 kernel-count rank checks. P104 witness passes six prime fields. Fourteen controls reject forged certificates, altered source and invalid field/input conditions. Normal/-O, source/history/modes, export and unchanged read-only Git-free replay pass. Fixed exhaustive domains; no random seed. The written proof establishes the universal statement, not failed search.\n\nNo new κ. Only the matrix relaxation: physical geometry, restoration and complete paid/productive accounting remain open. No physical 3597 lower bound, supplier admission or discharged framework assumption.\n\nBy @CubeJerry with substantial OpenAI Codex assistance: worker C, independent induction reviewer, worker B census/review and lead. Credit Nick Petalas (#6275), DreamingOfClouds (#6170), Matarener (#6267), Ali Romman (#5599) and retained lineage. No human/proof-kernel acceptance.\n\nProof, exact pins, controls and limitations: https://github.com/CubeJerry/integer-mult-bounds/tree/0f5560f3aebb2cf09640c9df1ab6d87a3be9395c/research/p104-support-independent-audit\nComplete remote Git tree matches the tested contribution.",
+  "created_at": "2026-10-30T15:59:18Z",
+  "updated_at": "2026-10-30T15:59:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
