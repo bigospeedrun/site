@@ -1,5 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
+import {tableBound} from './ranking.ts';
 import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength,otherFeedBoard,plainTex,HOLD_LIMIT,postBound,directedDecimal} from './records-feed.ts';
 import type {OtherClaim,OtherRow} from './records-feed.ts';
 import type {FeedSnapshot,FeedBoard,FeedRecord} from './records-feed.ts';
@@ -522,4 +523,12 @@ test('a post shows the digits that separate it from the row it beats, rounded ne
  const s=plan(baseline(snapshot(b1)),snapshot(b2)).messages;
  assert.match(s[0].content,/`O\(n\^1\.9203\)`/);
  assert.equal(directedDecimal('1920279/1000000',true,{places:3}),'1.921');assert.equal(directedDecimal('1920279/1000000',false,{places:3}),'1.92');
+});
+// 3-SAT alpha is higher-is-better (Lead, 2026-10-30): a shown alpha rounds down, so it never claims more than the score.
+test('3-SAT alpha rounds down in the table and in posts',()=>{
+ assert.equal(tableBound({score:'123456789/1000000000',bound:'O^*(2^{n/(\\log n)^{0.123456789-o(1)}})'},false,0,6),'O^*(2^{n/(\\log n)^{0.12345-o(1)}})');
+ assert.equal(plainBound('3sat','123456789/1000000000','attained',5),'O*(2^(n/(log n)^(0.12345 - o(1))))');
+ const sat=(id:string,score:string):FeedRecord=>({id,evidence:'Claimed',score,relation:'attained',authors:['A'],bound:plainBound('3sat',score)});
+ const board:FeedBoard={slug:'3sat',name:'3-SAT',url:'https://bigospeedrun.com/3sat',leader:'b',direction:'higher',records:[sat('a','1/2'),sat('b','2/3')],table:'big-o'};
+ assert.equal(postBound(board,board.records[1]),'O*(2^(n/(log n)^(0.666 - o(1))))');
 });

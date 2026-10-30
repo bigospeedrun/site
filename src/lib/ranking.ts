@@ -132,7 +132,8 @@ export function tableBound(record:{score:string;scoreRelation?:string;bound:stri
  if(factoringForm.test(record.bound))return factoringBound(record.score,cap);
  const exponent=kappa?'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);
  const power=exponent+(record.scoreRelation==='strict-upper-bound'||record.bound.includes('\\varepsilon')?'+\\varepsilon':'');
- if(record.bound.includes('-o(1)'))return `O^*(2^{n/(\\log n)^{${exactExponent(record.score,cap)}-o(1)}})`;
+ // 3-SAT alpha is higher-is-better: round it down.
+ if(record.bound.includes('-o(1)'))return `O^*(2^{n/(\\log n)^{${exactExponentDown(record.score,cap)}-o(1)}})`;
  if(kappa||record.bound.includes('\\log'))return `O(n \\log^{${power}} n)`;
  if(record.bound.includes('2^{'))return `O${record.bound.startsWith('O^*')?'^*':''}(2^{${power.includes('+')?`(${power})`:power}n})`;
  return `O(n^{${power}})`;

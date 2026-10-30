@@ -40,7 +40,8 @@ export function plainBound(slug:string,score:string,relation='attained',digits?:
  if(slug==='integer-factoring')return factoringPlainBound(score);
  const kappa=slug==='integer-multiplication'||slug==='exact-dft';
  const precision=digits??boundPrecision([score],kappa);
- const rounded=shown??(kappa?decimalSaving(score,precision):boundExponent(score,false,precision));
+ // 3-SAT alpha is higher-is-better, so it rounds down; other exponents round up.
+ const rounded=shown??(kappa?decimalSaving(score,precision):slug==='3sat'?directedDecimal(score,false,{places:precision}):boundExponent(score,false,precision));
  const value=rounded.includes('.')?rounded.replace(/0+$/,'').replace(/\.$/,''):rounded;
  const epsilon=relation==='strict-upper-bound'?', for every fixed epsilon > 0':'';
  if(kappa)return `O(n log^(1 - ${value}${epsilon? ' + epsilon':''}) n)${epsilon}`;
@@ -81,9 +82,11 @@ export function directedDecimal(score:string,up:boolean,{sig,places}:{sig?:numbe
 // so rows that agree beyond the cap still show the same value. The site tables keep their board precision.
 export function postBound(board:FeedBoard,record:FeedRecord,minDigits=3):string {
  const kappa=board.slug==='integer-multiplication'||board.slug==='exact-dft';
- const up=!kappa;
+ // Toward the weaker bound: down on a higher-is-better board (kappa, 3-SAT alpha), up otherwise.
+ const higher=kappa||board.direction==='higher';
+ const up=!higher;
  const others=board.records.filter(r=>r.score!==record.score||r.relation!==record.relation);
- const better=(a:string,b:string)=>{const [an,ad='1']=a.split('/'),[bn,bd='1']=b.split('/');const x=BigInt(an)*BigInt(bd),y=BigInt(bn)*BigInt(ad);return kappa?x>y:x<y;};
+ const better=(a:string,b:string)=>{const [an,ad='1']=a.split('/'),[bn,bd='1']=b.split('/');const x=BigInt(an)*BigInt(bd),y=BigInt(bn)*BigInt(ad);return higher?x>y:x<y;};
  const beaten=others.reduce<FeedRecord|undefined>((best,r)=>!best||better(r.score,best.score)?r:best,undefined);
  const shown=(score:string,digits:number)=>directedDecimal(score,up,kappa?{sig:digits}:{places:digits});
  let digits=Math.min(minDigits,displayDigits.table);
