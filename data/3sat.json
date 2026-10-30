@@ -34,6 +34,18 @@
     {
       "url": "https://arxiv.org/abs/2607.10697",
       "checked_at": "2026-10-27"
+    },
+    {
+      "url": "https://github.com/anthropics/formal-math/tree/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/paper.pdf",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/MainResults.lean",
+      "checked_at": "2026-10-30"
     }
   ],
   "records": [
@@ -106,6 +118,42 @@
       },
       "dependencies": [],
       "source_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a"
+    },
+    {
+      "id": "anthropic-eth-2026",
+      "kind": "improvement",
+      "score": "1/2",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-27T03:07:21Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-27T03:07:21Z",
+      "site_observed_at": "2026-10-30T02:00:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/paper.pdf"
+      },
+      "spec_version": "1",
+      "title": "Claude (Anthropic), A 2^o(n) Time Algorithm for 3-SAT",
+      "authors": [
+        {
+          "name": "anthropics",
+          "url": "https://github.com/anthropics"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/README.md",
+      "artifact": {
+        "path": "sources/3sat-anthropic-eth-2026.json",
+        "sha256": "66617c9568a995426c18fa5d4a612a511ee99f7a7823fdcce920f875a53cd4b3"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/paper.pdf",
+        "theorem": "Theorem 1",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "16a5ce41304fcdaea4e0be7c132e1c361dc26da5"
     }
   ],
   "record_metadata": {
@@ -132,7 +180,20 @@
       "comparison_key": "3sat/randomized-bit-model/v1",
       "publication_date": "2026-10-26T21:18:03Z",
       "publication_date_precision": "minute"
+    },
+    "anthropic-eth-2026": {
+      "checked_at": "2026-10-30",
+      "source_url": "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/paper.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Source claim with a Lean formalization by the authors; not independently rerun by bigOspeedrun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "3sat/randomized-bit-model/v1",
+      "publication_date": "2026-10-27T03:07:21Z",
+      "publication_date_precision": "minute"
     }
   },
-  "updated_at": "2026-10-27T03:00:00Z"
+  "updated_at": "2026-10-30T02:00:00Z"
 }

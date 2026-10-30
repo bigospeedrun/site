@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-10-30",
+  "source_url": "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/paper.pdf",
+  "score": "1/2",
+  "publication_date": "2026-10-27T03:07:21Z",
+  "publication_date_role": "commit 16a5ce41 on main of anthropics/formal-math (squash merge of PR #31, opened 2026-10-27T02:46:32Z from ecprice-ant/formal-math branch add-eth, created 2026-10-27T02:46:16Z)",
+  "manuscript_date": "2026-10-26",
+  "openai_comparison": "OpenAI's claim (openai/math 7ef5c0c, merged 2026-10-26T21:18:03Z; branch codex/update-10-26 public at 2026-10-26T21:03:05Z) is earlier by 5 h 49 min on main, 5 h 43 min by first public branch. The Anthropic paper (Provenance, p. 2) says: core algorithm found October 16 by an internal Claude model; OpenAI's result is cited as independent and concurrent [Ope26].",
+  "scope": "Theorem 1 (Main Theorem): one deterministic algorithm counts the satisfying assignments of a k-CNF with m clauses in which n variables occur, in time 2^{O(min{k^2 n log log n/sqrt(log n), k m/sqrt(log m)})}, O(.) an absolute constant. For k=3: 2^{O(n log log n/sqrt(log n))} = 2^{n/(log n)^{1/2-o(1)}}, alpha = 1/2 attained; no alpha above 1/2. Lean (eth/MainResults.lean, Lean v4.33.1, Mathlib 0df444a): MainResults.mainTheorem states this bound in full (one Turing.FinTM2 machine with finite alphabets and one constant C for all k >= 1, n >= 4, m >= 2, every variable occurring) and MainResults.ethIsFalse; comparator.json names both, axioms propext, Classical.choice, Quot.sound. No site rerun.",
+  "note": "Source claim only. No independent site proof check."
+}
