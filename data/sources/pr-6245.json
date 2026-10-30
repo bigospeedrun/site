@@ -1,0 +1,11 @@
+{
+  "number": 6245,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6245",
+  "title": "Independently reconstruct all retained-operand outer conditions",
+  "body": "PR6214 left the outer conditions of PR6167 in the authors' pricing chain. This package reconstructs them with a standalone Fraction evaluator that imports, compiles and calls no predecessor code: all16 parameters,9 savings,54 distinct strict checks and4 functional values match the pinned receipt exactly.\n\nThe written derivation proves the maximum branch, all signs and the minima. Smallest strict slack is1/14000000000; limiting main slack is2097809947/980000000000000000. Actual BIT atom1/250, inherited atom3/1000 and admitted saving17/5000 stay distinct; both stock exponents satisfy0<exponent<beta<1.\n\nRegistered normal/-O checks pass identically;8 pinned-reason semantic/JSON controls reject. Seven input sources and all15 committed package/input bytes plus declared history pass transport checks. Separate proof/source review is AI review, not human/kernel or hostedCI acceptance. The exact arithmetic does not establish source hypotheses, compiler threshold, funding/native/caller/precision/analytic correctness, supplier admission or a new selected bound.\n\nBase/refreshedmain2485805a6d47f36ea83ddde6327d453ac82d44dc; revision8/selected6030 unchanged. Exact source6167 head564a076b113621a93edc4e39968ee4e4a8c9caf0 and handoff6214 headee8b66c91510b1ff4e5d28be8c6567810b4b3d01 remain unchanged/merged. [Canonical claim/finding](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19285465). Source pins, complete formulas, bounded overlap, reproduction and remaining questions are in the package.\n\nCredit Matarener/6214, Ali Romman/6167/5827, DreamingOfClouds and retained outer/controller/compiler/BIT authors including zxv, Cao Yifan, Jacob Alan Sussman and Cinna Davis. AAAmirinu with substantial OpenAI Codex assistance. Apache-2.0.\n",
+  "created_at": "2026-10-30T05:08:34Z",
+  "updated_at": "2026-10-30T05:08:34Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

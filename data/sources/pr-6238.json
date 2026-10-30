@@ -4,8 +4,8 @@
   "title": "Attain exact P104 dyadic spectral correction ranks 832 and 1664",
   "body": "PR6181 leaves exact Gaussian-dyadic attainment of its modular correction bounds open. This contribution constructs one determinant-one common code, using PR3979's explicit P104 triangular congruence, that attains **exact correction rank832 for (alpha,beta)=(1,169) and1664 for (13,13)**. No scratch or division by13 is needed. The proof also gives the requested explicit integral n=2,r=1 witness.\n\nThe lower bounds for arbitrary joint codes and identically returned scratch are credited to Nick Petalas/PR6181. The new upper construction uses Chris R / Clear1nsight's stronger explicit congruence, not just the abstract Gram premises. `PROOF.md` states the ordered identities, rank argument and exact scope.\n\nVerification on Windows11 / CPython3.12.11 passes normally and under `-O`, with identical complete receipts: six literal endpoint cases (dimensions8 and32), actual104-port source reconstruction, two factored large minors, and eight rejecting controls. The104-port coupling minor has determinant1/8; the832/1664 minors are both nonzero modulo13. `CERTIFICATE.json` and `VALIDATION.json` retain the evidence. Metadata/source pins and committed-byte/source-history checks pass. Separate AI mathematical review found no blocking issue.\n\n```sh\npython3.12 scripts/research_package.py --package research/p104-dyadic-spectral-attainment\npython3 scripts/check_research_commit.py --package research/p104-dyadic-spectral-attainment --check-source-history\n```\n\n**Limits:** endpoint matrix rank is not a native-call tariff. No physical code/correction recipe, ownership/restoration schedule, identity-side completion, complete signed invoice or new kappa is supplied. The full21632-square endpoint remains factored. No hostedCI, independent human or formal-kernel acceptance is claimed. Selected #6030 is unchanged.\n\n[Canonical claim](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19283793). Credit Nick Petalas, Chris R / Clear1nsight and the retained P104/native/caller/compiler lineage. New construction, checker and write-up: AAAmirinu with substantial OpenAI Codex assistance; Apache-2.0.\n",
   "created_at": "2026-10-30T02:52:46Z",
-  "updated_at": "2026-10-30T02:52:46Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-30T04:23:39Z",
+  "closed_at": "2026-10-30T04:23:39Z",
+  "merged_at": "2026-10-30T04:23:39Z",
+  "state": "closed"
 }
