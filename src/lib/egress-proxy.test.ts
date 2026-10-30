@@ -8,7 +8,9 @@ import {createEgressProxy, isPublic} from '../../ops/self-host/egress-proxy.mjs'
 // test addresses, and dial() sends the checked address to a local echo server instead.
 const listen = (server: Server) => new Promise<number>(done => server.listen(0, '127.0.0.1', () => done((server.address() as AddressInfo).port)));
 async function setup(answers: Record<string, string[]>, limits = {}) {
- const echo = createServer(socket => socket.on('data', data => socket.write('echo:' + data)));
+ // The proxy destroys its upstream socket at a close or a lifetime, which can reset the echo side of a busy tunnel:
+ // an unhandled error event there fails whichever test is running (read ECONNRESET, 2026-10-30).
+ const echo = createServer(socket => { socket.on('error', () => {}); socket.on('data', data => socket.write('echo:' + data)); });
  const echoPort = await listen(echo);
  const dialed: string[] = [];
  const proxy = createEgressProxy('api.anthropic.com:443,discord.com:443,hang.example:443', () => {}, {
