@@ -8,7 +8,7 @@ import unittest
 import zipfile
 from types import SimpleNamespace
 from maintainer_import import (validate_maintainer, apply_record, choose_receipt, collect_maintainer,
-                               encode, STATE)
+                               encode, statement_path, STATE)
 from direct_import import Rejected, sha
 from direct_refresh import Importer, transaction
 
@@ -74,7 +74,7 @@ def pack(receipt, artifact, damage=False, source_manifest=None):
 
 def check(receipt,artifact,run,binding,damage=False,source_manifest=None):
     return validate_maintainer(pack(receipt,artifact,damage,source_manifest),artifact,run,binding,CONFIG,
-                              (ROOT/'direct-fixtures'/Path(binding['profile']['challenge_file']).name).read_bytes())
+                              statement_path(ROOT,binding).read_bytes())
 
 
 class MaintainerTests(unittest.TestCase):
@@ -204,6 +204,22 @@ class MaintainerTests(unittest.TestCase):
             with self.subTest(sources=sources),self.assertRaises(Rejected):
                 check(*fixture(binding=binding),source_manifest=sources)
 
+    def test_dependency_root_may_be_one_module_file(self):
+        # The sqrt-log run stages 8 dependencies; most roots are single files (HalfPad.lean), one is a directory.
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['integer-factoring-sqrtlog'])
+        profile=binding['profile']
+        sources={profile['solution_module']+'.lean':'a'*64}
+        for dep in profile['solution_dependencies']:
+            for root in dep['source_roots']:
+                sources[root+'.lean' if root!='FactoringAux' else root+'/Basic.lean']='a'*64
+        for stage in ['lean','final']:
+            with self.subTest(stage=stage):
+                self.assertEqual(check(*fixture(stage,binding=binding),source_manifest=sources)['decision'],'lean-verified')
+        for root in ['HalfPad','FactoringAux']:
+            missing={k:v for k,v in sources.items() if not k.startswith(root+'.') and not k.startswith(root+'/')}
+            with self.subTest(missing=root),self.assertRaises(Rejected):
+                check(*fixture(binding=binding),source_manifest=missing)
+
     def test_matrix_requires_exact_patch_metadata(self):
         binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
         dep=binding['profile']['solution_dependencies'][0]
@@ -283,12 +299,20 @@ class MaintainerTests(unittest.TestCase):
         # Reviewed site configuration: the vendored statement hashes to the profile, and the row exists on its board
         # with the same source commit, score and relation (apply_record refuses anything else).
         for key,binding in CONFIG['maintainer_bindings'].items():
-            statement=(ROOT/'direct-fixtures'/Path(binding['profile']['challenge_file']).name).read_bytes()
+            statement=statement_path(ROOT,binding).read_bytes()
             self.assertEqual(sha(statement),binding['profile']['challenge_sha256'],key)
             doc=json.loads((ROOT/binding['board']).read_text())
             row=next(r for r in doc['records'] if r['id']==binding['record_id'])
             self.assertEqual((doc['problem_id'],row['source_commit'],row['score'],row.get('score_relation','attained')),
                              (binding['problem_id'],binding['commit'],binding['score'],binding['score_relation']),key)
+
+    def test_two_bindings_with_one_challenge_file_name_keep_their_own_statement(self):
+        # The Rudich and the sqrt-log profiles both name challenges/<model>/Challenge.lean.
+        bindings=CONFIG['maintainer_bindings']
+        pair=[bindings['integer-factoring-rudich-rousseau'],bindings['integer-factoring-sqrtlog']]
+        self.assertEqual([Path(b['profile']['challenge_file']).name for b in pair],['Challenge.lean']*2)
+        self.assertEqual(len({statement_path(ROOT,b) for b in pair}),2)
+        self.assertEqual(len({b['profile']['challenge_sha256'] for b in pair}),2)
 
     def test_transaction_cache_expiry_and_repeat(self):
         with tempfile.TemporaryDirectory() as temporary:

@@ -71,7 +71,7 @@ test('record posts and the landing table handle -1/5',()=>{
 });
 
 // The Rudich and Rousseau row is Lean Verified since the maintainer run 41010705006 (verifier 30d083a, 2026-10-30).
-test('the integer factoring data: classic -1/5, breakthrough 0, Lean Verified, same copy under src/data',()=>{
+test('the integer factoring data: classic -1/5, breakthrough 0, both Lean rows Lean Verified, same copy under src/data',()=>{
  const data=JSON.parse(readFileSync(new URL('../data/integer-factoring.json',import.meta.url),'utf8'));
  assert.equal(readFileSync(new URL('../data/integer-factoring.json',import.meta.url),'utf8'),readFileSync(new URL('../../data/integer-factoring.json',import.meta.url),'utf8'));
  assert.equal(data.score.direction,'higher-is-better');
@@ -82,9 +82,11 @@ test('the integer factoring data: classic -1/5, breakthrough 0, Lean Verified, s
  assert.equal(data.record_metadata['rudich-rousseau-2026'].site_tier,'verified');
  assert.equal(byId['rudich-rousseau-2026'].rerun_status.state,'passed');
  assert.equal(data.record_metadata['rudich-rousseau-2026'].receipt_url,'https://github.com/bigospeedrun/verifier/actions/runs/41010705006');
- // 1337isnot1337's Lean theorem is Claimed: only the author's CI checked it, and it has no verifier receipt.
+ // 1337isnot1337's Lean theorem is Lean Verified since the maintainer run 41108289491 (verifier e6f6793, 2026-10-30).
  assert.equal(byId['1337isnot1337-half-2026'].score,'1/2');
- assert.equal(byId['1337isnot1337-half-2026'].tier,'claimed');
+ assert.equal(byId['1337isnot1337-half-2026'].tier,'verified');
+ assert.equal(data.record_metadata['1337isnot1337-half-2026'].site_tier,'verified');
  assert.equal(byId['1337isnot1337-half-2026'].submitted_at,'2026-10-30T04:31:52Z');
- assert.equal(byId['1337isnot1337-half-2026'].rerun_status,undefined);
+ assert.equal(byId['1337isnot1337-half-2026'].rerun_status.state,'passed');
+ assert.equal(data.record_metadata['1337isnot1337-half-2026'].receipt_url,'https://github.com/bigospeedrun/verifier/actions/runs/41108289491');
 });

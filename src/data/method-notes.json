@@ -18,7 +18,7 @@
     },
     "integer-factoring": {
       "rudich-rousseau-2026": "The machine finds the smallest prime factor one bit at a time: for each prefix, it counts the divisors of N that start with it. The count comes from a network that checks a Schönhage–Strassen multiplication, evaluated with the counting engine of Anthropic's 3-SAT preprint, proved again here. Lean proves the time bound for one machine and every k. The paper's Conjecture 1, a faster rate, is only stated. It is not proved and scores nothing.",
-      "1337isnot1337-half-2026": "A Lean theorem proves that factoring n-bit numbers takes time at most a constant times 2 to the power of a constant times n divided by the square root of the logarithm of n. Rudich and Rousseau only stated this rate as Conjecture 1. The proof combines Anthropic's clique evaluator (from its Exponential Time Hypothesis work) with their factoring reduction. Only the author's own build checked it, with the Lean kernel alone. We have not rerun it."
+      "1337isnot1337-half-2026": "A Lean theorem proves that factoring n-bit numbers takes time at most a constant times 2 to the power of a constant times n divided by the square root of the logarithm of n. Rudich and Rousseau only stated this rate as Conjecture 1. The proof combines Anthropic's clique evaluator (from its Exponential Time Hypothesis work) with their factoring reduction. Our verifier checked the proof with two independent kernels."
     }
   },
   "board_notes": {

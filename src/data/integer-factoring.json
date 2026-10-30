@@ -141,7 +141,7 @@
       "kind": "improvement",
       "score": "1/2",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-30T04:31:52Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-30T04:31:52Z",
@@ -173,7 +173,12 @@
         "certificate_path": null
       },
       "dependencies": [],
-      "source_commit": "e91442d3162cae7f775e008efb2ea998c4478344"
+      "source_commit": "e91442d3162cae7f775e008efb2ea998c4478344",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-30T19:49:23.782125Z",
+        "receipt_path": "sources/maintainer-integer-factoring-sqrtlog-41108289491.json"
+      }
     }
   ],
   "record_metadata": {
@@ -208,15 +213,17 @@
       "source_url": "https://github.com/1337isnot1337/integer-factoring/blob/e91442d3162cae7f775e008efb2ea998c4478344/formal-appendix/HalfTheorem.lean#L73",
       "site_badge": false,
       "eligible_for_record": true,
-      "proof_status": "Lean theorem checked only by the author's CI with the Lean kernel; no Comparator, no second kernel; no site rerun",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
       "comparison_status": "source scope only",
       "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "site_tier": "verified",
       "comparison_key": "integer-factoring/deterministic-bit-model/v1",
       "publication_date": "2026-10-30T04:31:52Z",
       "publication_date_precision": "minute",
-      "publication_date_role": "Commit date of c19044bd (first stated, PR #19)"
+      "publication_date_role": "Commit date of c19044bd (first stated, PR #19)",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41108289491",
+      "verification_source_commit": "e91442d3162cae7f775e008efb2ea998c4478344"
     }
   },
-  "updated_at": "2026-10-30T17:00:00Z"
+  "updated_at": "2026-10-30T20:27:37Z"
 }

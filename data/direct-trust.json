@@ -13778,6 +13778,263 @@
       "commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1",
       "score": "0",
       "score_relation": "attained"
+    },
+    "integer-factoring-sqrtlog": {
+      "run_id": 41108289491,
+      "controller": "e6f6793aad7f517fe660d49caaa54295e6350607",
+      "profile": {
+        "auto_implicit": true,
+        "bound": "1/2",
+        "challenge_file": "challenges/integer-factoring-sqrtlog/Challenge.lean",
+        "challenge_sha256": "b35e0c5ed133a06417810751921145554b4c3d0c223cedb9e329465ac21eeb31",
+        "lean_toolchain": "leanprover/lean4:v4.33.1",
+        "manifest_file": "profiles/anthropic-lake-manifest.json",
+        "model": "integer-factoring/deterministic-bit-model",
+        "permitted_axioms": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "score_relation": "attained",
+        "solution_dependencies": [
+          {
+            "commit": "e91442d3162cae7f775e008efb2ea998c4478344",
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/1337isnot1337/integer-factoring",
+            "source_roots": [
+              "HalfPad",
+              "HalfPrefix"
+            ],
+            "source_subdir": "formal"
+          },
+          {
+            "commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1",
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring",
+            "source_roots": [
+              "Challenge",
+              "FactoringAux"
+            ]
+          },
+          {
+            "commit": "16a5ce41304fcdaea4e0be7c132e1c361dc26da5",
+            "lean_options": {
+              "autoImplicit": false,
+              "exponentiation.threshold": 2048,
+              "pp.unicode.fun": true,
+              "relaxedAutoImplicit": false
+            },
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/anthropics/formal-math",
+            "source_roots": [
+              "AppHalfPiecesStatement",
+              "AppRunningTimeStatement",
+              "ClauseBoundStatement",
+              "CountKSatStatement",
+              "FixedWidthVariableBoundStatement",
+              "KSatStatement",
+              "LevelsStatement",
+              "NetworkStatements",
+              "ParityChecksStatement",
+              "PartitionStatement",
+              "PiecesStatement",
+              "StepMachineStatements",
+              "ThreeSatRateStatement",
+              "ThreeSatStatement"
+            ],
+            "source_subdir": "eth/proof/statements"
+          },
+          {
+            "commit": "16a5ce41304fcdaea4e0be7c132e1c361dc26da5",
+            "lean_options": {
+              "autoImplicit": false,
+              "exponentiation.threshold": 2048,
+              "pp.unicode.fun": true,
+              "relaxedAutoImplicit": false
+            },
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/anthropics/formal-math",
+            "source_roots": [
+              "StepMachines",
+              "ToTuring"
+            ],
+            "source_subdir": "eth/proof/machines"
+          },
+          {
+            "commit": "16a5ce41304fcdaea4e0be7c132e1c361dc26da5",
+            "lean_options": {
+              "autoImplicit": false,
+              "exponentiation.threshold": 2048,
+              "pp.unicode.fun": true,
+              "relaxedAutoImplicit": false
+            },
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/anthropics/formal-math",
+            "source_roots": [
+              "Groundwork"
+            ],
+            "source_subdir": "eth/proof/networks"
+          },
+          {
+            "commit": "16a5ce41304fcdaea4e0be7c132e1c361dc26da5",
+            "lean_options": {
+              "autoImplicit": false,
+              "exponentiation.threshold": 2048,
+              "pp.unicode.fun": true,
+              "relaxedAutoImplicit": false
+            },
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/anthropics/formal-math",
+            "source_roots": [
+              "ClauseBound",
+              "GeneralPieces",
+              "PaddedDescent"
+            ],
+            "source_subdir": "eth/proof/rates"
+          },
+          {
+            "commit": "16a5ce41304fcdaea4e0be7c132e1c361dc26da5",
+            "lean_options": {
+              "autoImplicit": false,
+              "exponentiation.threshold": 2048,
+              "pp.unicode.fun": true,
+              "relaxedAutoImplicit": false
+            },
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/anthropics/formal-math",
+            "source_roots": [
+              "CountKSat",
+              "CountKSatRate",
+              "WidthK"
+            ],
+            "source_subdir": "eth/proof/consequences"
+          },
+          {
+            "commit": "16a5ce41304fcdaea4e0be7c132e1c361dc26da5",
+            "lean_options": {
+              "autoImplicit": false,
+              "exponentiation.threshold": 2048,
+              "pp.unicode.fun": true,
+              "relaxedAutoImplicit": false
+            },
+            "license": "Apache-2.0",
+            "repo_url": "https://github.com/anthropics/formal-math",
+            "source_roots": [
+              "SparsifyWidthK"
+            ],
+            "source_subdir": "eth/proof/sparsification"
+          }
+        ],
+        "solution_module": "HalfTheorem",
+        "source_roots": [
+          "BinaryCoarsen",
+          "BinaryFac",
+          "BinaryNet",
+          "BoundedTop",
+          "CappedProducts",
+          "CarryCheck",
+          "CliqueNetwork",
+          "CliqueRows",
+          "CliqueTermCheck",
+          "ClusterEdge",
+          "ClusterSize",
+          "ClusterStateDigit",
+          "CodingBounds",
+          "CrossCheck",
+          "CrossQueryCorrect",
+          "CrossQueryPoly",
+          "CrossWidthBound",
+          "DiscreteRate",
+          "EntryBound",
+          "ExplicitCoding",
+          "ExplicitPad",
+          "FactorCheck",
+          "FastTop",
+          "GateFields",
+          "GateMessage",
+          "GatePair",
+          "GateSide",
+          "GateSize",
+          "GateTransforms",
+          "GateVectors",
+          "GateWeight",
+          "GroupingCodePoly",
+          "GroupingPredicate",
+          "GroupingSearchCost",
+          "GroupingSearchPoly",
+          "HalfSchedule",
+          "HalfTheorem",
+          "InputCheck",
+          "LevelPoly",
+          "LevelSelect",
+          "MasterPad",
+          "NumericGates",
+          "NumericTransform",
+          "PadCost",
+          "PaddedMachineRate",
+          "PaddedRowSum",
+          "PaddedWordMachine",
+          "PairOffset",
+          "PrefixEvaluator",
+          "PureFactor",
+          "ReferenceStatement",
+          "RootFactors",
+          "RowSimplify",
+          "RowSumBridge",
+          "SearchPoly",
+          "SelectedClusterPair",
+          "SelectedClusterSide",
+          "SelectedClusterWeight",
+          "SelectedEntry",
+          "SelectedFactor",
+          "SelectedFieldBounds",
+          "SelectedGateCode",
+          "SelectedGood",
+          "SelectedGroupingPoly",
+          "SelectedPadCost",
+          "SelectedPadSide",
+          "SelectedPrefix",
+          "SelectedRadix",
+          "SelectedRow",
+          "SelectedRowBridge",
+          "SelectedStateCount",
+          "SelectedStateDigit",
+          "SelectedSummand",
+          "SelectedTable",
+          "SelectedTop",
+          "SelectedTopEdge",
+          "SelectedTopSide",
+          "SelectedTopWeight",
+          "SizeParamPoly",
+          "Tabulate",
+          "TopArithmetic",
+          "TopEvaluator",
+          "TopGrouping",
+          "TopParamsPoly",
+          "TopStateArithmetic",
+          "TopStates",
+          "TopValue",
+          "WeightCheck",
+          "WordCode",
+          "WordEncoding",
+          "WrittenPoly"
+        ],
+        "source_subdir": "formal-appendix",
+        "theorem_names": [
+          "IntegerFactoring.HalfAppendix.sqrtLogLog_factoring"
+        ],
+        "tools_file": "profiles/anthropic-tools.json",
+        "upstream_commit": "e91442d3162cae7f775e008efb2ea998c4478344",
+        "upstream_repo": "https://github.com/1337isnot1337/integer-factoring"
+      },
+      "board": "integer-factoring.json",
+      "problem_id": "integer-factoring/deterministic-bit-model",
+      "record_id": "1337isnot1337-half-2026",
+      "repo_url": "https://github.com/1337isnot1337/integer-factoring",
+      "commit": "e91442d3162cae7f775e008efb2ea998c4478344",
+      "score": "1/2",
+      "score_relation": "attained",
+      "statement_file": "IntegerFactoringSqrtLog.lean"
     }
   },
   "reviewed_pr_bindings": [

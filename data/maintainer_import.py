@@ -21,6 +21,12 @@ def encode(value):
     return (json.dumps(value, indent=2, ensure_ascii=False)+'\n').encode()
 
 
+def statement_path(root, binding):
+    """The vendored statement is named after the challenge file; two verifier profiles can share a file name,
+    so a binding may name its own copy with statement_file."""
+    return Path(root)/'direct-fixtures'/(binding.get('statement_file') or Path(binding['profile']['challenge_file']).name)
+
+
 def validate_maintainer(raw, artifact, run, binding, config, statement):
     """API identity and exact proof inputs must agree before evidence is used."""
     require(type(binding.get('run_id')) is int and binding['run_id'] > 0, 'Maintainer run is not bound')
@@ -83,7 +89,8 @@ def validate_maintainer(raw, artifact, run, binding, config, statement):
                 'Invalid staged-source hashes')
         require(profile['solution_module'].replace('.', '/')+'.lean' in sources, 'Missing solution module hash')
         for dep in dependencies:
-            require(all(any(path.startswith(root+'/') for path in sources) for root in dep['source_roots']),
+            # A root is a directory or a single module file (the roots check above allows both).
+            require(all(any(path == root+'.lean' or path.startswith(root+'/') for path in sources) for root in dep['source_roots']),
                     'Missing staged dependency source hashes')
     decision, reason, checked_at = validate_kernel_receipt(receipt, profile['theorem_names'])
     return dict(decision=decision, reason=reason, checked_at=checked_at, stage=stage,
@@ -148,7 +155,7 @@ def _collect_maintainer(importer, files, now):
         # Same reviewed controller tree check as direct submissions; never trust
         # a receipt just because it names an approved SHA.
         importer.trusted(binding['controller'])
-        statement = (root/'direct-fixtures'/Path(binding['profile']['challenge_file']).name).read_bytes()
+        statement = statement_path(root, binding).read_bytes()
         run = importer.run(binding['run_id'])
         require(run.get('head_sha') == binding['controller'], 'Maintainer controller changed')
         binding_hash = sha(canonical(binding).encode())
