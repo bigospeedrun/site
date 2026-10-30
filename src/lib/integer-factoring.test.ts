@@ -82,4 +82,9 @@ test('the integer factoring data: classic -1/5, breakthrough 0, Lean Verified, s
  assert.equal(data.record_metadata['rudich-rousseau-2026'].site_tier,'verified');
  assert.equal(byId['rudich-rousseau-2026'].rerun_status.state,'passed');
  assert.equal(data.record_metadata['rudich-rousseau-2026'].receipt_url,'https://github.com/bigospeedrun/verifier/actions/runs/41010705006');
+ // 1337isnot1337's Lean theorem is Claimed: only the author's CI checked it, and it has no verifier receipt.
+ assert.equal(byId['1337isnot1337-half-2026'].score,'1/2');
+ assert.equal(byId['1337isnot1337-half-2026'].tier,'claimed');
+ assert.equal(byId['1337isnot1337-half-2026'].submitted_at,'2026-10-30T04:31:52Z');
+ assert.equal(byId['1337isnot1337-half-2026'].rerun_status,undefined);
 });

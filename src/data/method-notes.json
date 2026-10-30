@@ -17,7 +17,8 @@
       "yannouli-subset-sum-0-4876723-2026": "The author improves Joshua Wharton's conditional method, which itself improves a manuscript by a-kapila. The new part is a rule for where one filter's certificates start and stop, plus new parameter margins. A written note proves it and a script with exact fractions confirms the numbers. The full running-time claim stays conditional on unproved claims from the earlier work about how the algorithm is implemented."
     },
     "integer-factoring": {
-      "rudich-rousseau-2026": "The machine finds the smallest prime factor one bit at a time: for each prefix, it counts the divisors of N that start with it. The count comes from a network that checks a Schönhage–Strassen multiplication, evaluated with the counting engine of Anthropic's 3-SAT preprint, proved again here. Lean proves the time bound for one machine and every k. The paper's Conjecture 1, a faster rate, is only stated. It is not proved and scores nothing."
+      "rudich-rousseau-2026": "The machine finds the smallest prime factor one bit at a time: for each prefix, it counts the divisors of N that start with it. The count comes from a network that checks a Schönhage–Strassen multiplication, evaluated with the counting engine of Anthropic's 3-SAT preprint, proved again here. Lean proves the time bound for one machine and every k. The paper's Conjecture 1, a faster rate, is only stated. It is not proved and scores nothing.",
+      "1337isnot1337-half-2026": "A Lean theorem proves that factoring n-bit numbers takes time at most a constant times 2 to the power of a constant times n divided by the square root of the logarithm of n. Rudich and Rousseau only stated this rate as Conjecture 1. The proof combines Anthropic's clique evaluator (from its Exponential Time Hypothesis work) with their factoring reduction. Only the author's own build checked it, with the Lean kernel alone. We have not rerun it."
     }
   },
   "board_notes": {

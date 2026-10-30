@@ -42,6 +42,18 @@
     {
       "url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0",
       "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/1337isnot1337/integer-factoring/tree/e91442d3162cae7f775e008efb2ea998c4478344",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/1337isnot1337/integer-factoring/blob/e91442d3162cae7f775e008efb2ea998c4478344/formal-appendix/HalfTheorem.lean#L73",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/1337isnot1337/integer-factoring/pull/19",
+      "checked_at": "2026-10-30"
     }
   ],
   "records": [
@@ -123,6 +135,45 @@
         "checked_at": "2026-10-30T06:11:44.694887Z",
         "receipt_path": "sources/maintainer-integer-factoring-rudich-rousseau-41010705006.json"
       }
+    },
+    {
+      "id": "1337isnot1337-half-2026",
+      "kind": "improvement",
+      "score": "1/2",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-30T04:31:52Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-30T04:31:52Z",
+      "site_observed_at": "2026-10-30T17:00:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/1337isnot1337/integer-factoring/blob/e91442d3162cae7f775e008efb2ea998c4478344/formal-appendix/HalfTheorem.lean#L73"
+      },
+      "spec_version": "1",
+      "title": "1337isnot1337, Lean theorem sqrtLogLog_factoring (factoring in time C*2^(C*n/sqrt(log n)))",
+      "authors": [
+        {
+          "name": "1337isnot1337",
+          "url": "https://github.com/1337isnot1337"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/DeterministicFactoring.pdf",
+        "https://github.com/anthropics/formal-math/blob/16a5ce41304fcdaea4e0be7c132e1c361dc26da5/eth/paper.pdf"
+      ],
+      "submission_url": "https://github.com/1337isnot1337/integer-factoring/pull/19",
+      "artifact": {
+        "path": "sources/integer-factoring-1337isnot1337-half-2026.json",
+        "sha256": "3d03cca06a0448aba0ebf5c10594db1b7ce1b29974a67dc6f0cb7c1eb5ae95ab"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/1337isnot1337/integer-factoring/blob/e91442d3162cae7f775e008efb2ea998c4478344/README.md",
+        "theorem": "IntegerFactoring.HalfAppendix.sqrtLogLog_factoring",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "e91442d3162cae7f775e008efb2ea998c4478344"
     }
   ],
   "record_metadata": {
@@ -151,7 +202,21 @@
       "publication_date_precision": "minute",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41010705006",
       "verification_source_commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1"
+    },
+    "1337isnot1337-half-2026": {
+      "checked_at": "2026-10-30",
+      "source_url": "https://github.com/1337isnot1337/integer-factoring/blob/e91442d3162cae7f775e008efb2ea998c4478344/formal-appendix/HalfTheorem.lean#L73",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Lean theorem checked only by the author's CI with the Lean kernel; no Comparator, no second kernel; no site rerun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring/deterministic-bit-model/v1",
+      "publication_date": "2026-10-30T04:31:52Z",
+      "publication_date_precision": "minute",
+      "publication_date_role": "Commit date of c19044bd (first stated, PR #19)"
     }
   },
-  "updated_at": "2026-10-30T06:56:58Z"
+  "updated_at": "2026-10-30T17:00:00Z"
 }
