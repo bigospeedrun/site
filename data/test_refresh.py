@@ -622,6 +622,8 @@ class RefreshTests(unittest.TestCase):
                 updated=refresh.load(stage,'registry.json')['repositories']
                 updated_swap=next(r for r in updated if r['repo']==refresh.SWAP)
                 updated_alias=next(r for r in updated if r['repo']=='fixture/shared-manifest')
+                # This offline fixture has no CrocSwap checkpoint listing: the certification read fails, the run goes on.
+                self.assertIn('checkpoints listing',first['certifications_error'])
                 self.assertEqual(updated_alias['manifest_source'],pinned)
                 self.assertEqual((stage/pinned['path']).read_bytes(),pinned_bytes)
                 self.assertNotEqual(updated_swap['manifest_source']['path'],pinned['path'])

@@ -21,7 +21,7 @@ function boardEntries(slug:string) {
    publicationYear:m.publication_date_precision==='year'?m.publication_year:undefined,
    dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':m.publication_date_role?.toLowerCase().includes('commit')?'Commit date':m.publication_date_role?.includes('paper')?'Paper date':m.publication_date?'Source date':m.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',
    raceEventAt:m.race_event_at??(m.publication_date_precision==='date-time'?m.publication_date:undefined)??(m.upstream_selected?r.submitted_at:undefined),
-   level:classifyEvidence({slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:m.upstream_selected===true,proofPassed:m.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)}),
+   level:classifyEvidence({slug,repo,upstreamSelected:m.upstream_selected===true,proofPassed:m.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)}),
    author:'',boundHtml:'',url:''};
   return record;
  }).filter((r:any)=>isBoardEntry(slug,r));

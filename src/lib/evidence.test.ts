@@ -4,10 +4,14 @@ import {classifyEvidence,classifyOtherEvidence,otherReviewPrUrl,evidenceLevels,i
 import {logExponent} from './ranking.ts';
 test('review levels follow the named repository and proof gates',()=>{
  const base={slug:'integer-multiplication',repo:'CrocSwap/integer-mult-bounds',proofPassed:false};
- assert.equal(classifyEvidence({...base,upstreamStatus:'merged'}),'human-verified');
- assert.equal(classifyEvidence({...base,upstreamStatus:'open'}),'claimed');
+ // Lead ruling b3, 2026-10-30: a merge alone is not review (crocswapVerification decides certified).
+ assert.equal(classifyEvidence({...base,certified:true}),'human-verified');
+ assert.equal(classifyEvidence({...base,certified:false}),'claimed');
+ assert.equal(classifyEvidence({...base}),'claimed');
  assert.equal(classifyEvidence({...base,upstreamSelected:true}),'human-verified');
- assert.equal(classifyEvidence({...base,repo:'Swapnil-jain/integer-mult-kappa',upstreamStatus:'merged'}),'claimed');
+ assert.equal(classifyEvidence({...base,repo:'Swapnil-jain/integer-mult-kappa',certified:true}),'claimed');
+ assert.equal(classifyEvidence({...base,slug:'exact-dft',certified:true}),'claimed');
+ assert.equal(classifyEvidence({...base,certified:true,proofPassed:true}),'lean-verified');
  assert.equal(classifyEvidence({...base,proofPassed:true}),'lean-verified');
  assert.equal(evidenceLevels.length,3);
 });

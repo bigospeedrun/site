@@ -24,6 +24,6 @@ test('matrix records use one complex circuit model and keep manuscript dates sep
  assert.equal(best.manuscript_date,'2026-10-02');
  assert.ok(isBreakthroughRecord('matrix-multiplication','openai-matrix-nine-fourths-2026'));
  for(const repo of ['openai/math','selanavot/matrix-multiplication-all-fields']){
-  assert.equal(classifyEvidence({slug:'matrix-multiplication',repo,upstreamStatus:'merged',proofPassed:false}),'claimed');
+  assert.equal(classifyEvidence({slug:'matrix-multiplication',repo,certified:true,proofPassed:false}),'claimed');
  }
 });

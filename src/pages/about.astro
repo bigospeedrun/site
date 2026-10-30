@@ -92,7 +92,7 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     <ul>
       {reviewed.map(({problem, title}) => <li>
         <a href={'/' + problem.slug}>{title}</a>: {problem.repos.filter(repo => repo.open).map(repo => <>
-          Open a pull request in <a href={repo.submission ?? repo.url + '/pulls'} target="_blank" rel="noopener">{repo.name}</a>{repo.rules && <> and follow its <a href={repo.rules} target="_blank" rel="noopener">contribution rules</a></>}. It shows as {evidenceName('claimed')} while the pull request is open and as {evidenceName('human-verified')} when merged.
+          Open a pull request in <a href={repo.submission ?? repo.url + '/pulls'} target="_blank" rel="noopener">{repo.name}</a>{repo.rules && <> and follow its <a href={repo.rules} target="_blank" rel="noopener">contribution rules</a></>}. It shows as {evidenceName('claimed')}. It becomes {evidenceName('human-verified')} when the main branch of the repository certifies its bound, or when its review ledger marks the merged pull request incorporated. A merge for archival intake alone does not count.
         </>)}
       </li>)}
       {verified.length > 0 && <li>

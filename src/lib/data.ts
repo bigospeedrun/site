@@ -2,6 +2,7 @@ import profiles from './author-profiles.json';
 import avatars from './author-avatars.json';
 import {authorFromProfile, recordEvidenceUrl} from './record-links';
 import {classifyEvidence,isBoardEntry,isBreakthroughRecord} from './evidence';
+import {crocswapVerification,noCertifications,type CrocswapCertifications} from './crocswap-cert';
 import type {Problem,RecordEntry,Repo} from './types';
 import {methodNoteFor,type MethodNotes} from './method-notes';
 import {decimal,logExponent,boundPrecision,tableBound,displayDigits,factoringBound} from './ranking';
@@ -13,6 +14,8 @@ const registry=read('registry.json');
 const prove2me=read('prove2me.json')??{boards:{}};
 // Reviewed notes on how a record is proved, by board and row id (data/method-notes.json). Older bundles have no file.
 const methodNotes:MethodNotes=read('method-notes.json')??{};
+// What CrocSwap main says (data/crocswap_cert.py): its certified kappas and its review ledger decide Human Verified on a CrocSwap PR row. Older bundles have no file.
+const certifications:CrocswapCertifications=read('crocswap-certifications.json')??noCertifications;
 const prove2meLink=(slug:string,id:string):string|undefined=>{const url=prove2me.boards?.[slug]?.links?.[id];return typeof url==='string'&&url.startsWith('https://prove2.me/theorems/')?url:undefined;};
 export const dataUpdatedAt:string=[registry.updated_at,...registry.problems.map((p:any)=>read(p.data_file).updated_at)].sort((a,b)=>Date.parse(a)-Date.parse(b)).at(-1);
 const titles:Record<string,string>={'matrix-multiplication':'Matrix Multiplication','3sum':'3SUM',apsp:'All-pairs shortest paths','subset-sum':'Subset Sum','integer-multiplication':'Integer multiplication','exact-dft':'Exact discrete Fourier transform','directed-sssp':'Directed shortest paths','3sat':'3-SAT','integer-factoring':'Integer factoring'};
@@ -40,7 +43,8 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  const records:RecordEntry[]=data.records.map((r:any)=>{
  const meta=data.record_metadata?.[r.id]??{};const repo=repoName(meta.source_url??r.source?.url??r.submission_url);const entry=rawRepos.find((x:any)=>x.repo===repo);
  // The site assigns evidence levels from the problem review rule and proof receipts.
- const evidenceLevel=classifyEvidence({slug:p.slug,repo,upstreamStatus:r.upstream_status,upstreamSelected:meta.upstream_selected===true,proofPassed:meta.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)});
+ const certification=p.slug==='integer-multiplication'&&r.id.startsWith('crocswap-pr-')&&Number.isInteger(meta.pr_number)?crocswapVerification(certifications,{pr:meta.pr_number,score:r.score,upstreamStatus:r.upstream_status,mergedAt:meta.merged_at??undefined}):undefined;
+ const evidenceLevel=classifyEvidence({slug:p.slug,repo,upstreamSelected:meta.upstream_selected===true,certified:certification!==undefined,proofPassed:meta.site_tier==='verified'&&r.rerun_status?.state==='passed'&&Boolean(r.rerun_status?.receipt_path)});
  const prove2meUrl=prove2meLink(p.slug,r.id);
  // The Oct 6 announcement is the known public date when the snapshot has no publication date.
  const announcementDate=['openai-original-109','exact-dft-2026','subset-sum-2026'].includes(r.id)&&!meta.publication_date?'2026-10-06':undefined;
@@ -53,7 +57,7 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  return {id:r.id,reproductionOf:meta.reproduction_of,score:r.score,scoreRelation:r.score_relation??'attained',evidenceLevel,evidenceUrl:recordEvidenceUrl(evidenceLevel,r,evidence[0]?.url,meta.prove2me===true?meta.source_url:meta.receipt_url),title:r.title,date:meta.publication_date??announcementDate??sourceDate??r.submitted_at??r.site_observed_at,publicationYear:meta.publication_date_precision==='year'?meta.publication_year:undefined,dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':meta.publication_date_role?.toLowerCase().includes('commit')?'Commit date':meta.publication_date_role?.includes('paper')?'Paper date':meta.publication_date?'Source date':meta.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',repo:meta.source_url_public===false?'':repo,repoId:entry?.repo_id??0,authors:r.authors.map((a:any)=>{
  const url=r.id==="crocswap-selected-75ea36bd581c1c02"?"https://github.com/Dugongue":a.url;
  return authorFromProfile({...a,url},profiles,avatars);
-}),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":p.slug==="3sat"&&r.id==="classical-baseline"?"O^*(1.307031578^n)":p.slug==="integer-factoring"&&r.id==="classical-baseline"?factoringClassic:bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',creditNote:typeof meta.credit_note==='string'?meta.credit_note:undefined,methodNote:methodNoteFor(methodNotes,p.slug,r.id,repo),upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,provenance:r.provenance,prove2me:meta.prove2me===true||meta.prove2me_upgrade===true,prove2meUrl,
+}),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":p.slug==="3sat"&&r.id==="classical-baseline"?"O^*(1.307031578^n)":p.slug==="integer-factoring"&&r.id==="classical-baseline"?factoringClassic:bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',creditNote:typeof meta.credit_note==='string'?meta.credit_note:undefined,methodNote:methodNoteFor(methodNotes,p.slug,r.id,repo),upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,humanVerifiedAt:certification?.at,certifiedBy:certification?.commit,humanVerifiedBasis:certification?.via,provenance:r.provenance,prove2me:meta.prove2me===true||meta.prove2me_upgrade===true,prove2meUrl,
   ...(meta.direct_submission===true&&['pending','failed','held'].includes(meta.verification)&&typeof meta.publication_date==='string'?{verification:{state:meta.verification,since:meta.publication_date}}:{})};
  });
  const kappa=data.score.symbol==='kappa';

@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from fractions import Fraction
 from pathlib import Path
 from github_read import api, pages, content
-import claim_judge
+import claim_judge, crocswap_cert
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
@@ -603,6 +603,15 @@ def refresh(stage, now):
         metadata[rid]=dict(checked_at=day,source_url=url,site_badge=False,eligible_for_record=True,proof_status=selected['status']+'; not independently rerun',comparison_key='crocswap/integer-multiplication-v1',race_repo=CROC,repo=CROC,upstream_tier='claimed',site_tier='claimed',publication_date_precision='date-time',date_precision='Snapshot commit time; not scientific priority',source_prs=selected['source_prs'])
     for key,m in metadata.items():
         if key.startswith('crocswap-'): m['upstream_selected'] = key==rid
+    # Human Verified on a CrocSwap PR row needs a certification on CrocSwap main (Lead ruling, 2026-10-30; crocswap_cert.py).
+    # A failed read keeps the stored file: the run goes on, and the summary names the failure.
+    certifications_error = None
+    try:
+        certifications = crocswap_cert.update(stage, now, heads[CROC]['sha'], api, pages, content)
+        dump(stage, crocswap_cert.FILE, certifications)
+    except (RuntimeError, ValueError, KeyError, TypeError) as error:
+        certifications_error = f'{type(error).__name__}: {error}'[:300]
+        dump(stage, crocswap_cert.FILE, crocswap_cert.failed(stage, now, certifications_error))
     # Parse the first displayed exact rational in the related repository's README.
     head=heads[SWAP]; sha=head['sha']; readme=(stage/'sources/Swapnil-jain__integer-mult-kappa__README.md').read_text()
     match=re.search(r'\\kappa\s*=\s*\\frac\{(\d+)\}\{(?:10\^\{(\d+)\}|(\d+))\}',readme)
@@ -652,7 +661,7 @@ def refresh(stage, now):
     queue=[dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason']) for s in items if s.get('review_reason') and s['upstream_status'] != 'closed-unmerged' and not isinstance(s['review_reason'], claim_judge.Deferred)]
     dump(stage,CLAIM_QUEUE,{'queue':queue})
     dump(stage,'sources/intake.json',dict(checked_at=day,assembled_at=now,pulls_source=f'https://api.github.com/repos/{CROC}/pulls',count=len(pulls),fingerprint=fingerprint)|pull_listing)
-    return dict(checked_at=now,new_prs=[p['number'] for p in pulls if p['number'] not in old],new_merged_records=new_merged,previous_record=best(before),current_record=best(problem),new_current_record=best(before)!=best(problem),unparsed_new_prs=[s['pr_number'] for s in items if s['pr_number'] not in old and s['claimed_score'] is None])
+    return dict(checked_at=now,new_prs=[p['number'] for p in pulls if p['number'] not in old],new_merged_records=new_merged,previous_record=best(before),current_record=best(problem),new_current_record=best(before)!=best(problem),unparsed_new_prs=[s['pr_number'] for s in items if s['pr_number'] not in old and s['claimed_score'] is None],certifications_error=certifications_error)
 
 def git_state_dir():
     return Path(subprocess.check_output(['git','rev-parse','--absolute-git-dir'],cwd=ROOT,text=True).strip())

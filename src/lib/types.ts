@@ -6,7 +6,7 @@ export interface RecordEntry {
  id: string; isBreakthrough?: boolean; reproductionOf?: string; score: string; scoreRelation?: ScoreRelation; evidenceLevel: EvidenceLevel; title: string; date: string; dateLabel: string; publicationYear?: number; repo: string; repoId: number;
  authors: Author[]; evidenceUrl?: string; bound: string; shortBound?: string; evidence: Link[]; predecessors: string[];
  dependencies: { id?: string; statement: string; source_url: string; status: string }[];
- status: string; comparisonNote: string; creditNote?: string; methodNote?: string; upstreamStatus: string; upstreamSelected?: boolean; comparison: string; eligible: boolean; raceEventAt?: string; rerunStatus?: {state:string;checked_at?:string;receipt_path?:string|null};
+ status: string; comparisonNote: string; creditNote?: string; methodNote?: string; upstreamStatus: string; upstreamSelected?: boolean; comparison: string; eligible: boolean; raceEventAt?: string; humanVerifiedAt?: string; certifiedBy?: string; humanVerifiedBasis?: string; rerunStatus?: {state:string;checked_at?:string;receipt_path?:string|null};
  provenance?: { model?: string; harness?: string; container_digest?: string; logs?: string[] };
  prove2me?: boolean; prove2meUrl?: string;
  // A Claimed direct submission whose verifier check has not passed (record_metadata.verification).

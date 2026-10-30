@@ -7,9 +7,11 @@ export const evidenceLevels = [
 ] as const;
 export type EvidenceLevel = typeof evidenceLevels[number]['id'];
 export const evidenceName = (level:EvidenceLevel):string => evidenceLevels.find(item=>item.id===level)!.name;
-export function classifyEvidence(input:{slug:string;repo:string;upstreamStatus?:string;upstreamSelected?:boolean;proofPassed:boolean}):EvidenceLevel {
+// A CrocSwap pull request row is Human Verified by CrocSwap's own record, not by a merge alone (certified: see crocswapVerification
+// in src/lib/crocswap-cert.ts; Lead ruling b3, 2026-10-30). The selected main-branch result stays Human Verified.
+export function classifyEvidence(input:{slug:string;repo:string;upstreamSelected?:boolean;certified?:boolean;proofPassed:boolean}):EvidenceLevel {
  if(input.proofPassed)return 'lean-verified';
- if(input.slug==='integer-multiplication'&&input.repo==='CrocSwap/integer-mult-bounds'&&(input.upstreamStatus==='merged'||input.upstreamSelected===true))return 'human-verified';
+ if(input.slug==='integer-multiplication'&&input.repo==='CrocSwap/integer-mult-bounds'&&(input.certified===true||input.upstreamSelected===true))return 'human-verified';
  return 'claimed';
 }
 // An Other bounds row may name one review repository (reviewRepository in src/lib/other-bounds.json).
@@ -22,8 +24,7 @@ export function classifyOtherEvidence(reviewRepository:OtherReviewRepository|und
  return reviewRepository&&claim.review?.status==='merged'?'human-verified':'claimed';
 }
 export const otherReviewPrUrl=(reviewRepository:OtherReviewRepository,review:OtherClaimReview):string=>`${reviewRepository.url}/pull/${review.pr}`;
-export const integerMultiplicationClaimedRule = 'Published bounds outside CrocSwap/integer-mult-bounds, and open pull requests to it that are not yet merged.';
-export const reviewSubmissionPolicy = 'Open submissions appear as Claimed and move to Human Verified when accepted. Submissions closed without acceptance and reproductions stay off the board.';
+export const integerMultiplicationClaimedRule = 'Published bounds outside CrocSwap/integer-mult-bounds, and pull requests to it, merged or open, that its main branch does not certify.';
 // Repository admission is separate from evidence strength: open submissions and independent claims remain eligible.
 export function isBoardEntry(slug:string,record:{id?:string;repo:string;upstreamStatus:string;reproductionOf?:string}):boolean {
  if(record.reproductionOf||record.id==="classical-baseline")return false;

@@ -57,6 +57,19 @@ if (ROOT/'method-notes.json').exists():
  for board,shared in method_notes.get('board_notes',{}).items():
   for note in shared:
    assert set(note)=={'repo','text'} and re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',note['repo']) and note_text(note['text']),(board,note.get('repo'))
+# What CrocSwap main certifies (data/crocswap_cert.py): the site reads it to give Human Verified to a CrocSwap PR row.
+if (ROOT/'crocswap-certifications.json').exists():
+ certs=load('crocswap-certifications.json')
+ assert certs['schema_version']==1 and certs['repo']=='CrocSwap/integer-mult-bounds'
+ stamped=lambda r:re.fullmatch(r'[0-9a-f]{40}',r['commit']) and re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z',r['committed_at'])
+ assert len({r['commit'] for r in certs['selected_revisions']})==len(certs['selected_revisions'])
+ for r in certs['selected_revisions']:
+  assert stamped(r) and re.fullmatch(r'\d+(/\d+)?',r['kappa']) and all(type(n) is int for n in r['source_prs']),r['commit']
+ for pr,r in certs['frontiers'].items():assert pr.isdigit() and stamped(r) and re.fullmatch(r'\d+(/\d+)?',r['kappa']),pr
+ for name,source in certs.get('ledger',{}).items():
+  assert name in ('pr-ledger','pr-intake-decisions') and re.fullmatch(r'[0-9a-f]{40}',source['blob']),name
+  for disposition,numbers in source['dispositions'].items():assert disposition and all(type(n) is int for n in numbers),(name,disposition)
+ assert 'read_error' not in certs or set(certs['read_error'])=={'since','message'}
 print('Checked',registry['checked_at'])
 print('problem | verified | certified-conditional | claimed (observed maximum/minimum) | records')
 for entry in registry['problems']:
