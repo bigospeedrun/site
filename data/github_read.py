@@ -42,14 +42,14 @@ def pages(path,params=None,limit=30):
 MAX_BLOB_BYTES=20*1024*1024
 GIT_SHA1=re.compile(r'[0-9a-f]{40}')
 
-def content(repo,path,sha):
+def content(repo,path,sha,max_bytes=MAX_BLOB_BYTES):
     data=api(f'repos/{repo}/contents/{quote(path,safe="/")}',{'ref':sha})
     if data.get('encoding')=='base64':return base64.b64decode(data['content'])
     # The contents API sends encoding "none" for files over 1 MB: read the git blob and check its hash.
     if data.get('encoding')!='none' or data.get('type')!='file':raise ValueError('Unsupported GitHub content encoding')
     blob_sha,size=data.get('sha'),data.get('size')
     if not isinstance(blob_sha,str) or not GIT_SHA1.fullmatch(blob_sha):raise ValueError('GitHub content has no blob sha')
-    if type(size) is not int or not 0<=size<=MAX_BLOB_BYTES:raise ValueError('GitHub content is too large')
+    if type(size) is not int or not 0<=size<=max_bytes:raise ValueError('GitHub content is too large')
     blob=api(f'repos/{repo}/git/blobs/{blob_sha}')
     if blob.get('encoding')!='base64':raise ValueError('Unsupported GitHub blob encoding')
     raw=base64.b64decode(blob['content'])

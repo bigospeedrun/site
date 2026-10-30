@@ -76,4 +76,13 @@ class GitHubReadTests(unittest.TestCase):
                     github_read.content('o/r','RESULT.json','c'*40)
                 self.assertEqual(get.call_count,2 if name in ('hash','size') else 1)
 
+    def test_a_caller_can_raise_the_size_cap_for_one_read(self):
+        raw=b'x'*10
+        size=github_read.MAX_BLOB_BYTES+1
+        with patch.object(github_read,'api',side_effect=self.large_file(raw,size=size)):
+            with self.assertRaises(ValueError): github_read.content('o/r','big.json','c'*40)
+        with patch.object(github_read,'api',side_effect=self.large_file(raw,size=size)):
+            with self.assertRaises(ValueError) as caught: github_read.content('o/r','big.json','c'*40,max_bytes=size)  # past the cap: the size check passes, the size/hash check fails
+        self.assertNotIn('too large',str(caught.exception))
+
 if __name__=='__main__':unittest.main()

@@ -17,6 +17,7 @@ class Croc:
         self.files = {'frontier5.json': (9, '2026-10-12T05:00:00Z')}
         self.kappas = {'frontier5.json': '1/1000', 'frontier8.json': '3/1000'}
         self.calls = []
+        self.reads = []  # (path, commit, max_bytes) of every content read
         # Two ledger files: their blob shas and their entries.
         self.ledger = {'pr-ledger': ('1' * 40, [(5, 'incorporated'), (6, 'partially_reviewed')]),
                        'pr-intake-decisions': ('2' * 40, [(6, 'incorporated'), (7, 'partially_reviewed')])}
@@ -31,8 +32,9 @@ class Croc:
         for name, file in cert.LEDGER_FILES.items():
             if path.endswith(file): return {'sha': self.ledger[name][0]}
         return [{'type': 'file', 'name': name} for name in sorted(self.files)] + [{'type': 'file', 'name': 'README.md'}, {'type': 'dir', 'name': 'frontier7.json'}]
-    def content(self, repo, path, commit):
+    def content(self, repo, path, commit, max_bytes=None):
         assert repo == cert.CROC
+        self.reads.append((path, commit, max_bytes))
         for name, file in cert.LEDGER_FILES.items():
             if path == file:
                 self.calls.append(('content', path))
@@ -108,6 +110,13 @@ class CertTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             croc = Croc(); croc.ledger['pr-ledger'] = ('1' * 40, [('5', 'incorporated')])
             with self.assertRaises(ValueError): croc.update(Path(temp))
+
+    def test_a_frontier_kappa_is_read_at_the_commit_that_added_the_file_and_a_ledger_with_a_large_cap(self):
+        with tempfile.TemporaryDirectory() as temp:
+            croc = Croc(); croc.update(Path(temp))
+            self.assertIn((f'{CP}/frontier5.json', sha(9), None), croc.reads)
+            self.assertIn((cert.LEDGER_FILES['pr-ledger'], sha(99), cert.LEDGER_MAX_BYTES), croc.reads)
+            self.assertGreater(cert.LEDGER_MAX_BYTES, 20 * 1024 * 1024)
 
     def test_a_stored_frontier_without_a_kappa_gets_it_without_a_new_history_read(self):
         with tempfile.TemporaryDirectory() as temp:

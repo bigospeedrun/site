@@ -347,7 +347,7 @@ test('the CrocSwap contribution rules reach the chat as a dated summary of the f
     {name: 'someone/other-repo', url: 'https://github.com/someone/other-repo', ownerUrl: '', owner: 'someone', open: false, mode: ''}]} as unknown as Problem;
   const [croc, other] = createKnowledge([problem], '2026-10-10').problems[0].repositories as {name: string; rulesSummary?: {file: string; commit: string; summary: string}}[];
   const review=(createKnowledge([problem], '2026-10-10').contribute as {reviewRepositories:string}).reviewRepositories;
-  for (const part of [/review ledger/, /partially reviewed/, /archival intake/, /incorporated/, /certifies its bound/, /A merge alone does not decide it/]) assert.match(review, part);
+  for (const part of [/review ledger/, /partially reviewed/, /archival intake/, /incorporated/, /certifies its bound/, /before the repository began archival intake/, /A merge alone does not decide it/]) assert.match(review, part);
   assert.doesNotMatch(review, /a merge makes it Human Verified/i);
   assert.equal(croc.rulesSummary?.file, 'CONTRIBUTING.md');
   assert.match(croc.rulesSummary!.commit, /^[0-9a-f]{40}$/);

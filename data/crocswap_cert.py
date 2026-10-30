@@ -23,6 +23,8 @@ SELECTED = 'certificates/selected-result.json'
 CHECKPOINTS = 'certificates/checkpoints'
 FRONTIER = re.compile(r'frontier(\d+)\.json')
 FILE = 'crocswap-certifications.json'
+# GitHub's blob API reads files up to 100 MB; pr-ledger.json was 13.5 MB on 2026-10-30 and still grows.
+LEDGER_MAX_BYTES = 100 * 1024 * 1024
 LEDGER_FILES = {'pr-ledger': 'docs/research/pr-ledger.json', 'pr-intake-decisions': 'docs/research/pr-intake-decisions.json'}
 
 def empty():
@@ -62,7 +64,7 @@ def ledger(stored, sha, api, content):
     for name, path in LEDGER_FILES.items():
         blob = api(f'repos/{CROC}/contents/{path}', {'ref': sha})['sha']
         old = stored.get(name)
-        result[name] = old if old and old['blob'] == blob else {'blob': blob, 'dispositions': dispositions(content(CROC, path, sha))}
+        result[name] = old if old and old['blob'] == blob else {'blob': blob, 'dispositions': dispositions(content(CROC, path, sha, max_bytes=LEDGER_MAX_BYTES))}
     return result
 
 def update(root, now, sha, api, pages, content):
@@ -91,7 +93,8 @@ def update(root, now, sha, api, pages, content):
             if not history:
                 raise ValueError(f'{name} has no commit')
             old = {'commit': history[-1]['sha'], 'committed_at': commit_time(history[-1])}
-        frontiers[str(pr)] = {**old, 'kappa': kappa(json.loads(content(CROC, path, sha)))}
+        # The kappa is read at the commit that added the file, so that its time and its kappa are one state.
+        frontiers[str(pr)] = {**old, 'kappa': kappa(json.loads(content(CROC, path, old['commit'])))}
     ledgers = ledger(stored.get('ledger', {}), sha, api, content)
     if (revisions == stored['selected_revisions'] and frontiers == stored['frontiers'] and ledgers == stored.get('ledger')
             and 'read_error' not in stored):
