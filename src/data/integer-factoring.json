@@ -84,7 +84,7 @@
       "kind": "improvement",
       "score": "0",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-10-28T02:58:40Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-10-28T02:58:40Z",
@@ -113,11 +113,16 @@
       },
       "evidence": {
         "paper_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/DeterministicFactoring.pdf",
-        "theorem": "Theorem 1 (subexponentialRate)",
+        "theorem": "Factoring.subexponentialRate",
         "certificate_path": null
       },
       "dependencies": [],
-      "source_commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1"
+      "source_commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-10-30T06:11:44.694887Z",
+        "receipt_path": "sources/maintainer-integer-factoring-rudich-rousseau-41010705006.json"
+      }
     }
   ],
   "record_metadata": {
@@ -137,14 +142,16 @@
       "source_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/DeterministicFactoring.pdf",
       "site_badge": false,
       "eligible_for_record": true,
-      "proof_status": "Source claim with a Lean formalization by the authors; not independently rerun by bigOspeedrun",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
       "comparison_status": "source scope only",
       "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "site_tier": "verified",
       "comparison_key": "integer-factoring/deterministic-bit-model/v1",
       "publication_date": "2026-10-28T02:58:40Z",
-      "publication_date_precision": "minute"
+      "publication_date_precision": "minute",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41010705006",
+      "verification_source_commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1"
     }
   },
-  "updated_at": "2026-10-30T02:00:00Z"
+  "updated_at": "2026-10-30T06:56:58Z"
 }

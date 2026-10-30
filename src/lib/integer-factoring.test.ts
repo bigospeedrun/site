@@ -70,13 +70,16 @@ test('record posts and the landing table handle -1/5',()=>{
  assert.deepEqual(landingRecords([landing('classic','-1/5',{date:'2026-10-20T00:00:00Z'}),landing('claim','0')],'higher-is-better').map(r=>r.id),['claim']);
 });
 
-test('the integer factoring data: classic -1/5, breakthrough 0, Claimed, same copy under src/data',()=>{
+// The Rudich and Rousseau row is Lean Verified since the maintainer run 41010705006 (verifier 30d083a, 2026-10-30).
+test('the integer factoring data: classic -1/5, breakthrough 0, Lean Verified, same copy under src/data',()=>{
  const data=JSON.parse(readFileSync(new URL('../data/integer-factoring.json',import.meta.url),'utf8'));
  assert.equal(readFileSync(new URL('../data/integer-factoring.json',import.meta.url),'utf8'),readFileSync(new URL('../../data/integer-factoring.json',import.meta.url),'utf8'));
  assert.equal(data.score.direction,'higher-is-better');
  const byId=Object.fromEntries(data.records.map((r:any)=>[r.id,r]));
  assert.equal(byId['classical-baseline'].score,'-1/5');
  assert.equal(byId['rudich-rousseau-2026'].score,'0');
- assert.equal(byId['rudich-rousseau-2026'].tier,'claimed');
- assert.equal(data.record_metadata['rudich-rousseau-2026'].site_tier,'claimed');
+ assert.equal(byId['rudich-rousseau-2026'].tier,'verified');
+ assert.equal(data.record_metadata['rudich-rousseau-2026'].site_tier,'verified');
+ assert.equal(byId['rudich-rousseau-2026'].rerun_status.state,'passed');
+ assert.equal(data.record_metadata['rudich-rousseau-2026'].receipt_url,'https://github.com/bigospeedrun/verifier/actions/runs/41010705006');
 });

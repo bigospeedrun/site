@@ -12872,6 +12872,44 @@
       "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
       "score": "9/4",
       "score_relation": "attained"
+    },
+    "integer-factoring-rudich-rousseau": {
+      "run_id": 41010705006,
+      "controller": "30d083a9e07f737fc890a49e03bd55348a33ce09",
+      "profile": {
+        "auto_implicit": true,
+        "bound": "0",
+        "challenge_file": "challenges/integer-factoring/Challenge.lean",
+        "challenge_sha256": "c3adce9c7a04732442b615e69b3d33960ebc61dcacc5d281797c303d266ae12b",
+        "lean_toolchain": "leanprover/lean4:v4.35.0",
+        "manifest_file": "profiles/factoring-lake-manifest.json",
+        "model": "integer-factoring/deterministic-bit-model",
+        "permitted_axioms": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "score_relation": "attained",
+        "solution_module": "Solution",
+        "source_roots": [
+          "Solution",
+          "Factoring_aux",
+          "FactoringAux"
+        ],
+        "theorem_names": [
+          "Factoring.subexponentialRate"
+        ],
+        "tools_file": "profiles/tools-v4.35.0.json",
+        "upstream_commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1",
+        "upstream_repo": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring"
+      },
+      "board": "integer-factoring.json",
+      "problem_id": "integer-factoring/deterministic-bit-model",
+      "record_id": "rudich-rousseau-2026",
+      "repo_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring",
+      "commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1",
+      "score": "0",
+      "score_relation": "attained"
     }
   },
   "reviewed_pr_bindings": [

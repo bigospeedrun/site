@@ -257,7 +257,10 @@ class MaintainerTests(unittest.TestCase):
             row['tier']=doc['record_metadata'][row['id']]['site_tier']='claimed'
             row.pop('rerun_status',None)
             (root/'exact-dft.json').write_bytes(encode(doc))
-            config=copy.deepcopy(CONFIG);config['maintainer_bindings']['matrix-nine-fourths']['run_id']=123456
+            config=copy.deepcopy(CONFIG)
+            # This test builds the DFT and matrix runs only; the other pinned runs have no fixture here.
+            config['maintainer_bindings']={k:v for k,v in config['maintainer_bindings'].items() if k in ('dft-e8','matrix-nine-fourths')}
+            config['maintainer_bindings']['matrix-nine-fourths']['run_id']=123456
             dft=fixture('final');matrix=fixture('final',binding=config['maintainer_bindings']['matrix-nine-fourths'])
             matrix[0]['axiom_audit'].update(status='not_completed_or_rejected',reported_axioms={})
             items={x[2]['id']:(x,pack(x[0],x[1])) for x in [dft,matrix]}
@@ -275,6 +278,17 @@ class MaintainerTests(unittest.TestCase):
             # Binding order must not change isolation or erase the other receipt state.
             importer.config['maintainer_bindings']=dict(reversed(list(config['maintainer_bindings'].items())))
             self.assertEqual(collect_maintainer(importer,{},NOW),files)
+
+    def test_every_pinned_binding_has_its_statement_and_names_its_board_row(self):
+        # Reviewed site configuration: the vendored statement hashes to the profile, and the row exists on its board
+        # with the same source commit, score and relation (apply_record refuses anything else).
+        for key,binding in CONFIG['maintainer_bindings'].items():
+            statement=(ROOT/'direct-fixtures'/Path(binding['profile']['challenge_file']).name).read_bytes()
+            self.assertEqual(sha(statement),binding['profile']['challenge_sha256'],key)
+            doc=json.loads((ROOT/binding['board']).read_text())
+            row=next(r for r in doc['records'] if r['id']==binding['record_id'])
+            self.assertEqual((doc['problem_id'],row['source_commit'],row['score'],row.get('score_relation','attained')),
+                             (binding['problem_id'],binding['commit'],binding['score'],binding['score_relation']),key)
 
     def test_transaction_cache_expiry_and_repeat(self):
         with tempfile.TemporaryDirectory() as temporary:
