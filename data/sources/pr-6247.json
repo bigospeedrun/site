@@ -1,0 +1,11 @@
+{
+  "number": 6247,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6247",
+  "title": "Construct an exact dyadic rank-seven P104 projector (no new kappa)",
+  "body": "Resolves PR #6211's dyadic-projector question: an explicit Hermitian projector over Z[i,1/2] has complex rank seven and maximum entry error 16193/65536 < 1/4 on the same 104-root Gram matrix. This removes odd denominators; it does not beat the predecessor's best complex error. **No new κ.**\n\nBase: 2485805a6d47f36ea83ddde6327d453ac82d44dc. Predecessor #6211: 369ad15647ad0df0b0ef6f4fcb060509b67f1823. [Published proof, exact input pins, search coverage and validation](https://github.com/CubeJerry/integer-mult-bounds/tree/18b1723ef87086d046358db6865a42df4dfd7555/research/p104-dyadic-rank-seven). Only this package is added.\n\nReproduce with CPython 3.12:\n`python3 -B scripts/research_package.py --package research/p104-dyadic-rank-seven`\nExpected: PASS_REGISTERED_RESEARCH_PACKAGE.\n\nExecuted on Linux/Python 3.12.14: six registered normal/optimized checks; all 10,816 entries in each of two arithmetic paths; exact rank and dyadic checks; nine semantic and four source-byte rejection controls. Six Git-free/read-only replays agree, and two actual exported-byte corruptions reject. The bounded search stops at its first witness (k=8); no denominator/error optimality is claimed. Remote commit/tree and all 14 package/input files are checked against tested bytes.\n\nThe P104/root identification is inherited. Real-part rank remains eight; residual spectral norm remains 13. Native realization, caller, residual correction, dirty restoration and a favorable complete invoice remain open. The selected frontier and five framework assumptions are unchanged; no full multiplier or formal proof is claimed.\n\nBy @CubeJerry with substantial OpenAI Codex assistance. Credit apoursh (#6211/#6191), Nick Petalas (#6183), Matarener (#6166), and the retained P104 lineage. Apache-2.0.",
+  "created_at": "2026-10-30T07:55:54Z",
+  "updated_at": "2026-10-30T07:55:54Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
