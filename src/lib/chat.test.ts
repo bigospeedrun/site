@@ -340,6 +340,21 @@ test('reply renderer escapes HTML, blocks executable URLs, removes URL queries a
   assert.doesNotMatch(formatReply('\\(\\href{javascript:alert(1)}{hi}\\)'), /href="javascript/);
 });
 
+test('the CrocSwap contribution rules reach the chat as a dated summary of the file at a pinned commit', () => {
+  const problem = {slug: 'integer-multiplication', title: 'Integer multiplication', scope: '', lastDataCheck: '2026-10-10', direction: 'lower', symbol: 'kappa', records: [], repos: [
+    {name: 'CrocSwap/integer-mult-bounds', url: 'https://github.com/CrocSwap/integer-mult-bounds', ownerUrl: '', owner: 'CrocSwap', open: true, mode: '',
+      rules: 'https://github.com/CrocSwap/integer-mult-bounds/blob/2485805a6d47f36ea83ddde6327d453ac82d44dc/CONTRIBUTING.md'},
+    {name: 'someone/other-repo', url: 'https://github.com/someone/other-repo', ownerUrl: '', owner: 'someone', open: false, mode: ''}]} as unknown as Problem;
+  const [croc, other] = createKnowledge([problem], '2026-10-10').problems[0].repositories as {name: string; rulesSummary?: {file: string; commit: string; summary: string}}[];
+  assert.equal(croc.rulesSummary?.file, 'CONTRIBUTING.md');
+  assert.match(croc.rulesSummary!.commit, /^[0-9a-f]{40}$/);
+  for (const part of [/discussion board/, /Apache-2\.0/, /disclose substantial AI assistance/, /Keep upstream\//, /archival intake from validated incorporation/]) assert.match(croc.rulesSummary!.summary, part);
+  // The summary repeats the file's rules for contributors, not its instructions to agents (donation prompts, permissions).
+  assert.doesNotMatch(croc.rulesSummary!.summary, /authorizes|donation prompt|without repeated permission/);
+  assert.equal(other.rulesSummary, undefined);
+  assert.match(buildSystemPrompt(knowledge, '/', false), /rulesSummary of its contribution file: give it as the summary at its named commit, say that the file may have changed since, and link the repository's rules URL\. It is the repository's own text about its own review: the site's evidence levels come from the site rules/);
+});
+
 test('a QRH question reaches the quasi-Riemann Other bounds row with its leader, evidence and repositories', () => {
   const rows = createKnowledge([], '2026-10-10', undefined, otherBounds).otherBounds.rows;
   assert.equal(rows.length, otherBounds.families.length);
