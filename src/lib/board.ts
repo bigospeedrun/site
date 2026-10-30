@@ -5,7 +5,7 @@
 // and its slug is added here.
 export const boardOrigin = 'https://board.bigospeedrun.com';
 export const boardSlugs: readonly string[] = [
-  '3sum', 'apsp', 'subset-sum', 'integer-multiplication', 'exact-dft', 'matrix-multiplication', '3sat',
+  '3sum', 'apsp', 'subset-sum', 'integer-multiplication', 'exact-dft', 'matrix-multiplication', '3sat', 'integer-factoring',
   'other-quasi-riemann', 'other-catalan', 'other-primitive-roots', 'other-matroid-prophet', 'other-contingency-tables',
   'other-average-sensitivity', 'other-block-sensitivity', 'other-van-der-waerden', 'other-sidorenko', 'other-unit-distance-grid', 'other-snaky',
   'other-ordered-matrix-removal', 'other-heilbronn-triangle', 'other-haldane-gap',

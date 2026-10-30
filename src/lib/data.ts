@@ -4,7 +4,7 @@ import {authorFromProfile, recordEvidenceUrl} from './record-links';
 import {classifyEvidence,isBoardEntry,isBreakthroughRecord} from './evidence';
 import type {Problem,RecordEntry,Repo} from './types';
 import {methodNoteFor,type MethodNotes} from './method-notes';
-import {decimal,logExponent,boundPrecision,tableBound,displayDigits} from './ranking';
+import {decimal,logExponent,boundPrecision,tableBound,displayDigits,factoringBound} from './ranking';
 // This is the boundary adapter for the reviewed, data-only snapshot. No repo code runs.
 const files=import.meta.glob('../data/*.json',{eager:true,import:'default'});
 const read=(file:string):any=>files['../data/'+file];
@@ -15,7 +15,9 @@ const prove2me=read('prove2me.json')??{boards:{}};
 const methodNotes:MethodNotes=read('method-notes.json')??{};
 const prove2meLink=(slug:string,id:string):string|undefined=>{const url=prove2me.boards?.[slug]?.links?.[id];return typeof url==='string'&&url.startsWith('https://prove2.me/theorems/')?url:undefined;};
 export const dataUpdatedAt:string=[registry.updated_at,...registry.problems.map((p:any)=>read(p.data_file).updated_at)].sort((a,b)=>Date.parse(a)-Date.parse(b)).at(-1);
-const titles:Record<string,string>={'matrix-multiplication':'Matrix Multiplication','3sum':'3SUM',apsp:'All-pairs shortest paths','subset-sum':'Subset Sum','integer-multiplication':'Integer multiplication','exact-dft':'Exact discrete Fourier transform','directed-sssp':'Directed shortest paths','3sat':'3-SAT'};
+const titles:Record<string,string>={'matrix-multiplication':'Matrix Multiplication','3sum':'3SUM',apsp:'All-pairs shortest paths','subset-sum':'Subset Sum','integer-multiplication':'Integer multiplication','exact-dft':'Exact discrete Fourier transform','directed-sssp':'Directed shortest paths','3sat':'3-SAT','integer-factoring':'Integer factoring'};
+// Harvey and Hittmeir 2022, as stated; it scores -1/5.
+export const factoringClassic='O(N^{1/5}\\log^{16/5}N/(\\log\\log N)^{3/5})';
 const repoName=(url:string):string=>url?.match(/^https:\/\/github.com\/([^/]+\/[^/]+)/)?.[1]??'';
 const bound=(slug:string,score:string,relation?:string)=>{
  const value=decimal(score);const [n,d]=score.split('/');const exact=d?`\\frac{${n}}{${d}}`:n;
@@ -29,6 +31,7 @@ const bound=(slug:string,score:string,relation?:string)=>{
  if(slug==='subset-sum')return `O(2^{${open?`(${value}+\\varepsilon)`:value}n})`;
  if(slug==='directed-sssp')return `O(n \\log^{${exact}} n)`;
  if(slug==='3sat')return `O^*(2^{n/(\\log n)^{${value}-o(1)}})`;
+ if(slug==='integer-factoring')return factoringBound(score);
  return `O(n^{${value}${open?'+\\varepsilon':''}})`;
 };
 export const problems:Problem[]=registry.problems.map((p:any)=>{
@@ -50,7 +53,7 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
  return {id:r.id,reproductionOf:meta.reproduction_of,score:r.score,scoreRelation:r.score_relation??'attained',evidenceLevel,evidenceUrl:recordEvidenceUrl(evidenceLevel,r,evidence[0]?.url,meta.prove2me===true?meta.source_url:meta.receipt_url),title:r.title,date:meta.publication_date??announcementDate??sourceDate??r.submitted_at??r.site_observed_at,publicationYear:meta.publication_date_precision==='year'?meta.publication_year:undefined,dateLabel:announcementDate?'Announcement date':sourceDate?'Commit date':meta.publication_date_role?.toLowerCase().includes('commit')?'Commit date':meta.publication_date_role?.includes('paper')?'Paper date':meta.publication_date?'Source date':meta.date_precision?.includes('observation')||r.submitted_at===r.site_observed_at?'Observed':'Source date',repo:meta.source_url_public===false?'':repo,repoId:entry?.repo_id??0,authors:r.authors.map((a:any)=>{
  const url=r.id==="crocswap-selected-75ea36bd581c1c02"?"https://github.com/Dugongue":a.url;
  return authorFromProfile({...a,url},profiles,avatars);
-}),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":p.slug==="3sat"&&r.id==="classical-baseline"?"O^*(1.307031578^n)":bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',creditNote:typeof meta.credit_note==='string'?meta.credit_note:undefined,methodNote:methodNoteFor(methodNotes,p.slug,r.id,repo),upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,provenance:r.provenance,prove2me:meta.prove2me===true||meta.prove2me_upgrade===true,prove2meUrl,
+}),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":p.slug==="3sat"&&r.id==="classical-baseline"?"O^*(1.307031578^n)":p.slug==="integer-factoring"&&r.id==="classical-baseline"?factoringClassic:bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',creditNote:typeof meta.credit_note==='string'?meta.credit_note:undefined,methodNote:methodNoteFor(methodNotes,p.slug,r.id,repo),upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,provenance:r.provenance,prove2me:meta.prove2me===true||meta.prove2me_upgrade===true,prove2meUrl,
   ...(meta.direct_submission===true&&['pending','failed','held'].includes(meta.verification)&&typeof meta.publication_date==='string'?{verification:{state:meta.verification,since:meta.publication_date}}:{})};
  });
  const kappa=data.score.symbol==='kappa';

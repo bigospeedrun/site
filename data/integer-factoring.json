@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "problem_id": "integer-factoring/deterministic-bit-model",
+  "model": {
+    "id": "deterministic-bit-model",
+    "version": "1",
+    "description": "Integer factoring: given an integer N >= 2 in binary, with b bits, output its smallest prime factor. Time counts bit operations (equivalently, steps of a multitape Turing machine or a word RAM with O(log b)-bit words, up to b^{O(1)} factors) on every input. Only deterministic algorithms qualify: no random bits. One algorithm for all N. The complete factorization into primes gives the same scores (it takes at most b smallest-factor calls, and it contains the smallest prime factor).",
+    "definition_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/Challenge.lean"
+  },
+  "score": {
+    "id": "subexponential-scale",
+    "version": "1",
+    "symbol": "s",
+    "definition": "One scale, higher is better. Worst-case time N^{c+o(1)} with c > 0 scores -c (for every fixed epsilon > 0, at most 2^{(c+epsilon)b} for all large b). Time N^{o(1)} = 2^{o(b)} scores 0. Time 2^{b/(log b)^(alpha-o(1))} with alpha > 0 scores alpha (for every fixed epsilon > 0, at most 2^{b/(log b)^(alpha-epsilon)} for all large b). Factors b^{O(1)} do not change a score.",
+    "direction": "higher-is-better",
+    "encoding": "rational-string",
+    "minimum": "-1",
+    "maximum": "100"
+  },
+  "checked_at": "2026-10-30",
+  "sources": [
+    {
+      "url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/tree/c91cc3f4947caca8977e81a5d14244f73b5ae2b1",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/Challenge.lean",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/DeterministicFactoring.pdf",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://doi.org/10.1090/mcom/3708",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://arxiv.org/abs/2105.11105",
+      "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0",
+      "checked_at": "2026-10-30"
+    }
+  ],
+  "records": [
+    {
+      "id": "classical-baseline",
+      "kind": "baseline",
+      "score": "-1/5",
+      "tier": "claimed",
+      "submitted_at": null,
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-30T02:00:00Z",
+      "site_observed_at": "2026-10-30T02:00:00Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://doi.org/10.1090/mcom/3708"
+      },
+      "spec_version": "1",
+      "title": "David Harvey and Markus Hittmeir (2022), A log-log speedup for exponent one-fifth deterministic integer factorisation",
+      "authors": [
+        {
+          "name": "David Harvey and Markus Hittmeir (2022), A log-log speedup for exponent one-fifth deterministic integer factorisation",
+          "url": "https://doi.org/10.1090/mcom/3708"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://doi.org/10.1090/mcom/3708",
+      "artifact": {
+        "path": "sources/integer-factoring-baseline.json",
+        "sha256": "614e283b28ef1bb4a787af9a1b52f98154675ab69f0ab3db41dc598b738355a4"
+      },
+      "evidence": {
+        "paper_url": "https://arxiv.org/abs/2105.11105",
+        "theorem": "Main theorem (abstract)",
+        "certificate_path": null
+      },
+      "dependencies": []
+    },
+    {
+      "id": "rudich-rousseau-2026",
+      "kind": "improvement",
+      "score": "0",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-28T02:58:40Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-28T02:58:40Z",
+      "site_observed_at": "2026-10-30T02:00:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/DeterministicFactoring.pdf"
+      },
+      "spec_version": "1",
+      "title": "Isaac Rudich and Louis-Martin Rousseau, Deterministic Factoring in Time N^o(1)",
+      "authors": [
+        {
+          "name": "Isaac Rudich",
+          "url": "https://github.com/IsaacRudich"
+        },
+        {
+          "name": "Louis-Martin Rousseau",
+          "url": "https://orcid.org/0000-0001-6949-6014"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/README.md",
+      "artifact": {
+        "path": "sources/integer-factoring-rudich-rousseau-2026.json",
+        "sha256": "0e860ff3fb84a83f17dfc8e5404179125f56e8a38d5bb6812bf6f246688cdca4"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/DeterministicFactoring.pdf",
+        "theorem": "Theorem 1 (subexponentialRate)",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "c91cc3f4947caca8977e81a5d14244f73b5ae2b1"
+    }
+  ],
+  "record_metadata": {
+    "classical-baseline": {
+      "checked_at": "2026-10-30",
+      "eligible_for_record": true,
+      "proof_status": "Published deterministic bound (Math. Comp. 2022); no site proof check.",
+      "publication_year": 2022,
+      "publication_date_precision": "year",
+      "publication_source_url": "https://doi.org/10.1090/mcom/3708",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring/deterministic-bit-model/v1"
+    },
+    "rudich-rousseau-2026": {
+      "checked_at": "2026-10-30",
+      "source_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/DeterministicFactoring.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Source claim with a Lean formalization by the authors; not independently rerun by bigOspeedrun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring/deterministic-bit-model/v1",
+      "publication_date": "2026-10-28T02:58:40Z",
+      "publication_date_precision": "minute"
+    }
+  },
+  "updated_at": "2026-10-30T02:00:00Z"
+}

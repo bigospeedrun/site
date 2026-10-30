@@ -10,11 +10,12 @@ const { records, direction, label, slug = direction==='higher-is-better'?'intege
 const dataFiles = import.meta.glob('../data/*.json', {eager:true,import:'default'}) as Record<string,any>;
 const source = dataFiles[`../data/${slug}.json`];
 const higher = direction==='higher-is-better';
-const symbol = slug==='matrix-multiplication'?'t':higher&&slug!=='3sat' ? '\\kappa' : '\\alpha';
+const factoring = slug==='integer-factoring';
+const symbol = factoring?'s':slug==='matrix-multiplication'?'t':higher&&slug!=='3sat' ? '\\kappa' : '\\alpha';
 const form = Astro.props.boundLatex ?? (higher ? 'O(n\\log^{1-\\kappa} n)' : slug==='subset-sum' ? 'O^*(2^{\\alpha n})' : slug==='directed-sssp' ? 'O(n\\log^{\\alpha}n)' : 'O(n^{\\alpha})');
 const limit = Astro.props.limit ?? scoreValue(higher ? source?.score.maximum??'1' : source?.score.minimum??'0');
-const limitBound = slug==='3sat' ? 'O^*(2^n)' : higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
-const classicRecord = ['apsp','3sum','matrix-multiplication'].includes(slug) ? source?.records.find((r:any)=>r.id==='classical-baseline') : undefined;
+const limitBound = factoring ? 'N^{1/2+o(1)}' : slug==='3sat' ? 'O^*(2^n)' : higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
+const classicRecord = ['apsp','3sum','matrix-multiplication','integer-factoring'].includes(slug) ? source?.records.find((r:any)=>r.id==='classical-baseline') : undefined;
 const classic = classicRecord ? scoreValue(classicRecord.score) : undefined;
 const dated = records.filter(r=>chartDate(r)!==undefined);
 const entries:ChartEntry[] = dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(r.bound),url:r.evidence[0]?.url??'#',avatar:r.authors[0]?.avatar,initials:initials(r.authors[0]?.name??r.title)}));
@@ -55,7 +56,8 @@ const omitted=records.length-dated.length;
   <div class="plot-reference" set:html={math(`${symbol}=${limit}:\\ ${limitBound}`)}/>
   <div class="plot-tooltip" hidden role="status"></div>
  </div>
- {classic!==undefined&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math(`O(n^{${classic}${slug==='matrix-multiplication'?'+\\varepsilon':''}})`)}/>. The trivial lower bound <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>) is below this range.</p>}
+ {classic!==undefined&&factoring&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math('s=-1/5')}/> (<span set:html={math('N^{1/5+o(1)}')}/>). Trial division, <span set:html={math('s=-1/2')}/> (<span set:html={math(limitBound)}/>), is below this range.</p>}
+ {classic!==undefined&&!factoring&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math(`O(n^{${classic}${slug==='matrix-multiplication'?'+\\varepsilon':''}})`)}/>. The trivial lower bound <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>) is below this range.</p>}
  <form class="plot-ranges" role="group" aria-label="Date range" hidden={!entries.length||maxDays<2} data-range-form>
   <button type="button" data-range-all aria-pressed="true">All</button>
   <label class="range-days" data-range-days>Last <input type="number" name="days" min="1" max={maxDays} step="1" value={defaultDays} inputmode="numeric" required/> <span data-days-unit>{defaultDays===1?'day':'days'}</span></label>

@@ -9,6 +9,7 @@ export const pageDescriptions: Record<string,string> = {
  '/apsp': 'Compare all-pairs shortest path bounds, their evidence, and progress below cubic time.',
  '/subset-sum': 'Compare subset sum bounds, their evidence, and progress in exponential running time.',
  '/3sat': 'Compare 3-SAT bounds, their evidence, and progress in subexponential running time.',
+ '/integer-factoring': 'Compare deterministic integer factoring bounds, their evidence, and progress toward subexponential time.',
  '/exact-dft': 'Compare exact discrete Fourier transform bounds, their evidence, and progress below n log n time.',
  '/directed-sssp': 'Compare directed shortest path bounds, their evidence, and progress in running time.',
  '/privacy': 'Read how the site uses Google Analytics, chat messages and browser storage.',

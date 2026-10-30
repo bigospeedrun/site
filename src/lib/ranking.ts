@@ -101,7 +101,35 @@ function exactExponent(score:string,cap:number):string {
  if(places===null&&n.length+d.length<=cap)return `\\frac{${n}}{${d}}`;
  return boundExponent(score,false,room).replace(/\.0+$|(\.\d*?)0+$/,'$1');
 }
+// A higher-is-better exponent: exact when short enough, otherwise rounded down, so the shown bound is never stronger.
+function exactExponentDown(score:string,cap:number):string {
+ const places=decimalPlaces(score);
+ const [n,d='1']=score.split('/');
+ const room=Math.max(0,cap-String(BigInt(n)/BigInt(d)).length);
+ if(places!==null&&places<=room)return boundExponent(score,false,places);
+ if(places===null&&n.length+d.length<=cap)return `\\frac{${n}}{${d}}`;
+ const digits=String(BigInt(n)*10n**BigInt(room)/BigInt(d)).padStart(room+1,'0');
+ return (room?digits.slice(0,-room)+'.'+digits.slice(-room):digits).replace(/\.0+$|(\.\d*?)0+$/,'$1');
+}
+// Integer factoring (Lead, 2026-10-30) uses one scale for how subexponential a bound is:
+// score -c is time N^{c+o(1)}, score 0 is N^{o(1)} = 2^{o(b)}, score alpha > 0 is 2^{b/(log b)^{alpha-o(1)}}.
+export function factoringBound(score:string,cap:number=displayDigits.table):string {
+ const sign=compare(score,'0');
+ if(sign===0)return 'N^{o(1)}';
+ if(sign<0)return `N^{${exactExponent(score.slice(1),cap)}+o(1)}`;
+ return `2^{b/(\\log b)^{${exactExponentDown(score,cap)}-o(1)}}`;
+}
+// The same bound as plain text, for record posts.
+export function factoringPlainBound(score:string,cap:number=displayDigits.table):string {
+ const value=(s:string,down=false)=>(down?exactExponentDown:exactExponent)(s,cap).replace(/^\\frac\{(\d+)\}\{(\d+)\}$/,'$1/$2');
+ const sign=compare(score,'0');
+ if(sign===0)return 'N^o(1)';
+ if(sign<0)return `N^(${value(score.slice(1))} + o(1))`;
+ return `2^(b/(log b)^(${value(score,true)} - o(1)))`;
+}
+const factoringForm=/N\^|\\log b/;
 export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number,cap:number=displayDigits.table):string {
+ if(factoringForm.test(record.bound))return factoringBound(record.score,cap);
  const exponent=kappa?'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);
  const power=exponent+(record.scoreRelation==='strict-upper-bound'||record.bound.includes('\\varepsilon')?'+\\varepsilon':'');
  if(record.bound.includes('-o(1)'))return `O^*(2^{n/(\\log n)^{${exactExponent(record.score,cap)}-o(1)}})`;

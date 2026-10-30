@@ -1,4 +1,4 @@
-import {ranked,boundPrecision,boundExponent,scientificSaving,displayDigits} from './ranking.ts';
+import {ranked,boundPrecision,boundExponent,scientificSaving,displayDigits,factoringPlainBound} from './ranking.ts';
 import {evidenceName,evidenceLevels} from './evidence.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import type {Problem,RecordEntry} from './types';
@@ -37,6 +37,7 @@ function decimalSaving(score:string,digits:number):string {
  return raw.slice(0,point)+'.'+raw.slice(point);
 }
 export function plainBound(slug:string,score:string,relation='attained',digits?:number,shown?:string):string {
+ if(slug==='integer-factoring')return factoringPlainBound(score);
  const kappa=slug==='integer-multiplication'||slug==='exact-dft';
  const precision=digits??boundPrecision([score],kappa);
  const rounded=shown??(kappa?decimalSaving(score,precision):boundExponent(score,false,precision));
@@ -349,6 +350,7 @@ export const discordRecordColors:Readonly<Record<string,number>>={
  'apsp':0xEF4444,
  'subset-sum':0x3B82F6,
  '3sat':0xEC4899,
+ 'integer-factoring':0x84CC16,
 };
 // The webhook of each table's records channel: #records-big-o and #records-other-bounds.
 const validWebhook=(url:string|undefined)=>/^https:\/\/discord\.com\/api\/webhooks\/\d+\/[A-Za-z0-9_-]+$/.test(url??'');
