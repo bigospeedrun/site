@@ -5502,7 +5502,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "1337isnot1337"
+              "Cinna Davis"
             ],
             "bound": "μ(G) ≤ 528.23288",
             "display": "528.23288"
@@ -5709,7 +5709,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.7619d sqrt(n)",
             "display": "3.7619"
@@ -5720,7 +5720,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.7616d sqrt(n)",
             "display": "3.7616"
@@ -5731,7 +5731,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.76155d sqrt(n)",
             "display": "3.76155"
@@ -5742,7 +5742,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.76154d sqrt(n)",
             "display": "3.76154"
@@ -5753,7 +5753,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.76154d sqrt(n)",
             "display": "3.76154"
@@ -5764,7 +5764,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.76154d sqrt(n)",
             "display": "3.76154"
@@ -5775,7 +5775,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.76154d sqrt(n)",
             "display": "3.76154"
@@ -5786,7 +5786,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.761535d sqrt(n)",
             "display": "3.761535"
@@ -5797,7 +5797,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.761455d sqrt(n)",
             "display": "3.761455"
@@ -5808,7 +5808,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.192d sqrt(n)",
             "display": "3.192"
@@ -5819,7 +5819,7 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "darkhipo"
+              "Dmitri I. Arkhipov"
             ],
             "bound": "AS(f) ≤ 3.191589d sqrt(n)",
             "display": "3.191589"
@@ -6313,6 +6313,27 @@
             "display": "0.1515"
           }
         ]
+      },
+      {
+        "slug": "other-binary-polynomial-multiplication",
+        "name": "Polynomial multiplication over F2",
+        "url": "https://bigospeedrun.com/other/binary-polynomial-multiplication",
+        "leader": "arpcs:1/274877906944",
+        "table": "other-bounds",
+        "direction": "higher",
+        "records": [
+          {
+            "id": "arpcs:1/274877906944",
+            "score": "1/274877906944",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Árpád Csizmadia"
+            ],
+            "bound": "O(nlog^1-2^(-38)n)",
+            "display": "O(n\\log^{1-2^{-38}}n)"
+          }
+        ]
       }
     ]
   },
@@ -6606,7 +6627,8 @@
     "[\"integer-factoring\",\"1337isnot1337-half-2026\",\"1/2\",\"attained\"]:lean",
     "[\"other-catalan\",\"direct-issue-87:6602911/12500\",\"6602911/12500\",\"attained\"]:lean",
     "[\"other-block-sensitivity\",\"prove2me-2-13981:2.13981\",\"2.13981\",\"attained\"]:lean",
-    "[\"integer-multiplication\",\"crocswap-pr-6167\",\"625729/200000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-6167\",\"625729/200000000\",\"attained\"]:record",
+    "[\"other-binary-polynomial-multiplication\",\"arpcs:1/274877906944\",\"1/274877906944\",\"attained\"]:record"
   ],
   "deferred": [
     {
