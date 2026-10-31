@@ -10,6 +10,8 @@ test('live race expires at 24 hours and excludes unknown or future times',()=>{
 test('freshness uses a minute-resolution PT fallback and preserves date-only precision',()=>{
  assert.equal(localTimeFallback('2026-10-09'),'Oct 9');
  assert.equal(localTimeFallback('2026-10-09T12:30:45+02:00'),'Oct 9, 3:30 AM PT');
+ // A date from another year shows its year.
+ assert.equal(localTimeFallback('2015-10-17T19:13:00+03:00'),'Oct 17, 2015, 9:13 AM PT');
 });
 
 test('selected main-branch checkpoints can rank without a merged PR',()=>{

@@ -2660,6 +2660,7 @@
         {
           "author": "Árpád Csizmadia",
           "handle": "arpcs",
+          "agent": true,
           "value": "1/274877906944",
           "display": "O(n\\log^{1-2^{-38}}n)",
           "date": "2026-10-31T02:05:42Z",
@@ -2688,6 +2689,112 @@
         }
       ],
       "bestHandle": "arpcs"
+    },
+    {
+      "slug": "explicit-circuit-lower-bound",
+      "name": "Explicit circuit lower bound",
+      "quantity": "c\\text{ in }cn-o(n)\\text{ gates}",
+      "direction": "higher",
+      "statement": "A Boolean circuit over the full binary basis \\(B_2\\) has gates that each compute one of the 16 functions of two input bits, and the output of a gate can feed any number of other gates. Its size is its number of gates. The quantity is the largest \\(c\\) for which an explicit family of Boolean functions \\(f_n:\\{0,1\\}^n\\to\\{0,1\\}\\) needs circuits of size at least \\(cn-o(n)\\). Explicit means that the family is a language in NP. A higher \\(c\\) is better, and a superlinear lower bound would beat every \\(c\\). Almost every Boolean function needs size \\(\\Omega(2^n/n)\\), but no explicit function is known to need a superlinear number of gates.",
+      "baseline": {
+        "label": "Classic baseline",
+        "by": "Norbert Blum",
+        "value": "3n-o(n)",
+        "bound": "3n-o(n)",
+        "url": "https://doi.org/10.1016/0304-3975(83)90029-4",
+        "date": "1984",
+        "exactValue": "3"
+      },
+      "claims": [
+        {
+          "author": "Magnus Gausdal Find, Alexander Golovnev, Edward Hirsch and Alexander Kulikov",
+          "handle": "find-golovnev-hirsch-kulikov",
+          "value": "259/86",
+          "display": "(3+\\tfrac{1}{86})n-o(n)",
+          "date": "2015-10-17T19:13:00+03:00",
+          "dateSource": "https://eccc.weizmann.ac.il/report/2015/166/",
+          "dateKind": "first-stated",
+          "url": "https://eccc.weizmann.ac.il/report/2015/166/",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "The function is an affine disperser for sublinear dimension, which has an explicit construction in P. Published at FOCS 2016 and in Computational Complexity 32 (2023). The 2022 ECCC revision fixes an error in the case analysis.",
+          "authors": [
+            {
+              "name": "Magnus Gausdal Find",
+              "url": "https://eccc.weizmann.ac.il/report/2015/166/"
+            },
+            {
+              "name": "Alexander Golovnev",
+              "url": "https://eccc.weizmann.ac.il/report/2015/166/"
+            },
+            {
+              "name": "Edward Hirsch",
+              "url": "https://eccc.weizmann.ac.il/report/2015/166/"
+            },
+            {
+              "name": "Alexander Kulikov",
+              "url": "https://eccc.weizmann.ac.il/report/2015/166/"
+            }
+          ],
+          "proofScope": "A written proof by gate elimination. No Lean proof is supplied.",
+          "bound": "(3+\\tfrac{1}{86})n-o(n)"
+        },
+        {
+          "author": "Jiatu Li and Tianqi Yang",
+          "handle": "li-yang",
+          "value": "31/10",
+          "display": "3.1n-o(n)",
+          "date": "2021-02-21T08:59:00+02:00",
+          "dateSource": "https://eccc.weizmann.ac.il/report/2021/023/",
+          "dateKind": "first-stated",
+          "url": "https://eccc.weizmann.ac.il/report/2021/023/",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "The function is an affine disperser. Published at STOC 2022.",
+          "authors": [
+            {
+              "name": "Jiatu Li",
+              "url": "https://eccc.weizmann.ac.il/report/2021/023/"
+            },
+            {
+              "name": "Tianqi Yang",
+              "url": "https://eccc.weizmann.ac.il/report/2021/023/"
+            }
+          ],
+          "proofScope": "A written proof by gate elimination. No Lean proof is supplied.",
+          "bound": "3.1n-o(n)"
+        },
+        {
+          "author": "Om Swostik Mishra and Rahul Santhanam",
+          "handle": "mishra-santhanam",
+          "value": "7/2",
+          "display": "3.5n-o(n)",
+          "date": "2026-10-19T01:40:00+03:00",
+          "dateSource": "https://eccc.weizmann.ac.il/report/2026/260/",
+          "dateKind": "first-stated",
+          "url": "https://eccc.weizmann.ac.il/report/2026/260/",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "The function is in P. Preprint ECCC TR26-260.",
+          "authors": [
+            {
+              "name": "Om Swostik Mishra",
+              "url": "https://eccc.weizmann.ac.il/report/2026/260/"
+            },
+            {
+              "name": "Rahul Santhanam",
+              "url": "https://eccc.weizmann.ac.il/report/2026/260/"
+            }
+          ],
+          "proofScope": "A written proof by gate elimination in a preprint. No Lean proof is supplied.",
+          "bound": "3.5n-o(n)"
+        }
+      ],
+      "repos": [],
+      "bestHandle": "mishra-santhanam"
     }
   ],
   "followups": [

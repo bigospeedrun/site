@@ -9,7 +9,7 @@ export const boardSlugs: readonly string[] = [
   'other-quasi-riemann', 'other-catalan', 'other-primitive-roots', 'other-matroid-prophet', 'other-contingency-tables',
   'other-average-sensitivity', 'other-block-sensitivity', 'other-van-der-waerden', 'other-sidorenko', 'other-unit-distance-grid', 'other-snaky',
   'other-ordered-matrix-removal', 'other-heilbronn-triangle', 'other-haldane-gap',
-  'other-binary-polynomial-multiplication',
+  'other-binary-polynomial-multiplication', 'other-explicit-circuit-lower-bound',
 ];
 // The board page of a race, or null when that race has no board.
 export const boardUrl = (slug: string): string | null => boardSlugs.includes(slug) ? `${boardOrigin}/${slug}` : null;

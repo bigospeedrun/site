@@ -7,9 +7,12 @@ const rows=data.families.map(f=>{
   const best=otherBoundLeader(f)!;
   const repo=(f as {reviewRepository?:OtherReviewRepository}).reviewRepository,review=(best as {review?:OtherClaimReview}).review;
   // The OpenAI baseline of a row is its agent breakthrough. A row with a classic baseline (a labeled
-  // baseline from a paper) has no agent result in it, so its first claim is the agent breakthrough.
-  const first='label' in f.baseline&&f.baseline.label?[...f.claims].sort((a,b)=>Date.parse(a.date)-Date.parse(b.date))[0]:undefined;
-  return {href:'/other/'+f.slug,name:f.name,nameMath:'nameMath' in f?f.nameMath:undefined,breakthrough:first?.bound??f.baseline.bound,source:first?.url??f.baseline.url,
+  // baseline from a paper) is not an agent result: its agent breakthrough is its first claim marked
+  // agent, and a row with no such claim has none.
+  const classic='label' in f.baseline&&Boolean(f.baseline.label);
+  const first=classic?[...f.claims].filter(c=>'agent' in c&&c.agent).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date))[0]:undefined;
+  return {href:'/other/'+f.slug,name:f.name,nameMath:'nameMath' in f?f.nameMath:undefined,
+    breakthrough:classic?first?.bound:f.baseline.bound,source:classic?first?.url:f.baseline.url,
     // A Lean Verified leader's label opens its evidence: the prove2.me theorem page for an import. A Human
     // Verified leader's label opens the pull request that the row's review repository merged.
     latest:[{bound:best.bound,url:best.url,evidenceLevel:best.evidence as EvidenceLevel,date:best.date,

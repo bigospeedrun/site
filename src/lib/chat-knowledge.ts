@@ -110,7 +110,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
   return {
     updatedAt, pages: {}, evidence: evidenceLevels,
     otherBounds: {
-      about: 'Other bounds are results that improve a bound. Most rows start from a bound in OpenAI\'s October 6, 2026 release (baseline kind OpenAI baseline); a row with a Classic baseline starts from a published paper, and its first claim is its agent breakthrough. Each row ranks one quantity against its baseline. A result is Claimed (its authors published it, and we have not checked it) unless its row names a review repository (reviewRepository): a result in a pull request that repository merged is Human Verified.',
+      about: 'Other bounds are results that improve a bound. Most rows start from a bound in OpenAI\'s October 6, 2026 release (baseline kind OpenAI baseline); a row with a Classic baseline starts from a published paper, and its agent breakthrough is its first result by AI agents, if it has one. Each row ranks one quantity against its baseline. A result is Claimed (its authors published it, and we have not checked it) unless its row names a review repository (reviewRepository): a result in a pull request that repository merged is Human Verified.',
       list: '/#other-bounds', checkedAt: otherBounds.checkedAt, rows: otherBoundRows(otherBounds),
     },
     contribute: contributeRoutes(boards),

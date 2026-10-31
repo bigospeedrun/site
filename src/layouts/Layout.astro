@@ -61,7 +61,8 @@ const fallbackDate = new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Ang
   updateThemeButton();
   for (const element of document.querySelectorAll<HTMLTimeElement>('time[data-local-datetime]')) {
     const date = new Date(element.dateTime);
-    if (Number.isFinite(date.getTime())) element.textContent = new Intl.DateTimeFormat(undefined, {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(date);
+    // A date from another year shows its year (an Other bounds row can list a paper from 2015).
+    if (Number.isFinite(date.getTime())) element.textContent = new Intl.DateTimeFormat(undefined, {...(date.getFullYear()!==new Date().getFullYear()?{year:'numeric'}:{}),month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(date);
   }
 </script>
 <Chatbot />

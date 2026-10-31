@@ -5,7 +5,7 @@ import {math, inlineMath} from '../lib/math';
 import {breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
 import type {EvidenceLevel} from '../lib/evidence';
 interface Row {
-  href:string; name:string; nameMath?:string; classic?:string; breakthrough:string; source:string;
+  href:string; name:string; nameMath?:string; classic?:string; breakthrough?:string; source?:string;
   latest:{bound:string;url:string;evidenceLevel:EvidenceLevel;date:string;endpoint?:boolean;evidenceUrl?:string}[]; endpoint?:boolean;
 }
 interface Props {rows:Row[];id?:string;label:string;classic?:boolean;}
@@ -18,7 +18,8 @@ const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{t
     <tbody>{rows.map(row=><tr>
       <td>{row.nameMath?<a href={row.href} set:html={inlineMath(row.nameMath)}/>:<a href={row.href}>{row.name}</a>}</td>
       {classic&&<td class="bound"><span class="mobile-bound-label">Classic</span><span set:html={math(row.classic!)}/></td>}
-      <td class="bound"><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>{breakthroughLabel.split(' ')[0]}</span><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/></td>
+      {/* An Other bounds row with a classic baseline and no agent result yet has an empty cell. */}
+      <td class="bound">{row.breakthrough&&row.source&&<><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>{breakthroughLabel.split(' ')[0]}</span><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/></>}</td>
       <td class="latest-cell"><span class="mobile-bound-label">Latest</span><LandingLatest records={row.latest}/></td>
     </tr>)}</tbody>
   </table>
