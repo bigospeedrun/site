@@ -4,8 +4,8 @@
   "title": "Audit the relay premise in the P104 carrier-merge bound (no new κ)",
   "body": "A common merge frame does not establish the source-normal retention used to apply #6315's merge lemmas when public relays are allowed. Exact receiver-covering walks expose that missing implication; the Lean theorem statements themselves are not refuted. Prove the repaired bound total+(k-1)tau >= 7k+sum(eta_c), recovering 8k under explicit source-normal retention.\n\nBase: 2485805a6d47f36ea83ddde6327d453ac82d44dc.\nAudited #6315: 3667554dab1bf08bb9ce6c267b6047fdc9978498. Exact source blobs/hashes: PREDECESSOR.json and SOURCES.json.\n\nReproduce (CPython 3.12, stdlib):\n```sh\npython3 -B scripts/research_package.py --package research/carrier-merge-relay-premise\n```\nExpected: PASS_REGISTERED_RESEARCH_PACKAGE.\n\nExecuted: four normal/optimized primary and independent commands; all 247 carrier subsets, two actual endpoint-chart examples, 2,457 small-lattice instances and 383 independent dimension tuples. Wrong geometry and missing source/coverage hypotheses reject. Sixteen actual source/manifest/receipt corruptions reject; committed bytes/modes, export integrity and read-only Git-free replays pass. Fixed exhaustive domains; no random search. Complete remote tree equals the tested tree.\n\nNo new κ. This is an abstract-walk premise audit and scoped dimension proof, not a cheaper dirty-restored physical program or a counterexample to the pair floor 14. Purity/restoration, full-span and no-cover implications remain open; all five framework assumptions remain. No Lean build, hosted CI, selected cold replay or complete-history preflight claimed.\n\nPrepared for @CubeJerry with substantial OpenAI Codex assistance, including separate source/geometry review. Credit Matarener (#6315) and DreamingOfClouds (#6030), with retained lineage. Apache-2.0.\n\nProof, validation and open questions:\nhttps://github.com/CubeJerry/integer-mult-bounds/tree/f3bebf8236dec18dea8ec6b714a12dda6cf25243/research/carrier-merge-relay-premise",
   "created_at": "2026-10-31T04:09:07Z",
-  "updated_at": "2026-10-31T04:09:07Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-31T13:48:45Z",
+  "closed_at": "2026-10-31T13:48:44Z",
+  "merged_at": "2026-10-31T13:48:44Z",
+  "state": "closed"
 }

@@ -4,8 +4,8 @@
   "title": "Prove sharp asymmetric tensor-phase recovery (no new κ)",
   "body": "Resolve #5916's asymmetric tensor-square/cube recovery question. For exact unitaries, set a=asin(e2/2), b=asin(e3/2). The sharp one-column error is 2sin(min(a,2b/3)/2) when 3a+2b<pi, and 2sin(pi/3+b/3) otherwise. Scalar unitaries attain both branches, including the jump. Adds exact rational branch decisions and certified algebraic enclosures.\n\nBase: a7638a4ce2a29947457ae8d6bf8cd70a234dfeac.\n#5916 source head: f0d87ad28e09055fd44e5a93437be5eeba284491.\nUnchanged source Git/SHA256 pins: SOURCES.json.\n\nReproduce (Python 3.12, stdlib):\n```sh\npython3 -B scripts/research_package.py --package research/asymmetric-tensor-phase\n```\nExpected: `PASS_REGISTERED_RESEARCH_PACKAGE`.\n\nExecuted: 10,201 angular pairs, 101 threshold cases, 160 rational phases and 16 exact matrix pairs (12 noncommuting). Separate Sturm/gcd oracle checks 289 rational budget pairs, 97 jump/one-sided cases and 23 endpoint/common-root cases down to 2^-160. Independent review found and repaired an oracle endpoint-contamination bug; an actual mutation now reproduces that failure. Six registered normal/-O and six read-only Git-free exported checks pass, with source and receipt corruption controls. Fixed exhaustive domains; finite tests corroborate the universal proof.\n\nNo new κ. Requires the same exact unitary pair and absolute operator-norm tests. Rounded factors, projective tests, selected-caller integration and all five framework assumptions remain outside the result. Nonunitary and projective counterexamples are explicit. Full-history preflight was not run in the shallow checkout.\n\nBy @CubeJerry with substantial OpenAI Codex assistance, separately implemented verification and adversarial review. Credit Nick Petalas (#5916), unpaidmoon (#5837), DLamdata (#5894) and retained lineage. No human/proof-kernel acceptance.\n\nProof, pins and limitations: https://github.com/CubeJerry/integer-mult-bounds/tree/1990e007746cb0dc28c87e323f1666c6e6012f40/research/asymmetric-tensor-phase\nComplete remote Git tree matches the tested contribution.",
   "created_at": "2026-10-31T05:52:42Z",
-  "updated_at": "2026-10-31T05:52:42Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-31T13:48:44Z",
+  "closed_at": "2026-10-31T13:48:44Z",
+  "merged_at": "2026-10-31T13:48:44Z",
+  "state": "closed"
 }
