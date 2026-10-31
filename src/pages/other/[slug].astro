@@ -14,7 +14,9 @@ const board=boardUrl('other-'+f.slug);
 const hasLean=f.claims.some(c=>c.evidence==='lean-verified');
 const campaign=prove2meCampaignForOther(f.slug);
 const verifierRow=verifierOtherRows[f.slug];
-const ranked=rankOtherClaims(f.claims,f.direction);
+const ranked=rankOtherClaims(f.claims,f.direction,'exactScores' in f&&f.exactScores===true);
+const baseline=f.baseline as typeof f.baseline & {label?:string;datePrecision?:string};
+const baselineLabel=baseline.label??'OpenAI baseline';
 const repo=(f as {reviewRepository?:OtherReviewRepository}).reviewRepository;
 // The merged pull request a Human Verified claim links to.
 const reviewUrl=(c:object)=>{const review=(c as {review?:OtherClaimReview}).review;return repo&&review?otherReviewPrUrl(repo,review):undefined;};
@@ -22,7 +24,7 @@ const reviewUrl=(c:object)=>{const review=(c as {review?:OtherClaimReview}).revi
 <Layout title={f.name}>
   <h1>{f.name}</h1>
   <p set:html={inlineMath(f.statement)}/>
-  <p>OpenAI baseline: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.display ?? f.baseline.value)}/>, released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time>.</p>
+  <p>{baselineLabel}: <a href={baseline.url} target="_blank" rel="noopener" set:html={math(baseline.display ?? baseline.value)}/>, released {baseline.datePrecision==='year'?<span>{baseline.date}</span>:<time datetime={baseline.date} data-local-datetime>{localTimeFallback(baseline.date)}</time>}.</p>
   {repo?<ul class="evidence-rules">
     <li><strong>What counts as <a href="/about#evidence-levels" class="human-verified">Human Verified</a>:</strong> A result is Human Verified when <a href={repo.url} target="_blank" rel="noopener">{repo.name}</a>, an independently owned repository, merges its pull request. The level label links to the merged pull request.</li>
     <li><strong>What counts as <a href="/about#evidence-levels" class="claimed">Claimed</a>:</strong> Any other published result, including an open pull request to that repository. Its authors published it, and we have not checked it.</li>
