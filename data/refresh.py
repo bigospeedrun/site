@@ -145,9 +145,11 @@ def package_field(path):
 
 # Other RESULT.json fields that state the package value (#4405 endpoint_refill.kappa, #4412-#4416
 # endpoint.kappa, #4440/#4441 a top-level kappa; 2026-10-21; #5377/#5383/#5387 arithmetic.kappa,
-# 2026-10-23). They count only when they equal a kappa the PR title states exactly (Lead: list that
-# shape without a manual decision).
-RESULT_VALUE_FIELDS = (('kappa',), ('endpoint', 'kappa'), ('endpoint_refill', 'kappa'), ('arithmetic', 'kappa'))
+# 2026-10-23; #6144/#6145/#6167 complete_cost.kappa, 2026-10-31, found when the lead decided them by hand).
+# They count only when they equal a kappa the PR title states exactly (Lead: list that shape without a
+# manual decision).
+RESULT_VALUE_FIELDS = (('kappa',), ('endpoint', 'kappa'), ('endpoint_refill', 'kappa'), ('arithmetic', 'kappa'),
+                       ('complete_cost', 'kappa'))
 MAX_OWN_RESULTS = 5
 # A nonzero denominator: Fraction('1/0') raises, and a contributor's file must never fail the refresh
 # (Reviewer, 2026-10-21).
@@ -258,7 +260,9 @@ def package_claim(stage, p, main_sha, owners, files_of, lower_prs, leader=None, 
             return package_value(stage, p, result_own[0], raws[result_own[0]], names)
         # One own RESULT.json whose kappa field equals a kappa the title states exactly; among
         # several own files (#4441), the one that matches. No match or two: the rules below.
-        titled = set(title_kappas(p['title'])) if names and len(result_own) <= MAX_OWN_RESULTS else set()
+        # No `names` test here: NAMES_KAPPA needs a digit right after the kappa sign, so a title like
+        # 'Conditional κ .003128386' (#6144) was silent. The value must equal a RESULT.json field exactly.
+        titled = set(title_kappas(p['title'])) if len(result_own) <= MAX_OWN_RESULTS else set()
         matches = [(path, field, value) for path in raws for field, value in result_values(parsed(path))
                    if Fraction(value) in titled]
         if titled and len({(path, Fraction(value)) for path, _, value in matches}) == 1:

@@ -230,6 +230,19 @@ class RefreshTests(unittest.TestCase):
         owned='research/kappa-owned-relation-20261023/RESULT.json'
         self.assertEqual(self.claim({owned:'added'},{'arithmetic':{'kappa':'60447/20000000','kappa_decimal':'.00302235'}},
                                     title='Conditional κ = 0.00302235 (+5.742e-7 over #4610): one owned helper relation')[:2],('60447/20000000',owned))
+        # #6144, #6145, #6167 (2026-10-31): the value nested as complete_cost.kappa; the title states it as a decimal.
+        for number,exact,title in [(6144,'1564193/500000000','Conditional κ .003128386 (+2.582e-6 over #6030): owned registers descend'),
+                                   (6145,'781951/250000000','Conditional κ = 0.003127804 (+6.67e-7 over #6143): remove the 772/731 relay'),
+                                   (6167,'625729/200000000','Conditional κ = 0.003128645 (+2.59e-7 over #6144): retain an operand')]:
+            cost=f'research/p104-pr{number}/RESULT.json'
+            self.assertEqual(self.claim({cost:'added'},{'complete_cost':{'kappa':exact,'kappa_decimal':'0.0031','outer':{'parameters':{'kappa':exact}}}},title=title)[:2],
+                             (exact,cost),number)
+        # A leading-dot title kappa ('κ .0031') is read for a RESULT.json match only: with no match it stays silent as before.
+        self.assertEqual(self.claim({cost:'added'},{'complete_cost':{'kappa':'1564193/500000000'}},title='Conditional κ .0031 via something'),(None,None,None))
+        # A complete_cost.kappa the title does not state stays with the lead.
+        cost='research/p104-other/RESULT.json'
+        score,path,reason=self.claim({cost:'added'},{'complete_cost':{'kappa':'1564193/500000000'}},title='Conditional κ = 0.0031 via something')
+        self.assertEqual((score,path),(None,None));self.assertIsNotNone(reason)
         # #4441: two own packages, one matches the title; the other states only kappa_decimal.
         thinned,boundary='research/fresh-helper-thinned/RESULT.json','research/fresh-helper-boundary/RESULT.json'
         claims={thinned:{'kappa':'60021/20000000','kappa_decimal':'0.00300105'},boundary:{'kappa_decimal':'0.00272124'}}
