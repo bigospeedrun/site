@@ -1432,7 +1432,7 @@
           "dateKind": "first-stated",
           "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/9c40581c55bd84d78b77d9848edcd14cca00c0bf/CatalanMeasure/G728/Final.lean#L11-L13",
           "lean": true,
-          "leanNote": "Lean states and proves the bound for all sufficiently large denominators and all integer numerators. The author reports that it passes Lean\u2019s main kernel with only the standard axioms; the author\u2019s CI for the latest commit was still running when we listed it, and no independent-kernel or comparator check is reported. No site rerun.",
+          "leanNote": "Lean states and proves the bound for all sufficiently large denominators and all integer numerators. The author reports that it passes Lean’s main kernel with only the standard axioms; the author’s CI for the latest commit was still running when we listed it, and no independent-kernel or comparator check is reported. No site rerun.",
           "evidence": "claimed",
           "note": "The README gives the limiting exponent \\(46673820/64169\\approx 727.36\\), so \\(\\mu(G)\\le 728\\). Its energy estimate uses trial sequences with 640 Chebyshev coefficients and 56 geometric terms. We did not check that the README exponent matches the constants in the Lean files.",
           "authors": [
@@ -1441,7 +1441,7 @@
               "url": "https://github.com/slitsey"
             }
           ],
-          "proofScope": "The supplied Lean code proves the rational-approximation bound with exponent 728 (theorem catalan_irrationalityMeasure_728) for all sufficiently large natural denominators and all integer numerators. The author reports that it passes Lean\u2019s main kernel and the standard-axiom audit; the independent-kernel and comparator checks are not reported. No site rerun.",
+          "proofScope": "The supplied Lean code proves the rational-approximation bound with exponent 728 (theorem catalan_irrationalityMeasure_728) for all sufficiently large natural denominators and all integer numerators. The author reports that it passes Lean’s main kernel and the standard-axiom audit; the independent-kernel and comparator checks are not reported. No site rerun.",
           "bound": "\\mu(G)\\le 728"
         },
         {
@@ -1476,7 +1476,7 @@
           "dateKind": "first-stated",
           "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/aa2a42f4f3835347ad46608779e22dd52c2dc7bf/CatalanMeasure/GenD/Uniform/Bank532/Hosts532Inst.lean#L83-L87",
           "lean": true,
-          "leanNote": "Lean states and proves the bound for all sufficiently large denominators and all integer numerators. The author reports that it is kernel-checked with only the standard axioms. The author\u2019s CI for the latest commit stopped before any Lean build, because its own source check rejected 2303 Lean files that do not use the module header keyword, so no CI build, independent-kernel or comparator result is reported. No site rerun.",
+          "leanNote": "Lean states and proves the bound for all sufficiently large denominators and all integer numerators. The author reports that it is kernel-checked with only the standard axioms. The author’s CI for the latest commit stopped before any Lean build, because its own source check rejected 2303 Lean files that do not use the module header keyword, so no CI build, independent-kernel or comparator result is reported. No site rerun.",
           "evidence": "claimed",
           "note": "The README gives the criterion \\(532 > d\\rho/(\\eta - 4d\\delta) = 531.99924\\ldots\\) with \\(d = 53\\), \\(\\rho = 301.54258\\), \\(\\eta = 30.041\\) and \\(\\delta = 2.9\\cdot 10^{-7}\\), so \\(\\mu(G)\\le 532\\), for the design \\((58, 9, 3, 5, 3)\\). Its energy estimate uses trial sequences with 160 Chebyshev coefficients and 75 geometric terms. We recomputed the quotient from these constants (about 531.9992); we did not check that the README constants match the Lean files.",
           "authors": [
@@ -1494,6 +1494,11 @@
           "name": "fringewidth/catalan-exponent",
           "url": "https://github.com/fringewidth/catalan-exponent/blob/0e4877172b313a04da51c972ac91348f071b8481/README.md#L3-L40",
           "note": "Carreira's theorem with a smaller design gives \\(\\mu(G)<2401.741\\); search and certification by Claude."
+        },
+        {
+          "name": "1337isnot1337/catalan-constant",
+          "url": "https://github.com/1337isnot1337/catalan-constant/blob/3c4515314bda407d032cb55f60bfc56b03c1d3f9/README.md#L8-L11",
+          "note": "Lean proof of \\(\\mu(G)\\le 528.23288\\), the current leader; our verifier checked it at commit 3c451531."
         }
       ],
       "bestHandle": "slitsey"
