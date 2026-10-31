@@ -9,8 +9,8 @@ import {problemLinks, problemDisplayName} from './navigation.ts';
 export interface OtherBoundsData {
   checkedAt: string;
   families: {
-    family: string; slug: string; name: string; quantity: string; direction: string; statement: string; bestHandle: string;
-    baseline: {bound: string; url: string; date: string};
+    family?: string; slug: string; name: string; quantity: string; direction: string; statement: string; bestHandle: string;
+    baseline: {bound: string; url: string; date: string; label?: string; by?: string};
     reviewRepository?: OtherReviewRepository;
     claims: {handle: string; bound: string; value: string; display: string; note: string; url: string; date: string;
       evidence: string; review?: OtherClaimReview; proofScope: string; authors: {name: string}[]}[];
@@ -49,10 +49,11 @@ function otherBoundRows(data: OtherBoundsData) {
     const best = otherBoundLeader(f);
     if (!best) throw new Error(`Other bounds row ${f.slug} has no current leader.`);
     return {
-      path: '/other/' + f.slug, title: f.name, aliases: otherBoundAliases(f), openaiFamily: f.family,
+      path: '/other/' + f.slug, title: f.name, aliases: otherBoundAliases(f), ...(f.family ? {openaiFamily: f.family} : {}),
       rankedQuantity: f.quantity, better: f.direction === 'higher' ? 'A higher value is better.' : 'A lower value is better.',
       statement: f.statement,
-      baseline: {bound: f.baseline.bound, source: f.baseline.url, date: f.baseline.date.slice(0, 10)},
+      baseline: {kind: f.baseline.label ?? 'OpenAI baseline', bound: f.baseline.bound, source: f.baseline.url, date: f.baseline.date.slice(0, 10),
+        ...(f.baseline.by ? {authors: f.baseline.by} : {})},
       ...(f.reviewRepository ? {reviewRepository: {name: f.reviewRepository.name, url: f.reviewRepository.url,
         rule: `A result is Human Verified when ${f.reviewRepository.name} merges its pull request. A result in an open pull request is Claimed.`}} : {}),
       current: {bound: best.bound, exactValue: best.value, conditions: best.note, evidence: evidenceName(best.evidence as EvidenceLevel),
@@ -109,7 +110,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
   return {
     updatedAt, pages: {}, evidence: evidenceLevels,
     otherBounds: {
-      about: 'Other bounds are results that improve a bound from OpenAI\'s October 6, 2026 release. Each row ranks one quantity against the OpenAI baseline. A result is Claimed (its authors published it, and we have not checked it) unless its row names a review repository (reviewRepository): a result in a pull request that repository merged is Human Verified.',
+      about: 'Other bounds are results that improve a bound. Most rows start from a bound in OpenAI\'s October 6, 2026 release (baseline kind OpenAI baseline); a row with a Classic baseline starts from a published paper, and its first claim is its agent breakthrough. Each row ranks one quantity against its baseline. A result is Claimed (its authors published it, and we have not checked it) unless its row names a review repository (reviewRepository): a result in a pull request that repository merged is Human Verified.',
       list: '/#other-bounds', checkedAt: otherBounds.checkedAt, rows: otherBoundRows(otherBounds),
     },
     contribute: contributeRoutes(boards),

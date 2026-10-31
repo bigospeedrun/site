@@ -2639,6 +2639,55 @@
         }
       ],
       "bestHandle": "amachino"
+    },
+    {
+      "slug": "binary-polynomial-multiplication",
+      "name": "Polynomial multiplication over F2",
+      "nameMath": "Polynomial multiplication over \\(\\mathbb{F}_2\\)",
+      "quantity": "\\kappa\\text{ in }O(n\\log^{1-\\kappa}n)",
+      "direction": "higher",
+      "statement": "The input is two polynomials over \\(\\mathbb{F}_2\\), each given as its \\(n\\) coefficient bits. The output is the \\(2n-1\\) coefficient bits of their product in \\(\\mathbb{F}_2[x]\\). Coefficients add without carries, so this is a different problem from integer multiplication. The machine is a deterministic Turing machine with a fixed number of tapes and a fixed alphabet. Its running time counts every step, including reading the input and writing the output. The quantity is \\(\\kappa\\) in a worst-case running time of \\(O(n\\log^{1-\\kappa}n)\\). A higher \\(\\kappa\\) is better. The classic baseline is above \\(O(n\\log n)\\), so it has no \\(\\kappa\\). In it, \\(\\log^*n\\) is the number of times we take the logarithm to bring \\(n\\) down to at most 1. Harvey and van der Hoeven (2022) reach \\(O(n\\log n)\\) only if an unproved hypothesis on primes in arithmetic progressions holds.",
+      "baseline": {
+        "label": "Classic baseline",
+        "by": "David Harvey and Joris van der Hoeven",
+        "value": "O(n\\log n\\,4^{\\log^*n})",
+        "bound": "O(n\\log n\\,4^{\\log^*n})",
+        "url": "https://doi.org/10.1016/j.jco.2019.03.004",
+        "date": "2019",
+        "exactValue": "O(n\\log n\\,4^{\\log^*n})"
+      },
+      "claims": [
+        {
+          "author": "Árpád Csizmadia",
+          "handle": "arpcs",
+          "value": "1/274877906944",
+          "display": "O(n\\log^{1-2^{-38}}n)",
+          "date": "2026-10-31T02:05:42Z",
+          "dateSource": "https://github.com/arpcs/finite-field-polynomial-multiplication/commit/fb94421e3e6d9f8348a6e5b963b5a62d9c525e95",
+          "dateKind": "first-stated",
+          "url": "https://github.com/arpcs/finite-field-polynomial-multiplication/blob/fb94421e3e6d9f8348a6e5b963b5a62d9c525e95/papers/03-best-binary/paper.pdf",
+          "lean": false,
+          "leanNote": "No. The author says that a full Lean proof is not finished.",
+          "evidence": "claimed",
+          "note": "",
+          "authors": [
+            {
+              "name": "Árpád Csizmadia",
+              "url": "https://github.com/arpcs"
+            }
+          ],
+          "proofScope": "A written proof, with substantial AI assistance, that the author has not had reviewed by other people. No Lean proof is supplied. The same repository also claims \\(O(n\\log n)\\) for \\(\\mathbb{F}_2\\) by a different method, and \\(\\kappa=1/10000\\) for each fixed field of odd characteristic, which is a different statement.",
+          "bound": "O(n\\log^{1-2^{-38}}n)"
+        }
+      ],
+      "repos": [
+        {
+          "name": "arpcs/finite-field-polynomial-multiplication",
+          "url": "https://github.com/arpcs/finite-field-polynomial-multiplication",
+          "note": "The preprints, their proof sources and the author's notes on what is checked."
+        }
+      ],
+      "bestHandle": "arpcs"
     }
   ],
   "followups": [

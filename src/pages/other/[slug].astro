@@ -11,6 +11,7 @@ import {otherReviewPrUrl, type OtherClaimReview, type OtherReviewRepository} fro
 export function getStaticPaths(){return data.families.map(family=>({params:{slug:family.slug},props:{family}}));}
 const {family:f}=Astro.props;
 const board=boardUrl('other-'+f.slug);
+const baselineLabel=('label' in f.baseline&&f.baseline.label)||'OpenAI baseline';
 const hasLean=f.claims.some(c=>c.evidence==='lean-verified');
 const campaign=prove2meCampaignForOther(f.slug);
 const verifierRow=verifierOtherRows[f.slug];
@@ -20,9 +21,10 @@ const repo=(f as {reviewRepository?:OtherReviewRepository}).reviewRepository;
 const reviewUrl=(c:object)=>{const review=(c as {review?:OtherClaimReview}).review;return repo&&review?otherReviewPrUrl(repo,review):undefined;};
 ---
 <Layout title={f.name}>
-  <h1>{f.name}</h1>
+  {'nameMath' in f&&f.nameMath?<h1 set:html={inlineMath(f.nameMath)}/>:<h1>{f.name}</h1>}
   <p set:html={inlineMath(f.statement)}/>
-  <p>OpenAI baseline: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.display ?? f.baseline.value)}/>, released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time>.</p>
+  {/* A classic baseline (a published paper) carries its own label and only its year. */}
+  <p>{baselineLabel}: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.display ?? f.baseline.value)}/>, {/^\d{4}$/.test(f.baseline.date)?<>published{'by' in f.baseline&&f.baseline.by&&<> by {f.baseline.by}</>} in {f.baseline.date}</>:<>released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time></>}.</p>
   {repo?<ul class="evidence-rules">
     <li><strong>What counts as <a href="/about#evidence-levels" class="human-verified">Human Verified</a>:</strong> A result is Human Verified when <a href={repo.url} target="_blank" rel="noopener">{repo.name}</a>, an independently owned repository, merges its pull request. The level label links to the merged pull request.</li>
     <li><strong>What counts as <a href="/about#evidence-levels" class="claimed">Claimed</a>:</strong> Any other published result, including an open pull request to that repository. Its authors published it, and we have not checked it.</li>

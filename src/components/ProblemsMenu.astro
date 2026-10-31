@@ -1,6 +1,7 @@
 ---
 import {problemLinks} from '../lib/navigation';
 import otherBounds from '../lib/other-bounds.json';
+import {inlineMath} from '../lib/math';
 const current = Astro.url.pathname.split('/')[1];
 ---
 <div class="problems-menu">
@@ -9,7 +10,8 @@ const current = Astro.url.pathname.split('/')[1];
     <p class="group-name">Big O</p>
     <ul>{problemLinks.map(([slug,label])=><li><a href={'/'+slug} aria-current={current===slug?'page':undefined}>{label}</a></li>)}</ul>
     <p class="group-name">Other bounds</p>
-    <ul>{otherBounds.families.map(f=><li><a href={'/other/'+f.slug} aria-current={Astro.url.pathname.replace(/\/$/,'')==='/other/'+f.slug?'page':undefined}>{f.name}</a></li>)}</ul>
+    <ul>{otherBounds.families.map(f=>{const here=Astro.url.pathname.replace(/\/$/,'')==='/other/'+f.slug?'page':undefined;
+      return <li>{'nameMath' in f&&f.nameMath?<a href={'/other/'+f.slug} aria-current={here} set:html={inlineMath(f.nameMath)}/>:<a href={'/other/'+f.slug} aria-current={here}>{f.name}</a>}</li>;})}</ul>
   </nav>
 </div>
 <script>
