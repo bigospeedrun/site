@@ -357,11 +357,9 @@
       ]
     },
     "other-block-sensitivity": {
-      "status": "held",
+      "status": "ok",
       "kind": "other",
       "family": "block-sensitivity",
-      "reason": "unreviewed proved entry 2.131125302137 (mission b90938e8-4168-4827-b52c-60c18487d4da)",
-      "since": "2026-10-28T21:26:09Z",
       "links": {},
       "rows": [],
       "claims": [
@@ -652,6 +650,30 @@
           "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.131121719190}",
           "prove2me": true,
           "receiptSha256": "01886dee34450fb612675701130f0c28ce1984fd65d46653a53b08bf6bf150fd"
+        },
+        {
+          "author": "yousofy",
+          "handle": "prove2me-2-13981",
+          "value": "2.13981",
+          "display": "\\ge 2.13981",
+          "date": "2026-10-27T05:12:03Z",
+          "dateSource": "https://prove2.me/theorems/0e93b146-3cac-42d3-b8f4-74010d06b636",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/0e93b146-3cac-42d3-b8f4-74010d06b636",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "The goal states AchievesExponent (213981/100000 : ℝ) in fully explicit form over Def_SensitivityCampaign (reviewed 2026-10-31). Its 504-line Lean proof uses an accepted 773-module definition closure (Sensitivity213981Formal, twenty-two-level endpoint); a scan of the closure and the proof found no sorry, axiom, opaque, native_decide or metaprogram command.",
+          "authors": [
+            {
+              "name": "yousofy",
+              "url": "https://prove2.me/submissions/6f660b21-a8eb-48ce-821e-5b5901f930ed"
+            }
+          ],
+          "proofScope": "The Lean theorem SensitivityCampaign.reach_213981 on prove2.me states this exponent. Its accepted proof is by yousofy.",
+          "bound": "\\mathrm{bs}(f)\\ge s(f)^{2.13981}",
+          "prove2me": true,
+          "receiptSha256": "3172422e4469745903f76255338e8e798e21be93f92baaec64ef987218a97249"
         }
       ]
     },

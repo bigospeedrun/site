@@ -709,42 +709,6 @@
       }
     },
     {
-      "id": "direct-issue-89",
-      "kind": "improvement",
-      "score": "96013971/50000000",
-      "score_relation": "attained",
-      "tier": "claimed",
-      "submitted_at": "2026-10-31T04:47:29Z",
-      "spec_version": "1",
-      "title": "Wang-jiong-han direct 3sum submission",
-      "authors": [
-        {
-          "name": "Wang-jiong-han",
-          "url": "https://github.com/Wang-jiong-han"
-        }
-      ],
-      "predecessors": [],
-      "submission_url": "https://github.com/bigospeedrun/verifier/issues/89",
-      "source_commit": "4670fac7f162201448d5040cb0ca0cf383bf4e08",
-      "artifact": {
-        "path": "sources/direct-issue-89-submission.json",
-        "sha256": "ccd69598b58e18b9834f1c883232088f3418e8ad30b19cb6f9b40cef7d36d91e"
-      },
-      "evidence": {
-        "paper_url": "https://github.com/bigospeedrun/verifier/issues/89",
-        "theorem": "Race.bound",
-        "certificate_path": null
-      },
-      "dependencies": [],
-      "upstream_status": "open",
-      "upstream_status_at": "2026-10-31T04:47:29Z",
-      "site_observed_at": "2026-10-31T06:28:19Z",
-      "source": {
-        "kind": "repo-artifact",
-        "url": "https://github.com/Wang-jiong-han/3SUM/blob/4670fac7f162201448d5040cb0ca0cf383bf4e08/Submission.lean"
-      }
-    },
-    {
       "id": "direct-pr-52",
       "kind": "improvement",
       "score": "2499/1250",
@@ -1077,24 +1041,6 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38567645711",
       "verification": "passed"
     },
-    "direct-issue-89": {
-      "checked_at": "2026-10-31",
-      "source_url": "https://github.com/Wang-jiong-han/3SUM/blob/4670fac7f162201448d5040cb0ca0cf383bf4e08/Submission.lean",
-      "repo": "Wang-jiong-han/3SUM",
-      "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
-      "comparison_key": "3sum/word-ram/v1",
-      "publication_date": "2026-10-31T04:47:29Z",
-      "publication_date_precision": "date-time",
-      "publication_date_role": "Submission opened",
-      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/89",
-      "direct_submission": true,
-      "route": "issue",
-      "verification": "pending"
-    },
     "direct-pr-52": {
       "checked_at": "2026-10-31",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/bd34f8f4464a844a361e64c38f2fa08f1add53a6/submissions/3sum/darkhipo-avw-lean/Submission.lean",
@@ -1114,5 +1060,5 @@
       "verification": "pending"
     }
   },
-  "updated_at": "2026-10-31T06:28:19Z"
+  "updated_at": "2026-10-31T15:28:15Z"
 }
