@@ -280,6 +280,33 @@
           "receiptPath": "sources/direct-issue-70-40588738286-1.json"
         }
       ]
+    },
+    "other-catalan": {
+      "claims": [
+        {
+          "author": "1337isnot1337",
+          "handle": "direct-issue-87",
+          "value": "6602911/12500",
+          "display": "528.23288",
+          "date": "2026-10-30T22:09:11Z",
+          "dateSource": "https://github.com/bigospeedrun/verifier/issues/87",
+          "dateKind": "first-stated",
+          "url": "https://github.com/bigospeedrun/verifier/issues/87",
+          "lean": true,
+          "evidence": "lean-verified",
+          "note": "",
+          "authors": [
+            {
+              "name": "1337isnot1337",
+              "url": "https://github.com/1337isnot1337"
+            }
+          ],
+          "leanNote": "Yes: the Big O Speedrun verifier checked this Lean proof (Lean kernel and the permitted-axiom audit).",
+          "proofScope": "The verifier checked Race.bound : BigOSpeedrun.Catalan.Bound (6602911/12500) at commit 3c4515314bda407d032cb55f60bfc56b03c1d3f9 of https://github.com/1337isnot1337/catalan-constant.",
+          "bound": "\\mu(G)\\le 528.23288",
+          "receiptPath": "sources/direct-issue-87-41136174571-1-lean.json"
+        }
+      ]
     }
   }
 }

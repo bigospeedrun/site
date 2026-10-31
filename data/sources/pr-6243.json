@@ -4,8 +4,8 @@
   "title": "Audit pending Windows adapter under an enclosing process limit",
   "body": "One unrun handoff in pending PR5721 is now covered on Windows11/physical CPython3.12.11: an isolated enclosing active-process limit rejects the requested payload with OSError12/1816 while the adapter preserves the diagnostic and terminates its gate before fixture teardown. The same payload succeeds with limit3 and with direct Popen under limit2.\n\nThe package pins and retains the unchanged5721 adapter, adds a bounded native harness, all3 observed cases,8 exact-reason receipt controls and the six earlier failed/instrumentation attempts. Exact named-job PID/image sets identify the System32 console-host auxiliary; no universal quota exemption or other-policy claim follows. Normal and optimized native runs passed. Registered normal/-O checks validate the retained evidence and source bytes without claiming native CI. Ten committed files and base-provenance history pass transport checks.\n\nSource5721 remains draft/open at916cf98d5d8a448ec6515d211c6fe980a46a1694. Original source is authenticated via explicit ORIGIN.json+retained bytes; its pending history is not made ancestral here. Source-history preflight covers only base catalogue/selected provenance. No shared code changes, shared-reader fallback audit, owner-death test, other-host coverage or frontier change. Six failed attempts, including PATH launcher interference and corrected aggregate-count premises, remain visible; all process limits and payload are unchanged.\n\nBasea615e535914b130cdccf6b0eff3c3861d4a44f1c; finalcanonical2485805a6d47f36ea83ddde6327d453ac82d44dc has unchanged relevantguidance/selected6030/revision8. [Canonical claim and finding](https://github.com/CrocSwap/integer-mult-bounds/discussions/1166#discussioncomment-19285145). README, VALIDATION, TASK and ORIGIN contain reproduction, source provenance, fresh overlap and remaining obligations.\n\nCredit josecarlosgonzalezroque-design/PR5721, Mihir Srivastava/PR5463/5524, ywz65, Brian/JoyboyBrian, Nick Petalas and retained reader/runner contributors. AAAmirinu with substantial OpenAI Codex assistance, including separate AI source review. Apache-2.0; no human or kernel acceptance claimed.\n",
   "created_at": "2026-10-30T04:48:16Z",
-  "updated_at": "2026-10-30T04:48:16Z",
-  "closed_at": null,
-  "merged_at": null,
-  "state": "open"
+  "updated_at": "2026-10-31T04:04:56Z",
+  "closed_at": "2026-10-31T04:04:56Z",
+  "merged_at": "2026-10-31T04:04:56Z",
+  "state": "closed"
 }
