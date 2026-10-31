@@ -4409,7 +4409,7 @@
         "slug": "3sum",
         "name": "3SUM",
         "url": "https://bigospeedrun.com/3sum",
-        "leader": "direct-issue-35",
+        "leader": "direct-issue-89",
         "direction": "lower",
         "records": [
           {
@@ -4552,6 +4552,20 @@
               "Anchen0823"
             ],
             "bound": "O(n^1.960614)"
+          },
+          {
+            "id": "direct-issue-89",
+            "score": "96013971/50000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "-"
+            ],
+            "bound": "O(n^1.92027942)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-10-31T04:47:29Z"
+            }
           },
           {
             "id": "direct-pr-52",
@@ -6562,6 +6576,14 @@
       "authors": [
         "aigent-marius"
       ]
+    },
+    {
+      "key": "[\"3sum\",\"direct-issue-89\",\"96013971/50000000\",\"attained\"]:record",
+      "slug": "3sum",
+      "authors": [
+        "-"
+      ],
+      "hold": true
     }
   ]
 }

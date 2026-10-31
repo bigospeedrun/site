@@ -1,6 +1,17 @@
 {
   "schema_version": 1,
   "entries": {
+    "direct-issue-89": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "3sum",
+        "repo_url": "https://github.com/Wang-jiong-han/3SUM",
+        "commit": "4670fac7f162201448d5040cb0ca0cf383bf4e08",
+        "bound": "96013971/50000000",
+        "authors": []
+      }
+    },
     "direct-issue-87": {
       "route": "issue",
       "submission": {
@@ -13,7 +24,7 @@
       },
       "verification": {
         "decision": "lean-verified",
-        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "reason": "Lean and permitted-axiom audit passed; nanoda incomplete: timeout",
         "id": "direct-87-526bb0dea2265271256febdb34eeecc5ff492f024c87900f1a9b0123ad15bafd",
         "problem_id": "other/catalan",
         "score": "6602911/12500",
@@ -21,23 +32,23 @@
         "source_commit": "3c4515314bda407d032cb55f60bfc56b03c1d3f9",
         "source_url": "https://github.com/1337isnot1337/catalan-constant",
         "authors": [],
-        "workflow_conclusion": null,
+        "workflow_conclusion": "success",
         "issue_submitter": "1337isnot1337",
         "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41136174571",
-        "checked_at": "2026-10-31T03:33:20.636316Z",
+        "checked_at": "2026-10-31T04:52:33.748834Z",
         "issue_created_at": "2026-10-30T22:09:11Z",
         "issue_updated_at_at_verification": "2026-10-30T22:09:21Z",
-        "issue_updated_at_at_import": "2026-10-31T03:33:31Z",
+        "issue_updated_at_at_import": "2026-10-31T04:52:54Z",
         "derivation_hold": false,
         "review_required": [
           "authorship",
           "first publication date",
           "historical record eligibility"
         ],
-        "receipt_path": "sources/direct-issue-87-41136174571-1-lean.json",
-        "receipt_sha256": "cfee2c02e603ebe25d85624c468e92a58f1ede14867a82ebd75571a8fe7485e2",
+        "receipt_path": "sources/direct-issue-87-41136174571-1.json",
+        "receipt_sha256": "1b04a65152f4ca76e15307c5a50e498fb8794e740d0d02bfb563205522e1faf4",
         "policy_hash": "ba11ed684455cf40ede7170f29d041e8c845dd6155cc9d4fb0b8ee1511ad4847",
-        "result_artifact_id": 13029076235,
+        "result_artifact_id": 13031330062,
         "controller_fingerprint": "28d75d18abd8ebec27c85d6ca695246f60df30e7b928f78c9670e2103a72ca39",
         "pr_identity": null,
         "source_file": "Submission.lean"
@@ -2957,6 +2968,49 @@
         "policy_hash": "b005791d86b7d262abf73d699499520748fcb195a574b2888901360823d23b1c",
         "result_artifact_id": 12773437053,
         "controller_fingerprint": "e939f272f35b83767f8223041e0d63a78e696ae64843a4c5b5877c84e6933656",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-87:526bb0dea2265271256febdb34eeecc5ff492f024c87900f1a9b0123ad15bafd": {
+      "key": "direct-issue-87",
+      "submission": {
+        "schema_version": 1,
+        "problem": "catalan",
+        "repo_url": "https://github.com/1337isnot1337/catalan-constant",
+        "commit": "3c4515314bda407d032cb55f60bfc56b03c1d3f9",
+        "bound": "6602911/12500",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda incomplete: timeout",
+        "id": "direct-87-526bb0dea2265271256febdb34eeecc5ff492f024c87900f1a9b0123ad15bafd",
+        "problem_id": "other/catalan",
+        "score": "6602911/12500",
+        "score_relation": "attained",
+        "source_commit": "3c4515314bda407d032cb55f60bfc56b03c1d3f9",
+        "source_url": "https://github.com/1337isnot1337/catalan-constant",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "1337isnot1337",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41136174571",
+        "checked_at": "2026-10-31T04:52:33.748834Z",
+        "issue_created_at": "2026-10-30T22:09:11Z",
+        "issue_updated_at_at_verification": "2026-10-30T22:09:21Z",
+        "issue_updated_at_at_import": "2026-10-31T04:52:54Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-87-41136174571-1.json",
+        "receipt_sha256": "1b04a65152f4ca76e15307c5a50e498fb8794e740d0d02bfb563205522e1faf4",
+        "policy_hash": "ba11ed684455cf40ede7170f29d041e8c845dd6155cc9d4fb0b8ee1511ad4847",
+        "result_artifact_id": 13031330062,
+        "controller_fingerprint": "28d75d18abd8ebec27c85d6ca695246f60df30e7b928f78c9670e2103a72ca39",
         "pr_identity": null,
         "source_file": "Submission.lean"
       }
