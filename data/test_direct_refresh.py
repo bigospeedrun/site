@@ -107,6 +107,87 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(run([dict(claimed,user={'login':'mallory','type':'User'})]),{})
         self.assertEqual(set(run([],closed_issue=False)),{'direct-issue-5'})  # An open issue needs no marker.
 
+    def test_an_open_issue_with_the_bots_final_not_verified_report_is_not_listed(self):
+        # Lead, 2026-10-31 (issue #89, a repository with one zip): the bot reports Not verified and leaves the
+        # issue open; the author resubmits through a new issue, so the row is not listed.
+        sub=d.parse_body(self.issue()['body']);digest=d.sha(d.canonical(sub).encode());commit=sub['commit']
+        bot=lambda body,login='github-actions[bot]',kind='Bot':{'user':{'login':login,'type':kind},'body':body}
+        report=f'<!-- bos-direct-v1 5 {digest} '+'a'*64+f' -->\nNot verified for source commit `{commit}`.\n\n[Receipt and logs](https://example.test)'
+        def run(comments,**item):
+            api=DiscoveryAPI([dict(self.issue(5),**item)])
+            pages=api.pages
+            api.pages=lambda path,params=None,key=None:comments if path.endswith('/comments') else pages(path,params,key)
+            importer=r.Importer(api)
+            return importer.verify(importer.discover(),{}),importer
+        kept,importer=run([bot(report)])
+        self.assertEqual(kept,{})
+        self.assertTrue(any('final result is Not verified' in note for note in importer.notes))
+        self.assertEqual(set(run([bot(report.replace('\n','\r\n',1))])[0]),set(),'a CRLF body is the same report')
+        # Still listed as pending: no report, another version's report, a stale report, a lookalike account, another commit.
+        for comments in [[],
+                         [bot(report.replace(digest,'0'*64))],
+                         [bot(report+'\n\nThis result belongs to an older or closed submission. The current issue is not verified by this result.')],
+                         [bot(report,'mallory','User')],
+                         [bot(report.replace(commit,'f'*40))],
+                         [bot(report.replace('Not verified','Lean Verified'))]]:
+            with self.subTest(comments=comments[:1]):
+                self.assertEqual(set(run(comments)[0]),{'direct-issue-5'})
+
+    def test_a_late_claimed_only_end_that_says_not_verified_stays_listed_as_claimed(self):
+        # The verifier's late claimed-only path posts a Not verified report with 'remains Claimed; no proof run
+        # started', then the bos-claimed-v1 reply, and closes the issue (Reviewer, 2026-10-31).
+        sub=d.parse_body(self.issue()['body']);digest=d.sha(d.canonical(sub).encode())
+        bot=lambda body:{'user':{'login':'github-actions[bot]','type':'Bot'},'body':body}
+        report=bot(f'<!-- bos-direct-v1 5 {digest} '+'a'*64+f' -->\nNot verified for source commit `{sub["commit"]}`.\n\nThe issue or current record changed before compilation. This submission remains Claimed; no proof run started.')
+        claimed=bot(f'<!-- bos-claimed-v1 5 {digest} -->\nThis submission is listed as Claimed.')
+        # (issue closed, comments) -> listed: a closed one needs the bos-claimed-v1 reply; an open one is pending.
+        for closed_issue,comments,listed in ((True,[report,claimed],True),(False,[report,claimed],True),(False,[report],True),(True,[report],False)):
+            api=DiscoveryAPI([dict(self.issue(5),state='closed' if closed_issue else 'open')]);pages=api.pages
+            api.pages=lambda path,params=None,key=None,c=comments:c if path.endswith('/comments') else pages(path,params,key)
+            importer=r.Importer(api)
+            with self.subTest(closed=closed_issue,comments=len(comments)):
+                kept=importer.verify(importer.discover(),{})
+                self.assertEqual(set(kept),{'direct-issue-5'} if listed else set())
+                self.assertFalse(any('final result is Not verified' in note for note in importer.notes))
+
+    def test_a_pending_row_links_the_commit_tree_and_a_verified_row_its_checked_file(self):
+        sub=dict(d.parse_body(self.issue()['body']),source_subdir='sub/dir')
+        claim=dict(route='issue',item=self.issue(5),submission=sub)
+        row,meta,_=r.row_for('direct-issue-5',claim,'2026-10-31T00:00:00Z')
+        tree=f"{sub['repo_url']}/tree/{sub['commit']}/sub/dir"
+        self.assertEqual((row['source']['url'],meta['source_url']),(tree,tree))
+        plain=dict(claim,submission=d.parse_body(self.issue()['body']))
+        self.assertEqual(r.row_for('direct-issue-5',plain,'2026-10-31T00:00:00Z')[0]['source']['url'],f"{plain['submission']['repo_url']}/tree/{plain['submission']['commit']}")
+        verified=dict(claim,verification=dict(checked_at='2026-10-31T00:00:00Z',receipt_path='sources/x.json',receipt_url='https://example.test',reason='ok',source_file='Solution/Main.lean'))
+        self.assertEqual(r.row_for('direct-issue-5',verified,'2026-10-31T00:00:00Z')[0]['source']['url'],f"{sub['repo_url']}/blob/{sub['commit']}/sub/dir/Solution/Main.lean")
+
+    def test_the_not_verified_verdict_is_cached_per_version_and_update_time(self):
+        sub=d.parse_body(self.issue()['body']);digest=d.sha(d.canonical(sub).encode())
+        report=[{'user':{'login':'github-actions[bot]','type':'Bot'},'body':f'<!-- bos-direct-v1 5 {digest} '+'a'*64+f' -->\nNot verified for source commit `{sub["commit"]}`.'}]
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);(root/'direct-trust.json').write_bytes((ROOT/'direct-trust.json').read_bytes())
+            def once(updated,comments):
+                reads=[];api=DiscoveryAPI([dict(self.issue(5),updated_at=updated)]);pages=api.pages
+                def read(path,params=None,key=None):
+                    if path.endswith('/comments'):reads.append(path);return comments
+                    return pages(path,params,key)
+                api.pages=read
+                importer=r.Importer(api,root)
+                kept=importer.verify(importer.discover(),{})
+                (root/'direct-submissions.json').write_text(json.dumps({'entries':{},'not_verified_cache':importer.not_verified_cache}))
+                return 'direct-issue-5' in kept,len(reads)
+            self.assertEqual(once('2026-10-31T10:00:00Z',report),(False,1))
+            self.assertEqual(once('2026-10-31T10:00:00Z',[]),(False,0))  # cached: no read
+            self.assertEqual(once('2026-10-31T11:00:00Z',[]),(True,1))  # touched: read again
+        fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            for slug in r.SLUGS.values():(root/(slug+'.json')).write_bytes(r.json_bytes(fixtures[slug]))
+            (root/'registry.json').write_bytes(r.json_bytes({'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'}))
+            cache={'5':dict(version=digest,updated_at='2026-10-31T10:00:00Z',not_verified=True)}
+            files=r.prepare(root,{},{},'2026-10-31T12:00:00Z',{},{},None,cache)
+            self.assertEqual(json.loads(files['direct-submissions.json'])['not_verified_cache'],cache)
+
     def test_a_closed_pr_is_kept_only_after_the_bots_claimed_only_result_for_its_head(self):
         pr=dict(number=52,state='closed',merged=False,head={'sha':'c'*40},labels=[],user={'login':'alice'})
         bot=lambda body:{'user':{'login':'github-actions[bot]','type':'Bot'},'body':body}

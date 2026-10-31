@@ -33,6 +33,9 @@ OTHER={'average-sensitivity':dict(bound='\\mathrm{{AS}}(f)\\le {value}d\\sqrt n'
     'catalan':dict(bound='\\mu(G)\\le {value}',statement='BigOSpeedrun.Catalan.Bound')}
 # These hosted smoke identities are permanently excluded, even after label edits.
 SMOKE_NUMBERS={1,2}
+# A 'Not verified' report with one of these texts is not the final result of this version: it belongs to an
+# older or closed submission, or it ends a claimed-only submission that stays listed as Claimed.
+NOT_FINAL=('belongs to an older or closed submission','remains Claimed; no proof run started')
 CLAIMED_ONLY_NOTE='Submitted bound; it did not beat the best Lean Verified result, so no proof run started.'
 HELD_NOTE='Proof checks passed; held for a lead review of credit (derivation report). The submitted bound remains Claimed.'
 
@@ -50,8 +53,12 @@ class Importer:
         # claimed_only() verdicts by item: {number: {version, updated_at, claimed_only}}. A new comment, label
         # or edit changes updated_at and reads the comments again; an untouched closed item costs no read.
         state=self.root/'direct-submissions.json'
-        self.claimed_seen=json.loads(state.read_text()).get('claimed_only_cache',{}) if state.exists() else {}
+        saved=json.loads(state.read_text()) if state.exists() else {}
+        self.claimed_seen=saved.get('claimed_only_cache',{})
         self.claimed_cache={}
+        # Same idea for not_verified(): {number: {version, updated_at, not_verified}}.
+        self.not_verified_seen=saved.get('not_verified_cache',{})
+        self.not_verified_cache={}
         self.policy_hash=sha(canonical(self.config).encode())
         # The lead approves a held issue result (derivation report) for its exact submission bytes: the digest
         # is in the verifier's bos-direct-v1 result marker. A held PR is approved by merging it by hand.
@@ -162,6 +169,27 @@ class Importer:
             result=any((c.get('user') or {}).get('login')=='github-actions[bot]' and (c.get('user') or {}).get('type')=='Bot'
                        and match(c.get('body') or '') for c in comments)
         self.claimed_cache[str(number)]=dict(version=version,updated_at=item.get('updated_at'),claimed_only=result)
+        return result
+
+    def not_verified(self,claim):
+        """The verifier's own FINAL 'Not verified' report for this exact issue version: the bos-direct-v1 reply
+        with its submission digest whose first line says 'Not verified for source commit <commit>'. A result
+        that says it belongs to an older or closed submission is not final for this version. Only comments of the
+        workflow bot count. The late claimed-only end posts such a report too ('remains Claimed; no proof run
+        started'); that submission stays listed as Claimed, so it does not count. Such an issue stays open (setup failures, timeouts), and its author resubmits through
+        a new issue, so it is not listed (Lead, 2026-10-31, after issue #89: a zip-only repository)."""
+        item=claim['item'];number=item['number']
+        version=sha(canonical(claim['submission']).encode())
+        first=re.compile(rf"<!-- bos-direct-v1 {number} {version} [0-9a-f]{{64}} -->\r?\nNot verified for source commit `{claim['submission']['commit']}`\.")
+        seen=self.not_verified_seen.get(str(number))
+        if seen and seen.get('version')==version and seen.get('updated_at')==item.get('updated_at') and item.get('updated_at'):
+            result=seen['not_verified'] is True
+        else:
+            comments=self.api.pages(PREFIX+f'issues/{number}/comments')
+            result=any((c.get('user') or {}).get('login')=='github-actions[bot]' and (c.get('user') or {}).get('type')=='Bot'
+                       and first.match(c.get('body') or '') and not any(text in (c.get('body') or '') for text in NOT_FINAL)
+                       for c in comments)
+        self.not_verified_cache[str(number)]=dict(version=version,updated_at=item.get('updated_at'),not_verified=result)
         return result
 
     def evidence(self,key,env,run,artifact,proof_artifact,result_raw,proof_raw,verdict,publisher=None):
@@ -293,6 +321,8 @@ class Importer:
         kept={}
         for key,claim in claims.items():
             if not claim.get('submission') or claim.get('exclude'):continue
+            if claim['route']=='issue' and not claim.get('verification') and self.not_verified(claim):
+                self.notes.append(key+': final result is Not verified; not listed (the author resubmits through a new issue)');continue
             if claim.get('closed') and not self.final_verified(key,claim):
                 if claim.get('claimed_only') or (claim['route']=='issue' and self.claimed_only(claim)):
                     claim['claimed_only']=True;claim['review_note']=CLAIMED_ONLY_NOTE;kept[key]=claim;continue
@@ -323,7 +353,11 @@ def row_for(key,claim,now,old=None,note=None):
     sub=claim['submission'];item=claim['item'];proof=claim.get('verification');login=item['user']['login']
     require(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9-]{0,38}',login),'Invalid submitter login')
     tier='verified' if proof else 'claimed';route=claim['route']
-    source=sub['repo_url']+'/blob/'+sub['commit']+'/'+(sub.get('source_subdir','')+'/' if sub.get('source_subdir') else '')+(proof.get('source_file','Submission.lean') if proof else 'Submission.lean')
+    folder=(sub.get('source_subdir','')+'/' if sub.get('source_subdir') else '')
+    # A receipt names the solution module it checked, so its file is in the commit. Without one nothing says that
+    # Submission.lean exists (issue #89: a zip-only commit made the blob link a 404): link the commit tree.
+    source=(sub['repo_url']+'/blob/'+sub['commit']+'/'+folder+proof.get('source_file','Submission.lean') if proof
+            else sub['repo_url']+'/tree/'+sub['commit']+('/'+folder.rstrip('/') if folder else ''))
     snapshot=dict(route=route,number=item['number'],url=item['html_url'],submitter=login,created_at=item['created_at'],submission=sub)
     path='sources/'+key+'-submission.json';raw=json_bytes(snapshot)
     row=dict(id=key,kind='improvement',score=sub['bound'],score_relation='attained',tier=tier,
@@ -387,7 +421,7 @@ def other_claims(claims,withdrawn,notes):
             bound=row['bound'].format(value=shown),receiptPath=proof['receipt_path']))
     return boards
 
-def prepare(root,claims,files,now,final_states=None,config=None,claimed_cache=None):
+def prepare(root,claims,files,now,final_states=None,config=None,claimed_cache=None,not_verified_cache=None):
     documents={slug:json.loads((root/(slug+'.json')).read_text()) for slug in SLUGS.values()}
     suppressed=apply_bindings(documents,claims,final_states or {},config or {})
     notes_path=root/'direct-notes.json'
@@ -412,6 +446,7 @@ def prepare(root,claims,files,now,final_states=None,config=None,claimed_cache=No
     state=dict(schema_version=1,entries={k:{field:v for field,v in c.items() if field in ('route','submission','verification')} for k,c in claims.items()})
     state['final_states']=final_states or {}
     if claimed_cache:state['claimed_only_cache']=dict(sorted(claimed_cache.items(),key=lambda kv:int(kv[0])))
+    if not_verified_cache:state['not_verified_cache']=dict(sorted(not_verified_cache.items(),key=lambda kv:int(kv[0])))
     files['direct-submissions.json']=json_bytes(state)
     if any(slug+'.json' in files for slug in SLUGS.values()):
         registry=json.loads((root/'registry.json').read_text());registry['updated_at']=now;registry['checked_at']=now[:10]
@@ -442,7 +477,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--check-only',action='store_true');args=parser.parse_args()
     importer=Importer(GitHub());claims=importer.collect()
     now=datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
-    files=prepare(ROOT,claims,importer.files,now,importer.final_states,importer.config,importer.claimed_cache)
+    files=prepare(ROOT,claims,importer.files,now,importer.final_states,importer.config,importer.claimed_cache,importer.not_verified_cache)
     from maintainer_import import collect_maintainer
     files=collect_maintainer(importer,files,now)
     transaction(ROOT,files,args.check_only)
