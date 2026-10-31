@@ -85,3 +85,11 @@ test('a direct claim must link its own verifier issue and be Lean Verified', () 
   }
   assert.deepEqual(mergeDirect(lower as any, undefined), lower as any);
 });
+
+// Direct claim authors read as on the Big O boards: the GitHub display name, not the login. Rows by hand keep their names.
+test('a direct claim author takes the profile name; a claim by hand keeps its name', () => {
+  const person = (a: any) => ({...a, name: 'Real Name'});
+  const merged = mergeDirect(lower as any, direct(60, '3', '3.0') as any, person).families[0] as any;
+  assert.deepEqual(merged.claims.find((c: any) => c.handle === 'direct-issue-60').authors, [{name: 'Real Name', url: 'https://github.com/u'}]);
+  assert.equal(merged.claims.find((c: any) => c.handle === 'c').authors, undefined);
+});
