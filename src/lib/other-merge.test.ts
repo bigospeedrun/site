@@ -85,3 +85,43 @@ test('a direct claim must link its own verifier issue and be Lean Verified', () 
   }
   assert.deepEqual(mergeDirect(lower as any, undefined), lower as any);
 });
+
+const exactBase = {families: [{slug: 'row', direction: 'higher', exactScores: true, bestHandle: 'initial', claims: [
+  {handle: 'initial', value: '1/549755813888', display: '2^{-39}', date: '2026-10-20T00:00:00Z', evidence: 'claimed', url: 'https://example.org/initial'},
+]}]};
+
+test('exact-score imports recognize improvements far below the legacy epsilon', () => {
+  const stronger = claim('1/274877906944', '2026-10-23T12:00:00Z', {handle: 'prove2me-stronger', display: '2^{-38}'});
+  const family = mergeProve2me(exactBase, state(stronger) as any).families[0];
+  assert.equal(family.bestHandle, 'prove2me-stronger');
+  assert.equal(family.claims.length, 2);
+  const weaker = claim('1/1099511627776', '2026-10-23T12:00:00Z', {handle: 'prove2me-weaker', display: '999.9'});
+  assert.equal(mergeProve2me(exactBase, state(weaker) as any).families[0].bestHandle, 'initial', 'a misleading display cannot win');
+  const equal = claim('1/549755813888', '2026-10-23T12:00:00Z', {handle: 'prove2me-equal', display: '999.9'});
+  assert.equal(mergeProve2me(exactBase, state(equal) as any).families[0].bestHandle, 'initial', 'an exact tie keeps the current leader');
+});
+
+test('exact-score imports ignore invalid values even when the display appears better', () => {
+  for (const value of ['2^{-38}', '1/0', '2/4', '0/2', '-0', '1/1', '0.5', '01']) {
+    const bad = claim(value, '2026-10-23T12:00:00Z', {handle: 'prove2me-invalid', display: '999.9'});
+    const family = mergeProve2me(exactBase, state(bad) as any).families[0];
+    assert.equal(family.bestHandle, 'initial', value);
+    assert.equal(family.claims.length, 1, value);
+  }
+  assert.throws(() => mergeProve2me({families: [{...exactBase.families[0], claims: [{...exactBase.families[0].claims[0], value: '2/4'}]}]}, undefined), /canonical rational/);
+});
+
+test('exact-score direct imports use the same rational leader rule', () => {
+  const incoming = direct(71, '1/274877906944', '2^{-38}').boards['other-average-sensitivity'];
+  const family = mergeDirect(exactBase, {boards: {'other-row': incoming}}).families[0];
+  assert.equal(family.bestHandle, 'direct-issue-71');
+  assert.equal(family.claims.length, 2);
+});
+
+test('an exact-score leader is selected from retained claims, not an ignored duplicate handle', () => {
+  const repeated = claim('1/274877906944', '2026-10-23T12:00:00Z', {handle: 'initial', display: '2^{-38}'});
+  const family = mergeProve2me(exactBase, state(repeated) as any).families[0];
+  assert.equal(family.bestHandle, 'initial');
+  assert.equal(family.claims.length, 1);
+  assert.equal(family.claims[0].value, '1/549755813888');
+});

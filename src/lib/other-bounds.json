@@ -2639,6 +2639,54 @@
         }
       ],
       "bestHandle": "amachino"
+    },
+    {
+      "slug": "binary-polynomial-multiplication",
+      "name": "Binary polynomial multiplication",
+      "quantity": "\\kappa\\text{ in }O(n(\\log(n+2))^{1-\\kappa})",
+      "direction": "higher",
+      "exactScores": true,
+      "statement": "Multiply two length-\\(n\\) coefficient lists over \\(\\mathbb F_2\\) and output all \\(2n-1\\) coefficients of their ordinary polynomial product, in ascending degree order, for every \\(n\\ge1\\). Leading zeros are allowed. One deterministic program uses a fixed finite alphabet and a fixed finite number of sequential tapes, independent of \\(n\\); setup, arithmetic, movement, decoding and output all count. This is not integer multiplication with carries. The ranked quantity is an attained rational saving \\(\\kappa\\in[0,1]\\) in \\(O(n(\\log(n+2))^{1-\\kappa})\\); higher is better. Extra logarithmic factors must be included when establishing the score. The historical benchmark below is not a \\(\\kappa=0\\) result; that score requires an attained \\(O(n\\log n)\\) bound. Odd-characteristic and growing-field results are different statements.",
+      "baseline": {
+        "label": "Historical benchmark",
+        "value": "O(n\\log n\\,4^{\\log^*n})",
+        "bound": "O(n\\log n\\,4^{\\log^*n})",
+        "url": "https://doi.org/10.1016/j.jco.2019.03.004",
+        "date": "2019",
+        "datePrecision": "year"
+      },
+      "claims": [
+        {
+          "author": "Árpád Csizmadia",
+          "handle": "arpcs",
+          "value": "1/274877906944",
+          "display": "2^{-38}",
+          "bound": "O(n(\\log(n+2))^{1-2^{-38}})",
+          "date": "2026-10-31T02:05:42Z",
+          "dateSource": "https://github.com/arpcs/finite-field-polynomial-multiplication/commit/fb94421e3e6d9f8348a6e5b963b5a62d9c525e95",
+          "dateKind": "snapshot",
+          "url": "https://github.com/arpcs/finite-field-polynomial-multiplication/blob/fb94421e3e6d9f8348a6e5b963b5a62d9c525e95/papers/03-best-binary/paper.pdf",
+          "lean": false,
+          "leanNote": "Full theorem-level Lean formalization is unfinished; the pinned snapshot supplies no full multiplier proof certificate.",
+          "evidence": "claimed",
+          "note": "The controlled-CRT manuscript claims this attained saving on fixed finite tapes. The separate Pascal/Taylor companion claims O(n log n) by an alternative method. The sharper odd-characteristic claim does not apply to this binary track. The date identifies the source commit, not independently established publication priority.",
+          "authors": [
+            {
+              "name": "Árpád Csizmadia",
+              "url": "https://github.com/arpcs"
+            }
+          ],
+          "proofScope": "Written AI-assisted construction with source dependencies and proof appendices. Independent human proof review and complete theorem-level Lean verification remain outstanding. The finite scalar/controller/profile replay elsewhere in the collection supports the odd branch; it does not verify this binary multiplier or its asymptotic running time."
+        }
+      ],
+      "repos": [
+        {
+          "name": "arpcs/finite-field-polynomial-multiplication",
+          "url": "https://github.com/arpcs/finite-field-polynomial-multiplication",
+          "note": "Research preprints, proof sources, evidence scope and contribution instructions. The binary n log n companion and the general/odd-field papers have distinct roles; they are not separate records on this row."
+        }
+      ],
+      "bestHandle": "arpcs"
     }
   ],
   "followups": [

@@ -4,11 +4,14 @@
 // for them. Each is a Lean Verified claim that links its prove2.me theorem page. The leader
 // of a row is the newest claim of its best handle, so a prove2.me claim that beats the
 // current leader by more than the display precision becomes the best handle.
+// Rows declaring exactScores compare canonical rational values instead of that display tolerance.
 import {classifyOtherEvidence, type OtherClaimReview, type OtherReviewRepository} from './evidence.ts';
+import {compare} from './ranking.ts';
+import {isCanonicalRationalScore} from './other-rank.ts';
 export const OTHER_EPSILON = 0.00001;
 
 type Claim = {handle: string; display: string; value: string; date: string; evidence: string; url: string};
-type Family = {slug: string; direction: string; bestHandle: string; claims: Claim[]};
+type Family = {slug: string; direction: string; bestHandle: string; claims: Claim[]; exactScores?: boolean};
 
 // The first decimal of the display ("\ge 2.032083"), else an exact fraction value ("380/187").
 export function claimNumber(claim: Pick<Claim, 'display' | 'value'>): number | null {
@@ -24,18 +27,19 @@ export function claimNumber(claim: Pick<Claim, 'display' | 'value'>): number | n
 // The row page writes note and proofScope as HTML after its math step, which escapes only math:
 // text with < > & would be HTML. The importer refuses it too; this is the second guard.
 const plain = (text: unknown) => typeof text === 'string' && !/[<>&]/.test(text);
-const valid = (claim: Claim & {note?: unknown; proofScope?: unknown; leanNote?: unknown; authors?: {name?: unknown}[]}) => typeof claim?.handle === 'string' && claim.handle.startsWith('prove2me-') &&
+const valid = (claim: Claim & {note?: unknown; proofScope?: unknown; leanNote?: unknown; authors?: {name?: unknown}[]}, exactScores = false) => typeof claim?.handle === 'string' && claim.handle.startsWith('prove2me-') &&
   plain(claim.note) && plain(claim.proofScope) && plain(claim.leanNote) && Array.isArray(claim.authors) && claim.authors.every(a => plain(a?.name)) &&
   /^https:\/\/prove2\.me\/theorems\/[0-9a-f-]{36}$/.test(claim.url) && ['claimed', 'lean-verified'].includes(claim.evidence) &&
-  Number.isFinite(Date.parse(claim.date)) && claimNumber(claim) !== null;
+  Number.isFinite(Date.parse(claim.date)) && (exactScores ? isCanonicalRationalScore(claim.value) : claimNumber(claim) !== null);
 
 // A direct submission to the verifier (data/direct_refresh.py, data/direct-other.json): only a final Lean
 // Verified result is listed, as a claim with the handle of its issue that links the issue.
-const validDirect = (claim: Claim & {note?: unknown; proofScope?: unknown; leanNote?: unknown; authors?: {name?: unknown}[]}) =>
+const validDirect = (claim: Claim & {note?: unknown; proofScope?: unknown; leanNote?: unknown; authors?: {name?: unknown}[]}, exactScores = false) =>
   typeof claim?.handle === 'string' && /^direct-issue-[1-9][0-9]*$/.test(claim.handle) &&
   claim.url === 'https://github.com/bigospeedrun/verifier/issues/' + claim.handle.slice('direct-issue-'.length) &&
   claim.evidence === 'lean-verified' && plain(claim.note) && plain(claim.proofScope) && plain(claim.leanNote) &&
-  Array.isArray(claim.authors) && claim.authors.every(a => plain(a?.name)) && Number.isFinite(Date.parse(claim.date)) && claimNumber(claim) !== null;
+  Array.isArray(claim.authors) && claim.authors.every(a => plain(a?.name)) && Number.isFinite(Date.parse(claim.date)) &&
+  (exactScores ? isCanonicalRationalScore(claim.value) : claimNumber(claim) !== null);
 
 export function mergeDirect<D extends {families: Family[]}>(data: D, state: {boards?: Record<string, {claims?: Claim[]}>} | null | undefined): D {
   return mergeImported(data, state, validDirect);
@@ -45,9 +49,11 @@ export function mergeProve2me<D extends {families: Family[]}>(data: D, state: {b
   return mergeImported(data, state, valid);
 }
 
-function mergeImported<D extends {families: Family[]}>(data: D, state: {boards?: Record<string, {claims?: Claim[]}>} | null | undefined, accept: (claim: Claim) => boolean): D {
+function mergeImported<D extends {families: Family[]}>(data: D, state: {boards?: Record<string, {claims?: Claim[]}>} | null | undefined, accept: (claim: Claim, exactScores: boolean) => boolean): D {
   const families = data.families.map(family => {
-    const imported = (state?.boards?.['other-' + family.slug]?.claims ?? []).filter(accept);
+    const exactScores = family.exactScores === true;
+    if (exactScores && !family.claims.every(claim => isCanonicalRationalScore(claim.value))) throw new Error('Exact-score rows require canonical rational values');
+    const imported = (state?.boards?.['other-' + family.slug]?.claims ?? []).filter(claim => accept(claim, exactScores));
     if (!imported.length) return family;
     const known = new Set(family.claims.map(c => c.handle));
     const claims = [...family.claims, ...imported.filter(c => !known.has(c.handle))]
@@ -55,6 +61,15 @@ function mergeImported<D extends {families: Family[]}>(data: D, state: {boards?:
       .sort((a, b) => Date.parse(a.claim.date) - Date.parse(b.claim.date) || a.index - b.index)
       .map(({claim}) => claim);
     const sign = family.direction === 'higher' ? 1 : -1;
+    if (exactScores) {
+      // A handle's newest retained claim is the one the page and feed identify as its leader.
+      const latest = new Map<string, Claim>(claims.map(claim => [claim.handle, claim]));
+      let best = latest.get(family.bestHandle);
+      for (const claim of latest.values()) {
+        if (!best || sign * compare(claim.value, best.value) > 0) best = claim;
+      }
+      return {...family, claims, bestHandle: best!.handle};
+    }
     const leader = claims.findLast(c => c.handle === family.bestHandle);
     const leaderNumber = leader ? claimNumber(leader) : null;
     let best = family.bestHandle;

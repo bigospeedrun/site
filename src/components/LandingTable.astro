@@ -8,17 +8,17 @@ interface Row {
   href:string; name:string; classic?:string; breakthrough:string; source:string;
   latest:{bound:string;url:string;evidenceLevel:EvidenceLevel;date:string;endpoint?:boolean;evidenceUrl?:string}[]; endpoint?:boolean;
 }
-interface Props {rows:Row[];id?:string;label:string;classic?:boolean;}
-const {rows,id,label,classic=false}=Astro.props;
+interface Props {rows:Row[];id?:string;label:string;classic?:boolean;initialBoundLabel?:string;initialBoundDefinition?:string;}
+const {rows,id,label,classic=false,initialBoundLabel=breakthroughLabel,initialBoundDefinition=breakthroughDefinition}=Astro.props;
 const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{target:'_blank',rel:'noopener'}:{};
 ---
 <div id={id} class="table-wrap" tabindex="0" role="region" aria-label={label}>
   <table>
-    <thead><tr><th scope="col">PROBLEM</th>{classic&&<th scope="col">CLASSIC BOUND</th>}<th scope="col">{breakthroughLabel.toUpperCase()} <InfoTooltip label={"About "+breakthroughLabel.toLowerCase()}>{breakthroughDefinition}</InfoTooltip></th><th scope="col">LATEST {rows.some(row=>row.endpoint)&&<InfoTooltip label="About open endpoints">{rows.filter(row=>row.endpoint).map(row=><p>For {row.name}, the bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</p>)}</InfoTooltip>}</th></tr></thead>
+    <thead><tr><th scope="col">PROBLEM</th>{classic&&<th scope="col">CLASSIC BOUND</th>}<th scope="col">{initialBoundLabel.toUpperCase()} <InfoTooltip label={"About "+initialBoundLabel.toLowerCase()}>{initialBoundDefinition}</InfoTooltip></th><th scope="col">LATEST {rows.some(row=>row.endpoint)&&<InfoTooltip label="About open endpoints">{rows.filter(row=>row.endpoint).map(row=><p>For {row.name}, the bound holds for every fixed <span set:html={math("\\varepsilon>0")}/>. The exact endpoint is excluded.</p>)}</InfoTooltip>}</th></tr></thead>
     <tbody>{rows.map(row=><tr>
       <td><a href={row.href}>{row.name}</a></td>
       {classic&&<td class="bound"><span class="mobile-bound-label">Classic</span><span set:html={math(row.classic!)}/></td>}
-      <td class="bound"><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>{breakthroughLabel.split(' ')[0]}</span><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/></td>
+      <td class="bound"><span class="mobile-bound-label" aria-label={initialBoundLabel} title={initialBoundLabel}>{initialBoundLabel.split(' ')[0]}</span><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/></td>
       <td class="latest-cell"><span class="mobile-bound-label">Latest</span><LandingLatest records={row.latest}/></td>
     </tr>)}</tbody>
   </table>
