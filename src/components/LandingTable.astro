@@ -18,8 +18,8 @@ const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{t
     <tbody>{rows.map(row=><tr>
       <td>{row.nameMath?<a href={row.href} set:html={inlineMath(row.nameMath)}/>:<a href={row.href}>{row.name}</a>}</td>
       {classic&&<td class="bound"><span class="mobile-bound-label">Classic</span><span set:html={math(row.classic!)}/></td>}
-      {/* An Other bounds row with a classic baseline and no agent result yet has an empty cell. */}
-      <td class="bound">{row.breakthrough&&row.source&&<><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>{breakthroughLabel.split(' ')[0]}</span><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/></>}</td>
+      {/* An Other bounds row with a classic baseline and no agent result yet shows a dash. */}
+      <td class="bound"><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>{breakthroughLabel.split(' ')[0]}</span>{row.breakthrough&&row.source?<a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/>:<span aria-label="No agent result yet" title="No agent result yet">-</span>}</td>
       <td class="latest-cell"><span class="mobile-bound-label">Latest</span><LandingLatest records={row.latest}/></td>
     </tr>)}</tbody>
   </table>
