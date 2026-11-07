@@ -22,3 +22,12 @@ test('a Big O author takes an avatar only from a profile url, not from a reposit
   assert.equal(authorFromProfile({name: 'x', url: 'https://github.com/darkhipo'}, {}, avatars).avatar, '/avatars/darkhipo-0123456789.png');
   assert.equal(authorFromProfile({name: 'x', url: 'https://github.com/darkhipo/some-repo'}, {}, avatars).avatar, undefined);
 });
+test('an author whose link is a repository takes the avatar of its explicit login, and a name alone gives none (site#17)', () => {
+  const group = {name: 'Elliot Glazer', url: 'https://github.com/elliotglazer/diophantine-z-q'};
+  assert.equal(withGithubAvatar(group, {elliotglazer: '/avatars/e.png'}).avatar, undefined);
+  assert.deepEqual(withGithubAvatar({...group, login: 'elliotglazer'}, {elliotglazer: '/avatars/e.png'}),
+    {...group, login: 'elliotglazer', avatar: '/avatars/e.png'});
+  assert.equal(withGithubAvatar({...group, login: 'nobody'}, {elliotglazer: '/avatars/e.png'}).avatar, undefined);
+  // The profile url wins over a login that disagrees with it.
+  assert.equal(withGithubAvatar({name: 'x', url: 'https://github.com/darkhipo', login: 'elliotglazer'}, {...avatars, elliotglazer: '/avatars/e.png'}).avatar, '/avatars/darkhipo-0123456789.png');
+});

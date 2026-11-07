@@ -6,7 +6,7 @@
 import data from './other-bounds.json';
 import profiles from './author-profiles.json';
 import avatars from './author-avatars.json';
-import {authorFromProfile, withGithubAvatar} from './record-links';
+import {authorFromProfile, githubProfileLogin, withGithubAvatar} from './record-links';
 import {mergeProve2me, mergeDirect, applyReviews, applyMaintainer, type ReviewState, type MaintainerState} from './other-merge';
 const files = import.meta.glob('../data/prove2me.json', {eager: true, import: 'default'});
 // Lean Verified direct submissions to the verifier for Other bounds rows (data/direct_refresh.py).
@@ -15,7 +15,9 @@ const reviews = import.meta.glob('../data/other-reviews.json', {eager: true, imp
 // Maintainer reruns of claims in other-bounds.json (data/maintainer_import.py); bundles before 2026-11-05 have none.
 const maintainer = import.meta.glob('../data/maintainer-other.json', {eager: true, import: 'default'});
 const merged = applyReviews(applyMaintainer(mergeDirect(mergeProve2me(data, files['../data/prove2me.json'] as Parameters<typeof mergeProve2me>[1]),
-  direct['../data/direct-other.json'] as Parameters<typeof mergeDirect>[1], author => authorFromProfile(author, profiles, avatars)),
+  // A credited login gets its GitHub profile name; a reviewed display credit (data/direct-notes.json credit) links the
+  // submission, not a profile, and keeps its name as written.
+  direct['../data/direct-other.json'] as Parameters<typeof mergeDirect>[1], author => githubProfileLogin(author.url) ? authorFromProfile(author, profiles, avatars) : author),
   maintainer['../data/maintainer-other.json'] as MaintainerState | undefined),
   reviews['../data/other-reviews.json'] as ReviewState | undefined);
 // Every claim author with a GitHub profile url gets that profile's avatar, also a hand-added claim (Nil, 2026-11-04:

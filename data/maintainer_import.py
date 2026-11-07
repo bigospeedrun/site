@@ -86,8 +86,7 @@ def validate_maintainer(raw, artifact, run, binding, config, statement):
         sources = read_json(files['source-sha256.json'])
         require(isinstance(sources, dict) and bool(sources), 'Empty staged-source manifest')
         roots = profile['source_roots'] + [root for dep in dependencies for root in dep['source_roots']]
-        require(all(re.fullmatch(r'(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean', path)
-                    and path.split('/')[0].removesuffix('.lean') in roots and isinstance(digest, str)
+        require(all(staged_source(path, roots, profile) and isinstance(digest, str)
                     and re.fullmatch('[0-9a-f]{64}', digest) for path, digest in sources.items()),
                 'Invalid staged-source hashes')
         require(profile['solution_module'].replace('.', '/')+'.lean' in sources, 'Missing solution module hash')
@@ -98,6 +97,17 @@ def validate_maintainer(raw, artifact, run, binding, config, statement):
     decision, reason, checked_at = validate_kernel_receipt(receipt, profile['theorem_names'])
     return dict(decision=decision, reason=reason, checked_at=checked_at, stage=stage,
                 receipt_url=url, receipt_sha256=sha(files['receipt.json']))
+
+
+def staged_source(path, roots, profile):
+    # A Lean module of a submission or dependency root, or a data file that the verifier stages
+    # (source_data_suffixes, verifier DATA_PART): only inside a submission root, at least one directory deep.
+    if re.fullmatch(r'(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean', path):
+        return path.split('/')[0].removesuffix('.lean') in roots
+    parts = path.split('/')
+    return (len(parts) >= 2 and parts[0] in profile['source_roots']
+            and any(parts[-1].endswith(suffix) for suffix in profile.get('source_data_suffixes', []))
+            and all(re.fullmatch(r'[A-Za-z0-9_][A-Za-z0-9_.-]{0,127}', part) for part in parts))
 
 
 def apply_record(doc, binding, verdict, receipt_path, now):

@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-11-06T21:01:44Z",
+  "paper": "https://arxiv.org/abs/2610.10446v1",
+  "publication_date": "2026-10-07T17:18:44Z",
+  "publication_date_basis": "arXiv v1 submission time, Wed 7 Oct 2026 17:18:44 UTC (arXiv submission history). The paper's AI disclosure says its conversation records were made public on 7 October 2026 and that the manuscript was locked 4 October 2026 at 02:49 Beijing time; we have no public trace of those earlier dates.",
+  "score": "224999/450000",
+  "score_relation": "attained",
+  "theorem": "Theorem 4.1 (v1 Section 4), stated as Theorem 1.1 in v2",
+  "model_check": "Theorem 4.1 of v1: a randomized algorithm in O(2^(0.4999977...n)) = O(2^((1/2 - 1/450000)n)) bit operations in the worst case; if a solution exists it returns one with probability at least 99 percent, otherwise it returns the failure symbol, and it never returns an incorrect solution. Comparison with the board model, a word RAM with b <= n^c: a bound in bit operations gives the same bound in word operations, because one bit operation costs at most one word operation; the paper allows integers in Z and input length up to 2^(o(n)) bits (v2, Section 2), a wider class than positive integers with b <= n^c; the 99 percent success is at least 2/3, and the time bound is for the worst case. The paper says the algorithm is uniform: the circuits are constructed explicitly for every n (v2, Section 1, Uniformization), and its hash function handles input integers of up to 2^(o(n)) bits (v2, footnote 3). v1 Theorem 1.1 states 0.499999 and Theorem 4.1 states 1/2 - 1/450000; v2 states 0.49999777... in both. Source comparison, not a proof check.",
+  "files_not_copied": "arXiv distributes the paper under its non-exclusive license, so the PDFs are not copied here. SHA-256 of the v1 and v2 PDFs:",
+  "files": {
+    "2610.10446v1.pdf": {
+      "sha256": "bdd4f39dc8dcb31546b088770915a93317d44f6e102fe03b9f2239a7914892b0",
+      "url": "https://arxiv.org/pdf/2610.10446v1"
+    },
+    "2610.10446v2.pdf": {
+      "sha256": "3519498d218360aa53474e8e059f22809430f050145f8cbce4f5128b7b79a3d3",
+      "url": "https://arxiv.org/pdf/2610.10446v2"
+    }
+  },
+  "verification": "Written proof in an arXiv preprint (v1 7 October 2026, v2 2 November 2026); no Lean proof, no site rerun. The paper credits the representation technique of Randolph and Wegrzycki and the depth-2 linear circuit framework of Alman and Li, and says in its declaration that it was developed independently of the OpenAI paper of 4 October 2026. Its AI disclosure says GPT-6 Pro constructed the first circuit on 5 September and GPT-6 Astra found the reduction for ordinary subset sum on 28 September 2026, and lists six conversation records made public on 7 October 2026. The paper dates its manuscript 4 October 2026 at 02:49 Beijing time (UTC+8). No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Baitian Li and Lixi Ye. Builds on the representation technique of Randolph and Wegrzycki (STOC 2026) and the depth-2 linear circuit framework of Alman and Li (FOCS 2025). The paper's AI disclosure credits GPT-6 Pro and GPT-6 Astra for parts of the work."
+}

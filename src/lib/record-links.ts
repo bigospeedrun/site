@@ -9,9 +9,10 @@ type Profile = {login: string; name: string; twitter_username: string | null};
 export function githubProfileLogin(url?: string): string | undefined {
  return url?.match(/^https:\/\/github\.com\/([A-Za-z0-9-]+)\/?$/)?.[1];
 }
-// The author with the stored avatar of its GitHub profile url, when there is one. The name stays as written.
-export function withGithubAvatar<T extends Link & {avatar?: string}>(author: T, avatars: Record<string, string>): T & {avatar?: string} {
- const login = githubProfileLogin(author.url);
+// The author with the stored avatar of its GitHub profile url, when there is one. The name stays as written. A credit
+// that links a repository or a page (a group author list) names its person's GitHub account in `login`; never a name.
+export function withGithubAvatar<T extends Link & {avatar?: string; login?: string}>(author: T, avatars: Record<string, string>): T & {avatar?: string} {
+ const login = githubProfileLogin(author.url) ?? author.login;
  const avatar = login ? avatars[login.toLowerCase()] : undefined;
  return avatar ? {...author, avatar} : author;
 }

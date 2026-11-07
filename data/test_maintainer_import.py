@@ -204,6 +204,18 @@ class MaintainerTests(unittest.TestCase):
             with self.subTest(sources=sources),self.assertRaises(Rejected):
                 check(*fixture(binding=binding),source_manifest=sources)
 
+    def test_profile_data_files_only_inside_submission_roots(self):
+        # prime-gaps stages Submission/PrimeGapsCert/Gap246/k50e25d25n1295.json (source_data_suffixes ['.json']).
+        binding=copy.deepcopy(CONFIG['maintainer_bindings']['matrix-nine-fourths']);binding['run_id']=123456
+        sources={'OAI/LinearAlgebra/MatrixMultiplication/Main.lean':'a'*64,'FixedPointTheorems/brouwer.lean':'a'*64,
+                 'OAI/Cert/k50e25d25n1295.json':'a'*64}
+        with self.assertRaises(Rejected):check(*fixture(binding=binding),source_manifest=sources)
+        binding['profile']['source_data_suffixes']=['.json']
+        self.assertEqual(check(*fixture(binding=binding),source_manifest=sources)['decision'],'lean-verified')
+        for path in ['OAI.json','FixedPointTheorems/cert.json','OAI/Cert/k.txt','OAI/../k.json','OAI/.k.json','OAI/Cert/-k.json']:
+            with self.subTest(path=path),self.assertRaises(Rejected):
+                check(*fixture(binding=binding),source_manifest={**sources,path:'a'*64})
+
     def test_dependency_root_may_be_one_module_file(self):
         # The sqrt-log run stages 8 dependencies; most roots are single files (HalfPad.lean), one is a directory.
         binding=copy.deepcopy(CONFIG['maintainer_bindings']['integer-factoring-sqrtlog'])

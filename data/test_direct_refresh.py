@@ -728,9 +728,37 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual({k:v for k,v in credited.items() if k not in ('author','authors','note')},{k:v for k,v in plain.items() if k not in ('author','authors','note')})
         for bad in (['shjvandekamp'],['alice','bad/login']):
             with self.assertRaises(r.Rejected):r.other_claims(credit_claims,{},{'direct-issue-80':dict(credit,authors=bad)})
+        # A reviewed display credit (Lead, 2026-11-07, prime gaps): the author line and names replace the logins in
+        # the claim; the logins still check the submitter; each name links to the submission. Plain text only.
+        names=['François Charton','Letong Hong','Jonas Whidden','MultiAgency swarm']
+        shown=dict(credit,credit=dict(author='Axiom Math: François Charton and Letong Hong; Jonas Whidden; MultiAgency swarm',names=names))
+        displayed=r.other_claims(credit_claims,{},{'direct-issue-80':shown})['other-snaky']['claims'][0]
+        self.assertEqual(displayed['author'],shown['credit']['author'])
+        self.assertEqual(displayed['authors'],[dict(name=x,url=displayed['url']) for x in names])
+        self.assertEqual({k:v for k,v in displayed.items() if k not in ('author','authors')},{k:v for k,v in credited.items() if k not in ('author','authors')})
+        for bad in [dict(author='A <b>',names=['A']),dict(author='A',names=[]),dict(author='A',names=['A','A']),dict(author='A',names=['\\(x\\)']),
+                    dict(author=' A',names=['A']),dict(author='A',names=['A'],extra=1),dict(author='A')]:
+            with self.subTest(credit=bad),self.assertRaises(r.Rejected):
+                r.other_claims(credit_claims,{},{'direct-issue-80':dict(credit,credit=bad)})
+        with self.assertRaises(r.Rejected):r.other_claims(credit_claims,{},{'direct-issue-80':dict(credit,authors=['not-the-submitter'],credit=shown['credit'])})
         # Big O board rows key their record posts by authors, so a credit there is refused.
         with self.assertRaises(r.Rejected):
             r.row_for('direct-issue-5',dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body'])),'2026-10-11T00:00:00Z',None,credit)
+        # A display credit names a Big O row's authors too (Lead, 2026-11-07, verifier #183), each linking the submission;
+        # credited logins stay refused there.
+        big=dict(route='issue',item=self.issue(),submission=d.parse_body(self.issue()['body']))
+        row,meta,_=r.row_for('direct-issue-5',big,'2026-10-11T00:00:00Z',None,dict(text='x',credit=dict(author='A; B',names=['Halit Ziya KARTAL','MultiAgency swarm'])))
+        self.assertEqual(row['authors'],[dict(name='Halit Ziya KARTAL',url=big['item']['html_url']),dict(name='MultiAgency swarm',url=big['item']['html_url'])])
+        self.assertEqual(meta['credit_note'],'x')
+        plain_row=r.row_for('direct-issue-5',big,'2026-10-11T00:00:00Z')[0]
+        self.assertEqual({k:v for k,v in row.items() if k!='authors'},{k:v for k,v in plain_row.items() if k!='authors'})
+        for bad in [dict(text='x',credit=dict(author='A',names=[])),dict(text='x',authors=['x'],credit=shown['credit'])]:
+            with self.subTest(note=bad),self.assertRaises(r.Rejected):r.row_for('direct-issue-5',big,'2026-10-11T00:00:00Z',None,bad)
+        # Prime gaps (verifier #148): H_1 <= B, a whole number.
+        gaps=dict(sub,problem='prime-gaps',bound='246')
+        listed=r.other_claims({'direct-issue-90':dict(route='issue',item=self.issue(90),submission=gaps,verification=proof)},{},{})['other-prime-gaps']['claims']
+        self.assertEqual((listed[0]['handle'],listed[0]['value'],listed[0]['display'],listed[0]['bound']),('direct-issue-90','246','246','H_1\\le 246'))
+        self.assertIn('BigOSpeedrun.PrimeGaps.Bound (246)',listed[0]['proofScope'])
         # Heilbronn (verifier #105): a saving, higher is better. The shown value is rounded down, never up.
         heilbronn=dict(sub,problem='heilbronn-triangle',bound='2/100866719')
         listed=r.other_claims({'direct-issue-81':dict(route='issue',item=self.issue(81),submission=heilbronn,verification=proof)},{},{})['other-heilbronn-triangle']['claims']

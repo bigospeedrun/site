@@ -1,6 +1,81 @@
 {
   "schema_version": 1,
   "entries": {
+    "direct-issue-183": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "repo_url": "https://github.com/darkhipo/dft-halitziyav6-rate",
+        "commit": "0c9d10ac96df145c13589c8605a6b6e1e038a5bd",
+        "bound": "3148496239/1000000000000",
+        "authors": []
+      }
+    },
+    "direct-issue-182": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "catalan",
+        "repo_url": "https://github.com/darkhipo/catalan-irrationality-measure-410",
+        "commit": "acf3d9f1417b67a75ad3ad166974ffea80263c3b",
+        "bound": "410",
+        "authors": []
+      }
+    },
+    "direct-issue-178": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "heilbronn-triangle",
+        "repo_url": "https://github.com/darkhipo/heilbronn-triangle-lean",
+        "commit": "75871160989c6e8eb9d6058af0abf2d9607020f8",
+        "bound": "1/1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "authors": []
+      }
+    },
+    "direct-issue-175": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "prime-gaps",
+        "repo_url": "https://github.com/darkhipo/prime-gaps-246-lean",
+        "commit": "b28fb4cc3f9be02a3f91623651aea01765c7d3a9",
+        "bound": "246",
+        "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-175-d1541d523e3d80963e79c3cc588fa054a3eb487fdf793494cd609b92f90cc808",
+        "problem_id": "other/prime-gaps",
+        "score": "246",
+        "score_relation": "attained",
+        "source_commit": "b28fb4cc3f9be02a3f91623651aea01765c7d3a9",
+        "source_url": "https://github.com/darkhipo/prime-gaps-246-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "darkhipo",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/42331367734",
+        "checked_at": "2026-11-07T04:01:04.740491Z",
+        "issue_created_at": "2026-11-07T02:52:45Z",
+        "issue_updated_at_at_verification": "2026-11-07T02:52:56Z",
+        "issue_updated_at_at_import": "2026-11-07T04:01:24Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-175-42331367734-1.json",
+        "receipt_sha256": "e4a8e1391e9b112513aa6a6dd4213a72eda3cc0bf12da69fc636f4599174bd6a",
+        "policy_hash": "9a4e833014ee97c3ed036c201ebaa1a7224b959d58b174bc939ad12d4b208aed",
+        "result_artifact_id": 13560360040,
+        "controller_fingerprint": "86b3358eef293a791ddd5490b13f1007735905e68245268a93d18e785f5663ff",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
     "direct-issue-158": {
       "route": "issue",
       "submission": {
@@ -341,7 +416,7 @@
         ],
         "receipt_path": "sources/direct-issue-99-41500988477-1.json",
         "receipt_sha256": "35c8c4fff1b39d9d2f2eae0f579a15a2ace71d1751cc19453bd1c44aacfa774d",
-        "policy_hash": "c9cc2aa144ea301bace52a79d11bb431f259f0849b25a3c2c73512831f2c1748",
+        "policy_hash": "9a4e833014ee97c3ed036c201ebaa1a7224b959d58b174bc939ad12d4b208aed",
         "result_artifact_id": 13187050786,
         "controller_fingerprint": "b15d8552e503d033e07cc644f06ae945728d386d8f949fcd1bac788971849768",
         "pr_identity": null,
@@ -3879,7 +3954,7 @@
         ],
         "receipt_path": "sources/direct-issue-99-41500988477-1.json",
         "receipt_sha256": "35c8c4fff1b39d9d2f2eae0f579a15a2ace71d1751cc19453bd1c44aacfa774d",
-        "policy_hash": "c9cc2aa144ea301bace52a79d11bb431f259f0849b25a3c2c73512831f2c1748",
+        "policy_hash": "9a4e833014ee97c3ed036c201ebaa1a7224b959d58b174bc939ad12d4b208aed",
         "result_artifact_id": 13187050786,
         "controller_fingerprint": "b15d8552e503d033e07cc644f06ae945728d386d8f949fcd1bac788971849768",
         "pr_identity": null,
@@ -4260,6 +4335,92 @@
         "pr_identity": null,
         "source_file": "Submission.lean"
       }
+    },
+    "direct-issue-175:d1541d523e3d80963e79c3cc588fa054a3eb487fdf793494cd609b92f90cc808": {
+      "key": "direct-issue-175",
+      "submission": {
+        "schema_version": 1,
+        "problem": "prime-gaps",
+        "repo_url": "https://github.com/darkhipo/prime-gaps-246-lean",
+        "commit": "b28fb4cc3f9be02a3f91623651aea01765c7d3a9",
+        "bound": "246",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-175-d1541d523e3d80963e79c3cc588fa054a3eb487fdf793494cd609b92f90cc808",
+        "problem_id": "other/prime-gaps",
+        "score": "246",
+        "score_relation": "attained",
+        "source_commit": "b28fb4cc3f9be02a3f91623651aea01765c7d3a9",
+        "source_url": "https://github.com/darkhipo/prime-gaps-246-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "darkhipo",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/42331367734",
+        "checked_at": "2026-11-07T04:01:04.740491Z",
+        "issue_created_at": "2026-11-07T02:52:45Z",
+        "issue_updated_at_at_verification": "2026-11-07T02:52:56Z",
+        "issue_updated_at_at_import": "2026-11-07T04:01:24Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-175-42331367734-1.json",
+        "receipt_sha256": "e4a8e1391e9b112513aa6a6dd4213a72eda3cc0bf12da69fc636f4599174bd6a",
+        "policy_hash": "9a4e833014ee97c3ed036c201ebaa1a7224b959d58b174bc939ad12d4b208aed",
+        "result_artifact_id": 13560360040,
+        "controller_fingerprint": "86b3358eef293a791ddd5490b13f1007735905e68245268a93d18e785f5663ff",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-176:1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36": {
+      "key": "direct-issue-176",
+      "submission": {
+        "schema_version": 1,
+        "problem": "catalan",
+        "repo_url": "https://github.com/darkhipo/catalan-irrationality-measure-410",
+        "commit": "bfa20018e0bd470805dac30a1916beefe586daa5",
+        "bound": "410",
+        "authors": []
+      },
+      "decision": "setup",
+      "evidence": {
+        "decision": "setup",
+        "reason": "The verifier setup failed before the proof check; this is not a verdict on the proof",
+        "id": "direct-176-1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36",
+        "problem_id": "other/catalan",
+        "score": "410",
+        "score_relation": "attained",
+        "source_commit": "bfa20018e0bd470805dac30a1916beefe586daa5",
+        "source_url": "https://github.com/darkhipo/catalan-irrationality-measure-410",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "darkhipo",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/42336901717",
+        "checked_at": "2026-11-07T05:00:21.334396Z",
+        "issue_created_at": "2026-11-07T04:05:38Z",
+        "issue_updated_at_at_verification": "2026-11-07T04:05:49Z",
+        "issue_updated_at_at_import": "2026-11-07T05:00:33Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-176-42336901717-1.json",
+        "receipt_sha256": "525952e1a4a9c8ffb40d49388f222f89592aaabdfe0480e56db4377041b575e0",
+        "policy_hash": "9a4e833014ee97c3ed036c201ebaa1a7224b959d58b174bc939ad12d4b208aed",
+        "result_artifact_id": 13561063818,
+        "controller_fingerprint": "86b3358eef293a791ddd5490b13f1007735905e68245268a93d18e785f5663ff",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
     }
   },
   "claimed_only_cache": {
@@ -4395,13 +4556,23 @@
     },
     "157": {
       "version": "1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36",
-      "updated_at": "2026-11-06T05:32:29Z",
+      "updated_at": "2026-11-07T04:07:45Z",
       "claimed_only": false
     },
     "164": {
       "version": "1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36",
       "updated_at": "2026-11-06T11:00:39Z",
       "claimed_only": false
+    },
+    "176": {
+      "version": "1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36",
+      "updated_at": "2026-11-07T05:00:33Z",
+      "claimed_only": false
+    },
+    "178": {
+      "version": "2a99093f84c8a98f9042bf13931bc6d6241694d6b190882d7a9bded659a241c2",
+      "updated_at": "2026-11-07T16:53:55Z",
+      "claimed_only": true
     }
   },
   "not_verified_cache": {
@@ -4427,17 +4598,37 @@
     },
     "157": {
       "version": "1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36",
-      "updated_at": "2026-11-06T05:32:29Z",
+      "updated_at": "2026-11-07T04:07:45Z",
       "not_verified": false
     },
     "163": {
       "version": "1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36",
-      "updated_at": "2026-11-06T15:19:33Z",
+      "updated_at": "2026-11-06T23:12:06Z",
       "not_verified": true
     },
     "164": {
       "version": "1e05c8bb7eda6c1d59180b219bba584367d69c16bf84938fca0a479edfbd2e36",
       "updated_at": "2026-11-06T11:00:39Z",
+      "not_verified": false
+    },
+    "173": {
+      "version": "7cccc4a78179fe81606616a0435d636beeca554128ecc2d96e8d1be8347d2457",
+      "updated_at": "2026-11-07T03:00:38Z",
+      "not_verified": true
+    },
+    "178": {
+      "version": "2a99093f84c8a98f9042bf13931bc6d6241694d6b190882d7a9bded659a241c2",
+      "updated_at": "2026-11-07T16:53:55Z",
+      "not_verified": false
+    },
+    "182": {
+      "version": "d32785367f562f0eeb5ddbbe218fe7e4790e3aeee03dc9a3ee8cdc6bbbd58a3a",
+      "updated_at": "2026-11-07T19:15:09Z",
+      "not_verified": false
+    },
+    "183": {
+      "version": "12a1925b7e4b8a769ed121946bf908dd1c5873b5a2326d7aeeaded444684aa88",
+      "updated_at": "2026-11-07T18:38:24Z",
       "not_verified": false
     }
   }

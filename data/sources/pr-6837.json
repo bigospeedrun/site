@@ -1,0 +1,11 @@
+{
+  "number": 6837,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/6837",
+  "title": "research(h25): expose reviewed primary baseline and runner ancestry",
+  "body": "The primary H25 comparison needs the original PR6029 baseline owner and the exact common-runner ancestry. The later candidate archive does not supply those readable inputs, and the retained instrumented `full:baseline` diagnostic cannot substitute for the original primary sample.\n\nThis contribution exports 25 inert, readable files under `research/h25-primary-baseline-readable-inputs/`: the already source-reviewed primary owner/receiver and control source, its shared dependencies and open-gate/cost contracts, the original runner and reviewed compatibility successor, and the retained source reviews and inverse data. It supplies review inputs rather than a new baseline producer or executable comparison.\n\nValidation performed for this export:\n\n- Complete-byte and SHA256 equality against all 21 retained original source/review inputs.\n- All nine module pins in the configured DAG match the retained sources.\n- Reversing the two declared substitutions recovers the full original runner bytes exactly.\n\nNo archived module was imported, no controls or scientific workload were rerun, and no native code was compiled. No scientific replay hook is registered. Current environment, caller/settlement integration, common-runner compatibility for the different candidate runner, complete resource funding and actual execution admission remain open. This archive establishes no timing, equality or performance result.\n\nOriginal investigation: #6321. Scientific predecessor: #6029. Related candidate source: #6830 at `39fcd67c991bd72918080b1d2c02feb3d679206d`; readable original scientific inputs: #6744. See the README for exact hashes, provenance, credit and the next concrete compatibility question.\n\nPrepared with substantial OpenAI Codex and ChatGPT Pro assistance. Retained source reviews are independent AI source reviews within their stated limits, not independent human review or proof-kernel acceptance. New export prose/metadata are Apache-2.0; original notices and source-specific licences are retained.\n",
+  "created_at": "2026-11-07T07:31:34Z",
+  "updated_at": "2026-11-07T08:30:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

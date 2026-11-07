@@ -35,6 +35,6 @@ test('the Other rows with a submit line are the rows with a reviewed verifier pr
   for (const [key, slug] of Object.entries(boards)) assert.ok(trust.profiles[key] && verifierProblems.has(slug), key);
   const other = Object.keys(trust.profiles).filter(key => !(key in boards)).sort();
   assert.deepEqual(Object.keys(verifierOtherRows).sort(), other);
-  assert.deepEqual(other, ['average-sensitivity', 'catalan', 'heilbronn-triangle', 'snaky']);
+  assert.deepEqual(other, ['average-sensitivity', 'catalan', 'heilbronn-triangle', 'prime-gaps', 'snaky']);
   assert.equal(verifierIssueUrl, 'https://github.com/bigospeedrun/verifier/issues/new?template=lean-submission.yml');
 });

@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-6805",
+        "leader": "crocswap-pr-6833",
         "direction": "higher",
         "records": [
           {
@@ -4419,6 +4419,26 @@
               "CubeJerry"
             ],
             "bound": "O(n log^(1 - 0.00330814) n)"
+          },
+          {
+            "id": "crocswap-pr-6824",
+            "score": "330823/100000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "DreamingOfClouds"
+            ],
+            "bound": "O(n log^(1 - 0.00330823) n)"
+          },
+          {
+            "id": "crocswap-pr-6833",
+            "score": "16859/5000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "DreamingOfClouds"
+            ],
+            "bound": "O(n log^(1 - 0.0033718) n)"
           }
         ],
         "table": "big-o"
@@ -4447,7 +4467,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-156",
+        "leader": "direct-issue-183",
         "direction": "higher",
         "records": [
           {
@@ -4551,6 +4571,21 @@
               "canghaimeng"
             ],
             "bound": "O(n log^(1 - 0.00126) n)"
+          },
+          {
+            "id": "direct-issue-183",
+            "score": "3148496239/1000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Halit Ziya KARTAL",
+              "MultiAgency swarm"
+            ],
+            "bound": "O(n log^(1 - 0.0031484962) n)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-07T18:33:31Z"
+            }
           },
           {
             "id": "direct-issue-19",
@@ -4995,7 +5030,7 @@
         "slug": "subset-sum",
         "name": "Subset Sum",
         "url": "https://bigospeedrun.com/subset-sum",
-        "leader": "yannouli-subset-sum-0-4876723-2026",
+        "leader": "jv1000-subset-sum-0-4875755-2026",
         "direction": "lower",
         "records": [
           {
@@ -5037,6 +5072,27 @@
               "Yanni Bills"
             ],
             "bound": "O(2^(0.4876723n))"
+          },
+          {
+            "id": "jv1000-subset-sum-0-4875755-2026",
+            "score": "975151/2000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Jennifer Voitle"
+            ],
+            "bound": "O(2^(0.4875755n))"
+          },
+          {
+            "id": "li-ye-subset-sum-0-4999978-2026",
+            "score": "224999/450000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Baitian Li",
+              "Lixi Ye"
+            ],
+            "bound": "O(2^(0.4999978n))"
           },
           {
             "id": "direct-issue-104",
@@ -5649,7 +5705,7 @@
         "slug": "other-catalan",
         "name": "Catalan’s constant",
         "url": "https://bigospeedrun.com/other/catalan",
-        "leader": "slitsey:400",
+        "leader": "slitsey:295",
         "table": "other-bounds",
         "direction": "lower",
         "records": [
@@ -5916,6 +5972,17 @@
             ],
             "bound": "μ(G) ≤ 400",
             "display": "400"
+          },
+          {
+            "id": "slitsey:295",
+            "score": "295",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "S. Litsey"
+            ],
+            "bound": "μ(G) ≤ 295",
+            "display": "295"
           }
         ]
       },
@@ -6453,6 +6520,17 @@
         "direction": "higher",
         "records": [
           {
+            "id": "openai:1/100000",
+            "score": "1/100000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "OpenAI"
+            ],
+            "bound": "W_r(k) > k^(k floor(log_2r)/100000)",
+            "display": "1/100000"
+          },
+          {
             "id": "rohanarun:1/25",
             "score": "1/25",
             "relation": "attained",
@@ -6941,6 +7019,17 @@
             ],
             "bound": "H_1 ≤ 182",
             "display": "182"
+          },
+          {
+            "id": "direct-issue-175:246",
+            "score": "246",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "MultiAgency swarm"
+            ],
+            "bound": "H_1 ≤ 246",
+            "display": "246"
           }
         ]
       },
@@ -7478,7 +7567,13 @@
     "[\"other-prime-gaps\",\"romyar1:182\",\"182\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-6805\",\"165407/50000000\",\"attained\"]:record",
     "[\"other-z-diophantine-in-q\",\"z-in-q-version-2:12504\",\"12504\",\"attained\"]:record",
-    "[\"other-z-diophantine-in-q\",\"z-in-q-version-6:962\",\"962\",\"attained\"]:record"
+    "[\"other-z-diophantine-in-q\",\"z-in-q-version-6:962\",\"962\",\"attained\"]:record",
+    "[\"subset-sum\",\"jv1000-subset-sum-0-4875755-2026\",\"975151/2000000\",\"attained\"]:record",
+    "[\"other-van-der-waerden\",\"openai:1/100000\",\"1/100000\",\"attained\"]:lean",
+    "[\"other-catalan\",\"slitsey:295\",\"295\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-6824\",\"330823/100000000\",\"attained\"]:record",
+    "[\"other-prime-gaps\",\"direct-issue-175:246\",\"246\",\"attained\"]:lean",
+    "[\"integer-multiplication\",\"crocswap-pr-6833\",\"16859/5000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
@@ -7487,6 +7582,15 @@
       "authors": [
         "aigent-marius"
       ]
+    },
+    {
+      "key": "[\"exact-dft\",\"direct-issue-183\",\"3148496239/1000000000000\",\"attained\"]:record",
+      "slug": "exact-dft",
+      "authors": [
+        "Halit Ziya KARTAL",
+        "MultiAgency swarm"
+      ],
+      "hold": true
     }
   ]
 }

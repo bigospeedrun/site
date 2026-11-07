@@ -203,6 +203,32 @@ class DirectImportTests(unittest.TestCase):
             with self.subTest(bound=bound),self.assertRaises(gate.Rejected):gate.normalize(dict(sub,bound=bound))
         with self.assertRaises(gate.Rejected):gate.challenge_bytes(dict(problem='snaky',bound='39/2'),raw)
 
+    def test_prime_gaps_target_and_reviewed_statement(self):
+        # Verifier #148: H_1 <= B, B a whole number from 0 to 100000. The receipts of the maintainer test runs give the
+        # generated challenges: 246 2f817e68 (the control, run 42292994745 at 18158dd, and the passing smoke, run
+        # 42305726764 at 2d44726) and 245 0a9ab7e7 (M1, run 42295113989). Reviewed test vectors only: those runs are test_only.
+        trust=json.loads((FIXTURES.parent/'direct-trust.json').read_text())
+        profile=trust['profiles']['prime-gaps']
+        raw=(FIXTURES/gate.statement_fixture(trust,profile['challenge_file'])).read_bytes()
+        self.assertEqual(gate.sha(raw),profile['challenge_sha256'])
+        self.assertEqual((profile['challenge_file'],profile['maximum'],profile['lean_toolchain'],profile['bound_kind'],profile['runner']),
+                         ('challenges/prime-gaps/Statement.lean','100000','leanprover/lean4:v4.33.1','gap','github-split'))
+        self.assertEqual(gate.statement_fixture(trust,profile['challenge_file']),'PrimeGapsStatement.lean')
+        self.assertEqual(gate.PROBLEMS['prime-gaps'],('other/prime-gaps',100000))
+        sub=dict(schema_version=1,problem='prime-gaps',bound='246',repo_url='https://github.com/u/p',commit='a'*40,authors=[])
+        generated=gate.challenge_bytes(gate.normalize(sub),raw)
+        self.assertTrue(generated.endswith(b'theorem Race.bound : BigOSpeedrun.PrimeGaps.Bound 246 := by\n  sorry\n'))
+        self.assertEqual(gate.sha(generated),'2f817e68bf0098199493c98c9c7d0e861370b3874b2e96a3aabf45e35d569999')
+        self.assertEqual(gate.sha(gate.challenge_bytes(gate.normalize(dict(sub,bound='245')),raw)),
+                         '0a9ab7e7552be64798f19ba71685f6079229124dcc21bfa551669aad26013fb1')
+        for bound in ['0','2','186','246','100000']:
+            with self.subTest(bound=bound):self.assertEqual(gate.normalize(dict(sub,bound=bound))['bound'],bound)
+        # A fraction is refused, and so is a bound above the range (as the verifier's WHOLE problems).
+        for bound in ['491/2','100001']:
+            with self.subTest(bound=bound),self.assertRaises(gate.Rejected):gate.normalize(dict(sub,bound=bound))
+        with self.assertRaises(gate.Rejected):gate.challenge_bytes(dict(problem='prime-gaps',bound='491/2'),raw)
+        self.assertEqual((gate.range_end('prime-gaps'),gate.open_rank('prime-gaps')),(100000,1))
+
     def test_heilbronn_target_and_reviewed_statement(self):
         # Verifier #105: the saving eta, 0 < eta <= 5/6, and a higher saving is better (HIGHER, as in the verifier).
         # The receipts of the test runs on verifier e5890d5 give the generated challenges: 1/50893237 cc485a03

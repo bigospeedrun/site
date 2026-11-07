@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {breakthroughBar,worseThanBreakthrough} from './x-skip.ts';
+import {breakthroughBar,otherBreakthroughBar,worseThanBreakthrough} from './x-skip.ts';
 import {prepare} from './x-posts.ts';
 import type {FeedSnapshot,FeedBoard} from './records-feed.ts';
 const row=(id:string,score:string,authors:string[]=['Alice'])=>({id,score,relation:'attained',evidence:'Claimed',authors,bound:''});
@@ -73,4 +73,28 @@ test('the real feed names the breakthrough bar of each board from its own data',
  assert.equal(breakthroughBar(real,'apsp')?.direction,'lower');
  assert.equal(breakthroughBar(real,'integer-factoring'),undefined);
  assert.equal(breakthroughBar(real,'other-catalan'),undefined);
+});
+test('an Other bounds row: the bar is its Agent breakthrough by OpenAI or Anthropic (Lead, 2026-11-07)',()=>{
+ // Prime gaps has a Classic baseline (Polymath, 246); its Agent breakthrough is OpenAI's 186, its first claim by agents.
+ assert.deepEqual(otherBreakthroughBar('other-prime-gaps'),{score:'186',direction:'lower'});
+ assert.match(worseThanBreakthrough(lean('other-prime-gaps','direct-issue-200','246'),snapshot)!,/worse than the breakthrough bound 186/);
+ for(const score of ['186','182'])assert.equal(worseThanBreakthrough(lean('other-prime-gaps','direct-issue-200',score),snapshot),undefined);
+ // A row with an OpenAI baseline: the baseline is its Agent breakthrough (Snaky: 21 Maker moves; van der Waerden: higher is better).
+ assert.deepEqual(otherBreakthroughBar('other-snaky'),{score:'21',direction:'lower'});
+ assert.ok(worseThanBreakthrough(lean('other-snaky','direct-issue-201','22'),snapshot));
+ for(const score of ['21','20'])assert.equal(worseThanBreakthrough(lean('other-snaky','direct-issue-201',score),snapshot),undefined);
+ assert.ok(worseThanBreakthrough(lean('other-van-der-waerden','openai','1/200000'),snapshot));
+ assert.equal(worseThanBreakthrough(lean('other-van-der-waerden','openai','1/100000'),snapshot),undefined);
+ // A Claimed post is not held back; a bar that is not an exact rational (Catalan: +infinity) or a row whose
+ // breakthrough has another author (binary polynomial multiplication: Árpád Csizmadia) gives no bar; no snapshot, no bar.
+ assert.equal(worseThanBreakthrough({key:JSON.stringify(['other-prime-gaps','x','246','attained'])+':record',x_text:'Status: Claimed (not verified)'},snapshot),undefined);
+ assert.equal(otherBreakthroughBar('other-catalan'),undefined);
+ assert.equal(otherBreakthroughBar('other-binary-polynomial-multiplication'),undefined);
+ assert.equal(otherBreakthroughBar('other-unknown'),undefined);
+ assert.equal(worseThanBreakthrough(lean('other-prime-gaps','direct-issue-200','246'),undefined),undefined);
+ // A fixed family list: an Anthropic Agent breakthrough on a Classic-baseline row counts too.
+ const fam=[{slug:'row',direction:'higher',baseline:{label:'Classic baseline',value:'1/3',exactValue:'1/3',bound:'',url:'',date:'2020'},
+  claims:[{handle:'a',display:'1/2',value:'1/2',date:'2026-10-01T00:00:00Z',agent:true,authors:[{name:'Anthropic (Claude)'}]},
+          {handle:'b',display:'2/3',value:'2/3',date:'2026-10-02T00:00:00Z',agent:true,authors:[{name:'OpenAI'}]}]}];
+ assert.deepEqual(otherBreakthroughBar('other-row',fam),{score:'1/2',direction:'higher'});
 });

@@ -17,7 +17,7 @@
     "minimum": "0",
     "maximum": "1"
   },
-  "checked_at": "2026-11-06",
+  "checked_at": "2026-11-07",
   "sources": [
     {
       "url": "https://github.com/openai/math/tree/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026",
@@ -231,6 +231,97 @@
       "source_commit": "bf1f50f066f2c71a53293791f693f505a67a1540"
     },
     {
+      "id": "jv1000-subset-sum-0-4875755-2026",
+      "kind": "improvement",
+      "score": "975151/2000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-04T07:15:59Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-04T07:15:59Z",
+      "site_observed_at": "2026-11-06T20:16:03Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/jv1000/subset-sum/blob/6026da70f13d677b630cb1afd8fb10ee7a7f6010/exponent-2026/paper/rev8/paper_2026-11-06_rev8g.tex#L77-L79"
+      },
+      "spec_version": "1",
+      "title": "Jennifer Voitle conditional Subset Sum in time O(2^(0.4875755n))",
+      "authors": [
+        {
+          "name": "Jennifer Voitle",
+          "url": "https://github.com/jv1000"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66"
+      ],
+      "submission_url": "https://github.com/jv1000/subset-sum/blob/6026da70f13d677b630cb1afd8fb10ee7a7f6010/exponent-2026/paper/rev8/paper_2026-11-06_rev8g.tex#L77-L79",
+      "artifact": {
+        "path": "sources/jv1000-subset-sum-0-4875755-2026-claim.json",
+        "sha256": "14df08d7a32ce1ad7d4c621c4ea028f44c2adf6ccc4fefafc59500c607ec4355"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/jv1000/subset-sum/blob/6026da70f13d677b630cb1afd8fb10ee7a7f6010/Voitle_SubsetSum_certified-0.48758_2026-11-06_rev8g.pdf",
+        "theorem": "Theorem 1 (main result)",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "upstream-lemmas-and-moments",
+          "statement": "The bound depends on the non-numerical lemmas of the OpenAI paper and of Annanay Kapila's written proof (isolation, alias lemmas, alias subtraction, finite-circle convergence, word-RAM accounting). They are unverified written work. The 33 numerical conditions are certified by the author in ball arithmetic; there is no Lean proof, and we did not rerun anything.",
+          "source_url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "6026da70f13d677b630cb1afd8fb10ee7a7f6010"
+    },
+    {
+      "id": "li-ye-subset-sum-0-4999978-2026",
+      "kind": "improvement",
+      "score": "224999/450000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-07T17:18:44Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-07T17:18:44Z",
+      "site_observed_at": "2026-11-06T21:01:44Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.10446v1"
+      },
+      "spec_version": "1",
+      "title": "Baitian Li and Lixi Ye Subset Sum in time O(2^((1/2 - 1/450000)n))",
+      "authors": [
+        {
+          "name": "Baitian Li",
+          "url": "https://arxiv.org/abs/2610.10446v1"
+        },
+        {
+          "name": "Lixi Ye",
+          "url": "https://arxiv.org/abs/2610.10446v1"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://arxiv.org/abs/2610.10446v1",
+      "artifact": {
+        "path": "sources/li-ye-subset-sum-0-4999978-2026-claim.json",
+        "sha256": "c4f7550eff1b06c2529f76acba6c9b6c8eb520114fdc214682523dcb07e330e8"
+      },
+      "evidence": {
+        "paper_url": "https://arxiv.org/pdf/2610.10446v1",
+        "theorem": "Theorem 4.1",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The running-time bound rests on the written proof of the preprint; there is no Lean proof and no site rerun. The model comparison is by source text only: bit operations and a wider input class than the board model.",
+          "source_url": "https://arxiv.org/abs/2610.10446v1",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
       "id": "direct-issue-104",
       "kind": "improvement",
       "score": "1/2",
@@ -311,51 +402,6 @@
         "checked_at": "2026-11-02T05:25:44.130535Z",
         "receipt_path": "sources/direct-issue-94-41393097953-1.json"
       }
-    },
-    {
-      "id": "jv1000-subset-sum-0-4875755-2026",
-      "kind": "improvement",
-      "score": "975151/2000000",
-      "score_relation": "attained",
-      "tier": "claimed",
-      "submitted_at": "2026-11-04T07:15:59Z",
-      "upstream_status": "not-applicable",
-      "upstream_status_at": "2026-11-04T07:15:59Z",
-      "site_observed_at": "2026-11-06T20:16:03Z",
-      "source": {
-        "kind": "repo-artifact",
-        "url": "https://github.com/jv1000/subset-sum/blob/6026da70f13d677b630cb1afd8fb10ee7a7f6010/exponent-2026/paper/rev8/paper_2026-11-06_rev8g.tex#L77-L79"
-      },
-      "spec_version": "1",
-      "title": "Jennifer Voitle conditional Subset Sum in time O(2^(0.4875755n))",
-      "authors": [
-        {
-          "name": "Jennifer Voitle",
-          "url": "https://github.com/jv1000"
-        }
-      ],
-      "predecessors": [
-        "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66"
-      ],
-      "submission_url": "https://github.com/jv1000/subset-sum/blob/6026da70f13d677b630cb1afd8fb10ee7a7f6010/exponent-2026/paper/rev8/paper_2026-11-06_rev8g.tex#L77-L79",
-      "artifact": {
-        "path": "sources/jv1000-subset-sum-0-4875755-2026-claim.json",
-        "sha256": "14df08d7a32ce1ad7d4c621c4ea028f44c2adf6ccc4fefafc59500c607ec4355"
-      },
-      "evidence": {
-        "paper_url": "https://github.com/jv1000/subset-sum/blob/6026da70f13d677b630cb1afd8fb10ee7a7f6010/Voitle_SubsetSum_certified-0.48758_2026-11-06_rev8g.pdf",
-        "theorem": "Theorem 1 (main result)",
-        "certificate_path": null
-      },
-      "dependencies": [
-        {
-          "id": "upstream-lemmas-and-moments",
-          "statement": "The bound depends on the non-numerical lemmas of the OpenAI paper and of Annanay Kapila's written proof (isolation, alias lemmas, alias subtraction, finite-circle convergence, word-RAM accounting). They are unverified written work. The 33 numerical conditions are certified by the author in ball arithmetic; there is no Lean proof, and we did not rerun anything.",
-          "source_url": "https://github.com/a-kapila/maths-proofs/blob/44c34961b56784c220a6e913cc068d57dc37c5a3/subset-sum/PROOF_0.4877.tex#L56-L66",
-          "status": "unverified"
-        }
-      ],
-      "source_commit": "6026da70f13d677b630cb1afd8fb10ee7a7f6010"
     }
   ],
   "record_metadata": {
@@ -458,44 +504,6 @@
       "credits": "Yanni Bills (GitHub yannouli). Refines the parameters of Joshua Wharton's conditional note, which refines Annanay Kapila's manuscript (a-kapila/maths-proofs), which builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n)). AI assistance is acknowledged in the note.",
       "credit_note": "Yanni Bills refines Joshua Wharton's Subset Sum construction (itself a refinement of Annanay Kapila's Claimed 0.4877) and lowers the exponent from 0.487676 to 0.4876723. The algorithm is OpenAI's and Annanay Kapila's; Joshua Wharton supplied the earlier parameters and certificate transfer."
     },
-    "direct-issue-104": {
-      "checked_at": "2026-11-06",
-      "source_url": "https://github.com/darkhipo/subset-sum-mitm/blob/fccd1159daf8e41f506844d4255bdebd0ccd94cc/Submission.lean",
-      "repo": "darkhipo/subset-sum-mitm",
-      "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
-      "upstream_tier": "verified",
-      "site_tier": "verified",
-      "comparison_key": "subset-sum/randomized-word-ram/v1",
-      "publication_date": "2026-11-02T07:24:11Z",
-      "publication_date_precision": "date-time",
-      "publication_date_role": "Submission opened",
-      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/104",
-      "direct_submission": true,
-      "route": "issue",
-      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41489680877",
-      "verification": "passed"
-    },
-    "direct-issue-94": {
-      "checked_at": "2026-11-06",
-      "source_url": "https://github.com/darkhipo/subset-sum-mitm/blob/8b105f01848fc0e370abfa3a23ed5c3de463f321/Submission.lean",
-      "repo": "darkhipo/subset-sum-mitm",
-      "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
-      "upstream_tier": "verified",
-      "site_tier": "verified",
-      "comparison_key": "subset-sum/randomized-word-ram/v1",
-      "publication_date": "2026-11-01T19:08:37Z",
-      "publication_date_precision": "date-time",
-      "publication_date_role": "Submission opened",
-      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/94",
-      "direct_submission": true,
-      "route": "issue",
-      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41393097953",
-      "verification": "passed"
-    },
     "jv1000-subset-sum-0-4875755-2026": {
       "checked_at": "2026-11-06",
       "source_url": "https://github.com/jv1000/subset-sum/blob/6026da70f13d677b630cb1afd8fb10ee7a7f6010/exponent-2026/paper/rev8/paper_2026-11-06_rev8g.tex#L77-L79",
@@ -520,7 +528,68 @@
       "license_status": "No license file; source files are not copied, only their hashes",
       "credits": "Jennifer Voitle (GitHub jv1000), with Claude (Anthropic) and Astra (an OpenAI-based assistant) credited in the text, not as authors. Uses Annanay Kapila's construction (a-kapila/maths-proofs), which builds on OpenAI result #138, Subset Sum in Time O(2^(0.49n)). Related refinements: Joshua Wharton and Yanni Bills.",
       "credit_note": "Jennifer Voitle modifies Annanay Kapila's Subset Sum construction, which builds on OpenAI's 0.49 algorithm, with one asymmetric filter in place of Kapila's 43 cosine-only filters, at new parameters. The paper credits Claude and Astra as assistants, not as authors. Joshua Wharton and Yanni Bills refined the same construction earlier."
+    },
+    "li-ye-subset-sum-0-4999978-2026": {
+      "checked_at": "2026-11-06",
+      "source_url": "https://arxiv.org/abs/2610.10446v1",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof in an arXiv preprint; no Lean proof. The paper counts bit operations on inputs of up to 2^(o(n)) bits and says its algorithm is uniform (v2). No Big O Speedrun proof check. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "subset-sum/randomized-word-ram/v1",
+      "comparison_status": "Theorem 4.1 of v1: a randomized algorithm in O(2^(0.4999977...n)) = O(2^((1/2 - 1/450000)n)) bit operations in the worst case; if a solution exists it returns one with probability at least 99 percent, otherwise it returns the failure symbol, and it never returns an incorrect solution. Comparison with the board model, a word RAM with b <= n^c: a bound in bit operations gives the same bound in word operations, because one bit operation costs at most one word operation; the paper allows integers in Z and input length up to 2^(o(n)) bits (v2, Section 2), a wider class than positive integers with b <= n^c; the 99 percent success is at least 2/3, and the time bound is for the worst case. The paper says the algorithm is uniform: the circuits are constructed explicitly for every n (v2, Section 1, Uniformization), and its hash function handles input integers of up to 2^(o(n)) bits (v2, footnote 3). v1 Theorem 1.1 states 0.499999 and Theorem 4.1 states 1/2 - 1/450000; v2 states 0.49999777... in both. Source comparison, not a proof check.",
+      "scope": "Randomized algorithm for Subset Sum with integers in Z and a target in Z, worst case over random outcomes, success probability at least 99 percent, measured in bit operations on inputs of up to 2^(o(n)) bits.",
+      "exact_statement": "Subset sum can be solved by a randomized algorithm in O(2^((1/2 - 1/450000)n)) bit operations in the worst case; if a solution exists it is returned with probability at least 99 percent, and no incorrect solution is returned.",
+      "score_interpretation": "Attained exponent 1/2 - 1/450000 = 0.49999777...; the paper proves O(2^((1/2 - xi/9 + epsilon)n)) for every epsilon > 0 with xi > 1/50000 and states the exponent 1/2 - 1/450000 in Theorem 4.1.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "arXiv v1 paper submission",
+      "publication_date": "2026-10-07T17:18:44Z",
+      "publication_source_url": "https://arxiv.org/abs/2610.10446v1",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "arXiv non-exclusive license; the paper is not copied, only its hash",
+      "credits": "Baitian Li and Lixi Ye. Builds on the representation technique of Randolph and Wegrzycki (STOC 2026) and the depth-2 linear circuit framework of Alman and Li (FOCS 2025). The paper's AI disclosure credits GPT-6 Pro and GPT-6 Astra for parts of the work.",
+      "credit_note": "Baitian Li and Lixi Ye take the exponent of Subset Sum below 1/2 with the representation technique of Randolph and Węgrzycki, where testing two partial solutions is the partial match problem, and a depth 2 linear circuit for it, following Alman and Li. The paper says it was developed independently of OpenAI's 0.49 paper. Its AI disclosure says GPT-6 Pro built the first circuit and GPT-6 Astra found the reduction for ordinary subset sum."
+    },
+    "direct-issue-104": {
+      "checked_at": "2026-11-07",
+      "source_url": "https://github.com/darkhipo/subset-sum-mitm/blob/fccd1159daf8e41f506844d4255bdebd0ccd94cc/Submission.lean",
+      "repo": "darkhipo/subset-sum-mitm",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
+      "comparison_key": "subset-sum/randomized-word-ram/v1",
+      "publication_date": "2026-11-02T07:24:11Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/104",
+      "direct_submission": true,
+      "route": "issue",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41489680877",
+      "verification": "passed"
+    },
+    "direct-issue-94": {
+      "checked_at": "2026-11-07",
+      "source_url": "https://github.com/darkhipo/subset-sum-mitm/blob/8b105f01848fc0e370abfa3a23ed5c3de463f321/Submission.lean",
+      "repo": "darkhipo/subset-sum-mitm",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
+      "comparison_key": "subset-sum/randomized-word-ram/v1",
+      "publication_date": "2026-11-01T19:08:37Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/94",
+      "direct_submission": true,
+      "route": "issue",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41393097953",
+      "verification": "passed"
     }
   },
-  "updated_at": "2026-11-06T20:16:03Z"
+  "updated_at": "2026-11-07T00:22:57Z"
 }

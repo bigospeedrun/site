@@ -193,13 +193,58 @@
           }
         }
       ]
+    },
+    "prime-gaps": {
+      "challenge_file": "challenges/prime-gaps/Statement.lean",
+      "challenge_sha256": "c6b81e94927315c805bd34a30796d8d757156790dff243287811f3c53494f969",
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "manifest_file": "profiles/anthropic-lake-manifest.json",
+      "tools_file": "profiles/anthropic-tools.json",
+      "solution_module": "Submission",
+      "source_roots": [
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "bound_kind": "gap",
+      "maximum": "100000",
+      "upstream_commit": "1faa7b14e82ddebc2772dfb9153922f01b106477",
+      "runner": "github-split",
+      "solution_dependencies": [
+        {
+          "repo_url": "https://github.com/hanwenzhu/LeanArchitect",
+          "commit": "d9013cc08bd2b5483e837368dfa4cc7ead92a5c2",
+          "source_roots": [
+            "Architect"
+          ],
+          "lean_options": {
+            "autoImplicit": true
+          }
+        },
+        {
+          "repo_url": "https://github.com/kimihiro64/PrimeNumberTheoremAnd",
+          "commit": "0f15a38c619298b5cd786d39a84dd4bb8997324c",
+          "source_roots": [
+            "PrimeNumberTheoremAnd"
+          ]
+        }
+      ],
+      "source_lean_options": {
+        "autoImplicit": false,
+        "maxSynthPendingDepth": 3
+      },
+      "source_data_suffixes": [
+        ".json"
+      ]
     }
   },
   "statement_fixtures": {
     "challenges/subset-sum/Statement.lean": "SubsetSumStatement.lean",
     "challenges/other-snaky/VerifierStatement.lean": "SnakyVerifierStatement.lean",
     "challenges/heilbronn-triangle/VerifierStatement.lean": "HeilbronnVerifierStatement.lean",
-    "challenges/directed-sssp/VerifierStatement.lean": "SsspVerifierStatement.lean"
+    "challenges/directed-sssp/VerifierStatement.lean": "SsspVerifierStatement.lean",
+    "challenges/prime-gaps/Statement.lean": "PrimeGapsStatement.lean"
   },
   "controller_blobs": {
     ".github/ISSUE_TEMPLATE/lean-submission.yml": {
@@ -26449,6 +26494,2342 @@
         "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
         "mode": "100644"
       }
+    },
+    "18158dddeb80ca04b710ccf389d08ddb837d61d9": {
+      ".github/ISSUE_TEMPLATE/lean-submission.yml": {
+        "sha": "21185f4b6a352a33f866c979701ee11e0ad8554d",
+        "mode": "100644"
+      },
+      ".github/workflows/check-matrix-dependency.yml": {
+        "sha": "311eaae86a044b98e37212cd73167fe760050a6a",
+        "mode": "100644"
+      },
+      ".github/workflows/pr-publish.yml": {
+        "sha": "8ac3ea8bfc9e4255197b0c781c66d93a0f5926fb",
+        "mode": "100644"
+      },
+      ".github/workflows/submission-check.yml": {
+        "sha": "c5e73af13aa764369e24a687c36630edc4c4e140",
+        "mode": "100644"
+      },
+      ".github/workflows/submissions.yml": {
+        "sha": "a75a1bef64ea6f4509422f4e704e9d2f3242cdd8",
+        "mode": "100644"
+      },
+      ".github/workflows/verify.yml": {
+        "sha": "0f267d5f57ef2adc2f2dd0aadba52dd5caa97387",
+        "mode": "100644"
+      },
+      ".gitignore": {
+        "sha": "209a5554ca89b5f26b69fe761eb43a40c9bf70df",
+        "mode": "100644"
+      },
+      "AGENTS.md": {
+        "sha": "a3aaf5059f6fc5ab30b08dcf1f47f35b083781ec",
+        "mode": "100644"
+      },
+      "LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "NOTICE": {
+        "sha": "25f3c04d367964e4c798b74d3d6daa29476f9004",
+        "mode": "100644"
+      },
+      "README.md": {
+        "sha": "d25e8667c1fa43dd7654560636d4950af806ecc1",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/EndStatement.lean": {
+        "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/NOTICE": {
+        "sha": "0a0dbf49888306f7d732790bbbf2ca2e75c37e6b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/NOTICE": {
+        "sha": "2962b8aef068820d088a94b77d12a16faeb9b792",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/OAI/Combinatorics/GotsmanLinial/Model.lean": {
+        "sha": "fe42ea84d4bf21bee7da1491674254a125f46c5b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/README.md": {
+        "sha": "58c0be4a36b9979fde2a6912d56aa05d652d4072",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/Statement.lean": {
+        "sha": "b697f45a857bd6cfa7aacdd14fc2f1b3d4c3a500",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/VerifierStatement.lean": {
+        "sha": "463b6a0311a7d2104622765674dc84810bff82f2",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/provenance.json": {
+        "sha": "656653688e00b868d85910f605a01b0ec11099df",
+        "mode": "100644"
+      },
+      "challenges/catalan/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/catalan/NOTICE": {
+        "sha": "d24e051f4245fb1b0707b8248b2ffc4bebec597e",
+        "mode": "100644"
+      },
+      "challenges/catalan/README.md": {
+        "sha": "a55b761fa7a878717408a6dfa4cd1e60c72eea5f",
+        "mode": "100644"
+      },
+      "challenges/catalan/Statement.lean": {
+        "sha": "078c9c92383d73cbdf5c0dbc91a1af8a33029a66",
+        "mode": "100644"
+      },
+      "challenges/catalan/Validation.lean": {
+        "sha": "145d3bb81b7b0b0d170131fe78441d991e8cbd8c",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/Challenge.lean": {
+        "sha": "6da17cdcf6ca29c831279867fc9908850df90f8b",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/NOTICE": {
+        "sha": "8de3803673ccab52dd029d6b9942f4f410c57fe4",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/README.md": {
+        "sha": "51e6c468bfc4f60d89f8b7491597b6378f062c5d",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/provenance.json": {
+        "sha": "dca0379ed12999326441b9c92db2f92a22737825",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourier233.lean": {
+        "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourierE8.lean": {
+        "sha": "3235d8621b218a5807b1e5238558d8f7c72d1489",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/CHDRow.lean": {
+        "sha": "15b8bd3fb9a21322698ac65bdf22542a0133413a",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/README.md": {
+        "sha": "367d294c25e6c7f7d53ecca5ab0e1359de388d73",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/Validation.lean": {
+        "sha": "66ecc6e1d7a68edded980a0cf866d6342eb1d6d6",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/VerifierStatement.lean": {
+        "sha": "758ef89d8b96d6bb1f0dd35bab3456e49863ca86",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/NOTICE": {
+        "sha": "2cfec1b795fabf1a14f38cd17bb572a401b172d2",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/OAI/Geometry/HeilbronnTriangle/Definitions.lean": {
+        "sha": "6dd76ecff9b1300987f9412b5f434257f261d39d",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/README.md": {
+        "sha": "80429868d90a34f622b240dd2f3bf579d95ed0e4",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Statement.lean": {
+        "sha": "e2513ec608abcc958d9bb2b9f44e0da98c62ebe5",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Validation.lean": {
+        "sha": "dd3b279322323d336eb75bf4854ab6be2d314768",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/VerifierStatement.lean": {
+        "sha": "bff8ba7bc805b881893123eb9b26e348b2bb6ee8",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/provenance.json": {
+        "sha": "9a947939bfa7b812d3347b26c427842722a54aa4",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/Challenge.lean": {
+        "sha": "59907596776474e25056bbb1edc1693d5f99e865",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/README.md": {
+        "sha": "79688f02e2a464eb61d1b319aa228fb9e2cef733",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/provenance.json": {
+        "sha": "149fc7dfc33057ce453fe024e868ce85ef7acb5f",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/Challenge.lean": {
+        "sha": "6d9bf51d75a2b26e2031101b7c09063b4a987463",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/README.md": {
+        "sha": "aa397503e1ccaea5ea8afa9b159ee96f55a8f79c",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/provenance.json": {
+        "sha": "98dd5e061f39b37b8368cec13261c6c662e97cc6",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/MatrixMultiplication.lean": {
+        "sha": "877d7ee3901c51382cf5bcb059a50d8dbb3cde77",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/PARAMETERIZED.md": {
+        "sha": "770fc98710a55839581d3df4a15d47c740e2efd2",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/README.md": {
+        "sha": "00eaee1d850380d8d256e0296f88dbc41d6e880d",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/Statement.lean": {
+        "sha": "5cb96f1f74fe8434a760bfa6a0bec377368cb79e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Model.lean": {
+        "sha": "2f4fdc7ccc43f1f6ad0fe38ffd003eb0f02c6b8e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/README.md": {
+        "sha": "411630001f2fed554a51ae00f19f25252278fc40",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Statement.lean": {
+        "sha": "534d9c26f7fe26d0b0c4d6bc89b8d99ffe9d49f5",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Validation.lean": {
+        "sha": "4c5c5c6ad10f7bf2dff8484bc48e4817a9ad5315",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/VerifierStatement.lean": {
+        "sha": "7dfc9131ab858720bd4e60381976116e0d2b4d9c",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/provenance.json": {
+        "sha": "c891f4ec50b1e82ca01007bf815f89d96d8288aa",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/NOTICE": {
+        "sha": "06e0bbb37735cf4079ba263501b9c554cd3b284d",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/README.md": {
+        "sha": "bfff73fd7b0cfaf073121f2c06cae9d51c30dafa",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Statement.lean": {
+        "sha": "c0e91ad53cae502517e6ec61c96acb1d82609003",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Validation.lean": {
+        "sha": "7a05112a6f08569e151ba01ddd6267ef8229e007",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/provenance.json": {
+        "sha": "f08f7a53b5cf892e7c3cfd2c240daca5e3d63b96",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/README.md": {
+        "sha": "17acdba938569ca5d4f18d509c821160a32c3e4f",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/Statement.lean": {
+        "sha": "9ece8585d2121119f6c10bdc1a1fde84da2c1773",
+        "mode": "100644"
+      },
+      "docs/cache-review.md": {
+        "sha": "cadfa9f7ab87e1b60e06d3440d5483b7a43214e3",
+        "mode": "100644"
+      },
+      "docs/convert-layout.md": {
+        "sha": "c4898c5aecf3795728d7436a03e67234c1aef77e",
+        "mode": "100644"
+      },
+      "docs/direct-submissions.md": {
+        "sha": "a8a4e85483966609b5fe2393a2de1e8781dfb609",
+        "mode": "100644"
+      },
+      "docs/execution.md": {
+        "sha": "f44d48cd930fc74bb09d4b81ae476b540422b0ed",
+        "mode": "100644"
+      },
+      "docs/new-statements.md": {
+        "sha": "9eca714e397732e0692d8bd419a53b61fc145c09",
+        "mode": "100644"
+      },
+      "docs/pr-submissions.md": {
+        "sha": "b2eebe79f0de90ba2e848f8c6f39b9ad5163093c",
+        "mode": "100644"
+      },
+      "docs/targets.md": {
+        "sha": "148806ea203efbd999643fa64fd4a6f452466fb4",
+        "mode": "100644"
+      },
+      "patches/openai-fd4aeeb-harfe-lean4341.patch": {
+        "sha": "1213fb0a7a24f0be2ba1b9a8db5af1434f02c4ec",
+        "mode": "100644"
+      },
+      "profiles/anthropic-lake-manifest.json": {
+        "sha": "278733a7ecc1563b8ceb70e62df049d43c6a83c6",
+        "mode": "100644"
+      },
+      "profiles/anthropic-tools.json": {
+        "sha": "0420a9ac9cb98045bd992ee6324023d834fcf86f",
+        "mode": "100644"
+      },
+      "profiles/critical-line-zeros.json": {
+        "sha": "212eebdcacc029adf9da20b28d09fdedc4b65e59",
+        "mode": "100644"
+      },
+      "profiles/dft-e8.json": {
+        "sha": "db1ce48093166e40e4734839d22257af86bd3beb",
+        "mode": "100644"
+      },
+      "profiles/dft233.json": {
+        "sha": "f8062d33870db562c95991226ffbe34c5bf87516",
+        "mode": "100644"
+      },
+      "profiles/direct.json": {
+        "sha": "832045f2485223bb172ea5546162fd0551043b65",
+        "mode": "100644"
+      },
+      "profiles/factoring-lake-manifest.json": {
+        "sha": "3bcf4ece8f2db54cea6de73858b895b7b094cef1",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring-sqrtlog.json": {
+        "sha": "f0455a965c1d2c4a403eaa33eb613867b88709d5",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring.json": {
+        "sha": "063511a73276dbefe81eb74253004ac3920e956e",
+        "mode": "100644"
+      },
+      "profiles/lake-manifest.json": {
+        "sha": "e482097fe44d3d747b31881ad5e329786531be6a",
+        "mode": "100644"
+      },
+      "profiles/matrix-nine-fourths.json": {
+        "sha": "b71865e3de7281bb184b18bdd7f14a75da220ada",
+        "mode": "100644"
+      },
+      "profiles/sssp-chd.json": {
+        "sha": "b57b38d2b902837a9b98164d1973ca99cdc58e99",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.33.0-rc2.json": {
+        "sha": "6cc71c9beb68685be28d7870c46684affc58ba1e",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.35.0.json": {
+        "sha": "b7f586ce6eb9ca35a462c3a470297e3aa877f21d",
+        "mode": "100644"
+      },
+      "profiles/tools.json": {
+        "sha": "7c4f522169f0c0df56d7a7055f1c51756439c35c",
+        "mode": "100644"
+      },
+      "profiles/zeta23-lake-manifest.json": {
+        "sha": "af9ef405e4e292f2e0176b12b6cb66f547575314",
+        "mode": "100644"
+      },
+      "scripts/CacheHashes.lean": {
+        "sha": "abbcb4b81afb1e41e2ba31e336242ce3fe6bf616",
+        "mode": "100644"
+      },
+      "scripts/check_matrix_dependency.py": {
+        "sha": "54b446a9ef7f47c76c29af3aad5587334541ecbd",
+        "mode": "100644"
+      },
+      "scripts/derivation.py": {
+        "sha": "a9338eed38cbd9e3b7eab0adcfb4544e06ad5eff",
+        "mode": "100644"
+      },
+      "scripts/inside.py": {
+        "sha": "5806633334420e499230ac38c36b19b5a0e7ff08",
+        "mode": "100644"
+      },
+      "scripts/lake-shim.c": {
+        "sha": "275782886c6fa39155508228a4809f80c8b14f20",
+        "mode": "100644"
+      },
+      "scripts/live_publish.py": {
+        "sha": "85168ad70b7d13ded1b840219b8471d3d25da887",
+        "mode": "100644"
+      },
+      "scripts/pr_submissions.py": {
+        "sha": "593eaec6af7707ceb8e1b8aca893690234e4d618",
+        "mode": "100644"
+      },
+      "scripts/queue_lease.py": {
+        "sha": "82fa8c3f453f5436ca025182a0d41afeb59d75bb",
+        "mode": "100644"
+      },
+      "scripts/smoke.py": {
+        "sha": "8d3dcdf5b48b77e4ca1b1c0477186731f9788c0a",
+        "mode": "100644"
+      },
+      "scripts/submissions.py": {
+        "sha": "8b54f4931d20c793082b57f38dd2e612d480816f",
+        "mode": "100644"
+      },
+      "scripts/verdicts.py": {
+        "sha": "8cd68e8113f2422f21cbe121f227576a3c1a6ab8",
+        "mode": "100644"
+      },
+      "scripts/verifier.py": {
+        "sha": "6783b6f633576adc869ed5456f767288421f7c08",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/dft-837dc31.json": {
+        "sha": "1300e4eb8a3eadb9076c86b9441cebdef08385a7",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/generic-envelope.json": {
+        "sha": "ad59202cea8833bc031f2f5652119c9a058c339b",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/historical-dft-receipt.json": {
+        "sha": "4662acbf1edaea188970f25b8bd187ad0c645584",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/issue-form-body.txt": {
+        "sha": "702f18518614667ab2d708527de267af2ed62e92",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-envelope.json": {
+        "sha": "2a8c5eb2673c33dc52ad71d5b4d85c5dfae302d3",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-receipt.json": {
+        "sha": "02e387f719dcb8d58e5b4f0cda9fde628bf8f862",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/prepare-report.json": {
+        "sha": "4b3956a0ccd1b5d294f436ab2a84f42980d64816",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/replayed-envelope.json": {
+        "sha": "80cd5f35a6812e88eb117019242f718beb6aa163",
+        "mode": "100644"
+      },
+      "tests/fixtures/sssp-cases.json": {
+        "sha": "65f7ddd7612c265c9ed7b90f6f1665c87bade543",
+        "mode": "100644"
+      },
+      "tests/test_api_retry.py": {
+        "sha": "e8903840bc25d91ce165b82ec02cf91ab7aeb183",
+        "mode": "100644"
+      },
+      "tests/test_average_sensitivity.py": {
+        "sha": "cd529ee9f64c3389986135cf3aeb824abec58180",
+        "mode": "100644"
+      },
+      "tests/test_catalan.py": {
+        "sha": "f25b1019b8ec7a0fc9f8d71673f80f9dad5e949a",
+        "mode": "100644"
+      },
+      "tests/test_critical_line_zeros.py": {
+        "sha": "65f8bed2cac92cace2400394b9e14f8abf61dd7f",
+        "mode": "100644"
+      },
+      "tests/test_derivation.py": {
+        "sha": "49b6a47f900a006b6615fad422e1e93b462a2f9d",
+        "mode": "100644"
+      },
+      "tests/test_directed_sssp.py": {
+        "sha": "8271abc6dea46c8603d2f9b53fe01f5f727f858c",
+        "mode": "100644"
+      },
+      "tests/test_github_pins.py": {
+        "sha": "c32efb82277f0885cd5db9bc85ef95706c9a295d",
+        "mode": "100644"
+      },
+      "tests/test_heilbronn.py": {
+        "sha": "480e8301d4ddc57b0a3933b93c51bafa9bb4a376",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring.py": {
+        "sha": "e6cc4ea4ce3a62aa4dce8c04f5f27cbdd17e7307",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring_sqrtlog.py": {
+        "sha": "cb062ac55c502a312ab472f59c97c517516be211",
+        "mode": "100644"
+      },
+      "tests/test_live_publish.py": {
+        "sha": "54d51420eb99092cbea6e278548235f524b14641",
+        "mode": "100644"
+      },
+      "tests/test_pr_submissions.py": {
+        "sha": "12b29ad9b89c78a0a6b44836ff71d5c1050f2008",
+        "mode": "100644"
+      },
+      "tests/test_prime_gaps.py": {
+        "sha": "0618ab8eb3a089490fd07d349d631c65078a2197",
+        "mode": "100644"
+      },
+      "tests/test_queue_security.py": {
+        "sha": "e9d75788cd1ca79a7aae38c06b01bdc8d300dd8d",
+        "mode": "100644"
+      },
+      "tests/test_smoke.py": {
+        "sha": "2a8d6929fa9eb8387f8d485566d146b011ac1314",
+        "mode": "100644"
+      },
+      "tests/test_snaky.py": {
+        "sha": "962a3af454d48bddde9f2a4d8c999f5778b0c5e6",
+        "mode": "100644"
+      },
+      "tests/test_solution_dependencies.py": {
+        "sha": "88130a4cfc59505e2b7f8a1c51ebc369aca6bb10",
+        "mode": "100644"
+      },
+      "tests/test_split_build.py": {
+        "sha": "8ccb226bf1fdce444c8b98c9f75a4ad24b94b764",
+        "mode": "100644"
+      },
+      "tests/test_submissions.py": {
+        "sha": "949efd343db1c314e1f5f1082af147a75e99fee7",
+        "mode": "100644"
+      },
+      "tests/test_subset_sum.py": {
+        "sha": "6e48858d44f70a7e3f2ffcc02ff0557c66de8856",
+        "mode": "100644"
+      },
+      "tests/test_tool_pins.py": {
+        "sha": "00da2db0d8e1c735ccb419fa8a9650ad40250eda",
+        "mode": "100644"
+      },
+      "tests/test_verifier.py": {
+        "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
+        "mode": "100644"
+      }
+    },
+    "b86be362cae29d6d8fa7802e012a45c1006f44a9": {
+      ".github/ISSUE_TEMPLATE/lean-submission.yml": {
+        "sha": "21185f4b6a352a33f866c979701ee11e0ad8554d",
+        "mode": "100644"
+      },
+      ".github/workflows/check-matrix-dependency.yml": {
+        "sha": "311eaae86a044b98e37212cd73167fe760050a6a",
+        "mode": "100644"
+      },
+      ".github/workflows/pr-publish.yml": {
+        "sha": "8ac3ea8bfc9e4255197b0c781c66d93a0f5926fb",
+        "mode": "100644"
+      },
+      ".github/workflows/submission-check.yml": {
+        "sha": "c5e73af13aa764369e24a687c36630edc4c4e140",
+        "mode": "100644"
+      },
+      ".github/workflows/submissions.yml": {
+        "sha": "a75a1bef64ea6f4509422f4e704e9d2f3242cdd8",
+        "mode": "100644"
+      },
+      ".github/workflows/verify.yml": {
+        "sha": "0f267d5f57ef2adc2f2dd0aadba52dd5caa97387",
+        "mode": "100644"
+      },
+      ".gitignore": {
+        "sha": "209a5554ca89b5f26b69fe761eb43a40c9bf70df",
+        "mode": "100644"
+      },
+      "AGENTS.md": {
+        "sha": "a3aaf5059f6fc5ab30b08dcf1f47f35b083781ec",
+        "mode": "100644"
+      },
+      "LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "NOTICE": {
+        "sha": "439e6ef90565618dfdde2989e63dfc351adbc398",
+        "mode": "100644"
+      },
+      "README.md": {
+        "sha": "d25e8667c1fa43dd7654560636d4950af806ecc1",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/EndStatement.lean": {
+        "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/NOTICE": {
+        "sha": "0a0dbf49888306f7d732790bbbf2ca2e75c37e6b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/NOTICE": {
+        "sha": "2962b8aef068820d088a94b77d12a16faeb9b792",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/OAI/Combinatorics/GotsmanLinial/Model.lean": {
+        "sha": "fe42ea84d4bf21bee7da1491674254a125f46c5b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/README.md": {
+        "sha": "58c0be4a36b9979fde2a6912d56aa05d652d4072",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/Statement.lean": {
+        "sha": "b697f45a857bd6cfa7aacdd14fc2f1b3d4c3a500",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/VerifierStatement.lean": {
+        "sha": "463b6a0311a7d2104622765674dc84810bff82f2",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/provenance.json": {
+        "sha": "656653688e00b868d85910f605a01b0ec11099df",
+        "mode": "100644"
+      },
+      "challenges/catalan/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/catalan/NOTICE": {
+        "sha": "d24e051f4245fb1b0707b8248b2ffc4bebec597e",
+        "mode": "100644"
+      },
+      "challenges/catalan/README.md": {
+        "sha": "a55b761fa7a878717408a6dfa4cd1e60c72eea5f",
+        "mode": "100644"
+      },
+      "challenges/catalan/Statement.lean": {
+        "sha": "078c9c92383d73cbdf5c0dbc91a1af8a33029a66",
+        "mode": "100644"
+      },
+      "challenges/catalan/Validation.lean": {
+        "sha": "145d3bb81b7b0b0d170131fe78441d991e8cbd8c",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/Challenge.lean": {
+        "sha": "6da17cdcf6ca29c831279867fc9908850df90f8b",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/NOTICE": {
+        "sha": "8de3803673ccab52dd029d6b9942f4f410c57fe4",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/README.md": {
+        "sha": "51e6c468bfc4f60d89f8b7491597b6378f062c5d",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/provenance.json": {
+        "sha": "dca0379ed12999326441b9c92db2f92a22737825",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourier233.lean": {
+        "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourierE8.lean": {
+        "sha": "3235d8621b218a5807b1e5238558d8f7c72d1489",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/CHDRow.lean": {
+        "sha": "15b8bd3fb9a21322698ac65bdf22542a0133413a",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/README.md": {
+        "sha": "367d294c25e6c7f7d53ecca5ab0e1359de388d73",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/Validation.lean": {
+        "sha": "66ecc6e1d7a68edded980a0cf866d6342eb1d6d6",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/VerifierStatement.lean": {
+        "sha": "758ef89d8b96d6bb1f0dd35bab3456e49863ca86",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/NOTICE": {
+        "sha": "2cfec1b795fabf1a14f38cd17bb572a401b172d2",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/OAI/Geometry/HeilbronnTriangle/Definitions.lean": {
+        "sha": "6dd76ecff9b1300987f9412b5f434257f261d39d",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/README.md": {
+        "sha": "80429868d90a34f622b240dd2f3bf579d95ed0e4",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Statement.lean": {
+        "sha": "e2513ec608abcc958d9bb2b9f44e0da98c62ebe5",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Validation.lean": {
+        "sha": "dd3b279322323d336eb75bf4854ab6be2d314768",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/VerifierStatement.lean": {
+        "sha": "bff8ba7bc805b881893123eb9b26e348b2bb6ee8",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/provenance.json": {
+        "sha": "9a947939bfa7b812d3347b26c427842722a54aa4",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/Challenge.lean": {
+        "sha": "59907596776474e25056bbb1edc1693d5f99e865",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/README.md": {
+        "sha": "79688f02e2a464eb61d1b319aa228fb9e2cef733",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/provenance.json": {
+        "sha": "149fc7dfc33057ce453fe024e868ce85ef7acb5f",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/Challenge.lean": {
+        "sha": "6d9bf51d75a2b26e2031101b7c09063b4a987463",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/README.md": {
+        "sha": "aa397503e1ccaea5ea8afa9b159ee96f55a8f79c",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/provenance.json": {
+        "sha": "98dd5e061f39b37b8368cec13261c6c662e97cc6",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/MatrixMultiplication.lean": {
+        "sha": "877d7ee3901c51382cf5bcb059a50d8dbb3cde77",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/PARAMETERIZED.md": {
+        "sha": "770fc98710a55839581d3df4a15d47c740e2efd2",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/README.md": {
+        "sha": "00eaee1d850380d8d256e0296f88dbc41d6e880d",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/Statement.lean": {
+        "sha": "5cb96f1f74fe8434a760bfa6a0bec377368cb79e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Model.lean": {
+        "sha": "2f4fdc7ccc43f1f6ad0fe38ffd003eb0f02c6b8e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/README.md": {
+        "sha": "411630001f2fed554a51ae00f19f25252278fc40",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Statement.lean": {
+        "sha": "534d9c26f7fe26d0b0c4d6bc89b8d99ffe9d49f5",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Validation.lean": {
+        "sha": "4c5c5c6ad10f7bf2dff8484bc48e4817a9ad5315",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/VerifierStatement.lean": {
+        "sha": "7dfc9131ab858720bd4e60381976116e0d2b4d9c",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/provenance.json": {
+        "sha": "c891f4ec50b1e82ca01007bf815f89d96d8288aa",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/NOTICE": {
+        "sha": "06e0bbb37735cf4079ba263501b9c554cd3b284d",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/README.md": {
+        "sha": "bfff73fd7b0cfaf073121f2c06cae9d51c30dafa",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Statement.lean": {
+        "sha": "c0e91ad53cae502517e6ec61c96acb1d82609003",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Validation.lean": {
+        "sha": "7a05112a6f08569e151ba01ddd6267ef8229e007",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/provenance.json": {
+        "sha": "f08f7a53b5cf892e7c3cfd2c240daca5e3d63b96",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/README.md": {
+        "sha": "17acdba938569ca5d4f18d509c821160a32c3e4f",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/Statement.lean": {
+        "sha": "9ece8585d2121119f6c10bdc1a1fde84da2c1773",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/Challenge.lean": {
+        "sha": "bee3f5a820455ead2a00f8fdc08d4ae5276cba2a",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/README.md": {
+        "sha": "508c50f63080b2ef8209e5b7fb49fa1f04496fc3",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/provenance.json": {
+        "sha": "1772924eee7fff6780b7acfa25f7e5e4a6f4d0f0",
+        "mode": "100644"
+      },
+      "docs/cache-review.md": {
+        "sha": "cadfa9f7ab87e1b60e06d3440d5483b7a43214e3",
+        "mode": "100644"
+      },
+      "docs/convert-layout.md": {
+        "sha": "c4898c5aecf3795728d7436a03e67234c1aef77e",
+        "mode": "100644"
+      },
+      "docs/direct-submissions.md": {
+        "sha": "a8a4e85483966609b5fe2393a2de1e8781dfb609",
+        "mode": "100644"
+      },
+      "docs/execution.md": {
+        "sha": "f44d48cd930fc74bb09d4b81ae476b540422b0ed",
+        "mode": "100644"
+      },
+      "docs/new-statements.md": {
+        "sha": "9eca714e397732e0692d8bd419a53b61fc145c09",
+        "mode": "100644"
+      },
+      "docs/pr-submissions.md": {
+        "sha": "b2eebe79f0de90ba2e848f8c6f39b9ad5163093c",
+        "mode": "100644"
+      },
+      "docs/targets.md": {
+        "sha": "ee74edcbaa18a4fe082e5571c4f0a99cc60ec106",
+        "mode": "100644"
+      },
+      "patches/openai-fd4aeeb-harfe-lean4341.patch": {
+        "sha": "1213fb0a7a24f0be2ba1b9a8db5af1434f02c4ec",
+        "mode": "100644"
+      },
+      "profiles/anthropic-lake-manifest.json": {
+        "sha": "278733a7ecc1563b8ceb70e62df049d43c6a83c6",
+        "mode": "100644"
+      },
+      "profiles/anthropic-tools.json": {
+        "sha": "0420a9ac9cb98045bd992ee6324023d834fcf86f",
+        "mode": "100644"
+      },
+      "profiles/critical-line-zeros.json": {
+        "sha": "212eebdcacc029adf9da20b28d09fdedc4b65e59",
+        "mode": "100644"
+      },
+      "profiles/dft-e8.json": {
+        "sha": "db1ce48093166e40e4734839d22257af86bd3beb",
+        "mode": "100644"
+      },
+      "profiles/dft233.json": {
+        "sha": "f8062d33870db562c95991226ffbe34c5bf87516",
+        "mode": "100644"
+      },
+      "profiles/direct.json": {
+        "sha": "832045f2485223bb172ea5546162fd0551043b65",
+        "mode": "100644"
+      },
+      "profiles/factoring-lake-manifest.json": {
+        "sha": "3bcf4ece8f2db54cea6de73858b895b7b094cef1",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring-sqrtlog.json": {
+        "sha": "f0455a965c1d2c4a403eaa33eb613867b88709d5",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring.json": {
+        "sha": "063511a73276dbefe81eb74253004ac3920e956e",
+        "mode": "100644"
+      },
+      "profiles/lake-manifest.json": {
+        "sha": "e482097fe44d3d747b31881ad5e329786531be6a",
+        "mode": "100644"
+      },
+      "profiles/matrix-nine-fourths.json": {
+        "sha": "b71865e3de7281bb184b18bdd7f14a75da220ada",
+        "mode": "100644"
+      },
+      "profiles/sssp-chd.json": {
+        "sha": "b57b38d2b902837a9b98164d1973ca99cdc58e99",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.33.0-rc2.json": {
+        "sha": "6cc71c9beb68685be28d7870c46684affc58ba1e",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.35.0.json": {
+        "sha": "b7f586ce6eb9ca35a462c3a470297e3aa877f21d",
+        "mode": "100644"
+      },
+      "profiles/tools.json": {
+        "sha": "7c4f522169f0c0df56d7a7055f1c51756439c35c",
+        "mode": "100644"
+      },
+      "profiles/van-der-waerden.json": {
+        "sha": "b1f99869cb050e90ec2b8492cfe3e303b74c7cf8",
+        "mode": "100644"
+      },
+      "profiles/zeta23-lake-manifest.json": {
+        "sha": "af9ef405e4e292f2e0176b12b6cb66f547575314",
+        "mode": "100644"
+      },
+      "scripts/CacheHashes.lean": {
+        "sha": "abbcb4b81afb1e41e2ba31e336242ce3fe6bf616",
+        "mode": "100644"
+      },
+      "scripts/check_matrix_dependency.py": {
+        "sha": "54b446a9ef7f47c76c29af3aad5587334541ecbd",
+        "mode": "100644"
+      },
+      "scripts/derivation.py": {
+        "sha": "a9338eed38cbd9e3b7eab0adcfb4544e06ad5eff",
+        "mode": "100644"
+      },
+      "scripts/inside.py": {
+        "sha": "5806633334420e499230ac38c36b19b5a0e7ff08",
+        "mode": "100644"
+      },
+      "scripts/lake-shim.c": {
+        "sha": "275782886c6fa39155508228a4809f80c8b14f20",
+        "mode": "100644"
+      },
+      "scripts/live_publish.py": {
+        "sha": "85168ad70b7d13ded1b840219b8471d3d25da887",
+        "mode": "100644"
+      },
+      "scripts/pr_submissions.py": {
+        "sha": "593eaec6af7707ceb8e1b8aca893690234e4d618",
+        "mode": "100644"
+      },
+      "scripts/queue_lease.py": {
+        "sha": "82fa8c3f453f5436ca025182a0d41afeb59d75bb",
+        "mode": "100644"
+      },
+      "scripts/smoke.py": {
+        "sha": "8d3dcdf5b48b77e4ca1b1c0477186731f9788c0a",
+        "mode": "100644"
+      },
+      "scripts/submissions.py": {
+        "sha": "8b54f4931d20c793082b57f38dd2e612d480816f",
+        "mode": "100644"
+      },
+      "scripts/verdicts.py": {
+        "sha": "8cd68e8113f2422f21cbe121f227576a3c1a6ab8",
+        "mode": "100644"
+      },
+      "scripts/verifier.py": {
+        "sha": "6783b6f633576adc869ed5456f767288421f7c08",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/dft-837dc31.json": {
+        "sha": "1300e4eb8a3eadb9076c86b9441cebdef08385a7",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/generic-envelope.json": {
+        "sha": "ad59202cea8833bc031f2f5652119c9a058c339b",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/historical-dft-receipt.json": {
+        "sha": "4662acbf1edaea188970f25b8bd187ad0c645584",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/issue-form-body.txt": {
+        "sha": "702f18518614667ab2d708527de267af2ed62e92",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-envelope.json": {
+        "sha": "2a8c5eb2673c33dc52ad71d5b4d85c5dfae302d3",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-receipt.json": {
+        "sha": "02e387f719dcb8d58e5b4f0cda9fde628bf8f862",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/prepare-report.json": {
+        "sha": "4b3956a0ccd1b5d294f436ab2a84f42980d64816",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/replayed-envelope.json": {
+        "sha": "80cd5f35a6812e88eb117019242f718beb6aa163",
+        "mode": "100644"
+      },
+      "tests/fixtures/sssp-cases.json": {
+        "sha": "65f7ddd7612c265c9ed7b90f6f1665c87bade543",
+        "mode": "100644"
+      },
+      "tests/test_api_retry.py": {
+        "sha": "e8903840bc25d91ce165b82ec02cf91ab7aeb183",
+        "mode": "100644"
+      },
+      "tests/test_average_sensitivity.py": {
+        "sha": "cd529ee9f64c3389986135cf3aeb824abec58180",
+        "mode": "100644"
+      },
+      "tests/test_catalan.py": {
+        "sha": "f25b1019b8ec7a0fc9f8d71673f80f9dad5e949a",
+        "mode": "100644"
+      },
+      "tests/test_critical_line_zeros.py": {
+        "sha": "65f8bed2cac92cace2400394b9e14f8abf61dd7f",
+        "mode": "100644"
+      },
+      "tests/test_derivation.py": {
+        "sha": "49b6a47f900a006b6615fad422e1e93b462a2f9d",
+        "mode": "100644"
+      },
+      "tests/test_directed_sssp.py": {
+        "sha": "8271abc6dea46c8603d2f9b53fe01f5f727f858c",
+        "mode": "100644"
+      },
+      "tests/test_github_pins.py": {
+        "sha": "c32efb82277f0885cd5db9bc85ef95706c9a295d",
+        "mode": "100644"
+      },
+      "tests/test_heilbronn.py": {
+        "sha": "480e8301d4ddc57b0a3933b93c51bafa9bb4a376",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring.py": {
+        "sha": "e6cc4ea4ce3a62aa4dce8c04f5f27cbdd17e7307",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring_sqrtlog.py": {
+        "sha": "cb062ac55c502a312ab472f59c97c517516be211",
+        "mode": "100644"
+      },
+      "tests/test_live_publish.py": {
+        "sha": "54d51420eb99092cbea6e278548235f524b14641",
+        "mode": "100644"
+      },
+      "tests/test_pr_submissions.py": {
+        "sha": "12b29ad9b89c78a0a6b44836ff71d5c1050f2008",
+        "mode": "100644"
+      },
+      "tests/test_prime_gaps.py": {
+        "sha": "0618ab8eb3a089490fd07d349d631c65078a2197",
+        "mode": "100644"
+      },
+      "tests/test_queue_security.py": {
+        "sha": "e9d75788cd1ca79a7aae38c06b01bdc8d300dd8d",
+        "mode": "100644"
+      },
+      "tests/test_smoke.py": {
+        "sha": "2a8d6929fa9eb8387f8d485566d146b011ac1314",
+        "mode": "100644"
+      },
+      "tests/test_snaky.py": {
+        "sha": "962a3af454d48bddde9f2a4d8c999f5778b0c5e6",
+        "mode": "100644"
+      },
+      "tests/test_solution_dependencies.py": {
+        "sha": "88130a4cfc59505e2b7f8a1c51ebc369aca6bb10",
+        "mode": "100644"
+      },
+      "tests/test_split_build.py": {
+        "sha": "8ccb226bf1fdce444c8b98c9f75a4ad24b94b764",
+        "mode": "100644"
+      },
+      "tests/test_submissions.py": {
+        "sha": "949efd343db1c314e1f5f1082af147a75e99fee7",
+        "mode": "100644"
+      },
+      "tests/test_subset_sum.py": {
+        "sha": "6e48858d44f70a7e3f2ffcc02ff0557c66de8856",
+        "mode": "100644"
+      },
+      "tests/test_tool_pins.py": {
+        "sha": "00da2db0d8e1c735ccb419fa8a9650ad40250eda",
+        "mode": "100644"
+      },
+      "tests/test_van_der_waerden.py": {
+        "sha": "3eef236835cb711351ad06e104d491f86acd05bd",
+        "mode": "100644"
+      },
+      "tests/test_verifier.py": {
+        "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
+        "mode": "100644"
+      }
+    },
+    "2d447262ed6f57b5cbe9d7a23fcb24159b30295b": {
+      ".github/ISSUE_TEMPLATE/lean-submission.yml": {
+        "sha": "21185f4b6a352a33f866c979701ee11e0ad8554d",
+        "mode": "100644"
+      },
+      ".github/workflows/check-matrix-dependency.yml": {
+        "sha": "311eaae86a044b98e37212cd73167fe760050a6a",
+        "mode": "100644"
+      },
+      ".github/workflows/pr-publish.yml": {
+        "sha": "8ac3ea8bfc9e4255197b0c781c66d93a0f5926fb",
+        "mode": "100644"
+      },
+      ".github/workflows/submission-check.yml": {
+        "sha": "c5e73af13aa764369e24a687c36630edc4c4e140",
+        "mode": "100644"
+      },
+      ".github/workflows/submissions.yml": {
+        "sha": "a75a1bef64ea6f4509422f4e704e9d2f3242cdd8",
+        "mode": "100644"
+      },
+      ".github/workflows/verify.yml": {
+        "sha": "0f267d5f57ef2adc2f2dd0aadba52dd5caa97387",
+        "mode": "100644"
+      },
+      ".gitignore": {
+        "sha": "209a5554ca89b5f26b69fe761eb43a40c9bf70df",
+        "mode": "100644"
+      },
+      "AGENTS.md": {
+        "sha": "a3aaf5059f6fc5ab30b08dcf1f47f35b083781ec",
+        "mode": "100644"
+      },
+      "LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "NOTICE": {
+        "sha": "439e6ef90565618dfdde2989e63dfc351adbc398",
+        "mode": "100644"
+      },
+      "README.md": {
+        "sha": "d25e8667c1fa43dd7654560636d4950af806ecc1",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/EndStatement.lean": {
+        "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/NOTICE": {
+        "sha": "0a0dbf49888306f7d732790bbbf2ca2e75c37e6b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/NOTICE": {
+        "sha": "2962b8aef068820d088a94b77d12a16faeb9b792",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/OAI/Combinatorics/GotsmanLinial/Model.lean": {
+        "sha": "fe42ea84d4bf21bee7da1491674254a125f46c5b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/README.md": {
+        "sha": "58c0be4a36b9979fde2a6912d56aa05d652d4072",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/Statement.lean": {
+        "sha": "b697f45a857bd6cfa7aacdd14fc2f1b3d4c3a500",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/VerifierStatement.lean": {
+        "sha": "463b6a0311a7d2104622765674dc84810bff82f2",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/provenance.json": {
+        "sha": "656653688e00b868d85910f605a01b0ec11099df",
+        "mode": "100644"
+      },
+      "challenges/catalan/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/catalan/NOTICE": {
+        "sha": "d24e051f4245fb1b0707b8248b2ffc4bebec597e",
+        "mode": "100644"
+      },
+      "challenges/catalan/README.md": {
+        "sha": "a55b761fa7a878717408a6dfa4cd1e60c72eea5f",
+        "mode": "100644"
+      },
+      "challenges/catalan/Statement.lean": {
+        "sha": "078c9c92383d73cbdf5c0dbc91a1af8a33029a66",
+        "mode": "100644"
+      },
+      "challenges/catalan/Validation.lean": {
+        "sha": "145d3bb81b7b0b0d170131fe78441d991e8cbd8c",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/Challenge.lean": {
+        "sha": "6da17cdcf6ca29c831279867fc9908850df90f8b",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/NOTICE": {
+        "sha": "8de3803673ccab52dd029d6b9942f4f410c57fe4",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/README.md": {
+        "sha": "51e6c468bfc4f60d89f8b7491597b6378f062c5d",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/provenance.json": {
+        "sha": "dca0379ed12999326441b9c92db2f92a22737825",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourier233.lean": {
+        "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourierE8.lean": {
+        "sha": "3235d8621b218a5807b1e5238558d8f7c72d1489",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/CHDRow.lean": {
+        "sha": "15b8bd3fb9a21322698ac65bdf22542a0133413a",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/README.md": {
+        "sha": "367d294c25e6c7f7d53ecca5ab0e1359de388d73",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/Validation.lean": {
+        "sha": "66ecc6e1d7a68edded980a0cf866d6342eb1d6d6",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/VerifierStatement.lean": {
+        "sha": "758ef89d8b96d6bb1f0dd35bab3456e49863ca86",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/NOTICE": {
+        "sha": "2cfec1b795fabf1a14f38cd17bb572a401b172d2",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/OAI/Geometry/HeilbronnTriangle/Definitions.lean": {
+        "sha": "6dd76ecff9b1300987f9412b5f434257f261d39d",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/README.md": {
+        "sha": "80429868d90a34f622b240dd2f3bf579d95ed0e4",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Statement.lean": {
+        "sha": "e2513ec608abcc958d9bb2b9f44e0da98c62ebe5",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Validation.lean": {
+        "sha": "dd3b279322323d336eb75bf4854ab6be2d314768",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/VerifierStatement.lean": {
+        "sha": "bff8ba7bc805b881893123eb9b26e348b2bb6ee8",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/provenance.json": {
+        "sha": "9a947939bfa7b812d3347b26c427842722a54aa4",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/Challenge.lean": {
+        "sha": "59907596776474e25056bbb1edc1693d5f99e865",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/README.md": {
+        "sha": "79688f02e2a464eb61d1b319aa228fb9e2cef733",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/provenance.json": {
+        "sha": "149fc7dfc33057ce453fe024e868ce85ef7acb5f",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/Challenge.lean": {
+        "sha": "6d9bf51d75a2b26e2031101b7c09063b4a987463",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/README.md": {
+        "sha": "aa397503e1ccaea5ea8afa9b159ee96f55a8f79c",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/provenance.json": {
+        "sha": "98dd5e061f39b37b8368cec13261c6c662e97cc6",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/MatrixMultiplication.lean": {
+        "sha": "877d7ee3901c51382cf5bcb059a50d8dbb3cde77",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/PARAMETERIZED.md": {
+        "sha": "770fc98710a55839581d3df4a15d47c740e2efd2",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/README.md": {
+        "sha": "00eaee1d850380d8d256e0296f88dbc41d6e880d",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/Statement.lean": {
+        "sha": "5cb96f1f74fe8434a760bfa6a0bec377368cb79e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Model.lean": {
+        "sha": "2f4fdc7ccc43f1f6ad0fe38ffd003eb0f02c6b8e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/README.md": {
+        "sha": "411630001f2fed554a51ae00f19f25252278fc40",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Statement.lean": {
+        "sha": "534d9c26f7fe26d0b0c4d6bc89b8d99ffe9d49f5",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Validation.lean": {
+        "sha": "4c5c5c6ad10f7bf2dff8484bc48e4817a9ad5315",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/VerifierStatement.lean": {
+        "sha": "7dfc9131ab858720bd4e60381976116e0d2b4d9c",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/provenance.json": {
+        "sha": "c891f4ec50b1e82ca01007bf815f89d96d8288aa",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/NOTICE": {
+        "sha": "06e0bbb37735cf4079ba263501b9c554cd3b284d",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/README.md": {
+        "sha": "bfff73fd7b0cfaf073121f2c06cae9d51c30dafa",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Statement.lean": {
+        "sha": "c0e91ad53cae502517e6ec61c96acb1d82609003",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Validation.lean": {
+        "sha": "7a05112a6f08569e151ba01ddd6267ef8229e007",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/provenance.json": {
+        "sha": "f08f7a53b5cf892e7c3cfd2c240daca5e3d63b96",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/README.md": {
+        "sha": "17acdba938569ca5d4f18d509c821160a32c3e4f",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/Statement.lean": {
+        "sha": "9ece8585d2121119f6c10bdc1a1fde84da2c1773",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/Challenge.lean": {
+        "sha": "bee3f5a820455ead2a00f8fdc08d4ae5276cba2a",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/README.md": {
+        "sha": "508c50f63080b2ef8209e5b7fb49fa1f04496fc3",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/provenance.json": {
+        "sha": "1772924eee7fff6780b7acfa25f7e5e4a6f4d0f0",
+        "mode": "100644"
+      },
+      "docs/cache-review.md": {
+        "sha": "cadfa9f7ab87e1b60e06d3440d5483b7a43214e3",
+        "mode": "100644"
+      },
+      "docs/convert-layout.md": {
+        "sha": "c4898c5aecf3795728d7436a03e67234c1aef77e",
+        "mode": "100644"
+      },
+      "docs/direct-submissions.md": {
+        "sha": "a8a4e85483966609b5fe2393a2de1e8781dfb609",
+        "mode": "100644"
+      },
+      "docs/execution.md": {
+        "sha": "f44d48cd930fc74bb09d4b81ae476b540422b0ed",
+        "mode": "100644"
+      },
+      "docs/new-statements.md": {
+        "sha": "9eca714e397732e0692d8bd419a53b61fc145c09",
+        "mode": "100644"
+      },
+      "docs/pr-submissions.md": {
+        "sha": "b2eebe79f0de90ba2e848f8c6f39b9ad5163093c",
+        "mode": "100644"
+      },
+      "docs/targets.md": {
+        "sha": "ee74edcbaa18a4fe082e5571c4f0a99cc60ec106",
+        "mode": "100644"
+      },
+      "patches/openai-fd4aeeb-harfe-lean4341.patch": {
+        "sha": "1213fb0a7a24f0be2ba1b9a8db5af1434f02c4ec",
+        "mode": "100644"
+      },
+      "profiles/anthropic-lake-manifest.json": {
+        "sha": "278733a7ecc1563b8ceb70e62df049d43c6a83c6",
+        "mode": "100644"
+      },
+      "profiles/anthropic-tools.json": {
+        "sha": "0420a9ac9cb98045bd992ee6324023d834fcf86f",
+        "mode": "100644"
+      },
+      "profiles/critical-line-zeros.json": {
+        "sha": "212eebdcacc029adf9da20b28d09fdedc4b65e59",
+        "mode": "100644"
+      },
+      "profiles/dft-e8.json": {
+        "sha": "db1ce48093166e40e4734839d22257af86bd3beb",
+        "mode": "100644"
+      },
+      "profiles/dft233.json": {
+        "sha": "f8062d33870db562c95991226ffbe34c5bf87516",
+        "mode": "100644"
+      },
+      "profiles/direct.json": {
+        "sha": "5ae94e41ceb84f53b9d20edfb065c3ab75bc65bd",
+        "mode": "100644"
+      },
+      "profiles/factoring-lake-manifest.json": {
+        "sha": "3bcf4ece8f2db54cea6de73858b895b7b094cef1",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring-sqrtlog.json": {
+        "sha": "f0455a965c1d2c4a403eaa33eb613867b88709d5",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring.json": {
+        "sha": "063511a73276dbefe81eb74253004ac3920e956e",
+        "mode": "100644"
+      },
+      "profiles/lake-manifest.json": {
+        "sha": "e482097fe44d3d747b31881ad5e329786531be6a",
+        "mode": "100644"
+      },
+      "profiles/matrix-nine-fourths.json": {
+        "sha": "b71865e3de7281bb184b18bdd7f14a75da220ada",
+        "mode": "100644"
+      },
+      "profiles/sssp-chd.json": {
+        "sha": "b57b38d2b902837a9b98164d1973ca99cdc58e99",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.33.0-rc2.json": {
+        "sha": "6cc71c9beb68685be28d7870c46684affc58ba1e",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.35.0.json": {
+        "sha": "b7f586ce6eb9ca35a462c3a470297e3aa877f21d",
+        "mode": "100644"
+      },
+      "profiles/tools.json": {
+        "sha": "7c4f522169f0c0df56d7a7055f1c51756439c35c",
+        "mode": "100644"
+      },
+      "profiles/van-der-waerden.json": {
+        "sha": "b1f99869cb050e90ec2b8492cfe3e303b74c7cf8",
+        "mode": "100644"
+      },
+      "profiles/zeta23-lake-manifest.json": {
+        "sha": "af9ef405e4e292f2e0176b12b6cb66f547575314",
+        "mode": "100644"
+      },
+      "scripts/CacheHashes.lean": {
+        "sha": "abbcb4b81afb1e41e2ba31e336242ce3fe6bf616",
+        "mode": "100644"
+      },
+      "scripts/check_matrix_dependency.py": {
+        "sha": "54b446a9ef7f47c76c29af3aad5587334541ecbd",
+        "mode": "100644"
+      },
+      "scripts/derivation.py": {
+        "sha": "a9338eed38cbd9e3b7eab0adcfb4544e06ad5eff",
+        "mode": "100644"
+      },
+      "scripts/inside.py": {
+        "sha": "5806633334420e499230ac38c36b19b5a0e7ff08",
+        "mode": "100644"
+      },
+      "scripts/lake-shim.c": {
+        "sha": "275782886c6fa39155508228a4809f80c8b14f20",
+        "mode": "100644"
+      },
+      "scripts/live_publish.py": {
+        "sha": "85168ad70b7d13ded1b840219b8471d3d25da887",
+        "mode": "100644"
+      },
+      "scripts/pr_submissions.py": {
+        "sha": "593eaec6af7707ceb8e1b8aca893690234e4d618",
+        "mode": "100644"
+      },
+      "scripts/queue_lease.py": {
+        "sha": "82fa8c3f453f5436ca025182a0d41afeb59d75bb",
+        "mode": "100644"
+      },
+      "scripts/smoke.py": {
+        "sha": "8d3dcdf5b48b77e4ca1b1c0477186731f9788c0a",
+        "mode": "100644"
+      },
+      "scripts/submissions.py": {
+        "sha": "8b54f4931d20c793082b57f38dd2e612d480816f",
+        "mode": "100644"
+      },
+      "scripts/verdicts.py": {
+        "sha": "8cd68e8113f2422f21cbe121f227576a3c1a6ab8",
+        "mode": "100644"
+      },
+      "scripts/verifier.py": {
+        "sha": "6783b6f633576adc869ed5456f767288421f7c08",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/dft-837dc31.json": {
+        "sha": "1300e4eb8a3eadb9076c86b9441cebdef08385a7",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/generic-envelope.json": {
+        "sha": "ad59202cea8833bc031f2f5652119c9a058c339b",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/historical-dft-receipt.json": {
+        "sha": "4662acbf1edaea188970f25b8bd187ad0c645584",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/issue-form-body.txt": {
+        "sha": "702f18518614667ab2d708527de267af2ed62e92",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-envelope.json": {
+        "sha": "2a8c5eb2673c33dc52ad71d5b4d85c5dfae302d3",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-receipt.json": {
+        "sha": "02e387f719dcb8d58e5b4f0cda9fde628bf8f862",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/prepare-report.json": {
+        "sha": "4b3956a0ccd1b5d294f436ab2a84f42980d64816",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/replayed-envelope.json": {
+        "sha": "80cd5f35a6812e88eb117019242f718beb6aa163",
+        "mode": "100644"
+      },
+      "tests/fixtures/sssp-cases.json": {
+        "sha": "65f7ddd7612c265c9ed7b90f6f1665c87bade543",
+        "mode": "100644"
+      },
+      "tests/test_api_retry.py": {
+        "sha": "e8903840bc25d91ce165b82ec02cf91ab7aeb183",
+        "mode": "100644"
+      },
+      "tests/test_average_sensitivity.py": {
+        "sha": "cd529ee9f64c3389986135cf3aeb824abec58180",
+        "mode": "100644"
+      },
+      "tests/test_catalan.py": {
+        "sha": "f25b1019b8ec7a0fc9f8d71673f80f9dad5e949a",
+        "mode": "100644"
+      },
+      "tests/test_critical_line_zeros.py": {
+        "sha": "65f8bed2cac92cace2400394b9e14f8abf61dd7f",
+        "mode": "100644"
+      },
+      "tests/test_derivation.py": {
+        "sha": "49b6a47f900a006b6615fad422e1e93b462a2f9d",
+        "mode": "100644"
+      },
+      "tests/test_directed_sssp.py": {
+        "sha": "8271abc6dea46c8603d2f9b53fe01f5f727f858c",
+        "mode": "100644"
+      },
+      "tests/test_github_pins.py": {
+        "sha": "c32efb82277f0885cd5db9bc85ef95706c9a295d",
+        "mode": "100644"
+      },
+      "tests/test_heilbronn.py": {
+        "sha": "480e8301d4ddc57b0a3933b93c51bafa9bb4a376",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring.py": {
+        "sha": "e6cc4ea4ce3a62aa4dce8c04f5f27cbdd17e7307",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring_sqrtlog.py": {
+        "sha": "aaba2dbfa44575962c71d9c69d3c9d2b7eea58f4",
+        "mode": "100644"
+      },
+      "tests/test_live_publish.py": {
+        "sha": "54d51420eb99092cbea6e278548235f524b14641",
+        "mode": "100644"
+      },
+      "tests/test_pr_submissions.py": {
+        "sha": "12b29ad9b89c78a0a6b44836ff71d5c1050f2008",
+        "mode": "100644"
+      },
+      "tests/test_prime_gaps.py": {
+        "sha": "2834f584ba5dc307dfbea6f72be45cfc1e3f6bd2",
+        "mode": "100644"
+      },
+      "tests/test_queue_security.py": {
+        "sha": "e9d75788cd1ca79a7aae38c06b01bdc8d300dd8d",
+        "mode": "100644"
+      },
+      "tests/test_smoke.py": {
+        "sha": "2a8d6929fa9eb8387f8d485566d146b011ac1314",
+        "mode": "100644"
+      },
+      "tests/test_snaky.py": {
+        "sha": "962a3af454d48bddde9f2a4d8c999f5778b0c5e6",
+        "mode": "100644"
+      },
+      "tests/test_solution_dependencies.py": {
+        "sha": "88130a4cfc59505e2b7f8a1c51ebc369aca6bb10",
+        "mode": "100644"
+      },
+      "tests/test_split_build.py": {
+        "sha": "8ccb226bf1fdce444c8b98c9f75a4ad24b94b764",
+        "mode": "100644"
+      },
+      "tests/test_submissions.py": {
+        "sha": "949efd343db1c314e1f5f1082af147a75e99fee7",
+        "mode": "100644"
+      },
+      "tests/test_subset_sum.py": {
+        "sha": "6e48858d44f70a7e3f2ffcc02ff0557c66de8856",
+        "mode": "100644"
+      },
+      "tests/test_tool_pins.py": {
+        "sha": "00da2db0d8e1c735ccb419fa8a9650ad40250eda",
+        "mode": "100644"
+      },
+      "tests/test_van_der_waerden.py": {
+        "sha": "3eef236835cb711351ad06e104d491f86acd05bd",
+        "mode": "100644"
+      },
+      "tests/test_verifier.py": {
+        "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
+        "mode": "100644"
+      }
+    },
+    "cb829226510350dc04c7b0c221943ed65daedfed": {
+      ".github/ISSUE_TEMPLATE/lean-submission.yml": {
+        "sha": "9cfd24d3663d61d17419f69cf20ed85029ceb732",
+        "mode": "100644"
+      },
+      ".github/workflows/check-matrix-dependency.yml": {
+        "sha": "311eaae86a044b98e37212cd73167fe760050a6a",
+        "mode": "100644"
+      },
+      ".github/workflows/pr-publish.yml": {
+        "sha": "8ac3ea8bfc9e4255197b0c781c66d93a0f5926fb",
+        "mode": "100644"
+      },
+      ".github/workflows/submission-check.yml": {
+        "sha": "c5e73af13aa764369e24a687c36630edc4c4e140",
+        "mode": "100644"
+      },
+      ".github/workflows/submissions.yml": {
+        "sha": "a75a1bef64ea6f4509422f4e704e9d2f3242cdd8",
+        "mode": "100644"
+      },
+      ".github/workflows/verify.yml": {
+        "sha": "0f267d5f57ef2adc2f2dd0aadba52dd5caa97387",
+        "mode": "100644"
+      },
+      ".gitignore": {
+        "sha": "209a5554ca89b5f26b69fe761eb43a40c9bf70df",
+        "mode": "100644"
+      },
+      "AGENTS.md": {
+        "sha": "a3aaf5059f6fc5ab30b08dcf1f47f35b083781ec",
+        "mode": "100644"
+      },
+      "LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "NOTICE": {
+        "sha": "439e6ef90565618dfdde2989e63dfc351adbc398",
+        "mode": "100644"
+      },
+      "README.md": {
+        "sha": "386870d8d5b5f05ae9a490f419498feafac32417",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/EndStatement.lean": {
+        "sha": "b2e03ddc7dc78c273aa5a1edda073fd2274d87de",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/3sum-apsp/NOTICE": {
+        "sha": "0a0dbf49888306f7d732790bbbf2ca2e75c37e6b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/NOTICE": {
+        "sha": "2962b8aef068820d088a94b77d12a16faeb9b792",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/OAI/Combinatorics/GotsmanLinial/Model.lean": {
+        "sha": "fe42ea84d4bf21bee7da1491674254a125f46c5b",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/README.md": {
+        "sha": "58c0be4a36b9979fde2a6912d56aa05d652d4072",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/Statement.lean": {
+        "sha": "b697f45a857bd6cfa7aacdd14fc2f1b3d4c3a500",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/VerifierStatement.lean": {
+        "sha": "463b6a0311a7d2104622765674dc84810bff82f2",
+        "mode": "100644"
+      },
+      "challenges/average-sensitivity/provenance.json": {
+        "sha": "656653688e00b868d85910f605a01b0ec11099df",
+        "mode": "100644"
+      },
+      "challenges/catalan/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/catalan/NOTICE": {
+        "sha": "d24e051f4245fb1b0707b8248b2ffc4bebec597e",
+        "mode": "100644"
+      },
+      "challenges/catalan/README.md": {
+        "sha": "a55b761fa7a878717408a6dfa4cd1e60c72eea5f",
+        "mode": "100644"
+      },
+      "challenges/catalan/Statement.lean": {
+        "sha": "078c9c92383d73cbdf5c0dbc91a1af8a33029a66",
+        "mode": "100644"
+      },
+      "challenges/catalan/Validation.lean": {
+        "sha": "145d3bb81b7b0b0d170131fe78441d991e8cbd8c",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/Challenge.lean": {
+        "sha": "6da17cdcf6ca29c831279867fc9908850df90f8b",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/NOTICE": {
+        "sha": "8de3803673ccab52dd029d6b9942f4f410c57fe4",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/README.md": {
+        "sha": "51e6c468bfc4f60d89f8b7491597b6378f062c5d",
+        "mode": "100644"
+      },
+      "challenges/critical-line-zeros/provenance.json": {
+        "sha": "dca0379ed12999326441b9c92db2f92a22737825",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourier233.lean": {
+        "sha": "6a70ac4f796d8641b6340b173352cd33c77f8935",
+        "mode": "100644"
+      },
+      "challenges/dft/UniformFourierE8.lean": {
+        "sha": "3235d8621b218a5807b1e5238558d8f7c72d1489",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/CHDRow.lean": {
+        "sha": "15b8bd3fb9a21322698ac65bdf22542a0133413a",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/README.md": {
+        "sha": "367d294c25e6c7f7d53ecca5ab0e1359de388d73",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/Validation.lean": {
+        "sha": "66ecc6e1d7a68edded980a0cf866d6342eb1d6d6",
+        "mode": "100644"
+      },
+      "challenges/directed-sssp/VerifierStatement.lean": {
+        "sha": "758ef89d8b96d6bb1f0dd35bab3456e49863ca86",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/NOTICE": {
+        "sha": "2cfec1b795fabf1a14f38cd17bb572a401b172d2",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/OAI/Geometry/HeilbronnTriangle/Definitions.lean": {
+        "sha": "6dd76ecff9b1300987f9412b5f434257f261d39d",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/README.md": {
+        "sha": "80429868d90a34f622b240dd2f3bf579d95ed0e4",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Statement.lean": {
+        "sha": "e2513ec608abcc958d9bb2b9f44e0da98c62ebe5",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/Validation.lean": {
+        "sha": "dd3b279322323d336eb75bf4854ab6be2d314768",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/VerifierStatement.lean": {
+        "sha": "bff8ba7bc805b881893123eb9b26e348b2bb6ee8",
+        "mode": "100644"
+      },
+      "challenges/heilbronn-triangle/provenance.json": {
+        "sha": "9a947939bfa7b812d3347b26c427842722a54aa4",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/Challenge.lean": {
+        "sha": "59907596776474e25056bbb1edc1693d5f99e865",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/README.md": {
+        "sha": "79688f02e2a464eb61d1b319aa228fb9e2cef733",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring-sqrtlog/provenance.json": {
+        "sha": "149fc7dfc33057ce453fe024e868ce85ef7acb5f",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/Challenge.lean": {
+        "sha": "6d9bf51d75a2b26e2031101b7c09063b4a987463",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/README.md": {
+        "sha": "aa397503e1ccaea5ea8afa9b159ee96f55a8f79c",
+        "mode": "100644"
+      },
+      "challenges/integer-factoring/provenance.json": {
+        "sha": "98dd5e061f39b37b8368cec13261c6c662e97cc6",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/MatrixMultiplication.lean": {
+        "sha": "877d7ee3901c51382cf5bcb059a50d8dbb3cde77",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/PARAMETERIZED.md": {
+        "sha": "770fc98710a55839581d3df4a15d47c740e2efd2",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/README.md": {
+        "sha": "00eaee1d850380d8d256e0296f88dbc41d6e880d",
+        "mode": "100644"
+      },
+      "challenges/matrix-multiplication/Statement.lean": {
+        "sha": "5cb96f1f74fe8434a760bfa6a0bec377368cb79e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Model.lean": {
+        "sha": "2f4fdc7ccc43f1f6ad0fe38ffd003eb0f02c6b8e",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/README.md": {
+        "sha": "411630001f2fed554a51ae00f19f25252278fc40",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Statement.lean": {
+        "sha": "534d9c26f7fe26d0b0c4d6bc89b8d99ffe9d49f5",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/Validation.lean": {
+        "sha": "4c5c5c6ad10f7bf2dff8484bc48e4817a9ad5315",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/VerifierStatement.lean": {
+        "sha": "7dfc9131ab858720bd4e60381976116e0d2b4d9c",
+        "mode": "100644"
+      },
+      "challenges/other-snaky/provenance.json": {
+        "sha": "c891f4ec50b1e82ca01007bf815f89d96d8288aa",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/NOTICE": {
+        "sha": "06e0bbb37735cf4079ba263501b9c554cd3b284d",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/README.md": {
+        "sha": "8bcb513d760fdb025193b84a0eab75b02f7be4d1",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Statement.lean": {
+        "sha": "c0e91ad53cae502517e6ec61c96acb1d82609003",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/Validation.lean": {
+        "sha": "7a05112a6f08569e151ba01ddd6267ef8229e007",
+        "mode": "100644"
+      },
+      "challenges/prime-gaps/provenance.json": {
+        "sha": "f08f7a53b5cf892e7c3cfd2c240daca5e3d63b96",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/README.md": {
+        "sha": "17acdba938569ca5d4f18d509c821160a32c3e4f",
+        "mode": "100644"
+      },
+      "challenges/subset-sum/Statement.lean": {
+        "sha": "9ece8585d2121119f6c10bdc1a1fde84da2c1773",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/Challenge.lean": {
+        "sha": "bee3f5a820455ead2a00f8fdc08d4ae5276cba2a",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/LICENSE": {
+        "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/README.md": {
+        "sha": "508c50f63080b2ef8209e5b7fb49fa1f04496fc3",
+        "mode": "100644"
+      },
+      "challenges/van-der-waerden/provenance.json": {
+        "sha": "1772924eee7fff6780b7acfa25f7e5e4a6f4d0f0",
+        "mode": "100644"
+      },
+      "docs/cache-review.md": {
+        "sha": "cadfa9f7ab87e1b60e06d3440d5483b7a43214e3",
+        "mode": "100644"
+      },
+      "docs/convert-layout.md": {
+        "sha": "c4898c5aecf3795728d7436a03e67234c1aef77e",
+        "mode": "100644"
+      },
+      "docs/direct-submissions.md": {
+        "sha": "a8a4e85483966609b5fe2393a2de1e8781dfb609",
+        "mode": "100644"
+      },
+      "docs/execution.md": {
+        "sha": "767cf11f62461c2ff1edc0d4f8089ba83c4e0312",
+        "mode": "100644"
+      },
+      "docs/new-statements.md": {
+        "sha": "9eca714e397732e0692d8bd419a53b61fc145c09",
+        "mode": "100644"
+      },
+      "docs/pr-submissions.md": {
+        "sha": "b2eebe79f0de90ba2e848f8c6f39b9ad5163093c",
+        "mode": "100644"
+      },
+      "docs/targets.md": {
+        "sha": "ace66875373fa2b0d1b794215c0fc22c36ff148b",
+        "mode": "100644"
+      },
+      "patches/openai-fd4aeeb-harfe-lean4341.patch": {
+        "sha": "1213fb0a7a24f0be2ba1b9a8db5af1434f02c4ec",
+        "mode": "100644"
+      },
+      "profiles/anthropic-lake-manifest.json": {
+        "sha": "278733a7ecc1563b8ceb70e62df049d43c6a83c6",
+        "mode": "100644"
+      },
+      "profiles/anthropic-tools.json": {
+        "sha": "0420a9ac9cb98045bd992ee6324023d834fcf86f",
+        "mode": "100644"
+      },
+      "profiles/critical-line-zeros.json": {
+        "sha": "212eebdcacc029adf9da20b28d09fdedc4b65e59",
+        "mode": "100644"
+      },
+      "profiles/dft-e8.json": {
+        "sha": "db1ce48093166e40e4734839d22257af86bd3beb",
+        "mode": "100644"
+      },
+      "profiles/dft233.json": {
+        "sha": "f8062d33870db562c95991226ffbe34c5bf87516",
+        "mode": "100644"
+      },
+      "profiles/direct.json": {
+        "sha": "5ae94e41ceb84f53b9d20edfb065c3ab75bc65bd",
+        "mode": "100644"
+      },
+      "profiles/factoring-lake-manifest.json": {
+        "sha": "3bcf4ece8f2db54cea6de73858b895b7b094cef1",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring-sqrtlog.json": {
+        "sha": "f0455a965c1d2c4a403eaa33eb613867b88709d5",
+        "mode": "100644"
+      },
+      "profiles/integer-factoring.json": {
+        "sha": "063511a73276dbefe81eb74253004ac3920e956e",
+        "mode": "100644"
+      },
+      "profiles/lake-manifest.json": {
+        "sha": "e482097fe44d3d747b31881ad5e329786531be6a",
+        "mode": "100644"
+      },
+      "profiles/matrix-nine-fourths.json": {
+        "sha": "b71865e3de7281bb184b18bdd7f14a75da220ada",
+        "mode": "100644"
+      },
+      "profiles/sssp-chd.json": {
+        "sha": "b57b38d2b902837a9b98164d1973ca99cdc58e99",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.33.0-rc2.json": {
+        "sha": "6cc71c9beb68685be28d7870c46684affc58ba1e",
+        "mode": "100644"
+      },
+      "profiles/tools-v4.35.0.json": {
+        "sha": "b7f586ce6eb9ca35a462c3a470297e3aa877f21d",
+        "mode": "100644"
+      },
+      "profiles/tools.json": {
+        "sha": "7c4f522169f0c0df56d7a7055f1c51756439c35c",
+        "mode": "100644"
+      },
+      "profiles/van-der-waerden.json": {
+        "sha": "b1f99869cb050e90ec2b8492cfe3e303b74c7cf8",
+        "mode": "100644"
+      },
+      "profiles/zeta23-lake-manifest.json": {
+        "sha": "af9ef405e4e292f2e0176b12b6cb66f547575314",
+        "mode": "100644"
+      },
+      "scripts/CacheHashes.lean": {
+        "sha": "abbcb4b81afb1e41e2ba31e336242ce3fe6bf616",
+        "mode": "100644"
+      },
+      "scripts/check_matrix_dependency.py": {
+        "sha": "54b446a9ef7f47c76c29af3aad5587334541ecbd",
+        "mode": "100644"
+      },
+      "scripts/derivation.py": {
+        "sha": "a9338eed38cbd9e3b7eab0adcfb4544e06ad5eff",
+        "mode": "100644"
+      },
+      "scripts/inside.py": {
+        "sha": "5806633334420e499230ac38c36b19b5a0e7ff08",
+        "mode": "100644"
+      },
+      "scripts/lake-shim.c": {
+        "sha": "275782886c6fa39155508228a4809f80c8b14f20",
+        "mode": "100644"
+      },
+      "scripts/live_publish.py": {
+        "sha": "85168ad70b7d13ded1b840219b8471d3d25da887",
+        "mode": "100644"
+      },
+      "scripts/pr_submissions.py": {
+        "sha": "593eaec6af7707ceb8e1b8aca893690234e4d618",
+        "mode": "100644"
+      },
+      "scripts/queue_lease.py": {
+        "sha": "82fa8c3f453f5436ca025182a0d41afeb59d75bb",
+        "mode": "100644"
+      },
+      "scripts/smoke.py": {
+        "sha": "8d3dcdf5b48b77e4ca1b1c0477186731f9788c0a",
+        "mode": "100644"
+      },
+      "scripts/submissions.py": {
+        "sha": "e46fb23ef37e6d3695d049dbafa774a431593c87",
+        "mode": "100644"
+      },
+      "scripts/verdicts.py": {
+        "sha": "8cd68e8113f2422f21cbe121f227576a3c1a6ab8",
+        "mode": "100644"
+      },
+      "scripts/verifier.py": {
+        "sha": "6783b6f633576adc869ed5456f767288421f7c08",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/dft-837dc31.json": {
+        "sha": "1300e4eb8a3eadb9076c86b9441cebdef08385a7",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/generic-envelope.json": {
+        "sha": "ad59202cea8833bc031f2f5652119c9a058c339b",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/historical-dft-receipt.json": {
+        "sha": "4662acbf1edaea188970f25b8bd187ad0c645584",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/issue-form-body.txt": {
+        "sha": "702f18518614667ab2d708527de267af2ed62e92",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-envelope.json": {
+        "sha": "2a8c5eb2673c33dc52ad71d5b4d85c5dfae302d3",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/pr-receipt.json": {
+        "sha": "02e387f719dcb8d58e5b4f0cda9fde628bf8f862",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/prepare-report.json": {
+        "sha": "4b3956a0ccd1b5d294f436ab2a84f42980d64816",
+        "mode": "100644"
+      },
+      "tests/fixtures/direct/replayed-envelope.json": {
+        "sha": "80cd5f35a6812e88eb117019242f718beb6aa163",
+        "mode": "100644"
+      },
+      "tests/fixtures/sssp-cases.json": {
+        "sha": "65f7ddd7612c265c9ed7b90f6f1665c87bade543",
+        "mode": "100644"
+      },
+      "tests/test_api_retry.py": {
+        "sha": "e8903840bc25d91ce165b82ec02cf91ab7aeb183",
+        "mode": "100644"
+      },
+      "tests/test_average_sensitivity.py": {
+        "sha": "cd529ee9f64c3389986135cf3aeb824abec58180",
+        "mode": "100644"
+      },
+      "tests/test_catalan.py": {
+        "sha": "951ebbaa32718b96020fa6f9e333e7877bc1fb53",
+        "mode": "100644"
+      },
+      "tests/test_critical_line_zeros.py": {
+        "sha": "65f8bed2cac92cace2400394b9e14f8abf61dd7f",
+        "mode": "100644"
+      },
+      "tests/test_derivation.py": {
+        "sha": "49b6a47f900a006b6615fad422e1e93b462a2f9d",
+        "mode": "100644"
+      },
+      "tests/test_directed_sssp.py": {
+        "sha": "99da2fe9f9d21a0aebc0326352fed1cd2d110d3d",
+        "mode": "100644"
+      },
+      "tests/test_github_pins.py": {
+        "sha": "c32efb82277f0885cd5db9bc85ef95706c9a295d",
+        "mode": "100644"
+      },
+      "tests/test_heilbronn.py": {
+        "sha": "6721773defe701babd482b8d301a58e6687e717b",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring.py": {
+        "sha": "e6cc4ea4ce3a62aa4dce8c04f5f27cbdd17e7307",
+        "mode": "100644"
+      },
+      "tests/test_integer_factoring_sqrtlog.py": {
+        "sha": "aaba2dbfa44575962c71d9c69d3c9d2b7eea58f4",
+        "mode": "100644"
+      },
+      "tests/test_live_publish.py": {
+        "sha": "54d51420eb99092cbea6e278548235f524b14641",
+        "mode": "100644"
+      },
+      "tests/test_pr_submissions.py": {
+        "sha": "12b29ad9b89c78a0a6b44836ff71d5c1050f2008",
+        "mode": "100644"
+      },
+      "tests/test_prime_gaps.py": {
+        "sha": "3001bfdadd75ae2fbe2e72bdb82c7546720d3d3d",
+        "mode": "100644"
+      },
+      "tests/test_queue_security.py": {
+        "sha": "e9d75788cd1ca79a7aae38c06b01bdc8d300dd8d",
+        "mode": "100644"
+      },
+      "tests/test_smoke.py": {
+        "sha": "991e51005269bd560c3559a1283e19fddf287e89",
+        "mode": "100644"
+      },
+      "tests/test_snaky.py": {
+        "sha": "806ce0984868604e704b883d04f5ebfd450ed73d",
+        "mode": "100644"
+      },
+      "tests/test_solution_dependencies.py": {
+        "sha": "88130a4cfc59505e2b7f8a1c51ebc369aca6bb10",
+        "mode": "100644"
+      },
+      "tests/test_split_build.py": {
+        "sha": "8ccb226bf1fdce444c8b98c9f75a4ad24b94b764",
+        "mode": "100644"
+      },
+      "tests/test_submissions.py": {
+        "sha": "949efd343db1c314e1f5f1082af147a75e99fee7",
+        "mode": "100644"
+      },
+      "tests/test_subset_sum.py": {
+        "sha": "d01a1c364cbd4ca1da255d0f4326c1362a24086c",
+        "mode": "100644"
+      },
+      "tests/test_tool_pins.py": {
+        "sha": "00da2db0d8e1c735ccb419fa8a9650ad40250eda",
+        "mode": "100644"
+      },
+      "tests/test_van_der_waerden.py": {
+        "sha": "3eef236835cb711351ad06e104d491f86acd05bd",
+        "mode": "100644"
+      },
+      "tests/test_verifier.py": {
+        "sha": "05338fc923947e1bf27f896c8405121b0fddbe66",
+        "mode": "100644"
+      }
     }
   },
   "maintainer_workflow_id": 380402814,
@@ -26924,6 +29305,50 @@
       "score": "3/2 - cot(1/sqrt 2)/sqrt 2",
       "score_relation": "attained",
       "statement_file": "CriticalLineZeros.lean"
+    },
+    "van-der-waerden-openai": {
+      "run_id": 42294222476,
+      "controller": "b86be362cae29d6d8fa7802e012a45c1006f44a9",
+      "profile": {
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "challenge_file": "challenges/van-der-waerden/Challenge.lean",
+        "challenge_sha256": "1caa563bbf7a5602adb8cdbbc06aaf1e3d4d5fe27ed4bebf2bf44cf2937a6593",
+        "manifest_file": "profiles/lake-manifest.json",
+        "tools_file": "profiles/tools.json",
+        "solution_module": "OAI.Combinatorics.ProgressionColoring.Main",
+        "theorem_names": [
+          "OAI.QuantitativeVanDerWaerden.uniform_lower_bound"
+        ],
+        "source_roots": [
+          "OAI"
+        ],
+        "source_subdir": "lean",
+        "source_prefixes": [
+          "OAI/Combinatorics/ProgressionColoring"
+        ],
+        "sparse_paths": [
+          "/lean/OAI/Combinatorics/ProgressionColoring/"
+        ],
+        "permitted_axioms": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "bound": "1/100000",
+        "score_relation": "attained",
+        "model": "van-der-waerden",
+        "upstream_repo": "https://github.com/openai/math",
+        "upstream_commit": "1581d4cbdd69a0faf34b2089614fe2a814316a6a"
+      },
+      "other": {
+        "slug": "van-der-waerden",
+        "handle": "openai"
+      },
+      "repo_url": "https://github.com/openai/math",
+      "commit": "1581d4cbdd69a0faf34b2089614fe2a814316a6a",
+      "score": "1/100000",
+      "score_relation": "attained",
+      "statement_file": "VanDerWaerden.lean"
     }
   },
   "reviewed_pr_bindings": [

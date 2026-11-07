@@ -19,7 +19,8 @@
     },
     "subset-sum": {
       "yannouli-subset-sum-0-4876723-2026": "The new part is a rule for where the certificates of filter 3 start and stop, plus new parameter margins. A written note proves the rule, and a script with exact fractions confirms the numbers.",
-      "jv1000-subset-sum-0-4875755-2026": "The new part is one asymmetric filter, with 16 cosine and 16 sine terms per density, in place of Kapila's family of 43 cosine-only filters, with new parameters. The author certifies the 33 numerical conditions of Kapila's proof at these parameters with interval arithmetic in two independent implementations."
+      "jv1000-subset-sum-0-4875755-2026": "The new part is one asymmetric filter, with 16 cosine and 16 sine terms per density, in place of Kapila's family of 43 cosine-only filters, with new parameters. The author certifies the 33 numerical conditions of Kapila's proof at these parameters with interval arithmetic in two independent implementations.",
+      "li-ye-subset-sum-0-4999978-2026": "The new part is a representation in which testing whether two partial solutions fit is the partial match problem, and a depth 2 linear circuit for the partial match matrix. With the framework of Alman and Li, the circuit gives an algorithm for it fast enough to beat exponent 1/2."
     },
     "integer-factoring": {
       "rudich-rousseau-2026": "The machine finds the smallest prime factor one bit at a time: for each prefix, it counts the divisors of \\(N\\) that start with it. The count comes from a network that checks a Schönhage–Strassen multiplication, evaluated with the counting engine of Anthropic's 3-SAT preprint, proved again here. Lean proves the time bound for one machine and every \\(k\\). The paper's Conjecture 1, a faster rate, is only stated. It is not proved and scores nothing.",
@@ -31,7 +32,8 @@
     },
     "directed-sssp": {
       "directed-sssp-2026": "Vals AI keeps the recursion of Ran Duan et al. (2025) and changes its local searches. A search counts a vertex whose distance does not improve as an unexplored leaf, and deletes for good each edge into a vertex whose distance is final, so its cost does not depend on vertex degrees. A larger search size saves work per vertex and adds work per edge. At \\(m=n\\log^{3/4}n\\) the balance costs \\(n\\log^{11/12}n\\), below \\(n\\log n\\). Lean checks the distances the program outputs, and its running time.",
-      "direct-issue-158": "The program is a lazy binary-heap Dijkstra over adjacency lists. It is exact on every graph and, with at most \\(n\\lfloor\\log_2 n\\rfloor\\) edges, costs \\(O(n\\log^2 n)\\). A dispatch on \\(m/n\\) against \\(\\lfloor\\log_2 n\\rfloor\\) sends denser graphs to the Bellman-Ford program of the C-HD proof, which costs \\(O(nm)\\) and is not charged to the row. Lean checks the distances the program outputs, and its running time."
+      "direct-issue-158": "The program is a lazy binary-heap Dijkstra over adjacency lists. It is exact on every graph and, with at most \\(n\\lfloor\\log_2 n\\rfloor\\) edges, costs \\(O(n\\log^2 n)\\). A dispatch on \\(m/n\\) against \\(\\lfloor\\log_2 n\\rfloor\\) sends denser graphs to the Bellman-Ford program of the C-HD proof, which costs \\(O(nm)\\) and is not charged to the row. Lean checks the distances the program outputs, and its running time.",
+      "direct-issue-147": "The program is one dispatch on the edge count. With fewer than \\(n\\) edges it runs the Bellman-Ford program of the C-HD proof, which costs \\(O(n^2)\\) there. Otherwise it runs an array-scan Dijkstra on a counting-sort adjacency array: each of at most \\(n\\) rounds scans all vertices for the closest unsettled one and relaxes its edges, so it costs \\(O(n^2+m)\\). It is exact on every graph, and at \\(m\\le n^2\\) it costs \\(O(n^2)\\). Lean checks the distances the program outputs, and its running time."
     }
   },
   "board_notes": {

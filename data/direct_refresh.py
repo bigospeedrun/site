@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import sssp
+from direct_note_rules import credit_ok
 import shutil
 import subprocess
 import sys
@@ -34,7 +35,8 @@ OTHER={'average-sensitivity':dict(bound='\\mathrm{{AS}}(f)\\le {value}d\\sqrt n'
     'catalan':dict(bound='\\mu(G)\\le {value}',statement='BigOSpeedrun.Catalan.Bound'),
     'snaky':dict(bound='\\text{{Maker moves}}\\le {value}',statement='BigOSpeedrun.Snaky.Bound'),
     # A higher saving is better: the shown value is rounded down (display_down), and the row form is a lower bound.
-    'heilbronn-triangle':dict(bound='\\eta\\ge {value}',statement='BigOSpeedrun.HeilbronnTriangle.Bound',higher=True)}
+    'heilbronn-triangle':dict(bound='\\eta\\ge {value}',statement='BigOSpeedrun.HeilbronnTriangle.Bound',higher=True),
+    'prime-gaps':dict(bound='H_1\\le {value}',statement='BigOSpeedrun.PrimeGaps.Bound')}
 # These hosted smoke identities are permanently excluded, even after label edits.
 SMOKE_NUMBERS={1,2}
 # A 'Not verified' report with one of these texts is not the final result of this version: it belongs to an
@@ -409,8 +411,13 @@ def row_for(key,claim,now,old=None,note=None):
         publication_source_url=item['html_url'],direct_submission=True,route=route)
     # A reviewed credit note (data/direct-notes.json) survives the hourly rebuild of direct rows.
     if note:meta['credit_note']=note['text']
-    # Credited authors are for Other bounds rows only (other_claims): a Big O row's authors key its record posts.
+    # Credited logins are for Other bounds rows only (other_claims). A reviewed display credit also names a Big O row's
+    # authors (Lead, 2026-11-07, verifier #183: a refile of Halit Ziya KARTAL's proof with only the constant changed):
+    # the names, in credit order, each linking the submission. The table, the record posts and the chat read them.
     require(not (note and note.get('authors')),'Credited authors on a Big O board row: '+key)
+    if note and note.get('credit'):
+        require(credit_ok(note['credit']),'Invalid display credit')
+        row['authors']=[dict(name=x,url=item['html_url']) for x in note['credit']['names']]
     if proof:
         row['rerun_status']=dict(state='passed',checked_at=proof['checked_at'],receipt_path=proof['receipt_path'])
         meta['receipt_url']=proof['receipt_url']
@@ -481,9 +488,17 @@ def other_claims(claims,withdrawn,notes):
         # result, in order, the submitter among them. It replaces the submitter alone; the date, value and receipt stay.
         logins=notes.get(key,{}).get('authors') or [login]
         require(login in logins and all(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9-]{0,38}',x) for x in logins),'Invalid credited logins')
+        author,authors=' and '.join(logins),[dict(name=x,url='https://github.com/'+x) for x in logins]
+        # A reviewed display credit (Lead, 2026-11-07, prime gaps: the proof is mostly Axiom Math's and Jonas Whidden's
+        # work): plain-text author line and names, in credit order, shown wherever the row's author is (table, record
+        # posts, chat). The logins above still check the submitter. Each name links to the submission.
+        credit=notes.get(key,{}).get('credit')
+        if credit:
+            require(credit_ok(credit),'Invalid display credit')
+            author,authors=credit['author'],[dict(name=x,url=item['html_url']) for x in credit['names']]
         boards.setdefault('other-'+sub['problem'],{'claims':[]})['claims'].append(dict(
-            author=' and '.join(logins),handle=key,value=sub['bound'],display=display,date=item['created_at'],dateSource=item['html_url'],dateKind='first-stated',
-            url=item['html_url'],lean=True,evidence='lean-verified',note=note,authors=[dict(name=x,url='https://github.com/'+x) for x in logins],
+            author=author,handle=key,value=sub['bound'],display=display,date=item['created_at'],dateSource=item['html_url'],dateKind='first-stated',
+            url=item['html_url'],lean=True,evidence='lean-verified',note=note,authors=authors,
             leanNote='Yes: the Big O Speedrun verifier checked this Lean proof (Lean kernel and the permitted-axiom audit).',
             # The Other page links 'at commit <sha> of <repo URL>' (src/lib/source-links.ts): keep this form.
             proofScope='The verifier checked Race.bound : '+row['statement']+' ('+sub['bound']+') at commit '+sub['commit']+' of '+sub['repo_url']+'.',

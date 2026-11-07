@@ -34,6 +34,9 @@ PROBLEMS = {'dft': ('exact-dft/uniform-exact-arithmetic', 1),
             # An Other bounds row (verifier profile heilbronn-triangle, verifier #105): the saving eta, 0 < eta <= 5/6
             # as in the profile. The first Other row where a higher bound is better (HIGHER).
             'heilbronn-triangle': ('other/heilbronn-triangle', Fraction(5, 6)),
+            # An Other bounds row (verifier profile prime-gaps, verifier #148): the gap B of H_1 <= B, a whole number from
+            # 0 to 100000 as in the profile.
+            'prime-gaps': ('other/prime-gaps', 100000),
             # A board (verifier profile directed-sssp, opened 2026-11-03): a bound "D ; T" (data/sssp.py), not one
             # rational, so it has no range maximum; sssp.parse holds the verifier's ranges.
             'directed-sssp': ('directed-sssp/comparison-addition-sparse', None)}
@@ -110,6 +113,8 @@ def normalize(value):
     require(0 <= bound <= PROBLEMS[value['problem']][1], 'Bound outside model range')
     # A Snaky bound counts Maker moves (verifier submissions.validate_submission): a whole number, no fraction.
     require(value['problem'] != 'snaky' or bound.denominator == 1, 'Snaky bound must be a whole number of Maker moves')
+    # A prime gap is a whole number (verifier submissions.WHOLE), no fraction.
+    require(value['problem'] != 'prime-gaps' or bound.denominator == 1, 'Prime gap bound must be a whole number')
     # A Heilbronn saving must be positive (verifier submissions.validate_submission): 0 is the classical bound.
     require(value['problem'] != 'heilbronn-triangle' or bound > 0, 'Heilbronn bound must be positive')
     require(isinstance(value['repo_url'], str) and re.fullmatch(r'https://github\.com/[A-Za-z0-9][A-Za-z0-9_.-]{0,99}/[A-Za-z0-9][A-Za-z0-9_.-]{0,99}', value['repo_url']), 'Invalid source repository')
@@ -212,6 +217,9 @@ theorem Race.bound : ∃ order solve W, DFTProgram order solve W ∧
     elif submission['problem'] == 'snaky':
         require(d == 1, 'Snaky bound must be a whole number of Maker moves')
         target = f'theorem Race.bound : BigOSpeedrun.Snaky.Bound {n} := by\n  sorry\n'
+    elif submission['problem'] == 'prime-gaps':
+        require(d == 1, 'Prime gap bound must be a whole number')
+        target = f'theorem Race.bound : BigOSpeedrun.PrimeGaps.Bound {n} := by\n  sorry\n'
     elif submission['problem'] == 'heilbronn-triangle':
         target = f'theorem Race.bound : BigOSpeedrun.HeilbronnTriangle.Bound (({n} : ℚ) / {d}) := by\n  sorry\n'
     else:

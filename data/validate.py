@@ -5,7 +5,7 @@ from pathlib import Path
 from fractions import Fraction
 from jsonschema import Draft202012Validator,FormatChecker
 sys.dont_write_bytecode=True  # a staged copy of the data folder must stay free of stray files
-from direct_note_rules import predecessor_ok
+from direct_note_rules import credit_ok,predecessor_ok
 ROOT=Path(__file__).resolve().parent
 TIERS=('verified','certified-conditional','claimed')
 def load(p):return json.loads((ROOT/p).read_text())
@@ -30,7 +30,10 @@ if (ROOT/'direct-notes.json').exists():
   assert re.fullmatch(r'direct-(issue|pr)-\d+',key),key
   assert predecessor_ok(n),key
   # Credited authors (optional; Other bounds rows only, see below): 1-5 distinct GitHub logins, in credit order.
-  assert set(n)<={'text','predecessor','authors'},key
+  assert set(n)<={'text','predecessor','authors','credit'},key
+  # A display credit (optional; Other bounds and Big O direct rows): a plain-text author line and names (credit_ok).
+  if 'credit' in n:
+   assert credit_ok(n['credit']),key
   if 'authors' in n:
    a=n['authors'];assert isinstance(a,list) and 0<len(a)<=5 and len(set(a))==len(a) and all(isinstance(x,str) and re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9-]{0,38}',x) for x in a),key
    known=load('direct-submissions.json')['entries'].get(key)

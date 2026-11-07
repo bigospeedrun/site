@@ -1,5 +1,7 @@
 import {compare} from './ranking.ts';
 import {isBreakthroughRecord} from './evidence.ts';
+import {baselineClaim,isTableBreakthrough} from './other-table.ts';
+import otherBounds from './other-bounds.json' with {type:'json'};
 import type {FeedSnapshot} from './records-feed.ts';
 import type {XEntry} from './x-posts.ts';
 
@@ -8,8 +10,23 @@ import type {XEntry} from './x-posts.ts';
 // the feed's own data names it, no list of boards is kept here. A bound equal to or better than the bar posts as
 // before. Boards whose race-start row has another author are not touched. Discord is not touched either.
 const BREAKTHROUGH_AUTHORS=['OpenAI','Anthropic'];
+// An Other bounds row (Lead, 2026-11-07, prime gaps: a Lean Verified 246 is worse than OpenAI's 186): the bar is the
+// row's Agent breakthrough as its table labels it (isTableBreakthrough): OpenAI's baseline, or on a row with a Classic
+// baseline its first claim by agents. It counts only when OpenAI or Anthropic made it and its value is an exact rational.
+type OtherFamily=Parameters<typeof isTableBreakthrough>[0]&{slug:string;direction?:string;baseline?:Parameters<typeof baselineClaim>[0];
+ claims:{value:string;authors?:{name:string}[]}[]};
+const RATIONAL=/^-?(?:0|[1-9][0-9]*)(?:\/[1-9][0-9]*)?$/;
+export function otherBreakthroughBar(slug:string,families:readonly OtherFamily[]=otherBounds.families as OtherFamily[]):{score:string;direction:'lower'|'higher'}|undefined {
+ const family=families.find(f=>'other-'+f.slug===slug);
+ if(!family||(family.direction!=='lower'&&family.direction!=='higher'))return undefined;
+ const base=baselineClaim(family.baseline);
+ const row=[...(base?[base]:[]),...family.claims].find(c=>isTableBreakthrough(family,c));
+ if(!row||!row.authors?.some(a=>BREAKTHROUGH_AUTHORS.some(name=>a.name===name||a.name.startsWith(name+' ')))||!RATIONAL.test(row.value))return undefined;
+ return {score:row.value,direction:family.direction};
+}
 export function breakthroughBar(snapshot:FeedSnapshot|undefined,slug:string):{score:string;direction:'lower'|'higher'}|undefined {
  const board=snapshot?.boards.find(b=>b.slug===slug);
+ if(slug.startsWith('other-'))return snapshot?otherBreakthroughBar(slug):undefined;
  if(!board?.direction)return undefined;
  const row=board.records.find(r=>isBreakthroughRecord(slug,r.id)&&r.authors.some(a=>BREAKTHROUGH_AUTHORS.includes(a)));
  return row?{score:row.score,direction:board.direction}:undefined;

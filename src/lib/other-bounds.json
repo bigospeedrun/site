@@ -504,7 +504,8 @@
           "authors": [
             {
               "name": "Hailey Collet",
-              "url": "https://x.com/HaileyStormC"
+              "url": "https://x.com/HaileyStormC",
+              "login": "HaileyStorm"
             }
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports local Lean checks that were incomplete when the pull request opened, and asks the tracker for its protected verification. The tracker's check results are on the pull request. No independent rerun.",
@@ -1631,6 +1632,28 @@
           ],
           "proofScope": "The supplied Lean code proves the rational-approximation bound with exponent 400 (theorem catalan_irrationalityMeasure_400 in Challenge.lean, proved in Solution.lean) for all sufficiently large natural denominators and all integer numerators. The README reports that it is kernel-checked with only the standard axioms; no CI build, independent-kernel or comparator result is reported. No site rerun.",
           "bound": "\\mu(G)\\le 400"
+        },
+        {
+          "author": "S. Litsey",
+          "handle": "slitsey",
+          "value": "295",
+          "display": "295",
+          "date": "2026-11-06T17:13:45Z",
+          "dateSource": "https://github.com/slitsey/catalan-irrationality-measure/actions/runs/42259690841",
+          "dateKind": "first-stated",
+          "url": "https://github.com/slitsey/catalan-irrationality-measure/blob/65cfcc216b2fd8a6c52f84a8ea41fb654b11eddb/README.md",
+          "lean": true,
+          "leanNote": "Lean states and proves the bound for all sufficiently large denominators and all integer numerators. The README reports that it is kernel-checked with only the standard axioms, and says that this bound has not been run through lake comparator. The proof needs Lean v4.35.0-rc2, and our verifier uses v4.34.1, so it cannot check it yet. The author’s CI for commit 3cd68738 was still running when we listed it (its Lean build was cancelled and its API documentation build failed), so no CI build, independent-kernel or comparator result is reported. No site rerun.",
+          "evidence": "claimed",
+          "note": "The repository says S. Litsey proves in Lean that the irrationality exponent of Catalan's constant is at most \\(295\\), with no extra assumption: only the axioms propext, Quot.sound and Classical.choice. The method is OpenAI's determinant construction with the design \\((58, 9, 3, 5, 3)\\); the last condition reads \\(295 > d\\rho/(\\eta - 4d\\delta) = 294.956\\ldots\\) with \\(d = 53\\). It uses the quadrature nodes and 33 Lean files of C. Davis. The README says that AI systems wrote the mathematics, the Lean proofs and the text. The repository gave \\(400\\) before.",
+          "authors": [
+            {
+              "name": "S. Litsey",
+              "url": "https://github.com/slitsey"
+            }
+          ],
+          "proofScope": "The supplied Lean code proves the rational-approximation bound with exponent 295 (theorem catalan_irrationalityMeasure_295 in Challenge.lean, proved in Solution.lean) for all sufficiently large natural denominators and all integer numerators. The README reports that it is kernel-checked with only the standard axioms and that it has not been run through lake comparator; no CI build, independent-kernel or comparator result is reported. No site rerun.",
+          "bound": "\\mu(G)\\le 295"
         }
       ],
       "repos": [
@@ -2181,7 +2204,7 @@
           "dateKind": "first-stated",
           "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Quantitative-Superexponential-Bounds-for-van-der-Waerden-Numbers-September-23-2026/paper.pdf",
           "lean": true,
-          "leanNote": "Yes. OpenAI's repository supplies a Lean 4 proof (Lean v4.34.1, Mathlib commit d13f23b7) of its own statement. We have not rerun it yet.",
+          "leanNote": "Yes. OpenAI's repository supplies a Lean 4 proof (Lean v4.34.1, Mathlib commit d13f23b7) of its own statement. Our verifier rebuilt it from source and checked it with the Lean kernel. It uses only the standard axioms.",
           "evidence": "claimed",
           "note": "OpenAI's result, from its preprint of 23 September 2026 in its release of 6 October 2026, at the start of this race.",
           "authors": [
@@ -2190,7 +2213,7 @@
               "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Quantitative-Superexponential-Bounds-for-van-der-Waerden-Numbers-September-23-2026/paper.pdf"
             }
           ],
-          "proofScope": "A written proof in OpenAI's preprint. A Lean 4 proof is in openai/math (folder lean/OAI/Combinatorics/ProgressionColoring, commit 1581d4cb): its theorem OAI.QuantitativeVanDerWaerden.uniform_lower_bound states \\(W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/100000}\\) for all large \\(k\\), uniformly in \\(r\\ge 2\\), against OpenAI's own statement file. We have not rerun it yet.",
+          "proofScope": "A written proof in OpenAI's preprint. A Lean 4 proof is in openai/math (folder lean/OAI/Combinatorics/ProgressionColoring, commit 1581d4cb): its theorem OAI.QuantitativeVanDerWaerden.uniform_lower_bound states \\(W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/100000}\\) for all large \\(k\\), uniformly in \\(r\\ge 2\\). Our verifier rebuilt it at commit 1581d4cb and checked this theorem against OpenAI's own statement file. It uses only the axioms propext, Classical.choice and Quot.sound.",
           "bound": "W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/100000}"
         },
         {
@@ -3422,7 +3445,8 @@
             },
             {
               "name": "Elliot Glazer",
-              "url": "https://github.com/elliotglazer"
+              "url": "https://github.com/elliotglazer",
+              "login": "elliotglazer"
             },
             {
               "name": "Jenn Park",
@@ -3470,7 +3494,8 @@
             },
             {
               "name": "Elliot Glazer",
-              "url": "https://github.com/elliotglazer"
+              "url": "https://github.com/elliotglazer",
+              "login": "elliotglazer"
             },
             {
               "name": "Jenn Park",
@@ -3519,7 +3544,8 @@
             },
             {
               "name": "Elliot Glazer",
-              "url": "https://github.com/elliotglazer"
+              "url": "https://github.com/elliotglazer",
+              "login": "elliotglazer"
             },
             {
               "name": "Jenn Park",
@@ -3627,7 +3653,8 @@
             },
             {
               "name": "Elliot Glazer",
-              "url": "https://github.com/elliotglazer"
+              "url": "https://github.com/elliotglazer",
+              "login": "elliotglazer"
             },
             {
               "name": "Jennifer Park",
@@ -3684,7 +3711,8 @@
             },
             {
               "name": "Elliot Glazer",
-              "url": "https://github.com/elliotglazer"
+              "url": "https://github.com/elliotglazer",
+              "login": "elliotglazer"
             },
             {
               "name": "Jennifer Park",
