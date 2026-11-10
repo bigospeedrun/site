@@ -1,0 +1,11 @@
+{
+  "number": 7113,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7113",
+  "title": "Conditional κ = .00363797977 via a 17-stage signed caller",
+  "body": "This 17-stage construction gives conditional **κ = .00363797977**, up **.000000562650059** from #7112. The exact raw bracket is `(.00363797978, .00363797979)`. The selected record is .00363005817.\n\n- Exact #7112 native canonical SHA256 `3454c4900245ed1814ceeff79a741a45160eb3a93cf8d15f891fe2a67ba036fc`.\n- Asymmetric signed caller emits 4,783 events and replays exactly on all 72 output fields.\n- Localized grouped idles pass an independent integer-grid replay with charged caller scale 675, separate from native scale 1125. Physical ownership, phase, precision and all 58 outer checks pass locally.\n- The unchanged native's 3,047 exact paid/helper chart maps are reused at the same bytes. The complete caller has 110,638 paid positions and 22,172 productive fields.\n\n```sh\npython3.12 -B scripts/research_package.py --package research/signed-caller-8x9\n```\n\nThe bound uses the same five framework assumptions and completed BIT predecessor. The selected record is outside this package's scope. Credit and full evidence are in the package.\n\n## Verification\n\n- Fresh Linux CPython 3.12.16 replay regenerated the package receipts. A separate fresh run checked all 3,047 native paid/helper maps and all 104 main boundary pairs, including absolute-phase rejection controls, and matched the frozen receipts.\n- [Registered signed-caller replay](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/42858436590/job/129980903138) passed at exact head `07a76c5e2738882c0cb322278e56f6cae3c9885d` with `PASS_SIGNED_CALLER_8X9 363797977/100000000000`.\n- The CI guide update also selected the [historical selected-replay-gap audit](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/42858436590/job/129980903216). Its preflight reports `working source drift: Makefile`. The unchanged base Makefile already differs from that historical package’s pin.\n\nThe replay covers the source-bound conditional application described in the package. Maintainer review and the five inherited assumptions remain.\n",
+  "created_at": "2026-11-10T16:37:42Z",
+  "updated_at": "2026-11-10T16:57:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
