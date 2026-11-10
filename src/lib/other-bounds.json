@@ -3408,7 +3408,7 @@
       "nameMath": "\\(\\mathbb Z\\) is Diophantine in \\(\\mathbb Q\\)",
       "quantity": "\\text{number of variables}",
       "direction": "lower",
-      "statement": "A polynomial \\(P(q,w_1,\\dots,w_k)\\) with integer coefficients defines \\(\\mathbb Z\\) in \\(\\mathbb Q\\) when, for every rational number \\(q\\), \\(q\\) is an integer exactly when \\(P(q,w_1,\\dots,w_k)=0\\) for some rational numbers \\(w_1,\\dots,w_k\\). The polynomial must be explicit: a public list of its terms, or a public program that writes them out. Results rank by degree first, lower is better; then by the number of variables, \\(k+1\\); then by the number of nonzero terms; then by the largest absolute coefficient. A stated upper bound, such as degree below \\(2\\uparrow\\uparrow 7\\), counts as that value. Degree 4 is the lowest possible for one defining polynomial (Brox, and the Version 6 manuscript of Glazer and others), so among quartics the number of variables decides. Elliot Glazer expects that, with no limit on the degree, a definition with under 100 variables is within reach; the open question is then the fewest variables of a quartic. The chart plots the number of variables of the degree-4 results and of the first construction. Koenigsmann (2016) showed that \\(\\mathbb Q\\setminus\\mathbb Z\\) is Diophantine in \\(\\mathbb Q\\). Whether \\(\\mathbb Z\\) itself is Diophantine in \\(\\mathbb Q\\) was open, and Mazur's conjectures (1992) predicted that it is not.",
+      "statement": "A polynomial \\(P(q,w_1,\\dots,w_k)\\) with integer coefficients defines \\(\\mathbb Z\\) in \\(\\mathbb Q\\) when, for every rational number \\(q\\), \\(q\\) is an integer exactly when \\(P(q,w_1,\\dots,w_k)=0\\) for some rational numbers \\(w_1,\\dots,w_k\\). The polynomial must be explicit: a public list of its terms, or a public program that writes them out. Results rank by degree first, lower is better; then by the number of variables, \\(k+1\\); then by the number of nonzero terms; then by the largest absolute coefficient. A stated upper bound, such as degree below \\(2\\uparrow\\uparrow 7\\), counts as that value. Degree 4 is the lowest possible for one defining polynomial (Brox, and the Version 6 manuscript of Glazer and others), so among quartics the number of variables decides. A family of polynomials that defines \\(\\mathbb Z\\) only from an unknown bound \\(N_0\\) on, such as the Version 15 family in 222 variables or the family in 226 variables of Jose Brox, is not a row, because no explicit polynomial of it is certified; a certified member would be. Elliot Glazer expects that, with no limit on the degree, a definition with under 100 variables is within reach; the open question is then the fewest variables of a quartic. The chart plots the number of variables of the degree-4 results and of the first construction. Koenigsmann (2016) showed that \\(\\mathbb Q\\setminus\\mathbb Z\\) is Diophantine in \\(\\mathbb Q\\). Whether \\(\\mathbb Z\\) itself is Diophantine in \\(\\mathbb Q\\) was open, and Mazur's conjectures (1992) predicted that it is not.",
       "claims": [
         {
           "author": "Elliot Glazer with Astra 6, Sol 6.1 and Opus 5.5, with auditing from Fable 5.1",
@@ -3781,6 +3781,150 @@
             "coefficient": "64*3^(2^28)"
           },
           "agent": true
+        },
+        {
+          "author": "Stefan Baranczuk, Jose Brox, Gabe Conant, Sohail Farhangi, James Freitag, Elliot Glazer, Jennifer Park and Caroline Terry",
+          "handle": "z-in-q-version-14-decimal",
+          "value": "314",
+          "display": "314",
+          "date": "2026-11-09T05:29:47Z",
+          "dateSource": "https://github.com/elliotglazer/diophantine-z-q/commit/552f20cb8d4846e2895509986d6839f3a6949b79",
+          "dateKind": "first-stated",
+          "url": "https://github.com/elliotglazer/diophantine-z-q/releases/tag/quartic-299-version-14",
+          "lean": false,
+          "leanNote": "Incomplete. The main Lean theorem still contains sorry.",
+          "evidence": "claimed",
+          "note": "Version 14 of the manuscript, released on 10 November 2026; the Version 15 manuscript keeps it. Degree 4, 6,672 nonzero terms. Every coefficient is written in decimal and is less than \\(2^{6496}\\) in absolute value (the largest has 6,496 bits). The complete table is public (264,430 bytes). The manuscript says it was developed primarily by OpenAI Codex agents (Astra 6 and Sol 6.1) and Anthropic Claude agents (Opus 5.5), with auditing from Fable 5.1. The project uses the collective agentic notes of the eight authors.",
+          "authors": [
+            {
+              "name": "Stefan Baranczuk",
+              "url": "https://orcid.org/0000-0003-4198-9241"
+            },
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            },
+            {
+              "name": "Gabe Conant",
+              "url": "https://orcid.org/0000-0002-9577-4871"
+            },
+            {
+              "name": "Sohail Farhangi",
+              "url": "https://orcid.org/0000-0001-8183-6157"
+            },
+            {
+              "name": "James Freitag",
+              "url": "https://orcid.org/0000-0002-7457-3122"
+            },
+            {
+              "name": "Elliot Glazer",
+              "url": "https://github.com/elliotglazer",
+              "login": "elliotglazer"
+            },
+            {
+              "name": "Jennifer Park",
+              "url": "https://orcid.org/0000-0003-1856-3410"
+            },
+            {
+              "name": "Caroline Terry",
+              "url": "https://orcid.org/0000-0001-7844-454X"
+            }
+          ],
+          "proofScope": "A written proof in a manuscript, with no human review yet. A certificate check, published with the polynomial, shows that the polynomial is equivalent to the system of equations of the manuscript; it does not check the arithmetic argument. The Lean development is incomplete, so it is not a Lean proof of our statement.",
+          "bound": "314\\text{ variables}",
+          "measures": {
+            "degree": "4",
+            "variables": "314",
+            "terms": "6672",
+            "coefficient": "<2^6496"
+          },
+          "agent": true
+        },
+        {
+          "author": "Stefan Baranczuk, Jose Brox, Gabe Conant, Sohail Farhangi, James Freitag, Elliot Glazer, Jennifer Park and Caroline Terry",
+          "handle": "z-in-q-version-14",
+          "value": "299",
+          "display": "299",
+          "date": "2026-11-09T05:29:47Z",
+          "dateSource": "https://github.com/elliotglazer/diophantine-z-q/commit/552f20cb8d4846e2895509986d6839f3a6949b79",
+          "dateKind": "first-stated",
+          "url": "https://github.com/elliotglazer/diophantine-z-q/releases/tag/quartic-299-version-14",
+          "lean": false,
+          "leanNote": "Incomplete. The main Lean theorem still contains sorry.",
+          "evidence": "claimed",
+          "note": "Version 14 of the manuscript, released on 10 November 2026; the Version 15 manuscript keeps it. Degree 4, 6,630 nonzero terms, largest absolute coefficient \\(186624\\cdot 3^{2^{26}}\\). The complete table is public, with its large coefficients written through the fixed integer \\(C=3^{2^{25}}\\). The manuscript says it was developed primarily by OpenAI Codex agents (Astra 6 and Sol 6.1) and Anthropic Claude agents (Opus 5.5), with auditing from Fable 5.1. The project uses the collective agentic notes of the eight authors. Version 15 adds a family of polynomials in 222 variables. It defines \\(\\mathbb Z\\) only for \\(N\\) from a bound \\(N_0\\) on, and the manuscript has no effective value for \\(N_0\\), so no polynomial of that family is certified and it is not listed.",
+          "authors": [
+            {
+              "name": "Stefan Baranczuk",
+              "url": "https://orcid.org/0000-0003-4198-9241"
+            },
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            },
+            {
+              "name": "Gabe Conant",
+              "url": "https://orcid.org/0000-0002-9577-4871"
+            },
+            {
+              "name": "Sohail Farhangi",
+              "url": "https://orcid.org/0000-0001-8183-6157"
+            },
+            {
+              "name": "James Freitag",
+              "url": "https://orcid.org/0000-0002-7457-3122"
+            },
+            {
+              "name": "Elliot Glazer",
+              "url": "https://github.com/elliotglazer",
+              "login": "elliotglazer"
+            },
+            {
+              "name": "Jennifer Park",
+              "url": "https://orcid.org/0000-0003-1856-3410"
+            },
+            {
+              "name": "Caroline Terry",
+              "url": "https://orcid.org/0000-0001-7844-454X"
+            }
+          ],
+          "proofScope": "A written proof in a manuscript, with no human review yet. A certificate check, published with the polynomial, shows that the polynomial is equivalent to the system of equations of the manuscript; it does not check the arithmetic argument. The Lean development is incomplete, so it is not a Lean proof of our statement.",
+          "bound": "299\\text{ variables}",
+          "measures": {
+            "degree": "4",
+            "variables": "299",
+            "terms": "6630",
+            "coefficient": "186624*3^(2^26)"
+          },
+          "agent": true
+        },
+        {
+          "author": "Jose Brox",
+          "handle": "josebrox-262",
+          "value": "262",
+          "display": "262",
+          "date": "2026-11-10T16:16:38Z",
+          "dateSource": "https://github.com/JoseBrox/diophantine-z-q_improvements/commit/f3b46e20817e437475c2d9b6ef306a3ac140527f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/JoseBrox/diophantine-z-q_improvements/blob/f3b46e20817e437475c2d9b6ef306a3ac140527f/papers/quartic/quartic262_20261110_v21.pdf",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Jose Brox's repository (its citation file names the author JUVa) gives this as its leading fully specified quartic. Degree 4, 3,494 nonzero terms, largest absolute coefficient \\(149^{38730}+1\\) exactly (279,599 binary digits). The polynomial is public with every coefficient written for the fixed parameter \\(N=9682\\), the threshold from which the paper proves that the family defines \\(\\mathbb Z\\). The repository says its theorems keep the arithmetic premises stated in its papers. The repository says the collection includes computer-assisted mathematical writing and verification. The time shown is the commit that published it.",
+          "authors": [
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            }
+          ],
+          "proofScope": "A written proof in a paper in the repository, with no human review yet, conditional on the arithmetic premises stated in its papers. The repository's checks verify the algebra of the construction and the coefficient table; they do not check the arithmetic. No Lean proof.",
+          "bound": "262\\text{ variables}",
+          "measures": {
+            "degree": "4",
+            "variables": "262",
+            "terms": "3494",
+            "coefficient": "<2^279599"
+          }
         }
       ],
       "repos": [
@@ -3800,7 +3944,7 @@
           "note": "qqwref's copy of the repository, with the simplified construction."
         }
       ],
-      "bestHandle": "z-in-q-version-6",
+      "bestHandle": "josebrox-262",
       "rankBy": [
         "degree",
         "variables",
