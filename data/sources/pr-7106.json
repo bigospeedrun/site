@@ -1,0 +1,11 @@
+{
+  "number": 7106,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7106",
+  "title": "Bound fixed caller queries and two-ADD HOST repairs",
+  "body": "## Results\n\nFollow-up to #7098, with three independently runnable replay suites.\n\n- The pinned #7000 central interval needs four rank-one QUERYs per branch when the boundary operator is fixed. The whole-caller lower bound under the inherited two-shear native factorization is three per branch. Even granting one deletion per branch for pricing, the #7004 complex moment is approximately −462.571 at κ = .005. The unchanged #7001 BIT moment is approximately −444.063.\n- The pinned #6824 normalized word admits no specified same-port HOST repair through up to two added coframed ADDs across its 104 ports. This covers the existing chronology.\n- The normalized #7002 projector schedule reduces 181 idle jobs to 75 per port, versus 76 in #7098. Its F+H1 raw complex moment is still approximately −814.904 at .005. The physical packed IDLE, precision, BIT and outer obligations remain.\n\nNo new κ claim. The README identifies where changing the native macro or entrance would escape these bounds.\n\n## Reproduction\n\n`python3 -B scripts/research_package.py --package research/fixed-caller-query-and-host-limits`\n\nThe replay uses exact source pins and checks the fixed-interval sign ranks, retained-factorization bound, transport screen, projector schedule and rational tariffs, and the fixed-chronology HOST census. The normalized #6824 word is a generated input whose endpoint and inventory are checked during replay.\n\n## Credit\n\nRohan Arun with substantial OpenAI Codex assistance. Retained sources by Jerry Chen / CubeJerry (#6980, #7000, #7001, #7002), DreamingOfClouds (#6824) and ToikY (#7004), with upstream attribution and notices in the package. Apache-2.0.\n",
+  "created_at": "2026-11-10T14:05:13Z",
+  "updated_at": "2026-11-10T14:05:37Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,23 +1,23 @@
 {
-  "sha": "17469fff78c22941280f04d39dc5a1faee09c840",
-  "node_id": "C_kwDOU-508toAKDE3NDY5ZmZmNzhjMjI5NDEyODBmMDRkMzlkYzVhMWZhZWUwOWM4NDA",
+  "sha": "f16923d466a6aba912299882e0545564d2ba7bb2",
+  "node_id": "C_kwDOU-508toAKGYxNjkyM2Q0NjZhNmFiYTkxMjI5OTg4MmUwNTQ1NTY0ZDJiYTdiYjI",
   "commit": {
     "author": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-11-10T07:04:48Z"
+      "date": "2026-11-10T13:48:05Z"
     },
     "committer": {
       "name": "Douglas R. Colkitt",
       "email": "douglas.colkitt@gmail.com",
-      "date": "2026-11-10T07:04:48Z"
+      "date": "2026-11-10T13:48:20Z"
     },
-    "message": "Checkpoint completed November 10 queue review and remaining obligations [skip ci]",
+    "message": "Review PR7000 admission gaps and repair paired BIT ambient bound [skip ci]",
     "tree": {
-      "sha": "31b57dac8ad0477758ee2fa2a158a89a93b2d994",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/31b57dac8ad0477758ee2fa2a158a89a93b2d994"
+      "sha": "4286c13c5b7c0cb3f2996800c29cd3886d7924a3",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/trees/4286c13c5b7c0cb3f2996800c29cd3886d7924a3"
     },
-    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/17469fff78c22941280f04d39dc5a1faee09c840",
+    "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/git/commits/f16923d466a6aba912299882e0545564d2ba7bb2",
     "comment_count": 0,
     "verification": {
       "verified": false,
@@ -27,9 +27,9 @@
       "verified_at": null
     }
   },
-  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/17469fff78c22941280f04d39dc5a1faee09c840",
-  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/17469fff78c22941280f04d39dc5a1faee09c840",
-  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/17469fff78c22941280f04d39dc5a1faee09c840/comments",
+  "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f16923d466a6aba912299882e0545564d2ba7bb2",
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/f16923d466a6aba912299882e0545564d2ba7bb2",
+  "comments_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/f16923d466a6aba912299882e0545564d2ba7bb2/comments",
   "author": {
     "login": "Mister-Meeseeks",
     "id": 18204987,
@@ -74,60 +74,379 @@
   },
   "parents": [
     {
-      "sha": "390704e80084b87d5343b8257f52b5e19f5c0ea2",
-      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/390704e80084b87d5343b8257f52b5e19f5c0ea2",
-      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/390704e80084b87d5343b8257f52b5e19f5c0ea2"
+      "sha": "17469fff78c22941280f04d39dc5a1faee09c840",
+      "url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/commits/17469fff78c22941280f04d39dc5a1faee09c840",
+      "html_url": "https://github.com/CrocSwap/integer-mult-bounds/commit/17469fff78c22941280f04d39dc5a1faee09c840"
     }
   ],
   "stats": {
-    "total": 4260,
-    "additions": 4198,
-    "deletions": 62
+    "total": 2646,
+    "additions": 2609,
+    "deletions": 37
   },
   "files": [
     {
-      "sha": "0df933e6d7521c8bfff207d6a66ec731a023f93f",
+      "sha": "6136a194f40e7bbe47d1751fe4c8b5330cd67be1",
       "filename": "docs/research/pr-intake-checkpoint.json",
       "status": "modified",
+      "additions": 28,
+      "deletions": 14,
+      "changes": 42,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-checkpoint.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-checkpoint.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-checkpoint.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "de433baa74609e4a5bac60101bb2ea0a6ba6bd88",
+      "filename": "docs/research/pr-intake-decisions.json",
+      "status": "modified",
+      "additions": 16,
+      "deletions": 10,
+      "changes": 26,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-decisions.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-decisions.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-decisions.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "729d31d7fe199b2f5536ee412129445d642d9e0f",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/PROOF-REVIEW.md",
+      "status": "added",
+      "additions": 220,
+      "deletions": 0,
+      "changes": 220,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FPROOF-REVIEW.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FPROOF-REVIEW.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FPROOF-REVIEW.md?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "4e2ba176b1507ee4172916e019f44aa607c18187",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/SOURCE-READBACK.json",
+      "status": "added",
+      "additions": 18,
+      "deletions": 0,
+      "changes": 18,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FSOURCE-READBACK.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FSOURCE-READBACK.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FSOURCE-READBACK.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "60ffa680fb38f0595acce4ebd28973e332379d62",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/SOURCES.json",
+      "status": "added",
+      "additions": 100,
+      "deletions": 0,
+      "changes": 100,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FSOURCES.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FSOURCES.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FSOURCES.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "3cdb14f096aa095ffe5a0d66d85ccf7803df8908",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/VALIDATION.json",
+      "status": "added",
+      "additions": 123,
+      "deletions": 0,
+      "changes": 123,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FVALIDATION.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FVALIDATION.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2FVALIDATION.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "7a7a03f4b8ebc1e350f465bbe8cf98877b208459",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-ambient-optimized.json",
+      "status": "added",
+      "additions": 99,
+      "deletions": 0,
+      "changes": 99,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient-optimized.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient-optimized.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient-optimized.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "dfdb0b624ca134b2e7e8a0e94f22b9291aad5ac6",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-ambient-optimized.log",
+      "status": "added",
+      "additions": 43,
+      "deletions": 0,
+      "changes": 43,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient-optimized.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient-optimized.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient-optimized.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "cd19f356a5549f6b70557095e7745cdddde0485c",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-ambient.json",
+      "status": "added",
+      "additions": 98,
+      "deletions": 0,
+      "changes": 98,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "dfdb0b624ca134b2e7e8a0e94f22b9291aad5ac6",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-ambient.log",
+      "status": "added",
+      "additions": 43,
+      "deletions": 0,
+      "changes": 43,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-ambient.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "1d71e010b8bf81516406d87496818e5dc9214ebc",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-independent.json",
+      "status": "added",
+      "additions": 103,
+      "deletions": 0,
+      "changes": 103,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-independent.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-independent.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-independent.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "8364f39a429d59fe50e2992d00578caf8acb923d",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-independent.log",
+      "status": "added",
       "additions": 139,
-      "deletions": 62,
-      "changes": 201,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-checkpoint.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-checkpoint.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-checkpoint.json?ref=17469fff78c22941280f04d39dc5a1faee09c840"
+      "deletions": 0,
+      "changes": 139,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-independent.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-independent.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-independent.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
     },
     {
-      "sha": "8808aea4208245832ee055f2fa05e6aaf681c1d9",
-      "filename": "docs/research/pr-intake-evidence/queue-nov10-ending.json",
+      "sha": "145bb28405c746565b76c4615827732db295eff3",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-primary.json",
       "status": "added",
-      "additions": 3955,
+      "additions": 98,
       "deletions": 0,
-      "changes": 3955,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-ending.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-ending.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-ending.json?ref=17469fff78c22941280f04d39dc5a1faee09c840"
+      "changes": 98,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-primary.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-primary.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-primary.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
     },
     {
-      "sha": "57683163fcac33af197dcfa6201cbee78b75d55e",
-      "filename": "docs/research/pr-intake-evidence/queue-nov10-final-bindings.json",
+      "sha": "fb2b6b475737c5c642d032a20782d820f5666772",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/bit-primary.log",
       "status": "added",
-      "additions": 22,
+      "additions": 23,
       "deletions": 0,
-      "changes": 22,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-final-bindings.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-final-bindings.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-final-bindings.json?ref=17469fff78c22941280f04d39dc5a1faee09c840"
+      "changes": 23,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-primary.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-primary.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fbit-primary.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
     },
     {
-      "sha": "fc3f84e88b5b7867666e6ab7960ab6c7bb3f6535",
-      "filename": "docs/research/pr-intake-evidence/queue-nov10-summary.json",
+      "sha": "8d0bbb32f5e69d988832c8724ba4e75889aecce7",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/check_bit_ambient.py",
       "status": "added",
-      "additions": 82,
+      "additions": 176,
       "deletions": 0,
-      "changes": 82,
-      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-summary.json",
-      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/17469fff78c22941280f04d39dc5a1faee09c840/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-summary.json",
-      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fqueue-nov10-summary.json?ref=17469fff78c22941280f04d39dc5a1faee09c840"
+      "changes": 176,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcheck_bit_ambient.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcheck_bit_ambient.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcheck_bit_ambient.py?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "954659f3325206e34a9b0866e07548395fac8444",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/check_interface_bindings.py",
+      "status": "added",
+      "additions": 138,
+      "deletions": 0,
+      "changes": 138,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcheck_interface_bindings.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcheck_interface_bindings.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcheck_interface_bindings.py?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "b236c8a845be62afc47074ee2c4fdf29900c3235",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/complex-independent.json",
+      "status": "added",
+      "additions": 98,
+      "deletions": 0,
+      "changes": 98,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-independent.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-independent.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-independent.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "5048475bc4142f5af87eefdb640dc6e3e49038b0",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/complex-independent.log",
+      "status": "added",
+      "additions": 6,
+      "deletions": 0,
+      "changes": 6,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-independent.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-independent.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-independent.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "ef2a2e2c9fc534e57852c95d4b3cda6f40952987",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/complex-physical.json",
+      "status": "added",
+      "additions": 100,
+      "deletions": 0,
+      "changes": 100,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-physical.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-physical.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-physical.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "b87cf4b285a99bc552a06f43f0def178225ba3da",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/complex-physical.log",
+      "status": "added",
+      "additions": 5,
+      "deletions": 0,
+      "changes": 5,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-physical.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-physical.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-physical.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "af02af2fd4cb5f3a893be5c1b0eda9d67f82054c",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/complex-primary.json",
+      "status": "added",
+      "additions": 97,
+      "deletions": 0,
+      "changes": 97,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-primary.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-primary.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-primary.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "264564ab41930a77418cf8786aba56b426617805",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/complex-primary.log",
+      "status": "added",
+      "additions": 79,
+      "deletions": 0,
+      "changes": 79,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-primary.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-primary.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fcomplex-primary.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "c2bb2aab437e36da99bee277a728fcb3578d16ff",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/interface-bindings-optimized.json",
+      "status": "added",
+      "additions": 145,
+      "deletions": 0,
+      "changes": 145,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings-optimized.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings-optimized.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings-optimized.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "27e6d84b5599b160ee52020debb0d4561fc2f0b2",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/interface-bindings-optimized.log",
+      "status": "added",
+      "additions": 46,
+      "deletions": 0,
+      "changes": 46,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings-optimized.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings-optimized.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings-optimized.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "c4d3130ae46411ebf1c40eed9c484e0ddb350e89",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/interface-bindings.json",
+      "status": "added",
+      "additions": 144,
+      "deletions": 0,
+      "changes": 144,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "27e6d84b5599b160ee52020debb0d4561fc2f0b2",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/interface-bindings.log",
+      "status": "added",
+      "additions": 46,
+      "deletions": 0,
+      "changes": 46,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Finterface-bindings.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "47d48116476b4dc33a20b22fb1ff580e4d206cee",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/lambda-algebra.json",
+      "status": "added",
+      "additions": 144,
+      "deletions": 0,
+      "changes": 144,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Flambda-algebra.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Flambda-algebra.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Flambda-algebra.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "ac545e37bb545b731ddba5197c44d23672d30a0a",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/lambda-algebra.log",
+      "status": "added",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Flambda-algebra.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Flambda-algebra.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Flambda-algebra.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "7ed1620354cb03a1ec08fbdccf4cb2f055853472",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/owned-factorizations.json",
+      "status": "added",
+      "additions": 144,
+      "deletions": 0,
+      "changes": 144,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fowned-factorizations.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fowned-factorizations.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fowned-factorizations.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "13a7b3a0c4ee4905df5a85399e8326ee172c1333",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/owned-factorizations.log",
+      "status": "added",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fowned-factorizations.log",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fowned-factorizations.log",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Fowned-factorizations.log?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "67ebc56c28faefdcbe9831305f7e55e114a55e06",
+      "filename": "docs/research/pr-intake-evidence/pr7000-admission/replay_bounded.py",
+      "status": "added",
+      "additions": 43,
+      "deletions": 0,
+      "changes": 43,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Freplay_bounded.py",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Freplay_bounded.py",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-intake-evidence%2Fpr7000-admission%2Freplay_bounded.py?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "1a3256403ae556ee1dccf10b70b2ec1efad00d84",
+      "filename": "docs/research/pr-ledger.json",
+      "status": "modified",
+      "additions": 41,
+      "deletions": 11,
+      "changes": 52,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-ledger.json",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-ledger.json",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-ledger.json?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
+    },
+    {
+      "sha": "02c799b692233100b7e281f8db7db531dd84b949",
+      "filename": "docs/research/pr-ledger.md",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2,
+      "changes": 4,
+      "blob_url": "https://github.com/CrocSwap/integer-mult-bounds/blob/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-ledger.md",
+      "raw_url": "https://github.com/CrocSwap/integer-mult-bounds/raw/f16923d466a6aba912299882e0545564d2ba7bb2/docs%2Fresearch%2Fpr-ledger.md",
+      "contents_url": "https://api.github.com/repos/CrocSwap/integer-mult-bounds/contents/docs%2Fresearch%2Fpr-ledger.md?ref=f16923d466a6aba912299882e0545564d2ba7bb2"
     }
   ]
 }
