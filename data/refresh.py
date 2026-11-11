@@ -9,7 +9,7 @@ import claim_judge, crocswap_cert
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
-IMPORTER_VERSION = 8  # 8: rows of a draft-then-ready PR date at its last ready_for_review event
+IMPORTER_VERSION = 9  # 8: rows of a draft-then-ready PR date at its last ready_for_review event; 9: HEAD_CHANGED
 # A CrocSwap PR is listed only when its own research package states a kappa (Nil,
 # 2026-10-17, after #3093 was listed from its title 'audit ... against kappa=0.1').
 # The package is the one research/<dir>/CLAIM.json that the PR adds; its 'kappa'
@@ -382,11 +382,17 @@ def claim_date(p, prior, read=None):
         ready = max((e['created_at'] for e in events if e.get('event') == 'ready_for_review' and e.get('created_at')), default=None)
     return ready or p['created_at'], ready, p['updated_at']
 
+# Lead, 2026-11-11: #7155 got a new head after its decision (only a second package directory changed); the read gave no
+# score and no reason, so its row left the board with no queue entry and no alert.
+HEAD_CHANGED = 'head changed since decision'
+
 def claim_queue(items):
     """The CrocSwap claims that wait for the lead (claim-review.json). since: the item's submitted_at, which is the
     last ready_for_review time of a PR that was a draft (claim_date); the dead-man review-wait item alerts on a wait
-    over 4 h from there (Lead, 2026-11-11)."""
-    return [dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason'],since=s['submitted_at']) for s in items
+    over 4 h from there (Lead, 2026-11-11). head_changed: a decided PR with a new head (HEAD_CHANGED); the dead-man
+    alerts on it at once, since its row has left the board."""
+    return [dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason'],since=s['submitted_at'],
+                 **({'head_changed':True} if s['review_reason'] == HEAD_CHANGED else {})) for s in items
             if s.get('review_reason') and s['upstream_status'] != 'closed-unmerged' and not isinstance(s['review_reason'], claim_judge.Deferred)]
 
 def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
@@ -419,6 +425,11 @@ def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
         path = same_package(earlier)
         if path:
             return earlier['score'], None, path, head_sha, text_sha, False, earlier
+    if earlier and n not in NOT_CLAIMS and p.get('state') == 'open':
+        # An open PR decided at an older head and not carried above: the lead decides the new head. No package read and
+        # no Claude call; the row leaves the board (no score on the stale head) and the PR waits in the queue with
+        # HEAD_CHANGED, whatever the package says now (Lead, 2026-11-11, #7155). A merged or closed PR keeps its last head.
+        return None, HEAD_CHANGED, None, head_sha, text_sha, False, None
     if n in NOT_CLAIMS:
         pass
     elif (claim_head == head_sha and claim_text == text_sha and not prior.get('claim_retry') and not prior.get('claim_decided')

@@ -428,6 +428,39 @@ class RefreshTests(unittest.TestCase):
         with patch.dict(refresh.NOT_CLAIMS,{4440:'Not a claim.'}):
             self.assertIsNone(refresh.claim_state(p,{},decisions,evaluate,None,lambda d:self.fail('no carry'))[0])
 
+    def test_an_open_pr_decided_at_an_older_head_waits_in_the_queue_with_head_changed(self):
+        # Lead, 2026-11-11: #7155 was Claimed at head a; its new head b changed only research/historical-selected-replay-gap/,
+        # the decision had no package path, and the read gave no score and no reason: the row left the board silently.
+        old,new='a'*40,'b'*40
+        p={'number':7155,'state':'open','title':'Conditional κ = 0.003644267085400 (+2.77745773e-7 over #7147): compose the chart-237 and chart-595 splits','body':'','head':{'sha':new}}
+        decided={'pr':7155,'head':old,'score':'18221335427/5000000000000','at':'2026-11-11T04:30:02Z','path':None}
+        decisions={(7155,old):decided}
+        prior={'claimed_score':decided['score'],'claim_decided':True,'claim_head':old,'claim_path':None,'record_ids':['crocswap-pr-7155']}
+        no_carry=lambda d:None  # the decided package is not byte-identical at the new head
+        # Whatever the package says now: no read at all (no Claude call), no score on the stale head.
+        score,reason,claim_path,claim_head,claim_text,retry,decision=refresh.claim_state(p,prior,decisions,lambda:self.fail('no read'),None,no_carry)
+        self.assertEqual((score,reason,claim_path,claim_head,retry,decision),(None,refresh.HEAD_CHANGED,None,new,False,None))
+        # The next run keeps it queued, still with no read.
+        again=dict(prior,claim_head=new,claim_text=claim_text,claimed_score=None,claim_decided=False,review_reason=refresh.HEAD_CHANGED)
+        self.assertEqual(refresh.claim_state(p,again,decisions,lambda:self.fail('no read'),None,no_carry)[:2],(None,refresh.HEAD_CHANGED))
+        # A decision with no score (dismissed) at the older head: the same.
+        self.assertEqual(refresh.claim_state(p,{},{(7155,old):dict(decided,score=None)},lambda:self.fail('no read'),None,no_carry)[:2],(None,refresh.HEAD_CHANGED))
+        # A decision at the new head decides; an unchanged package with the same kappa still carries the old decision.
+        self.assertEqual(refresh.claim_state(p,prior,decisions|{(7155,new):dict(decided,head=new)},lambda:self.fail('no read'))[0],decided['score'])
+        p2=dict(p,title='Conditional κ = 0.003644267085400')
+        self.assertEqual(refresh.claim_state(p2,{},decisions,lambda:self.fail('no read'),None,lambda d:'research/y/CLAIM.json')[:3],(decided['score'],None,'research/y/CLAIM.json'))
+        # A merged or closed PR, a PR in NOT_CLAIMS, or a PR never decided: the usual read.
+        for case,q in [('merged',dict(p,state='closed')),('never decided',p)]:
+            with self.subTest(case):
+                ds={} if case=='never decided' else decisions
+                self.assertEqual(refresh.claim_state(q,{},ds,lambda:(None,None,'r'),None,no_carry)[:2],(None,'r'))
+        with patch.dict(refresh.NOT_CLAIMS,{7155:'Not a claim.'}):
+            self.assertNotEqual(refresh.claim_state(p,{},decisions,lambda:(None,None,None),None,no_carry)[1],refresh.HEAD_CHANGED)
+        # The queue marks it, so the dead-man alerts at once.
+        item=lambda reason:dict(pr_number=7155,source_commit=new,title='t',url='u',review_reason=reason,upstream_status='open',submitted_at='2026-11-11T04:00:00Z')
+        self.assertEqual(refresh.claim_queue([item(refresh.HEAD_CHANGED)])[0]['head_changed'],True)
+        self.assertNotIn('head_changed',refresh.claim_queue([item('No package.')])[0])
+
     def test_same_package_compares_the_bytes_at_both_heads(self):
         p={'number':4440,'head':{'sha':'b'*40}}
         approved={'head':'a'*40,'score':'37/12500'}
