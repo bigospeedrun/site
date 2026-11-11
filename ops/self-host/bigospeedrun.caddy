@@ -17,8 +17,31 @@
 # 45 s. Behind Cloudflare, ACME's TLS-ALPN challenge cannot reach Caddy, so the site uses
 # HTTP-01. After the 24 h soak, add the host's cloudflare_only gate (phase D).
 #
-# Serve the same site on both names (www is not redirected).
-bigospeedrun.com, www.bigospeedrun.com {
+# Plain HTTP: the host's catch-all http:// block answers unknown hosts with 421 (its global
+# options disable the automatic redirects). Redirect to HTTPS on the same name, path and query
+# kept (BOS Lead Dev request, 2026-10-25). ACME's HTTP-01 challenge is still answered on port 80.
+http://bigospeedrun.com, http://www.bigospeedrun.com {
+	redir https://{host}{uri} 308
+}
+
+# www sends every path to the bare name with a 301 (BOS Lead Dev request, 2026-11-11).
+# route: redir runs before abort, so the Cloudflare gate must be inside the route
+# (playbook, gate placement).
+www.bigospeedrun.com {
+	route {
+		import cloudflare_only
+		redir https://bigospeedrun.com{uri} 301
+	}
+	tls {
+		issuer acme {
+			disable_tlsalpn_challenge
+		}
+	}
+}
+
+bigospeedrun.com {
+	# Cloudflare peers only (phase D step 6, 2026-10-17): abort runs before reverse_proxy.
+	import cloudflare_only
 	tls {
 		issuer acme {
 			disable_tlsalpn_challenge
