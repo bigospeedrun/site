@@ -123,6 +123,6 @@ test('a measure A*B^(X) in another base compares by its size in bits (the 64*3^(
 test('Z is Diophantine in Q with the claims of 2026-11-06 to 2026-11-10: quartics by variables, then the rest by degree bound', () => {
   const f = data.families.find(x => x.slug === 'z-diophantine-in-q')! as any;
   assert.deepEqual(rankOtherClaims(f.claims as {handle: string; display: string; value: string; date: string}[], f.direction, f.rankBy).map(r => [r.claim.handle, r.rank]),
-    [['josebrox-262', 1], ['z-in-q-version-14', 2], ['z-in-q-version-14-decimal', 3], ['z-in-q-version-6', 4], ['z-in-q-version-5', 5], ['josebrox-1315', 6], ['z-in-q-version-4', 7], ['z-in-q-version-3', 8], ['z-in-q-version-2', 9], ['josebrox-41', 10], ['qqwref', 11], ['elliotglazer', 12]]);
+    [['josebrox-262', 1], ['josebrox-265', 2], ['z-in-q-version-14', 3], ['z-in-q-version-14-decimal', 4], ['josebrox-322', 5], ['josebrox-342', 6], ['josebrox-351', 7], ['josebrox-370', 8], ['josebrox-389', 9], ['josebrox-392', 10], ['z-in-q-version-13', 11], ['josebrox-456', 12], ['z-in-q-version-9', 13], ['z-in-q-version-6', 14], ['z-in-q-version-5', 15], ['josebrox-1315', 16], ['z-in-q-version-4', 17], ['z-in-q-version-3', 18], ['z-in-q-version-2', 19], ['josebrox-27-l20483', 20], ['josebrox-27', 21], ['josebrox-29-degree89', 22], ['josebrox-29-degree157', 23], ['josebrox-29-degree161', 24], ['josebrox-29-degree166', 25], ['josebrox-41', 26], ['qqwref', 27], ['elliotglazer', 28]]);
   assert.equal(otherBoundLeader(f)!.handle, 'josebrox-262');
 });
