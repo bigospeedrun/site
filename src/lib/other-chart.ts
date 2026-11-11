@@ -4,7 +4,7 @@
 // as +\infty, \log(20)/784 or A d^p has no point on an axis. Each point carries an exact score, so the chart ranks
 // by the rules of the Big O boards (ranking.ts), which give the order of the table for the same numbers.
 import {initials} from './avatars.ts';
-import {otherClaimNumber, compareMeasures, type Measures} from './other-rank.ts';
+import {otherClaimNumber, compareMeasures, parseExact, exactNumber, type Measures} from './other-rank.ts';
 import {otherTableRows, isTableBreakthrough, isClassicBaseline, shownLevel} from './other-table.ts';
 import type {ChartEntry} from './chart.ts';
 
@@ -27,8 +27,29 @@ export function exactScore(value: number): string {
   return shift >= 0 ? sign + (digits * 10n ** BigInt(shift)) : sign + digits + '/' + 10n ** BigInt(-shift);
 }
 
-// The score of a row: its exact fraction or integer when that agrees with the number the ranking reads, else that
-// number. Null when the ranking reads no number.
+// floor(sqrt(n)) for n >= 0.
+function isqrt(n: bigint): bigint {
+  if (n < 2n) return n;
+  // Newton from 2^ceil(bits/2) >= sqrt(n) decreases to floor(sqrt(n)).
+  let x = 1n << BigInt(Math.ceil(n.toString(2).length / 2));
+  for (;;) { const y = (x + n / x) / 2n; if (y >= x) return x; x = y; }
+}
+// A (a + b sqrt(c)) / d value (other-rank.ts parseExact) as a fraction with SURD_DIGITS decimals, rounded down. Quasi-Riemann
+// #129 (Lead, 2026-11-11) is 2.16e-254 below #103's fraction, so a float score would chart it as the same value.
+const SURD_DIGITS = 300;
+export function surdScore(x: {a: bigint; b: bigint; c: bigint; d: bigint}): string {
+  const scale = 10n ** BigInt(SURD_DIGITS);
+  // b sqrt(c) * scale = sign(b) sqrt(b^2 c scale^2): its floor for b > 0, its ceiling for b < 0 (subtracted).
+  const root = isqrt(x.b * x.b * x.c * scale * scale);
+  const exactRoot = root * root === x.b * x.b * x.c * scale * scale;
+  const term = x.b >= 0n ? root : -(exactRoot ? root : root + 1n);
+  const numerator = x.a * scale + term;
+  const q = numerator >= 0n ? numerator / x.d : -((-numerator + x.d - 1n) / x.d);
+  return q + '/' + scale;
+}
+
+// The score of a row: its exact fraction or integer when that agrees with the number the ranking reads, a surd as
+// surdScore, else that number. Null when the ranking reads no number.
 export function claimScore(claim: Pick<Claim, 'display' | 'value'>): string | null {
   const number = otherClaimNumber(claim);
   if (number === null || !Number.isFinite(number)) return null;
@@ -36,6 +57,8 @@ export function claimScore(claim: Pick<Claim, 'display' | 'value'>): string | nu
   if (exact && BigInt(exact[2]) !== 0n && Math.abs(Number(exact[1]) / Number(exact[2]) - number) <= 1e-6 * Math.abs(number)) return exact[1] + '/' + exact[2];
   const integer = whole(claim.value);
   if (integer && Number(integer[1]) === number) return integer[1];
+  const surd = parseExact(claim.value);
+  if (surd && surd.c !== 0n && surd.b !== 0n && Math.abs(exactNumber(surd) - number) <= 1e-6 * Math.abs(number)) return surdScore(surd);
   return exactScore(number);
 }
 

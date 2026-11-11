@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import data from './other-bounds.json' with {type: 'json'};
 import {otherBoundLeader} from './other-leader.ts';
 import {createKnowledge} from './chat-knowledge.ts';
+import {compareExactValues, parseExact} from './other-rank.ts';
 
 type Rational = {n: bigint; d: bigint};
 const gcd = (a: bigint, b: bigint): bigint => b ? gcd(b, a % b) : (a < 0n ? -a : a);
@@ -78,12 +79,14 @@ test('every Other bounds row shows its best claim by the row direction', () => {
     assert.equal(new Set(dates).size, dates.length, `${row.slug}: two ${row.bestHandle} claims share a date`);
     assert.equal(Date.parse(leader.date), Math.max(...dates), `${row.slug}: leader is not the newest ${row.bestHandle} claim`);
     const best = exactValue(leader.value) ?? displayed(leader.display);
+    // A surd leader (quasi-Riemann #129, (777-\sqrt{1081})/852) compares exactly; its decimal display is rounded.
+    const surd = parseExact(leader.value);
     for (const claim of row.claims) {
       const value = exactValue(claim.value);
       if (!value || claim === leader || (row as {rankBy?: string[]}).rankBy) continue;
       // An exact rival needs a leader value to compare against.
       assert.ok(best, `${row.slug}: leader ${leader.value} does not parse, so it cannot be compared with ${claim.value}`);
-      const order = compare(value, best) * (row.direction === 'higher' ? 1 : -1);
+      const order = (surd ? compareExactValues({a: value.n, b: 0n, c: 0n, d: value.d}, surd) : compare(value, best!)) * (row.direction === 'higher' ? 1 : -1);
       assert.ok(order <= 0, `${row.slug}: ${claim.handle} ${claim.value} beats the shown leader ${leader.value}`);
     }
     assert.equal(chatRows.find(r => r.path === '/other/' + row.slug)?.current.bound, leader.bound, `${row.slug}: chat leader`);

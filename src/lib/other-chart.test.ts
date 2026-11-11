@@ -99,3 +99,20 @@ test('an author who beats their own row adds a step, and two rows with the same 
   const chart = otherChart(family, reviewed)!;
   assert.deepEqual(chartRecords(chart.entries, new Set(evidenceLevels.map(l => l.id)), chart.higher).map(e => e.score), ['1', '2', '3']);
 });
+
+import {surdScore} from './other-chart.ts';
+import {parseExact as exactOf} from './other-rank.ts';
+import {compare as compareScores} from './ranking.ts';
+// Lead, 2026-11-11, quasi-Riemann #129: (777-sqrt(1081))/852 is 2.16e-254 below #103's fraction T; a float score
+// would chart them as one value.
+test('a surd value charts as its 300-decimal fraction, rounded down, below #103', () => {
+  const B2 = '\\frac{777-\\sqrt{1081}}{852}';
+  const T = '2804966284017490358030969257914123810640482798488248385236764587735806455694206308975383836842958115341512355256943573632654341/3211614609922119834694179379888743028634953588197852962423516288191911449231164741438582626063161096341458934143644085157872271';
+  const score = claimScore({display: '0.873381966613207519929026778643', value: B2})!;
+  assert.match(score, /^8733819666132075199290267786423718694050155885349089305521885\d{239}\/10{300}$/);
+  assert.equal(compareScores(score, T), -1);
+  assert.equal(surdScore(exactOf('\\frac{2+\\sqrt{4}}{2}')!), '2' + '0'.repeat(300) + '/1' + '0'.repeat(300));
+  assert.ok(surdScore(exactOf('\\frac{0-\\sqrt{2}}{1}')!).startsWith('-14142135623730950488016887242096980'));
+  // A surd that disagrees with its display charts as the display.
+  assert.equal(claimScore({display: '0.9', value: B2}), '9/10');
+});
