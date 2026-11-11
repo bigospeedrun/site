@@ -1,0 +1,11 @@
+{
+  "number": 7141,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7141",
+  "title": "Bound the #7131 two-blocker scalar search (0% κ change)",
+  "body": "## Change and mathematical scope\n\nThis research package exhausts two fixed two-blocker searches on the #7131 paid scalar profile. The independent-cut search tested 73,461 complete paid placements. The support-aware overlap search tested all eight eligible placements. Neither search yielded a positive certified price, and zero cases remain unresolved in those two scopes. Three or more blockers and different provider, caller, or support contracts remain open.\n\n**NO VERIFIED GAIN.** The comparator is #7131 at `67a6544cf18b2d372fd1d0deee1863e9f6ca9fc5`, with κ = 0.003642408496869. Δκ = 0 and the relative change is 0%.\n\n## Replay\n\nFrom the PR checkout with CPython 3.12:\n\n```sh\npython3.12 -B scripts/research_package.py --package research/p104-two-blocker-exclusion\n```\n\nThe clean package replay, registered replay, and committed-byte checks passed locally on CPython 3.12.14. The package includes the exact source references, pinned inputs, all-term journal, verification receipts, and scope limits. The replay verifies both distinct `two_blockers.py` files by path and rejects duplicate receipt keys. It needs no prior checkout, temporary pointer, or network fetch.\n\n## Credit\n\nRohan Arun’s #7113, #7124, and #7131 supplied the caller lineage and paid comparator. Dillona’s #7130 and pinned same-word source supplied the inherited scalar inputs. #6290 is the closest distinct fixed-route search identified in the overlap check. This contribution supplies the two exhaustive scoped replays and portable package. Codex and its subagents materially assisted the search, verification, and packaging.",
+  "created_at": "2026-11-11T00:11:36Z",
+  "updated_at": "2026-11-11T00:11:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
