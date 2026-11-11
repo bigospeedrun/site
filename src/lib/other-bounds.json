@@ -3725,6 +3725,33 @@
           "agent": true
         },
         {
+          "author": "Jose Brox",
+          "handle": "josebrox-43",
+          "value": "43",
+          "display": "43",
+          "date": "2026-11-06T17:12:38Z",
+          "dateSource": "https://github.com/JoseBrox/diophantine-z-q_improvements/commit/8251862c31dd5410dd6e7e19d164b0c833822767",
+          "dateKind": "first-stated",
+          "url": "https://github.com/JoseBrox/diophantine-z-q_improvements/tree/8251862c31dd5410dd6e7e19d164b0c833822767/research/phase3/finite_fibre/polynomial-43-semilocal",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Jose Brox's repository (paper author line: JUVa) gives this as its semilocal construction, the one with a much smaller degree bound than its 41-variable construction. Its degree is at most \\(2^{236}\\) and its largest absolute coefficient at most \\(2^{2^{240}}\\), both stated upper bounds; the polynomial is given as a coefficient graph with 6,039 nodes, not as a list of terms, so its number of terms is not stated. It uses a prime-pattern theorem of Z.-W. Sun (arXiv 2610.20691). The repository calls its results conditional polynomial presentations: they take the arithmetic inputs of Elliot Glazer's construction and Sun's theorem as given. The repository says the research includes computer-assisted manuscript preparation and verification. The time shown is the commit that published it.",
+          "authors": [
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            }
+          ],
+          "proofScope": "A written proof in a manuscript in the repository, with no human review yet, conditional on the arithmetic inputs of the Glazer construction and on Sun's prime-pattern theorem. The repository's checks verify the algebra of the construction; they do not check the arithmetic. No Lean proof.",
+          "bound": "43\\text{ variables}",
+          "measures": {
+            "degree": "<2^236",
+            "variables": "43",
+            "coefficient": "<2^(2^240)"
+          }
+        },
+        {
           "author": "Stefan Baranczuk, Jose Brox, Gabe Conant, Sohail Farhangi, James Freitag, Elliot Glazer, Jennifer Park and Caroline Terry",
           "handle": "z-in-q-version-6",
           "value": "962",
@@ -3869,6 +3896,33 @@
           }
         },
         {
+          "author": "Jose Brox",
+          "handle": "josebrox-31",
+          "value": "31",
+          "display": "31",
+          "date": "2026-11-07T15:13:29Z",
+          "dateSource": "https://github.com/JoseBrox/diophantine-z-q_improvements/commit/09a48daf38c197bf28aa89d4bd8603295b2a0de4",
+          "dateKind": "first-stated",
+          "url": "https://github.com/JoseBrox/diophantine-z-q_improvements/tree/09a48daf38c197bf28aa89d4bd8603295b2a0de4/computation/few_variables/construction29/polynomial-31-preferred",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Jose Brox's repository (its citation file names the author JUVa) gives this as the lower-degree alternative to its 29-variable construction. Its degree is at most \\(2^{180}\\) and its largest absolute coefficient at most \\(2^{2^{184}}\\), both stated upper bounds; the polynomial is a determinant and product expression with a public coefficient specification, so its number of terms is not stated. It takes the contact-height bound and the simultaneous prime-pattern hypotheses of its papers as given. The repository says the collection includes computer-assisted mathematical writing and verification. The time shown is the commit that published it.",
+          "authors": [
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            }
+          ],
+          "proofScope": "A written proof in a paper in the repository, with no human review yet, conditional on the arithmetic premises stated in its papers. The repository's checks verify the algebra of the construction and the coefficient table; they do not check the arithmetic. No Lean proof.",
+          "bound": "31\\text{ variables}",
+          "measures": {
+            "degree": "<2^180",
+            "variables": "31",
+            "coefficient": "<2^(2^184)"
+          }
+        },
+        {
           "author": "Stefan Baranczuk, Jose Brox, Gabe Conant, Sohail Farhangi, James Freitag, Elliot Glazer, Jennifer Park and Caroline Terry",
           "handle": "z-in-q-version-13",
           "value": "394",
@@ -3952,6 +4006,33 @@
             "variables": "392",
             "terms": "6204",
             "coefficient": "<2^1791357"
+          }
+        },
+        {
+          "author": "Jose Brox",
+          "handle": "josebrox-29-degree174",
+          "value": "29",
+          "display": "29",
+          "date": "2026-11-08T04:38:03Z",
+          "dateSource": "https://github.com/JoseBrox/diophantine-z-q_improvements/commit/de7aa60dd1794d7ea62a8a83cdc4bfd22380c74f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/JoseBrox/diophantine-z-q_improvements/blob/de7aa60dd1794d7ea62a8a83cdc4bfd22380c74f/papers/few_variables/few_variables_20261108_v8.pdf",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Jose Brox's repository (its citation file names the author JUVa) gives this as its refined 29-variable construction. Its degree is at most \\(2^{174}\\) and its largest absolute coefficient at most \\(2^{2^{177}}\\), both stated upper bounds; the polynomial is a determinant and product expression with a public coefficient specification and the fixed prime \\(76249\\) and exponent \\(137715\\), for which the paper proves its index bound and states its theorem, so its number of terms is not stated. The repository says its theorems keep the arithmetic premises stated in its papers. The repository says the collection includes computer-assisted mathematical writing and verification. The time shown is the commit that published it.",
+          "authors": [
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            }
+          ],
+          "proofScope": "A written proof in a paper in the repository, with no human review yet, conditional on the arithmetic premises stated in its papers. The repository's checks verify the algebra of the construction and the coefficient table; they do not check the arithmetic. No Lean proof.",
+          "bound": "29\\text{ variables}",
+          "measures": {
+            "degree": "<2^174",
+            "variables": "29",
+            "coefficient": "<2^(2^177)"
           }
         },
         {
