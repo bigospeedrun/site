@@ -382,6 +382,13 @@ def claim_date(p, prior, read=None):
         ready = max((e['created_at'] for e in events if e.get('event') == 'ready_for_review' and e.get('created_at')), default=None)
     return ready or p['created_at'], ready, p['updated_at']
 
+def claim_queue(items):
+    """The CrocSwap claims that wait for the lead (claim-review.json). since: the item's submitted_at, which is the
+    last ready_for_review time of a PR that was a draft (claim_date); the dead-man review-wait item alerts on a wait
+    over 4 h from there (Lead, 2026-11-11)."""
+    return [dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason'],since=s['submitted_at']) for s in items
+            if s.get('review_reason') and s['upstream_status'] != 'closed-unmerged' and not isinstance(s['review_reason'], claim_judge.Deferred)]
+
 def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
     """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
     retry, decision). evaluate() reads the PR's package and runs the Claude check.
@@ -588,7 +595,9 @@ def refresh(stage, now):
             owners[claim_path] = n
         prior = prior or None
         ids = list(prior['record_ids']) if prior and prior['record_ids'] and score else ([f'crocswap-pr-{n}'] if score else [])
-        dated, ready_at, ready_checked = claim_date(p, prior or {}) if ids else (p['created_at'], None, None)
+        # A listed row, or a claim that waits for the lead (claim-review.json "since": the dead-man review-wait item
+        # counts its wait from there, Lead 2026-11-11).
+        dated, ready_at, ready_checked = claim_date(p, prior or {}) if ids or (reason and status != 'closed-unmerged') else (p['created_at'], None, None)
         ap = f'sources/pr-{n}.json'
         dump(stage, ap, {k: p[k] for k in ['number','html_url','title','body','created_at','updated_at','closed_at','merged_at','state']})
         item = dict(pr_number=n, author=p['user']['login'], author_url=p['user']['html_url'], title=p['title'], url=p['html_url'], submitted_at=dated, updated_at=p['updated_at'], source_commit=p['head']['sha'], upstream_status=status, upstream_status_at=p['merged_at'] or p['closed_at'] or dated, checked_at=day, claimed_score=score, record_ids=ids, note=(prior['note'] if prior and prior['title']==p['title'] else None) if score else NOT_CLAIMS.get(n) or reason or (prior or {}).get('note') or 'No research package kappa claim.')
@@ -697,8 +706,7 @@ def refresh(stage, now):
                 listing['manifest_source']['path']=path
             dump(stage,path,manifest);listing['rules_url']=manifest['rules_url'];listing['manifest_source']['revision']='sha256:'+artifact(stage,path)['sha256']
     dump(stage,'registry.json',reg)
-    queue=[dict(pr=s['pr_number'],head=s['source_commit'],title=s['title'],url=s['url'],reason=s['review_reason']) for s in items if s.get('review_reason') and s['upstream_status'] != 'closed-unmerged' and not isinstance(s['review_reason'], claim_judge.Deferred)]
-    dump(stage,CLAIM_QUEUE,{'queue':queue})
+    dump(stage,CLAIM_QUEUE,{'queue':claim_queue(items)})
     dump(stage,'sources/intake.json',dict(checked_at=day,assembled_at=now,pulls_source=f'https://api.github.com/repos/{CROC}/pulls',count=len(pulls),fingerprint=fingerprint)|pull_listing)
     return dict(checked_at=now,new_prs=[p['number'] for p in pulls if p['number'] not in old],new_merged_records=new_merged,previous_record=best(before),current_record=best(problem),new_current_record=best(before)!=best(problem),unparsed_new_prs=[s['pr_number'] for s in items if s['pr_number'] not in old and s['claimed_score'] is None],certifications_error=certifications_error)
 

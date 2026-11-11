@@ -373,6 +373,13 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(refresh.claim_date(p,{})[0],'2026-11-11T00:32:30Z')
         self.assertEqual(reads[-1],'repos/CrocSwap/integer-mult-bounds/issues/7142/timeline')
 
+    def test_a_waiting_claim_carries_the_time_it_waits_since(self):
+        # Lead, 2026-11-11: the dead-man review-wait item counts a claim's wait from its ready time (claim_date).
+        item=lambda n,reason,status='open':dict(pr_number=n,source_commit='c'*40,title='t',url='u',review_reason=reason,upstream_status=status,submitted_at=f'2026-11-11T00:{n%60:02d}:00Z')
+        queue=refresh.claim_queue([item(7142,'No package.'),item(7143,None),item(7144,'No package.','closed-unmerged'),
+                                   item(7145,refresh.claim_judge.Deferred('budget'))])
+        self.assertEqual(queue,[dict(pr=7142,head='c'*40,title='t',url='u',reason='No package.',since='2026-11-11T00:02:00Z')])
+
     def test_a_zero_denominator_never_fails_the_refresh(self):
         # Reviewer, 2026-10-21: Fraction('1/0') raises. A contributor's "1/0" is no value.
         top='research/x/RESULT.json'
