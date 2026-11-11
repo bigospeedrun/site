@@ -367,6 +367,9 @@ test('an Other bounds row becomes a feed board with its own slug, table, leader 
  assert.equal(plainTex('W_r(k)>k^{k\\lfloor\\log_2r\\rfloor/9}'),'W_r(k) > k^(k floor(log_2r)/9)');
  assert.equal(plainTex('\\mathbb{E}[R]\\ge \\frac{1}{2}\\mathbb{E}[\\mathrm{OPT}]'),'E[R] ≥ 1/2 E[OPT]');
  assert.equal(plainTex('\\mathrm{AS}(f)\\le 3.762d\\sqrt n'),'AS(f) ≤ 3.762d sqrt(n)');
+ // Quasi-Riemann #129 (Lead, 2026-11-11): the post shows the exact form, not the decimal of #103.
+ assert.equal(plainTex('\\theta\\le\\frac{777-\\sqrt{1081}}{852}'),'θ ≤ (777-sqrt(1081))/852');
+ assert.equal(plainTex('2\\sqrt{3}'),'2 sqrt(3)');
  assert.equal(plainTex('\\mathbb{E}[R]\\ge 5.1\\cdot10^{-10}\\,\\mathbb{E}[\\mathrm{OPT}]'),'E[R] ≥ 5.1·10^(-10) E[OPT]');
  assert.equal(plainTex('1{,}000'),'1,000');
  // A command name after a letter or digit keeps a space, and a nested exponent keeps its grouping (the F2 row, 2026-11-02).

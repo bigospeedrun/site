@@ -154,7 +154,8 @@ export function plainTex(tex:string):string {
  for(let i=0;i<3;i++){
   s=s.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,(all,a,b)=>`${/^[\w.]+$/.test(a)?a:'('+a+')'}/${/^[\w.]+$/.test(b)?b:'('+b+')'}`);
   s=s.replace(/\\mathbb\{([^{}]*)\}/g,' $1').replace(/\\(?:text|mathrm|operatorname|mathbf|mathit)\{([^{}]*)\}/g,'$1');
-  s=s.replace(/\\sqrt\{([^{}]*)\}/g,' sqrt($1)');
+  // A space only after a letter or digit: 8d\sqrt{n} is '8d sqrt(n)', 777-\sqrt{1081} is '777-sqrt(1081)'.
+  s=s.replace(/\\sqrt\{([^{}]*)\}/g,(all,x,at,text)=>(/[A-Za-z0-9]/.test(text[at-1]??'')?' ':'')+`sqrt(${x})`);
  }
  s=s.replace(/\\sqrt\s*([A-Za-z0-9])/g,' sqrt($1)').replace(/\\lfloor\s*/g,' floor(').replace(/\s*\\rfloor/g,')');
  const symbols:Record<string,string>={le:'≤',leq:'≤',ge:'≥',geq:'≥',approx:'≈',cdot:'·',times:' × ',theta:'θ',mu:'μ',eta:'η',gamma:'γ',sigma:'σ',dagger:'†',

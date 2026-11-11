@@ -126,3 +126,46 @@ test('Z is Diophantine in Q with the claims of 2026-11-06 to 2026-11-10: quartic
     [['josebrox-262', 1], ['josebrox-265', 2], ['z-in-q-version-14', 3], ['z-in-q-version-14-decimal', 4], ['josebrox-322', 5], ['josebrox-342', 6], ['josebrox-351', 7], ['josebrox-370', 8], ['josebrox-389', 9], ['josebrox-392', 10], ['z-in-q-version-13', 11], ['josebrox-456', 12], ['z-in-q-version-9', 13], ['z-in-q-version-6', 14], ['z-in-q-version-5', 15], ['josebrox-1315', 16], ['z-in-q-version-4', 17], ['z-in-q-version-3', 18], ['z-in-q-version-2', 19], ['josebrox-27-l20483', 20], ['josebrox-27', 21], ['josebrox-29-degree89', 22], ['josebrox-29-degree157', 23], ['josebrox-29-degree161', 24], ['josebrox-29-degree166', 25], ['josebrox-29-degree174', 26], ['josebrox-31', 27], ['josebrox-43', 28], ['josebrox-41', 29], ['qqwref', 30], ['elliotglazer', 31]]);
   assert.equal(otherBoundLeader(f)!.handle, 'josebrox-262');
 });
+
+import {compareExactValues, parseExact, shownBound} from './other-rank.ts';
+// Lead, 2026-11-11, quasi-Riemann #129: Joe Richey's exact contact point B2 = (777-sqrt(1081))/852 is about 2.16e-254 below
+// #103's bound T, the closest 256-character fraction above it. Both show the same 30 decimals.
+const T = '2804966284017490358030969257914123810640482798488248385236764587735806455694206308975383836842958115341512355256943573632654341/3211614609922119834694179379888743028634953588197852962423516288191911449231164741438582626063161096341458934143644085157872271';
+const B2 = '\\frac{777-\\sqrt{1081}}{852}';
+test('a \\frac{a\\pm b\\sqrt{c}}{d} value compares exactly with a fraction and with another such value', () => {
+  const x = (v: string) => parseExact(v)!;
+  assert.deepEqual(x(B2), {a: 777n, b: -1n, c: 1081n, d: 852n});
+  assert.deepEqual(x('\\frac{75+3\\sqrt{1081}}{852}'), {a: 75n, b: 3n, c: 1081n, d: 852n});
+  assert.deepEqual(x('7/8'), {a: 7n, b: 0n, c: 0n, d: 8n});
+  for (const bad of ['\\frac{777-\\sqrt{1081}}{0}', '1/0', '\\sqrt{2}', '\\frac{1}{\\sqrt2}', '777-\\sqrt{1081}/852']) assert.equal(parseExact(bad), null, bad);
+  assert.equal(compareExactValues(x(B2), x(T)), -1, 'B2 is below T');
+  assert.equal(compareExactValues(x(T), x(B2)), 1);
+  // Equal values in other forms tie: a scaled surd, and a surd of a square against its fraction.
+  assert.equal(compareExactValues(x(B2), x('\\frac{1554-2\\sqrt{1081}}{1704}')), 0);
+  assert.equal(compareExactValues(x('\\frac{2+\\sqrt{4}}{2}'), x('2')), 0);
+  assert.equal(compareExactValues(x('\\frac{1+\\sqrt{2}}{1}'), x('\\frac{0+1\\sqrt{8}}{2}')), 1, '1+sqrt2 > sqrt2');
+  assert.equal(compareExactValues(x('\\frac{0+\\sqrt{2}}{1}'), x('\\frac{0+1\\sqrt{8}}{2}')), 0, 'sqrt2 = sqrt8/2');
+  assert.equal(compareExactValues(x('\\frac{3-\\sqrt{2}}{1}'), x('\\frac{0+\\sqrt{3}}{1}')), -1, '3-sqrt2 < sqrt3');
+  // Transitive and antisymmetric on a mixed set (checked against a 60-digit decimal order).
+  const values = [B2, T, '\\frac{1554-2\\sqrt{1081}}{1704}', '8733819666132075/10000000000000000', '8733819666132076/10000000000000000', '\\frac{75+\\sqrt{1081}}{852}', '1/2', '\\frac{1+\\sqrt{2}}{3}', '\\frac{5-\\sqrt{3}}{4}', '4/5'];
+  for (const a of values) for (const b of values) {
+    assert.equal(compareExactValues(x(a), x(b)) + compareExactValues(x(b), x(a)), 0);
+    for (const c of values) if (compareExactValues(x(a), x(b)) <= 0 && compareExactValues(x(b), x(c)) <= 0) assert.ok(compareExactValues(x(a), x(c)) <= 0, `${a} ${b} ${c}`);
+  }
+});
+
+test('#129 ranks above #103 on the quasi-Riemann row, and equal exact values tie', () => {
+  const rows = [claim('0.873381966613207519929026778643', T, '2026-11-01'), claim('0.873381966613207519929026778643', B2, '2026-11-10'), claim('\\approx0.874957019420099', '\\sigma^{\\dagger}', '2024-01-01')];
+  assert.deepEqual(rankOtherClaims(rows, 'lower').map(r => [r.claim.value, r.rank, r.tie]), [[B2, 1, false], [T, 2, false], ['\\sigma^{\\dagger}', 3, false]]);
+  const equal = rankOtherClaims([claim('0.8733819666', B2, '2026-11-10'), claim('0.8733819666', '\\frac{1554-2\\sqrt{1081}}{1704}', '2026-11-11')], 'lower');
+  assert.deepEqual(equal.map(r => [r.claim.date, r.rank, r.tie]), [['2026-11-10', 1, false], ['2026-11-11', 1, true]]);
+  // A surd that disagrees with its display is not read: the claim ranks by its display.
+  assert.deepEqual(rankOtherClaims([claim('0.9', B2, '2026-11-10'), claim('0.88', '22/25', '2026-11-11')], 'lower').map(r => r.claim.display), ['0.88', '0.9']);
+});
+
+test('a row cell shows a surd value before its decimal display; other claims show their display', () => {
+  assert.equal(shownBound(claim('0.873381966613207519929026778643', B2)), B2 + '\\approx0.873381966613207519929026778643');
+  assert.equal(shownBound(claim('0.873381966613207519929026778643', T)), '0.873381966613207519929026778643');
+  assert.equal(shownBound(claim('\\le0.87488664704', '11/12-\\ell/4')), '\\le0.87488664704');
+  assert.equal(shownBound(claim('2', '\\frac{2+\\sqrt{4}}{2}')), '2');
+});

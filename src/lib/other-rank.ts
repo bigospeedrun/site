@@ -11,6 +11,12 @@
 // It is read only from the whole display, and the row uses that order only when every one of its claims is such a claim.
 //
 // Of claims that tie, the one with the higher evidence level ranks first (Nil, 2026-11-04; evidenceOrder), then the earlier one.
+//
+// Exact values (Lead, 2026-11-11, quasi-Riemann #129: the contact point (777-\sqrt{1081})/852, about 2.16e-254 below
+// #103's fraction): a value p/q, a whole number, or \frac{a\pm b\sqrt{c}}{d} is read exactly (parseExact) when it
+// agrees with the display's number, and claims compare by these values in integer arithmetic (compareExactValues). A
+// claim without such a value compares as its display's number, which is itself an exact binary fraction. So the order
+// is the order of real numbers, and transitive; two claims tie only when they are equal.
 type Claim = {display: string; value: string; date: string; evidence?: string};
 
 import {evidenceOrder} from './evidence.ts';
@@ -40,16 +46,64 @@ export function otherClaimNumber(claim: Pick<Claim, 'display' | 'value'>): numbe
   return whole ? Number(whole[1]) : null;
 }
 
-const same = (a: number, b: number) => Math.abs(a - b) <= 1e-9 * Math.max(Math.abs(a), Math.abs(b));
-
-// Claims that differ by less than a float can tell (the quasi-Riemann claims of 2026-10-31 differ by 7e-20) are
-// ordered by their exact fractions, when both have one that agrees with the number read from the display.
-// Otherwise they tie, as before.
-function exactFraction({claim, number}: {claim: Claim; number: number | null}): [bigint, bigint] | null {
-  const m = /^\s*(\d+)\s*\/\s*(\d+)\s*$/.exec(claim.value);
-  if (!m || number === null || BigInt(m[2]) === 0n) return null;
-  const fraction = Number(m[1]) / Number(m[2]);
-  return Math.abs(fraction - number) <= 1e-6 * Math.max(Math.abs(fraction), Math.abs(number)) ? [BigInt(m[1]), BigInt(m[2])] : null;
+// An exact value (a + b sqrt(c)) / d, with integers c >= 0 and d > 0. A fraction p/q is (p + 0 sqrt(0)) / q.
+export type Exact = {a: bigint; b: bigint; c: bigint; d: bigint};
+const RATIONAL_VALUE = /^\s*(\d+)\s*(?:\/\s*(\d+))?\s*$/;
+const SURD_VALUE = /^\s*\\frac\{\s*(\d+)\s*([+-])\s*(\d*)\s*\\sqrt\{\s*(\d+)\s*\}\s*\}\{\s*(\d+)\s*\}\s*$/;
+export function parseExact(value: string): Exact | null {
+  const r = RATIONAL_VALUE.exec(value);
+  if (r) { const d = BigInt(r[2] ?? '1'); return d === 0n ? null : {a: BigInt(r[1]), b: 0n, c: 0n, d}; }
+  const s = SURD_VALUE.exec(value);
+  if (!s || BigInt(s[5]) === 0n) return null;
+  return {a: BigInt(s[1]), b: (s[2] === '-' ? -1n : 1n) * BigInt(s[3] || '1'), c: BigInt(s[4]), d: BigInt(s[5])};
+}
+export const exactNumber = (x: Exact) => (Number(x.a) + Number(x.b) * Math.sqrt(Number(x.c))) / Number(x.d);
+const signOf = (x: bigint) => x < 0n ? -1 : x > 0n ? 1 : 0;
+// The sign of A + B sqrt(c), by squaring when the two terms have opposite signs.
+function signSurd(A: bigint, B: bigint, c: bigint): number {
+  const sa = signOf(A), sb = c === 0n ? 0 : signOf(B);
+  if (sb === 0) return sa;
+  if (sa === 0 || sa === sb) return sb;
+  const d = A * A - B * B * c;
+  return d === 0n ? 0 : d > 0n ? sa : sb;
+}
+// The order of two exact values: the sign of x - y, which is the sign of u + v with u = P + Q sqrt(c1) and v = R sqrt(c2)
+// (both denominators are positive). When u and v have opposite signs, |u| and |v| compare by u^2 - v^2, again A + B sqrt(c1).
+export function compareExactValues(x: Exact, y: Exact): number {
+  const P = x.a * y.d - y.a * x.d, Q = x.b * y.d, R = -y.b * x.d;
+  const su = signSurd(P, Q, x.c), sv = y.c === 0n ? 0 : signOf(R);
+  if (sv === 0) return su;
+  if (su === 0 || su === sv) return sv;
+  const s = signSurd(P * P + Q * Q * x.c - R * R * y.c, 2n * P * Q, x.c);
+  return s === 0 ? 0 : s > 0 ? su : sv;
+}
+// A finite double as the exact binary fraction it is.
+function binary(x: number): Exact {
+  let d = 1n;
+  while (!Number.isInteger(x)) { x *= 2; d *= 2n; }
+  return {a: BigInt(x), b: 0n, c: 0n, d};
+}
+// The exact value of a claim: its value when parseExact reads one that agrees with the number of the display (relative
+// 1e-6), else that number. An infinite number (no exact value) stays a number.
+function claimExact(claim: Claim, number: number | null): Exact | number | null {
+  if (number === null) return null;
+  const x = parseExact(claim.value);
+  if (x) { const n = exactNumber(x); if (Math.abs(n - number) <= 1e-6 * Math.max(Math.abs(n), Math.abs(number))) return x; }
+  return Number.isFinite(number) ? binary(number) : number;
+}
+function compareKeys(a: Exact | number, b: Exact | number): number {
+  if (typeof a === 'number' || typeof b === 'number') {
+    const x = typeof a === 'number' ? a : exactNumber(a), y = typeof b === 'number' ? b : exactNumber(b);
+    return x < y ? -1 : x > y ? 1 : 0;
+  }
+  return compareExactValues(a, b);
+}
+// The value a row cell shows (Lead, 2026-11-11, quasi-Riemann #129): a \frac{a\pm b\sqrt{c}}{d} value with a plain decimal
+// display shows both, the exact value first ("\frac{777-\sqrt{1081}}{852}\approx0.8733..."), so that it does not look
+// equal to a fraction with the same decimals. Every other claim shows its display.
+export function shownBound(claim: Pick<Claim, 'display' | 'value'>): string {
+  const x = parseExact(claim.value);
+  return x && x.b !== 0n && x.c !== 0n && /^\d+\.\d+$/.test(claim.display) ? `${claim.value.trim()}\\approx${claim.display}` : claim.display;
 }
 export const compareExact = (a: [bigint, bigint], b: [bigint, bigint]) => { const d = a[0] * b[1] - b[0] * a[1]; return d < 0n ? -1 : d > 0n ? 1 : 0; };
 
@@ -72,14 +126,11 @@ export function rankOtherClaims<C extends Claim>(claims: C[], direction: string,
   }
   const entries = claims.map((claim, index) => {
     const number = otherClaimNumber(claim);
-    return {claim, index, number, exact: exactFraction({claim, number})};
+    return {claim, index, number, key: claimExact(claim, number)};
   });
   const sign = direction === 'higher' ? -1 : 1;
   const known = entries.every(e => e.number !== null);
-  const order = (a: typeof entries[number], b: typeof entries[number]) => {
-    if (!same(a.number!, b.number!)) return sign * (a.number! - b.number!);
-    return a.exact && b.exact ? sign * compareExact(a.exact, b.exact) : 0;
-  };
+  const order = (a: typeof entries[number], b: typeof entries[number]) => sign * compareKeys(a.key!, b.key!);
   const sorted = [...entries].sort((a, b) => known ? order(a, b) || evidenceOrder(b.claim.evidence) - evidenceOrder(a.claim.evidence) || a.index - b.index : b.index - a.index);
   let rank = 0;
   return sorted.map((entry, i) => {

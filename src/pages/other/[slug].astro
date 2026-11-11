@@ -10,6 +10,7 @@ import {otherChart} from '../../lib/other-chart';
 import {localTimeFallback} from '../../lib/freshness';
 import {boardUrl} from '../../lib/board';
 import {otherTableRows, isTableBreakthrough, shownLevel} from '../../lib/other-table';
+import {shownBound} from '../../lib/other-rank';
 import {prove2meCampaignForOther, verifierUrl, verifierIssueUrl, verifierOtherRows} from '../../lib/submission';
 import {otherReviewPrUrl, breakthroughLabel, breakthroughDefinition, type OtherClaimReview, type OtherReviewRepository} from '../../lib/evidence';
 export function getStaticPaths(){return data.families.map(family=>({params:{slug:family.slug},props:{family}}));}
@@ -48,7 +49,7 @@ const chart=otherChart(f,c=>Boolean(reviewUrl(c)),tex=>math(tex));
   <div class="results-scroll" role="region" aria-label={'Claims for '+f.name} tabindex="0"><table>
     <thead><tr><th scope="col">Rank</th><th scope="col">Bound</th><th scope="col">Evidence level</th><th scope="col">Author</th><th scope="col">Date</th><th scope="col">Proof scope</th></tr></thead>
     <tbody>{ranked.map(({claim:c,rank,tie},i)=><tr data-level={shownLevel(c,Boolean(reviewUrl(c)))} data-breakthrough={isTableBreakthrough(f,c)?'true':undefined} hidden={i>=10}>
-      <td class="rank">{tie?'=':''}{rank}</td><td class="bound"><a href={c.url} target="_blank" rel="noopener" set:html={math(c.display)}/>{(c.value!==c.display||c.note)&&<details><summary>Exact value and conditions</summary><div class="exact" set:html={math(c.value)}/>{c.note&&<p set:html={inlineMath(sourceLinks(c.note))}/>}</details>}</td>
+      <td class="rank">{tie?'=':''}{rank}</td><td class="bound"><a href={c.url} target="_blank" rel="noopener" set:html={math(shownBound(c))}/>{((c.value!==c.display&&shownBound(c)===c.display)||c.note)&&<details><summary>Exact value and conditions</summary><div class="exact" set:html={math(c.value)}/>{c.note&&<p set:html={inlineMath(sourceLinks(c.note))}/>}</details>}</td>
       <td>{isTableBreakthrough(f,c)?<a class="breakthrough" href={levelUrl(c)} target={levelTarget(c)} rel="noopener" title={breakthroughDefinition+(c.evidence==='lean-verified'?' We rebuilt its Lean proof and checked with the Lean kernel that it proves our exact problem statement.':' We have not checked a full Lean proof of this bound.')}>{breakthroughLabel}{c.evidence==='lean-verified'&&<span class="lean-verified"> · Lean Verified</span>}</a>:c.evidence==='lean-verified'?<a class="lean-verified" href={levelUrl(c)} target={levelTarget(c)} rel="noopener">Lean Verified</a>:c.evidence==='human-verified'&&reviewUrl(c)?<a class="human-verified" href={reviewUrl(c)} target="_blank" rel="noopener">Human Verified</a>:<a class="claimed" href="/about#evidence-levels">Claimed</a>}</td>
       <td><AuthorList authors={c.authors} refiledBy={(c as {refiledBy?:string}).refiledBy}/></td>
       <td><a href={c.dateSource} target="_blank" rel="noopener"><time datetime={c.date} data-local-datetime>{localTimeFallback(c.date)}</time></a>{c.dateKind==='snapshot'&&<span> (Snapshot)</span>}</td>

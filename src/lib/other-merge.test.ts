@@ -189,3 +189,14 @@ test('the reviewed refiles in data/direct-notes.json credit the original author 
   for (const [key, note] of Object.entries(notes)) if (note.credit?.refiledBy)
     assert.ok(!note.credit.names.includes(note.credit.refiledBy.replace(/^(Refiled|Ported) by /, '')), key);
 });
+
+// Lead, 2026-11-11, quasi-Riemann #129: an exact surd leader compares exactly with an imported fraction (and the reverse).
+test('an imported fraction compares exactly with a surd leader', () => {
+  const B2 = '\\frac{777-\\sqrt{1081}}{852}', shown = '0.873381966613207519929026778643';
+  const row = {families: [{slug: 'average-sensitivity', direction: 'lower', bestHandle: 's', claims: [
+    {handle: 's', value: B2, display: shown, date: '2026-11-10T00:00:00Z', evidence: 'claimed', url: 'https://example.org/s'}]}]};
+  const on = (value: string) => (mergeDirect(row as any, direct(60, value, shown) as any).families[0] as any).bestHandle;
+  // 873381966613207519929026778642/10^30 is below B2 (it starts ...642 against B2's ...6429...), the ...643 fraction above it.
+  assert.equal(on('436690983306603759964513389321/500000000000000000000000000000'), 'direct-issue-60');
+  assert.equal(on('873381966613207519929026778643/1000000000000000000000000000000'), 's');
+});
