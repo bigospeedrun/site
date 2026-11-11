@@ -1,0 +1,11 @@
+{
+  "number": 7152,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7152",
+  "title": "Compose the complete balanced CRT state tree across changing precision with 127 stable owned roles (no new kappa)",
+  "body": "## Exact result and novelty\nComposes the current numerical and ROM row state across a full balanced CRT tree with changing node size and precision, reusing 127 stable owned roles and preserving source/head history. A source-relative time envelope 2^34 * 2^(3ell) * (p+2)^8 and historical backing O(2^ell p ell^2+p^2) explicitly charge node visits. Extends the fixed-node boundaries of #5625/#6100, without claiming a full payload transform.\n\n## Reproduction and independent checks\n30 four-axis node-row commands, 28 unchanged ROM producer calls, independent CRT checks and 11 controls. Replay: python3 -B scripts/research_package.py --package research/crt-whole-tree-state\n\n## Limitations and bound status\nNo new kappa. Encoded topology/source, ROM payload transport, physical binary tariff and entire analytic recovery remain open. Selected conditional kappa remains 0.00363005817; the five framework assumptions remain.\n\n## Attribution\nPrepared for @CubeJerry with substantial OpenAI assistance; credit #4195, #5625, #6100 and retained CRT providers.\n\n## Complete review packet\n[Full PR description, proof and source pins](https://github.com/CubeJerry/integer-mult-bounds/blob/66adbede4bd4ab603ba3e0a7f6708403905b753c/research/crt-whole-tree-state/PR-DESCRIPTION.md)\n\nBase: `e54523517d0f03e58352e647c403a5af3e525a57`. No upstream PR is opened by this link.",
+  "created_at": "2026-11-11T01:47:51Z",
+  "updated_at": "2026-11-11T01:47:51Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

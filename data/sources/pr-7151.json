@@ -1,0 +1,11 @@
+{
+  "number": 7151,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7151",
+  "title": "Bound retained backing across the selected complex and BIT backend stack with history-safe stock reserves",
+  "body": "## Exact result and novelty\nA per-tape finite-stage Bellman certificate M_i=max(c_i/(1-rho_i), c_i+a_ij M_j) bounds retained backing across the selected complex/BIT backend stack, including suspended parents, erased tails, and full stock reservations. A symbolic stock-boundary counterexample blocks replacing the full stock envelope by endpoint-only stock. This composes but does not reprove the underlying backends of #7000/#7001.\n\n## Reproduction and independent checks\nIndependent descending-path review, 1,068 certificates, 4,920 paths and negative controls. Replay: python3 -B scripts/research_package.py --package research/stratified-owned-reserves\n\n## Limitations and bound status\nNo new kappa. Local per-tape physical coefficients, completed selected B0 implementation and overall supplier admission remain premises. Selected conditional kappa remains 0.00363005817; the five framework assumptions remain.\n\n## Attribution\nPrepared for @CubeJerry with substantial OpenAI assistance; credit #7000, #7001, #6879 and inherited source owners.\n\n## Complete review packet\n[Full PR description, proof and source pins](https://github.com/CubeJerry/integer-mult-bounds/blob/774e7890e9e1379d084e711c53937cc30c8bc434/research/stratified-owned-reserves/PR-DESCRIPTION.md)\n\nBase: `e54523517d0f03e58352e647c403a5af3e525a57`. No upstream PR is opened by this link.",
+  "created_at": "2026-11-11T01:47:16Z",
+  "updated_at": "2026-11-11T01:47:16Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

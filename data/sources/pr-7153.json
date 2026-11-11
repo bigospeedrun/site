@@ -1,0 +1,11 @@
+{
+  "number": 7153,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7153",
+  "title": "Specialize the encoded BIT coefficient evaluator to every fixed dimension and bound its retained continuation backing",
+  "body": "## Exact result and novelty\nSpecializes the encoded #6903 numerical consumer for every fixed N>=2 with 17 source-checked edits, complete N^2 chronological fields, and four reusable continuation tapes. Before the capacity guard, extra demand is at most 16N^2+128 residue Words and 128 index Words, with separately bounded historical tape backing. This is a strict fixed-N consumer interface, not a selected B0 dispatcher.\n\n## Reproduction and independent checks\nNormal/optimized author replay (14 exact cases, 10 controls), separate rank-two oracle, 816 extent checks and corruption controls. Replay: python3 -B scripts/research_package.py --package research/fixed-dimension-bit-coefficients\n\n## Limitations and bound status\nNo new kappa. Selected catalogue labels, root-size coupling, changing-precision physical bank and full implementation remain unproved; only current live callback handles are admitted. Selected conditional kappa remains 0.00363005817; the five framework assumptions remain.\n\n## Attribution\nPrepared for @CubeJerry with substantial OpenAI assistance; credit #6903, #2835, #6896 and original numerical authors.\n\n## Complete review packet\n[Full PR description, proof and source pins](https://github.com/CubeJerry/integer-mult-bounds/blob/96b4d6c7b7dfc0f9facf6effd9277dfb66036cbb/research/fixed-dimension-bit-coefficients/PR-DESCRIPTION.md)\n\nBase: `e54523517d0f03e58352e647c403a5af3e525a57`. No upstream PR is opened by this link.",
+  "created_at": "2026-11-11T01:48:46Z",
+  "updated_at": "2026-11-11T01:48:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

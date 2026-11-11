@@ -1,0 +1,11 @@
+{
+  "number": 7150,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7150",
+  "title": "Lower the actual primitive wrapper and protected binary contexts to finite-state tape control",
+  "body": "## Exact result and novelty\nA seven-symbol finite-state graph implements the actual Controller.primitive wrapper with protected binary context, dirty scratch retirement, head restoration and success cleanup. For N table rows, L ports and K work ports, at most 52N+3L+18K+9 states; its serialized clock C=A+U counts complete raw actions. This extends the narrower #6999 control proof.\n\n## Reproduction and independent checks\n28 protocol and 372 arithmetic cases, six controls and separate target-only review. Replay: python3 -B scripts/research_package.py --package research/contextual-primitive-microcontrol\n\n## Limitations and bound status\nNo new kappa. All five selected assumptions, provider kernels, production descriptors, and tariff conversion remain open. Selected conditional kappa remains 0.00363005817; the five framework assumptions remain.\n\n## Attribution\nPrepared for @CubeJerry with substantial OpenAI assistance; credit #6999 and all retained native/Controller predecessors.\n\n## Complete review packet\n[Full PR description, proof and source pins](https://github.com/CubeJerry/integer-mult-bounds/blob/107ea2e77dcf44d50343eb818b5b14e1f537c8c7/research/contextual-primitive-microcontrol/PR-DESCRIPTION.md)\n\nBase: `e54523517d0f03e58352e647c403a5af3e525a57`. No upstream PR is opened by this link.",
+  "created_at": "2026-11-11T01:46:57Z",
+  "updated_at": "2026-11-11T01:46:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
