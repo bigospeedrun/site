@@ -1082,6 +1082,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem. The author reports a local Lean build with only the standard axioms. The tracker's prepare, test, verify and admission checks passed on the head, and the tracker's maintainer merged the pull request on 2026-11-01. No independent rerun.",
           "bound": "\\theta\\le 0.873381966613207519929026778643"
+        },
+        {
+          "author": "Joe Richey",
+          "handle": "josephlr",
+          "value": "\\frac{777-\\sqrt{1081}}{852}",
+          "display": "0.873381966613207519929026778643",
+          "date": "2026-11-10T15:22:21-08:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/129",
+          "dateKind": "first-stated",
+          "url": "https://github.com/josephlr/QuasiRiemannTracker/blob/f4704c3a1639e23ab044c7c53d174e8235a339f6/submissions/2026-11-10-exact-contact-point/src/Candidate/Main.lean#L5-L10",
+          "lean": true,
+          "leanNote": "Claimed; the Lean theorem is stated for every modulus and character. The tracker's prepare check passed on the head, but its verify and admission checks failed with the message that this exact expression requires an algebraic checking profile, so the Lean replay did not run. The author says the companion pull request #128 adds that profile; it is not merged. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 129,
+            "status": "open"
+          },
+          "note": "The author says the bound is the contact point itself, \\((777-\\sqrt{1081})/852\\), which is about \\(2.16\\cdot10^{-254}\\) below the closest-fraction bound of PR #103, so the decimal shown here is the same at 30 digits. It replaces the reserve-dependent source chain by a reserve-free chain and combines a reserve-free return endpoint away from the contact with a local return family around \\(c^*=(75+\\sqrt{1081})/852\\). The PR says it builds on Joseph Bebel's PRs #99, #101 and #103 and on OpenAI, Hailey Collet, Arvi, Sil and Jacob Sussman, and that the Lean code was written entirely by Google Antigravity (AI-assisted).",
+          "authors": [
+            {
+              "name": "Joe Richey",
+              "url": "https://github.com/josephlr"
+            }
+          ],
+          "proofScope": "Claimed; the Lean theorem is stated for every modulus and character. The tracker's Lean replay did not run because the checking profile for this exact expression is missing (companion PR #128, not merged). No independent rerun.",
+          "bound": "\\theta\\le\\frac{777-\\sqrt{1081}}{852}"
         }
       ],
       "repos": [
@@ -1154,7 +1180,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "josephbebel"
+      "bestHandle": "josephlr"
     },
     {
       "family": "005",
