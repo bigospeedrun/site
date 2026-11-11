@@ -1,0 +1,11 @@
+{
+  "number": 7276,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7276",
+  "title": "fix: align CI navigation with selected #7000 replay",
+  "body": "## What changes\n\nUnblock shared research CI after #7000 became selected. The onboarding test currently fails because the CI guide still points to #6030; this updates the command and review links and retains #6030 as history.\n\nThis isolates the existing navigation repair carried in [#7161](https://github.com/CrocSwap/integer-mult-bounds/pull/7161) and reused by ToikY in [f2206e6](https://github.com/CrocSwap/integer-mult-bounds/commit/f2206e608167995b9b96b7e340b3558f2b578490). The result is a one-file maintenance PR that can be reviewed separately from the research submissions. No new research result is claimed.\n\n## Checks\n\nNative Python 3.12.15: the existing six-test current-status module fails on unchanged main and passes after this repair. The selected-source metadata check also passes.\n\nThe broader native onboarding run completed 760 tests with 11 failures, 23 errors and 90 skips. Seven representative failures also reproduce with the unchanged main guide. Those native fixture/platform failures are outside this one-file repair; no full-suite pass is claimed.\n\n## Not tested\n\nHosted Linux CI is pending. No selected-family scientific cold replay or supplier proof was rerun for this navigation repair. The selected record, scientific sources, workflow and assertions are unchanged.\n\nPrepared with substantial OpenAI Codex assistance.\r\n\r\n",
+  "created_at": "2026-11-11T15:01:46Z",
+  "updated_at": "2026-11-11T15:01:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
