@@ -9,7 +9,7 @@ import claim_judge, crocswap_cert
 ROOT = Path(__file__).resolve().parent
 CROC = 'CrocSwap/integer-mult-bounds'
 SWAP = 'Swapnil-jain/integer-mult-kappa'
-IMPORTER_VERSION = 7
+IMPORTER_VERSION = 8  # 8: rows of a draft-then-ready PR date at its last ready_for_review event
 # A CrocSwap PR is listed only when its own research package states a kappa (Nil,
 # 2026-10-17, after #3093 was listed from its title 'audit ... against kappa=0.1').
 # The package is the one research/<dir>/CLAIM.json that the PR adds; its 'kappa'
@@ -367,6 +367,21 @@ DRAFT_SINCE = '2026-10-23T15:13:18Z'
 def is_silent_draft(pr):
     return bool(pr.get('draft')) and str(pr.get('created_at') or '') >= DRAFT_SINCE
 
+def claim_date(p, prior, read=None):
+    """(date, ready_at, ready_checked) of a listed PR. Nil, 2026-10-24: a draft PR is not a claim until it is marked
+    ready for review, so a PR that was ever a draft dates at its LAST ready_for_review timeline event, else at
+    created_at (Lead, 2026-11-11: CrocSwap #7142, created 00:19:51Z as a draft, ready 00:32:30Z). Only PRs created
+    from DRAFT_SINCE on read the timeline (the same cut as is_silent_draft), once per updated_at: marking a PR
+    ready changes it. ready_checked is that updated_at, kept in submissions.json."""
+    if str(p.get('created_at') or '') < DRAFT_SINCE:
+        return p['created_at'], None, None
+    if prior.get('ready_checked') == p['updated_at']:
+        ready = prior.get('ready_at')
+    else:
+        events = read(p['number']) if read else pages(f'repos/{CROC}/issues/{p["number"]}/timeline')
+        ready = max((e['created_at'] for e in events if e.get('event') == 'ready_for_review' and e.get('created_at')), default=None)
+    return ready or p['created_at'], ready, p['updated_at']
+
 def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
     """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
     retry, decision). evaluate() reads the PR's package and runs the Claude check.
@@ -573,10 +588,13 @@ def refresh(stage, now):
             owners[claim_path] = n
         prior = prior or None
         ids = list(prior['record_ids']) if prior and prior['record_ids'] and score else ([f'crocswap-pr-{n}'] if score else [])
+        dated, ready_at, ready_checked = claim_date(p, prior or {}) if ids else (p['created_at'], None, None)
         ap = f'sources/pr-{n}.json'
         dump(stage, ap, {k: p[k] for k in ['number','html_url','title','body','created_at','updated_at','closed_at','merged_at','state']})
-        item = dict(pr_number=n, author=p['user']['login'], author_url=p['user']['html_url'], title=p['title'], url=p['html_url'], submitted_at=p['created_at'], updated_at=p['updated_at'], source_commit=p['head']['sha'], upstream_status=status, upstream_status_at=p['merged_at'] or p['closed_at'] or p['created_at'], checked_at=day, claimed_score=score, record_ids=ids, note=(prior['note'] if prior and prior['title']==p['title'] else None) if score else NOT_CLAIMS.get(n) or reason or (prior or {}).get('note') or 'No research package kappa claim.')
+        item = dict(pr_number=n, author=p['user']['login'], author_url=p['user']['html_url'], title=p['title'], url=p['html_url'], submitted_at=dated, updated_at=p['updated_at'], source_commit=p['head']['sha'], upstream_status=status, upstream_status_at=p['merged_at'] or p['closed_at'] or dated, checked_at=day, claimed_score=score, record_ids=ids, note=(prior['note'] if prior and prior['title']==p['title'] else None) if score else NOT_CLAIMS.get(n) or reason or (prior or {}).get('note') or 'No research package kappa claim.')
         if claim_path: item['claim_path'] = claim_path
+        if ready_at: item['ready_at'] = ready_at
+        if ready_checked: item['ready_checked'] = ready_checked
         if claim_head: item['claim_head'] = claim_head
         if claim_text: item['claim_text'] = claim_text
         if decision and score: item['claim_path_head'] = head_sha
@@ -590,14 +608,14 @@ def refresh(stage, now):
             r = records.get(rid, copy.deepcopy(template))
             m = metadata.get(rid, copy.deepcopy(mt))
             new = rid not in records
-            r.update(id=rid, score=r['score'] if rid.endswith('-stacked') else score, title=p['title'], submitted_at=p['created_at'], upstream_status=status, upstream_status_at=item['upstream_status_at'], source_commit=p['head']['sha'], source={'kind':'repo-artifact','url':p['html_url']}, submission_url=p['html_url'], artifact=artifact(stage, ap), authors=[{'name':p['user']['login'],'url':p['user']['html_url']}])
+            r.update(id=rid, score=r['score'] if rid.endswith('-stacked') else score, title=p['title'], submitted_at=dated, upstream_status=status, upstream_status_at=item['upstream_status_at'], source_commit=p['head']['sha'], source={'kind':'repo-artifact','url':p['html_url']}, submission_url=p['html_url'], artifact=artifact(stage, ap), authors=[{'name':p['user']['login'],'url':p['user']['html_url']}])
             if new:
                 r['site_observed_at'] = now
             r['predecessors'] = [f'https://github.com/{CROC}/pull/{x}' for x in sorted({int(x) for x in re.findall(r'(?<!\w)#(\d+)\b', p['body'] or '') if 0<int(x)<n})]
             r['evidence']['paper_url'] = p['html_url']
             for d in r['dependencies']:
                 d['source_url'] = p['html_url']
-            m.update(checked_at=day, source_url=p['html_url'], pr_number=n, merged=bool(p['merged_at']), merged_at=p['merged_at'], closed_at=p['closed_at'], updated_at=p['updated_at'], eligible_for_record=bool(p['merged_at']), upstream_selected=False, publication_date=p['created_at'], publication_source_url=p['html_url'], race_event_at=p['created_at'])
+            m.update(checked_at=day, source_url=p['html_url'], pr_number=n, merged=bool(p['merged_at']), merged_at=p['merged_at'], closed_at=p['closed_at'], updated_at=p['updated_at'], eligible_for_record=bool(p['merged_at']), upstream_selected=False, publication_date=dated, publication_source_url=p['html_url'], race_event_at=dated)
             if new:
                 m['score_source'] = f"{'kappa' if CLAIM_PATH.fullmatch(claim_path) else 'stated kappa'} in {claim_path} at the PR head; source claim only" if claim_head and claim_path else 'Lead review decision; source claim only'
             records[rid] = r; metadata[rid] = m

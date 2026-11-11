@@ -347,6 +347,32 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(refresh.claim_state(ready,{},{},lambda:('951999/280000000','research/x/RESULT.json',None))[0],'951999/280000000')
         self.assertEqual(refresh.claim_state(ready,{},decisions,lambda:self.fail('decided'))[0],'951999/280000000')
 
+    def test_a_pr_that_was_ever_a_draft_dates_at_its_last_ready_for_review_event(self):
+        # Nil, 2026-10-24: a draft is not a claim until it is ready for review. Lead, 2026-11-11: CrocSwap #7142 was
+        # created 00:19:51Z as a draft and marked ready 00:32:30Z; its row dated at created_at.
+        p={'number':7142,'created_at':'2026-11-11T00:19:51Z','updated_at':'2026-11-11T00:32:31Z'}
+        reads=[]
+        def timeline(events):
+            return lambda n:(reads.append(n),events)[1]
+        ready=[{'event':'committed'},{'event':'ready_for_review','created_at':'2026-11-11T00:25:00Z'},
+               {'event':'convert_to_draft','created_at':'2026-11-11T00:28:00Z'},{'event':'ready_for_review','created_at':'2026-11-11T00:32:30Z'},
+               {'event':'commented','created_at':'2026-11-11T00:40:00Z'}]
+        self.assertEqual(refresh.claim_date(p,{},timeline(ready)),('2026-11-11T00:32:30Z','2026-11-11T00:32:30Z','2026-11-11T00:32:31Z'))
+        # Never a draft: created_at.
+        self.assertEqual(refresh.claim_date(p,{},timeline([{'event':'labeled','created_at':'2026-11-11T00:30:00Z'}])),('2026-11-11T00:19:51Z',None,'2026-11-11T00:32:31Z'))
+        # Read once per updated_at; a new updated_at (marked ready again) reads it again.
+        reads.clear()
+        prior={'ready_at':'2026-11-11T00:32:30Z','ready_checked':'2026-11-11T00:32:31Z'}
+        self.assertEqual(refresh.claim_date(p,prior,timeline([]))[0],'2026-11-11T00:32:30Z');self.assertEqual(reads,[])
+        self.assertEqual(refresh.claim_date(dict(p,updated_at='2026-11-12T00:00:00Z'),prior,timeline([]))[0],'2026-11-11T00:19:51Z');self.assertEqual(reads,[7142])
+        # Before the draft cut (DRAFT_SINCE): created_at, no timeline read.
+        reads.clear()
+        self.assertEqual(refresh.claim_date(dict(p,created_at='2026-10-12T00:00:00Z'),{},timeline(ready)),('2026-10-12T00:00:00Z',None,None));self.assertEqual(reads,[])
+        # The default reader asks the issue timeline of the CrocSwap repository.
+        with patch.object(refresh,'pages',lambda path,*a:(reads.append(path),ready)[1]):
+            self.assertEqual(refresh.claim_date(p,{})[0],'2026-11-11T00:32:30Z')
+        self.assertEqual(reads[-1],'repos/CrocSwap/integer-mult-bounds/issues/7142/timeline')
+
     def test_a_zero_denominator_never_fails_the_refresh(self):
         # Reviewer, 2026-10-21: Fraction('1/0') raises. A contributor's "1/0" is no value.
         top='research/x/RESULT.json'
