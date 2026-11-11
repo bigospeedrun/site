@@ -107,6 +107,14 @@
           "claim_path_head": {
             "type": "string",
             "pattern": "^[0-9a-f]{40}$"
+          },
+          "ready_at": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          },
+          "ready_checked": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
           }
         }
       }
