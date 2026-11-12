@@ -44,11 +44,18 @@ jobs:
       # on 2026-10-31 (run 41247474659) the direct import outlived its step and wrote a board and a source
       # file while the tests ran. The guard step below fails the job if any writer is still alive.
       - name: Refresh direct submission issues and PRs
+        id: direct
         continue-on-error: true
         timeout-minutes: 15
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: timeout -k 20s 14m .refresh-venv/bin/python data/direct_refresh.py
+      # continue-on-error shows a failed or timed-out direct step as a success in the jobs API (2026-11-12: exit 124
+      # on every run from 06:18Z, and the dead-man stayed quiet). This step runs only when it did not succeed, so its
+      # presence (not skipped) is the signal the dead-man check (watch repo, direct-import) reads. Keep the name.
+      - name: Report a failed direct step
+        if: ${{ !cancelled() && steps.direct.outcome != 'success' && steps.direct.outcome != 'skipped' }}
+        run: echo "direct step outcome ${{ steps.direct.outcome }}"
       # Anonymous GETs to prove2.me campaign pages and the formalpedia export. A held
       # board keeps its last import and exits 0; data/prove2me.json records the hold and
       # the dead-man check (watch repo, prove2me-import) alerts the lead from it.
