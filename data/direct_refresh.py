@@ -17,6 +17,7 @@ import sys
 import tempfile
 import zipfile
 from fractions import Fraction
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from direct_github import GitHub, GitHubError
 from direct_import import (REPOSITORY, PROBLEMS, Rejected, require, read_json, sha,
@@ -64,6 +65,7 @@ def json_bytes(value):return (json.dumps(value,indent=2,ensure_ascii=False)+'\n'
 class Importer:
     def __init__(self, api, root=ROOT):
         self.api=api;self.root=Path(root);self.trust={};self.runs={};self.run_jobs={};self.files={};self.notes=[];self.final_states={}
+        self.inspected={};self.fetched={}
         self.config=json.loads((self.root/'direct-trust.json').read_text())
         # claimed_only() verdicts by item: {number: {version, updated_at, claimed_only}}. A new comment, label
         # or edit changes updated_at and reads the comments again; an untouched closed item costs no read.
@@ -100,7 +102,7 @@ class Importer:
         return self.trust
 
     def run(self,number):
-        if number not in self.runs:self.runs[number]=self.api.json(PREFIX+f'actions/runs/{number}')
+        if number not in self.runs:self.runs[number]=self.fetched.get(('run',number)) or self.api.json(PREFIX+f'actions/runs/{number}')
         return self.runs[number]
 
     def jobs(self,run):
@@ -110,8 +112,59 @@ class Importer:
             self.run_jobs[key]=self.api.pages(PREFIX+f'actions/runs/{run["id"]}/attempts/{run["run_attempt"]}/jobs',key='jobs')
         return self.run_jobs[key]
 
+    def inspect(self,pr,base_sha=None):
+        """inspect_pr once per PR version and base in one run. Every verifier run and every publisher run of a PR leaves
+        its own pr-submission artifact (184 unexpired on 2026-11-12), and each read costs about ten GitHub requests:
+        from 06:18Z on 2026-11-12 the direct refresh step passed its 14-minute limit on every run and imported nothing."""
+        key=json.dumps([pr.get('number'),pr.get('head'),base_sha or (pr.get('base') or {}).get('sha'),pr.get('changed_files')],sort_keys=True)
+        if key not in self.inspected:
+            try:self.inspected[key]=(True,inspect_pr(self.api,pr,base_sha))
+            except (Rejected,ValueError,KeyError,TypeError) as error:self.inspected[key]=(False,error)
+        ok,value=self.inspected[key]
+        if not ok:raise value
+        return copy.deepcopy(value)
+
     def artifact(self,metadata):
-        return self.api.get(PREFIX+f'actions/artifacts/{metadata["id"]}/zip')
+        return self.fetched.get(('zip',metadata['id'])) or self.api.get(PREFIX+f'actions/artifacts/{metadata["id"]}/zip')
+
+    PREFETCH_WORKERS=8
+
+    def prefetch(self,jobs):
+        """The same GETs as artifact() and run(), in parallel, before verify() reads them one by one in its own order.
+        On 2026-11-12 its 435 artifact and 233 run reads (about 1 s each) took the step past its 14-minute limit. A failed
+        prefetch changes nothing: the read in order tries again and fails as before."""
+        jobs=[job for job in dict.fromkeys(jobs) if job not in self.fetched]
+        def one(job):
+            kind,value=job
+            try:return job,(self.api.get(PREFIX+f'actions/artifacts/{value}/zip') if kind=='zip' else self.api.json(PREFIX+f'actions/runs/{value}'))
+            except Exception:return job,None
+        with ThreadPoolExecutor(self.PREFETCH_WORKERS) as pool:
+            for job,result in pool.map(one,jobs):
+                if result:self.fetched[job]=result
+
+    def prefetch_results(self,results,claims,by_id):
+        """Prefetch the result archives that verify() reads, then the receipt archives and runs that they name."""
+        wanted=[]
+        for artifact in results:
+            match=re.fullmatch(r'direct-submission-(\d+)-(\d+)-(\d+)',artifact['name'])
+            if (match and 'direct-issue-'+match[3] in claims) or (not match and artifact['name'].startswith('pr-submission-') and claims):
+                wanted.append(artifact)
+        self.prefetch([('zip',a['id']) for a in wanted])
+        follow=[]
+        for artifact in wanted:
+            try:
+                for name,content in archive_members(self.fetched[('zip',artifact['id'])],artifact).items():
+                    if name!='direct-submission.json' and not re.fullmatch(r'(?:pr-submission-\d+(?:-lean)?|direct-submission-\d+-lean)\.json',name):continue
+                    env=read_json(content)
+                    number=env.get('issue_number') if env.get('schema_version')==1 else env.get('request',{}).get('pr_number')
+                    key=('direct-issue-' if env.get('schema_version')==1 else 'direct-pr-')+str(number)
+                    if key not in claims or claims[key].get('verification',{}).get('result_artifact_id')==artifact['id']:continue
+                    proof=by_id.get(env['receipt_artifact']['id'])
+                    if proof and not proof.get('expired'):follow.append(('zip',proof['id']))
+                    follow+=[('run',int(env[k])) for k in ('run_id','publisher_run_id') if env.get(k) is not None]
+            except Exception:
+                continue
+        self.prefetch(follow)
 
     def discover(self):
         claims={}
@@ -148,7 +201,7 @@ class Importer:
                 # A PR closed after the verifier's claimed-only report for its head stays a Claimed claim.
                 try:
                     if self.claimed_only(dict(route='pull_request',item=pr)):
-                        layout=inspect_pr(self.api,pr)
+                        layout=self.inspect(pr)
                         claims['direct-pr-'+str(number)]=dict(route='pull_request',item=pr,submission=layout['submission'],layout=layout,
                                                              closed=True,claimed_only=True)
                 except (Rejected,ValueError,KeyError,TypeError):
@@ -161,7 +214,7 @@ class Importer:
                     # Nil, 2026-10-24: a draft PR is not a claim; it is read again once it is ready for review.
                     self.notes.append(f'Draft PR #{number}: not a claim until it is ready for review')
                 elif pr['state']=='open':
-                    layout=inspect_pr(self.api,pr)
+                    layout=self.inspect(pr)
                     claims['direct-pr-'+str(number)]=dict(route='pull_request',item=pr,submission=layout['submission'],layout=layout)
                 elif pr.get('merged'):
                     claims['direct-pr-'+str(number)]=dict(route='pull_request',item=pr,submission=None)
@@ -306,6 +359,7 @@ class Importer:
         by_id={a['id']:a for a in artifacts}
         # Newest result for a source wins; process oldest first.
         results=sorted((a for a in artifacts if not a.get('expired') and a['name'].startswith(('direct-submission-','pr-submission-'))),key=lambda a:a['id'])
+        self.prefetch_results(results,claims,by_id)
         for artifact in results:
             match=re.fullmatch(r'direct-submission-(\d+)-(\d+)-(\d+)',artifact['name'])
             if match:
@@ -342,7 +396,7 @@ class Importer:
                         verdict=self.derivation(key,verdict)
                     else:
                         publisher=self.run(int(env['publisher_run_id']));self.trusted(publisher['head_sha'])
-                        layout=inspect_pr(self.api,item,env['request']['base_sha'])
+                        layout=self.inspect(item,env['request']['base_sha'])
                         verdict,env,_=validate_pr_result(raw,artifact,name,item,run,publisher,proof_raw,proof_meta,self.trust,layout)
                         claim['submission']=layout['submission']
                     evidence=self.evidence(key,env,run,artifact,proof_meta,raw,proof_raw,verdict,publisher)

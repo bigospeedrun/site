@@ -212,6 +212,43 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual('direct-pr-52' in claims,kept)
             if kept:self.assertEqual((claims['direct-pr-52']['closed'],claims['direct-pr-52']['claimed_only']),(True,True))
 
+    def test_inspect_pr_runs_once_per_pr_version_and_base(self):
+        # 2026-11-12: every pr-submission artifact read its PR again (about ten requests each), and the step passed 14 min.
+        pr=dict(number=52,head={'sha':'c'*40},base={'sha':'a'*40},changed_files=2)
+        layout=dict(submission=dict(bound='1'))
+        importer=r.Importer(DiscoveryAPI([],[]))
+        with patch.object(r,'inspect_pr',return_value=layout) as inspect:
+            for base in [None,'a'*40,None]:self.assertEqual(importer.inspect(pr,base),layout)
+            importer.inspect(pr,'b'*40);importer.inspect(dict(pr,head={'sha':'d'*40}))
+            self.assertEqual(inspect.call_count,3)
+            importer.inspect(pr)['submission']['bound']='2'
+            self.assertEqual(importer.inspect(pr)['submission']['bound'],'1')  # a copy: callers cannot change the cache
+        with patch.object(r,'inspect_pr',side_effect=d.Rejected('Wrong PR base')) as inspect:
+            other=dict(pr,number=53)
+            for _ in range(2):
+                with self.assertRaises(d.Rejected):importer.inspect(other)
+            self.assertEqual(inspect.call_count,1)
+
+    def test_prefetch_serves_the_same_reads_and_a_failure_falls_back(self):
+        # 2026-11-12: 435 artifact and 233 run reads in order took the step past 14 min; they now run in parallel first.
+        calls=[]
+        class API(DiscoveryAPI):
+            def get(self,path,limit=None):
+                calls.append(path)
+                if path.endswith('/7/zip'):raise r.GitHubError(500)
+                return b'zip:'+path.encode()
+            def json(self,path,params=None):
+                calls.append(path);return {'id':int(path.rsplit('/',1)[1])}
+        importer=r.Importer(API([],[]))
+        importer.prefetch([('zip',5),('zip',7),('run',9),('zip',5)])
+        self.assertEqual(sorted(calls),sorted([r.PREFIX+'actions/artifacts/5/zip',r.PREFIX+'actions/artifacts/7/zip',r.PREFIX+'actions/runs/9']))
+        calls.clear()
+        self.assertEqual(importer.artifact({'id':5}),b'zip:'+(r.PREFIX+'actions/artifacts/5/zip').encode())
+        self.assertEqual(importer.run(9),{'id':9})
+        self.assertEqual(calls,[])  # both came from the prefetch
+        with self.assertRaises(r.GitHubError):importer.artifact({'id':7})  # not prefetched: read again in order, fails as before
+        self.assertEqual(calls,[r.PREFIX+'actions/artifacts/7/zip'])
+
     def test_the_claimed_only_verdict_is_cached_per_version_and_update_time(self):
         # Lead, 2026-10-23: the site read the comments of every closed unmerged PR each hour.
         pr=dict(number=52,state='closed',merged=False,head={'sha':'c'*40},labels=[],user={'login':'alice'},updated_at='2026-10-23T20:00:00Z')
