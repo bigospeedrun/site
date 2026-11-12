@@ -1,0 +1,11 @@
+{
+  "number": 7361,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7361",
+  "title": "Exclude inherited P104 multi-ADD public recharts (0% κ change)",
+  "body": "## Result and scope\n\n**NO VERIFIED GAIN. Exact conditional κ change 0%.** On exact #7334 `aaeec8c0acf01e99a5f331ef363a698d9c084ace` with exact signed #7113, change one common chart for a closed component of at least two ADDs among public helpers. Keep the retained incident paid MOVE clocks, outside charts, signed ADDs and productive bill. The independently reproduced comparator is κ = 0.00364665195644.\n\nBoth literal walks rebind all 13 price-positive inherited components. Eleven upward shifts fail the exact high-chart intersection. Two downward shifts fail the low-chart union. The exact keys, signed ADDs, clocks and dimensions agree, with zero survivors or unresolved cases. The optimistic one-edit upper is 0.10630539120918452 raw and the disjoint-stock upper is 0.8868787213783863. Compatible saving in scope is zero.\n\n## Task and verification\n\nChanged scope of `p104-side-correction`, revision 8, on canonical main `e54523517d0f03e58352e647c403a5af3e525a57`. #7358 checks one ADD. This package checks closed multiple-ADD components from the exact #7277 ancestry. New current-only contacts and changed outside routes remain open.\n\n```sh\npython3.12 -I -B research/p104-public-multi-add-rechart-bound/replay.py\npython3.12 -B scripts/research_package.py --package research/p104-public-multi-add-rechart-bound\n```\n\nUse CPython 3.12 with assertions. The complete price, two signed walks and every exact geometry exclusion reproduce from committed inputs. The replay rejects changes to the price and current word. Local registered, source-history, byte/mode, navigation and official Git-free checks passed. The branch carries the existing #7257 onboarding repair. No physical supplier build was warranted.\n\n## Credit\n\n#7334, #7277 and #7113 supply the two words and signed caller, #7312 the inherited contact inventory, #7319/#7339 the role stock and protection, #7298 directed arithmetic, and #7358/#7337 the one-ADD precedents. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T02:20:10Z",
+  "updated_at": "2026-11-12T02:20:10Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
