@@ -1,0 +1,11 @@
+{
+  "number": 7402,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7402",
+  "title": "Bound Type B stage-17 body transfers with fixed paid slots",
+  "body": "## Result and scope\n\n**NO VERIFIED GAIN.** With the signed #7113 caller on exact #7334, two independent derivative replays rule out moving a stage-17 body factor from Type B local root 0 to isolated rail 32 at either singleton idle clock, 4646 or 4660. A joint rewrite of both slots also fails with J17 fixed. Exact core minors and the independent rail entries exclude 16 one-factor and 36 distinct two-factor endpoints (72 labelled matchings). No cases remain unresolved in this two-slot window.\n\nThe proposed one-factor transfer keeps paid ranks fixed and has an optimistic saving below 0.537159504482460 raw. No supported edit realizes it. Changing J17, using other stages or changing the body-dependent interface remains open. The benchmark is #7334 at `aaeec8c0acf01e99a5f331ef363a698d9c084ace` with #7113 at `07a76c5e2738882c0cb322278e56f6cae3c9885d`.\n\n## Replay\n\n~~~sh\npython3.12 -I -B research/p104-stage17-body-transfer-bound/replay.py\npython3.12 -B scripts/research_package.py --package research/p104-stage17-body-transfer-bound\n~~~\n\nCPython 3.12 on POSIX. Four exact receipts match after relocation. Committed bytes, modes, source history, registered replay, corrupted-input controls, official Git-free export and six navigation checks passed locally. The branch retains #7257's CI prerequisites.\n\n## Credit\n\n#7334 and #7113 supply the benchmark and signed caller. #7360 supplies the exact-clock census and fixed-target square comparison. #7315 and #7380 supply neighboring derivative and idle-mask scopes. #7362 and #7298 supply the signed invoice and directed arithmetic. OpenAI Codex and subagents materially assisted. Canonical investigation: #7111.",
+  "created_at": "2026-11-12T10:35:26Z",
+  "updated_at": "2026-11-12T10:35:26Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

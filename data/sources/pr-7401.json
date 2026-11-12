@@ -1,0 +1,11 @@
+{
+  "number": 7401,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7401",
+  "title": "Bound same-clock Type A phase retirement with two paid queries",
+  "body": "## Result and scope\n\n**NO VERIFIED GAIN.** On the exact signed #7113 caller used by #7334, changing the four even QUERY coefficients at their original clocks cannot retire two diagonal phases with two rank-one paid corrections. The 17 J calls and every other operation stay fixed. Forward and reverse replays reduce arbitrary rational even coefficients to six sign patterns. Each pattern has at least 35 fixed diagonal entries, which excludes all 630 pairs. The all-plus erased endpoint also has a disjoint off-diagonal minor of determinant 64 for every diagonal target.\n\nThe comparator is #7334 at `aaeec8c0acf01e99a5f331ef363a698d9c084ace`, κ = 0.00364665195644, with #7113 at `07a76c5e2738882c0cb322278e56f6cae3c9885d`. The most favorable two-root edit would save less than 4.099242419852824 raw units before support. The support gate excludes it. Changed clocks, J stages and other ordinary wrappers remain open.\n\n## Replay\n\nFrom a clean checkout with CPython 3.12 on POSIX:\n\n~~~sh\npython3.12 -I -B research/p104-type-a-same-clock-phase-retirement-bound/replay.py\npython3.12 -B scripts/research_package.py --package research/p104-type-a-same-clock-phase-retirement-bound\npython3.12 -B scripts/check_research_commit.py --package research/p104-type-a-same-clock-phase-retirement-bound --check-source-history --check-modes\n~~~\n\nAll eight exact receipts matched after relocation. Committed bytes, modes, source history, registered replay, altered inputs and official Git-free export passed locally. The branch retains the #7257 CI prerequisites.\n\n## Credit\n\n#7334 and #7113 supply the complete witness and caller. #7309 supplies the neighboring relative-rank bound, #7342 the fixed-cut repair comparison, #7316 the same roots with fixed paid jobs, and #7362/#7298 the directed invoice. OpenAI Codex and subagents materially assisted. Canonical investigation: #7111.",
+  "created_at": "2026-11-12T10:28:16Z",
+  "updated_at": "2026-11-12T10:28:17Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

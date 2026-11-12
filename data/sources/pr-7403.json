@@ -1,0 +1,11 @@
+{
+  "number": 7403,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7403",
+  "title": "Bound closed chart-3 native helper entrances",
+  "body": "## Result and scope\n\n**NO VERIFIED GAIN.** On exact #7334, two literal chronology replays exhaust 860 productive helpers starting at chart 3. Ninety-two first lifts leave zero residual productive rank. The other 768 helpers form 477 same-upper-chart components, each with a fixed prefix boundary contact. No component supports the proposed common entrance lift.\n\nThe unique one-contact component is helper 624. Its rank-five lift could save less than 0.380712103178623 raw units if the preceding read could move to chart 117. The first conflicting write is at clock 32952, before main role 130 leaves chart 3. That role's fixed path never visits chart 117 or an equivalent span. Both exact replays find no shared cut. Changed main routing and multi-contact retiming remain open.\n\n## Replay\n\nWith CPython 3.12 on POSIX from a clean checkout:\n\n~~~sh\npython3.12 -I -B research/p104-closed-chart3-helper-entrance-bound/replay.py\npython3.12 -B scripts/research_package.py --package research/p104-closed-chart3-helper-entrance-bound\n~~~\n\nFive exact receipts match after relocation. Registered replay, committed source history and modes, altered source rejection, and official Git-free export passed locally. The branch retains the #7257 CI prerequisites.\n\n## Credit\n\n#7334 supplies the literal word and complete comparable witness. #7113 supplies the signed caller. #7319 supplies the first-contact exclusion, #7330 the neighboring hoist, #7361 the fixed-MOVE multi-ADD rechart, #7122 earlier global input rechart, and #7298 the directed tariff. OpenAI Codex and subagents materially assisted. Canonical investigation: #7111.",
+  "created_at": "2026-11-12T10:42:21Z",
+  "updated_at": "2026-11-12T10:42:21Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
