@@ -1,0 +1,11 @@
+{
+  "number": 7354,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7354",
+  "title": "Exclude fixed owned MOVE chronology contractions (0% κ change)",
+  "body": "## Change and scope\n\n**NO VERIFIED GAIN. Exact conditional κ change 0%.** Two exact walks agree on all 47 paid owned MOVEs and nine same-lifetime consecutive pairs on #7334. All nine are same-direction and have an intervening ADD, so no opposite unary turn survives. Five pairs contain exactly one ADD. Exhausting both placements across 51 cuts gives no matching counterpart chart. Four cuts also leave the counterpart's active lifetime and ten cross an incident barrier. Zero unresolved within these two scopes.\n\nAt exact #7334's crossing, the maximum one-ADD fusion gross credit is 0.23556026777014 raw. The whole five-edit upper is 0.740981735345844 before ancillary costs. One extra raw rank-one position defeats even that relaxation. No new native supplier was built.\n\n## Replay\n\nComparator #7334 at `aaeec8c0acf01e99a5f331ef363a698d9c084ace`, κ `0.00364665195644`, with signed #7113 at `07a76c5e2738882c0cb322278e56f6cae3c9885d`. CPython 3.12 from a clean checkout:\n\n```sh\npython3.12 -I -B research/p104-owned-move-chronology-bound/replay.py\npython3.12 -B scripts/research_package.py --package research/p104-owned-move-chronology-bound\npython3.12 -B scripts/check_research_commit.py --package research/p104-owned-move-chronology-bound --check-modes --check-source-history\n```\n\nAll local checks passed, including official Git-free export. Replay regenerates both prices, four walks and both exact comparisons, then rejects a corrupted word. The branch carries the exact #7257 shared planner repair.\n\n## Credit and next question\n\n#7334 supplies the word, #7113 the signed caller, #7298 the directed tariff, #7307 the earlier owned census, and #7312 and #7003 adjacent retiming scopes. OpenAI Codex and subagents materially assisted. Multi-ADD chronology, an alternate exact source value, and changed peer routes require separate support and a new complete price.",
+  "created_at": "2026-11-12T00:58:27Z",
+  "updated_at": "2026-11-12T00:58:27Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 7345,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7345",
+  "title": "Generate exact chronological compiler library tables with product aggregation and explicit binary and tape cost bounds",
+  "body": "## Result\nConstruct evaluated replication a_n, width B_n, leaf P_n and expanded unit O_n at all ranks through N for fixed separated default-height rules, without enumerating paid paths. Product aggregation preserves each chronological exit denominator.\n\n## Novelty and predecessors\n#4507/#5071 give gcd/LCM batching and #4638/#5962 give width bounds; this adds exact all-rank generation with indexed N*polylog(N) bit work and a separately charged N^2*polylog(N) fixed-tape simulation.\n\n## Verification\nAuthor/independent arithmetic replay; 336 complete ranks and exit-pooling counterexamples at n=12 and 135. Run python3 -I -W error -B research/quantitative-rank-library/verify.py.\n\n## Limits and kappa\nMetadata only: no emitted native word; selected ambient A=153^1920 is outside the default m=A specialization. No new kappa; 0.00363005817 remains conditional.\n\n## Credit\nPrepared for @CubeJerry with substantial OpenAI assistance; credit predecessor authors and PRs as detailed in the package.\n\nFull proof, reproducibility, negative controls and provenance: https://github.com/CubeJerry/integer-mult-bounds/tree/022461f115369efd988ef8c459907f5544bb8bb3/research/quantitative-rank-library",
+  "created_at": "2026-11-12T00:47:36Z",
+  "updated_at": "2026-11-12T00:47:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

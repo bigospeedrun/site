@@ -1,0 +1,11 @@
+{
+  "number": 7347,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7347",
+  "title": "Index every replicated compiler source row using polynomially many chronological states",
+  "body": "## Result\nGive exact rank/unrank between fresh compiler source occurrences and consecutive integer rows, including replicas. Use aggregated (depth, paid product, last rank) state counts rather than enumerating the full class tree.\n\n## Novelty and predecessors\nExtends the Pascal codec to actual row numbers. Repairs a deterministic-cost defect in hash-based metadata via sorted tables and separately charged serialized fixed-tape scans.\n\n## Verification\nIndependent functional and adversarial collision-family reviews; run python3 -I -W error -B research/lockstep-source-row-index/verify.py.\n\n## Limits and kappa\nAddresses, not payload movement, selected native manifest or complete compiler closure. No new kappa; 0.00363005817 remains conditional.\n\n## Credit\nPrepared for @CubeJerry with substantial OpenAI assistance; credit predecessor authors and PRs as detailed in the package.\n\nFull proof, reproducibility, negative controls and provenance: https://github.com/CubeJerry/integer-mult-bounds/tree/c5bcb6dc792f5fe4d8abe89a2a2854f148b09f2c/research/lockstep-source-row-index",
+  "created_at": "2026-11-12T00:48:19Z",
+  "updated_at": "2026-11-12T00:48:19Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

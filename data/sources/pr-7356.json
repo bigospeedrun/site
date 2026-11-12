@@ -1,0 +1,11 @@
+{
+  "number": 7356,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7356",
+  "title": "Exclude three and four simultaneous Type B phase transfers (0% κ change)",
+  "body": "## Change and scope\n\n**NO VERIFIED GAIN. Exact conditional κ change 0%.** On exact signed #7113, all 10,400 triple and 14,950 quadruple Type B phase-transfer choices change the arbitrary-input endpoint at q = −1 and unit body. The modular reflection and independent exact rational causal-impulse checks agree on all 25,350 keys. Both exhaust the scope with zero survivors or unresolved cases.\n\nThe four singleton odd idles and 26 larger even idles are the only sites. All original clocks, roles, body masks and J blocks stay fixed. The entire four-transfer stock has gross upper 0.22541521474570153 raw before ancillary costs. One added paid rank-one position defeats that bound. The exact compatible saving is zero.\n\n## Replay\n\nExact #7334 comparator `aaeec8c0acf01e99a5f331ef363a698d9c084ace`, κ `0.00364665195644`, exact #7113 `07a76c5e2738882c0cb322278e56f6cae3c9885d`. Use CPython 3.12 from a clean checkout:\n\n```sh\npython3.12 -I -B research/p104-three-four-type-b-phase-transfers/replay.py\npython3.12 -B scripts/research_package.py --package research/p104-three-four-type-b-phase-transfers\npython3.12 -B scripts/check_research_commit.py --package research/p104-three-four-type-b-phase-transfers --check-modes --check-source-history\n```\n\nLocal registered, committed source and mode, navigation and official Git-free checks passed. Replay regenerates five pinned receipts, reconciles every key and rejects changed caller bytes. No stronger phase or physical gate was needed. The branch carries #7257's exact shared planner repair.\n\n## Credit and next question\n\n#7317 and #7323 supply the one- and two-transfer precedents, #7315 the signed decoder, #7113 the caller, #7334 the comparison, #7298 the directed tariff and #7342 the derivative helper. OpenAI Codex and subagents materially assisted. A funded change of clock or surrounding signed interval remains open.",
+  "created_at": "2026-11-12T01:15:42Z",
+  "updated_at": "2026-11-12T01:15:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

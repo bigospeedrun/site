@@ -1,0 +1,11 @@
+{
+  "number": 7352,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7352",
+  "title": "Drive the padded balanced CRT inverse from encoded source and retain all 79 role histories across precision changes",
+  "body": "## Result\nImplement encoded reverse-level scheduling, subtractive whole-node updates and same-source commits, so forward/inverse balanced CRT are mutual inverses on the admitted padded address rectangle.\n\n## Novelty and predecessors\nComplements the forward endpoint using actual current coordinates, with precision shrink/regrowth and source-model O(A^4) time, O(A^2) extra backing, 79 roles per invocation.\n\n## Verification\nSeparate direct CRT oracle (20 cases/52 nodes), universal cost review and author normal/optimized replay. Run python3 -I -W error -B research/encoded-balanced-crt-inverse/verify.py.\n\n## Limits and kappa\nNot raw exceptional S^-1, payload conversion, literal machine lowering or full recovered multiplier. No new kappa; 0.00363005817 remains conditional.\n\n## Credit\nPrepared for @CubeJerry with substantial OpenAI assistance; credit predecessor authors and PRs as detailed in the package.\n\nFull proof, reproducibility, negative controls and provenance: https://github.com/CubeJerry/integer-mult-bounds/tree/8c0e55c9ba25ff2c8199b01539a4d56ae71a1473/research/encoded-balanced-crt-inverse",
+  "created_at": "2026-11-12T00:50:07Z",
+  "updated_at": "2026-11-12T00:50:07Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
