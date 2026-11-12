@@ -1,0 +1,11 @@
+{
+  "number": 7415,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7415",
+  "title": "Bound Type B odd-rail rank concentration",
+  "body": "**NO VERIFIED GAIN.** On exact #7334 with signed #7113, test changing ranks 9,9 to 8,10 at the isolated Type B odd returns at clocks 1339 and 2970 on all eight Type B ports. The rank-eight child is the pure stage-8 body, the retained wrappers are phase-even, and the rank-ten child supplies a scalar on only one phase-sensitive lane per fixed common fibre. The directed optimistic saving is about 0.0032105351558918767 raw. One extra rank-one paid adapter defeats it.\n\nAt unit bodies and the two legal central signs, the required two-return difference is 2I with determinant 4. In the proposed replacement every sign difference factors through a single lane and has rank at most one. The exact replay checks the two literal rails, physical signs and all four basis/sign columns. It rules out the fixed-fibre replacement even with ancillary work free. Two phase-sensitive cores, altered routing and mixed fibres remain open.\n\nFrom a clean POSIX checkout run python3.12 -I -B research/p104-type-b-odd-rail-concentration-bound/replay.py. It authenticates exact sources, compares both replays and rejects an altered caller mask. Registered, read-only Git-free export and all 27 onboarding checks passed locally. The branch includes the two #7257 CI prerequisites.\n\n#7334 and #7113 supply the comparator and signed caller. #7397 and #7394 cover distinct packing scopes on the same rails, and #7362 and #7298 supply exact pricing. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T12:19:52Z",
+  "updated_at": "2026-11-12T12:19:52Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

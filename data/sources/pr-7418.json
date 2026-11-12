@@ -1,0 +1,11 @@
+{
+  "number": 7418,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7418",
+  "title": "Bound Type B stage-17 idle retirement at J17",
+  "body": "**NO VERIFIED GAIN.** On exact #7334 and signed #7113, try retiring either or both paid Type B stage-17 idles at clocks 4646 and 4660 into the already-paid J17 host at clock 4691, retaining productive endpoints. The optimistic saving is about 63.5165 raw per removed idle or 127.0330 for both across the eight Type B ports.\n\nAt q=+1 and the two legal stage-17 body signs, the endpoint displacement has rank four on local roles 0,1,16,17. One surviving singleton plus a two-role J17 can supply at most rank three. Retiring both leaves capacity two. Independent exact reverse maps also place two entries outside the retained host in all three cases. The direct replays checked all 36 basis columns at both bodies. All three cases are excluded with zero unresolved. A four-role host or different field/ownership interface needs its own exact price and proof.\n\nRun python3.12 -I -B research/p104-stage17-idle-retirement-bound/replay.py from a clean POSIX checkout. It authenticates the exact signed inputs, reproduces the capacity and forced-map checks, and rejects altered data. Registered, read-only Git-free export and all 27 onboarding checks passed locally. The branch carries two #7257 CI prerequisites.\n\n#7334/#7113 supply the comparator and caller. #7402 supplies the distinct fixed-slot body transport and #7406 the complementary pair bound. #7362 and #7298 supply the price. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T12:39:50Z",
+  "updated_at": "2026-11-12T12:39:50Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

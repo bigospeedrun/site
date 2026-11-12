@@ -1,0 +1,11 @@
+{
+  "number": 7416,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7416",
+  "title": "Bound affine packing for the stage-17 parity shell",
+  "body": "**NO VERIFIED GAIN.** On exact #7334/#7113 at Type B clocks 4646 and 4660, change the erased action for the two complementary stage-17 returns. Let D be the original body and X=D² its translation. The ordinary parity shell E=((1+i)I+(1−i)X)/2 leaves a residual only at Walsh weights 2 or 3 mod 4. At width one the two lanes have 240 residual directions out of 512 tested. At all widths the total residual occupies 1−2^(−4f) of one old lane by count.\n\nBoth exact replays show that these addresses nevertheless span the full two-lane affine chart. One affine selection therefore needs two old lane volumes. A rank-16 field can afford less than 1.003 under the quoted volume-linear tariff, with all ancillary work free. At the incumbent crossing the directed gross is about −126.391663475 raw across eight ports. This excludes the specified parity shell with one affine Walsh-address chart. Non-affine selection, several charts and other bypasses remain open. Price one exact changed selector before building it.\n\nRun python3.12 -I -B research/p104-stage17-parity-shell-affine-bound/replay.py from a clean POSIX checkout. It pins the original projector and caller and compares two exact support checks, including forward and adjoint and corruption controls. Registered, read-only Git-free export and all 27 onboarding checks passed locally. The branch carries the two #7257 CI prerequisites.\n\n#7406 supplies the complementary projector reduction, #7397 the tariff, and #7334/#7113 and #7362/#7298 the exact comparator, caller and price. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T12:23:04Z",
+  "updated_at": "2026-11-12T12:23:04Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
