@@ -116,7 +116,9 @@ class Importer:
         """inspect_pr once per PR version and base in one run. Every verifier run and every publisher run of a PR leaves
         its own pr-submission artifact (184 unexpired on 2026-11-12), and each read costs about ten GitHub requests:
         from 06:18Z on 2026-11-12 the direct refresh step passed its 14-minute limit on every run and imported nothing."""
-        key=json.dumps([pr.get('number'),pr.get('head'),base_sha or (pr.get('base') or {}).get('sha'),pr.get('changed_files')],sort_keys=True)
+        # The whole PR object and the base: a cached answer is the one inspect_pr would give again (it reads the head,
+        # base, user, labels and test markers of the object).
+        key=json.dumps([pr,base_sha or (pr.get('base') or {}).get('sha')],sort_keys=True,default=str)
         if key not in self.inspected:
             try:self.inspected[key]=(True,inspect_pr(self.api,pr,base_sha))
             except (Rejected,ValueError,KeyError,TypeError) as error:self.inspected[key]=(False,error)
