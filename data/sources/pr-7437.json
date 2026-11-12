@@ -1,0 +1,11 @@
+{
+  "number": 7437,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7437",
+  "title": "Bound finished-helper promotion for banked MOVE fusions",
+  "body": "Prices finished proper-helper promotion on the 119 pinned separating cases for the #7334 word at `aaeec8c0acf01e99a5f331ef363a698d9c084ace` and its #7113 physical adapter at `07a76c5e2738882c0cb322278e56f6cae3c9885d`. Two independent exact probe sets both leave one eligible donor, role 831. Its promotion raises productive rank from 4 to 9 and adds a paid rank-5 position. After crediting the proposed fusion, the net saving is `17(H(3)−H(4)−H(8)+H(9))`, strictly negative for `0 < κ < 1` by strict concavity.\n\nFrom a clean checkout with CPython 3.12, run `python3.12 -I -B research/p104-finished-helper-promotion-price-bound/replay.py`. The manifest pins the input files and both probe sets. Direct replay, registered and standalone export replays, and the 27 applicable repository tests passed locally. The proof covers the recorded finished-helper promotion and leaves other donor contracts and untested banks open. **NO VERIFIED GAIN**.\n\n#7434 and #7436 supplied the earlier bank exclusions and exact probes. #7334 and #7113 supplied the word and physical map, with the productive and price conventions inherited through #7338, #7396, #7362 and #7298. OpenAI Codex and its subagents materially assisted the audit, implementation and independent checks.",
+  "created_at": "2026-11-12T13:52:12Z",
+  "updated_at": "2026-11-12T13:52:12Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

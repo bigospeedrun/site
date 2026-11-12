@@ -1,0 +1,11 @@
+{
+  "number": 7436,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7436",
+  "title": "Bound exact spans in additional historical MOVE banks",
+  "body": "**NO VERIFIED GAIN.** Continue #7434 on the exact #7334 native word with signed #7113. Of the 237 unresolved destination-ADD cases, all 62 with at most 19 bank rows fail exact rational span. The bounded larger-bank pass independently certifies 50 more exclusions, then reaches its 60-second cap. No candidate advanced. The 125 unvisited keys and their exact price intervals are listed in the package. Their combined optimistic upper is below 14.380 raw before compatibility and ancillary costs.\n\nEach completed case has a rational input that vanishes on every exact bank row and gives a nonzero old source value. Separate forward and reverse checks reproduce the small-bank exclusions. A literal scalar-input pass verifies all 50 larger-bank certificates and 15,172 donor evaluations. This is a scoped continuation. Changed correction clocks and the 125 remaining keys have separate support obligations.\n\nFrom a clean POSIX checkout run python3.12 -I -B research/p104-historical-bank-span-continuation/replay.py. It authenticates the exact predecessor, reconstructs the selected banks, checks every completed certificate and rejects damaged evidence. Registered, official Git-free export and all 27 onboarding checks passed locally. The branch includes two #7257 CI prerequisites.\n\n#7434 supplies the exact initial support census and earlier six exclusions. #7334 and #7113 supply the comparator and signed caller, #7312 and #7365 the related chronology scopes, and #7362 and #7298 the directed price. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T13:46:51Z",
+  "updated_at": "2026-11-12T13:46:51Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
