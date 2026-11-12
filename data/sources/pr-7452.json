@@ -1,0 +1,11 @@
+{
+  "number": 7452,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7452",
+  "title": "Exclude delayed correction from the chart-922 bank",
+  "body": "Resolves one of the remaining delayed cuts on exact #7334 and #7113. At key [41944,41946,43419], the chart-922 correction bank at cut 43421 contains roles 7, 587, 779, 949 and 960. The rational input x1=x2=x311=1 gives value 1 on the old source 82 and zero on every donor. This excludes all rational combinations from the fixed bank. The relaxed 3+2→5 price is about 0.20766650666759 raw across 17 calls, and one extra paid rank-one occurrence would defeat it. **NO VERIFIED GAIN.**\n\nFrom a clean POSIX checkout with CPython 3.12 run `python3.12 -I -B research/p104-chart922-delayed-bank-separator/replay.py`. The lead elimination and independent literal scalar check agree. Removing x1 makes the source zero and donor 779 equal −2. Registered, committed modes, official read-only Git-free export, and all 27 onboarding tests passed locally. Two other changed cuts remain unresolved.\n\n#7444 and #7438 supplied the late-cut scope, #7436 the separating-input method, #7434 the historical inventory, #7362 the directed pricing and #7334/#7113 the exact word and caller. OpenAI Codex and its subagents materially assisted the proof, implementation and independent replay.",
+  "created_at": "2026-11-12T15:10:30Z",
+  "updated_at": "2026-11-12T15:10:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

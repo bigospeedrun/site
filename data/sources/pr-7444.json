@@ -1,0 +1,11 @@
+{
+  "number": 7444,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7444",
+  "title": "Exclude delayed correction from the chart-907 bank",
+  "body": "Resolves one of the four changed cuts left open by #7438 on exact #7334 and #7113. For key [41805,41807,43313], the latest chart-907 bank is at cut 43315. The exact input (x2,x12,x550) = (−4,4,1) gives value 4 on the old source role 100 before 41807 and zero on all four donor roles 226, 931, 978 and 990. This excludes every rational correction from this bank. The relaxed paid saving lies between 0.20766650 and 0.20766651 raw, so one added rank-one occurrence would defeat it. **NO VERIFIED GAIN.**\n\nFrom a clean POSIX checkout with CPython 3.12 run `python3.12 -I -B research/p104-chart907-delayed-bank-separator/replay.py`. The runner authenticates both exact word hashes and compares the exact row solve with a separately written literal scalar replay. Omitting x550 makes donor 990 evaluate to −4, which rejects the altered probe. Registered replay, exact commit checks, official Git-free read-only export, and all 27 onboarding tests passed locally. Three other delayed cuts are unresolved. The next exact quotient test is [41944,41946,43419].\n\n#7438 supplied the late-cut scope, #7436 the separating-input method, #7434 the original bank inventory, #7362 directed pricing, and #7334/#7113 the exact word and caller. OpenAI Codex and its subagents materially assisted proof, implementation, independent replay and packaging.",
+  "created_at": "2026-11-12T14:49:25Z",
+  "updated_at": "2026-11-12T14:49:25Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 7440,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7440",
+  "title": "Bound arbitrary-clock fusion of Type A body idles",
+  "body": "Excludes all 224 disjoint pairs of literal Type A body idles on the exact #7113 caller used by #7334. At the one legal shared profile q = 1 and D8 = D9 = −1, each old idle contributes a sign reflection and the fused union would act as identity at any insertion clock. Two exact methods find distinct transported projectors for every pair. For the price-best pair at clocks 1448 and 1763, literal omission changes output coefficient [1,0] from 0 to −4. The optimistic disjoint matching upper is below 238.182 raw and the verified saving is zero. **NO VERIFIED GAIN.**\n\nFrom a clean POSIX checkout use CPython 3.12: `python3.12 -I -B research/p104-arbitrary-clock-body-idle-fusion-bound/replay.py`. Both engines, typed rejection control, registered replay, exact commit and modes, official read-only Git-free export and all 27 onboarding tests passed locally. The exclusion keeps other actions fixed and covers a one-role union child with the original body frame. Changed frames, multiple replacement calls and coupled edits are open.\n\n#7334 supplies the complete comparator and #7113 the literal signed caller. #7305 is the arbitrary-slot BIT precedent, and #7357 treats a distinct fixed-clock Type B model. OpenAI Codex and its subagents materially assisted the proof, implementation, independent verification and packaging.",
+  "created_at": "2026-11-12T14:29:44Z",
+  "updated_at": "2026-11-12T14:29:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
