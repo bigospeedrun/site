@@ -1,0 +1,11 @@
+{
+  "number": 7455,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7455",
+  "title": "Exclude the remaining delayed chart-127 corrections",
+  "body": "Closes the two remaining delayed chart-127 bank tests on exact #7334 and #7113. At keys [40430,40432,46222] and [43091,43093,46566], exact sparse rational probes give 1 on each omitted source and zero on all 298 and 417 respective donors. The independently replayed corrupted probes fail. The relaxed gross quotes sum to less than 0.3214 raw across the 17-call invoice. These complete the fixed late-cut family begun by #7438, together with #7444 and #7452. **NO VERIFIED GAIN.**\n\nFrom a clean POSIX checkout, use CPython 3.12: `python3.12 -I -B research/p104-chart127-delayed-bank-separators/replay.py`. The package pins the exact word, literal chart chronology, price, both exact certificates, and independent scalar replays. Registered, exact commit checks, official read-only Git-free replay and all 27 applicable onboarding tests passed locally. Other cuts, changed donor routes and larger combined rewrites remain open.\n\n#7438/#7444/#7452 supplied the late-cut inventory and predecessors, #7434/#7436 the bank method, #7362 the directed tariff, and #7334/#7113 the exact construction and caller. OpenAI Codex and its subagents materially assisted the proof, implementation and independent replay.",
+  "created_at": "2026-11-12T15:26:10Z",
+  "updated_at": "2026-11-12T15:26:10Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
