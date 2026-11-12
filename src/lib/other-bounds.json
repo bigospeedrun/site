@@ -1108,6 +1108,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem at the exact contact point \\((777-\\sqrt{1081})/852\\). The tracker's prepare, test, verify and admission checks passed on the merged head, and the tracker's maintainer merged the pull request on 2026-11-11. A commit by the tracker's maintainer adds a Lean proof that this value is at most the rational bound of PR #103. The tracker's leaderboard ranks the submission by that rational bound and keeps the exact value as QRH-Exact; this site ranks the exact value, which the theorem states. No independent rerun.",
           "bound": "\\theta\\le\\frac{777-\\sqrt{1081}}{852}"
+        },
+        {
+          "author": "Sil",
+          "handle": "TheSil",
+          "value": "2183367/2500000",
+          "display": "0.8733468",
+          "date": "2026-11-12T08:05:28-08:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/137",
+          "dateKind": "first-stated",
+          "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/9d81a4c0b0e8338ef458f3ba5139657ae5404fde/submissions/2026-11-12-marked-anchor-induction/src/Candidate/Main.lean#L11-L16",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare, test, verify (marked-anchor-induction) and admission checks passed on the head 9d81a4c0 (the tracker's GitHub check runs). The pull request is open and has no merge yet. No independent rerun.",
+          "evidence": "claimed",
+          "review": {
+            "pr": 137,
+            "status": "open"
+          },
+          "note": "The author says an induction over 176 exactly computed stages gives row-sized marked-moment estimates on anchor rectangles, for the actual inverse polynomial and for the product of two actual ordinary polynomials. The ordinary half forks the density-split cube-free step; the inverse half re-runs the canonical-energy initialization with injective marks and applies a second Poisson summation. The improved moments feed one improved count window of the retuned return of PR #103, closed by kernel-checked Bernstein covers, and the Mellin continuation gives the bound. It builds on OpenAI, Hailey Collet, Arvi, Joseph Bebel, Joe Richey, Sil and Jacob Sussman, including the lines of PR #93, #97, #98, #103 and #129, and says the research and the Lean code are AI-assisted. It is about \\(3.5167\\cdot10^{-5}\\) below PR #129.",
+          "authors": [
+            {
+              "name": "Sil",
+              "url": "https://github.com/TheSil"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare, test, verify (marked-anchor-induction) and admission checks passed on the head 9d81a4c0 (the tracker's GitHub check runs). The pull request is open and has no merge yet. No independent rerun.",
+          "bound": "\\theta\\le 0.8733468"
         }
       ],
       "repos": [
@@ -1180,7 +1206,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "josephlr"
+      "bestHandle": "TheSil"
     },
     {
       "family": "005",
