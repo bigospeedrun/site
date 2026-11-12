@@ -1,0 +1,11 @@
+{
+  "number": 7407,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7407",
+  "title": "Bound the retimed Type A stage-8 host",
+  "body": "## Change and result\n\n**NO VERIFIED GAIN.** On exact #7334 and #7113, keep #7404's retiming at Type A port 0 and test demoting QUERYs at clocks 1580 and 1659 with phase retirement on roots 0 and 18. A J8 body difference pins the four old ingress and egress role spaces with determinant 16. The signed comparison gives 320 nonzero entries outside those spaces, including (8,1) = −2. Four fields with phase-even fixed adapters and feedthrough cannot realize the requested host. The optimistic price is below 0.04270044187346692 raw per port before support. Other pairs and enlarged or phase-dependent hosts remain open.\n\n## Reproduction\n\nRun python3.12 -I -B research/p104-retimed-type-a-stage8-host-bound/replay.py from a clean checkout. The package pins exact source, reproduces the directed quote and both forward and reverse support checks, and rejects changed caller and retiming controls. Registered, Git-free export and 27 onboarding checks passed locally. The branch includes two #7257 CI prerequisites.\n\n## Credit\n\n#7404 at aadd1de3e520cfd1e5b062729bd76f543dc879f4 supplies the retiming and original carrier analysis. #7113 and #7334 supply the signed caller and comparator. #7401 and #7344 supply fixed-skeleton and retained-J comparison methods, #7360 the physical character method, and #7362 the price receipt. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T11:32:24Z",
+  "updated_at": "2026-11-12T11:32:24Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

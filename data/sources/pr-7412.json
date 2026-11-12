@@ -1,0 +1,11 @@
+{
+  "number": 7412,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7412",
+  "title": "Bound fixed J8 and J9 hosts for Type A QUERY demotion",
+  "body": "**NO VERIFIED GAIN.** On exact #7334 and #7113 with the #7404 retiming, retain J8 at 1423 and J9 at 3058 and test demoting QUERYs 1580 and 1659 with productive phase retirement on roots 0 and 18. The optimistic gross is below 4.099242419852824 raw across 96 ports with fixed paid hosts.\n\nThe rank-three required correction passes the seven-dimensional output support test. The exact input x0=2, x1=1, with all other coordinates zero, vanishes at both retained host blocks, while required output 0 differs by 2. Independently, stripping the unchanged prefix and suffix gives an untouched middle entry (19,19) whose required value differs by 4. This excludes all linear replacements within both fixed four-role blocks at the legal negative phase with unit bodies. Changed ingress adapters and native routing remain open. The next test for this family would price one cocharted ingress adapter before replaying the pinned witness.\n\nFrom a clean checkout run python3.12 -I -B research/p104-type-a-two-host-query-bound/replay.py. The replay authenticates exact sources, reproduces the two checks and rejects altered input. Registered, read-only Git-free export, and all 27 onboarding tests passed locally. The branch includes two #7257 CI prerequisites.\n\nCredit #7404 aadd1de3e520cfd1e5b062729bd76f543dc879f4 for the retiming and #7407 79fed9d6765d1b921b8d5e547af301310a9e259e for the exact single-host replay and price. #7334 and #7113 supply the comparator and signed caller, and #7362/#7298 supply the price inputs. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T11:50:24Z",
+  "updated_at": "2026-11-12T11:50:24Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

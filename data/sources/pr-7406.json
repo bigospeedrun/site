@@ -1,0 +1,11 @@
+{
+  "number": 7406,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7406",
+  "title": "Bound one-field packing for the stage-17 Type B returns",
+  "body": "## Change and result\n\n**NO VERIFIED GAIN.** The complementary projectors at Type B clocks 4646 and 4660 of the exact #7113 caller displace 736 directions on two 512-column lanes. At every admitted width a single field with fixed identity erasure and an unchanged bypass needs at least 23/16 times the original lane volume. A rank-16 field can afford less than 1.003 times that volume at the #7334 crossing. The eight-port raw price change is below −55.11596368443582 with ancillary work free.\n\nThe two exact replays agree. Changed erased action, a coupled body-dependent bypass and a different tariff remain open. Price a changed-erasure operator before building it.\n\n## Reproduction\n\nFrom a clean checkout run python3.12 -I -B research/p104-stage17-two-return-volume-bound/replay.py. The replay authenticates the caller, physical sources and exact price input, reconstructs the local projector, compares two receipts, and rejects altered input. Registered, Git-free export and 27 onboarding checks passed locally. The branch includes two #7257 CI prerequisites. The research change is confined to its package.\n\n## Credit\n\n#7334 and #7113 supply the comparator and signed caller. R172 in #7111 supplies the projector identity. #7360 and #7315 supply earlier single-projection scopes, #7397 the volume tariff and related odd-return method, and #7362 the price receipt. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T11:29:43Z",
+  "updated_at": "2026-11-12T11:29:43Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

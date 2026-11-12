@@ -1,0 +1,1031 @@
+{
+  "envelope": {
+    "challenge": {
+      "file": "challenges/catalan/Statement.lean",
+      "generated_sha256": "225046708bf3ce890670c63acee039e69c4def0e1bf6180a5fb68adf3a3f359a",
+      "sha256": "9ba7370f1256ef680ccf674e653b5456735c478f9ac80fcffc90f130ac4a2ce6",
+      "upstream_commit": "50672b810873d8371b2b6bdd0057bb6cb2e3da24"
+    },
+    "checked_at": "2026-11-12T10:27:59.172882Z",
+    "derivation": {
+      "hold": false,
+      "reason": "too many files",
+      "status": "not_computed"
+    },
+    "importable": true,
+    "issue_body_sha256": "711383406201ccce1cefd374f44f64a03f171b33370822cb2eeacd1511b38be9",
+    "issue_created_at": "2026-11-08T21:56:08Z",
+    "issue_number": 187,
+    "issue_submitter_login": "darkhipo",
+    "issue_updated_at": "2026-11-12T03:30:16Z",
+    "issue_url": "https://github.com/bigospeedrun/verifier/issues/187",
+    "model_revision": "50672b810873d8371b2b6bdd0057bb6cb2e3da24",
+    "model_sha256": "9ba7370f1256ef680ccf674e653b5456735c478f9ac80fcffc90f130ac4a2ce6",
+    "problem_id": "other/catalan",
+    "reason": "lean_and_axiom_passed_nanoda_incomplete",
+    "receipt": {
+      "artifact_sha256": {
+        "apt-tools.log": "da736b3f2bc3241acae68a2dd6a07fbe3ce3d22ce08c894fb2181e2ccdd8eddd",
+        "apt-update.log": "00b693af9b2ce72463c1bf1925b47881fdd53769140e0abff0ef44ec5671d389",
+        "audit.log": "3c9f30a6c3b9188cddc391c9d9ef4659a4eb061507ad931782f65c7c177cb96f",
+        "build-comparator.log": "fb25b4f07f41ee5f7747dc2ca6069d5ec3e9484dd5985ed3f65549abf3f1aff4",
+        "build-lake-adapter.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build-landrun.log": "5e09e7add5ffb69e6ec818cd8417bef048ede8025e5a71a6dc067b62b9776191",
+        "build-nanoda.log": "e2d0a837f738ad2cf983321ca2063228847af457a0450ab1048b7ab43cbf711a",
+        "build-nattest.log": "cd4ae7156b64a902aa1eeee02d169e52380da7475347d5d29302debf01a02a3c",
+        "build.log": "40d508806295aff326a4b6749f40e63faa51c65a5707920864390751455815ef",
+        "bwrap-apparmor-policy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cache-hash-metadata.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dependency-Cli-checkout.log": "c898721f43d1332795805fed225fb2ab0595c7b8a029c4a9e3c437473521b5e8",
+        "dependency-Cli-fetch.log": "9094417b7a563375dd9f98605caa2f2cb0cc73077b2c498eb7c101dc1bab279b",
+        "dependency-Cli-init.log": "806fb9690dbeea89238e99f8dd297b5af2e0e0f565af71af6f5626a6d61faf3e",
+        "dependency-LeanSearchClient-checkout.log": "7d98119a745a3443f54178ab9619295af66435d735ac04882e276a8a9bffaea1",
+        "dependency-LeanSearchClient-fetch.log": "5b5559b62e0b216d5e13b67a4ba1a230afd09f8c0995af59c8c828c43fc294b7",
+        "dependency-LeanSearchClient-init.log": "7da5337a0fc32514d71481e6bd805dea2161c22056ea299c1b9ad45e663240a9",
+        "dependency-Qq-checkout.log": "ad1b37dbf80199957a96283ccce1b75fb04305981124e49cbdc24d12437c8198",
+        "dependency-Qq-fetch.log": "13597b5d2e96d90eee3ebcc349f5dc29db0615761725a2bd30fd372e037695f3",
+        "dependency-Qq-init.log": "ffa3697aed5c4505fa7b759ea58199632d47708e338d7c844267b2c5754d61e1",
+        "dependency-aesop-checkout.log": "de5e1aa3ee75894a89798703b227a067c3e877d93dafb5419dc70b86ccc109a6",
+        "dependency-aesop-fetch.log": "88e03fded2183f72ff02d3f8bbf8f8bfb95b4bfd69babb6039e2df0cb7f1721e",
+        "dependency-aesop-init.log": "ddfe172f4b698d0ac102ac2178f4280b00372368ef06591a3952fcc668834fc3",
+        "dependency-batteries-checkout.log": "6816a3fef77fa1286c37b8e56ca42c77a51ad242dbb758bfd9f4de43ec50cb06",
+        "dependency-batteries-fetch.log": "116ec193ab5389d576971f2f8a288a9f9fe82744a84da6da90ce289f1e330eda",
+        "dependency-batteries-init.log": "2aba402bb7545f350f21c752a73448002dc8b209f4963bde1df90ea8266b5a91",
+        "dependency-importGraph-checkout.log": "6a4ee8a98d7afdb48cb4c55be58ed0efeaeeefdfb3bf6468909bec14e6aa28b4",
+        "dependency-importGraph-fetch.log": "7c91610e786ab9296071b4bebd42fc455236dd285c2d40beb476b5120c36e605",
+        "dependency-importGraph-init.log": "a48fa1c744a9cebca87074efdb8cfbcb7d6cbaae8af8d46f504f4223c9a551bc",
+        "dependency-mathlib-checkout.log": "a0bb7af7ae0fa5e2cc405332624d7b50a0ed8d31605c0b4b526558ffd20d50a1",
+        "dependency-mathlib-fetch.log": "56a9c709fa42a138a71cef4abafc00e97d480b8e106800c3c34fa21edbceed12",
+        "dependency-mathlib-init.log": "2bcb292b69734b9db2ced338b6ac726cedc20827a6780104169f95f2d66c1b73",
+        "dependency-plausible-checkout.log": "5c722697c8d43ea73fde7079343e63c3bb58b408427b579f6a98f114b2c27ae3",
+        "dependency-plausible-fetch.log": "58688df170d3968e90c11f7fe16f1957ca189393874ba37e84fae3631b9d6b26",
+        "dependency-plausible-init.log": "4077b7e1977b1b77945885d54ad3705e70446164adda8a0c5d8844827b97eb72",
+        "dependency-proofwidgets-checkout.log": "be10a7d449140089e34615969c9fe1a689688c806b5a3f09ce38b17fb6d28794",
+        "dependency-proofwidgets-fetch.log": "5bac8844efd0a2d90aa71757fd8825ed40852e654732b3e51c2e71184e330a1d",
+        "dependency-proofwidgets-init.log": "4c883bd1450aa7a672b32e14df04922d40e349467c3d76da18d2643ce6e1a397",
+        "elan-download.log": "f9cb5408178f97e8918913316e3b6073229419d3b528dc14f13a012825456c78",
+        "elan-install.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elan-unpack.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gate.json": "5b88bd8fb6c8325ccf3894d567c52dad3741f6841a92d13dd94f6430e2d7d647",
+        "kernel-swap-allocate.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel-swap-enable.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel-swap-format.log": "1d1820144680d1963cd20d9abb54a98f409b5c915f4746b01222ffb3ff3c740c",
+        "kernel-swap-permissions.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lean-install.log": "ffdc126ce27bd88ee99ec6de79ca7843f993abe025753814384482d5c387339d",
+        "lean-path.log": "4f4f34f1bc4f5cab4255fa6d759fcd684cc6ad06ff5c31a6167dae82ea282c16",
+        "lean.log": "670d30d2289ce433a2da5f54c52c4c8a8416fc396185a001bfd9d67b5ca384e9",
+        "mathlib-cache.log": "8cd8c8558e21142991b4fcbdb8d838dd25e164bbd0f9fc8f1fef407791d9d2d8",
+        "nanoda.log": "56c208c966a55fe47b96289dfe7b700903e6b5e3084e21bc78da819c4337a262",
+        "nattest.log": "2262fcd7d0272e653bdff68f8917b08c44a4d8d4ef02a93639ea9e273ca376ab",
+        "runner-sdk-space.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sandbox-preflight.log": "41648742f98aab2171f9eb88297548170de3f3b760e7c07ef9fcc94aedd69355",
+        "selected-request.json": "f67f7ebf1c7e7220560c4f97202d02333f74c4c0aa11bb5f7aabbf2580bfe365",
+        "source-sha256.json": "95d32b72e27c1c42dd0ed874ead18bd73c8c3df98badc54010f26228b7dc0c44",
+        "submission-checkout.log": "32b11fd8aa1e9c8962a0862b61c11b5c75119805449b7cc82df4b3841a78e160",
+        "submission-fetch.log": "b46cf3a851e2e95748fdf307c88c959c3d0c311869c47d9d6b42f3e257c2cf9a",
+        "submission-init.log": "b0cb466a875c47cba4ca64cba0f001ef50a616dc50516bac9b66fd30769c2e1c",
+        "tool-comparator-checkout.log": "3c2feb74939b9406dafa0cb51c8c8e3dfe3699b74c1601779505d0710b48e416",
+        "tool-comparator-fetch.log": "9261bb13765d6f67a340db2c08ec13cde32a1692ae58e6a0ec5aa9c47602c0da",
+        "tool-comparator-init.log": "8e15416f568c947d6b68e42b7ac7e7d538a5d80d8cf6cdd58d2dde6fc25a880d",
+        "tool-exporter-checkout.log": "d4f2490c3adcc8a16a8dfbe64d206920e721444b20d42612fae9a14686be2737",
+        "tool-exporter-fetch.log": "4679263f7ddb25fedf2f8f6fdefa03853ca318c1ca9b9e61b634e859cee32b2e",
+        "tool-exporter-init.log": "018b405fedf95d297837cdacc99659adb689b297c8717951de499143b20a5b6b",
+        "tool-exporter-patch-check-lean4export-natlit-parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-check-lean4export-pr52-natlit-print.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-lean4export-natlit-parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-lean4export-pr52-natlit-print.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-landrun-checkout.log": "d79c67290ceb531c3a58de807a7fa90ffb38fef022cb06beb789045ad1150093",
+        "tool-landrun-fetch.log": "5236b9fb8cd4e085ff194e356bb8f7235b824d3598b30e372ba59a226fc326e8",
+        "tool-landrun-init.log": "a9eb19dc8f9948571af0e040de262ccf9b0afad041ed34b8a563ba78daac7eda",
+        "tool-nanoda-checkout.log": "1742125a8fcb0f116dde29abd4986b2b3760c293de3a2bdb1a2dc811c5bfe208",
+        "tool-nanoda-fetch.log": "fe5e4563df306b10c17a90cc13543aa66cb53d35d5b2d71a807012324d981461",
+        "tool-nanoda-init.log": "0823fe50f87fc13c0edb7540c3847aa4be35620dabf31ab1809f8abaa36ccc6d",
+        "tool-sha256.json": "203d9f5b3ddad1916d9a040c9e577444e26a8fc322eee900177afd683074ccf6",
+        "trusted-lake-config.log": "355a9a028f81641782d75d6e6b58dec70f29d2f61238a9e271690259d9bf5680"
+      },
+      "axiom_audit": {
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "audit.log",
+        "memory_limit_bytes": 15032385536,
+        "reported_axioms": {
+          "Race.bound": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "sampled_peak_cgroup_bytes": 5380227072,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 24,
+        "status": "passed",
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 31.061
+      },
+      "build": {
+        "attempts": [
+          {
+            "exit_code": 1,
+            "guard_stop": null,
+            "lake_jobs": 4,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 15032385536,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 291,
+            "swap_limit_bytes": 0,
+            "systemd_result": "oom-kill",
+            "tasks_limit": 4096,
+            "wall_seconds": 4528.267
+          },
+          {
+            "exit_code": 1,
+            "guard_stop": null,
+            "lake_jobs": 3,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 15032385536,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 50,
+            "swap_limit_bytes": 0,
+            "systemd_result": "oom-kill",
+            "tasks_limit": 4096,
+            "wall_seconds": 390.219
+          },
+          {
+            "exit_code": 1,
+            "guard_stop": null,
+            "lake_jobs": 2,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 15032385536,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 26,
+            "swap_limit_bytes": 0,
+            "systemd_result": "oom-kill",
+            "tasks_limit": 4096,
+            "wall_seconds": 175.11
+          },
+          {
+            "exit_code": 0,
+            "guard_stop": null,
+            "lake_jobs": 1,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 12773535744,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 24,
+            "swap_limit_bytes": 0,
+            "systemd_result": "success",
+            "tasks_limit": 4096,
+            "wall_seconds": 3543.473
+          }
+        ],
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "build.log",
+        "memory_limit_bytes": 15032385536,
+        "sampled_peak_cgroup_bytes": 15032385536,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 291,
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 8637.069
+      },
+      "checked_at": "2026-11-12T10:27:59.172882Z",
+      "finished_unix": 1794479279.1728823,
+      "generated_challenge_sha256": "225046708bf3ce890670c63acee039e69c4def0e1bf6180a5fb68adf3a3f359a",
+      "kernels": {
+        "lean": {
+          "attempts": [
+            {
+              "exit_code": 0,
+              "guard_stop": null,
+              "lake_jobs": 1,
+              "memory_limit_bytes": 15032385536,
+              "sampled_peak_cgroup_bytes": 13480030208,
+              "sampled_peak_swap_bytes": 3102121984,
+              "sampled_peak_tasks": 31,
+              "swap_limit_bytes": 17179869184,
+              "systemd_result": "success",
+              "tasks_limit": 4096,
+              "wall_seconds": 11659.894
+            }
+          ],
+          "exit_code": 0,
+          "guard_stop": null,
+          "log": "lean.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "comparator_acceptance",
+          "sampled_peak_cgroup_bytes": 13480030208,
+          "sampled_peak_swap_bytes": 3102121984,
+          "sampled_peak_tasks": 31,
+          "status": "passed",
+          "swap_limit_bytes": 17179869184,
+          "systemd_result": "success",
+          "tasks_limit": 4096,
+          "wall_seconds": 11659.902
+        },
+        "nanoda": {
+          "attempts": [
+            {
+              "exit_code": 1,
+              "guard_stop": null,
+              "lake_jobs": 1,
+              "memory_limit_bytes": 15032385536,
+              "sampled_peak_cgroup_bytes": 15032385536,
+              "sampled_peak_swap_bytes": 17171607552,
+              "sampled_peak_tasks": 31,
+              "swap_limit_bytes": 17179869184,
+              "systemd_result": "oom-kill",
+              "tasks_limit": 4096,
+              "wall_seconds": 3857.975
+            }
+          ],
+          "exit_code": 1,
+          "guard_stop": null,
+          "log": "nanoda.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "out_of_memory",
+          "sampled_peak_cgroup_bytes": 15032385536,
+          "sampled_peak_swap_bytes": 17171607552,
+          "sampled_peak_tasks": 31,
+          "status": "incomplete",
+          "swap_limit_bytes": 17179869184,
+          "systemd_result": "oom-kill",
+          "tasks_limit": 4096,
+          "wall_seconds": 3858.04
+        }
+      },
+      "lake_workers": 1,
+      "lean_path": [
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Cli/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/batteries/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Qq/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/aesop/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/proofwidgets/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/importGraph/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/LeanSearchClient/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/plausible/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/mathlib/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/tools/elan/toolchains/leanprover--lean4---v4.34.1/lib/lean"
+      ],
+      "pack": {
+        "bytes": 5618802838,
+        "files": 23152,
+        "members": 23318,
+        "sha256": "de0502bd57397e13992d9fb03638b7df292fbd3f74d9feeec7b1e25d3fe56703",
+        "skipped_count": 0,
+        "skipped_first": []
+      },
+      "profile": {
+        "bound_kind": "exponent",
+        "challenge_file": "challenges/catalan/Statement.lean",
+        "challenge_sha256": "9ba7370f1256ef680ccf674e653b5456735c478f9ac80fcffc90f130ac4a2ce6",
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "manifest_file": "profiles/lake-manifest.json",
+        "maximum": "100000000",
+        "runner": "github-split",
+        "solution_module": "Submission",
+        "source_roots": [
+          "Submission"
+        ],
+        "theorem_names": [
+          "Race.bound"
+        ],
+        "tools_file": "profiles/tools.json",
+        "upstream_commit": "50672b810873d8371b2b6bdd0057bb6cb2e3da24"
+      },
+      "request": {
+        "challenge_file": "challenges/catalan/Statement.lean",
+        "commit": "588b7d649184ed7c8c761db73ff1542932614fb3",
+        "direct_submission": {
+          "authors": [],
+          "bound": "295",
+          "commit": "588b7d649184ed7c8c761db73ff1542932614fb3",
+          "problem": "catalan",
+          "repo_url": "https://github.com/BigO-Hunter/catalan-295-litsey-port",
+          "schema_version": 1
+        },
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "repo_url": "https://github.com/BigO-Hunter/catalan-295-litsey-port",
+        "theorem_names": "Race.bound"
+      },
+      "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/43148643813",
+      "schema_version": 1,
+      "solution_dependencies": [],
+      "source_file_count": 2731,
+      "started_unix": 1794463324.586996,
+      "status": "not_verified",
+      "steps": [
+        {
+          "exit_code": 0,
+          "name": "submission-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-fetch",
+          "wall_seconds": 12.715
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-checkout",
+          "wall_seconds": 4.318
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-update",
+          "wall_seconds": 5.045
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-tools",
+          "wall_seconds": 5.132
+        },
+        {
+          "exit_code": 0,
+          "name": "bwrap-apparmor-policy",
+          "wall_seconds": 0.012
+        },
+        {
+          "exit_code": 0,
+          "name": "runner-sdk-space",
+          "wall_seconds": 136.306
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-download",
+          "wall_seconds": 0.26
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-unpack",
+          "wall_seconds": 0.08
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-install",
+          "wall_seconds": 0.031
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-install",
+          "wall_seconds": 12.95
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-init",
+          "wall_seconds": 0.039
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-fetch",
+          "wall_seconds": 0.414
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-checkout",
+          "wall_seconds": 0.008
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-init",
+          "wall_seconds": 0.083
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-fetch",
+          "wall_seconds": 0.415
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-checkout",
+          "wall_seconds": 0.124
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-check-lean4export-pr52-natlit-print",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-lean4export-pr52-natlit-print",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-check-lean4export-natlit-parse",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-lean4export-natlit-parse",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "build-comparator",
+          "wall_seconds": 7.365
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nattest",
+          "wall_seconds": 5.551
+        },
+        {
+          "exit_code": 0,
+          "name": "nattest",
+          "wall_seconds": 14.172
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-fetch",
+          "wall_seconds": 0.539
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-checkout",
+          "wall_seconds": 0.006
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nanoda",
+          "wall_seconds": 20.395
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-fetch",
+          "wall_seconds": 0.485
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-checkout",
+          "wall_seconds": 0.005
+        },
+        {
+          "exit_code": 0,
+          "name": "build-landrun",
+          "wall_seconds": 13.304
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-fetch",
+          "wall_seconds": 7.927
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-checkout",
+          "wall_seconds": 0.594
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-fetch",
+          "wall_seconds": 0.461
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-checkout",
+          "wall_seconds": 0.005
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-fetch",
+          "wall_seconds": 0.418
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-fetch",
+          "wall_seconds": 0.517
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-checkout",
+          "wall_seconds": 0.008
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-fetch",
+          "wall_seconds": 0.795
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-checkout",
+          "wall_seconds": 0.036
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-fetch",
+          "wall_seconds": 0.565
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-checkout",
+          "wall_seconds": 0.013
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-fetch",
+          "wall_seconds": 0.483
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-checkout",
+          "wall_seconds": 0.005
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-fetch",
+          "wall_seconds": 0.605
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-checkout",
+          "wall_seconds": 0.016
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-fetch",
+          "wall_seconds": 0.432
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "mathlib-cache",
+          "wall_seconds": 54.459
+        },
+        {
+          "exit_code": 0,
+          "name": "cache-hash-metadata",
+          "wall_seconds": 0.471
+        },
+        {
+          "exit_code": 0,
+          "name": "build-lake-adapter",
+          "wall_seconds": 0.11
+        },
+        {
+          "exit_code": 0,
+          "name": "trusted-lake-config",
+          "wall_seconds": 2.123
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-path",
+          "wall_seconds": 5.572
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.027
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-allocate",
+          "wall_seconds": 0.037
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-permissions",
+          "wall_seconds": 0.008
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-format",
+          "wall_seconds": 0.01
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-enable",
+          "wall_seconds": 0.009
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.026
+        }
+      ],
+      "test_only": false,
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "theorems": {
+        "Race.bound": {
+          "lean_kernel": "passed",
+          "nanoda_kernel": "incomplete",
+          "reported_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "timing_group": "shared theorem closure"
+        }
+      },
+      "tool_pins": {
+        "comparator": "d03acab154d269c06e60e4de7e4cc85deebff94b",
+        "elan_tar_sha256": "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63",
+        "elan_version": "v4.2.4",
+        "landrun": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+        "lean4export": "076e8e57707e813375e8f9da8bf989799ace9680",
+        "lean4export_patches": [
+          {
+            "file": "patches/lean4export-pr52-natlit-print.patch",
+            "sha256": "dbcb657d2c0e4bdd7c396d750d55031bff54cb21e82aef8a6f6318ae3b4b76c2"
+          },
+          {
+            "file": "patches/lean4export-natlit-parse.patch",
+            "sha256": "10eb8ba02b8ea82c7a5e9fce3021eb1f80c5095dbc2343fd908eb78ae7ecdcb9"
+          }
+        ],
+        "nanoda": "8de7e0c4ed3052745a7f8725164efd9e76d84c56"
+      },
+      "total_wall_seconds": 15954.586,
+      "unpack": {
+        "bytes": 5618802838,
+        "files": 23152,
+        "members": 23318,
+        "sha256": "de0502bd57397e13992d9fb03638b7df292fbd3f74d9feeec7b1e25d3fe56703"
+      },
+      "verification_stage": "final",
+      "verifier_commit": "93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8"
+    },
+    "receipt_artifact": {
+      "archive_url": "https://github.com/bigospeedrun/verifier/actions/runs/43148643813/artifacts/13935321119",
+      "digest": "sha256:3f4787702593090a80c9e08594c8f88e2accba139db88ba7fca93bd3a356fd22",
+      "id": 13935321119,
+      "name": "verifier-receipt-and-logs-43148643813-1-187"
+    },
+    "receipt_sha256": "c98d807f7859ebaacbd2cc994ffcc63ffc6e66795b48a2a2e49dacd65ad65812",
+    "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/43148643813/artifacts/13935321119",
+    "record_gate": {
+      "any_lean_verified_at_bound": true,
+      "checked_at": "2026-11-12T06:02:01.269995Z",
+      "data_sha256": "499e7a3f1b8a4bebb82cbd30710b08033c60c96b5a8d0222e1f34c1b188fd02e",
+      "leader_ids": [
+        "direct-issue-103"
+      ],
+      "problem_id": "other/catalan",
+      "schema_version": 1,
+      "score": "1056463/2000",
+      "score_relation": "attained",
+      "site_commit": "6ccd1de8efbe58094c5c0d56f9f072249a47a7ab"
+    },
+    "run_attempt": "1",
+    "run_id": "43148643813",
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/43148643813",
+    "schema_version": 1,
+    "score_relation": "attained",
+    "source_published_at": null,
+    "status": "passed",
+    "submission": {
+      "authors": [],
+      "bound": "295",
+      "commit": "588b7d649184ed7c8c761db73ff1542932614fb3",
+      "problem": "catalan",
+      "repo_url": "https://github.com/BigO-Hunter/catalan-295-litsey-port",
+      "schema_version": 1
+    },
+    "submission_sha256": "8fe7c8ced358d93c23c7f09c7210d722ded289f89fe2da2da6097e390011d022",
+    "test_only": false,
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "verification_status": "passed",
+    "verifier_commit": "93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8",
+    "workflow_conclusion": null
+  },
+  "verification_run": {
+    "id": 43148643813,
+    "name": "Verify direct submissions",
+    "node_id": "WFR_kwLOVDiv6M8AAAAKC9wN5Q",
+    "head_branch": "main",
+    "head_sha": "93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8",
+    "path": ".github/workflows/submissions.yml",
+    "display_title": "[Lean submission] catalan: μ(G) ≤ 295 (Sean Litsey, toolchain port to the profile pin)",
+    "run_number": 1920,
+    "event": "issues",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847968,
+    "check_suite_id": 116845903308,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAbNI79zA",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43148643813",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/43148643813",
+    "pull_requests": [],
+    "created_at": "2026-11-12T03:30:18Z",
+    "updated_at": "2026-11-12T10:28:40Z",
+    "actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [
+      {
+        "path": "bigospeedrun/verifier/.github/workflows/submission-check.yml@93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8",
+        "sha": "93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8",
+        "ref": "refs/heads/main"
+      }
+    ],
+    "run_started_at": "2026-11-12T03:30:18Z",
+    "triggering_actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43148643813/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43148643813/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/116845903308",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43148643813/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43148643813/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43148643813/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847968",
+    "head_commit": {
+      "id": "93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8",
+      "tree_id": "5d3f38cb7569ca561707821968200556cb52f550",
+      "message": "Kernel swap: lean runs without swap when no disk is free; reuse only an active swap file\n\nIntegrations notes on 9ea7a5a, Lead 2026-11-12:\n- A split Lean check that finds no disk with 20 GiB free logs \"kernel swap: not enough disk, lean runs\n  without swap\" and runs without swap, as before 9ea7a5a. nanoda keeps the hard error.\n- prepare_kernel_swap reuses bos-kernel.swap only when `swapon --show` lists it. A file that an earlier\n  attempt left before swapon is removed and made again.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "timestamp": "2026-11-12T02:56:53Z",
+      "author": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      },
+      "committer": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  },
+  "result_artifact": {
+    "id": 13934369283,
+    "node_id": "MDg6QXJ0aWZhY3QxMzkzNDM2OTI4Mw==",
+    "name": "direct-submission-43148643813-1-187",
+    "size_in_bytes": 6377,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/13934369283",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/13934369283/zip",
+    "expired": false,
+    "digest": "sha256:fa8a86d1684ec664f08317039b2c1115972dcc3c2ee14498e56dad338a210fdb",
+    "created_at": "2026-11-12T10:28:36Z",
+    "updated_at": "2026-11-12T10:28:36Z",
+    "expires_at": "2027-02-10T03:30:19Z",
+    "workflow_run": {
+      "id": 43148643813,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8"
+    }
+  },
+  "proof_artifact": {
+    "id": 13935321119,
+    "node_id": "MDg6QXJ0aWZhY3QxMzkzNTMyMTExOQ==",
+    "name": "verifier-receipt-and-logs-43148643813-1-187",
+    "size_in_bytes": 1791988,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/13935321119",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/13935321119/zip",
+    "expired": false,
+    "digest": "sha256:3f4787702593090a80c9e08594c8f88e2accba139db88ba7fca93bd3a356fd22",
+    "created_at": "2026-11-12T10:28:01Z",
+    "updated_at": "2026-11-12T10:28:01Z",
+    "expires_at": "2027-02-10T03:30:19Z",
+    "workflow_run": {
+      "id": 43148643813,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "93b4b5a7ba83d48c56c69e51c5dd665ce87b86e8"
+    }
+  }
+}

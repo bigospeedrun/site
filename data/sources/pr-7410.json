@@ -1,0 +1,11 @@
+{
+  "number": 7410,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7410",
+  "title": "Bound Type A late-mask permutations at cut 1741",
+  "body": "**NO VERIFIED GAIN.** On exact #7334 aaeec8c0acf01e99a5f331ef363a698d9c084ace and signed #7113 07a76c5e2738882c0cb322278e56f6cae3c9885d, consider moving late Type A masks at cut 1741 while keeping the paid tape and using a fixed phase-even seam with the corresponding output permutation. The exact forward and reverse replays agree on all 630 transpositions. Sixty improve the relaxed price and all fail the signed seam condition.\n\nThe general permutation test forms the exact relative prefix on both legal signs. Its invariant classes have sizes 2, 16, 10 and 8. Each class fixes either the early or late count, so every permitted permutation retains the original productive histogram. The gross saving ceiling is exactly zero with a free seam. No assignment enumeration or fourth-root gate was needed. Other cuts, phase-sensitive seams and changed paid tapes remain open.\n\nFrom a clean POSIX checkout run python3.12 -I -B research/p104-type-a-late-mask-permutation-bound/replay.py. The wrapper authenticates inputs, regenerates both exact engines and rejects changed caller data. Registered, Git-free export and 27 onboarding checks passed locally. The branch carries the two #7257 CI prerequisites.\n\n#7334 supplies the complete comparator, #7113 the exact caller and signed body, and #7362 and #7298 the complete signed price method. R178–181 in #7111 provide the single-pair, exact family and permutation evidence. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T11:46:40Z",
+  "updated_at": "2026-11-12T11:46:40Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

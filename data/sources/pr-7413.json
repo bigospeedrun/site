@@ -1,0 +1,11 @@
+{
+  "number": 7413,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7413",
+  "title": "Bound shared stage-9 Walsh basis assignments",
+  "body": "**NO VERIFIED GAIN.** On the exact #7334 and #7113 caller, test sharing the known rank-eight Walsh conversions across Type B stage-9 idles, with the J9 boundary kept in the original basis. Both exact graph replays cover 4,783 source events, 36 Type B roles, 16 eligible idle clocks and all eight ports. Forcing clock 2866 has optimum −H(8) per port, including both required transitions. The directed eight-port upper is below −63.5165 raw. Removing one forcing path from the same certificate proves a zero upper for every unforced assignment in this fixed-basis model. The two replays check conservation and capacities. The relaxation credits up to one full rank-eight charge for every eligible idle and grants diagonal work and ancillary costs free.\n\nFrom a clean POSIX checkout run python3.12 -I -B research/p104-type-b-shared-walsh-stage9-bound/replay.py. The replay checks both certificates and rejects a changed caller mask and a damaged flow. Registered, read-only Git-free export and all 27 onboarding checks passed locally. This branch carries the two #7257 CI prerequisites.\n\n#7334 and #7113 supply the complete comparator and signed caller. #7411 supplies the exact local Walsh question and #7000 the known basis conversion. A different conversion or a changed J9/supplier interface remains open. Start by pricing one exact alternative conversion on the original layout. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T12:12:56Z",
+  "updated_at": "2026-11-12T12:12:56Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

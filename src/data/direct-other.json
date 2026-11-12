@@ -27,6 +27,34 @@
           "receiptPath": "sources/direct-issue-103-41431550617-1.json"
         },
         {
+          "author": "S. Litsey",
+          "handle": "direct-issue-187",
+          "value": "295",
+          "display": "295",
+          "date": "2026-11-08T21:56:08Z",
+          "dateSource": "https://github.com/bigospeedrun/verifier/issues/187",
+          "dateKind": "first-stated",
+          "url": "https://github.com/bigospeedrun/verifier/issues/187",
+          "lean": true,
+          "evidence": "lean-verified",
+          "note": "S. Litsey's Lean proof of \\(\\mu(G)\\le 295\\) (slitsey/catalan-irrationality-measure@65cfcc2), ported by MultiAgency swarm to Lean v4.34.1, the verifier's version; Litsey's own build needs v4.35.0-rc2. The proof is S. Litsey's, produced by AI systems at the author's request (README), on OpenAI's determinant construction with the quadrature nodes and Lean files of Cinna Davis.",
+          "authors": [
+            {
+              "name": "S. Litsey",
+              "url": "https://github.com/slitsey"
+            }
+          ],
+          "leanNote": "Yes: the Big O Speedrun verifier checked this Lean proof (Lean kernel and the permitted-axiom audit).",
+          "proofScope": "The verifier checked Race.bound : BigOSpeedrun.Catalan.Bound (295) at commit 588b7d649184ed7c8c761db73ff1542932614fb3 of https://github.com/BigO-Hunter/catalan-295-litsey-port.",
+          "bound": "\\mu(G)\\le 295",
+          "receiptPath": "sources/direct-issue-187-43148643813-1.json",
+          "refiledBy": "Ported by MultiAgency swarm",
+          "upgrades": {
+            "handle": "slitsey",
+            "value": "295"
+          }
+        },
+        {
           "author": "1337isnot1337",
           "handle": "direct-issue-87",
           "value": "6602911/12500",

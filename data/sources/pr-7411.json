@@ -1,0 +1,11 @@
+{
+  "number": 7411,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7411",
+  "title": "Bound local Walsh packing at Type B stage 9",
+  "body": "**NO VERIFIED GAIN.** On exact #7334 with signed #7113, test one stage-9 Type B even IDLE_ONE at clock 2866, role 36, and its eight ports. The independent replay checks all 256 width-one Walsh directions forward and adjoint. Phase counts are 72, 64, 56, and 64, so 184 directions move. At every positive integral width the displacement fraction is 3/4 − 2^(−4f−1). A single rank-seven field with unchanged parked fibres cannot carry it.\n\nThe exact existing local Walsh lowering needs two rank-eight conversions per port. Their cost alone gives a gross raw upper below −63.232 over all eight ports. This grants indexing, routing, restoration, precision, and tape free. A shared existing Walsh layout, a different supplier or tariff, and the other stage-9 clock remain open. Reopen only with an exact conversion or basis-reuse price below the removed charge.\n\nRun python3.12 -I -B research/p104-type-b-stage9-walsh-pack-bound/replay.py from a clean POSIX checkout. It authenticates the signed inputs and rejects an altered caller mask. Registered, read-only Git-free export and all 27 onboarding checks passed. The branch carries the two #7257 CI prerequisites.\n\n#7334 and #7113 supply the comparator and signed tensor. #7000 supplies the retained Walsh–C lowering and compiler, #7397 the distinct odd-return tariff and volume precedent, and #7362/#7298 the exact price source. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T11:47:14Z",
+  "updated_at": "2026-11-12T11:47:14Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

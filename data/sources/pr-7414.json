@@ -1,0 +1,11 @@
+{
+  "number": 7414,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7414",
+  "title": "Bound adjacent same-chart public MOVE compression",
+  "body": "**NO VERIFIED GAIN.** The exact #7334 native word has 29 adjacent public MOVE pairs with the same ordered source and target charts. A proportional pair could zero one row by an ordinary subtraction, lift only its companion and reconstruct the original second output. The best-priced candidate is roles 625 and 624 at clocks 32944 and 32945, chart 3→117, rank five. Across 17 invocations its optimistic gross is about 84.502591 raw, and the optimistic ceiling over all 29 disjoint pairs is below 1,827 raw.\n\nIndependent forward and reverse rational replays agree on all 58 rows across 1,501 source coordinates. Every pair has a nonzero 2×2 minor, so proportional-row compression cannot delete either lift in this exact family. The first pair’s determinant is −1 on source coordinates 246 and 624. All 29 keys were tested with zero unresolved. Larger or nonadjacent cohorts and changed chart paths remain open. Price one exact changed cohort before extending the search.\n\nRun python3.12 -I -B research/p104-adjacent-public-move-compression-bound/replay.py from a clean POSIX checkout. It pins the exact native word, reproduces both engines and detects altered inputs. Registered, Git-free export and all 27 onboarding checks passed locally. The branch carries the two #7257 CI prerequisites.\n\n#7334 and #7113 supply the word and caller, #7362 and #7298 the price, and #7403 the separate first-lift obstruction for role 624. #6767 and #7365 supply related but distinct carrier and chronology precedents. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T12:14:15Z",
+  "updated_at": "2026-11-12T12:14:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

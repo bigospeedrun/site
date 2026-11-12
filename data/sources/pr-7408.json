@@ -1,0 +1,11 @@
+{
+  "number": 7408,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7408",
+  "title": "Bound four-role P104 endpoint exchanges",
+  "body": "## Change and result\n\n**NO VERIFIED GAIN.** On exact #7334 aaeec8c0acf01e99a5f331ef363a698d9c084ace and #7113 07a76c5e2738882c0cb322278e56f6cae3c9885d, the proposed exchange trades productive ranks 5,9 for 6,8 with paid ranks fixed. Its optimistic gross is below 0.026750025281436337 raw. One extra rank-one paid position defeats it.\n\nThe inherited census has 20,455 cut incidences. It excludes 3,961 for lack of a four-role coframe and partitions 16,494 into 15 eligible banks. Exact per-case solving excludes all 15, and an independent sparse forward check tests every one of the 16,494 eligible cuts. No case remains in scope. Other endpoint pairs, donors and changed paid itineraries remain open. The next test is to price a different endpoint pair before building it.\n\n## Reproduction\n\nRun python3.12 -I -B research/p104-four-role-endpoint-exchange-bound/replay.py from a clean POSIX checkout. It authenticates the native word and path-keyed inputs, regenerates eight receipts and checks corrupt-witness and duplicate-key controls. The shared input and per-case methods both resolve the same seven continuation cases covering 478 cuts. Total-effort timing is inconclusive, so the per-case method stays the default. Registered, Git-free export and all 27 onboarding checks passed locally. The branch includes two #7257 CI prerequisites.\n\n## Credit\n\n#7391 supplies the endpoint ranges, #7395 the exact three-role parent, fourth role and directed quote, and #7334 and #7113 the construction and signed caller. R151 introduced role 1251 and the first eight prefix exclusions. R175 closes the seven remaining banks and independently replays every eligible cut. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-12T11:33:25Z",
+  "updated_at": "2026-11-12T11:33:25Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
