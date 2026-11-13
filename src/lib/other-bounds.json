@@ -1134,6 +1134,32 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare, test, verify (marked-anchor-induction) and admission checks passed on the head 9d81a4c0 (the tracker's GitHub check runs), and the tracker's maintainer merged the pull request on 2026-11-12. No independent rerun.",
           "bound": "\\theta\\le 0.8733468"
+        },
+        {
+          "author": "Joseph Bebel",
+          "handle": "josephbebel",
+          "value": "9908119238306612133369374975000622988619121777878229799765263366946606045502455625911569003364955967645745531862430068266267717/11345012023616779600791582323373494582287250283647959965785871011074347975117040113347744503437234376916434871293982689424818700",
+          "display": "0.873345856106718576801184796066",
+          "date": "2026-11-12T20:04:27-08:00",
+          "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/141",
+          "dateKind": "first-stated",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/a0a0212652c3e97c36c917ee7b671e6c27a6d0fc/submissions/2026-11-13-continuum-anchor/src/Candidate/Main.lean#L6-L9",
+          "lean": true,
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole, at the stated rational. The tracker's prepare, test, verify (continuum-anchor) and admission checks passed on the head 03a1e5ad (the tracker's GitHub check runs), and the tracker's maintainer merged the pull request on 2026-11-13. The author says exact-root nonvanishing is not asserted. No independent rerun.",
+          "evidence": "human-verified",
+          "review": {
+            "pr": 141,
+            "status": "merged"
+          },
+          "note": "The author says it extends Sil's marked-anchor induction of PR #137 with zero stage decrement, a finite approximation to the continuum source curve, an averaged physical floor and the complete certified return. The submitted rational is the upper Farey neighbour of the degree-nine contact that fits the tracker's 256-character bound field, and fixed positive source, fee and conductor-extension costs are kept. It builds on PR #137 and on OpenAI, Hailey Collet, Arvi, Sil, Joe Richey and Jacob Sussman and the inherited source and return lines, and says the development was AI-assisted. The exact fraction has a 127-digit numerator and a 128-digit denominator; the decimal shown is rounded up. It is about \\(9.4389\\cdot10^{-7}\\) below PR #137.",
+          "authors": [
+            {
+              "name": "Joseph Bebel",
+              "url": "https://github.com/josephbebel"
+            }
+          ],
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole, at the stated rational. The tracker's prepare, test, verify (continuum-anchor) and admission checks passed on the head 03a1e5ad (the tracker's GitHub check runs), and the tracker's maintainer merged the pull request on 2026-11-13. The author says exact-root nonvanishing is not asserted. No independent rerun.",
+          "bound": "\\theta\\le 0.873345856106718576801184796066"
         }
       ],
       "repos": [
@@ -1206,7 +1232,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "TheSil"
+      "bestHandle": "josephbebel"
     },
     {
       "family": "005",
