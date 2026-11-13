@@ -8,6 +8,7 @@ import {formatReply, safeLink} from './chat-format.ts';
 import type {Problem, RecordEntry} from './types.ts';
 import otherBounds from './other-bounds.json' with {type: 'json'};
 import {otherBoundLeader} from './other-leader.ts';
+import {evidenceName, type EvidenceLevel} from './evidence.ts';
 import {problemLinks} from './navigation.ts';
 
 const knowledge = createKnowledge([], '2026-10-10T09:00:00Z');
@@ -374,7 +375,7 @@ test('a QRH question reaches the quasi-Riemann Other bounds row with its leader,
   assert.equal(knowledge.otherBounds.list, '/#other-bounds');
   // The leader changes with the data; compare with the shown leader, not a fixed claim.
   const leader = otherBoundLeader(otherBounds.families.find(f => f.slug === 'quasi-riemann')!)!;
-  assert.equal(row.current.evidence, 'Claimed'); assert.deepEqual(row.current.authors, leader.authors.map(a => a.name));
+  assert.equal(row.current.evidence, evidenceName(leader.evidence as EvidenceLevel)); assert.deepEqual(row.current.authors, leader.authors.map(a => a.name));
   assert.equal(row.current.bound, leader.bound); assert.equal(row.baseline?.bound, '\\theta\\le 7/8');
   // The row names its review repository and the rule; the leader's pull request is linked with its status.
   assert.deepEqual((row as {reviewRepository?: object}).reviewRepository, {name: 'GTimG/QuasiRiemannTracker', url: 'https://github.com/GTimG/QuasiRiemannTracker',

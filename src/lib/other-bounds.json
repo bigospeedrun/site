@@ -1094,10 +1094,10 @@
           "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/535397cd506fadc6d0a2aefac4017cdf491a9b11/submissions/2026-11-10-exact-contact-point/src/Candidate/Main.lean#L5-L10",
           "lean": true,
           "leanNote": "Yes; lean proves the all-Dirichlet theorem at the exact contact point \\((777-\\sqrt{1081})/852\\). The tracker's prepare, test, verify and admission checks passed on the merged head, and the tracker's maintainer merged the pull request on 2026-11-11. A commit by the tracker's maintainer adds a Lean proof that this value is at most the rational bound of PR #103. The tracker's leaderboard ranks the submission by that rational bound and keeps the exact value as QRH-Exact; this site ranks the exact value, which the theorem states. No independent rerun.",
-          "evidence": "claimed",
+          "evidence": "human-verified",
           "review": {
             "pr": 129,
-            "status": "open"
+            "status": "merged"
           },
           "note": "The author says the bound is the contact point itself, \\((777-\\sqrt{1081})/852\\), which is about \\(2.16\\cdot10^{-254}\\) below the closest-fraction bound of PR #103, so the decimal shown here is the same at 30 digits. It replaces the reserve-dependent source chain by a reserve-free chain and combines a reserve-free return endpoint away from the contact with a local return family around \\(c^*=(75+\\sqrt{1081})/852\\). The PR says it builds on Joseph Bebel's PRs #99, #101 and #103 and on OpenAI, Hailey Collet, Arvi, Sil and Jacob Sussman, and that the Lean code was written entirely by Google Antigravity (AI-assisted). The tracker's maintainer added a Lean proof that this value is at most the rational bound of PR #103, merged a tracker fix for exact algebraic bounds (PR #130) into the tracker and into the pull request, and then merged the submission with the exact endpoint.",
           "authors": [
@@ -1117,13 +1117,13 @@
           "date": "2026-11-12T08:05:28-08:00",
           "dateSource": "https://github.com/GTimG/QuasiRiemannTracker/pull/137",
           "dateKind": "first-stated",
-          "url": "https://github.com/TheSil/QuasiRiemannTracker/blob/9d81a4c0b0e8338ef458f3ba5139657ae5404fde/submissions/2026-11-12-marked-anchor-induction/src/Candidate/Main.lean#L11-L16",
+          "url": "https://github.com/GTimG/QuasiRiemannTracker/blob/d495856e3e41f65b4f7c1993b8812eb102a1b7c0/submissions/2026-11-12-marked-anchor-induction/src/Candidate/Main.lean#L11-L16",
           "lean": true,
-          "leanNote": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare, test, verify (marked-anchor-induction) and admission checks passed on the head 9d81a4c0 (the tracker's GitHub check runs). The pull request is open and has no merge yet. No independent rerun.",
-          "evidence": "claimed",
+          "leanNote": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare, test, verify (marked-anchor-induction) and admission checks passed on the head 9d81a4c0 (the tracker's GitHub check runs), and the tracker's maintainer merged the pull request on 2026-11-12. No independent rerun.",
+          "evidence": "human-verified",
           "review": {
             "pr": 137,
-            "status": "open"
+            "status": "merged"
           },
           "note": "The author says an induction over 176 exactly computed stages gives row-sized marked-moment estimates on anchor rectangles, for the actual inverse polynomial and for the product of two actual ordinary polynomials. The ordinary half forks the density-split cube-free step; the inverse half re-runs the canonical-energy initialization with injective marks and applies a second Poisson summation. The improved moments feed one improved count window of the retuned return of PR #103, closed by kernel-checked Bernstein covers, and the Mellin continuation gives the bound. It builds on OpenAI, Hailey Collet, Arvi, Joseph Bebel, Joe Richey, Sil and Jacob Sussman, including the lines of PR #93, #97, #98, #103 and #129, and says the research and the Lean code are AI-assisted. It is about \\(3.5167\\cdot10^{-5}\\) below PR #129.",
           "authors": [
@@ -1132,7 +1132,7 @@
               "url": "https://github.com/TheSil"
             }
           ],
-          "proofScope": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare, test, verify (marked-anchor-induction) and admission checks passed on the head 9d81a4c0 (the tracker's GitHub check runs). The pull request is open and has no merge yet. No independent rerun.",
+          "proofScope": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare, test, verify (marked-anchor-induction) and admission checks passed on the head 9d81a4c0 (the tracker's GitHub check runs), and the tracker's maintainer merged the pull request on 2026-11-12. No independent rerun.",
           "bound": "\\theta\\le 0.8733468"
         }
       ],
