@@ -1,0 +1,11 @@
+{
+  "number": 7486,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7486",
+  "title": "Bound a signed idle pair with two-term erasure",
+  "body": "## Result and scope\n\nThe exact #7113 caller applies the same signed rank-nine map to two independent Type B lanes at clocks 1339 and 1340. For width one, port 15 and one fixed parked fibre, give each lane a free erased action of the form `aI+bD²`. The residual requires rank at least 480. One normalized rank-nine tensor core on one old lane volume supplies at most 392, even with arbitrary linear ingress and egress in the residual factorization. This excludes the declared architecture for a uniform supplier. Under the same tensor and volume model, the proof also gives an analytic gap at every positive integral width. **NO VERIFIED GAIN.**\n\nOne exact pair was exhausted. On #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, replacing two children per port by one would remove eight rank-nine paid positions across the signed caller. The optimistic gross is between 71 and 72 raw before ancillary costs. Other core ranks, mixed parked fibres, other erased actions and the separate stage-nine pair remain open.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-signed-idle-erasure-bound/replay.py`. Direct enumeration and independent cyclic-polynomial computation agree on both ranks. The package pins exact source bytes and tests changed inputs, duplicate pins and the two-return requirement. Registered replay, committed bytes and modes, source history, Git-free official export and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7113 supplies the literal caller and signed child, #7481/#7480/#7334 the complete comparison lineage, #7362 directed arithmetic, #7394/#7397 related signed idle scopes, and #7441 the native displacement precedent. OpenAI Codex and subagents materially assisted proof, implementation and independent replay. Review and merge are left to maintainers.",
+  "created_at": "2026-11-13T09:46:55Z",
+  "updated_at": "2026-11-13T09:48:10Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 7487,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7487",
+  "title": "Bound one J8 host for an independent odd return",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b` with the exact #7113 signed caller, test whether the retained Type B host at J8 event 1423 can also return the independent odd rail 68 from event 1339. At port 15 and width two, central Walsh labels 00 and 11 give opposite central phases and the same body phase 1. The host difference on roles 36 and 37 has rank two. Preserving those outputs and returning rail 68 requires rank three. Arbitrary ingress, egress and additive bypass acting identically on the two sectors cannot close that gap. One case exhausted within 30 seconds.\n\nOne implemented port would earn one rank-nine idle credit. The optimistic upper for all eight ports is below 72 raw units before other costs. The fixed host is excluded before construction. Sector-dependent routes and access to other fibres remain open.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-j8-single-host-odd-return-bound/replay.py`. The package authenticates the physical and signed sources, reconstructs the two sectors and both exact receipts, and checks altered source, sector and rail controls. Registered replay, source history and modes, read-only Git-free export and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7481/#7480/#7334 supply the native construction and full signed invoice. #7113 supplies the literal caller and signed child and phase sources. #7394/#7397 cover related fixed schedules and providers, #7486 the two-term erasure precedent, and #7362 the directed tariff. OpenAI Codex and subagents materially assisted proof, implementation and independent replay. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T10:07:16Z",
+  "updated_at": "2026-11-13T10:07:16Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
