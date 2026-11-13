@@ -1,0 +1,11 @@
+{
+  "number": 7482,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7482",
+  "title": "Bound fixed-cut restoration of owned helper 1533",
+  "body": "## Change and mathematical scope\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b` and signed #7113 at `07a76c5e2738882c0cb322278e56f6cae3c9885d`, give owned helper 1533 one independent dirty input at its old INIT 38139. Keep both paid ascents and the old scalar word through the cut before CLEAR 42503. A reversible scalar basis on chart 591 cannot restore the old state and return the dirty input. The entire chart-591 bank has zero coefficient, while chart-1031 roles 1336 and 1563 have coefficients +1 and −1. The independent dense replay locates their writes at 42495 and 42491.\n\nOne case exhausted. The putative full delta is T7 +17 with paid profile unchanged. Its directed gross upper is 118.1584595438061 raw before correction. The 19-lifetime optimistic whole-stock upper is 947.4502523754607 raw before compatibility and repair. Other lifetimes and earlier restoration remain open.\n\n## Validation\n\nFrom a clean checkout with CPython 3.12, run `python3.12 -I -B research/p104-owned-productive-cut-bound/replay.py`. It checks the full pinned inputs, both exact receipts and mutation controls. Registered replay, source history, committed modes, Git-free official export and onboarding passed locally. Hosted results are separate.\n\n## Attribution\n\n#7481/#7480/#7334 supply the exact native construction lineage, #7113 the signed caller, #7298 directed tariff precedent, and #7387/#7389/#7409/#7354 related owned transport under a fixed public boundary. #5591 and #5599/#6916 supply the earlier recoding and two-sided split precedents. OpenAI Codex and subagents materially assisted proof, implementation and replay. Review and merge are left to maintainers.",
+  "created_at": "2026-11-13T09:06:44Z",
+  "updated_at": "2026-11-13T09:06:44Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

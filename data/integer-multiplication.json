@@ -42614,6 +42614,104 @@
         }
       ],
       "source_commit": "aaeec8c0acf01e99a5f331ef363a698d9c084ace"
+    },
+    {
+      "id": "crocswap-pr-7480",
+      "kind": "improvement",
+      "score": "729355574567/200000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-11-13T04:23:16Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-13T04:23:16Z",
+      "site_observed_at": "2026-11-13T09:17:33Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7480"
+      },
+      "spec_version": "1",
+      "title": "Conditional κ = 0.003646777872835 (+1.25916395e-7 over #7334)",
+      "authors": [
+        {
+          "name": "rohanarun",
+          "url": "https://github.com/rohanarun"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7113",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7257",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7277",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7314",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7334",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7338"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7480",
+      "artifact": {
+        "path": "sources/pr-7480.json",
+        "sha256": "815fb27ef700f7cba662ef00992aca99c204e13d946e1c25273ee110f9fc18b5"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7480",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7480",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "58a9d052143f5d85295ed2d0163591c47f89a331"
+    },
+    {
+      "id": "crocswap-pr-7481",
+      "kind": "improvement",
+      "score": "3647081039689/1000000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-11-13T08:07:31Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-13T08:07:31Z",
+      "site_observed_at": "2026-11-13T09:17:33Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7481"
+      },
+      "spec_version": "1",
+      "title": "Conditional κ = 0.003647081039689 (+3.03166854e-7 over #7480): fund helper485 shortcut",
+      "authors": [
+        {
+          "name": "Clear1nsight",
+          "url": "https://github.com/Clear1nsight"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7113",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7257",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7277",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7314",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7334",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7480"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7481",
+      "artifact": {
+        "path": "sources/pr-7481.json",
+        "sha256": "3b46fa96eec73ed39e8a241f02c9a12c9d0e5e7ea55bc222db948247632841c7"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7481",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7481",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "89eaa9d8cae37c1540de98f2d29a3abaabb96a2b"
     }
   ],
   "record_metadata": {
@@ -67426,7 +67524,63 @@
       "race_event_at": "2026-11-11T22:47:46Z",
       "race_event_kind": "PR creation; latest observed score",
       "credit_note": "Chris R fuses helper 319's rank-five and rank-one lifts into one rank-six lift by moving an 18-event chart-207 block to its common legal clock. Paid change P1 -17, P5 -17, P6 +17. Conditional kappa 0.00364665195644. It needs PR 7314 and what it needs: the five framework assumptions, A6, the odd scalars and the BIT cap 0.00376669. Credits: rohanarun, ToikY, Dillon Amburgey, Ali Romman, Jerry Jiaheng Chen, DreamingOfClouds. OpenAI Codex and ChatGPT Pro assisted. External review is outstanding."
+    },
+    "crocswap-pr-7480": {
+      "checked_at": "2026-11-13",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7480",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 7480,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-11-13T07:34:26Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "Lead review decision; source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-11-13T04:23:16Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7480",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-11-13T04:23:16Z",
+      "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-7481": {
+      "checked_at": "2026-11-13",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7481",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 7481,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-11-13T08:42:18Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "Lead review decision; source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-11-13T08:07:31Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7481",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-11-13T08:07:31Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-11-13T08:17:28Z"
+  "updated_at": "2026-11-13T09:17:33Z"
 }
