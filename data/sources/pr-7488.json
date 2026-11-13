@@ -1,0 +1,11 @@
+{
+  "number": 7488,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7488",
+  "title": "Bound the fixed receiver for role 749",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, test replacing the original role-749 arrival and the owned role-1541 arrival with one late scalar on the proposed role-749 path. The unchanged chart-260 bank has rank six. Restoring the old role-749 and role-1540 outputs before ADD35155 raises the rank to eight. Two exact public probes annihilate the seven retained bank rows and give independent output values. Even an arbitrary scalar encoding supplies only one direction modulo the bank.\n\nOne role and one cut were tested within the 30-second cap. The proposed full paid profile would add seventeen rank-one positions and remove seventeen rank-three positions, with optimistic gross saving between 33 and 34 raw before any repair. Productive endpoints stay fixed. Changed arrivals, earlier producer encodings and a different receiver remain open.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-role749-producer-quotient-bound/replay.py`. The package regenerates the exact sparse result and independently reconstructs the dense rows and signed probes. Registered replay, exact commit and source history checks, official Git-free replay and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7481 supplies the exact word and two-producer construction precedent, #7480/#7334 its lineage, #7113 the signed caller, #7482 the literal rank and chronology routines, and #7362 the directed tariff. OpenAI Codex and subagents materially assisted proof, implementation and replay. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T10:18:15Z",
+  "updated_at": "2026-11-13T10:18:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

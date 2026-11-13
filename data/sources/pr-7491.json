@@ -1,0 +1,11 @@
+{
+  "number": 7491,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7491",
+  "title": "Bound terminal owned transfers against their receiver banks",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, exhaust all 19 terminal owned MOVEs followed by optional SCALE, one outward ADD, and CLEAR before another MOVE. At each original ADD, grant every other live receiver row in its chart. Every required owned value raises the fixed receiver rank by one. Each exact input probe annihilates the bank while giving a nonzero old recipient increment. All 19 cases are excluded with zero unresolved.\n\nThe MOVE ranks are 1, 2, 3, 4 and 6 with counts 9, 4, 1, 4 and 1. Across the 17 signed #7113 calls, their summed individual optimistic gross is below 711.417 raw before repairs. That ceiling grants compatibility. No deletion was realized. Changed producer histories, receiver banks and productive credits are separate cases.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-terminal-owned-receiver-bound/replay.py`. The runner reproduces the original eight and continuation eleven reverse receipts. One independent dense pass rederives and checks all nineteen. Both methods agree on case identities, banks, charts, recipients and ranks. Registered replay, exact source and mode checks, read-only Git-free export and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7481/#7480/#7334 supply the native lineage, #7113 the signed caller, and #7482/#7298 the coefficient and price routines. Campaign Round 235 supplies the saved eight cases. #7488/#7489 and #7409/#7393 concern related scopes. OpenAI Codex and subagents materially assisted proof, implementation, independent replay and packaging. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T10:44:30Z",
+  "updated_at": "2026-11-13T10:44:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

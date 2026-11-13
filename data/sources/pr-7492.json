@@ -1,0 +1,11 @@
+{
+  "number": 7492,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7492",
+  "title": "Bound the role 1501 owned move fusion",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481, test replacing owned role 1501's rank-two and rank-four MOVEs at 40563 and 40567 with one rank-six MOVE. The original intermediate ADD uses a quarter of the owned role-1525 row, exactly x770−x607. A public input probe makes every available row in both fixed endpoint banks zero while the old outward ADD40568 increments role 174 by −1/2. The endpoint bank rank rises from 15 to 16 when the donor is included. Free endpoint scalar correction therefore cannot realize the original read.\n\nOne route finished within 30 seconds. Its hypothetical signed gross is between 0.2355 and 0.2356 raw before repairs. Re-encoding another old producer, changing the intermediate source or using a different downstream interface remains outside the tested scope.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-role1501-owned-move-fusion-bound/replay.py`. Both exact coefficient methods reconstruct the old banks and separator, with a zero-input control. Registered replay, source history and modes, read-only Git-free export and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7481/#7480/#7334 supply the exact native lineage, #7113 the signed caller, #7482 the reverse row routines, #7362 directed prices and #7485 the related fixed public fusion. OpenAI Codex and subagents materially assisted proof, implementation and replay. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T10:47:59Z",
+  "updated_at": "2026-11-13T10:47:59Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

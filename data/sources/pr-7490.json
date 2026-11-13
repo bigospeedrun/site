@@ -1,0 +1,11 @@
+{
+  "number": 7490,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7490",
+  "title": "Bound the role 360 repair for producer 627",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, test whether the existing role-360 arrival at MOVE42212 can supply the omitted role-627 update before ADD43805. Grant the direct bypass its old early role-627 value, preserve the other chart-836 rows, and allow arbitrary encoding of the one paid donor. The fixed rows have rank five. Including the required old 627 and 360 outputs raises the rank to seven. Two exact probes annihilate the fixed rows and require independent output pairs. One donor scalar cannot restore both. The same result applies if the local replacement folds in ADD43805 and preserves old role 360.\n\nOne path and one cut finished within 30 seconds. The hypothetical full signed saving lies between 0.0488 and 0.0489 raw before repairs. One extra rank-one child per native call costs 17 raw. Retimed role-732 reads and altered additional arrivals are outside the tested scope.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-role627-role360-repair-bound/replay.py`. Reverse coefficient reconstruction and an independent literal forward replay agree on the probes. Registered replay, source history and modes, read-only Git-free export and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7481/#7480/#7334 supply the literal native lineage, #7113 the signed caller, #7482 exact row reconstruction, #7488/#7489 related quotient checks and #7362 directed pricing. #7378 uses role 732 in a different source and cut. OpenAI Codex and subagents materially assisted proof, implementation and replay. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T10:39:20Z",
+  "updated_at": "2026-11-13T10:39:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

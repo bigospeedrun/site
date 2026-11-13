@@ -1,0 +1,11 @@
+{
+  "number": 7493,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7493",
+  "title": "Bound both fixed repairs for the role 275 fusion",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, two fixed repairs for fusing role 275's rank-one MOVEs through chart 93 into one rank-two MOVE are excluded. Before MOVE31438, unit input `x100=1` annihilates all 898 chart-3 rows and gives one on the required old donor at ADD31442. For the delayed chart-312 repair, both unit inputs `x100=1` and `x77=1` annihilate the granted direct row. The old required returns after ADD31458 give `(1,−1/2)` and `(1,+1/2)` on those inputs. Their determinant is one, so one additional scalar on existing MOVE31451 cannot recover both. Both cases finished within their 30-second caps.\n\nOn the 17 signed #7113 calls the hypothetical paid delta is −34 rank one and +17 rank two with fixed productive ranks. Its directed gross is about 0.08584222521755124 raw before repairs. One added rank-one recursive position per call costs 17 raw. Changed direct-row encodings, other paths and changed old-output deadlines remain open.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-role275-fixed-fusion-repair-bound/replay.py`.\n\nThe package checks exact native and caller inputs, regenerates independent forward and reverse source receipts, and verifies the delayed return probes and directed gross. Negative controls reject changed bytes and failed separator obligations. Direct and registered replay, source history and modes, read-only Git-free export, and 27 onboarding tests passed locally on the same package bytes.\n\n## Credit\n\n#7481/#7480/#7334 supply the exact native lineage and #7113 the signed caller. #7482/#7298 supply exact coefficient and price routines. #7003 supplies the prior successful paid contact slides, and #7434/#7366 related historical-bank and retiming tests. OpenAI Codex and subagents materially assisted proof, implementation, independent replay and packaging. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T11:03:20Z",
+  "updated_at": "2026-11-13T11:15:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
