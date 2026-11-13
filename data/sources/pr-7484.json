@@ -1,0 +1,11 @@
+{
+  "number": 7484,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7484",
+  "title": "Exclude early coframed recovery of owned helper 1533",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, replace the old zero at INIT38139 for helper 1533 by a new independent input. Keep the literal prefix and test one chart-1031 correction immediately before MOVE42500. The 18 available rows have rank 18, and adding the required new input raises the rank to 19. The shared separating input sets old coordinates 34, 129 and 1336 to −1 and the new input to +1. All 18 modified rows vanish. The required old rows 1336 and 1563 evaluate to −1 and +1, and the required new input is +1. The unchanged ADD42502 source term alone is expressible. The old ADD42495 destination takes −1 on the same probe. One case exhausted within the 30-second cap.\n\nThe hypothetical earlier endpoint has rank four and a directed 17-copy gross upper below 67.657064563109 raw before all repair costs. The exact obstruction rules out this fixed-prefix, single-chart edit before construction. Changed prefixes, other-chart storage, other cuts and other lifetimes remain open.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12:\n\n```sh\npython3.12 -I -B research/p104-owned-early-recovery-obstruction/replay.py\n```\n\nBoth pinned coefficient engines, full witness validation and negative controls passed locally. Registered verification, exact commit checks, official Git-free replay and all 27 onboarding tests passed. The package contains deterministic sparse and independent dense receipts and the directed early credit check.\n\n## Credit\n\n#7482 supplies the later fixed cut and retained sparse and tariff routines. #7481/#7480/#7334 supply the native construction, #7113 the signed caller, #7298 the directed tariff, and #7161/#6108 related chart-1031 work on different cuts. OpenAI Codex and subagents materially assisted proof, implementation and independent replay. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T09:35:00Z",
+  "updated_at": "2026-11-13T09:35:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

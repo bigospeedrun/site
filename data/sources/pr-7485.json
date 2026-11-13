@@ -1,0 +1,11 @@
+{
+  "number": 7485,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7485",
+  "title": "Bound the chart-549 paid bypass for role 235",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b` with the #7113 caller, test replacing role 235's rank-4 and rank-2 paid moves by a single rank-6 move. The only intervening contact is the old ADD39249 at chart 549. Old unit input 7 makes all five remaining chart-549 rows zero but requires that ADD to change role 173 by −1/2. The unchanged bank therefore cannot supply the old update. Exact rank rises from four to five when the missing source row is included.\n\nOne case exhausted within its 30-second cap. The conditional whole signed paid profile changes by {2:−17, 4:−17, 6:+17}, with productive endpoints fixed. The optimistic saving is between 0.2355 and 0.2356 raw. Even one additional rank-one paid child would cost 17 raw under the fixed caller. Changed capture clocks, altered banks and coordinated paid edits remain open.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12:\n\n```sh\npython3.12 -I -B research/p104-role235-paid-bypass-bound/replay.py\n```\n\nThe package authenticates the exact source, reconstructs the original rows and directed price, and independently replays the signed separator and its controls. Registered verification, commit modes and source history, read-only Git-free export and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7481/#7480/#7334 supply the native construction, #7113 the caller, #7482 the retained rational tape and rank routines, and #7362 the directed tariff. #7481's funded multi-role construction and the separate charged-readout pilot use different contracts. OpenAI Codex and subagents materially assisted proof, implementation and independent replay. Review and merge remain with maintainers.",
+  "created_at": "2026-11-13T09:36:57Z",
+  "updated_at": "2026-11-13T09:36:57Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
