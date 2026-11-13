@@ -1,0 +1,11 @@
+{
+  "number": 7494,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7494",
+  "title": "Bound fixed-route outward ADD retiming",
+  "body": "## Result\n\nOn exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, all 958 public consecutive MOVE pairs with one outward ADD in the middle chart have no legal earlier or later placement when the peer itinerary and scalar source chronology stay fixed. The retained #7003 scanner and an independent chart-interval implementation agree on every route. **NO VERIFIED GAIN.** Joint peer retiming, multiple middle contacts and changed source histories remain open.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-outward-add-retiming-bound/replay.py`. It authenticates the exact word, price and scanner, then compares both full receipts with a 30-second outer cap for each engine. The original primary completed its output and exceeded the wall cap. The independent exhaustion completed in 0.22 seconds, and a later capped replay of both engines passed in 0.53 seconds. The local registered metadata and replay passed in an overlay. A local clean Git checkout check could not finish due to disk capacity.\n\n## CI and credit\n\nThe scientific commit is separate from the two exact #7257 shared CI prerequisite commits. #7003 supplied the scanner, #7481/#7480/#7334 the native lineage, #7113 the signed caller, and #7362/#7298 the directed price. #7368 and #7434 cover related source and incoming-ADD scopes. OpenAI Codex and subagents materially assisted.",
+  "created_at": "2026-11-13T11:36:12Z",
+  "updated_at": "2026-11-13T11:36:12Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

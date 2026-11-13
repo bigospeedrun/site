@@ -1,0 +1,11 @@
+{
+  "number": 7497,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7497",
+  "title": "Bound two fixed cuts for the role 1451 split",
+  "body": "## Result\n\n**NO VERIFIED GAIN.** On exact #7481 at `89eaa9d8cae37c1540de98f2d29a3abaabb96a2b`, test two fixed boundaries for splitting role 1451 into two rank-three productive targets with both paid moves retained. Before MOVE39826, the probe `x3=−1, x716=1` gives chart-737 bank values (1,0,0) and kills both allowed initial chart-595 coordinates. At the early cut, a coframed subtraction exposes `x1451`. The probe `x716=1` kills that exposed input and old role 992 while requiring increment −1 at old ADD37946. Four exact reverse and forward receipts agree.\n\nThe optimistic gross across all 17 signed #7113 calls is about 0.25649690069 raw. One extra rank-one paid position per call costs 17 raw. Other pre-encodings, a changed first-outward deadline and additional paid arrivals are outside the two fixed cases.\n\n## Replay\n\nFrom a clean POSIX checkout with CPython 3.12, run `python3.12 -I -B research/p104-role1451-fixed-split-bound/replay.py`. It authenticates exact inputs, reproduces four deterministic receipts and checks both probes and the directed tariff. Direct and registered replay, committed bytes and modes, source history, official read-only Git-free export and all 27 onboarding tests passed locally.\n\n## Credit\n\n#7481/#7480/#7334 supply the exact native lineage, #7113 the signed caller, #5718/#5599 the distinct boundary and independent-helper split precedents, and #7489 the adjacent but separate chart-529 repair. #7482/#7298 supply the coefficient and price routines. The 23-file scientific commit is separate from the two existing #7257 CI prerequisites. OpenAI Codex and subagents materially assisted proof, implementation, independent replay and packaging.",
+  "created_at": "2026-11-13T12:08:00Z",
+  "updated_at": "2026-11-13T12:08:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
