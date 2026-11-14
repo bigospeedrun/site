@@ -1,0 +1,11 @@
+{
+  "number": 7562,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7562",
+  "title": "Implement arbitrary fixed native address offsets with one reversal and a restored literal HOME return",
+  "body": "## Result\nImplement every construction-time nine-bit native offset for arbitrary encoded f on complete Gamma6/HOME packets. One retained reversal conjugated by at most20 CNOTs gives exact address XOR, preserving every component bit, spectator, grid and owner. No arithmetic headroom is required. The31-tape core costs2^20(fV+E+1); the35-tape HOME wrapper and all historical backing are explicitly charged, with setup/B1 delivery separate.\n\n## Checks and limits\nAuthor normal/optimized checks, separate exact-matrix review and a separate sparse CPU/direct-address oracle pass. The fresh root packet executes22,467,224 transitions with24,848 late HOME writes and complete restoration. The cutoff is preserved, not enforced. Actual source monomial/MOVE joins, caller production/packing and the faster nonleaf tariff remain open. No assumption discharge or new kappa.\n\nReproduce: python3 -B scripts/research_package.py --package research/literal-fixed-mask-native-translation\n\nBase e54523517d0f03e58352e647c403a5af3e525a57. Prepared for @CubeJerry with substantial OpenAI assistance; #7428 supplies first-slot translation and #7430 fixed CNOT motion. Earlier MOVE24472 already has offset1/phase1; this adds arbitrary fixed-mask physical composition.\n\n[Full proof, source pins, checks, limitations and proposed description](https://github.com/CubeJerry/integer-mult-bounds/blob/28b0d1c94cb5de5acd4649dae29388cbcd499dd4/research/literal-fixed-mask-native-translation/PR-DESCRIPTION.md)",
+  "created_at": "2026-11-14T01:54:03Z",
+  "updated_at": "2026-11-14T01:54:03Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

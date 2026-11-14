@@ -1,0 +1,11 @@
+{
+  "number": 7571,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7571",
+  "title": "Prove exact finite Gaussian rounding thresholds with compact Hall witnesses and independently checked orbit-flow certificates",
+  "body": "## Exact result\nProves finite optimal outward slack sqrt(21)-sqrt(19) on radius5, sqrt(31)-sqrt(28) on radii6/7, and sqrt(78)-sqrt(73) on radii9/11 for injective error-one H4/2 rounding. Radius10 follows by inclusion. The latter is a necessary global lower bound; global attainment remains open. Exact signed permutations transfer the result to the #6509 Gaussian pair.\n\n## Verification and scope\nIncludes a compact radius-five Hall proof, exact positive orbit-flow certificates, and the proof that biregularity lifts them to finite injections. An independent full-point checker verifies all four extension graphs; separate full-vertex radius-nine matching agrees. Normal/optimized replays and corruption/tie controls pass. All five multiplication assumptions remain; no new kappa.\n\n## Credit\nPrepared for @CubeJerry with substantial OpenAI assistance. Credit Nick Petalas #6619, ywz65 #2589 and Ali Romman #6509.\n\n[Full description, exact pins, proof, reproduction and limitations](https://github.com/CubeJerry/integer-mult-bounds/blob/3c7c3e8000f592fd9adecb44008ff6d5ae5d453d/research/sharp-finite-gaussian-outward-slack/PR-DESCRIPTION.md).",
+  "created_at": "2026-11-14T01:59:41Z",
+  "updated_at": "2026-11-14T01:59:41Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

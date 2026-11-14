@@ -1,0 +1,11 @@
+{
+  "number": 7570,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7570",
+  "title": "Prove the sharp radial optimum for exact-sum Gaussian rounding whose square is wire swap",
+  "body": "## Exact theorem\nEvery exact-sum error-one Gaussian-pair map whose square is wire swap has forward and bilateral radial supremum at least sqrt(19)-sqrt(13). A global annular-matching bijection attains the bound. The lower bound assumes no phase covariance: the square identity forces a quarter-turn matching, and a36-vertex counting obstruction forces the sharp crossing.\n\n## Verification and limits\nThe all-map reduction, constructive proof, independent matching checks and separate root arithmetic review pass eight registered commands with controls. The sharp four-cycle has squared norms13/19. Exact sum plus this square identity excludes conjugation-as-inverse; #6778 remains a tensor obstruction. No caller/tape admission, assumption discharge or new kappa.\n\nReproduce: python3 -B scripts/research_package.py --package research/sharp-order-four-gaussian-rounding\n\nBase e54523517d0f03e58352e647c403a5af3e525a57. Prepared for @CubeJerry with substantial OpenAI assistance; retain #6509, #6534 and #6778 credits. Review is disclosed, not human or formal-kernel verification.\n\n[Full proof, source pins, exact checks, limitations and proposed description](https://github.com/CubeJerry/integer-mult-bounds/blob/053c42c68165cf24fd4e8bc33c2b20d6ac3d399b/research/sharp-order-four-gaussian-rounding/PR-DESCRIPTION.md)",
+  "created_at": "2026-11-14T01:59:32Z",
+  "updated_at": "2026-11-14T01:59:32Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

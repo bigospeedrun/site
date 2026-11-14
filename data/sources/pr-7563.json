@@ -1,0 +1,11 @@
+{
+  "number": 7563,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7563",
+  "title": "Implement the selected MOVE24472 with literal endpoint scaling, sharp signed width and paid restoration",
+  "body": "## Result\nA fixed 52-tape graph executes selected MOVE24472 with paid scale/header/width conversion, complete exact core, exact unscale and one public commit. For Gaussian-integral symmetric w-bit input/output endpoints, k=floor((f+2)/4) and width w+2k suffice and are sharp at that fixed scale. Full cost is O(fV'+E); all earlier storage remains charged.\n\n## Checks and limits\nExact source binding, normal/optimized replay, separate mathematical review, instruction relocation, independent integer/sparse-tape oracles and rejection controls pass. Reproduce bind_source.py, verify.py and endpoint_verify.py in the package. Actual caller packing/endpoint admission, faster recursion and all five global assumptions remain open. No new kappa.\n\nBase e54523517d0f03e58352e647c403a5af3e525a57. Credit @CubeJerry, #7426, #7427, #7428, #7429, #7430, Nick Petalas #7468 and Gaussian norm predecessors; substantial OpenAI Codex assistance.\n\n[Full proof, exact sources, checks and proposed description](https://github.com/CubeJerry/integer-mult-bounds/blob/5dd80e8ab9c989336b5e448e14147c2ba29da89b/research/literal-selected-move-join/PR-DESCRIPTION.md)",
+  "created_at": "2026-11-14T01:54:15Z",
+  "updated_at": "2026-11-14T01:54:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

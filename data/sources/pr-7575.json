@@ -1,0 +1,11 @@
+{
+  "number": 7575,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7575",
+  "title": "P104: prove global funding bounds for helper restrictions and zero MOVEs",
+  "body": "## Summary\nSource-scoped proof that lost original-target value funds deletions of identically-zero MOVEs on exact unselected #7481.\n\n## Result\n468 helper-only zero rows have rank 463 and five dependencies (442 singleton, 11/5/5/5 blocks). No positive signed-moment gain from coordinate zeroing (kappa<=1/2), within-group subspaces (<=.01), or original-coordinate-surjective relations independent of mains (<=.25).\n\n## Verification\nExact row-rank/component arguments, independent rational/modular source replays and mutation/price controls. Reproduce: `python3 -B scripts/research_package.py --package research/p104-all-helper-zeroing-bound`.\n\n## Scope and kappa\nRetains paid operations, original targets and arbitrary independent mains; changed contacts, nonzero caches and main-dependent preparations excluded. No new kappa. All five foundational assumptions remain.\n\n## Credit and details\n#7481, #7113, #7307 and retained notices credited. Prepared for @CubeJerry with OpenAI assistance; original notices retained. See `research/p104-all-helper-zeroing-bound/PR-DESCRIPTION.md` and `VALIDATION.json` for full proof, pins and controls. Canonical base `e54523517d0f03e58352e647c403a5af3e525a57`; no independent human/formal acceptance claimed.",
+  "created_at": "2026-11-14T02:14:24Z",
+  "updated_at": "2026-11-14T02:14:24Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

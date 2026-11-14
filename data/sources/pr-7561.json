@@ -1,0 +1,11 @@
+{
+  "number": 7561,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7561",
+  "title": "Implement the literal positive central service for every fixed native rank with a joint column guard",
+  "body": "## Result\nImplement the literal positive central service for every construction-time native rank rho=1..9 and arbitrary encoded f. It keeps the original nine-slot geometry and enforces rho*f<=cutoff. The31-tape core has T<=2^24(fV+E+1) and incremental history2048(V+E+1); the35-tape HOME wrapper adds128(F+1) time and64(F+1) history. Setup and B1 delivery remain separate.\n\n## Verification and limits\nAll nine tables and233 guard cases, author normal/optimized replays and faulty-child/guard/source controls pass. A separate rank-four sparse CPU/Hamming-kernel check executes24,105,820 transitions and10256 late HOME writes with complete restoration. Every C-prefix must be integral and fit the supplied width. No actual producer, monomial join, full caller, faster tariff or new kappa is admitted.\n\nReproduce: python3 -B scripts/research_package.py --package research/literal-fixed-rank-positive-native\n\nBase e54523517d0f03e58352e647c403a5af3e525a57. Prepared for @CubeJerry with substantial OpenAI assistance; #6978 already supplies rank-rf algebra/coded children, while #7426-#7430 supply retained primitives. This adds literal lifecycle export, not an inherited-assumption proof.\n\n[Full proof, source pins, exact checks, limitations and proposed description](https://github.com/CubeJerry/integer-mult-bounds/blob/f2f5130ec84f6a0fc81dbfec9a287909500aa80d/research/literal-fixed-rank-positive-native/PR-DESCRIPTION.md)",
+  "created_at": "2026-11-14T01:53:51Z",
+  "updated_at": "2026-11-14T01:53:51Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 7579,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7579",
+  "title": "P104: price all 1,066 public-cache candidates against the 17-call budget",
+  "body": "## Summary\nSource-exact price screen for one helper-only scalar relation per public target on unselected #7481, not a physical cache implementation.\n\n## Result\nAt kappa=.0038: 376 positive, 437 zero and 253 negative gross allowances. MOVE40710 is largest at f(8)-f(1) ~6.93703407927; full caller needs ~3.48481964026 net per call. Gross prices are not additive.\n\n## Verification\nIndependent main-projection and exact-Q enumerators, 16 full-L witnesses, registered normal/optimized and read-only checks. Reproduce: `python3 -B scripts/research_package.py --package research/p104-public-cache-price-screen`.\n\n## Scope and kappa\nSame-span histories only; preparation, public retirement, correlated initial 1459 access and joint funding unpriced. No new kappa. All five foundational assumptions remain.\n\n## Credit and details\n#7481, #7113 and earlier cache/funding package authors credited. Prepared for @CubeJerry with OpenAI assistance; original notices retained. See `research/p104-public-cache-price-screen/PR-DESCRIPTION.md` and `VALIDATION.json` for full proof, pins and controls. Canonical base `e54523517d0f03e58352e647c403a5af3e525a57`; no independent human/formal acceptance claimed.",
+  "created_at": "2026-11-14T02:15:05Z",
+  "updated_at": "2026-11-14T02:15:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

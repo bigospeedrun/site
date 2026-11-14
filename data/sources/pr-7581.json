@@ -1,0 +1,11 @@
+{
+  "number": 7581,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7581",
+  "title": "P104: bound all 18 rank-one helper singleton zeros by lost targets",
+  "body": "## Summary\nComplete singleton-zero classification across original public and owned #7481 MOVE histories.\n\n## Result\nEvery one of 18 helper zeros allows exactly one rank-1 cache credit, canceled by the lost original rank-1 target. Twelve are consequences of the earlier neutral-subset theorem; six public-cache cases are new.\n\n## Verification\nIndependent exact-Q/prime-field source replays, chronological coframe checks, nine failure mutations and source-only registered tests. Reproduce: `python3 -B scripts/research_package.py --package research/p104-rank1-zero-cache-bound`.\n\n## Scope and kappa\nSingleton zeros only; no joint-helper extension, physical public retirement, new source or improved kappa. All five foundational assumptions remain.\n\n## Credit and details\n#7481 and prior history/funding/neutral-subset authors credited. Prepared for @CubeJerry with OpenAI assistance; original notices retained. See `research/p104-rank1-zero-cache-bound/PR-DESCRIPTION.md` and `VALIDATION.json` for full proof, pins and controls. Canonical base `e54523517d0f03e58352e647c403a5af3e525a57`; no independent human/formal acceptance claimed.",
+  "created_at": "2026-11-14T02:15:23Z",
+  "updated_at": "2026-11-14T02:15:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

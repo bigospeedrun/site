@@ -1,0 +1,11 @@
+{
+  "number": 7569,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7569",
+  "title": "Construct a global integer bijection for the Hadamard/Gaussian pair with optimal bidirectional norm slack 1/2",
+  "body": "## Result\nConstruct a global error-one integer bijection for H4/2 and the Gaussian pair with bilateral radial supremum1/2. Every total error-one map has bilateral supremum at least1/2; a nonperiodic half-grid matching attains it. This improves the known global upper bound and separates finite-radius evidence from a global construction.\n\n## Verification and limits\nUniversal proof, independent construction review, exact lattice checks and negative controls pass; the registered normal/optimized replay uses research/global-bilateral-half-gaussian-rounding. Exact sum, phase covariance and native order identities are not inherited. Forward-only optimality remains open. No tape/caller admission, assumption discharge or new kappa.\n\nReproduce: python3 -B scripts/research_package.py --package research/global-bilateral-half-gaussian-rounding\n\nBase e54523517d0f03e58352e647c403a5af3e525a57. Prepared for @CubeJerry with substantial OpenAI assistance; credit #6509, #6619 and #2589. This is disclosed AI review, not human or formal-kernel verification.\n\n[Full proof, source pins, exact checks, limitations and proposed description](https://github.com/CubeJerry/integer-mult-bounds/blob/26226aa52337e6e94bc0cdf3cf6b89d16bb42f5f/research/global-bilateral-half-gaussian-rounding/PR-DESCRIPTION.md)",
+  "created_at": "2026-11-14T01:59:22Z",
+  "updated_at": "2026-11-14T01:59:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

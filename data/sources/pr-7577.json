@@ -1,0 +1,11 @@
+{
+  "number": 7577,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7577",
+  "title": "P104: prove joint helper/cache funding ceiling below kappa 0.0038",
+  "body": "## Summary\nComplete optimistic cost ceiling for combining helper restrictions, zero MOVE deletions and owned-history caches on #7481 with the 17-call #7113 caller.\n\n## Result\nFor f(r)=r^(1-kappa), native saving <= f(5)+f(3)+2f(1)-2f(4) on 0<=kappa<=.01. At .0038 the 17-call upper moment is <-25.25810999183538; its restricted ceiling is near .0037347911502843963.\n\n## Verification\nExact component and debit proofs, independent integer-power invoice, normal/optimized and read-only replay plus negative controls. Reproduce: `python3 -B scripts/research_package.py --package research/p104-joint-helper-cache-funding-bound`.\n\n## Scope and kappa\nAn exclusion ceiling, NOT an achieved kappa. Fixed original histories and whole MOVE jobs; novel public caches, changed producers, decoded jobs and other models remain open. All five foundational assumptions remain.\n\n## Credit and details\n#7481, #7113, #7307 and source notices credited. Prepared for @CubeJerry with OpenAI assistance; original notices retained. See `research/p104-joint-helper-cache-funding-bound/PR-DESCRIPTION.md` and `VALIDATION.json` for full proof, pins and controls. Canonical base `e54523517d0f03e58352e647c403a5af3e525a57`; no independent human/formal acceptance claimed.",
+  "created_at": "2026-11-14T02:14:47Z",
+  "updated_at": "2026-11-14T02:14:47Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

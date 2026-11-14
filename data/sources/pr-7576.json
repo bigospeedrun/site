@@ -1,0 +1,11 @@
+{
+  "number": 7576,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7576",
+  "title": "P104: prove all 6,279 original MOVEs independent of earlier coframe history",
+  "body": "## Summary\nExcludes reconstruction of any original #7481 MOVE solely from strictly earlier destination-coframe observations.\n\n## Result\nAll 6,279 MOVEs innovate for 1,501 arbitrary inputs; 7,780 independent observations across 979 coframes. Remains true after every subset of 72 neutral helper zeros. Also retains 47 owned, 18 live-public and 33 main-only certificates.\n\n## Verification\nIndependent chronological and rational/modular engines; exact 76,475-event replay, mutation and false-history controls. Reproduce: `python3 -B scripts/research_package.py --package research/p104-earlier-destination-cache-bound`.\n\n## Scope and kappa\nOriginal histories, whole outputs and coframes fixed. Imported data, changed producers, nonneutral relations and partial decoders remain open. No new kappa. All five foundational assumptions remain.\n\n## Credit and details\n#7481, #7308, #6069 and source authors credited. Prepared for @CubeJerry with OpenAI assistance; original notices retained. See `research/p104-earlier-destination-cache-bound/PR-DESCRIPTION.md` and `VALIDATION.json` for full proof, pins and controls. Canonical base `e54523517d0f03e58352e647c403a5af3e525a57`; no independent human/formal acceptance claimed.",
+  "created_at": "2026-11-14T02:14:33Z",
+  "updated_at": "2026-11-14T02:14:33Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

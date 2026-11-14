@@ -1,0 +1,11 @@
+{
+  "number": 7580,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7580",
+  "title": "P104: classify all scalar helper relations in the MOVE40710 plane",
+  "body": "## Summary\nUniform exact classification of scalar promise lines and the full plane spanned by e885-e705 and e1459, with unchanged #7481 histories.\n\n## Result\nAll lines involving e885-e705 give only rank-8 cache40710; the e1459-only line gives rank-1 cache52236; the full plane gives both. No other caches or zero MOVEs; original-target debits remove other credits.\n\n## Verification\nExact support/circuit proof, modular full-rank certificate, independent replay and 11 mutation controls. Reproduce: `python3 -B scripts/research_package.py --package research/p104-public-relation-family-bound`.\n\n## Scope and kappa\nTransport corollary needs initial correlated 1459 to be unavailable for free and paid cross-frame whole jobs. Other planes, changed producers and block promises open. No new kappa. All five foundational assumptions remain.\n\n## Credit and details\n#7481 and earlier published history/price results credited. Prepared for @CubeJerry with OpenAI assistance; original notices retained. See `research/p104-public-relation-family-bound/PR-DESCRIPTION.md` and `VALIDATION.json` for full proof, pins and controls. Canonical base `e54523517d0f03e58352e647c403a5af3e525a57`; no independent human/formal acceptance claimed.",
+  "created_at": "2026-11-14T02:15:15Z",
+  "updated_at": "2026-11-14T02:15:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
