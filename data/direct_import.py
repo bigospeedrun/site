@@ -228,16 +228,20 @@ theorem Race.bound : ∃ order solve W, DFTProgram order solve W ∧
     return base + ('\n-- Big O Speedrun exact-bound target; generated from validated integers.\n' + target).encode()
 
 # A job of a submissions run, named after its matrix entry (issue number, submitter login, route, and true for a split
-# build): a job of the reusable check workflow, or the report job of submissions.yml (verifier#190: before 6872df1,
-# report ran inside the reusable workflow as "check (...) / report").
+# build or a check chain): a job of the reusable check workflow, or the report job of submissions.yml (verifier#190: before
+# 6872df1, report ran inside the reusable workflow as "check (...) / report"). A check chain (runner github-chain, verifier
+# task b1457f08) runs the jobs chain_build1-4, chain_export, chain_check1-4 and chain_final instead of build and verify.
 MATRIX_ENTRY = r'\(([1-9][0-9]*), [A-Za-z0-9][A-Za-z0-9-]{0,38}, (issue|pull_request)(?:, true)?\)'
-CHECK_JOB = re.compile(r'check ' + MATRIX_ENTRY + r' / (build|verify|report|pr_verify)|(report) ' + MATRIX_ENTRY)
+CHAIN_JOBS = r'chain_build[1-4]|chain_export|chain_check[1-4]|chain_final'
+CHECK_JOB = re.compile(r'check ' + MATRIX_ENTRY + r' / (build|verify|report|pr_verify|' + CHAIN_JOBS + r')|(report) ' + MATRIX_ENTRY)
 
 def own_jobs_finished(jobs, run, number):
     """A final issue result while other jobs of its run still run (lead, 2026-11-02: run 41393097953 checked #94 and
     #99 as a matrix; #94 was finished, the split build of #99 runs for up to 350 min). Every job of this issue in the run
     attempt has completed with success or skipped, and its verify and report jobs succeeded. A running, failed or
-    cancelled job of this issue rejects; the result is then read again when the whole run has completed."""
+    cancelled job of this issue rejects; the result is then read again when the whole run has completed. In a check
+    chain, chain_final writes the receipt in place of verify: its chain_final and report jobs must succeed, and each
+    other leg must have succeeded or been skipped."""
     require(isinstance(jobs, list) and jobs, 'Missing run jobs')
     own = {}
     for job in jobs:
@@ -249,10 +253,12 @@ def own_jobs_finished(jobs, run, number):
             if int(issue) == number and route == 'issue':
                 require(kind not in own, 'Duplicate job of the issue')
                 own[kind] = job
-    require({'verify', 'report'} <= own.keys(), 'Missing job of the issue')
+    chain = any(name.startswith('chain_') for name in own)
+    required = {'chain_final', 'report'} if chain else {'verify', 'report'}
+    require(required <= own.keys(), 'Missing job of the issue')
     for name, job in own.items():
         require(job.get('status') == 'completed', 'A job of the issue has not finished')
-        require(job.get('conclusion') in (('success',) if name in ('verify', 'report') else ('success', 'skipped')), 'A job of the issue did not succeed')
+        require(job.get('conclusion') in (('success',) if name in required else ('success', 'skipped')), 'A job of the issue did not succeed')
     return True
 
 def validate_result(archive, issue, run, artifact, trusted_revisions, *, receipt_archive=None, receipt_artifact=None, publisher=None, jobs=None):
@@ -355,13 +361,25 @@ def derivation_hold(report):
 
 
 TIMEOUT_REASON = 'The proof check ran out of time; this is not a verdict on the proof'
+# A check chain (runner github-chain, verifier task b1457f08) stops with the Lean kernel incomplete for one of these
+# reasons (scripts/chain.py). Lead, 2026-11-14: each is the same state as a timeout, no verdict on the proof; the issue
+# stays open and the row stays Claimed. CHAIN_CAP_REASONS: the build or the kernel check did not finish within the job and
+# hour limits of the chain (decision 'timeout'). CHAIN_FAULT_REASONS (Reviewer, 2026-11-14): a verifier problem, not a
+# time stop (decision 'chain'): the segments do not cover the proof once, in order (chain_coverage); the export and the
+# audit passed but no segment record exists (no_segment_record); a segment unit ended with no receipt, for example a
+# Comparator crash or a start past the end of the walk (no_segment_receipt); the export job wrote no export record
+# (export_not_run). out_of_memory and disk_limit of a segment keep the policy of a single job.
+CHAIN_CAP_REASONS = ('build_chain_cap', 'check_chain_cap')
+CHAIN_FAULT_REASONS = ('chain_coverage', 'no_segment_record', 'no_segment_receipt', 'export_not_run')
+CHAIN_REASON = 'The verifier\'s check chain stopped before a verdict; this is not a verdict on the proof'
 
-def timed_out(receipt):
-    """The verifier stopped the check for time (Lead, 2026-11-02, verifier #99: the 3SUM proof ran 5 h 20 min): the receipt's
-    status is 'timeout' (the total deadline, scripts/verifier.py), or the Lean kernel is incomplete with the reason
-    'timeout' (its systemd time limit). Also after Lean passed, when the permitted-axiom audit stopped for time (Lead,
-    2026-11-02): its systemd result is 'timeout' (the verifier records no reason for the audit), or the total deadline
-    came before it started. Never when a kernel rejected the proof or the audit reported a forbidden axiom."""
+def chain_receipt(receipt):
+    """A receipt of a check chain: its profile has runner github-chain (same_profile binds it to a reviewed chain profile)."""
+    profile = receipt.get('profile')
+    return isinstance(profile, dict) and profile.get('runner') == 'github-chain'
+
+def proof_verdict(receipt):
+    """A kernel rejected the proof, or the audit reported a forbidden axiom: a verdict, never a time or chain stop."""
     kernels = receipt.get('kernels') if isinstance(receipt.get('kernels'), dict) else {}
     lean = kernels.get('lean') if isinstance(kernels.get('lean'), dict) else {}
     audit = receipt.get('axiom_audit') if isinstance(receipt.get('axiom_audit'), dict) else {}
@@ -370,12 +388,46 @@ def timed_out(receipt):
     rejected = (lean.get('status') == 'rejected' or (kernels.get('nanoda') or {}).get('status') == 'rejected'
                 or any(isinstance(t, dict) and 'rejected' in (t.get('lean_kernel'), t.get('nanoda_kernel')) for t in theorems.values()))
     forbidden = any(not isinstance(axioms, list) or any(not isinstance(a, str) or a not in AXIOMS for a in axioms) for axioms in reported.values())
+    return rejected or forbidden
+
+def chain_lean_stop(receipt, reasons):
+    """A chain receipt whose Lean kernel is incomplete for one of reasons, and whose audit (it runs in the export job,
+    before the kernel check) passed or did not start."""
+    kernels = receipt.get('kernels') if isinstance(receipt.get('kernels'), dict) else {}
+    lean = kernels.get('lean') if isinstance(kernels.get('lean'), dict) else {}
+    audit = receipt.get('axiom_audit') if isinstance(receipt.get('axiom_audit'), dict) else {}
+    return (chain_receipt(receipt) and lean.get('status') == 'incomplete' and lean.get('reason') in reasons
+            and audit.get('status', 'not_started') in ('passed', 'not_started'))
+
+def chain_stopped(receipt):
+    """A check chain stopped for a verifier problem (CHAIN_FAULT_REASONS) before a verdict: no verdict, decision 'chain'."""
+    return chain_lean_stop(receipt, CHAIN_FAULT_REASONS) and not proof_verdict(receipt)
+
+def timed_out(receipt):
+    """The verifier stopped the check for time (Lead, 2026-11-02, verifier #99: the 3SUM proof ran 5 h 20 min): the receipt's
+    status is 'timeout' (the total deadline, scripts/verifier.py), or the Lean kernel is incomplete with the reason
+    'timeout' (its systemd time limit). Also after Lean passed, when the permitted-axiom audit stopped for time (Lead,
+    2026-11-02): its systemd result is 'timeout' (the verifier records no reason for the audit), or the total deadline
+    came before it started. In a check chain, also when the Lean kernel is incomplete for a CHAIN_CAP_REASONS reason and the
+    audit (which runs in the export job, before the kernel check) passed or did not start. Also in a chain, when the export
+    passed and the audit stopped for time before any kernel check (Lead, 2026-11-14): its systemd result is 'timeout', or the
+    total deadline came before it started; the chain then ends with the Lean kernel not_started. Never when a kernel
+    rejected the proof or the audit reported a forbidden axiom."""
+    kernels = receipt.get('kernels') if isinstance(receipt.get('kernels'), dict) else {}
+    lean = kernels.get('lean') if isinstance(kernels.get('lean'), dict) else {}
+    audit = receipt.get('axiom_audit') if isinstance(receipt.get('axiom_audit'), dict) else {}
     if lean.get('status') == 'passed':
         stopped = ((audit.get('status') == 'not_completed_or_rejected' and audit.get('systemd_result') == 'timeout' and not audit.get('guard_stop'))
                    or (audit.get('status') == 'not_started' and receipt.get('status') == 'timeout'))
     else:
         stopped = receipt.get('status') == 'timeout' or (lean.get('status') == 'incomplete' and lean.get('reason') == 'timeout')
-    return stopped and not rejected and not forbidden
+        if chain_receipt(receipt) and lean.get('status') == 'incomplete' and lean.get('reason') in CHAIN_CAP_REASONS:
+            stopped = chain_lean_stop(receipt, CHAIN_CAP_REASONS)
+        export = receipt.get('chain_export') if isinstance(receipt.get('chain_export'), dict) else {}
+        if chain_receipt(receipt) and lean.get('status') == 'not_started' and export.get('status') == 'passed':
+            stopped = ((audit.get('status') == 'not_completed_or_rejected' and audit.get('systemd_result') == 'timeout'
+                        and not audit.get('guard_stop')) or audit.get('status') == 'not_started')
+    return stopped and not proof_verdict(receipt)
 
 SETUP_REASON = 'The verifier setup failed before the proof check; this is not a verdict on the proof'
 # The setup errors that the verifier reports as the submission's own fault (scripts/verdicts.py SETUP_ERRORS at
@@ -413,12 +465,23 @@ def completion_time(receipt):
 # 2026-11-02): 3SUM issues run split since verifier issue #99, so newer 3SUM receipts carry "runner": "github-split" and
 # older ones carry none. The runner changes how the solution is built, not the statement, targets or toolchain:
 # Comparator checks the exported theorem against the trusted challenge in both modes. Every other key must match.
-RUNNERS = ('github', 'github-split')
+# A check chain (runner github-chain, verifier task b1457f08) runs no nanoda pass and has its own stop reasons
+# (validate_kernel_receipt, timed_out): a chain receipt matches only a reviewed chain profile, and the reverse.
+RUNNERS = ('github', 'github-split', 'github-chain')
+# The Lake worker count of the first build attempt is an execution key too (verifier 7158429, task b1457f08: Catalan
+# starts at 1 since verifier c141043, older Catalan receipts carry none). It changes how many Lake workers build the
+# solution, not what is checked. Its values are the verifier's LAKE_WORKERS.
+EXECUTION_KEYS = ('runner', 'lake_workers_start')
+LAKE_WORKERS = (4, 3, 2, 1)
 
 def same_profile(actual, reviewed):
     if not isinstance(actual, dict) or actual.get('runner', 'github') not in RUNNERS:
         return False
-    strip = lambda p: {k: v for k, v in p.items() if k != 'runner'}
+    if 'lake_workers_start' in actual and (type(actual['lake_workers_start']) is not int or actual['lake_workers_start'] not in LAKE_WORKERS):
+        return False
+    if (actual.get('runner') == 'github-chain') != (reviewed.get('runner') == 'github-chain'):
+        return False
+    strip = lambda p: {k: v for k, v in p.items() if k not in EXECUTION_KEYS}
     return strip(actual) == strip(reviewed)
 
 def expected_request(submission, profile):
@@ -429,7 +492,8 @@ def expected_request(submission, profile):
 
 def validate_proof(submission, receipt, trust, revision, run_url, allow_timeout=False):
     """allow_timeout (the issue route only): a receipt whose check stopped for time (timed_out) gives the decision
-    'timeout' instead of a rejection, and one whose setup failed before any check (setup_failed) the decision 'setup'.
+    'timeout' instead of a rejection, one whose check chain stopped for a verifier problem (chain_stopped) the decision
+    'chain', and one whose setup failed before any check (setup_failed) the decision 'setup'.
     The request, provenance and statement bindings apply as always; before prepare, only the provenance exists."""
     key = 'dft233' if submission.get('entrypoint') == 'dft233' else submission['problem']
     require(key in trust['profiles'], 'Unreviewed challenge profile')
@@ -446,6 +510,9 @@ def validate_proof(submission, receipt, trust, revision, run_url, allow_timeout=
     if allow_timeout and timed_out(receipt):
         require(receipt.get('theorem_names') == names and set(receipt.get('theorems', {})) == set(names), 'Missing or unexpected theorem targets')
         return 'timeout', TIMEOUT_REASON, completion_time(receipt)
+    if allow_timeout and chain_stopped(receipt):
+        require(receipt.get('theorem_names') == names and set(receipt.get('theorems', {})) == set(names), 'Missing or unexpected theorem targets')
+        return 'chain', CHAIN_REASON, completion_time(receipt)
     return validate_kernel_receipt(receipt, names)
 
 
@@ -480,6 +547,8 @@ def validate_kernel_receipt(receipt, names):
     lean = kernels.get('lean', {})
     nanoda = kernels.get('nanoda', {})
     nanoda_state = nanoda.get('status')
+    # not_run_chain: a check chain runs no nanoda pass (verifier scripts/chain.py); admitted only for a chain receipt.
+    incomplete = ('out_of_memory', 'timeout', 'disk_limit', 'total_deadline') + (('not_run_chain',) if chain_receipt(receipt) else ())
     decision, reason = 'pending', 'Verification incomplete or ambiguous'
     if nanoda_state == 'rejected' or any(receipt['theorems'][name].get('nanoda_kernel') == 'rejected' for name in names):
         decision, reason = 'blocked', 'Nanoda rejected the proof; escalate to Lead'
@@ -488,7 +557,7 @@ def validate_kernel_receipt(receipt, names):
             decision, reason = 'lean-verified', 'Lean and permitted-axiom audit passed; nanoda advisory check pending'
         elif nanoda_state == 'passed' and all(receipt['theorems'][name].get('nanoda_kernel') == 'passed' for name in names):
             decision, reason = 'lean-verified', 'Lean and nanoda passed; permitted-axiom audit passed'
-        elif nanoda_state == 'incomplete' and nanoda.get('reason') in ('out_of_memory', 'timeout', 'disk_limit', 'total_deadline') and all(receipt['theorems'][name].get('nanoda_kernel') == 'incomplete' for name in names):
+        elif nanoda_state == 'incomplete' and nanoda.get('reason') in incomplete and all(receipt['theorems'][name].get('nanoda_kernel') == 'incomplete' for name in names):
             decision, reason = 'lean-verified', 'Lean and permitted-axiom audit passed; nanoda incomplete: ' + nanoda['reason']
     return decision, reason, checked_at
 

@@ -309,15 +309,25 @@ class DirectImportTests(unittest.TestCase):
         receipt['kernels']['nanoda']['reason']='unknown'
         self.assertEqual(self.check(run=run,publisher=publisher)['decision'],'pending')
 
-    def jobs(self, own=('completed','success'), other=('in_progress',None), split=False, top_report=False):
+    def jobs(self, own=('completed','success'), other=('in_progress',None), split=False, top_report=False, chain=False):
         """The jobs of run 123 attempt 2, as in run 41393097953 (#94 finished, #99 still running): issue 7 and issue 8.
-        top_report: report is a job of submissions.yml, not of the reusable check workflow (verifier#190)."""
+        top_report: report is a job of submissions.yml, not of the reusable check workflow (verifier#190).
+        chain: issue 7 runs a check chain (verifier task b1457f08): two build legs and one check leg ran, the rest skipped,
+        and chain_final has the state own."""
         def job(number,name,status,conclusion):
-            entry=f'({number}, submitter, issue{", true" if split and number==7 else ""})'
+            entry=f'({number}, submitter, issue{", true" if (split or chain) and number==7 else ""})'
             entry=f'report {entry}' if top_report and name=='report' else f'check {entry} / {name}'
             return dict(id=len(name)+number,name=entry,status=status,conclusion=conclusion,run_id=123,run_attempt=2,head_sha=self.revision)
         jobs=[dict(id=1,name='select',status='completed',conclusion='success',run_id=123,run_attempt=2,head_sha=self.revision)]
         for number,(status,conclusion) in [(7,own),(8,other)]:
+            if chain and number==7:
+                ran={'chain_build1','chain_build2','chain_export','chain_check1'}
+                jobs+=[job(7,name,'completed','skipped') for name in ['build','verify','pr_verify']]
+                jobs+=[job(7,name,'completed','success' if name in ran else 'skipped') for name in
+                       ['chain_build1','chain_build2','chain_build3','chain_build4','chain_export','chain_check1','chain_check2','chain_check3','chain_check4']]
+                jobs.append(job(7,'chain_final',status,conclusion))
+                if status=='completed':jobs.append(job(7,'report','completed',conclusion))
+                continue
             jobs+=[job(number,'build','completed','success' if split and number==7 else 'skipped'),job(number,'pr_verify','completed','skipped'),
                    job(number,'verify',status,conclusion)]
             if status=='completed':jobs.append(job(number,'report','completed',conclusion))
@@ -339,6 +349,17 @@ class DirectImportTests(unittest.TestCase):
         with self.assertRaises(gate.Rejected):self.check(run=running,jobs=both)
         # Without the jobs, an unfinished run stays unadmitted, as before.
         with self.assertRaises(gate.Rejected):self.check(run=running)
+        # A check chain: chain_final and report succeeded, each other leg succeeded or was skipped (verify is skipped).
+        for top_report in [False,True]:
+            self.assertEqual(self.check(run=running,jobs=self.jobs(chain=True,top_report=top_report))['decision'],'lean-verified')
+        for own in [('in_progress',None),('completed','failure'),('completed','skipped'),('completed','cancelled')]:
+            with self.subTest(chain_final=own),self.assertRaises(gate.Rejected):self.check(run=running,jobs=self.jobs(chain=True,own=own))
+        for name in ['chain_build2','chain_export','chain_check1','chain_check4']:
+            jobs=[dict(j,conclusion='failure') if j['name']=='check (7, submitter, issue, true) / '+name else j for j in self.jobs(chain=True)]
+            with self.subTest(failed=name),self.assertRaises(gate.Rejected):self.check(run=running,jobs=jobs)
+        for name in ['chain_final','report']:
+            jobs=[j for j in self.jobs(chain=True) if j['name']!='check (7, submitter, issue, true) / '+name]
+            with self.subTest(missing=name),self.assertRaises(gate.Rejected):self.check(run=running,jobs=jobs)
         # (b) Its own job still runs, or (c) failed or was cancelled: rejected (read again when the run completes).
         for own in [('in_progress',None),('queued',None),('completed','failure'),('completed','cancelled'),('completed','skipped'),('completed','timed_out')]:
             with self.subTest(own=own),self.assertRaises(gate.Rejected):
@@ -396,6 +417,90 @@ class DirectImportTests(unittest.TestCase):
             with self.subTest(change=change),self.assertRaises(gate.Rejected):self.check(env=stopped(**change))
         # Only the final issue route: maintainer and PR receipts keep the strict policy.
         with self.assertRaises(gate.Rejected):gate.validate_kernel_receipt(stopped()['receipt'],self.env['receipt']['theorem_names'])
+
+    def chain_profile(self):
+        """The dft profile reviewed as a check chain (runner github-chain), in the trust and in the receipt."""
+        self.trust[self.revision]['profiles']['dft']['runner']='github-chain'
+        self.env['receipt']['profile']['runner']='github-chain'
+
+    def test_a_chain_stop_is_no_verdict_only_in_a_chain(self):
+        # Lead, 2026-11-14 (verifier task b1457f08): a chain that stops before a verdict is no verdict. The two caps are a
+        # timeout; a verifier problem (Reviewer, 2026-11-14: coverage, no segment record or receipt, no export record) is
+        # the decision 'chain', whose text does not mention time.
+        def stopped(reason,audit={'status':'passed','reported_axioms':{n:sorted(gate.AXIOMS) for n in self.env['theorem_names']}}):
+            env=copy.deepcopy(self.env);receipt=env['receipt']
+            receipt.update(status='not_verified',kernels={'lean':{'status':'incomplete','reason':reason},
+                                                          'nanoda':{'status':'incomplete','reason':'not_run_chain'}},axiom_audit=copy.deepcopy(audit))
+            for t in receipt['theorems'].values():t.update(lean_kernel='incomplete',nanoda_kernel='incomplete')
+            env['status']='not_verified'
+            return env
+        expected={**{r:('timeout',gate.TIMEOUT_REASON) for r in gate.CHAIN_CAP_REASONS},**{r:('chain',gate.CHAIN_REASON) for r in gate.CHAIN_FAULT_REASONS}}
+        self.assertEqual(set(expected),{'build_chain_cap','check_chain_cap','chain_coverage','no_segment_record','no_segment_receipt','export_not_run'})
+        # Not a chain receipt: the reviewed profile has no chain runner, so a chain reason is a pending result, as before.
+        for reason in expected:
+            with self.subTest(chain=False,reason=reason):
+                self.assertFalse(gate.timed_out(stopped(reason)['receipt']) or gate.chain_stopped(stopped(reason)['receipt']))
+                self.assertEqual(self.check(env=stopped(reason))['decision'],'pending')
+        self.chain_profile()
+        for reason,outcome in expected.items():
+            for audit in [{'status':'not_started'},None]:
+                env=stopped(reason) if audit is None else stopped(reason,audit)
+                with self.subTest(reason=reason,audit=audit):
+                    verdict=self.check(env=env)
+                    self.assertEqual((verdict['decision'],verdict['reason']),outcome)
+        # A failed audit, a forbidden axiom, a kernel rejection, or a segment stopped by memory or disk is neither.
+        for reason in expected:
+            rejected=stopped(reason);rejected['receipt']['theorems'][self.env['theorem_names'][0]]['lean_kernel']='rejected'
+            for env in [stopped(reason,{'status':'not_completed_or_rejected'}),
+                        stopped(reason,{'status':'passed','reported_axioms':{n:['sorryAx'] for n in self.env['theorem_names']}}),rejected]:
+                with self.subTest(reason=reason,audit=env['receipt']['axiom_audit']):
+                    self.assertFalse(gate.timed_out(env['receipt']) or gate.chain_stopped(env['receipt']))
+        for reason in ['out_of_memory','disk_limit','unknown']:
+            with self.subTest(reason=reason):
+                self.assertFalse(gate.timed_out(stopped(reason)['receipt']) or gate.chain_stopped(stopped(reason)['receipt']))
+                self.assertEqual(self.check(env=stopped(reason))['decision'],'pending')
+
+    def test_a_chain_audit_that_stopped_for_time_is_a_timeout(self):
+        # Lead, 2026-11-14: in a chain the audit runs in the export job, before any kernel check. When it stops for time
+        # (systemd timeout, or the total deadline before it started), the chain ends with the Lean kernel not_started.
+        def stopped(audit,export={'status':'passed'}):
+            env=copy.deepcopy(self.env);receipt=env['receipt']
+            receipt.update(status='not_verified',kernels={'lean':{'status':'not_started'},'nanoda':{'status':'incomplete','reason':'not_run_chain'}},
+                           axiom_audit=audit)
+            if export is not None:receipt['chain_export']=export
+            for t in receipt['theorems'].values():t.update(lean_kernel='not_started',nanoda_kernel='incomplete',reported_axioms=None)
+            env['status']='not_verified'
+            return env
+        timeout={'status':'not_completed_or_rejected','systemd_result':'timeout','guard_stop':False,'reported_axioms':{}}
+        self.assertFalse(gate.timed_out(stopped(timeout)['receipt']))  # Not a chain receipt.
+        self.chain_profile()
+        for audit in [timeout,{'status':'not_started'}]:
+            with self.subTest(audit=audit):
+                verdict=self.check(env=stopped(audit))
+                self.assertEqual((verdict['decision'],verdict['reason']),('timeout',gate.TIMEOUT_REASON))
+        # A failed audit, a guard stop, a forbidden axiom, a passed audit (no_segment_record) or no passed export is no timeout.
+        for env in [stopped(dict(timeout,systemd_result='exit-code')),stopped(dict(timeout,guard_stop=True)),
+                    stopped(dict(timeout,reported_axioms={n:['sorryAx'] for n in self.env['theorem_names']})),
+                    stopped({'status':'passed','reported_axioms':{n:sorted(gate.AXIOMS) for n in self.env['theorem_names']}}),
+                    stopped(timeout,export=None),stopped(timeout,export={'status':'rejected'})]:
+            with self.subTest(audit=env['receipt']['axiom_audit'],export=env['receipt'].get('chain_export')):
+                self.assertFalse(gate.timed_out(env['receipt']))
+
+    def test_nanoda_not_run_chain_is_admitted_only_in_a_chain(self):
+        self.env['receipt']['kernels']['nanoda']={'status':'incomplete','reason':'not_run_chain'}
+        for theorem in self.env['receipt']['theorems'].values():theorem['nanoda_kernel']='incomplete'
+        self.assertEqual(self.check()['decision'],'pending')
+        self.chain_profile()
+        verdict=self.check()
+        self.assertEqual((verdict['decision'],verdict['reason']),('lean-verified','Lean and permitted-axiom audit passed; nanoda incomplete: not_run_chain'))
+        # A chain receipt matches only a reviewed chain profile, and the reverse.
+        env=copy.deepcopy(self.env);env['receipt']['profile']['runner']='github-split'
+        with self.assertRaises(gate.Rejected):self.check(env=env)
+        self.trust[self.revision]['profiles']['dft'].pop('runner')
+        with self.assertRaises(gate.Rejected):self.check()
+        self.assertFalse(gate.same_profile({'a':1,'runner':'github-chain'},{'a':1}))
+        self.assertFalse(gate.same_profile({'a':1},{'a':1,'runner':'github-chain'}))
+        self.assertTrue(gate.same_profile({'a':1,'runner':'github-chain'},{'a':1,'runner':'github-chain'}))
 
     def test_an_axiom_audit_that_ran_out_of_time_after_lean_passed_is_a_timeout(self):
         # Lead, 2026-11-02: our time limit, not a verdict. The verifier records the audit's systemd result, no reason.
@@ -568,7 +673,7 @@ class DirectImportTests(unittest.TestCase):
         for runner in ['github', 'github-split']:
             env=copy.deepcopy(self.env);env['receipt']['profile']['runner']=runner
             with self.subTest(runner=runner):self.assertEqual(self.check(env=env)['decision'],'lean-verified')
-        for runner in ['maintainer-desktop', 'github-Split', None, '']:
+        for runner in ['maintainer-desktop', 'github-Split', 'github-chain', None, '']:
             env=copy.deepcopy(self.env);env['receipt']['profile']['runner']=runner
             with self.subTest(runner=runner),self.assertRaises(gate.Rejected):self.check(env=env)
         env=copy.deepcopy(self.env);env['receipt']['profile']['runner']='github-split';env['receipt']['profile']['lean_toolchain']='leanprover/lean4:v4.0.0'
@@ -577,6 +682,15 @@ class DirectImportTests(unittest.TestCase):
         self.assertTrue(gate.same_profile({'a':1},{'a':1,'runner':'github-split'}))
         self.assertFalse(gate.same_profile({'a':2,'runner':'github'},{'a':1}))
         self.assertFalse(gate.same_profile(None,{'a':1}))
+        # Verifier c141043: the first Lake worker count (Catalan 1) is an execution key; older receipts carry none.
+        for count in [1,2,3,4]:
+            env=copy.deepcopy(self.env);env['receipt']['profile']['lake_workers_start']=count
+            with self.subTest(count=count):self.assertEqual(self.check(env=env)['decision'],'lean-verified')
+        for count in [0,5,'1',True,None,1.0]:
+            env=copy.deepcopy(self.env);env['receipt']['profile']['lake_workers_start']=count
+            with self.subTest(count=count),self.assertRaises(gate.Rejected):self.check(env=env)
+        self.assertTrue(gate.same_profile({'a':1},{'a':1,'lake_workers_start':1}))
+        self.assertFalse(gate.same_profile({'a':2,'lake_workers_start':1},{'a':1}))
 
     def test_input_parser_rejects_unbounded_and_ambiguous_data(self):
         with self.assertRaises(gate.Rejected):gate.read_json('{"bound":1,"bound":2}')

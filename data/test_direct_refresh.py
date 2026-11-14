@@ -458,7 +458,7 @@ class RefreshTests(unittest.TestCase):
             def pages(self,path,params=None,key=None):
                 return report if path.endswith('/comments') else super().pages(path,params,key)
         outcomes={};finals={}
-        for decision in ['timeout','setup','pending']:
+        for decision in ['timeout','setup','chain','pending']:
             importer=r.Importer(API([self.issue()]))
             claim=dict(route='issue',item=self.issue(),submission=sub)
             importer.retain_outcome('direct-issue-5',claim,'final',dict(decision=decision),{'marker':decision})
@@ -466,7 +466,7 @@ class RefreshTests(unittest.TestCase):
             outcomes[decision]=kept.get('direct-issue-5');finals[decision]=copy.deepcopy(importer.final_states)
         self.assertIsNone(outcomes['pending'])  # a real failure: not listed, as before
         fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
-        for decision,note in [('timeout',r.TIMEOUT_NOTE),('setup',r.SETUP_NOTE)]:
+        for decision,note in [('timeout',r.TIMEOUT_NOTE),('setup',r.SETUP_NOTE),('chain',r.CHAIN_NOTE)]:
             with self.subTest(decision=decision):
                 listed,final=outcomes[decision],finals[decision]
                 self.assertEqual((listed.get('verification'),listed['review_note']),(None,note))

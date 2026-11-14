@@ -51,8 +51,13 @@ TIMEOUT_NOTE='Submitted bound; the verifier\'s proof check ran out of time, so t
 # Lead, 2026-11-02 (verifier #99 rerun 41494392206): a verifier setup that failed before any proof check is our failure,
 # not a verdict. As a timeout: listed as Claimed with this status, feed state 'failed', no post.
 SETUP_NOTE='Submitted bound; the verifier setup failed before the proof check, so the proof is neither verified nor rejected. The bound remains Claimed.'
+# Reviewer, 2026-11-14 (verifier task b1457f08): a check chain that stopped for a verifier problem before a verdict
+# (direct_import.chain_stopped). As a timeout: listed as Claimed with this status, feed state 'failed', no post.
+CHAIN_NOTE='Submitted bound; the verifier\'s check chain stopped before a verdict, so the proof is neither verified nor rejected. The bound remains Claimed.'
 # The final outcomes that are not a verdict on the proof: the "Not verified" reply does not drop such a row.
-NO_VERDICT={'timeout':TIMEOUT_NOTE,'setup':SETUP_NOTE}
+NO_VERDICT={'timeout':TIMEOUT_NOTE,'setup':SETUP_NOTE,'chain':CHAIN_NOTE}
+NO_VERDICT_LINES={'timeout':'the proof check ran out of time','setup':'the verifier setup failed before the proof check',
+                  'chain':'the verifier\'s check chain stopped before a verdict'}
 HELD_NOTE='Proof checks passed; held for a lead review of credit (derivation report). The submitted bound remains Claimed.'
 
 def untrusted_path(path):
@@ -325,7 +330,7 @@ class Importer:
             self.notes.append(key+': Lean checks passed; held for lead review (derivation report); decide in review-decisions.json derivations')
         elif verdict['decision'] in NO_VERDICT:
             claim.pop('verification',None);claim['review_note']=NO_VERDICT[verdict['decision']]
-            self.notes.append(key+(': the proof check ran out of time' if verdict['decision']=='timeout' else ': the verifier setup failed before the proof check')+'; the row remains Claimed')
+            self.notes.append(key+': '+NO_VERDICT_LINES[verdict['decision']]+'; the row remains Claimed')
         elif verdict['decision']=='lean-verified':
             claim['verification']=evidence;claim.pop('review_note',None)
         else:claim.pop('verification',None)
@@ -418,8 +423,8 @@ class Importer:
         return kept
 
     def no_verdict(self,key,claim):
-        """The final outcome for these exact submission bytes is not a verdict: a check that ran out of time, or a setup
-        that failed before the proof check."""
+        """The final outcome for these exact submission bytes is not a verdict: a check that ran out of time, a check
+        chain that stopped for a verifier problem, or a setup that failed before the proof check."""
         state=self.final_states.get(self.outcome_id(key,claim['submission']))
         return bool(state and state['decision'] in NO_VERDICT)
 
