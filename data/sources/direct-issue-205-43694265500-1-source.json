@@ -1,0 +1,1280 @@
+{
+  "envelope": {
+    "challenge": {
+      "file": "challenges/3sat/VerifierStatement.lean",
+      "generated_sha256": "fdf1f637cc432612205129f57021c78f375e30de2ab30f8f5bd384fd0c4fca4b",
+      "sha256": "33c481812f1ce3245a2d3207e1f0d9cd3e5d16c456976b346036dfbd0479c886",
+      "upstream_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a"
+    },
+    "checked_at": "2026-11-15T11:41:35.447458Z",
+    "derivation": {
+      "candidate_files": 3096,
+      "hold": false,
+      "status": "no_match"
+    },
+    "importable": true,
+    "issue_body_sha256": "10d3b21b6127ac4544894cfcaf079965e6faf1c719b02d4cc896f6ebabd9a377",
+    "issue_created_at": "2026-11-15T08:23:18Z",
+    "issue_number": 205,
+    "issue_submitter_login": "nmamano",
+    "issue_updated_at": "2026-11-15T08:23:30Z",
+    "issue_url": "https://github.com/bigospeedrun/verifier/issues/205",
+    "model_revision": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a",
+    "model_sha256": "33c481812f1ce3245a2d3207e1f0d9cd3e5d16c456976b346036dfbd0479c886",
+    "problem_id": "3sat/randomized-bit-model",
+    "reason": "lean_and_axiom_passed_nanoda_incomplete",
+    "receipt": {
+      "artifact_sha256": {
+        "apt-tools.log": "60779b9f509b16652a9ae5240131cbc6a9432cebdfe65534e2b3345f16084392",
+        "apt-update.log": "53af0fbd403e05ae492d09518d9c08179334c086e32e796eef36986fbbb81187",
+        "audit.log": "767536258a5d2f65a410eaae452f746d19a88758b6a41f7374924dfe9ebd4097",
+        "build-comparator.log": "266c809b4e794f79358ad601f9d830739ba92fea536cfc5607ad8e0b3e2a6aa7",
+        "build-lake-adapter.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build-landrun.log": "5e09e7add5ffb69e6ec818cd8417bef048ede8025e5a71a6dc067b62b9776191",
+        "build-nanoda.log": "3280e29f5dd9838ec374ea7837d3934fa3d03921442519c8bca05165d45dd843",
+        "build-nattest.log": "8b9562dbe55f31ff48bc53b80c73a44c2f1fd56efcd8b626f81d4fe6d8da86d0",
+        "build.log": "a81fdae5e898cfe91a5ba9a7fd350fc7245422bc486c2ea14438d8f7c7c4ac90",
+        "bwrap-apparmor-policy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cache-hash-metadata.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "chain-build1-receipt.json": "6c302d40ca962d5c57aad16c80b00f0815b20892179fe50e9c82f9056c63d007",
+        "chain-check1-receipt.json": "4200ff772c97e987995d9df68f6e54ee31267de8c7e8a61297f5bb02ec1dd296",
+        "chain-check2-receipt.json": "c759ca99b52fbe7f6ff60508cbe79e59fba0f2f969631d23bf8524e64bcfe567",
+        "chain-check3-receipt.json": "f62ecd2a58bb66ea37a522172f1030671142765826beee4699a4ae6a8b129fed",
+        "chain-check4-receipt.json": "06efdd69b384615c3172213a294af057ef761a180524c46762be6ab9fec6e605",
+        "chain-export-receipt.json": "de7129588f044d6f67ad35b51bcfb24031e786496004cde6d54a8ae6cf883ed7",
+        "challenge.log": "6c4895f7d5dd41feb5cf45d4886be42fd108af79af662a266f42d624f82e4135",
+        "check-check1.log": "d69173f9ba791193a20a293afd9e1cc4d32a3d7fa9b13fd5b9ce93fc96b0ebfb",
+        "check-check2.log": "3510d8941a5af09d949e51be290d1e10c3a67067901e65d3130aacdeb68dacc2",
+        "check-check3.log": "789b5fef7ee3d5f12fd4bca47fe2a43bd7269cca50ca571abc4f0aed2f60324f",
+        "check-check4.log": "8b23d04344a33278e5b24fcf1f761fd34b73d32e76cc0dfd3492708b0cf7403b",
+        "check-export.log": "edc0c247b1354ac9a221f0ba8eff682016ab000320102d9008afbebf69ec54e7",
+        "dependency-Cli-checkout.log": "c898721f43d1332795805fed225fb2ab0595c7b8a029c4a9e3c437473521b5e8",
+        "dependency-Cli-fetch.log": "9094417b7a563375dd9f98605caa2f2cb0cc73077b2c498eb7c101dc1bab279b",
+        "dependency-Cli-init.log": "806fb9690dbeea89238e99f8dd297b5af2e0e0f565af71af6f5626a6d61faf3e",
+        "dependency-LeanSearchClient-checkout.log": "7d98119a745a3443f54178ab9619295af66435d735ac04882e276a8a9bffaea1",
+        "dependency-LeanSearchClient-fetch.log": "5b5559b62e0b216d5e13b67a4ba1a230afd09f8c0995af59c8c828c43fc294b7",
+        "dependency-LeanSearchClient-init.log": "7da5337a0fc32514d71481e6bd805dea2161c22056ea299c1b9ad45e663240a9",
+        "dependency-Qq-checkout.log": "ad1b37dbf80199957a96283ccce1b75fb04305981124e49cbdc24d12437c8198",
+        "dependency-Qq-fetch.log": "13597b5d2e96d90eee3ebcc349f5dc29db0615761725a2bd30fd372e037695f3",
+        "dependency-Qq-init.log": "ffa3697aed5c4505fa7b759ea58199632d47708e338d7c844267b2c5754d61e1",
+        "dependency-aesop-checkout.log": "de5e1aa3ee75894a89798703b227a067c3e877d93dafb5419dc70b86ccc109a6",
+        "dependency-aesop-fetch.log": "88e03fded2183f72ff02d3f8bbf8f8bfb95b4bfd69babb6039e2df0cb7f1721e",
+        "dependency-aesop-init.log": "ddfe172f4b698d0ac102ac2178f4280b00372368ef06591a3952fcc668834fc3",
+        "dependency-batteries-checkout.log": "6816a3fef77fa1286c37b8e56ca42c77a51ad242dbb758bfd9f4de43ec50cb06",
+        "dependency-batteries-fetch.log": "116ec193ab5389d576971f2f8a288a9f9fe82744a84da6da90ce289f1e330eda",
+        "dependency-batteries-init.log": "2aba402bb7545f350f21c752a73448002dc8b209f4963bde1df90ea8266b5a91",
+        "dependency-importGraph-checkout.log": "6a4ee8a98d7afdb48cb4c55be58ed0efeaeeefdfb3bf6468909bec14e6aa28b4",
+        "dependency-importGraph-fetch.log": "7c91610e786ab9296071b4bebd42fc455236dd285c2d40beb476b5120c36e605",
+        "dependency-importGraph-init.log": "a48fa1c744a9cebca87074efdb8cfbcb7d6cbaae8af8d46f504f4223c9a551bc",
+        "dependency-mathlib-checkout.log": "a0bb7af7ae0fa5e2cc405332624d7b50a0ed8d31605c0b4b526558ffd20d50a1",
+        "dependency-mathlib-fetch.log": "56a9c709fa42a138a71cef4abafc00e97d480b8e106800c3c34fa21edbceed12",
+        "dependency-mathlib-init.log": "2bcb292b69734b9db2ced338b6ac726cedc20827a6780104169f95f2d66c1b73",
+        "dependency-plausible-checkout.log": "5c722697c8d43ea73fde7079343e63c3bb58b408427b579f6a98f114b2c27ae3",
+        "dependency-plausible-fetch.log": "58688df170d3968e90c11f7fe16f1957ca189393874ba37e84fae3631b9d6b26",
+        "dependency-plausible-init.log": "4077b7e1977b1b77945885d54ad3705e70446164adda8a0c5d8844827b97eb72",
+        "dependency-proofwidgets-checkout.log": "be10a7d449140089e34615969c9fe1a689688c806b5a3f09ce38b17fb6d28794",
+        "dependency-proofwidgets-fetch.log": "5bac8844efd0a2d90aa71757fd8825ed40852e654732b3e51c2e71184e330a1d",
+        "dependency-proofwidgets-init.log": "4c883bd1450aa7a672b32e14df04922d40e349467c3d76da18d2643ce6e1a397",
+        "elan-download.log": "ae93925e1eadc49b3e52603d79acf6dd54cf282bbb1b3e9d17eb1bc37ea0166c",
+        "elan-install.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elan-unpack.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "export.log": "9dc5eb386249971df5c0fb9f8956786753fef1ee751e34de251a3c544fdaae3a",
+        "gate.json": "d4302f7445c9a0da2fe94646c64c1a53c9f828c5c5b5ca62860709f26eeda155",
+        "kernel-swap-allocate.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel-swap-enable.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel-swap-format.log": "9eafb84692c6c911ae6378273e3ab6a0fdbcbb1e7c8cd210ec527e54bb3801c3",
+        "kernel-swap-permissions.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lean-install.log": "ffdc126ce27bd88ee99ec6de79ca7843f993abe025753814384482d5c387339d",
+        "lean-path.log": "4f4f34f1bc4f5cab4255fa6d759fcd684cc6ad06ff5c31a6167dae82ea282c16",
+        "mathlib-cache.log": "ee0a54a289dccbe1d2e70a3ea20c64ded23c9306dcf99a9516fe4c3b317a7282",
+        "nattest.log": "29da8b67c03a7acbdac0d0791dbbf90873cc0f8145879f9140dc9a1394d3b7c5",
+        "runner-sdk-space.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sandbox-preflight.log": "41648742f98aab2171f9eb88297548170de3f3b760e7c07ef9fcc94aedd69355",
+        "segment-selftest-continue.log": "b3a61d7e3f047e9598dcb245fbd37af1159072f817b7d3a4cb8eb34dfe91338e",
+        "segment-selftest-deadline.log": "450c38df3d9d3a834b45284829f58f8e00daa182932b94339c6e441989d04b8f",
+        "segment-selftest-parts.log": "65d079cab38bd3c41ad5a6fb14836d9bdedbf74cdb70d515cbf799f3bb57460e",
+        "segment-selftest.json": "3c1e8144740230d54763d57e61e42d0e34461fe630b627e29e9559e161991c65",
+        "segment-selftest.log": "dea0c2ba29238d3b1f09a0871c812032dcda38ef870c3b9c4bd068edf0baf40f",
+        "selected-request.json": "2d8284788a6983d770528ee5210b2f48f354397d5af1d8ed9104f318edc97323",
+        "source-sha256.json": "bdcfea533663e92a99085c6272d0066d767c28900882e90e83b951404ed2ba34",
+        "submission-checkout.log": "2878e4ad372d9b12b4d822925f0bf41c053228444c3294abf7629d2d3454cafe",
+        "submission-fetch.log": "1c28ef4039a4225dcad711a52fc112579d48b55c102fe2e5028cdb053d03c1da",
+        "submission-init.log": "b0cb466a875c47cba4ca64cba0f001ef50a616dc50516bac9b66fd30769c2e1c",
+        "tool-comparator-checkout.log": "3c2feb74939b9406dafa0cb51c8c8e3dfe3699b74c1601779505d0710b48e416",
+        "tool-comparator-fetch.log": "9261bb13765d6f67a340db2c08ec13cde32a1692ae58e6a0ec5aa9c47602c0da",
+        "tool-comparator-init.log": "8e15416f568c947d6b68e42b7ac7e7d538a5d80d8cf6cdd58d2dde6fc25a880d",
+        "tool-comparator-patch-check-comparator-segmented-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-comparator-patch-comparator-segmented-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-checkout.log": "d4f2490c3adcc8a16a8dfbe64d206920e721444b20d42612fae9a14686be2737",
+        "tool-exporter-fetch.log": "4679263f7ddb25fedf2f8f6fdefa03853ca318c1ca9b9e61b634e859cee32b2e",
+        "tool-exporter-init.log": "018b405fedf95d297837cdacc99659adb689b297c8717951de499143b20a5b6b",
+        "tool-exporter-patch-check-lean4export-natlit-parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-check-lean4export-pr52-natlit-print.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-lean4export-natlit-parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-lean4export-pr52-natlit-print.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-landrun-checkout.log": "d79c67290ceb531c3a58de807a7fa90ffb38fef022cb06beb789045ad1150093",
+        "tool-landrun-fetch.log": "5236b9fb8cd4e085ff194e356bb8f7235b824d3598b30e372ba59a226fc326e8",
+        "tool-landrun-init.log": "a9eb19dc8f9948571af0e040de262ccf9b0afad041ed34b8a563ba78daac7eda",
+        "tool-nanoda-checkout.log": "1742125a8fcb0f116dde29abd4986b2b3760c293de3a2bdb1a2dc811c5bfe208",
+        "tool-nanoda-fetch.log": "fe5e4563df306b10c17a90cc13543aa66cb53d35d5b2d71a807012324d981461",
+        "tool-nanoda-init.log": "0823fe50f87fc13c0edb7540c3847aa4be35620dabf31ab1809f8abaa36ccc6d",
+        "tool-sha256.json": "c0857d624138609f9d5ee462798527cfbb33b1750047bfdc6f1e2c213a638bcf",
+        "trusted-lake-config.log": "355a9a028f81641782d75d6e6b58dec70f29d2f61238a9e271690259d9bf5680"
+      },
+      "axiom_audit": {
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "audit.log",
+        "memory_limit_bytes": 15032385536,
+        "reported_axioms": {
+          "Race.bound": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "sampled_peak_cgroup_bytes": 1624428544,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 18,
+        "status": "passed",
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 13.019
+      },
+      "build": {
+        "attempts": [
+          {
+            "exit_code": 1,
+            "guard_stop": null,
+            "lake_jobs": 2,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 15032385536,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 47,
+            "swap_limit_bytes": 0,
+            "systemd_result": "oom-kill",
+            "tasks_limit": 4096,
+            "wall_seconds": 7526.761
+          },
+          {
+            "exit_code": 0,
+            "guard_stop": null,
+            "lake_jobs": 1,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 15032385536,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 24,
+            "swap_limit_bytes": 0,
+            "systemd_result": "success",
+            "tasks_limit": 4096,
+            "wall_seconds": 492.221
+          }
+        ],
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "build.log",
+        "memory_limit_bytes": 15032385536,
+        "sampled_peak_cgroup_bytes": 15032385536,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 47,
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 8018.982
+      },
+      "chain": {
+        "legs": [
+          {
+            "leg": "build1",
+            "receipt": "chain-build1-receipt.json",
+            "receipt_sha256": "6c302d40ca962d5c57aad16c80b00f0815b20892179fe50e9c82f9056c63d007",
+            "result": "success",
+            "state": {
+              "build": "done",
+              "disk_free_bytes": {
+                "/": 79024574464,
+                "/mnt": 79024574464
+              },
+              "gate_sha256": "9e37e40cc4f33722fbafcece730039ad7373af2445204420be1e4901219a2c02",
+              "leg": "build1",
+              "outcome": null
+            }
+          },
+          {
+            "leg": "export",
+            "receipt": "chain-export-receipt.json",
+            "receipt_sha256": "de7129588f044d6f67ad35b51bcfb24031e786496004cde6d54a8ae6cf883ed7",
+            "result": "success",
+            "state": {
+              "disk_free_bytes": {
+                "/": 26122678272,
+                "/mnt": 26122678272
+              },
+              "gate_sha256": "d4302f7445c9a0da2fe94646c64c1a53c9f828c5c5b5ca62860709f26eeda155",
+              "leg": "export"
+            }
+          },
+          {
+            "leg": "check1",
+            "receipt": "chain-check1-receipt.json",
+            "receipt_sha256": "4200ff772c97e987995d9df68f6e54ee31267de8c7e8a61297f5bb02ec1dd296",
+            "result": "success",
+            "state": {
+              "disk_free_bytes": {
+                "/": 30521643008,
+                "/mnt": 30521643008
+              },
+              "leg": "check1"
+            }
+          },
+          {
+            "leg": "check2",
+            "receipt": "chain-check2-receipt.json",
+            "receipt_sha256": "c759ca99b52fbe7f6ff60508cbe79e59fba0f2f969631d23bf8524e64bcfe567",
+            "result": "success",
+            "state": {
+              "disk_free_bytes": {
+                "/": 30521606144,
+                "/mnt": 30521606144
+              },
+              "leg": "check2"
+            }
+          },
+          {
+            "leg": "check3",
+            "receipt": "chain-check3-receipt.json",
+            "receipt_sha256": "f62ecd2a58bb66ea37a522172f1030671142765826beee4699a4ae6a8b129fed",
+            "result": "success",
+            "state": {
+              "disk_free_bytes": {
+                "/": 34091970560,
+                "/mnt": 34091970560
+              },
+              "leg": "check3"
+            }
+          },
+          {
+            "leg": "check4",
+            "receipt": "chain-check4-receipt.json",
+            "receipt_sha256": "06efdd69b384615c3172213a294af057ef761a180524c46762be6ab9fec6e605",
+            "result": "success",
+            "state": {
+              "disk_free_bytes": {
+                "/": 30521581568,
+                "/mnt": 30521581568
+              },
+              "leg": "check4"
+            }
+          }
+        ]
+      },
+      "chain_challenge": {
+        "attempts": [
+          {
+            "exit_code": 0,
+            "guard_stop": null,
+            "lake_jobs": 2,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 1136103424,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 30,
+            "swap_limit_bytes": 0,
+            "systemd_result": "success",
+            "tasks_limit": 4096,
+            "wall_seconds": 20.023
+          }
+        ],
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "challenge.log",
+        "memory_limit_bytes": 15032385536,
+        "reason": "comparator_acceptance",
+        "sampled_peak_cgroup_bytes": 1136103424,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 30,
+        "status": "passed",
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 20.024
+      },
+      "chain_export": {
+        "attempts": [
+          {
+            "exit_code": 0,
+            "guard_stop": null,
+            "lake_jobs": 2,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 10030399488,
+            "sampled_peak_swap_bytes": 213925888,
+            "sampled_peak_tasks": 31,
+            "swap_limit_bytes": 68719476736,
+            "systemd_result": "success",
+            "tasks_limit": 4096,
+            "wall_seconds": 226.161
+          }
+        ],
+        "exit_code": 0,
+        "files": {
+          "challenge": {
+            "bytes": 71767828,
+            "compressed_bytes": 12389480,
+            "sha256": "6999225a4584b276467c41a53ca005856e99faaa1f5d153ac12fae5916a68b8e"
+          },
+          "solution": {
+            "bytes": 2357114489,
+            "compressed_bytes": 369048099,
+            "sha256": "decbe3da070375e73c52ed073769dd25fc58dfbb1cdba2f38176ece6eaa5568b"
+          }
+        },
+        "guard_stop": null,
+        "log": "export.log",
+        "memory_limit_bytes": 15032385536,
+        "reason": "comparator_acceptance",
+        "sampled_peak_cgroup_bytes": 10030399488,
+        "sampled_peak_swap_bytes": 213925888,
+        "sampled_peak_tasks": 31,
+        "status": "passed",
+        "swap_limit_bytes": 68719476736,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 226.179
+      },
+      "check_summary": {
+        "axiom_audit": "passed",
+        "lean": "passed (segmented_comparator_acceptance)",
+        "nanoda": "incomplete (not_run_chain)"
+      },
+      "checked_at": "2026-11-15T11:41:35.447458Z",
+      "finished_unix": 1794742895.4474583,
+      "generated_challenge_sha256": "fdf1f637cc432612205129f57021c78f375e30de2ab30f8f5bd384fd0c4fca4b",
+      "kernels": {
+        "lean": {
+          "declarations": 92612,
+          "reason": "segmented_comparator_acceptance",
+          "segments": 5,
+          "segments_detail": [
+            {
+              "from": 0,
+              "leg": "export",
+              "log": "check-export.log",
+              "reason": null,
+              "sampled_peak_cgroup_bytes": 3538993152,
+              "segment": {
+                "from": 0,
+                "parse_ms": 98773,
+                "replay_ms": 11542,
+                "status": "stopped",
+                "to": 19061,
+                "todo_constants": 95302
+              },
+              "status": "linked",
+              "systemd_result": "success",
+              "wall_seconds": 113.065
+            },
+            {
+              "from": 19061,
+              "leg": "check1",
+              "log": "check-check1.log",
+              "reason": null,
+              "sampled_peak_cgroup_bytes": 3477266432,
+              "segment": {
+                "from": 19061,
+                "parse_ms": 68101,
+                "replay_ms": 24350,
+                "status": "stopped",
+                "to": 38122,
+                "todo_constants": 95302
+              },
+              "status": "linked",
+              "systemd_result": "success",
+              "wall_seconds": 94.049
+            },
+            {
+              "from": 38122,
+              "leg": "check2",
+              "log": "check-check2.log",
+              "reason": null,
+              "sampled_peak_cgroup_bytes": 5948358656,
+              "segment": {
+                "from": 38122,
+                "parse_ms": 70137,
+                "replay_ms": 296095,
+                "status": "stopped",
+                "to": 57183,
+                "todo_constants": 95302
+              },
+              "status": "linked",
+              "systemd_result": "success",
+              "wall_seconds": 368.165
+            },
+            {
+              "from": 57183,
+              "leg": "check3",
+              "log": "check-check3.log",
+              "reason": null,
+              "sampled_peak_cgroup_bytes": 3477041152,
+              "segment": {
+                "from": 57183,
+                "parse_ms": 53833,
+                "replay_ms": 119828,
+                "status": "stopped",
+                "to": 76244,
+                "todo_constants": 95302
+              },
+              "status": "linked",
+              "systemd_result": "success",
+              "wall_seconds": 176.085
+            },
+            {
+              "from": 76244,
+              "leg": "check4",
+              "log": "check-check4.log",
+              "reason": null,
+              "sampled_peak_cgroup_bytes": 11765760000,
+              "segment": {
+                "from": 76244,
+                "parse_ms": 57725,
+                "replay_ms": 902806,
+                "status": "passed",
+                "to": 92612,
+                "todo_constants": 95302
+              },
+              "status": "linked",
+              "systemd_result": "success",
+              "wall_seconds": 964.401
+            }
+          ],
+          "status": "passed"
+        },
+        "nanoda": {
+          "reason": "not_run_chain",
+          "status": "incomplete"
+        }
+      },
+      "lake_workers": 2,
+      "lean_path": [
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Cli/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/batteries/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Qq/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/aesop/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/proofwidgets/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/importGraph/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/LeanSearchClient/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/plausible/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/mathlib/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/tools/elan/toolchains/leanprover--lean4---v4.34.1/lib/lean"
+      ],
+      "pack": {
+        "bytes": 3956177925,
+        "compressed_bytes": 1027540649,
+        "files": 21658,
+        "members": 21674,
+        "setup_json_skipped": 3094,
+        "sha256": "effb8592f9936204108bd270ff0e3186900ca002c76ea62dd6ba5511d270d77c",
+        "skipped_count": 0,
+        "skipped_first": []
+      },
+      "profile": {
+        "bound_kind": "exponent",
+        "chain": {
+          "max_build_jobs": 4,
+          "max_check_jobs": 4,
+          "max_hours": 30,
+          "segment_parts": 5
+        },
+        "challenge_file": "challenges/3sat/VerifierStatement.lean",
+        "challenge_sha256": "33c481812f1ce3245a2d3207e1f0d9cd3e5d16c456976b346036dfbd0479c886",
+        "lake_workers_start": 2,
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "manifest_file": "profiles/lake-manifest.json",
+        "maximum": "100",
+        "runner": "github-chain",
+        "solution_module": "Submission",
+        "source_roots": [
+          "OAI",
+          "Submission"
+        ],
+        "theorem_names": [
+          "Race.bound"
+        ],
+        "tools_file": "profiles/tools-chain.json",
+        "upstream_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a"
+      },
+      "request": {
+        "challenge_file": "challenges/3sat/VerifierStatement.lean",
+        "commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
+        "direct_submission": {
+          "authors": [],
+          "bound": "1/2",
+          "commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
+          "problem": "3sat",
+          "repo_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+          "schema_version": 1
+        },
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "repo_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+        "theorem_names": "Race.bound"
+      },
+      "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500",
+      "schema_version": 1,
+      "solution_dependencies": [],
+      "source_file_count": 3094,
+      "started_unix": 1794739400.815157,
+      "status": "passed",
+      "status_reason": "lean_and_axiom_passed_nanoda_incomplete",
+      "steps": [
+        {
+          "exit_code": 0,
+          "name": "submission-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-fetch",
+          "wall_seconds": 0.566
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-checkout",
+          "wall_seconds": 0.223
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-update",
+          "wall_seconds": 4.911
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-tools",
+          "wall_seconds": 4.736
+        },
+        {
+          "exit_code": 0,
+          "name": "bwrap-apparmor-policy",
+          "wall_seconds": 0.014
+        },
+        {
+          "exit_code": 0,
+          "name": "runner-sdk-space",
+          "wall_seconds": 50.591
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-download",
+          "wall_seconds": 0.123
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-unpack",
+          "wall_seconds": 0.093
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-install",
+          "wall_seconds": 0.02
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-install",
+          "wall_seconds": 10.25
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-init",
+          "wall_seconds": 0.094
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-fetch",
+          "wall_seconds": 0.366
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-checkout",
+          "wall_seconds": 0.044
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-init",
+          "wall_seconds": 0.25
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-fetch",
+          "wall_seconds": 0.246
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-checkout",
+          "wall_seconds": 0.005
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-check-lean4export-pr52-natlit-print",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-lean4export-pr52-natlit-print",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-check-lean4export-natlit-parse",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-lean4export-natlit-parse",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-patch-check-comparator-segmented-check",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-patch-comparator-segmented-check",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "build-comparator",
+          "wall_seconds": 12.485
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nattest",
+          "wall_seconds": 6.876
+        },
+        {
+          "exit_code": 0,
+          "name": "nattest",
+          "wall_seconds": 17.769
+        },
+        {
+          "exit_code": 0,
+          "name": "segment-selftest",
+          "wall_seconds": 3.187
+        },
+        {
+          "exit_code": 0,
+          "name": "segment-selftest-deadline",
+          "wall_seconds": 0.163
+        },
+        {
+          "exit_code": 0,
+          "name": "segment-selftest-continue",
+          "wall_seconds": 0.125
+        },
+        {
+          "exit_code": 0,
+          "name": "segment-selftest-parts",
+          "wall_seconds": 0.094
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-fetch",
+          "wall_seconds": 0.303
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-checkout",
+          "wall_seconds": 0.007
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nanoda",
+          "wall_seconds": 27.83
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-fetch",
+          "wall_seconds": 0.281
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-checkout",
+          "wall_seconds": 0.005
+        },
+        {
+          "exit_code": 0,
+          "name": "build-landrun",
+          "wall_seconds": 12.148
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-fetch",
+          "wall_seconds": 7.638
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-checkout",
+          "wall_seconds": 0.734
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-fetch",
+          "wall_seconds": 0.276
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-checkout",
+          "wall_seconds": 0.006
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-fetch",
+          "wall_seconds": 0.227
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-fetch",
+          "wall_seconds": 0.264
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-checkout",
+          "wall_seconds": 0.01
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-fetch",
+          "wall_seconds": 0.424
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-checkout",
+          "wall_seconds": 0.041
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-fetch",
+          "wall_seconds": 0.308
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-checkout",
+          "wall_seconds": 0.016
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-fetch",
+          "wall_seconds": 0.231
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-checkout",
+          "wall_seconds": 0.006
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-fetch",
+          "wall_seconds": 0.396
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-checkout",
+          "wall_seconds": 0.02
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-fetch",
+          "wall_seconds": 0.268
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "mathlib-cache",
+          "wall_seconds": 46.623
+        },
+        {
+          "exit_code": 0,
+          "name": "cache-hash-metadata",
+          "wall_seconds": 0.411
+        },
+        {
+          "exit_code": 0,
+          "name": "build-lake-adapter",
+          "wall_seconds": 0.068
+        },
+        {
+          "exit_code": 0,
+          "name": "trusted-lake-config",
+          "wall_seconds": 2.294
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.032
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-path",
+          "wall_seconds": 0.954
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.032
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-allocate",
+          "wall_seconds": 0.117
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-permissions",
+          "wall_seconds": 0.008
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-format",
+          "wall_seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-enable",
+          "wall_seconds": 0.012
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.069
+        }
+      ],
+      "test_only": false,
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "theorems": {
+        "Race.bound": {
+          "lean_kernel": "passed",
+          "nanoda_kernel": "incomplete",
+          "reported_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "timing_group": "shared theorem closure"
+        }
+      },
+      "tool_pins": {
+        "comparator": "d03acab154d269c06e60e4de7e4cc85deebff94b",
+        "comparator_patches": [
+          {
+            "file": "patches/comparator-segmented-check.patch",
+            "sha256": "846681fe965fb680d12d70127c838ede98b9230179d7fa5840852cbd939d4055"
+          }
+        ],
+        "elan_tar_sha256": "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63",
+        "elan_version": "v4.2.4",
+        "landrun": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+        "lean4export": "076e8e57707e813375e8f9da8bf989799ace9680",
+        "lean4export_patches": [
+          {
+            "file": "patches/lean4export-pr52-natlit-print.patch",
+            "sha256": "dbcb657d2c0e4bdd7c396d750d55031bff54cb21e82aef8a6f6318ae3b4b76c2"
+          },
+          {
+            "file": "patches/lean4export-natlit-parse.patch",
+            "sha256": "10eb8ba02b8ea82c7a5e9fce3021eb1f80c5095dbc2343fd908eb78ae7ecdcb9"
+          }
+        ],
+        "nanoda": "8de7e0c4ed3052745a7f8725164efd9e76d84c56"
+      },
+      "total_wall_seconds": 3494.632,
+      "unpack": {
+        "bytes": 3956177925,
+        "files": 21658,
+        "members": 21674,
+        "sha256": "effb8592f9936204108bd270ff0e3186900ca002c76ea62dd6ba5511d270d77c"
+      },
+      "verification_stage": "final",
+      "verifier_commit": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf"
+    },
+    "receipt_artifact": {
+      "archive_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500/artifacts/14159319336",
+      "digest": "sha256:b0f3ec9f7085cbaa3281534704445e6a3f7c9f96369daa06035acbd92a8ba4aa",
+      "id": 14159319336,
+      "name": "verifier-receipt-and-logs-43694265500-1-205"
+    },
+    "receipt_sha256": "af2124b07bacd5d3b64d13eb0bfc108e4beb583c165460af2f65ecc98e62f28a",
+    "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500/artifacts/14159319336",
+    "record_gate": {
+      "any_lean_verified_at_bound": false,
+      "checked_at": "2026-11-15T10:43:14.553686Z",
+      "data_sha256": "9c53218f1828cce24db52ef306ac85ee0ede888956764772ca94ec73e07e1473",
+      "leader_ids": [
+        "profile-range"
+      ],
+      "problem_id": "3sat/randomized-bit-model",
+      "schema_version": 1,
+      "score": "0",
+      "score_relation": "attained",
+      "site_commit": "c18c5859e549bbb8a82311b144af6a89b46dc29d"
+    },
+    "run_attempt": "1",
+    "run_id": "43694265500",
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500",
+    "schema_version": 1,
+    "score_relation": "attained",
+    "source_published_at": null,
+    "status": "passed",
+    "submission": {
+      "authors": [],
+      "bound": "1/2",
+      "commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
+      "problem": "3sat",
+      "repo_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+      "schema_version": 1
+    },
+    "submission_sha256": "45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
+    "test_only": false,
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "verification_status": "passed",
+    "verifier_commit": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+    "workflow_conclusion": null
+  },
+  "verification_run": {
+    "id": 43694265500,
+    "name": "Verify direct submissions",
+    "node_id": "WFR_kwLOVDiv6M8AAAAKLGGUnA",
+    "head_branch": "main",
+    "head_sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+    "path": ".github/workflows/submissions.yml",
+    "display_title": "[Lean submission] Agent for Nil (BOS Reviewer): 3sat 1/2, OpenAI's proof, ported by Big O Speedrun",
+    "run_number": 2113,
+    "event": "issues",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847968,
+    "check_suite_id": 118300070875,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAbizvT2w",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43694265500",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500",
+    "pull_requests": [],
+    "created_at": "2026-11-15T08:23:21Z",
+    "updated_at": "2026-11-15T11:41:56Z",
+    "actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [
+      {
+        "path": "bigospeedrun/verifier/.github/workflows/submission-check.yml@f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+        "sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+        "ref": "refs/heads/main"
+      }
+    ],
+    "run_started_at": "2026-11-15T08:23:21Z",
+    "triggering_actor": {
+      "login": "nmamano",
+      "id": 3745260,
+      "node_id": "MDQ6VXNlcjM3NDUyNjA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3745260?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nmamano",
+      "html_url": "https://github.com/nmamano",
+      "followers_url": "https://api.github.com/users/nmamano/followers",
+      "following_url": "https://api.github.com/users/nmamano/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nmamano/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nmamano/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nmamano/subscriptions",
+      "organizations_url": "https://api.github.com/users/nmamano/orgs",
+      "repos_url": "https://api.github.com/users/nmamano/repos",
+      "events_url": "https://api.github.com/users/nmamano/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nmamano/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43694265500/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43694265500/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/118300070875",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43694265500/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43694265500/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/43694265500/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847968",
+    "head_commit": {
+      "id": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+      "tree_id": "8303f2e91a389422ff8b6c56f7b8b60f07257395",
+      "message": "Chain: every log that the final receipt names is in the final archive with its hash (#204 import, Lead option A)\n\nRun 43669454457 (#204) passed, but the site refused the import: the final receipt named\naxiom_audit.log \"audit.log\", and the archive had only gate.json and receipt.json.\n\n- chain.py leg: each chain job's receipt lists artifact_sha256 for every file it uploads\n  (pinned through leg_sha256).\n- chain.py final: copies into the final archive, each only by that pin, the files of the\n  export job (else the last build job: step logs, build.log, audit.log, challenge.log,\n  export.log, ...), each job's segment log as check-<job>.log (segments_detail[].log) and\n  each job's receipt as chain-<job>-receipt.json (chain.legs[].receipt). finalize then\n  lists every archive file in artifact_sha256, as in a normal run.\n- tests: ArchiveTests runs leg() in three jobs, then final() and finalize(), and walks the\n  final receipt: every named file (log, *_log, receipt, step logs) is in the archive with a\n  matching hash, and a file changed after its job is not copied.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "timestamp": "2026-11-15T07:37:42Z",
+      "author": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      },
+      "committer": {
+        "name": "nil",
+        "email": "nil.mamano@gmail.com"
+      }
+    },
+    "repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    },
+    "head_repository": {
+      "id": 1413001192,
+      "node_id": "R_kgDOVDiv6A",
+      "name": "verifier",
+      "full_name": "bigospeedrun/verifier",
+      "private": false,
+      "owner": {
+        "login": "bigospeedrun",
+        "id": 339837001,
+        "node_id": "O_kgDOFEGASQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/339837001?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/bigospeedrun",
+        "html_url": "https://github.com/bigospeedrun",
+        "followers_url": "https://api.github.com/users/bigospeedrun/followers",
+        "following_url": "https://api.github.com/users/bigospeedrun/following{/other_user}",
+        "gists_url": "https://api.github.com/users/bigospeedrun/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/bigospeedrun/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/bigospeedrun/subscriptions",
+        "organizations_url": "https://api.github.com/users/bigospeedrun/orgs",
+        "repos_url": "https://api.github.com/users/bigospeedrun/repos",
+        "events_url": "https://api.github.com/users/bigospeedrun/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/bigospeedrun/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/bigospeedrun/verifier",
+      "description": "Public, isolated Lean proof reruns with Comparator and nanoda; pinned challenges and artifact receipts.",
+      "fork": false,
+      "url": "https://api.github.com/repos/bigospeedrun/verifier",
+      "forks_url": "https://api.github.com/repos/bigospeedrun/verifier/forks",
+      "keys_url": "https://api.github.com/repos/bigospeedrun/verifier/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/bigospeedrun/verifier/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/bigospeedrun/verifier/teams",
+      "hooks_url": "https://api.github.com/repos/bigospeedrun/verifier/hooks",
+      "issue_events_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/bigospeedrun/verifier/events",
+      "assignees_url": "https://api.github.com/repos/bigospeedrun/verifier/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/bigospeedrun/verifier/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/bigospeedrun/verifier/tags",
+      "blobs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/bigospeedrun/verifier/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/bigospeedrun/verifier/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/bigospeedrun/verifier/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/bigospeedrun/verifier/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/bigospeedrun/verifier/languages",
+      "stargazers_url": "https://api.github.com/repos/bigospeedrun/verifier/stargazers",
+      "contributors_url": "https://api.github.com/repos/bigospeedrun/verifier/contributors",
+      "subscribers_url": "https://api.github.com/repos/bigospeedrun/verifier/subscribers",
+      "subscription_url": "https://api.github.com/repos/bigospeedrun/verifier/subscription",
+      "commits_url": "https://api.github.com/repos/bigospeedrun/verifier/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/bigospeedrun/verifier/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/bigospeedrun/verifier/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/bigospeedrun/verifier/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/bigospeedrun/verifier/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/bigospeedrun/verifier/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/bigospeedrun/verifier/merges",
+      "archive_url": "https://api.github.com/repos/bigospeedrun/verifier/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/bigospeedrun/verifier/downloads",
+      "issues_url": "https://api.github.com/repos/bigospeedrun/verifier/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/bigospeedrun/verifier/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/bigospeedrun/verifier/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/bigospeedrun/verifier/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/bigospeedrun/verifier/labels{/name}",
+      "releases_url": "https://api.github.com/repos/bigospeedrun/verifier/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/bigospeedrun/verifier/deployments"
+    }
+  },
+  "result_artifact": {
+    "id": 14159774550,
+    "node_id": "MDg6QXJ0aWZhY3QxNDE1OTc3NDU1MA==",
+    "name": "direct-submission-43694265500-1-205",
+    "size_in_bytes": 8035,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14159774550",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14159774550/zip",
+    "expired": false,
+    "digest": "sha256:9c67f1601e5798dc4aaede4abbaf22570dd207effe2fe06877c2e6f5648c1e37",
+    "created_at": "2026-11-15T11:41:50Z",
+    "updated_at": "2026-11-15T11:41:50Z",
+    "expires_at": "2027-02-13T08:23:21Z",
+    "workflow_run": {
+      "id": 43694265500,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf"
+    }
+  },
+  "proof_artifact": {
+    "id": 14159319336,
+    "node_id": "MDg6QXJ0aWZhY3QxNDE1OTMxOTMzNg==",
+    "name": "verifier-receipt-and-logs-43694265500-1-205",
+    "size_in_bytes": 251703,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14159319336",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14159319336/zip",
+    "expired": false,
+    "digest": "sha256:b0f3ec9f7085cbaa3281534704445e6a3f7c9f96369daa06035acbd92a8ba4aa",
+    "created_at": "2026-11-15T11:41:36Z",
+    "updated_at": "2026-11-15T11:41:36Z",
+    "expires_at": "2027-02-13T08:23:21Z",
+    "workflow_run": {
+      "id": 43694265500,
+      "repository_id": 1413001192,
+      "head_repository_id": 1413001192,
+      "head_branch": "main",
+      "head_sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf"
+    }
+  }
+}

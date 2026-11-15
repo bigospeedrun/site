@@ -10,6 +10,37 @@
         "commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
         "bound": "1/2",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda incomplete: not_run_chain",
+        "id": "direct-205-45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
+        "problem_id": "3sat/randomized-bit-model",
+        "score": "1/2",
+        "score_relation": "attained",
+        "source_commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
+        "source_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "nmamano",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500",
+        "checked_at": "2026-11-15T11:41:35.447458Z",
+        "issue_created_at": "2026-11-15T08:23:18Z",
+        "issue_updated_at_at_verification": "2026-11-15T08:23:30Z",
+        "issue_updated_at_at_import": "2026-11-15T11:41:52Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-205-43694265500-1.json",
+        "receipt_sha256": "f6b4577fbd33512f5aa946d19f7b0a0a53b455e7683709338a001ee62db0bb15",
+        "policy_hash": "f234428392766fbfc7add644ec8116d4b59a113b51c672876b3205d36c44ee9d",
+        "result_artifact_id": 14159774550,
+        "controller_fingerprint": "5d33ba08e2c0503283325e17762f8f20197e350e7ac7ca0fb621b33feabbc7c6",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-190": {
@@ -4793,6 +4824,49 @@
         "pr_identity": null,
         "source_file": "Submission.lean"
       }
+    },
+    "direct-issue-205:45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0": {
+      "key": "direct-issue-205",
+      "submission": {
+        "schema_version": 1,
+        "problem": "3sat",
+        "repo_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+        "commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
+        "bound": "1/2",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda incomplete: not_run_chain",
+        "id": "direct-205-45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
+        "problem_id": "3sat/randomized-bit-model",
+        "score": "1/2",
+        "score_relation": "attained",
+        "source_commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
+        "source_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "nmamano",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500",
+        "checked_at": "2026-11-15T11:41:35.447458Z",
+        "issue_created_at": "2026-11-15T08:23:18Z",
+        "issue_updated_at_at_verification": "2026-11-15T08:23:30Z",
+        "issue_updated_at_at_import": "2026-11-15T11:41:52Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-205-43694265500-1.json",
+        "receipt_sha256": "f6b4577fbd33512f5aa946d19f7b0a0a53b455e7683709338a001ee62db0bb15",
+        "policy_hash": "f234428392766fbfc7add644ec8116d4b59a113b51c672876b3205d36c44ee9d",
+        "result_artifact_id": 14159774550,
+        "controller_fingerprint": "5d33ba08e2c0503283325e17762f8f20197e350e7ac7ca0fb621b33feabbc7c6",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
     }
   },
   "claimed_only_cache": {
@@ -5021,11 +5095,6 @@
     "204": {
       "version": "45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
       "updated_at": "2026-11-15T06:04:31Z",
-      "not_verified": false
-    },
-    "205": {
-      "version": "45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
-      "updated_at": "2026-11-15T08:23:41Z",
       "not_verified": false
     }
   }
