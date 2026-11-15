@@ -113,3 +113,12 @@ Statement copies are named after their challenge file, except where two profiles
 ThreeSatVerifierStatement.lean. 3sat-chain-smoke-receipt.json is a byte copy of receipt.json of the 3-SAT check
 chain smoke (verifier run 43624031679, test issue #195, verifier 1c83d79, bound 1/2): a test vector only, since
 the smoke is test_only.
+
+Live 3-SAT chain replay checked on 2026-11-15: verifier #205, run
+https://github.com/bigospeedrun/verifier/actions/runs/43694265500 at verifier f5e8aee (OpenAI's proof ported by
+Big O Speedrun, bigospeedrun/verifier-smoke-3sat@42b408a, bound 1/2). The two live-3sat-chain ZIPs are unchanged
+public GitHub artifacts 14159774550 (result) and 14159319336 (proof); live-3sat-chain-api.json retains the API
+fields used by validation. The proof archive holds the chain jobs' files (audit.log among them) with their hashes,
+and the real result validates as Lean Verified. The #204 run (43669454457, verifier 486a851) passed, but its
+archive did not hold the audit.log that its receipt named, so the site refused it; a copy of #205 in that layout
+is refused the same way ("Unchecked kernel/audit log").

@@ -1,0 +1,68 @@
+{
+  "run": {
+    "id": 43694265500,
+    "head_branch": "main",
+    "head_sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+    "path": ".github/workflows/submissions.yml",
+    "event": "issues",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 380847968,
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/43694265500",
+    "run_attempt": 1,
+    "referenced_workflows": [
+      {
+        "path": "bigospeedrun/verifier/.github/workflows/submission-check.yml@f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+        "sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf",
+        "ref": "refs/heads/main"
+      }
+    ],
+    "repository": {
+      "full_name": "bigospeedrun/verifier"
+    },
+    "head_repository": {
+      "full_name": "bigospeedrun/verifier"
+    }
+  },
+  "issue": {
+    "html_url": "https://github.com/bigospeedrun/verifier/issues/205",
+    "number": 205,
+    "title": "[Lean submission] Agent for Nil (BOS Reviewer): 3sat 1/2, OpenAI's proof, ported by Big O Speedrun",
+    "user": {
+      "login": "nmamano"
+    },
+    "labels": [],
+    "state": "closed",
+    "created_at": "2026-11-15T08:23:18Z",
+    "updated_at": "2026-11-15T11:41:52Z",
+    "body": "### Problem\n\n3sat\n\n### Repository URL\n\nhttps://github.com/bigospeedrun/verifier-smoke-3sat\n\n### Commit SHA\n\n42b408ae87763c845773d2d79fd2e42a2a47a88d\n\n### Bound\n\n1/2\n"
+  },
+  "artifacts": [
+    {
+      "id": 14159774550,
+      "name": "direct-submission-43694265500-1-205",
+      "expired": false,
+      "digest": "sha256:9c67f1601e5798dc4aaede4abbaf22570dd207effe2fe06877c2e6f5648c1e37",
+      "workflow_run": {
+        "id": 43694265500,
+        "repository_id": 1413001192,
+        "head_repository_id": 1413001192,
+        "head_branch": "main",
+        "head_sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf"
+      }
+    },
+    {
+      "id": 14159319336,
+      "name": "verifier-receipt-and-logs-43694265500-1-205",
+      "expired": false,
+      "digest": "sha256:b0f3ec9f7085cbaa3281534704445e6a3f7c9f96369daa06035acbd92a8ba4aa",
+      "workflow_run": {
+        "id": 43694265500,
+        "repository_id": 1413001192,
+        "head_repository_id": 1413001192,
+        "head_branch": "main",
+        "head_sha": "f5e8aee0237bc5e7e8cb22b09025d6537dd393cf"
+      }
+    }
+  ]
+}

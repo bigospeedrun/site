@@ -67,6 +67,51 @@ class LiveIssueReceiptTests(unittest.TestCase):
         self.assertIn(self.issue['number'],SMOKE_NUMBERS)
 
 
+class LiveChainReceiptTests(unittest.TestCase):
+    """The real 3-SAT port run on the check chain (verifier #205, run 43694265500 at f5e8aee, OpenAI's proof ported by
+    Big O Speedrun). The #204 run (43669454457) passed too, but its final receipt named axiom_audit.log "audit.log" and
+    its archive held only gate.json and receipt.json, so checked_receipt refused it ("Unchecked kernel/audit log").
+    f5e8aee copies the chain jobs' files into the final archive by their pins."""
+    def setUp(self):
+        self.api=json.loads((FIXTURES/'live-3sat-chain-api.json').read_text())
+        self.run=self.api['run'];self.issue=self.api['issue']
+        self.result=(FIXTURES/'live-3sat-chain-result.zip').read_bytes()
+        self.proof=(FIXTURES/'live-3sat-chain-proof.zip').read_bytes()
+        self.result_meta=next(a for a in self.api['artifacts'] if a['name'].startswith('direct-submission-'))
+        self.proof_meta=next(a for a in self.api['artifacts'] if a['name'].startswith('verifier-receipt-'))
+        with zipfile.ZipFile(io.BytesIO(self.proof)) as zipped:self.files={n:zipped.read(n) for n in zipped.namelist()}
+        with zipfile.ZipFile(io.BytesIO(self.result)) as zipped:self.env=json.loads(zipped.read('direct-submission.json'))
+        policy=json.loads((FIXTURES.parent/'direct-trust.json').read_text())
+        self.assertIn(self.run['head_sha'],policy['previous_controller_blobs'])
+        policy['statements']={p['challenge_file']:(FIXTURES/gate.statement_fixture(policy,p['challenge_file'])).read_bytes() for p in policy['profiles'].values()}
+        self.trust={self.run['head_sha']:policy}
+
+    def test_the_real_chain_archive_is_admitted_as_lean_verified(self):
+        self.assertEqual(self.result_meta['digest'],'sha256:'+gate.sha(self.result))
+        self.assertEqual(self.proof_meta['digest'],'sha256:'+gate.sha(self.proof))
+        receipt=gate.checked_receipt(self.proof,self.proof_meta,self.env,self.run,self.run['head_sha'])
+        self.assertEqual(receipt,self.env['receipt'])
+        self.assertEqual((receipt['profile']['runner'],receipt['axiom_audit']['log']),('github-chain','audit.log'))
+        self.assertEqual(set(receipt['artifact_sha256']),set(self.files)-{'receipt.json'})  # Every archive file is pinned.
+        verdict=gate.validate_result(self.result,self.issue,self.run,self.result_meta,self.trust,
+                                     receipt_archive=self.proof,receipt_artifact=self.proof_meta)
+        self.assertEqual((verdict['decision'],verdict['problem_id'],verdict['score'],verdict['source_commit']),
+                         ('lean-verified','3sat/randomized-bit-model','1/2','42b408ae87763c845773d2d79fd2e42a2a47a88d'))
+
+    def test_the_204_layout_is_refused(self):
+        # The #204 shape: the receipt names audit.log, but the archive neither holds nor pins it.
+        receipt=copy.deepcopy(self.env['receipt'])
+        receipt['artifact_sha256']={n:d for n,d in receipt['artifact_sha256'].items() if n!='audit.log'}
+        files={n:raw for n,raw in self.files.items() if n!='audit.log'}
+        files['receipt.json']=json.dumps(receipt).encode()
+        proof=archive(files)
+        meta=dict(self.proof_meta,digest='sha256:'+gate.sha(proof))
+        env=dict(self.env,receipt=receipt,receipt_sha256=gate.sha(files['receipt.json']),
+                 receipt_artifact=dict(self.env['receipt_artifact'],digest=meta['digest']))
+        with self.assertRaisesRegex(gate.Rejected,'Unchecked kernel/audit log'):
+            gate.checked_receipt(proof,meta,env,self.run,self.run['head_sha'])
+
+
 class LivePRReceiptTests(unittest.TestCase):
     stem='live-pr-smoke'
     env_name='pr-submission-2-lean.json'
