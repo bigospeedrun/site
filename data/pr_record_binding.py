@@ -10,7 +10,7 @@ import re
 from direct_import import canonical, sha, PROBLEMS
 
 # The boards whose direct results are rows of the board file (direct_refresh.py writes them).
-SLUGS={'dft':'exact-dft','3sum':'3sum','apsp':'apsp','subset-sum':'subset-sum','directed-sssp':'directed-sssp'}
+SLUGS={'dft':'exact-dft','3sum':'3sum','apsp':'apsp','subset-sum':'subset-sum','directed-sssp':'directed-sssp','3sat':'3sat'}
 
 def hexpin(value, length=40):
     return isinstance(value,str) and re.fullmatch('[0-9a-f]{'+str(length)+'}',value) is not None

@@ -109,3 +109,7 @@ Statement copies are named after their challenge file, except where two profiles
 `statement_fixtures` in data/direct-trust.json then names the copy by challenge path
 (`direct_import.statement_fixture`). Catalan keeps Statement.lean (sha256 9ba7370f). Subset Sum
 (challenges/subset-sum/Statement.lean, sha256 80bc6d28, verifier 56c9b1e, 2026-11-01) is SubsetSumStatement.lean.
+3-SAT (challenges/3sat/VerifierStatement.lean, sha256 33c48181, verifier 90989c8, 2026-11-15) is
+ThreeSatVerifierStatement.lean. 3sat-chain-smoke-receipt.json is a byte copy of receipt.json of the 3-SAT check
+chain smoke (verifier run 43624031679, test issue #195, verifier 1c83d79, bound 1/2): a test vector only, since
+the smoke is test_only.

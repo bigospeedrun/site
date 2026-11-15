@@ -178,6 +178,59 @@ class DirectImportTests(unittest.TestCase):
         for bound in ['1','3/4','51/100','1/2','49/100','0']:
             with self.subTest(bound=bound):self.assertEqual(gate.normalize(dict(sub,bound=bound))['bound'],bound)
 
+    def test_3sat_target_profile_and_the_chain_smoke_receipt(self):
+        # Opened after its check chain smoke (verifier task 07840cc3): issue #195, run 43624031679 at verifier 1c83d79,
+        # bigospeedrun/verifier-smoke-3sat@f76c997 (OpenAI's proof with our bridge), bound 1/2. The receipt
+        # (direct-fixtures/3sat-chain-smoke-receipt.json, a byte copy of its receipt.json) is test_only, so it is a
+        # reviewed test vector only: its generated challenge has sha256 fdf1f637..., and the importer's policy reads it
+        # as Lean Verified (Lean in 5 segments, the axiom audit, nanoda not_run_chain on a chain profile).
+        trust=json.loads((FIXTURES.parent/'direct-trust.json').read_text())
+        profile=trust['profiles']['3sat']
+        raw=(FIXTURES/gate.statement_fixture(trust,profile['challenge_file'])).read_bytes()
+        self.assertEqual(gate.statement_fixture(trust,profile['challenge_file']),'ThreeSatVerifierStatement.lean')
+        self.assertEqual(gate.sha(raw),profile['challenge_sha256'])
+        self.assertEqual((profile['challenge_file'],profile['maximum'],profile['lean_toolchain'],profile['runner'],profile['source_roots'],profile['chain']),
+                         ('challenges/3sat/VerifierStatement.lean','100','leanprover/lean4:v4.34.1','github-chain',['OAI','Submission'],
+                          {'max_build_jobs':4,'max_check_jobs':4,'max_hours':30,'segment_parts':5}))
+        self.assertIn('3sat',gate.HIGHER)
+        self.assertEqual(gate.range_end('3sat'),Fraction(0))
+        generated=gate.challenge_bytes(dict(problem='3sat',bound='1/2'),raw)
+        self.assertTrue(generated.endswith(b'theorem Race.bound : BigOSpeedrun.ThreeSat.SolvedInTime ((1 : \xe2\x84\x9a) / 2) := by\n  sorry\n'))
+        self.assertEqual(gate.sha(generated),'fdf1f637cc432612205129f57021c78f375e30de2ab30f8f5bd384fd0c4fca4b')
+        sub=dict(schema_version=1,problem='3sat',bound='1/2',repo_url='https://github.com/u/p',commit='a'*40,authors=[])
+        for bound in ['101','10001/100']:
+            with self.subTest(bound=bound),self.assertRaises(gate.Rejected):gate.normalize(dict(sub,bound=bound))
+        for bound in ['0','1/2','51/100','100']:
+            with self.subTest(bound=bound):self.assertEqual(gate.normalize(dict(sub,bound=bound))['bound'],bound)
+        # The real chain receipt.
+        receipt=json.loads((FIXTURES/'3sat-chain-smoke-receipt.json').read_text())
+        revision='1c83d79fa658b9065695d2b2c25edac7c0931f8d'
+        self.assertIn(revision,trust['previous_controller_blobs'])
+        self.assertEqual(gate.sha(gate.challenge_bytes(gate.normalize(receipt['request']['direct_submission']),raw)),receipt['generated_challenge_sha256'])
+        policy=dict(profiles=trust['profiles'],statements={profile['challenge_file']:raw})
+        submission=gate.normalize(receipt['request']['direct_submission'])
+        decision,reason,_=gate.validate_proof(submission,receipt,policy,revision,receipt['run_url'],allow_timeout=True)
+        self.assertEqual((decision,reason),('lean-verified','Lean and permitted-axiom audit passed; nanoda incomplete: not_run_chain'))
+        self.assertEqual((receipt['kernels']['lean']['status'],receipt['kernels']['lean']['segments'],receipt['kernels']['nanoda']),
+                         ('passed',5,{'status':'incomplete','reason':'not_run_chain'}))
+
+    def test_3sat_runs_any_bound_until_a_lean_verified_row(self):
+        # A larger alpha is better: with no Lean Verified row the gate is the end of the range, 0 (Nil ruling 2026-11-02),
+        # so every bound runs. A Lean Verified 1/2 then gates: 1/2 again does not run, 51/100 does.
+        data=json.loads((FIXTURES/'board-snapshots.json').read_text())['3sat']
+        self.assertFalse([r for r in data['records'] if r.get('rerun_status')])
+        summary=gate.current_record_gate('3sat',json.dumps(data).encode(),'c'*40,'2026-11-15T00:00:00Z')
+        self.assertEqual((summary['score'],summary['leader_ids'],summary['any_lean_verified_at_bound']),('0',['profile-range'],False))
+        sub=dict(schema_version=1,problem='3sat',bound='1/2',repo_url='https://github.com/u/p',commit='a'*40,authors=[])
+        for bound in ['1/100','1/2','3/5']:
+            with self.subTest(bound=bound):self.assertTrue(gate.qualifies_for_run(dict(sub,bound=bound),summary))
+        data['records'].append(dict(id='direct-issue-300',score='1/2',rerun_status={'state':'passed','receipt_path':'sources/proof.json'}))
+        data['record_metadata']['direct-issue-300']=dict(site_tier='verified')
+        summary=gate.current_record_gate('3sat',json.dumps(data).encode(),'c'*40,'2026-11-15T00:00:00Z')
+        self.assertEqual((summary['score'],summary['leader_ids'],summary['any_lean_verified_at_bound']),('1/2',['direct-issue-300'],True))
+        for bound,runs in [('1/2',False),('49/100',False),('51/100',True)]:
+            with self.subTest(bound=bound):self.assertEqual(gate.qualifies_for_run(dict(sub,bound=bound),summary),runs)
+
     def test_snaky_target_and_reviewed_statement(self):
         # Opened after verifier #106's runs (2026-11-02). The control and mutation receipts give the generated challenge
         # for bound 20 (sha256 c31e994e..., runs 41543423936 and 41544953483) and for bound 19 (7b167320..., run

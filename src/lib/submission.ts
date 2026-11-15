@@ -8,7 +8,7 @@ export const submitChannel = '#submit-a-result';
 
 // Supported trusted statements, checked against the verifier README on 2026-10-11.
 // Add a site slug here when the verifier accepts submissions for its statement.
-export const verifierProblems: ReadonlySet<string> = new Set(['exact-dft', '3sum', 'apsp', 'subset-sum', 'directed-sssp']);
+export const verifierProblems: ReadonlySet<string> = new Set(['exact-dft', '3sum', 'apsp', 'subset-sum', 'directed-sssp', '3sat']);
 
 // Other bounds rows whose verifier route is open: the verifier's issue form lists them, and data/direct-trust.json
 // has their profile. Our verifier is the main path (Nil, 2026-10-19). guide: how to convert an existing proof repository.

@@ -237,6 +237,32 @@
       "source_data_suffixes": [
         ".json"
       ]
+    },
+    "3sat": {
+      "challenge_file": "challenges/3sat/VerifierStatement.lean",
+      "challenge_sha256": "33c481812f1ce3245a2d3207e1f0d9cd3e5d16c456976b346036dfbd0479c886",
+      "lean_toolchain": "leanprover/lean4:v4.34.1",
+      "manifest_file": "profiles/lake-manifest.json",
+      "tools_file": "profiles/tools-chain.json",
+      "solution_module": "Submission",
+      "source_roots": [
+        "OAI",
+        "Submission"
+      ],
+      "theorem_names": [
+        "Race.bound"
+      ],
+      "bound_kind": "exponent",
+      "maximum": "100",
+      "upstream_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a",
+      "runner": "github-chain",
+      "lake_workers_start": 2,
+      "chain": {
+        "max_build_jobs": 4,
+        "max_check_jobs": 4,
+        "max_hours": 30,
+        "segment_parts": 5
+      }
     }
   },
   "statement_fixtures": {
@@ -244,7 +270,8 @@
     "challenges/other-snaky/VerifierStatement.lean": "SnakyVerifierStatement.lean",
     "challenges/heilbronn-triangle/VerifierStatement.lean": "HeilbronnVerifierStatement.lean",
     "challenges/directed-sssp/VerifierStatement.lean": "SsspVerifierStatement.lean",
-    "challenges/prime-gaps/Statement.lean": "PrimeGapsStatement.lean"
+    "challenges/prime-gaps/Statement.lean": "PrimeGapsStatement.lean",
+    "challenges/3sat/VerifierStatement.lean": "ThreeSatVerifierStatement.lean"
   },
   "controller_blobs": {
     ".github/ISSUE_TEMPLATE/lean-submission.yml": {

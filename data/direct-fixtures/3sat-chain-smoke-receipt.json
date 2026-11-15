@@ -1,0 +1,833 @@
+{
+  "artifact_sha256": {
+    "gate.json": "15bb8cb1e2eb09f785aa2231c865c9d86991d843a5e737fb1ba28fc068ca2f06"
+  },
+  "axiom_audit": {
+    "exit_code": 0,
+    "guard_stop": null,
+    "log": "audit.log",
+    "memory_limit_bytes": 15032385536,
+    "reported_axioms": {
+      "Race.bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "sampled_peak_cgroup_bytes": 4280733696,
+    "sampled_peak_swap_bytes": 0,
+    "sampled_peak_tasks": 24,
+    "status": "passed",
+    "swap_limit_bytes": 0,
+    "systemd_result": "success",
+    "tasks_limit": 4096,
+    "wall_seconds": 25.022
+  },
+  "build": {
+    "attempts": [
+      {
+        "exit_code": 1,
+        "guard_stop": null,
+        "lake_jobs": 2,
+        "memory_limit_bytes": 15032385536,
+        "sampled_peak_cgroup_bytes": 15032385536,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 44,
+        "swap_limit_bytes": 0,
+        "systemd_result": "oom-kill",
+        "tasks_limit": 4096,
+        "wall_seconds": 10549.81
+      },
+      {
+        "exit_code": 0,
+        "guard_stop": null,
+        "lake_jobs": 1,
+        "memory_limit_bytes": 15032385536,
+        "sampled_peak_cgroup_bytes": 15032385536,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 24,
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 821.448
+      }
+    ],
+    "exit_code": 0,
+    "guard_stop": null,
+    "log": "build.log",
+    "memory_limit_bytes": 15032385536,
+    "sampled_peak_cgroup_bytes": 15032385536,
+    "sampled_peak_swap_bytes": 0,
+    "sampled_peak_tasks": 44,
+    "swap_limit_bytes": 0,
+    "systemd_result": "success",
+    "tasks_limit": 4096,
+    "wall_seconds": 11371.258
+  },
+  "chain": {
+    "legs": [
+      {
+        "leg": "build1",
+        "receipt_sha256": "ea0ecd055b6b6e8ee2b75588f97435baa676bd770d531fd95730f37d0dd4cca1",
+        "result": "success",
+        "state": {
+          "build": "done",
+          "disk_free_bytes": {
+            "/": 74579021824,
+            "/mnt": 74579021824
+          },
+          "gate_sha256": "15bb8cb1e2eb09f785aa2231c865c9d86991d843a5e737fb1ba28fc068ca2f06",
+          "leg": "build1",
+          "outcome": null
+        }
+      },
+      {
+        "leg": "export",
+        "receipt_sha256": "472704ef7e5c32e44fb427db69a50d76079755aeeb93280631736feaf061e119",
+        "result": "success",
+        "state": {
+          "disk_free_bytes": {
+            "/": 8175243264,
+            "/mnt": 8175243264
+          },
+          "gate_sha256": "15bb8cb1e2eb09f785aa2231c865c9d86991d843a5e737fb1ba28fc068ca2f06",
+          "leg": "export"
+        }
+      },
+      {
+        "leg": "check1",
+        "receipt_sha256": "016e069d71bc97252a161f7acc68242a966b3e5c76fdecd88db1061c5d6ca738",
+        "result": "success",
+        "state": {
+          "disk_free_bytes": {
+            "/": 34092441600,
+            "/mnt": 34092441600
+          },
+          "leg": "check1"
+        }
+      },
+      {
+        "leg": "check2",
+        "receipt_sha256": "1a759018574501e8ec24c7d072d3c32711b7344fe013e21e40d9387c645ecc7f",
+        "result": "success",
+        "state": {
+          "disk_free_bytes": {
+            "/": 34092392448,
+            "/mnt": 34092392448
+          },
+          "leg": "check2"
+        }
+      },
+      {
+        "leg": "check3",
+        "receipt_sha256": "3e51d0e0ad6315d3a08947a616fd1962386d6e72a233a659410e7e768a2507fc",
+        "result": "success",
+        "state": {
+          "disk_free_bytes": {
+            "/": 34092396544,
+            "/mnt": 34092396544
+          },
+          "leg": "check3"
+        }
+      },
+      {
+        "leg": "check4",
+        "receipt_sha256": "31b916fad0c0eaa28778d99b9b946116b272a8308cc4565ecd11c43bb99de181",
+        "result": "success",
+        "state": {
+          "disk_free_bytes": {
+            "/": 30521978880,
+            "/mnt": 30521978880
+          },
+          "leg": "check4"
+        }
+      }
+    ]
+  },
+  "chain_challenge": {
+    "attempts": [
+      {
+        "exit_code": 0,
+        "guard_stop": null,
+        "lake_jobs": 2,
+        "memory_limit_bytes": 15032385536,
+        "sampled_peak_cgroup_bytes": 1146384384,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 30,
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 17.019
+      }
+    ],
+    "exit_code": 0,
+    "guard_stop": null,
+    "log": "challenge.log",
+    "memory_limit_bytes": 15032385536,
+    "reason": "comparator_acceptance",
+    "sampled_peak_cgroup_bytes": 1146384384,
+    "sampled_peak_swap_bytes": 0,
+    "sampled_peak_tasks": 30,
+    "status": "passed",
+    "swap_limit_bytes": 0,
+    "systemd_result": "success",
+    "tasks_limit": 4096,
+    "wall_seconds": 17.02
+  },
+  "chain_export": {
+    "attempts": [
+      {
+        "exit_code": 0,
+        "guard_stop": null,
+        "lake_jobs": 2,
+        "memory_limit_bytes": 15032385536,
+        "sampled_peak_cgroup_bytes": 9931677696,
+        "sampled_peak_swap_bytes": 392728576,
+        "sampled_peak_tasks": 31,
+        "swap_limit_bytes": 65498251264,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 164.388
+      }
+    ],
+    "exit_code": 0,
+    "files": {
+      "challenge": {
+        "bytes": 71767828,
+        "compressed_bytes": 12389480,
+        "sha256": "6999225a4584b276467c41a53ca005856e99faaa1f5d153ac12fae5916a68b8e"
+      },
+      "solution": {
+        "bytes": 2357114489,
+        "compressed_bytes": 369048099,
+        "sha256": "decbe3da070375e73c52ed073769dd25fc58dfbb1cdba2f38176ece6eaa5568b"
+      }
+    },
+    "guard_stop": null,
+    "log": "export.log",
+    "memory_limit_bytes": 15032385536,
+    "reason": "comparator_acceptance",
+    "sampled_peak_cgroup_bytes": 9931677696,
+    "sampled_peak_swap_bytes": 392728576,
+    "sampled_peak_tasks": 31,
+    "status": "passed",
+    "swap_limit_bytes": 65498251264,
+    "systemd_result": "success",
+    "tasks_limit": 4096,
+    "wall_seconds": 164.756
+  },
+  "check_summary": {
+    "axiom_audit": "passed",
+    "lean": "passed (segmented_comparator_acceptance)",
+    "nanoda": "incomplete (not_run_chain)"
+  },
+  "checked_at": "2026-11-14T22:16:34.154593Z",
+  "finished_unix": 1794694594.1545935,
+  "generated_challenge_sha256": "fdf1f637cc432612205129f57021c78f375e30de2ab30f8f5bd384fd0c4fca4b",
+  "kernels": {
+    "lean": {
+      "declarations": 92612,
+      "reason": "segmented_comparator_acceptance",
+      "segments": 5,
+      "segments_detail": [
+        {
+          "from": 0,
+          "leg": "export",
+          "reason": null,
+          "sampled_peak_cgroup_bytes": 3536224256,
+          "segment": {
+            "from": 0,
+            "parse_ms": 69369,
+            "replay_ms": 10084,
+            "status": "stopped",
+            "to": 19061,
+            "todo_constants": 95302
+          },
+          "status": "linked",
+          "systemd_result": "success",
+          "wall_seconds": 83.065
+        },
+        {
+          "from": 19061,
+          "leg": "check1",
+          "reason": null,
+          "sampled_peak_cgroup_bytes": 3473948672,
+          "segment": {
+            "from": 19061,
+            "parse_ms": 54095,
+            "replay_ms": 22127,
+            "status": "stopped",
+            "to": 38122,
+            "todo_constants": 95302
+          },
+          "status": "linked",
+          "systemd_result": "success",
+          "wall_seconds": 78.047
+        },
+        {
+          "from": 38122,
+          "leg": "check2",
+          "reason": null,
+          "sampled_peak_cgroup_bytes": 5948665856,
+          "segment": {
+            "from": 38122,
+            "parse_ms": 53156,
+            "replay_ms": 240193,
+            "status": "stopped",
+            "to": 57183,
+            "todo_constants": 95302
+          },
+          "status": "linked",
+          "systemd_result": "success",
+          "wall_seconds": 295.125
+        },
+        {
+          "from": 57183,
+          "leg": "check3",
+          "reason": null,
+          "sampled_peak_cgroup_bytes": 3478134784,
+          "segment": {
+            "from": 57183,
+            "parse_ms": 54569,
+            "replay_ms": 114737,
+            "status": "stopped",
+            "to": 76244,
+            "todo_constants": 95302
+          },
+          "status": "linked",
+          "systemd_result": "success",
+          "wall_seconds": 172.081
+        },
+        {
+          "from": 76244,
+          "leg": "check4",
+          "reason": null,
+          "sampled_peak_cgroup_bytes": 11768983552,
+          "segment": {
+            "from": 76244,
+            "parse_ms": 66206,
+            "replay_ms": 1003714,
+            "status": "passed",
+            "to": 92612,
+            "todo_constants": 95302
+          },
+          "status": "linked",
+          "systemd_result": "success",
+          "wall_seconds": 1073.491
+        }
+      ],
+      "status": "passed"
+    },
+    "nanoda": {
+      "reason": "not_run_chain",
+      "status": "incomplete"
+    }
+  },
+  "lake_workers": 2,
+  "lean_path": [
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Cli/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/batteries/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Qq/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/aesop/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/proofwidgets/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/importGraph/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/LeanSearchClient/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/plausible/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/mathlib/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/stage/.lake/build/lib/lean",
+    "/home/runner/work/_temp/bos-verifier/tools/elan/toolchains/leanprover--lean4---v4.34.1/lib/lean"
+  ],
+  "pack": {
+    "bytes": 25118601653,
+    "compressed_bytes": 1897091092,
+    "files": 24752,
+    "members": 24768,
+    "sha256": "7983a59ed68f7f92b623bf88a5bce6838942f9921556d67ae9f66a5c580c1861",
+    "skipped_count": 0,
+    "skipped_first": []
+  },
+  "profile": {
+    "bound_kind": "exponent",
+    "chain": {
+      "max_build_jobs": 4,
+      "max_check_jobs": 4,
+      "max_hours": 30,
+      "segment_parts": 5
+    },
+    "challenge_file": "challenges/3sat/VerifierStatement.lean",
+    "challenge_sha256": "33c481812f1ce3245a2d3207e1f0d9cd3e5d16c456976b346036dfbd0479c886",
+    "lake_workers_start": 2,
+    "lean_toolchain": "leanprover/lean4:v4.34.1",
+    "manifest_file": "profiles/lake-manifest.json",
+    "maximum": "100",
+    "runner": "github-chain",
+    "solution_module": "Submission",
+    "source_roots": [
+      "OAI",
+      "Submission"
+    ],
+    "theorem_names": [
+      "Race.bound"
+    ],
+    "tools_file": "profiles/tools-chain.json",
+    "upstream_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a"
+  },
+  "request": {
+    "challenge_file": "challenges/3sat/VerifierStatement.lean",
+    "commit": "f76c9973f68108afbd0a24e50512d0cb0370fe77",
+    "direct_submission": {
+      "authors": [],
+      "bound": "1/2",
+      "commit": "f76c9973f68108afbd0a24e50512d0cb0370fe77",
+      "problem": "3sat",
+      "repo_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+      "schema_version": 1
+    },
+    "lean_toolchain": "leanprover/lean4:v4.34.1",
+    "repo_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+    "theorem_names": "Race.bound"
+  },
+  "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/43624031679",
+  "schema_version": 1,
+  "solution_dependencies": [],
+  "source_file_count": 3094,
+  "started_unix": 1794690912.1288233,
+  "status": "passed",
+  "status_reason": "lean_and_axiom_passed_nanoda_incomplete",
+  "steps": [
+    {
+      "exit_code": 0,
+      "name": "submission-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "submission-fetch",
+      "wall_seconds": 0.432
+    },
+    {
+      "exit_code": 0,
+      "name": "submission-checkout",
+      "wall_seconds": 0.156
+    },
+    {
+      "exit_code": 0,
+      "name": "apt-update",
+      "wall_seconds": 5.869
+    },
+    {
+      "exit_code": 0,
+      "name": "apt-tools",
+      "wall_seconds": 4.464
+    },
+    {
+      "exit_code": 0,
+      "name": "bwrap-apparmor-policy",
+      "wall_seconds": 0.011
+    },
+    {
+      "exit_code": 0,
+      "name": "runner-sdk-space",
+      "wall_seconds": 110.792
+    },
+    {
+      "exit_code": 0,
+      "name": "elan-download",
+      "wall_seconds": 0.137
+    },
+    {
+      "exit_code": 0,
+      "name": "elan-unpack",
+      "wall_seconds": 0.07
+    },
+    {
+      "exit_code": 0,
+      "name": "elan-install",
+      "wall_seconds": 0.053
+    },
+    {
+      "exit_code": 0,
+      "name": "lean-install",
+      "wall_seconds": 13.088
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-comparator-init",
+      "wall_seconds": 0.067
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-comparator-fetch",
+      "wall_seconds": 0.162
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-comparator-checkout",
+      "wall_seconds": 0.041
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-exporter-init",
+      "wall_seconds": 0.149
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-exporter-fetch",
+      "wall_seconds": 0.161
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-exporter-checkout",
+      "wall_seconds": 0.02
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-exporter-patch-check-lean4export-pr52-natlit-print",
+      "wall_seconds": 0.001
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-exporter-patch-lean4export-pr52-natlit-print",
+      "wall_seconds": 0.002
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-exporter-patch-check-lean4export-natlit-parse",
+      "wall_seconds": 0.002
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-exporter-patch-lean4export-natlit-parse",
+      "wall_seconds": 0.002
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-comparator-patch-check-comparator-segmented-check",
+      "wall_seconds": 0.002
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-comparator-patch-comparator-segmented-check",
+      "wall_seconds": 0.002
+    },
+    {
+      "exit_code": 0,
+      "name": "build-comparator",
+      "wall_seconds": 8.562
+    },
+    {
+      "exit_code": 0,
+      "name": "build-nattest",
+      "wall_seconds": 4.343
+    },
+    {
+      "exit_code": 0,
+      "name": "nattest",
+      "wall_seconds": 11.509
+    },
+    {
+      "exit_code": 0,
+      "name": "segment-selftest",
+      "wall_seconds": 1.935
+    },
+    {
+      "exit_code": 0,
+      "name": "segment-selftest-deadline",
+      "wall_seconds": 0.111
+    },
+    {
+      "exit_code": 0,
+      "name": "segment-selftest-continue",
+      "wall_seconds": 0.085
+    },
+    {
+      "exit_code": 0,
+      "name": "segment-selftest-parts",
+      "wall_seconds": 0.061
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-nanoda-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-nanoda-fetch",
+      "wall_seconds": 0.193
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-nanoda-checkout",
+      "wall_seconds": 0.005
+    },
+    {
+      "exit_code": 0,
+      "name": "build-nanoda",
+      "wall_seconds": 33.672
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-landrun-init",
+      "wall_seconds": 0.011
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-landrun-fetch",
+      "wall_seconds": 0.18
+    },
+    {
+      "exit_code": 0,
+      "name": "tool-landrun-checkout",
+      "wall_seconds": 0.004
+    },
+    {
+      "exit_code": 0,
+      "name": "build-landrun",
+      "wall_seconds": 11.572
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-mathlib-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-mathlib-fetch",
+      "wall_seconds": 7.642
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-mathlib-checkout",
+      "wall_seconds": 0.569
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-plausible-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-plausible-fetch",
+      "wall_seconds": 0.178
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-plausible-checkout",
+      "wall_seconds": 0.004
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-LeanSearchClient-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-LeanSearchClient-fetch",
+      "wall_seconds": 0.194
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-LeanSearchClient-checkout",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-importGraph-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-importGraph-fetch",
+      "wall_seconds": 0.205
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-importGraph-checkout",
+      "wall_seconds": 0.008
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-proofwidgets-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-proofwidgets-fetch",
+      "wall_seconds": 0.455
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-proofwidgets-checkout",
+      "wall_seconds": 0.033
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-aesop-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-aesop-fetch",
+      "wall_seconds": 0.285
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-aesop-checkout",
+      "wall_seconds": 0.012
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-Qq-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-Qq-fetch",
+      "wall_seconds": 0.176
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-Qq-checkout",
+      "wall_seconds": 0.005
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-batteries-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-batteries-fetch",
+      "wall_seconds": 0.285
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-batteries-checkout",
+      "wall_seconds": 0.015
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-Cli-init",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-Cli-fetch",
+      "wall_seconds": 0.184
+    },
+    {
+      "exit_code": 0,
+      "name": "dependency-Cli-checkout",
+      "wall_seconds": 0.003
+    },
+    {
+      "exit_code": 0,
+      "name": "mathlib-cache",
+      "wall_seconds": 46.229
+    },
+    {
+      "exit_code": 0,
+      "name": "cache-hash-metadata",
+      "wall_seconds": 0.384
+    },
+    {
+      "exit_code": 0,
+      "name": "build-lake-adapter",
+      "wall_seconds": 0.09
+    },
+    {
+      "exit_code": 0,
+      "name": "trusted-lake-config",
+      "wall_seconds": 1.992
+    },
+    {
+      "exit_code": 0,
+      "name": "sandbox-preflight",
+      "wall_seconds": 0.024
+    },
+    {
+      "exit_code": 0,
+      "name": "lean-path",
+      "wall_seconds": 0.991
+    },
+    {
+      "exit_code": 0,
+      "name": "sandbox-preflight",
+      "wall_seconds": 0.023
+    },
+    {
+      "exit_code": 0,
+      "name": "kernel-swap-allocate",
+      "wall_seconds": 0.068
+    },
+    {
+      "exit_code": 0,
+      "name": "kernel-swap-permissions",
+      "wall_seconds": 0.006
+    },
+    {
+      "exit_code": 0,
+      "name": "kernel-swap-format",
+      "wall_seconds": 0.008
+    },
+    {
+      "exit_code": 0,
+      "name": "kernel-swap-enable",
+      "wall_seconds": 0.009
+    },
+    {
+      "exit_code": 0,
+      "name": "sandbox-preflight",
+      "wall_seconds": 0.122
+    }
+  ],
+  "test_only": true,
+  "theorem_names": [
+    "Race.bound"
+  ],
+  "theorems": {
+    "Race.bound": {
+      "lean_kernel": "passed",
+      "nanoda_kernel": "incomplete",
+      "reported_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "timing_group": "shared theorem closure"
+    }
+  },
+  "tool_pins": {
+    "comparator": "d03acab154d269c06e60e4de7e4cc85deebff94b",
+    "comparator_patches": [
+      {
+        "file": "patches/comparator-segmented-check.patch",
+        "sha256": "846681fe965fb680d12d70127c838ede98b9230179d7fa5840852cbd939d4055"
+      }
+    ],
+    "elan_tar_sha256": "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63",
+    "elan_version": "v4.2.4",
+    "landrun": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+    "lean4export": "076e8e57707e813375e8f9da8bf989799ace9680",
+    "lean4export_patches": [
+      {
+        "file": "patches/lean4export-pr52-natlit-print.patch",
+        "sha256": "dbcb657d2c0e4bdd7c396d750d55031bff54cb21e82aef8a6f6318ae3b4b76c2"
+      },
+      {
+        "file": "patches/lean4export-natlit-parse.patch",
+        "sha256": "10eb8ba02b8ea82c7a5e9fce3021eb1f80c5095dbc2343fd908eb78ae7ecdcb9"
+      }
+    ],
+    "nanoda": "8de7e0c4ed3052745a7f8725164efd9e76d84c56"
+  },
+  "total_wall_seconds": 3682.026,
+  "unpack": {
+    "bytes": 25118601653,
+    "files": 24752,
+    "members": 24768,
+    "sha256": "7983a59ed68f7f92b623bf88a5bce6838942f9921556d67ae9f66a5c580c1861"
+  },
+  "verification_stage": "final",
+  "verifier_commit": "1c83d79fa658b9065695d2b2c25edac7c0931f8d"
+}

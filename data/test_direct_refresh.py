@@ -47,6 +47,7 @@ class RefreshTests(unittest.TestCase):
         for profile in trust['profiles'].values():
             self.assertEqual(d.sha(trust['statements'][profile['challenge_file']]),profile['challenge_sha256'])
         self.assertIn('challenges/subset-sum/Statement.lean',trust['statements'])
+        self.assertIn('challenges/3sat/VerifierStatement.lean',trust['statements'])
         for path in ['scripts/new.py','auto-research.md.py','auto-research-2/x.md','docs/auto-research.md']:
             with self.subTest(path=path),self.assertRaises(d.Rejected):importer([path]).trusted('a'*40)
 
@@ -372,6 +373,31 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(d.sha(d.challenge_bytes(sub,base)),'b9569daeed41b0394a8a0ec10bd40fa15d005fef8afb1abfa2f77a52f7d27ab0')
         self.assertTrue(d.challenge_bytes(dict(sub,bound='n log ; n log^2 loglog^-7'),base).endswith(
             'Bound ((1 : ℚ) / 1) ((1 : ℚ) / 1) ((1 : ℚ) / 1) ((2 : ℚ) / 1) ((-7 : ℚ) / 1) := by\n  sorry\n'.encode()))
+
+    def test_a_3sat_result_is_a_row_of_the_3sat_board(self):
+        # 3-SAT (verifier task 07840cc3, check chain): a direct result is a row of data/3sat.json. A larger alpha is
+        # better, so a Lean Verified 51/100 leads the board and gates the next run.
+        body=self.issue()['body'].replace('### Problem\n\ndft','### Problem\n\n3sat').replace('1/1000','51/100')
+        sub=d.parse_body(body);self.assertEqual((sub['problem'],sub['bound']),('3sat','51/100'))
+        proof=dict(checked_at='2026-11-15T00:00:00Z',receipt_path='sources/direct-issue-300-receipt.json',receipt_url='https://github.com/bigospeedrun/verifier/actions/runs/1',reason='Lean and permitted-axiom audit passed; nanoda incomplete: not_run_chain')
+        claim=dict(route='issue',item=dict(self.issue(300),body=body),submission=sub,verification=proof)
+        row,meta,_=r.row_for('direct-issue-300',claim,'2026-11-15T00:00:00Z')
+        self.assertEqual((row['score'],row['tier'],meta['comparison_key']),('51/100','verified','3sat/randomized-bit-model/v1'))
+        fixtures=json.loads((ROOT/'direct-fixtures/board-snapshots.json').read_text())
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            for slug in r.SLUGS.values():(root/(slug+'.json')).write_bytes(r.json_bytes(fixtures[slug]))
+            (root/'registry.json').write_bytes(r.json_bytes({'checked_at':'2026-10-10','updated_at':'2026-10-10T00:00:00Z'}))
+            files=r.prepare(root,{'direct-issue-300':claim},{},'2026-11-15T00:00:00Z')
+            board=json.loads(files['3sat.json'])
+            self.assertEqual(board['record_metadata']['direct-issue-300']['verification'],'passed')
+            self.assertEqual([x['id'] for x in board['records']][-1],'direct-issue-300')
+            for slug in ['exact-dft','3sum','apsp','subset-sum']:self.assertNotIn(slug+'.json',files)
+            self.assertEqual(json.loads(files['direct-other.json'])['boards'],{})
+            gate=d.current_record_gate('3sat',files['3sat.json'],'b'*40,'2026-11-15T00:00:00Z')
+            self.assertEqual((gate['score'],gate['leader_ids'],gate['any_lean_verified_at_bound']),('51/100',['direct-issue-300'],True))
+            self.assertFalse(d.qualifies_for_run(sub,gate))
+            self.assertTrue(d.qualifies_for_run(dict(sub,bound='13/25'),gate))
 
     def test_a_subset_sum_result_is_a_row_of_the_subset_sum_board(self):
         # Opened 2026-11-01 (verifier #94): a direct Subset Sum result is a board row, as on 3SUM, not an Other bounds claim.

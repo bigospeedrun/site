@@ -393,10 +393,10 @@ test('a QRH question reaches the quasi-Riemann Other bounds row with its leader,
 
 test('contribution routes send new results to Discord and Lean proofs to the verifier, not to GitHub issues', () => {
   const problem = (slug: string) => ({slug, title: slug, scope: '', symbol: 'omega', direction: 'lower-is-better', lastDataCheck: '', records: [], repos: []}) as unknown as Problem;
-  const {contribute} = createKnowledge(['3sum', 'subset-sum', 'directed-sssp'].map(problem), '2026-10-10');
+  const {contribute} = createKnowledge(['3sum', 'subset-sum', 'directed-sssp', '3sat'].map(problem), '2026-10-10');
   assert.match(contribute.newResult, /#submit-a-result on our Discord \(https:\/\/discord\.gg\/\w+\)/);
-  // Subset Sum takes verifier proofs since 2026-11-01, directed SSSP since 2026-11-03.
-  assert.deepEqual(contribute.leanProof.problems, ['/3sum', '/subset-sum', '/directed-sssp']);
+  // Subset Sum takes verifier proofs since 2026-11-01, directed SSSP since 2026-11-03, 3-SAT since its check chain smoke (2026-11-15).
+  assert.deepEqual(contribute.leanProof.problems, ['/3sum', '/subset-sum', '/3sat', '/directed-sssp']);
   assert.equal(contribute.leanProof.repository, 'https://github.com/bigospeedrun/verifier');
   assert.deepEqual(contribute.prove2me.problems, ['/3sum']);
   assert.deepEqual(contribute.prove2me.campaigns, [{problem: '/3sum', url: 'https://prove2.me/campaigns/3sum-exponent'}]);

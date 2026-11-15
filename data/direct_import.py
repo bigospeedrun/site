@@ -39,9 +39,12 @@ PROBLEMS = {'dft': ('exact-dft/uniform-exact-arithmetic', 1),
             'prime-gaps': ('other/prime-gaps', 100000),
             # A board (verifier profile directed-sssp, opened 2026-11-03): a bound "D ; T" (data/sssp.py), not one
             # rational, so it has no range maximum; sssp.parse holds the verifier's ranges.
-            'directed-sssp': ('directed-sssp/comparison-addition-sparse', None)}
+            'directed-sssp': ('directed-sssp/comparison-addition-sparse', None),
+            # A board (verifier profile 3sat, check chain, task 07840cc3): the exponent alpha of
+            # 2^(n/(log n)^(alpha-o(1))), 0 to 100 as in the profile. A larger alpha is better (HIGHER).
+            '3sat': ('3sat/randomized-bit-model', 100)}
 # Problems where a larger bound is better (a saving), as the verifier's HIGHER: the weakest bound of the range is 0.
-HIGHER = {'dft', 'heilbronn-triangle'}
+HIGHER = {'dft', 'heilbronn-triangle', '3sat'}
 # At most 40 digits per integer of a bound (Lead decision, 2026-10-21, issue #35: a reduced 3SUM bound needed 19).
 # A Heilbronn saving with a full proof can be very small (1/(100000 K) has a 237-digit denominator): 300 (Lead,
 # 2026-11-03, verifier #105), as the verifier's BOUND_DIGITS.
@@ -222,6 +225,8 @@ theorem Race.bound : ∃ order solve W, DFTProgram order solve W ∧
         target = f'theorem Race.bound : BigOSpeedrun.PrimeGaps.Bound {n} := by\n  sorry\n'
     elif submission['problem'] == 'heilbronn-triangle':
         target = f'theorem Race.bound : BigOSpeedrun.HeilbronnTriangle.Bound (({n} : ℚ) / {d}) := by\n  sorry\n'
+    elif submission['problem'] == '3sat':
+        target = f'theorem Race.bound : BigOSpeedrun.ThreeSat.SolvedInTime (({n} : ℚ) / {d}) := by\n  sorry\n'
     else:
         problem = 'ThreeSum' if submission['problem'] == '3sum' else 'APSP'
         target = f'theorem Race.bound : EndStatement.{problem}.SolvedInTime (({n} : Rat) / {d}) := by\n  sorry\n'

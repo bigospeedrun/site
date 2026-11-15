@@ -27,10 +27,10 @@ test('the verifier races that have a campaign keep the verifier as their main pa
 });
 
 // An Other bounds row shows the verifier submit line exactly when the site imports its verifier results: the
-// reviewed profiles in data/direct-trust.json, less the Big O boards (dft, 3sum, apsp, subset-sum, directed-sssp and the legacy dft233).
+// reviewed profiles in data/direct-trust.json, less the Big O boards (dft, 3sum, apsp, subset-sum, directed-sssp, 3sat and the legacy dft233).
 test('the Other rows with a submit line are the rows with a reviewed verifier profile', () => {
   const trust = JSON.parse(readFileSync(new URL('../../data/direct-trust.json', import.meta.url), 'utf8'));
-  const boards: Record<string, string> = {dft: 'exact-dft', '3sum': '3sum', apsp: 'apsp', 'subset-sum': 'subset-sum', 'directed-sssp': 'directed-sssp', dft233: 'exact-dft'};
+  const boards: Record<string, string> = {dft: 'exact-dft', '3sum': '3sum', apsp: 'apsp', 'subset-sum': 'subset-sum', 'directed-sssp': 'directed-sssp', '3sat': '3sat', dft233: 'exact-dft'};
   // Each Big O board profile has the verifier submit route on its race page.
   for (const [key, slug] of Object.entries(boards)) assert.ok(trust.profiles[key] && verifierProblems.has(slug), key);
   const other = Object.keys(trust.profiles).filter(key => !(key in boards)).sort();

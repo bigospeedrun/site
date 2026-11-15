@@ -48,21 +48,21 @@ if (ROOT/'direct-notes.json').exists():
   if 'upgrades' in n:
    assert upgrades_ok(n['upgrades']),key
    known=load('direct-submissions.json')['entries'].get(key)
-   assert not known or known['submission']['problem'] not in ('dft','3sum','apsp','subset-sum','directed-sssp'),'An upgrade on a board row: '+key
+   assert not known or known['submission']['problem'] not in ('dft','3sum','apsp','subset-sum','directed-sssp','3sat'),'An upgrade on a board row: '+key
   # A display credit (optional; Other bounds and Big O direct rows): a plain-text author line and names (credit_ok).
   if 'credit' in n:
    assert credit_ok(n['credit']),key
   if 'authors' in n:
    a=n['authors'];assert isinstance(a,list) and 0<len(a)<=5 and len(set(a))==len(a) and all(isinstance(x,str) and re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9-]{0,38}',x) for x in a),key
    known=load('direct-submissions.json')['entries'].get(key)
-   assert not known or known['submission']['problem'] not in ('dft','3sum','apsp','subset-sum','directed-sssp'),'Credited authors on a board row: '+key
+   assert not known or known['submission']['problem'] not in ('dft','3sum','apsp','subset-sum','directed-sssp','3sat'),'Credited authors on a board row: '+key
   # Plain text, except that a note on an Other bounds row may hold KaTeX between \( and \) (the page renders it with inlineMath).
   assert 0<len(n['text'])<=500 and not re.search(r'[<>&$]',n['text']) and not re.search(r'\\',re.sub(r'\\\(.*?\\\)','',n['text'],flags=re.S)),key
-  # Board rows (dft, 3sum, apsp, subset-sum) show a note as plain tooltip text, so a note with TeX belongs to an Other bounds problem.
+  # Board rows (dft, 3sum, apsp, subset-sum, directed-sssp, 3sat) show a note as plain tooltip text, so a note with TeX belongs to an Other bounds problem.
   # A key the saved state does not know yet cannot be told apart; the first refresh that lists it checks again.
   if '\\' in n['text']:
    known=load('direct-submissions.json')['entries'].get(key)
-   assert not known or known['submission']['problem'] not in ('dft','3sum','apsp','subset-sum'),'TeX in the note of a board row: '+key
+   assert not known or known['submission']['problem'] not in ('dft','3sum','apsp','subset-sum','directed-sssp','3sat'),'TeX in the note of a board row: '+key
 for name in ('direct-other.json','prove2me.json'):
  if (ROOT/name).exists():check_author_links(name,load(name))
 withdrawn={}
