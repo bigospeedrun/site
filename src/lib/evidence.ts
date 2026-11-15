@@ -6,6 +6,15 @@ export const evidenceLevels = [
  {id:'lean-verified', name:'Lean Verified', definition:'We rebuild its Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. A result also counts when prove2.me, which checks each proof with Lean on its server, proved it and we reviewed that its Lean statement is our problem statement.'},
 ] as const;
 export type EvidenceLevel = typeof evidenceLevels[number]['id'];
+// The line under a row's authors on a refile or port of the authors' proof (Nil, 2026-11-09: the refiler or porter is
+// never an author). Nil, 2026-11-15 ("what does ported mean?"): the terms are defined once, on the About page
+// (#credit-lines), and each place that shows the line links there.
+export const creditLines = [
+ {id:'ported', prefix:'Ported by ', name:'Ported by', definition:"The porter took the authors' published Lean proof and made only the changes that our verifier needs to check it, such as a small bridge file to our exact problem statement or a move to the verifier's Lean version. The proof stays the authors' work. The porter is not an author."},
+ {id:'refiled', prefix:'Refiled by ', name:'Refiled by', definition:"Someone other than the authors submitted the authors' proof. The refiler is not an author."},
+] as const;
+export const creditLine = (line:string) => creditLines.find(item => line.startsWith(item.prefix));
+export const creditLineUrl = (line:string):string => '/about#' + (creditLine(line)?.id ?? 'credit-lines');
 // Nil, 2026-11-04: of two rows with an equal bound, the row with the higher evidence level ranks first (Lean Verified,
 // then Human Verified, then Claimed); inside one level the earlier row ranks first. Larger is higher; an unknown level is Claimed.
 export const evidenceOrder = (level?:string):number => level==='lean-verified'?2:level==='human-verified'?1:0;

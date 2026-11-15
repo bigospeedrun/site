@@ -7,7 +7,7 @@ import otherBounds from '../lib/other-bounds.json';
 import {inlineMath} from '../lib/math';
 import Layout from '../layouts/Layout.astro';
 import {siteIssuesUrl, repoSelectionText} from '../lib/site';
-import {evidenceName, evidenceLevels, breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
+import {evidenceName, evidenceLevels, breakthroughLabel, breakthroughDefinition, creditLines} from '../lib/evidence';
 import {boardOrigin, boardFeedUrl} from '../lib/board';
 import PlayerAvatar from '../components/PlayerAvatar.astro';
 import supportersFile from '../lib/supporters.json';
@@ -127,6 +127,11 @@ const separator = (index: number, length: number) => index === 0 ? '' : index ==
     <section aria-labelledby="evidence-levels">
       <h2 id="evidence-levels">What does each evidence level mean?</h2>
       <dl><dt><strong>{breakthroughLabel}</strong></dt><dd>{breakthroughDefinition}</dd>{evidenceLevels.map(level=><><dt><strong>{level.name}</strong></dt><dd>{level.definition}</dd></>)}</dl>
+    </section>
+    <section aria-labelledby="credit-lines">
+      <h2 id="credit-lines">What do "Ported by" and "Refiled by" mean?</h2>
+      <p>Some rows show one of these lines under the authors. The result belongs to the authors alone.</p>
+      <dl>{creditLines.map(item=><><dt id={item.id}><strong>{item.name}</strong></dt><dd>{item.definition}</dd></>)}</dl>
     </section>
     <section aria-labelledby="problem-selection">
       <h2 id="problem-selection">How are problems chosen?</h2>

@@ -82,3 +82,21 @@ test('an Other bounds claim is Human Verified only when its row names a review r
  assert.equal(classifyOtherEvidence(undefined,{evidence:'lean-verified'}),'lean-verified');
  assert.equal(otherReviewPrUrl(repo,{pr:63,status:'merged'}),'https://github.com/GTimG/QuasiRiemannTracker/pull/63');
 });
+
+test('each refile or port line on the site links to its definition on the About page (Nil, 2026-11-15)',async()=>{
+ const {creditLines,creditLine,creditLineUrl}=await import('./evidence.ts');
+ assert.deepEqual(creditLines.map(c=>c.id),['ported','refiled']);
+ assert.equal(creditLineUrl('Ported by Big O Speedrun'),'/about#ported');
+ assert.equal(creditLineUrl('Ported by MultiAgency swarm'),'/about#ported');
+ assert.equal(creditLineUrl('Refiled by MultiAgency swarm'),'/about#refiled');
+ assert.equal(creditLineUrl('Something else'),'/about#credit-lines');
+ for(const c of creditLines)assert.match(c.definition,/is not an author\.$/);
+ assert.equal(creditLine('Refiled by X')?.name,'Refiled by');
+ // Every line in the data has a definition.
+ const {readFileSync}=await import('node:fs');
+ const lines=new Set<string>();
+ for(const file of ['data/direct-notes.json','data/direct-other.json'])for(const m of readFileSync(file,'utf8').matchAll(/"refiledBy": "([^"]+)"/g))lines.add(m[1]);
+ for(const file of ['src/data/3sat.json'])for(const m of readFileSync(file,'utf8').matchAll(/"refiled_by": "([^"]+)"/g))lines.add(m[1]);
+ assert.ok(lines.size>=3);
+ for(const line of lines)assert.ok(creditLine(line),line);
+});

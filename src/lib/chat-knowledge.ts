@@ -1,7 +1,7 @@
 import type {Problem, RecordEntry} from './types.ts';
 import {boundPrecision, tableBound} from './ranking.ts';
 import {boardLeaders} from './sssp-board.ts';
-import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, otherReviewPrUrl, type EvidenceLevel, type OtherClaimReview, type OtherReviewRepository} from './evidence.ts';
+import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, creditLines, otherReviewPrUrl, type EvidenceLevel, type OtherClaimReview, type OtherReviewRepository} from './evidence.ts';
 import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns, prove2meCampaignForOther} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import {problemLinks, problemDisplayName} from './navigation.ts';
@@ -28,6 +28,7 @@ export interface ChatKnowledge {
   contribute: ReturnType<typeof contributeRoutes>;
   evidence: typeof evidenceLevels;
   breakthrough: {name:string; definition:string};
+  creditLines: typeof creditLines;
 }
 
 // A chat page is a problem page, the About page, the landing page or an Other bounds row.
@@ -117,6 +118,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
     },
     contribute: contributeRoutes(boards),
     breakthrough: {name:breakthroughLabel, definition:breakthroughDefinition},
+    creditLines,
     problems: boards.map(p => {
       const records = boardRecords(p);
       // Directed SSSP has no rational score: its frontier rows lead, with the board's own bound text (sssp-board.ts).
