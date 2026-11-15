@@ -42912,55 +42912,6 @@
       "source_commit": "eccf3d1fe814ea86a373d37a783105ceb853c390"
     },
     {
-      "id": "crocswap-pr-7603",
-      "kind": "improvement",
-      "score": "3650000454083/1000000000000000",
-      "tier": "claimed",
-      "submitted_at": "2026-11-14T14:07:12Z",
-      "upstream_status": "open",
-      "upstream_status_at": "2026-11-14T14:07:12Z",
-      "site_observed_at": "2026-11-14T17:17:30Z",
-      "source": {
-        "kind": "repo-artifact",
-        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7603"
-      },
-      "spec_version": "1",
-      "title": "P104: two additional chart contractions over #7601 (conditional κ 0.003650000454083)",
-      "authors": [
-        {
-          "name": "SYLforge",
-          "url": "https://github.com/SYLforge"
-        }
-      ],
-      "predecessors": [
-        "https://github.com/CrocSwap/integer-mult-bounds/pull/7113",
-        "https://github.com/CrocSwap/integer-mult-bounds/pull/7314",
-        "https://github.com/CrocSwap/integer-mult-bounds/pull/7334",
-        "https://github.com/CrocSwap/integer-mult-bounds/pull/7546",
-        "https://github.com/CrocSwap/integer-mult-bounds/pull/7601",
-        "https://github.com/CrocSwap/integer-mult-bounds/pull/7602"
-      ],
-      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7603",
-      "artifact": {
-        "path": "sources/pr-7603.json",
-        "sha256": "d6682940af703651b744da73776198de90d0050cf002ae1d5af25b3b6a15f32c"
-      },
-      "evidence": {
-        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7603",
-        "theorem": null,
-        "certificate_path": null
-      },
-      "dependencies": [
-        {
-          "id": "openai-109-transfer",
-          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
-          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7603",
-          "status": "unverified"
-        }
-      ],
-      "source_commit": "3f031ccb7ae7229a7323b1601877f24a46dfcf57"
-    },
-    {
       "id": "crocswap-pr-7604",
       "kind": "improvement",
       "score": "36502223357/10000000000000",
@@ -68302,35 +68253,6 @@
       "race_event_kind": "PR creation; latest observed score",
       "credit_note": "DreamingOfClouds settles helper tokens on the PR 7546 word: main 134 climbs 0 to 3 and main 100 climbs 3 to 6, each in one MOVE. Paid positions 110,468 to 110,434. Conditional kappa 0.0036490213053944. The author did not rerun the signed caller or the outer predicates. It needs PR 7546 and what it needs: the same five framework assumptions as PR 7546. Credits: ToikY, Chris R, rohanarun. Claude Opus 5.5 assisted. External review is outstanding."
     },
-    "crocswap-pr-7603": {
-      "checked_at": "2026-11-15",
-      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7603",
-      "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
-      "pr_number": 7603,
-      "repo": "CrocSwap/integer-mult-bounds",
-      "merged": false,
-      "merged_at": null,
-      "closed_at": null,
-      "updated_at": "2026-11-14T14:17:06Z",
-      "comparison_key": "crocswap/integer-multiplication-v1",
-      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
-      "score_source": "Lead review decision; source claim only",
-      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
-      "upstream_selected": false,
-      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
-      "publication_date_precision": "date-time",
-      "race_repo": "CrocSwap/integer-mult-bounds",
-      "publication_date": "2026-11-14T14:07:12Z",
-      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7603",
-      "race_series": "pr-submissions",
-      "race_event_at": "2026-11-14T14:07:12Z",
-      "race_event_kind": "PR creation; latest observed score",
-      "credit_note": "SY contracts two chart paths on the PR 7601 word: public role 166 and role 134. Paid positions 110,434 to 110,400. Conditional kappa 0.003650000454083. The replay is an archive that is not registered in the upstream CI. It needs PR 7601 and what it needs: the same five framework assumptions as PR 7546. Credits: DreamingOfClouds, ToikY, rohanarun, Chris R. OpenAI Codex assisted. External review is outstanding."
-    },
     "crocswap-pr-7604": {
       "checked_at": "2026-11-15",
       "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7604",
@@ -68535,5 +68457,5 @@
       "credit_note": "DreamingOfClouds applies the contact rechart of PR 7612 to fields 902 and 1091: one ADD moves from chart 618 to 373. Paid positions 110,264 to 110,247. Conditional kappa 0.00365305686569. It rests on the CLEAR 44 premise of PR 7608 and adds none; it is void with PR 7612 if that is refused. It needs PR 7612 and what it needs: the same five framework assumptions as PR 7546. Credits: Chris R, Ali Romman, Hao Yan, SY, ToikY, rohanarun. Claude Opus 5.5 assisted. External review is outstanding."
     }
   },
-  "updated_at": "2026-11-15T14:17:27Z"
+  "updated_at": "2026-11-15T16:17:32Z"
 }
