@@ -34937,5 +34937,20 @@
         "review": "2026-10-13: independently compared all 350 committed modules against shea256/fourier-transform-below-nlogn@9749945f0f3f7fa0edb22065c786f7106953f1db lean/complex588: 343 change only local import prefixes, 7 are byte-identical. All 352 added files are confined to the pinned submission folder. Reviewed Race.bound adapter selects transform_mainC588 decimal time conjunct and reduces 12331685/10^10 to 2466337/2000000000. Manifest matches. No Lean build performed; receipt validation remains required. Lead independently checked all 350 modules: zero non-import differences; only Mathlib/Submission imports; no axiom/opaque/extern/unsafe declarations. PR 7 number, fork and head confirmed through GitHub API; controller pin matches current base and latest scheduler run 38315794408. PR-specific verification has not started at activation."
       }
     }
+  ],
+  "reviewed_issue_bindings": [
+    {
+      "row_id": "openai-eth-2026",
+      "problem": "3sat",
+      "bound": "1/2",
+      "repo_url": "https://github.com/bigospeedrun/verifier-smoke-3sat",
+      "commit": "42b408ae87763c845773d2d79fd2e42a2a47a88d",
+      "source_subdir": null,
+      "submitter": "nmamano",
+      "upstream_repo": "openai/math",
+      "upstream_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a",
+      "ported_by": "Ported by Big O Speedrun",
+      "review": "2026-11-15 (Reviewer and Integrations, task 07840cc3; Lead approved the port on 2026-11-15): branch port-openai of bigospeedrun/verifier-smoke-3sat at 42b408a is f76c997 plus a README change only (GitHub compare). f76c997 passed the check chain smoke (verifier issue #195, run 43624031679, verifier 1c83d79): Lean in 5 segments, the axiom audit propext, Classical.choice, Quot.sound. OAI/ holds 3091 byte copies of openai/math@7ef5c0cc lean/OAI, the import closure of OAI.Algorithms.SubexponentialSAT.Main (sha256 checked by the Reviewer); Submission/ holds our copy of the statement and Bridge.lean, which derives SolvedInTime (1/2) from OpenAI's exact_count_and_sat with k = 3. The result is OpenAI's: the row keeps OpenAI as its only author."
+    }
   ]
 }
