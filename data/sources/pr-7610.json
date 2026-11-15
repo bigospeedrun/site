@@ -1,0 +1,11 @@
+{
+  "number": 7610,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7610",
+  "title": "P104: hosted main 46 merges its final unit hop on #7608, conditional kappa 0.00365097153936 (CLEAR-content premise)",
+  "body": "## Result\n\nConditional κ = **0.0036509715393606183607545417…**, ×1.0000608 (+0.00608%) over #7608 (κ 0.00365074956598).\n\nHosted main 46 merges its final unit hop: 914→245→127 becomes 914→127 (dimensions 7→9). The repair is 2 correction ADDs at chart 245 and 11 premix ADDs at chart 3 (frame {0}). The pair 914→127 is already used by #7608, so there is no new chart pair. All 1,569 rows, end charts, owned MOVEs, lifetimes (74), peak (50), header, caller data and grid equal #7608's. D0 is 392,993.2743 → 392,969.7073 (−23.57). Native paid delta is {1:−2, 2:+1}, charged 17 times; paid positions are 110,349 → 110,332 with S = 1,424.\n\nBase: the word of #7608 (vendored in `data/`), which is aliromman's #7605 with one edit, on FanPUYen's #7604, SYLforge's #7603, ToikY's #7546 and our #7601.\n\n## Official tools\n\n- `compare_recursive_invoices.py` #7608 → new: `uniformly_better`, strictly negative for r^(1−C), paid {1:−34, 2:+17}, targets unchanged.\n- `evaluate_recursive_power.py` (256 bits): `new_cost_lower` at C = 0.0036509715393 and at 0.003650749565983; `new_cost_higher` at C = 0.0036509715394.\n- `scripts/research_package.py --package research/p104-main46-hop-merge`: PASS.\n\n## Premise: CONDITIONAL\n\nThis word inherits #7608's CLEAR #44 content premise and adds none: CLEAR #44 (owned 1557) erases `{451:−1, 1495:1}`, and all 74 CLEARs erase exactly #7608's content (checked by `check.py`). If #7608's premise is refused, this word is void with #7608.\n\nNot rerun: signed #7113 caller, outer predicates, precision/tape. Header, rows, grid and owned data are unchanged. An independent read-only audit found the word sound relative to #7608; no upstream maintainer has reviewed it.\n\nCredit: DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-11-15T03:30:19Z",
+  "updated_at": "2026-11-15T03:30:19Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
