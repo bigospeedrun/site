@@ -810,6 +810,13 @@ class RefreshTests(unittest.TestCase):
             return (source/f'sources/crocswap-certificate-{sha}.json').read_bytes()
         # The index omits PR bodies; the API returns them, so add them back from pr-<n>.json.
         pulls=[p|{'body':refresh.load(source,f"sources/pr-{p['number']}.json")['body']} for p in refresh.load(source,'sources/crocswap-pulls.json')]
+        # One clock for the whole test. refresh.main() reads the time itself, and a new UTC day makes list_pulls list every
+        # PR again and rewrite pulls_full_at, so a run that crossed midnight between the two main() calls below changed
+        # sources/intake.json (safe-push of 66c278f6, 2026-11-14 23:55Z to 2026-11-15 00:07Z).
+        frozen_now=refresh.datetime.now(refresh.timezone.utc)
+        class FrozenDatetime(refresh.datetime):
+            @classmethod
+            def now(cls,tz=None):return frozen_now if tz is None else frozen_now.astimezone(tz)
         for nested in (False,True):
             with self.subTest(nested=nested),tempfile.TemporaryDirectory(dir=refresh.git_state_dir()) as temp:
                 repo=Path(temp);data=repo/'data' if nested else repo;data.mkdir(exist_ok=True)
@@ -824,7 +831,7 @@ class RefreshTests(unittest.TestCase):
                     git('add','unrelated.json')
                 # Offline and hermetic: no PR package is read here (package_claim has its own
                 # tests), so whatever the committed data queues cannot reach the network mock.
-                with patch.object(refresh,'package_claim',lambda *a,**k:(None,None,None)),patch.object(refresh,'ROOT',data),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
+                with patch.object(refresh,'package_claim',lambda *a,**k:(None,None,None)),patch.object(refresh,'ROOT',data),patch.object(refresh,'datetime',FrozenDatetime),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
                     refresh.main()
                     summary=json.loads((repo/'.git/refresh-summary.json').read_text())
                     self.assertIn('registry.json',summary['changed_files'])
