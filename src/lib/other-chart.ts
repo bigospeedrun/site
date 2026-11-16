@@ -98,7 +98,8 @@ export function otherChart(family: Family, reviewed: (claim: object) => boolean,
   const entries = rows.flatMap((claim, i): ChartEntry[] => {
     if (claim.dateKind === 'snapshot') return [];
     const author = claim.authors[0] as Author | undefined;
-    const date = new Date(claim.date).toISOString();
+    // Preserve day-only publications so the tooltip cannot invent a midnight time.
+    const date = /^\d{4}-\d{2}-\d{2}$/.test(claim.date) ? claim.date : new Date(claim.date).toISOString();
     return [{id: ids[i], repoId: i, score: scores[i]!, level: shownLevel(claim, reviewed(claim)), time: Date.parse(date), date,
       author: claim.authors.map(a => a.name).join(', '), boundHtml: render(claim.bound), url: claim.url,
       isBreakthrough: isTableBreakthrough(family as never, claim), avatar: author?.avatar, initials: initials(author?.name ?? '')}];

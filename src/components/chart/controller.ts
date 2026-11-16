@@ -194,7 +194,7 @@ class ProgressChart extends HTMLElement {
     const tick=svg('text',{x:labelX,y:bottom+18,'text-anchor':'middle',class:'plot-date'});
     const d=new Date(time);
     const dateOnly=dateOnlyAxis||entries.some(e=>e.time===time&&/^\d{4}-\d{2}-\d{2}$/.test(e.date));
-    tick.textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(tick);
+    tick.textContent=new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(tick);
     const tickLabels=[tick];
     if(showTimes&&!dateOnly){const t=svg('text',{x:labelX,y:bottom+35,'text-anchor':tick.getAttribute('text-anchor')!,class:'plot-date'});t.textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d);plot.append(t);tickLabels.push(t)}
     // Measure the rendered text, including localized month names and time rows.
@@ -259,7 +259,7 @@ class ProgressChart extends HTMLElement {
   const author=document.createElement('strong');author.textContent=`Player: ${entry.author}`;
   const bound=document.createElement('p');bound.className='plot-bound';bound.innerHTML=entry.boundHtml;
   const dateOnly=/^\d{4}-\d{2}-\d{2}$/.test(entry.date);
-  const date=document.createElement('p');date.textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{hour:'numeric',minute:'2-digit'} as const)}).format(new Date(entry.time));
+  const date=document.createElement('p');date.textContent=new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{hour:'numeric',minute:'2-digit'} as const)}).format(new Date(entry.time));
   const level=document.createElement('p');level.textContent=this.entryLevel(entry);
   const link=document.createElement('a');link.href=entry.url;link.textContent='Read the source';
   if(new URL(entry.url,location.href).hostname==='github.com'){link.target='_blank';link.rel='noopener'}
