@@ -10,7 +10,7 @@ export type EvidenceLevel = typeof evidenceLevels[number]['id'];
 // never an author). Nil, 2026-11-15 ("what does ported mean?"): the terms are defined once, on the About page
 // (#credit-lines), and each place that shows the line links there.
 export const creditLines = [
- {id:'ported', prefix:'Ported by ', name:'Ported by', definition:"The porter took the authors' published Lean proof and made only the changes that our verifier needs to check it, such as a small bridge file to our exact problem statement or a move to the verifier's Lean version. The proof stays the authors' work. The porter is not an author."},
+ {id:'ported', prefix:'Ported by ', name:'Ported by', definition:"The porter took the authors' published Lean proof and made only the changes that the checker (our verifier or prove2.me) needs to check it, such as a small bridge file to our exact problem statement or a move to the checker's Lean version. The proof stays the authors' work. The porter is not an author."},
  {id:'refiled', prefix:'Refiled by ', name:'Refiled by', definition:"Someone other than the authors submitted the authors' proof. The refiler is not an author."},
 ] as const;
 export const creditLine = (line:string) => creditLines.find(item => line.startsWith(item.prefix));
