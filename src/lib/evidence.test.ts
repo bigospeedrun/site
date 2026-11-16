@@ -95,8 +95,10 @@ test('each refile or port line on the site links to its definition on the About 
  // Every line in the data has a definition.
  const {readFileSync}=await import('node:fs');
  const lines=new Set<string>();
- for(const file of ['data/direct-notes.json','data/direct-other.json'])for(const m of readFileSync(file,'utf8').matchAll(/"refiledBy": "([^"]+)"/g))lines.add(m[1]);
- for(const file of ['src/data/3sat.json'])for(const m of readFileSync(file,'utf8').matchAll(/"refiled_by": "([^"]+)"/g))lines.add(m[1]);
+ const {readdirSync}=await import('node:fs');
+ for(const file of ['data/direct-notes.json','data/direct-other.json','data/prove2me.json'])for(const m of readFileSync(file,'utf8').matchAll(/"refiledBy": "([^"]+)"/g))lines.add(m[1]);
+ // Every board file, so a porter line on a new board is covered too (Reviewer note on 17e21573).
+ for(const file of readdirSync('src/data').filter(f=>f.endsWith('.json')))for(const m of readFileSync('src/data/'+file,'utf8').matchAll(/"refiled_by": "([^"]+)"/g))lines.add(m[1]);
  assert.ok(lines.size>=3);
  for(const line of lines)assert.ok(creditLine(line),line);
 });

@@ -445,6 +445,11 @@ def claim_for(slug, board, entry, trust, higher=True):
     # escapes only math. Plain text with <, > or & would be HTML, so the board holds instead.
     for label, text in [('note', entry.get('note', '')), ('theorem name', theorem['name']), *[('author name', a['name']) for a in entry['authors']]]:
         require(not re.search(r'[<>&]', text), f'entry {entry["value"]}: the {label} has a character (< > &) that the page cannot show as text')
+    # A port of another author's proof (Nil, 2026-11-09): the authors are the source proof's authors alone, and the
+    # porters show only on the "Ported by" line (defined on the About page, #ported), never as authors.
+    ported = entry.get('ported_by')
+    require(ported is None or (isinstance(ported, str) and re.fullmatch(r'Ported by [^<>&\r\n]{1,100}', ported)),
+            f'entry {entry["value"]}: ported_by must be one line "Ported by ..." without < > &')
     mission_url = 'https://prove2.me/missions/' + entry['mission_id']
     key = 'prove2me-' + board['family'] + '-' + entry['value'].replace('.', '-')
     shown = shown_number(entry, higher)
@@ -461,8 +466,9 @@ def claim_for(slug, board, entry, trust, higher=True):
                  url=theorem['url'], lean=True,
                  leanNote='Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.',
                  evidence='lean-verified' if LEAN_VERIFIED else 'claimed', note=entry['note'], authors=names,
-                 proofScope='The Lean theorem ' + theorem['name'] + ' on prove2.me states this ' + board.get('quantity_word', 'exponent') + '. Its accepted proof is by ' + ', '.join(n['name'] for n in names) + '.',
-                 bound=board['bound_template'].replace('{value}', shown), prove2me=True, receiptSha256=sha(raw))
+                 proofScope='The Lean theorem ' + theorem['name'] + ' on prove2.me states this ' + board.get('quantity_word', 'exponent') + ('. Its accepted proof is a port of the proof by ' if ported else '. Its accepted proof is by ') + ', '.join(n['name'] for n in names) + '.',
+                 bound=board['bound_template'].replace('{value}', shown), prove2me=True, receiptSha256=sha(raw),
+                 **({'refiledBy': ported} if ported else {}))
     return claim, {path: raw}
 
 

@@ -724,6 +724,25 @@ class OtherBoundsImportTest(OtherFixture, unittest.TestCase):
         self.assertEqual(len(held_state['boards']['other-row']['claims']), 2)
 
 
+    def test_a_port_credits_the_source_authors_and_names_the_porters_apart(self):
+        # Nil, 2026-11-09: a port credits the original authors alone; the porters show only as "Ported by".
+        entry = self.trust['boards']['other-row']['entries'][1]
+        entry.update(authors=[dict(name='lw56', url='https://github.com/LW56e2')], ported_by='Ported by abc on prove2.me')
+        self.save()
+        changed, state, held = self.go()
+        self.assertEqual(held, {})
+        claim = state['boards']['other-row']['claims'][0]
+        self.assertEqual((claim['authors'], claim['author'], claim['refiledBy']),
+                         ([dict(name='lw56', url='https://github.com/LW56e2')], 'lw56', 'Ported by abc on prove2.me'))
+        self.assertTrue(claim['proofScope'].endswith('Its accepted proof is a port of the proof by lw56.'))
+        self.assertNotIn('refiledBy', state['boards']['other-row']['claims'][1])
+        for bad in ('Refiled by abc', 'Ported by a <b>', 'Ported by a\nb', 'Ported by ', 7):
+            with self.subTest(bad=bad):
+                entry['ported_by'] = bad
+                self.save()
+                self.assertIn('ported_by must be one line', self.go()[2]['other-row'])
+
+
 class LowerOtherBoundsImportTest(OtherFixture, unittest.TestCase):
     """An Other bounds row where lower is better (the quasi-Riemann threshold)."""
     DIRECTION = 'lower'

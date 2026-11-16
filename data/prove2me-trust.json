@@ -1506,6 +1506,33 @@
      "solved_at": "2026-10-15T18:00:22.537199+00:00",
      "action": "skip",
      "note": "OpenAI baseline 7/8, already the baseline of this row: a port of OpenAI's Lean proof (goal OAI.DirichletCharacter.LFunction_ne_zero_of_seven_eighths_lt_re by @wurtle)."
+    },
+    {
+     "mission_id": "c042b6dd-7776-4639-9f30-29f1d72d5efa",
+     "value": "0.8749570698",
+     "solved_at": "2026-11-15T21:23:15.5362+00:00",
+     "action": "row",
+     "theorem": {
+      "name": "TowardsGRH_LW56e2_b83dbbd.dirichlet_zero_free_bound",
+      "url": "https://prove2.me/theorems/3a8f3264-d5ab-422c-8e4f-a2c0e27d6918",
+      "statement_path": "envs/0df444a/Theorems/Thm_TowardsGRH_LW56e2_b83dbbd_dirichlet_zero_free_bound.lean",
+      "statement_sha256": "9b35341df2b8907f6dfffac51a2bd300aeae6d06cab7e52391c88e149409100a",
+      "definitions": []
+     },
+     "solution": {
+      "path": "envs/0df444a/Solutions/Sol_TowardsGRH_LW56e2_b83dbbd_dirichlet_zero_free_bound.lean",
+      "sha256": "6cdebfa4bf275f6dd429a8af7b8bb68451cc3043d5ad5f119e74a36d972de6aa",
+      "author": "@0xbf",
+      "submission_url": "https://prove2.me/submissions/302440f4-872e-4755-9418-065a213d9a56"
+     },
+     "authors": [
+      {
+       "name": "lw56",
+       "url": "https://github.com/LW56e2"
+      }
+     ],
+     "ported_by": "Ported by dbenbenn, Himan, marwahaha, 0xbf and others on prove2.me",
+     "note": "A port of lw56's Lean proof (LW56e2/quasi-riemann-improved at b83dbbd, 2026-10-08), which refines OpenAI's 7/8 proof. Of the 479 goals in its proof on prove2.me (all proved or definitions), 407 port OpenAI's 7/8 proof (mostly by dbenbenn) and 68 port lw56's repository (mostly by Himan and marwahaha). The goal imports only Mathlib and states our row with the threshold 0.8749570698 = 4374785349/5000000000 (reviewed 2026-11-16)."
     }
    ]
   }
