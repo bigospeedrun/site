@@ -678,14 +678,38 @@
       "rows": []
     },
     "other-quasi-riemann": {
-      "status": "held",
+      "status": "ok",
       "kind": "other",
       "family": "quasi-riemann",
-      "reason": "unreviewed proved entry 0.8749570698 (mission c042b6dd-7776-4639-9f30-29f1d72d5efa)",
-      "since": "2026-11-16T06:23:42Z",
       "links": {},
       "rows": [],
-      "claims": []
+      "claims": [
+        {
+          "author": "lw56",
+          "handle": "prove2me-0-8749570698",
+          "value": "0.8749570698",
+          "display": "\\le 0.8749570698",
+          "date": "2026-11-15T21:23:15Z",
+          "dateSource": "https://prove2.me/theorems/3a8f3264-d5ab-422c-8e4f-a2c0e27d6918",
+          "dateKind": "first-stated",
+          "url": "https://prove2.me/theorems/3a8f3264-d5ab-422c-8e4f-a2c0e27d6918",
+          "lean": true,
+          "leanNote": "Yes: proved on prove2.me, which checks each Lean proof on its server. We reviewed that its Lean statement is this statement.",
+          "evidence": "lean-verified",
+          "note": "A port of lw56's Lean proof (LW56e2/quasi-riemann-improved at b83dbbd, 2026-10-08), which refines OpenAI's 7/8 proof. Of the 479 goals in its proof on prove2.me (all proved or definitions), 407 port OpenAI's 7/8 proof (mostly by dbenbenn) and 68 port lw56's repository (mostly by Himan and marwahaha). The goal imports only Mathlib and states our row with the threshold 0.8749570698 = 4374785349/5000000000 (reviewed 2026-11-16).",
+          "authors": [
+            {
+              "name": "lw56",
+              "url": "https://github.com/LW56e2"
+            }
+          ],
+          "proofScope": "The Lean theorem TowardsGRH_LW56e2_b83dbbd.dirichlet_zero_free_bound on prove2.me states this threshold. Its accepted proof is a port of the proof by lw56.",
+          "bound": "\\theta\\le 0.8749570698",
+          "prove2me": true,
+          "receiptSha256": "8f2db581920140bdd8ec29cb27d2adc622b20fec9b13fc9568de3d071ba92706",
+          "refiledBy": "Ported by dbenbenn, Himan, marwahaha, 0xbf and others on prove2.me"
+        }
+      ]
     }
   }
 }

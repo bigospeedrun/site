@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "source": "prove2.me",
+  "reviewed_at": "2026-10-17",
+  "reviewed_by": "BOS Worker 4",
+  "campaign": {
+    "id": "f16891be-d1d7-4714-a81d-c15735bfda85",
+    "slug": "towards-grh",
+    "status": "active",
+    "value_type": "real",
+    "bound_type": "upper",
+    "value_direction": "lower"
+  },
+  "mission_id": "c042b6dd-7776-4639-9f30-29f1d72d5efa",
+  "mission_url": "https://prove2.me/missions/c042b6dd-7776-4639-9f30-29f1d72d5efa",
+  "attested_value": "0.8749570698",
+  "solved_at": "2026-11-15T21:23:15.5362+00:00",
+  "statement_form": "DirichletCharacter.LFunction χ s ≠ 0 for every modulus q > 0, every complex Dirichlet character χ mod q and every complex s with θ < Re(s), except s = 1 for the principal character (Mathlib definitions only; the goals import only Mathlib, reviewed 2026-11-05). That is our statement: the Dirichlet L-functions, zeta among them (modulus 1), have no zeros with real part above θ. It is the all-Dirichlet theorem of the row, not the Hecke part of the OpenAI paper.",
+  "formalpedia": {
+    "repo": "prove2me/formalpedia",
+    "ref": "main",
+    "env": "0df444a"
+  },
+  "theorem": {
+    "name": "TowardsGRH_LW56e2_b83dbbd.dirichlet_zero_free_bound",
+    "url": "https://prove2.me/theorems/3a8f3264-d5ab-422c-8e4f-a2c0e27d6918",
+    "statement_path": "envs/0df444a/Theorems/Thm_TowardsGRH_LW56e2_b83dbbd_dirichlet_zero_free_bound.lean",
+    "statement_sha256": "9b35341df2b8907f6dfffac51a2bd300aeae6d06cab7e52391c88e149409100a",
+    "definitions": []
+  },
+  "solution": {
+    "path": "envs/0df444a/Solutions/Sol_TowardsGRH_LW56e2_b83dbbd_dirichlet_zero_free_bound.lean",
+    "sha256": "6cdebfa4bf275f6dd429a8af7b8bb68451cc3043d5ad5f119e74a36d972de6aa",
+    "author": "@0xbf",
+    "submission_url": "https://prove2.me/submissions/302440f4-872e-4755-9418-065a213d9a56"
+  },
+  "definitions": {},
+  "lean_verified": true
+}
