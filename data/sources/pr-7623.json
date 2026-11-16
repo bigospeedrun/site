@@ -1,0 +1,11 @@
+{
+  "number": 7623,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7623",
+  "title": "P104: loan + stationary-snapshot engine (14 instances on #7621), conditional kappa 0.0036624027915",
+  "body": "**Conditional κ = 0.0036624027915** (exact crossing 0.00366240279155398, official bracket [0.0036624027915, 0.0036624027916]), **×1.00025679 over our open #7621** (κ 0.0036614625547). #7621's word and invoice are the base data.\n\nThis PR ships the word **and the engine that produced it** (`engine/`), so others can run these incremental passes on any P104 native word: `python3 engine/run_on.py WORD.json.gz` does census, greedy loan + snapshot passes and re-census in about a minute (standard library, under 1 GB). The device is SYLforge's (#7616, #7620). A VERIFY test reruns the engine on #7621's word and requires the output to equal this word.\n\n**The edit.** 14 instances (all side A) of SYLforge's loan + stationary-snapshot device. A register drops a middle stop while a partner inserts one. The dropped work rides a loan through a third register that passes all three charts. 13 new stationary owned lifetimes (INIT, one write, one read, dirty CLEAR, no MOVE) are each certified under #7620's `verify_certificates` rule. Rows, end charts, the 47 owned MOVEs, peak 50, 68 labels, the 1,018 old owned observations and the old 167 CLEAR contents are identical to #7621's. S 1,424; ordinary bill 785,921,632; precision 303/299/299.\n\n**Premises: conditional on exactly #7620's five assumptions and its 17·68 banks, with its CLEAR reading now covering 180 CLEARs (74 + 106 stationary), not 167.**\n\n**Packaging.** The affected-pair census grows from 846 to 964 pairs (+118, none dropped). `check.py` runs the 512 + 512 column tests on all 964, split over two VERIFY commands. Hashes, census, invoice and bracket are re-pinned. `scripts/research_package.py` passes, with the engine reproduction included.\n\n**Credit.** SYLforge (#7616, #7620) for the device; our #7621, #7617 and #7615 for the base and the courier lineage. DreamingOfClouds with Claude Opus 5.5 (Anthropic), via Claude Code.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+  "created_at": "2026-11-16T00:39:47Z",
+  "updated_at": "2026-11-16T00:39:47Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
