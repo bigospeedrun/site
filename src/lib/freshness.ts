@@ -1,9 +1,9 @@
 import {acceptedRaceRecord} from './ranking.ts';
 import type {Problem} from './types';
 export function localTimeFallback(value:string):string {
- if(/^\d{4}-\d{2}-\d{2}$/.test(value))return new Intl.DateTimeFormat('en-US',{timeZone:'UTC',month:'short',day:'numeric'}).format(new Date(value));
  // A date from another year shows its year.
  const year=new Date(value).getUTCFullYear()!==new Date().getUTCFullYear()?{year:'numeric'} as const:{};
+ if(/^\d{4}-\d{2}-\d{2}$/.test(value))return new Intl.DateTimeFormat('en-US',{timeZone:'UTC',...year,month:'short',day:'numeric'}).format(new Date(value));
  return new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',...year,month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(value))+' PT';
 }
 export function latestRaceRecord(p:Problem):string|undefined {

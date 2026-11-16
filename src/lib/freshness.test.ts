@@ -12,6 +12,7 @@ test('freshness uses a minute-resolution PT fallback and preserves date-only pre
  assert.equal(localTimeFallback('2026-10-09T12:30:45+02:00'),'Oct 9, 3:30 AM PT');
  // A date from another year shows its year.
  assert.equal(localTimeFallback('2015-10-17T19:13:00+03:00'),'Oct 17, 2015, 9:13 AM PT');
+ assert.equal(localTimeFallback('2016-05-15'),'May 15, 2016');
 });
 
 test('selected main-branch checkpoints can rank without a merged PR',()=>{

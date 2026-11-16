@@ -4619,6 +4619,464 @@
         "terms",
         "coefficient"
       ]
+    },
+    {
+      "slug": "busy-beaver-zfc",
+      "name": "Busy Beaver independence from ZFC",
+      "quantity": "N_{\\mathrm{ZFC}}",
+      "direction": "lower",
+      "statement": "Let \\(N_{\\mathrm{ZFC}}\\) be the least \\(n\\) for which ZFC cannot prove the true value of the step-count Busy Beaver function \\(\\mathrm{BB}(n)\\). We track published upper bounds on this threshold, under the stated metamathematical assumptions; smaller is better. Machines are deterministic, with two tape symbols, one two-way infinite initially blank tape, L/R moves, and a separate halt excluded from the working-state count; initialization counts. For the contradiction-search constructions, assume ZFC is arithmetically sound. Their ordinary correctness arguments connect nonhalting to ZFC consistency; deriving independence also requires that connection within ZFC, not merely an external proof-assistant equivalence. ZF results are included using its equiconsistency with ZFC. The 7,910-state historical result retains its stronger hypotheses. These bounds do not determine BB(n) or prove the threshold minimal. Dates identify the linked publication, announcement or formalization, not necessarily discovery priority. The dated historical baseline is Wade’s 432-state construction; later intermediate machines are also listed.",
+      "baseline": {
+        "label": "Classic baseline",
+        "by": "Andrew James Wade",
+        "value": "432",
+        "exactValue": "432",
+        "bound": "N_{\\mathrm{ZFC}}\\le 432",
+        "url": "https://codeberg.org/ajwade/turing_machine_explorer/commit/33b30300054242201a95679aacf7e74312bd8803b0df9a85d2314095efd6804e",
+        "date": "2025"
+      },
+      "claims": [
+        {
+          "author": "Adam Yedidia and Scott Aaronson",
+          "handle": "yedidia-aaronson",
+          "value": "7910",
+          "display": "7910",
+          "date": "2016-05-13T22:05:58Z",
+          "dateSource": "https://arxiv.org/abs/1605.04343v1",
+          "dateKind": "first-stated",
+          "url": "https://arxiv.org/abs/1605.04343v1",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Historical first explicit bound. Uses Friedman’s order-invariant graph statement and stronger set-theoretic assumptions for nonhalting (the stationary Ramsey property), rather than a direct ZFC contradiction search. Retained with those qualifications; it is not a consistency-only result. The date is the arXiv submission.",
+          "authors": [
+            {
+              "name": "Adam Yedidia"
+            },
+            {
+              "name": "Scott Aaronson"
+            }
+          ],
+          "proofScope": "Written paper using Friedman’s independence result. The large-cardinal hypothesis and the unpublished-proof dependency in that result are retained; no formal verification is claimed.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 7910"
+        },
+        {
+          "author": "Stefan O’Rear",
+          "handle": "sorear",
+          "value": "1919",
+          "display": "1919",
+          "date": "2016-05-15",
+          "dateSource": "https://groups.google.com/g/metamath/c/OumBq83Ksqs/m/FogyOlLIBwAJ",
+          "dateKind": "first-stated",
+          "url": "https://github.com/sorear/metamath-turing-machines/blob/7188b4dcdeca37b69afdeafd9fd9e9d71718e25f/machines/2016-zf-sorear-1919/zf.nql",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "NQL proof enumeration for ZF. The date is the public announcement; the linked machine was later archived under its original 2016 name. ZF and ZFC have the same consistency strength.",
+          "authors": [
+            {
+              "name": "Stefan O’Rear",
+              "url": "https://github.com/sorear"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 1919"
+        },
+        {
+          "author": "Stefan O’Rear",
+          "handle": "sorear",
+          "value": "748",
+          "display": "748",
+          "date": "2017-08-08T04:13:30Z",
+          "dateSource": "https://github.com/sorear/metamath-turing-machines/commit/530d5450cbf0fe7d0d104ec0f0ab037857e8a49c",
+          "dateKind": "first-stated",
+          "url": "https://github.com/sorear/metamath-turing-machines/blob/90ce62441dbed73b8fd1702b56aebdadb3576439/machines/2017-zf-sorear-748/zf2.nql",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "The archived construction identifies itself as 2017-zf-sorear-748 and says all zf2.nql development took place in 2017. The date shown is its cited final optimization commit, not the later archival commit. Some secondary timelines instead give May 2016. Riebel’s 2023 thesis supplies a detailed correctness argument.",
+          "authors": [
+            {
+              "name": "Stefan O’Rear",
+              "url": "https://github.com/sorear"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 748"
+        },
+        {
+          "author": "Johannes Riebel",
+          "handle": "riebel",
+          "value": "745",
+          "display": "745",
+          "date": "2023-07-05",
+          "dateSource": "https://scottaaronson.blog/?p=7388",
+          "dateKind": "announced",
+          "url": "https://docs.bbchallenge.org/papers/Riebel2023.pdf",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Riebel’s thesis, dated March 2023, proves correctness of the 748-state construction and reduces it to 745. The displayed date is Aaronson’s public announcement on 5 July, not the thesis date or a claim of discovery priority.",
+          "authors": [
+            {
+              "name": "Johannes Riebel"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 745"
+        },
+        {
+          "author": "Rohan Ridenour",
+          "handle": "catsarefluffy",
+          "value": "643",
+          "display": "643",
+          "date": "2024-07-24",
+          "dateSource": "https://scottaaronson.blog/?p=8131",
+          "dateKind": "announced",
+          "url": "https://scottaaronson.blog/?p=8131",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Further NQL compiler/program improvement. The date is Aaronson’s 24 July announcement linking Ridenour’s construction.",
+          "authors": [
+            {
+              "name": "Rohan Ridenour",
+              "url": "https://github.com/CatsAreFluffy"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 643"
+        },
+        {
+          "author": "Rohan Ridenour",
+          "handle": "catsarefluffy",
+          "value": "636",
+          "display": "636",
+          "date": "2024-08-30T22:13:27Z",
+          "dateSource": "https://github.com/CatsAreFluffy/metamath-turing-machines/commit/6fc33bef6ba8885d26aed94c83e88bdabbedb0f1",
+          "dateKind": "first-stated",
+          "url": "https://github.com/CatsAreFluffy/metamath-turing-machines/commit/6fc33bef6ba8885d26aed94c83e88bdabbedb0f1",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Uses decz in the ZFC program. The UTC timestamp is from the source commit; secondary timelines give 31 August.",
+          "authors": [
+            {
+              "name": "Rohan Ridenour",
+              "url": "https://github.com/CatsAreFluffy"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 636"
+        },
+        {
+          "author": "Andrew James Wade",
+          "handle": "andrew-j-wade",
+          "value": "588",
+          "display": "588",
+          "date": "2025-07-12T18:14:57Z",
+          "dateSource": "https://github.com/andrew-j-wade/metamath-turing-machines/commit/30d2e3194866615f68dd2f5101cb300fb039adca",
+          "dateKind": "first-stated",
+          "url": "https://github.com/andrew-j-wade/metamath-turing-machines/commit/30d2e3194866615f68dd2f5101cb300fb039adca",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Skips no-op transitions in the compiler. The date is the source commit.",
+          "authors": [
+            {
+              "name": "Andrew James Wade",
+              "url": "https://github.com/andrew-j-wade"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 588"
+        },
+        {
+          "author": "Andrew James Wade",
+          "handle": "andrew-j-wade",
+          "value": "549",
+          "display": "549",
+          "date": "2025-07-16T02:07:42Z",
+          "dateSource": "https://github.com/andrew-j-wade/metamath-turing-machines/commit/5d676aec074a94f598959cb3b7733a8f7781762f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/andrew-j-wade/metamath-turing-machines/commit/5d676aec074a94f598959cb3b7733a8f7781762f",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Rearranges alignment no-ops to share more decision-tree subtrees. The date is the source commit.",
+          "authors": [
+            {
+              "name": "Andrew James Wade",
+              "url": "https://github.com/andrew-j-wade"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 549"
+        },
+        {
+          "author": "Andrew James Wade",
+          "handle": "andrew-j-wade",
+          "value": "432",
+          "display": "432",
+          "date": "2025-08-19T19:15:33-04:00",
+          "dateSource": "https://codeberg.org/ajwade/turing_machine_explorer/commit/33b30300054242201a95679aacf7e74312bd8803b0df9a85d2314095efd6804e",
+          "dateKind": "first-stated",
+          "url": "https://codeberg.org/ajwade/turing_machine_explorer/commit/33b30300054242201a95679aacf7e74312bd8803b0df9a85d2314095efd6804e",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Wade’s new register-machine framework compiles the ZF proof enumerator to 432 states: 96 framework states and 336 decision-DAG states. Its README gives these counts. The date is the source commit.",
+          "authors": [
+            {
+              "name": "Andrew James Wade",
+              "url": "https://github.com/andrew-j-wade"
+            }
+          ],
+          "proofScope": "Published construction and ordinary mathematical argument; no site proof-assistant rerun. This is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 432"
+        },
+        {
+          "author": "Andrew James Wade; formalization by Jeff Ketchersid",
+          "handle": "andrew-j-wade",
+          "value": "393",
+          "display": "393",
+          "date": "2026-10-10T16:05:51-07:00",
+          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/56095125b0392e6d45b56b85c553fbcba9491db0",
+          "dateKind": "formalized",
+          "url": "https://github.com/jeff87654/busy-beaver/blob/56095125b0392e6d45b56b85c553fbcba9491db0/ZF/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Wade’s 393-state machine, reproduced unchanged and formalized by Jeff Ketchersid. The date is this public Coq package; the earlier construction date is not established here. This is an intermediate improvement beyond the dated 432-state baseline.",
+          "authors": [
+            {
+              "name": "Andrew James Wade",
+              "url": "https://github.com/andrew-j-wade"
+            },
+            {
+              "name": "Jeff Ketchersid (formalization)",
+              "url": "https://github.com/jeff87654"
+            }
+          ],
+          "proofScope": "The original Coq endpoint targets O’Rear’s numerical calculus, prov, with the standard-ZF interpretation supplied by an ordinary argument at that release. The repository later formalized that bridge for the 354-state machine. No site rerun or Lean verification.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 393"
+        },
+        {
+          "author": "Jeff Ketchersid",
+          "handle": "jeff87654",
+          "value": "354",
+          "display": "354",
+          "date": "2026-10-10T16:05:51-07:00",
+          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/56095125b0392e6d45b56b85c553fbcba9491db0",
+          "dateKind": "first-stated",
+          "url": "https://github.com/jeff87654/busy-beaver/blob/56095125b0392e6d45b56b85c553fbcba9491db0/ZF/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "B354 reworks the EXT, REP and INF axioms, with variants proved interderivable with the originals. Published alongside A361 in the same Claude-assisted commit; 354 is the best bound in that release. The date is the package publication, not separate discovery times for its intermediate machines.",
+          "authors": [
+            {
+              "name": "Jeff Ketchersid",
+              "url": "https://github.com/jeff87654"
+            }
+          ],
+          "proofScope": "The original Coq endpoint targets O’Rear’s numerical calculus, prov, with the standard-ZF interpretation supplied by an ordinary argument at that release. The repository later formalized that bridge for the 354-state machine. No site rerun or Lean verification.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 354",
+          "agent": true
+        },
+        {
+          "author": "Jeff Ketchersid",
+          "handle": "jeff87654",
+          "value": "361",
+          "display": "361",
+          "date": "2026-10-10T16:05:51-07:00",
+          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/56095125b0392e6d45b56b85c553fbcba9491db0",
+          "dateKind": "first-stated",
+          "url": "https://github.com/jeff87654/busy-beaver/blob/56095125b0392e6d45b56b85c553fbcba9491db0/ZF/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "A361 retains Wade’s compiler and formal system while reworking the proof-search program. Published in the same Claude-assisted package as the smaller B354; no separate earlier publication time is asserted.",
+          "authors": [
+            {
+              "name": "Jeff Ketchersid",
+              "url": "https://github.com/jeff87654"
+            }
+          ],
+          "proofScope": "The original Coq endpoint targets O’Rear’s numerical calculus, prov, with the standard-ZF interpretation supplied by an ordinary argument at that release. The repository later formalized that bridge for the 354-state machine. No site rerun or Lean verification.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 361",
+          "agent": true
+        },
+        {
+          "author": "Jeff Ketchersid",
+          "handle": "jeff87654",
+          "value": "335",
+          "display": "335",
+          "date": "2026-10-11T15:46:09-07:00",
+          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/87e4c72237f4ced09b437310754d2dfbd1fb92b7",
+          "dateKind": "first-stated",
+          "url": "https://github.com/jeff87654/busy-beaver/blob/87e4c72237f4ced09b437310754d2dfbd1fb92b7/ZF/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "R3Y1_335 uses Wade’s compiler with a reworked proof-search program. The source also preserves 393-, 361-, 354- and 336-state constructions. The commit reports Coq checks and credits Claude Opus 5.5. The date is this public release, not a date inferred for each intermediate machine.",
+          "authors": [
+            {
+              "name": "Jeff Ketchersid",
+              "url": "https://github.com/jeff87654"
+            }
+          ],
+          "proofScope": "The source reports an end-to-end Rocq/Coq proof of blank-tape halting iff finite ZF/ZFC refutation. We have not rerun it or checked an internal independence theorem; this is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 335",
+          "agent": true
+        },
+        {
+          "author": "Jeff Ketchersid",
+          "handle": "jeff87654",
+          "value": "336",
+          "display": "336",
+          "date": "2026-10-11T15:46:09-07:00",
+          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/87e4c72237f4ced09b437310754d2dfbd1fb92b7",
+          "dateKind": "first-stated",
+          "url": "https://github.com/jeff87654/busy-beaver/blob/87e4c72237f4ced09b437310754d2dfbd1fb92b7/ZF/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "R3s336 uses a bounded-fiber replacement hypothesis so that power set and union become derivable. Published alongside the smaller R3Y1_335 in the same commit; no separate earlier publication time is asserted.",
+          "authors": [
+            {
+              "name": "Jeff Ketchersid",
+              "url": "https://github.com/jeff87654"
+            }
+          ],
+          "proofScope": "The source reports an end-to-end Rocq/Coq proof of blank-tape halting iff finite ZF/ZFC refutation. We have not rerun it or checked an internal independence theorem; this is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 336",
+          "agent": true
+        },
+        {
+          "author": "Mira (Mira-Cult); formalization by Jeff Ketchersid",
+          "handle": "mira-cult",
+          "value": "254",
+          "display": "254",
+          "date": "2026-10-13T22:25:49-07:00",
+          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/c132d7eae8158cd3a9850ea3eb7251158c3dd821",
+          "dateKind": "formalized",
+          "url": "https://github.com/jeff87654/busy-beaver/blob/c132d7eae8158cd3a9850ea3eb7251158c3dd821/ZF/m254/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "Mira-Cult’s ZFC254 machine, formalized by Jeff Ketchersid. The source dates the original audited table to 30 September 2026; the date shown is publication of this Coq formalization, not the first construction date. Table SHA-256: d655ce2cf8cccebd21caa21a49f0f9f010960a44b95c17aae6cc425c518954eb.",
+          "authors": [
+            {
+              "name": "Mira (Mira-Cult)"
+            },
+            {
+              "name": "Jeff Ketchersid (formalization)",
+              "url": "https://github.com/jeff87654"
+            }
+          ],
+          "proofScope": "The source reports an end-to-end Rocq/Coq proof of blank-tape halting iff finite ZF/ZFC refutation. We have not rerun it or checked an internal independence theorem; this is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 254",
+          "agent": true
+        },
+        {
+          "author": "Mira (mira-emmy)",
+          "handle": "mira-emmy",
+          "value": "253",
+          "display": "253",
+          "date": "2026-10-18T20:07:14-07:00",
+          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/25d06f03192a311cb3ce3930a972a96120ffed9d",
+          "dateKind": "published",
+          "url": "https://github.com/jeff87654/busy-beaver/blob/25d06f03192a311cb3ce3930a972a96120ffed9d/ZF/m253/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "One-state reduction of Mira-Cult’s 254-state table, retaining its program, calculus and set-theory transports. The source reports Coq 8.20.1 checks and recursive coqchk. The date is the public merge of the proof package; no earlier publication time is asserted.",
+          "authors": [
+            {
+              "name": "Mira (mira-emmy)",
+              "url": "https://github.com/mira-emmy"
+            }
+          ],
+          "proofScope": "The source reports an end-to-end Rocq/Coq proof of blank-tape halting iff finite ZF/ZFC refutation. We have not rerun it or checked an internal independence theorem; this is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 253",
+          "agent": true
+        },
+        {
+          "author": "Elliot Glazer",
+          "handle": "elliotglazer",
+          "value": "230",
+          "display": "230",
+          "date": "2026-10-19T03:19:01-07:00",
+          "dateSource": "https://github.com/elliotglazer/k230-rocq/commit/088a8f2eb47b0dee9e7761cc49cd411157dd5e28",
+          "dateKind": "first-stated",
+          "url": "https://github.com/elliotglazer/k230-rocq/blob/088a8f2eb47b0dee9e7761cc49cd411157dd5e28/README.md",
+          "lean": false,
+          "leanNote": "No Lean proof is supplied for this entry.",
+          "evidence": "claimed",
+          "note": "K230 uses a compact theory and more efficient axiom encoding. It builds on Mira, Vladimir Reshetnikov, Jeff Ketchersid and Andrew James Wade. This entry links the original axiom-free Rocq package; later internal-PA formalization is a separate development.",
+          "authors": [
+            {
+              "name": "Elliot Glazer",
+              "url": "https://github.com/elliotglazer"
+            }
+          ],
+          "proofScope": "The source reports an end-to-end Rocq/Coq proof of blank-tape halting iff finite ZF/ZFC refutation. We have not rerun it or checked an internal independence theorem; this is not a Lean Verified entry.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 230",
+          "agent": true
+        },
+        {
+          "author": "Vladimir Reshetnikov",
+          "handle": "vladimirreshetnikov",
+          "value": "215",
+          "display": "215",
+          "date": "2026-10-20T19:06:53-07:00",
+          "dateSource": "https://github.com/VladimirReshetnikov/ProveIt/commit/a61476422532a5d3b7dec11fc7a92751fe0d60f8",
+          "dateKind": "first-stated",
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/c9dc79323429112c698100f3226a6e4d56c8b782/Computability/BusyBeaver/Research/ZFC/candidate-k215/README.md",
+          "lean": true,
+          "leanNote": "Author-reported Lean 4.32.0 and Rocq 9.1.0 checks of the same exact machine. The original Lean build compiled 204 project modules and two endpoint clients, with only propext, Classical.choice and Quot.sound; Rocq compiled 237 sources with closed endpoint reports and recursive coqchk. These are external halting/refutation equivalences. No site rerun or formal check of the full BB independence statement has been performed.",
+          "evidence": "claimed",
+          "note": "K215 has 215 working states, 430 transition rows and a separate uncounted halt, including blank initialization. The date is the original publication commit (21 October UTC). The linked later snapshot reports Lean and Rocq checks completed on 21 October. The ordinary argument claims a ZFC-provable nonhalting/consistency equivalence; the external formal endpoints prove halting iff finite ZFC refutation, and do not supply an internal PA or encoded ZFC derivation. No minimality or unconditional nonhalting is claimed. Dense-table SHA-256: fdbcef0825886035c3091c8537a69535bc96f9e265f0ae45863543d40ae70090. Inherited mathematics, compiler work and formalization credits are preserved in the source NOTICE.",
+          "authors": [
+            {
+              "name": "Vladimir Reshetnikov",
+              "url": "https://github.com/VladimirReshetnikov"
+            }
+          ],
+          "proofScope": "Author-reported Lean 4.32.0 and Rocq 9.1.0 checks of the same exact machine. The original Lean build compiled 204 project modules and two endpoint clients, with only propext, Classical.choice and Quot.sound; Rocq compiled 237 sources with closed endpoint reports and recursive coqchk. These are external halting/refutation equivalences. No site rerun or formal check of the full BB independence statement has been performed.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 215",
+          "agent": true
+        }
+      ],
+      "repos": [
+        {
+          "name": "sorear/metamath-turing-machines",
+          "url": "https://github.com/sorear/metamath-turing-machines",
+          "note": "Archived NQL constructions and compiler history."
+        },
+        {
+          "name": "Andrew James Wade’s Turing Machine Explorer",
+          "url": "https://codeberg.org/ajwade/turing_machine_explorer",
+          "note": "Compiler and machine lineage for the historical baseline."
+        },
+        {
+          "name": "jeff87654/busy-beaver",
+          "url": "https://github.com/jeff87654/busy-beaver/tree/main/ZF",
+          "note": "The 335-, 254- and 253-state proofs, with intermediate machines and attribution."
+        },
+        {
+          "name": "elliotglazer/k230-rocq",
+          "url": "https://github.com/elliotglazer/k230-rocq",
+          "note": "K230 and its Rocq proof packages."
+        },
+        {
+          "name": "K215 verification record",
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/c9dc79323429112c698100f3226a6e4d56c8b782/Computability/BusyBeaver/Research/ZFC/k225-formal/verification/k215/README.md",
+          "note": "Pinned statements, build reports, axioms and reproduction instructions. Author-reported checks have not been rerun by this site."
+        }
+      ],
+      "bestHandle": "vladimirreshetnikov"
     }
   ],
   "followups": [
