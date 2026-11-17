@@ -4920,32 +4920,6 @@
           "bound": "N_{\\mathrm{ZFC}}\\le 432"
         },
         {
-          "author": "Andrew James Wade; formalization by Jeff Ketchersid",
-          "handle": "andrew-j-wade",
-          "value": "393",
-          "display": "393",
-          "date": "2026-10-10T16:05:51-07:00",
-          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/56095125b0392e6d45b56b85c553fbcba9491db0",
-          "dateKind": "formalized",
-          "url": "https://github.com/jeff87654/busy-beaver/blob/56095125b0392e6d45b56b85c553fbcba9491db0/ZF/README.md",
-          "lean": false,
-          "leanNote": "No Lean proof is supplied for this entry.",
-          "evidence": "claimed",
-          "note": "Wade’s 393-state machine, reproduced unchanged and formalized by Jeff Ketchersid. The date is this public Coq package; the earlier construction date is not established here. This is an intermediate improvement beyond the dated 432-state baseline.",
-          "authors": [
-            {
-              "name": "Andrew James Wade",
-              "url": "https://github.com/andrew-j-wade"
-            },
-            {
-              "name": "Jeff Ketchersid (formalization)",
-              "url": "https://github.com/jeff87654"
-            }
-          ],
-          "proofScope": "The original Coq endpoint targets O’Rear’s numerical calculus, prov, with the standard-ZF interpretation supplied by an ordinary argument at that release. The repository later formalized that bridge for the 354-state machine. No site rerun or Lean verification.",
-          "bound": "N_{\\mathrm{ZFC}}\\le 393"
-        },
-        {
           "author": "Jeff Ketchersid",
           "handle": "jeff87654",
           "value": "354",
@@ -4957,7 +4931,7 @@
           "lean": false,
           "leanNote": "No Lean proof is supplied for this entry.",
           "evidence": "claimed",
-          "note": "B354 reworks the EXT, REP and INF axioms, with variants proved interderivable with the originals. Published alongside A361 in the same Claude-assisted commit; 354 is the best bound in that release. The date is the package publication, not separate discovery times for its intermediate machines.",
+          "note": "B354 reworks the EXT, REP and INF axioms, with variants proved interderivable with the originals. It was published in a Claude-assisted commit that also gives 393 (Andrew James Wade’s machine, reproduced unchanged and formalized by Jeff Ketchersid) and 361 (A361, which keeps Wade’s compiler and formal system and reworks the proof-search program). 354 is the best bound in that commit. The date is the package publication, not separate discovery times for its intermediate machines.",
           "authors": [
             {
               "name": "Jeff Ketchersid",
@@ -4966,29 +4940,6 @@
           ],
           "proofScope": "The original Coq endpoint targets O’Rear’s numerical calculus, prov, with the standard-ZF interpretation supplied by an ordinary argument at that release. The repository later formalized that bridge for the 354-state machine. No site rerun or Lean verification.",
           "bound": "N_{\\mathrm{ZFC}}\\le 354",
-          "agent": true
-        },
-        {
-          "author": "Jeff Ketchersid",
-          "handle": "jeff87654",
-          "value": "361",
-          "display": "361",
-          "date": "2026-10-10T16:05:51-07:00",
-          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/56095125b0392e6d45b56b85c553fbcba9491db0",
-          "dateKind": "first-stated",
-          "url": "https://github.com/jeff87654/busy-beaver/blob/56095125b0392e6d45b56b85c553fbcba9491db0/ZF/README.md",
-          "lean": false,
-          "leanNote": "No Lean proof is supplied for this entry.",
-          "evidence": "claimed",
-          "note": "A361 retains Wade’s compiler and formal system while reworking the proof-search program. Published in the same Claude-assisted package as the smaller B354; no separate earlier publication time is asserted.",
-          "authors": [
-            {
-              "name": "Jeff Ketchersid",
-              "url": "https://github.com/jeff87654"
-            }
-          ],
-          "proofScope": "The original Coq endpoint targets O’Rear’s numerical calculus, prov, with the standard-ZF interpretation supplied by an ordinary argument at that release. The repository later formalized that bridge for the 354-state machine. No site rerun or Lean verification.",
-          "bound": "N_{\\mathrm{ZFC}}\\le 361",
           "agent": true
         },
         {
@@ -5003,7 +4954,7 @@
           "lean": false,
           "leanNote": "No Lean proof is supplied for this entry.",
           "evidence": "claimed",
-          "note": "R3Y1_335 uses Wade’s compiler with a reworked proof-search program. The source also preserves 393-, 361-, 354- and 336-state constructions. The commit reports Coq checks and credits Claude Opus 5.5. The date is this public release, not a date inferred for each intermediate machine.",
+          "note": "R3Y1_335 uses Wade’s compiler with a reworked proof-search program. The same commit also gives 336 (R3s336, which uses a bounded-fiber replacement hypothesis so that power set and union become derivable). The source also preserves the 393-, 361- and 354-state constructions, which are described in the 354 row. The commit reports Coq checks and credits Claude Opus 5.5. The date is this public release, not a date inferred for each intermediate machine.",
           "authors": [
             {
               "name": "Jeff Ketchersid",
@@ -5012,29 +4963,6 @@
           ],
           "proofScope": "The source reports an end-to-end Rocq/Coq proof of blank-tape halting iff finite ZF/ZFC refutation. We have not rerun it or checked an internal independence theorem; this is not a Lean Verified entry.",
           "bound": "N_{\\mathrm{ZFC}}\\le 335",
-          "agent": true
-        },
-        {
-          "author": "Jeff Ketchersid",
-          "handle": "jeff87654",
-          "value": "336",
-          "display": "336",
-          "date": "2026-10-11T15:46:09-07:00",
-          "dateSource": "https://github.com/jeff87654/busy-beaver/commit/87e4c72237f4ced09b437310754d2dfbd1fb92b7",
-          "dateKind": "first-stated",
-          "url": "https://github.com/jeff87654/busy-beaver/blob/87e4c72237f4ced09b437310754d2dfbd1fb92b7/ZF/README.md",
-          "lean": false,
-          "leanNote": "No Lean proof is supplied for this entry.",
-          "evidence": "claimed",
-          "note": "R3s336 uses a bounded-fiber replacement hypothesis so that power set and union become derivable. Published alongside the smaller R3Y1_335 in the same commit; no separate earlier publication time is asserted.",
-          "authors": [
-            {
-              "name": "Jeff Ketchersid",
-              "url": "https://github.com/jeff87654"
-            }
-          ],
-          "proofScope": "The source reports an end-to-end Rocq/Coq proof of blank-tape halting iff finite ZF/ZFC refutation. We have not rerun it or checked an internal independence theorem; this is not a Lean Verified entry.",
-          "bound": "N_{\\mathrm{ZFC}}\\le 336",
           "agent": true
         },
         {
