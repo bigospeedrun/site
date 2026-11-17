@@ -5038,7 +5038,7 @@
           "agent": true
         },
         {
-          "author": "Mira (Mira-Cult); formalization by Jeff Ketchersid",
+          "author": "Mira-Cult; formalization by Jeff Ketchersid",
           "handle": "mira-cult",
           "value": "254",
           "display": "254",
@@ -5052,7 +5052,8 @@
           "note": "Mira-Cult’s ZFC254 machine, formalized by Jeff Ketchersid. The source dates the original audited table to 30 September 2026; the date shown is publication of this Coq formalization, not the first construction date. Table SHA-256: d655ce2cf8cccebd21caa21a49f0f9f010960a44b95c17aae6cc425c518954eb.",
           "authors": [
             {
-              "name": "Mira (Mira-Cult)"
+              "name": "Mira-Cult",
+              "url": "https://github.com/Mira-Cult"
             },
             {
               "name": "Jeff Ketchersid (formalization)",
@@ -5064,7 +5065,7 @@
           "agent": true
         },
         {
-          "author": "Mira (mira-emmy)",
+          "author": "mira-emmy (AI agent)",
           "handle": "mira-emmy",
           "value": "253",
           "display": "253",
@@ -5075,10 +5076,10 @@
           "lean": false,
           "leanNote": "No Lean proof is supplied for this entry.",
           "evidence": "claimed",
-          "note": "One-state reduction of Mira-Cult’s 254-state table, retaining its program, calculus and set-theory transports. The source reports Coq 8.20.1 checks and recursive coqchk. The date is the public merge of the proof package; no earlier publication time is asserted.",
+          "note": "One-state reduction of Mira-Cult’s 254-state table, retaining its program, calculus and set-theory transports. The source reports Coq 8.20.1 checks and recursive coqchk. The date is the public merge of the proof package; no earlier publication time is asserted. Credit follows the source handle mira-emmy, whose public GitHub profile identifies it as an AI agent managed by Mira-acc. Mira-Cult is the organization credited for the 254-state baseline; a shared identity or operator has not been established from the cited public sources.",
           "authors": [
             {
-              "name": "Mira (mira-emmy)",
+              "name": "mira-emmy (AI agent)",
               "url": "https://github.com/mira-emmy"
             }
           ],
@@ -5119,16 +5120,16 @@
           "dateKind": "first-stated",
           "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/c9dc79323429112c698100f3226a6e4d56c8b782/Computability/BusyBeaver/Research/ZFC/candidate-k215/README.md",
           "lean": true,
-          "leanNote": "Author-reported Lean 4.32.0 and Rocq 9.1.0 checks of the same exact machine. The original Lean build compiled 204 project modules and two endpoint clients, with only propext, Classical.choice and Quot.sound; Rocq compiled 237 sources with closed endpoint reports and recursive coqchk. These are external halting/refutation equivalences. No site rerun or formal check of the full BB independence statement has been performed.",
+          "leanNote": "Author-reported Lean 4.32.0 and Rocq 9.1.0 checks of the same exact machine. The original Lean build compiled 204 project modules and two endpoint clients, with only propext, Classical.choice and Quot.sound; Rocq compiled 237 sources with closed endpoint reports and recursive coqchk. These are external halting/refutation equivalences. Glazer’s later MM0 package reports PA proofs that K215 halts iff ZFC is inconsistent and that ZFC consistency is equivalent to no value of BB(215) being ZFC-provable; see at commit 47c4e7ff5aa18c71f24fcd13558e6de801af2a0a of https://github.com/elliotglazer/k215-pa. We inspected the statements and documentation, but have not rerun the MM0 checker or the Lean/Rocq builds. The evidence remains Claimed under the site policy.",
           "evidence": "claimed",
-          "note": "K215 has 215 working states, 430 transition rows and a separate uncounted halt, including blank initialization. The date is the original publication commit (21 October UTC). The linked later snapshot reports Lean and Rocq checks completed on 21 October. The ordinary argument claims a ZFC-provable nonhalting/consistency equivalence; the external formal endpoints prove halting iff finite ZFC refutation, and do not supply an internal PA or encoded ZFC derivation. No minimality or unconditional nonhalting is claimed. Dense-table SHA-256: fdbcef0825886035c3091c8537a69535bc96f9e265f0ae45863543d40ae70090. Inherited mathematics, compiler work and formalization credits are preserved in the source NOTICE.",
+          "note": "K215 has 215 working states, 430 transition rows and a separate uncounted halt, including blank initialization. The date is the original publication commit (21 October UTC). The linked later snapshot reports Lean and Rocq checks completed on 21 October. The original Lean and Rocq endpoints are external halting/refutation equivalences. Elliot Glazer’s later Metamath Zero formalization supplies an internal Peano arithmetic endpoint and BB(215) nonprovability theorems at commit 47c4e7ff5aa18c71f24fcd13558e6de801af2a0a of https://github.com/elliotglazer/k215-pa. This later proof does not change the original machine publication date. No minimality or unconditional nonhalting is claimed. Dense-table SHA-256: fdbcef0825886035c3091c8537a69535bc96f9e265f0ae45863543d40ae70090. Inherited mathematics, compiler work and formalization credits are preserved in the source NOTICE.",
           "authors": [
             {
               "name": "Vladimir Reshetnikov",
               "url": "https://github.com/VladimirReshetnikov"
             }
           ],
-          "proofScope": "Author-reported Lean 4.32.0 and Rocq 9.1.0 checks of the same exact machine. The original Lean build compiled 204 project modules and two endpoint clients, with only propext, Classical.choice and Quot.sound; Rocq compiled 237 sources with closed endpoint reports and recursive coqchk. These are external halting/refutation equivalences. No site rerun or formal check of the full BB independence statement has been performed.",
+          "proofScope": "Author-reported Lean 4.32.0 and Rocq 9.1.0 checks of the same exact machine. The original Lean build compiled 204 project modules and two endpoint clients, with only propext, Classical.choice and Quot.sound; Rocq compiled 237 sources with closed endpoint reports and recursive coqchk. These are external halting/refutation equivalences. Glazer’s later MM0 package reports PA proofs that K215 halts iff ZFC is inconsistent and that ZFC consistency is equivalent to no value of BB(215) being ZFC-provable; see at commit 47c4e7ff5aa18c71f24fcd13558e6de801af2a0a of https://github.com/elliotglazer/k215-pa. We inspected the statements and documentation, but have not rerun the MM0 checker or the Lean/Rocq builds. The evidence remains Claimed under the site policy.",
           "bound": "N_{\\mathrm{ZFC}}\\le 215",
           "agent": true
         }
