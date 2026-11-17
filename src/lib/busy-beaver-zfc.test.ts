@@ -36,3 +36,15 @@ test('the historical chart preserves publication-day precision and ends at the t
   assert.equal(records.at(-1)!.score, '215');
   assert.ok(records.every((r, i) => i === 0 || Number(r.score) < Number(records[i-1].score)));
 });
+
+test('K215 includes the later PA proof without upgrading unverified evidence or changing priority', () => {
+  const k215 = race.claims.find(c => c.value === '215')!;
+  assert.match(k215.note, /elliotglazer\/k215-pa/);
+  assert.match(k215.proofScope, /PA proofs.*no value of BB\(215\)/);
+  assert.equal(k215.evidence, 'claimed');
+  assert.equal(new Date(k215.date).toISOString().slice(0, 10), '2026-10-21');
+  assert.doesNotMatch(k215.note, /do not supply an internal PA/);
+  const m253 = race.claims.find(c => c.value === '253')!;
+  assert.equal(m253.authors[0].name, 'mira-emmy (AI agent)');
+  assert.equal(race.claims.find(c => c.value === '254')!.authors[0].name, 'Mira-Cult');
+});

@@ -156,9 +156,11 @@ class ProgressChart extends HTMLElement {
   const left=Math.ceil(Math.max(mobile?60:108,widestTick+(titleRight?titleRight+12:4)));
   const ticks=chartTimeTicks(start,end,mobile?3:Math.min(6,Math.max(3,Math.floor((right-left)/155))));
   const dateOnlyAxis=entries.every(e=>/^\d{4}-\d{2}-\d{2}$/.test(e.date));
-  const times=dateOnlyAxis&&end-start<=86400000?[...new Set([start,end])]:ticks.times;
+  // On narrow plots, reserve both endpoints before trying a middle label.
+  const middle=ticks.times.filter(t=>t>start&&t<end).sort((a,b)=>Math.abs(a-(start+end)/2)-Math.abs(b-(start+end)/2))[0];
+  const times=mobile?[...new Set([start,end,...(middle===undefined?[]:[middle])])]:dateOnlyAxis&&end-start<=86400000?[...new Set([start,end])]:ticks.times;
   const showTimes=ticks.showTimes&&entries.some(e=>e.time>=start&&!/^\d{4}-\d{2}-\d{2}$/.test(e.date));
-  const bottom=height-(showTimes?53:36);
+  const bottom=height-(showTimes?53:36)-(mobile?17:0);
   plot.setAttribute('viewBox',`0 0 ${width} ${height}`);
   const transform=(v:number)=>scale.log?Math.log10(v):v;
   // Values map inside an inset of one avatar halo, so no avatar crosses the axes,
@@ -186,7 +188,7 @@ class ProgressChart extends HTMLElement {
   }
   if(entries.length){
    const count=times.length;
-   let previousLabelRight=-Infinity;
+   const occupied: {left:number;right:number}[]=[];
    for(let i=0;i<count;i++){
     const time=times[i],px=x(time);
     plot.append(svg('line',{x1:px,x2:px,y1:top,y2:bottom,class:'plot-grid'}));
@@ -194,17 +196,18 @@ class ProgressChart extends HTMLElement {
     const tick=svg('text',{x:labelX,y:bottom+18,'text-anchor':'middle',class:'plot-date'});
     const d=new Date(time);
     const dateOnly=dateOnlyAxis||entries.some(e=>e.time===time&&/^\d{4}-\d{2}-\d{2}$/.test(e.date));
-    tick.textContent=new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(tick);
+    tick.textContent=new Intl.DateTimeFormat(undefined,{...(mobile?{}:{year:'numeric' as const}),month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(tick);
     const tickLabels=[tick];
-    if(showTimes&&!dateOnly){const t=svg('text',{x:labelX,y:bottom+35,'text-anchor':tick.getAttribute('text-anchor')!,class:'plot-date'});t.textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d);plot.append(t);tickLabels.push(t)}
+    if(mobile){const year=svg('text',{x:labelX,y:bottom+35,'text-anchor':'middle',class:'plot-date'});year.textContent=new Intl.DateTimeFormat(undefined,{year:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(year);tickLabels.push(year)}
+    if(showTimes&&!dateOnly){const t=svg('text',{x:labelX,y:bottom+(mobile?52:35),'text-anchor':tick.getAttribute('text-anchor')!,class:'plot-date'});t.textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d);plot.append(t);tickLabels.push(t)}
     // Measure the rendered text, including localized month names and time rows.
     const halfWidth=Math.max(...tickLabels.map(label=>label.getBBox().width))/2;
     const center=Math.max(halfWidth+4,Math.min(width-halfWidth-4,labelX));
-    if(center-halfWidth<previousLabelRight+10){
+    if(occupied.some(box=>center-halfWidth<box.right+10&&center+halfWidth>box.left-10)){
      tickLabels.forEach(label=>label.remove());
     }else{
      tickLabels.forEach(label=>label.setAttribute('x',String(center)));
-     previousLabelRight=center+halfWidth;
+     occupied.push({left:center-halfWidth,right:center+halfWidth});
     }
    }
    const axis=svg('text',{x:(left+right)/2,y:height-3,'text-anchor':'middle',class:'plot-date'});
