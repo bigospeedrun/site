@@ -43636,6 +43636,54 @@
         }
       ],
       "source_commit": "2ee2f0b61f7d123e8862482b966699cca578be6d"
+    },
+    {
+      "id": "crocswap-pr-7630",
+      "kind": "improvement",
+      "score": "733346869179/200000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-11-17T00:29:39Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-17T00:29:39Z",
+      "site_observed_at": "2026-11-17T06:17:32Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7630"
+      },
+      "spec_version": "1",
+      "title": "P104: seven stop edits + joint hub re-settle on #7623, conditional kappa 0.0036667343458",
+      "authors": [
+        {
+          "name": "DreamingOfClouds",
+          "url": "https://github.com/DreamingOfClouds"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7616",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7620",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7621",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7623",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/7627"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7630",
+      "artifact": {
+        "path": "sources/pr-7630.json",
+        "sha256": "bc5c3db5d5c0d5f1914d4c1688c36509fb4d51fb7388d098d11492abdf12cb5b"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7630",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7630",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "6026e87d1cac03eb5bd2aa8524a8f5891dd9934e"
     }
   ],
   "record_metadata": {
@@ -69027,7 +69075,35 @@
       "race_event_at": "2026-11-16T00:39:47Z",
       "race_event_kind": "PR creation; latest observed score",
       "credit_note": "DreamingOfClouds applies 14 loan and stationary-snapshot instances to the PR 7621 word; the device is SY's. Conditional kappa 0.0036624027915. Its premises are exactly those of PR 7620, now over 180 CLEARs, and it is void with PR 7620. It needs PR 7621 and the same five framework assumptions as PR 7546. Credits: SY, Chris R, rohanarun, Jerry Jiaheng Chen, petalas, Ali Romman, Hao Yan, ToikY. Claude Opus 5.5 assisted. External review is outstanding."
+    },
+    "crocswap-pr-7630": {
+      "checked_at": "2026-11-17",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7630",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 7630,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-11-17T00:33:22Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "Lead review decision; source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-11-17T00:29:39Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7630",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-11-17T00:29:39Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-11-17T04:38:41Z"
+  "updated_at": "2026-11-17T06:17:32Z"
 }
