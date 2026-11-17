@@ -120,11 +120,11 @@ test('a measure A*B^(X) in another base compares by its size in bits (the 64*3^(
   assert.deepEqual(parseMeasure('3^(4)'), {magnitude: 81n, bound: false});
   assert.deepEqual(parseMeasure('5*2^(3)'), {magnitude: 40n, bound: false});
 });
-test('Z is Diophantine in Q with the claims of 2026-11-06 to 2026-11-10: quartics by variables, then the rest by degree bound', () => {
+test('Z is Diophantine in Q with the claims of 2026-11-06 to 2026-11-16: quartics by variables, then the rest by degree bound', () => {
   const f = data.families.find(x => x.slug === 'z-diophantine-in-q')! as any;
   assert.deepEqual(rankOtherClaims(f.claims as {handle: string; display: string; value: string; date: string}[], f.direction, f.rankBy).map(r => [r.claim.handle, r.rank]),
-    [['josebrox-262', 1], ['josebrox-265', 2], ['z-in-q-version-14', 3], ['z-in-q-version-14-decimal', 4], ['josebrox-322', 5], ['josebrox-342', 6], ['josebrox-351', 7], ['josebrox-370', 8], ['josebrox-389', 9], ['josebrox-392', 10], ['z-in-q-version-13', 11], ['josebrox-456', 12], ['z-in-q-version-9', 13], ['z-in-q-version-6', 14], ['z-in-q-version-5', 15], ['josebrox-1315', 16], ['z-in-q-version-4', 17], ['z-in-q-version-3', 18], ['z-in-q-version-2', 19], ['josebrox-27-l20483', 20], ['josebrox-27', 21], ['josebrox-29-degree89', 22], ['josebrox-29-degree157', 23], ['josebrox-29-degree161', 24], ['josebrox-29-degree166', 25], ['josebrox-29-degree174', 26], ['josebrox-31', 27], ['josebrox-43', 28], ['josebrox-41', 29], ['qqwref', 30], ['elliotglazer', 31]]);
-  assert.equal(otherBoundLeader(f)!.handle, 'josebrox-262');
+    [['josebrox-257', 1], ['josebrox-258', 2], ['josebrox-260', 3], ['josebrox-262', 4], ['josebrox-265', 5], ['z-in-q-version-14', 6], ['z-in-q-version-14-decimal', 7], ['josebrox-322', 8], ['josebrox-342', 9], ['josebrox-351', 10], ['josebrox-370', 11], ['josebrox-389', 12], ['josebrox-392', 13], ['z-in-q-version-13', 14], ['josebrox-456', 15], ['z-in-q-version-9', 16], ['z-in-q-version-6', 17], ['z-in-q-version-5', 18], ['josebrox-1315', 19], ['z-in-q-version-4', 20], ['z-in-q-version-3', 21], ['z-in-q-version-2', 22], ['josebrox-27-l20483', 23], ['josebrox-27', 24], ['josebrox-29-degree89', 25], ['josebrox-29-degree157', 26], ['josebrox-29-degree161', 27], ['josebrox-29-degree166', 28], ['josebrox-29-degree174', 29], ['josebrox-31', 30], ['josebrox-43', 31], ['josebrox-41', 32], ['qqwref', 33], ['elliotglazer', 34]]);
+  assert.equal(otherBoundLeader(f)!.handle, 'josebrox-257');
 });
 
 import {compareExactValues, parseExact, shownBound} from './other-rank.ts';

@@ -3486,7 +3486,7 @@
       "nameMath": "\\(\\mathbb Z\\) is Diophantine in \\(\\mathbb Q\\)",
       "quantity": "\\text{number of variables}",
       "direction": "lower",
-      "statement": "A polynomial \\(P(q,w_1,\\dots,w_k)\\) with integer coefficients defines \\(\\mathbb Z\\) in \\(\\mathbb Q\\) when, for every rational number \\(q\\), \\(q\\) is an integer exactly when \\(P(q,w_1,\\dots,w_k)=0\\) for some rational numbers \\(w_1,\\dots,w_k\\). The polynomial must be explicit: a public list of its terms, or a public program that writes them out. Every coefficient must come from the list, or from a program that is known to halt. A coefficient such as \\(2\\uparrow\\uparrow 8\\) counts: the program halts, even if no computer can run it to the end. A coefficient fixed only through a value nobody knows how to compute, such as \\(\\mathrm{BB}(2^{1000})\\), does not count. The reason: if any definable number counted, “the least \\(N\\) for which the polynomial works” would make every existence result count. Results rank by degree first, lower is better; then by the number of variables, \\(k+1\\); then by the number of nonzero terms; then by the largest absolute coefficient. A stated upper bound, such as degree below \\(2\\uparrow\\uparrow 7\\), counts as that value. Degree 4 is the lowest possible for one defining polynomial (Brox, and the Version 6 manuscript of Glazer and others), so among quartics the number of variables decides. A family of polynomials that defines \\(\\mathbb Z\\) only from an unknown bound \\(N_0\\) on, such as the Version 15 family in 222 variables or the family in 226 variables of Jose Brox, is not a row, because no explicit polynomial of it is certified; a certified member would be. Elliot Glazer also gives a fully specified 222-variable quartic with \\(A=149^{2\\cdot\\mathrm{BB}(2^{1000})+1}\\) (the draft is linked under Relevant repos); it is not ranked, because no program known to halt gives its coefficients. Elliot Glazer expects that, with no limit on the degree, a definition with under 100 variables is within reach; the open question is then the fewest variables of a quartic. The chart plots the number of variables of the degree-4 results and of the first construction. Koenigsmann (2016) showed that \\(\\mathbb Q\\setminus\\mathbb Z\\) is Diophantine in \\(\\mathbb Q\\). Whether \\(\\mathbb Z\\) itself is Diophantine in \\(\\mathbb Q\\) was open, and Mazur's conjectures (1992) predicted that it is not.",
+      "statement": "A polynomial \\(P(q,w_1,\\dots,w_k)\\) with integer coefficients defines \\(\\mathbb Z\\) in \\(\\mathbb Q\\) when, for every rational number \\(q\\), \\(q\\) is an integer exactly when \\(P(q,w_1,\\dots,w_k)=0\\) for some rational numbers \\(w_1,\\dots,w_k\\). The polynomial must be explicit: a public list of its terms, or a public program that writes them out. Every coefficient must come from the list, or from a program that is known to halt. A coefficient such as \\(2\\uparrow\\uparrow 8\\) counts: the program halts, even if no computer can run it to the end. A coefficient fixed only through a value nobody knows how to compute, such as \\(\\mathrm{BB}(2^{1000})\\), does not count. The reason: if any definable number counted, “the least \\(N\\) for which the polynomial works” would make every existence result count. Results rank by degree first, lower is better; then by the number of variables, \\(k+1\\); then by the number of nonzero terms; then by the largest absolute coefficient. A stated upper bound, such as degree below \\(2\\uparrow\\uparrow 7\\), counts as that value. Degree 4 is the lowest possible for one defining polynomial (Brox, and the Version 6 manuscript of Glazer and others), so among quartics the number of variables decides. A family of polynomials that defines \\(\\mathbb Z\\) only from an unknown bound \\(N_0\\) on, such as the Version 15 family in 222 variables, the family in 226 variables of Jose Brox or his family in 195 variables, is not a row, because no explicit polynomial of it is certified; a certified member would be. Elliot Glazer also gives a fully specified 222-variable quartic with \\(A=149^{2\\cdot\\mathrm{BB}(2^{1000})+1}\\) (the draft is linked under Relevant repos); it is not ranked, because no program known to halt gives its coefficients. Version 18 of the manuscript (released 16 November 2026) gives a 196-variable quartic of Jose Brox, built on Gabriel Conant's 198-variable construction, in the same way, with the same \\(A=149^{2\\cdot\\mathrm{BB}(2^{1000})+1}\\); it is not ranked either. Elliot Glazer expects that, with no limit on the degree, a definition with under 100 variables is within reach; the open question is then the fewest variables of a quartic. The chart plots the number of variables of the degree-4 results and of the first construction. Koenigsmann (2016) showed that \\(\\mathbb Q\\setminus\\mathbb Z\\) is Diophantine in \\(\\mathbb Q\\). Whether \\(\\mathbb Z\\) itself is Diophantine in \\(\\mathbb Q\\) was open, and Mazur's conjectures (1992) predicted that it is not.",
       "claims": [
         {
           "author": "Elliot Glazer with Astra 6, Sol 6.1 and Opus 5.5, with auditing from Fable 5.1",
@@ -4563,6 +4563,90 @@
         },
         {
           "author": "Jose Brox",
+          "handle": "josebrox-260",
+          "value": "260",
+          "display": "260",
+          "date": "2026-11-14T02:16:38Z",
+          "dateSource": "https://github.com/JoseBrox/diophantine-z-q_improvements/commit/9ea4eea7cc2bdbf979d5685f9f8a5dabdf090ea6",
+          "dateKind": "first-stated",
+          "url": "https://github.com/JoseBrox/diophantine-z-q_improvements/blob/9ea4eea7cc2bdbf979d5685f9f8a5dabdf090ea6/papers/quartic/explicit260_20261114_v27.pdf",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Jose Brox's repository gives this as its fully specified quartic at that date. The paper shows that it has the same rational input projection as his 262-variable quartic at every fixed N: a corrected complete reference chart removes two coordinates. Degree 4, 3,704 nonzero terms, largest absolute coefficient \\(149^{38730}+1\\) exactly (279,599 binary digits). The polynomial is public as a table of terms, each coefficient an integer times a power of \\(A=149^{2N+1}\\), for the fixed parameter \\(N=9682\\), the threshold from which the paper proves that the family defines \\(\\mathbb Z\\). We recomputed the number of terms and the largest coefficient from the public table. The repository says its theorems keep the arithmetic premises stated in its papers. The repository says the collection includes computer-assisted mathematical writing and verification. The time shown is the commit that first published it, the GitHub Actions publication of the repository's verified release.",
+          "authors": [
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            }
+          ],
+          "proofScope": "A written proof in a paper in the repository, with no human review yet, conditional on the arithmetic premises stated in its papers. The repository's checks verify the algebra of the construction and the coefficient table; they do not check the arithmetic. No Lean proof.",
+          "bound": "260\\text{ variables}",
+          "measures": {
+            "degree": "4",
+            "variables": "260",
+            "terms": "3704",
+            "coefficient": "<2^279599"
+          }
+        },
+        {
+          "author": "Jose Brox",
+          "handle": "josebrox-258",
+          "value": "258",
+          "display": "258",
+          "date": "2026-11-15T18:26:17Z",
+          "dateSource": "https://github.com/JoseBrox/diophantine-z-q_improvements/commit/9441fa8268103310186d96c251ccc48b99c73b9f",
+          "dateKind": "first-stated",
+          "url": "https://github.com/JoseBrox/diophantine-z-q_improvements/blob/9441fa8268103310186d96c251ccc48b99c73b9f/papers/quartic/laurent_elimination_20261115_v38.tex",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Jose Brox's repository gives this as its fully specified quartic at that date. The paper removes two stored fourth powers from his 260-variable quartic by exact changes of coordinates; the rational input projection is the same at every fixed N, so the parameter \\(N=9682\\) stays. Degree 4, 3,705 nonzero terms, largest absolute coefficient \\(9792^2\\cdot149^{19364}\\) exactly (139,819 binary digits). The polynomial is public as a table of terms, each coefficient an integer times a power of \\(C=149^N\\), for the fixed parameter \\(N=9682\\). We recomputed the number of terms and the largest coefficient from the public table. The repository says its theorems keep the arithmetic premises stated in its papers. The repository says the collection includes computer-assisted mathematical writing and verification. The time shown is the commit that first published it, the GitHub Actions publication of the repository's verified release.",
+          "authors": [
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            }
+          ],
+          "proofScope": "A written proof in a paper in the repository, with no human review yet, conditional on the arithmetic premises stated in its papers. The repository's checks verify the algebra of the construction and the coefficient table; they do not check the arithmetic. No Lean proof.",
+          "bound": "258\\text{ variables}",
+          "measures": {
+            "degree": "4",
+            "variables": "258",
+            "terms": "3705",
+            "coefficient": "<2^139819"
+          }
+        },
+        {
+          "author": "Jose Brox",
+          "handle": "josebrox-257",
+          "value": "257",
+          "display": "257",
+          "date": "2026-11-16T09:34:12Z",
+          "dateSource": "https://github.com/JoseBrox/diophantine-z-q_improvements/commit/4cf8ffa2cd63bbd5e6a43ab93822bf3e1db6fb1a",
+          "dateKind": "first-stated",
+          "url": "https://github.com/JoseBrox/diophantine-z-q_improvements/blob/4cf8ffa2cd63bbd5e6a43ab93822bf3e1db6fb1a/papers/quartic/quartic257_20261116_v45.tex",
+          "lean": false,
+          "leanNote": "No.",
+          "evidence": "claimed",
+          "note": "Jose Brox's repository gives this as its leading fully specified quartic. The paper centers a square and eliminates one inverse-weight square from his 258-variable quartic; the full rational zero sets correspond one to one with the input unchanged, so the parameter \\(N=9682\\) stays and no abc assumption is added. Degree 4, 3,679 nonzero terms, largest absolute coefficient \\(149^{19366}\\) exactly (139,807 binary digits). The polynomial is public as a table of terms, each coefficient an integer times a power of \\(C=149^N\\), for the fixed parameter \\(N=9682\\). We recomputed the number of terms, the number of variables that occur and the largest coefficient from the public table. The repository says its theorems keep the arithmetic premises stated in its papers. The repository says the collection includes computer-assisted mathematical writing and verification. The time shown is the commit that published it.",
+          "authors": [
+            {
+              "name": "Jose Brox",
+              "url": "https://github.com/JoseBrox"
+            }
+          ],
+          "proofScope": "A written proof in a paper in the repository, with no human review yet, conditional on the arithmetic premises stated in its papers. The repository's checks verify the algebra of the construction and the coefficient table; they do not check the arithmetic. No Lean proof.",
+          "bound": "257\\text{ variables}",
+          "measures": {
+            "degree": "4",
+            "variables": "257",
+            "terms": "3679",
+            "coefficient": "<2^139807"
+          }
+        },
+        {
+          "author": "Jose Brox",
           "handle": "josebrox-27-l20483",
           "value": "27",
           "display": "27",
@@ -4612,7 +4696,7 @@
           "note": "Elliot Glazer's draft that fixes \\(A=149^{2\\cdot\\mathrm{BB}(2^{1000})+1}\\), from site issue 23. Its quartic is not ranked, because no program known to halt gives its coefficients."
         }
       ],
-      "bestHandle": "josebrox-262",
+      "bestHandle": "josebrox-257",
       "rankBy": [
         "degree",
         "variables",
