@@ -7,7 +7,7 @@ import {math, inlineMath} from '../lib/math';
 import {breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
 import type {EvidenceLevel} from '../lib/evidence';
 interface Row {
-  href:string; name:string; nameMath?:string; classic?:string; breakthrough?:string; source?:string; breakthroughAuthors?:Author[];
+  href:string; name:string; nameMath?:string; classic?:string; breakthrough?:string; source?:string; breakthroughAuthors?:Author[]; noBreakthrough?:boolean;
   latest:{bound:string;url:string;evidenceLevel:EvidenceLevel;date:string;endpoint?:boolean;evidenceUrl?:string;authors?:Author[];refiledBy?:string}[]; endpoint?:boolean;
 }
 interface Props {rows:Row[];id?:string;label:string;classic?:boolean;}
@@ -21,7 +21,7 @@ const githubLink=(url:string)=>new URL(url,Astro.url).hostname==='github.com'?{t
       <td>{row.nameMath?<a href={row.href} set:html={inlineMath(row.nameMath)}/>:<a href={row.href}>{row.name}</a>}</td>
       {classic&&<td class="bound"><span class="mobile-bound-label">Classic</span><span set:html={math(row.classic!)}/></td>}
       {/* An Other bounds row with a classic baseline and no agent result yet shows a dash. */}
-      <td class="bound"><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>{breakthroughLabel.split(' ')[0]}</span>{row.breakthrough&&row.source?<span class="breakthrough-result"><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/><LandingHolder authors={row.breakthroughAuthors??[]}/></span>:<span aria-label="No agent result yet" title="No agent result yet">-</span>}</td>
+      <td class="bound"><span class="mobile-bound-label" aria-label={breakthroughLabel} title={breakthroughLabel}>{breakthroughLabel.split(' ')[0]}</span>{row.breakthrough&&row.source?<span class="breakthrough-result"><a href={row.source} {...githubLink(row.source)} set:html={math(row.breakthrough)}/><LandingHolder authors={row.breakthroughAuthors??[]}/></span>:row.noBreakthrough?<span>-</span>:<span aria-label="No agent result yet" title="No agent result yet">-</span>}</td>
       <td class="latest-cell"><span class="mobile-bound-label">Latest</span><LandingLatest records={row.latest}/></td>
     </tr>)}</tbody>
   </table>

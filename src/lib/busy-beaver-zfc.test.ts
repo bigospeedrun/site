@@ -20,7 +20,20 @@ test('Busy Beaver ranks state thresholds down to 215 and keeps the historical qu
   assert.match(race.claims.find(c => c.value === '7910')!.note, /stronger.*assumptions/);
   assert.match(race.claims.find(c => c.value === '215')!.proofScope, /external halting\/refutation equivalences/);
   assert.equal(race.claims.find(c => c.value === '748')!.date.slice(0, 4), '2017');
-  assert.equal(race.claims.find(c => isTableBreakthrough(race, c))?.value, '354');
+});
+
+test('the race has no classic baseline and no Agent breakthrough row (Nil, 2026-11-17); Wade 432 is an ordinary row', () => {
+  assert.equal('baseline' in race, false);
+  assert.equal((race as {noBreakthrough?: boolean}).noBreakthrough, true);
+  assert.ok(race.claims.some(c => (c as {agent?: boolean}).agent), 'the claims keep their agent flags; the family opts out');
+  assert.ok(otherTableRows(race).every(r => !isTableBreakthrough(race, r.claim)));
+  const wade = otherTableRows(race).find(r => r.claim.value === '432')!;
+  assert.equal(wade.claim.authors[0].name, 'Andrew James Wade');
+  assert.doesNotMatch(race.statement, /baseline/i);
+  const chart = otherChart(race, () => false)!;
+  assert.equal(chart.classic, undefined);
+  assert.equal(chart.classicBound, undefined);
+  assert.ok(chart.entries.every(e => !e.isBreakthrough));
 });
 
 test('one row per public artifact: smaller steps of one commit sit in the best row note, with Wade named', () => {
@@ -36,7 +49,6 @@ test('the historical chart preserves publication-day precision and ends at the t
   const chart = otherChart(race, () => false)!;
   assert.equal(chart.integer, true);
   assert.equal(chart.higher, false);
-  assert.equal(chart.classic, 432);
   assert.equal(chart.entries.length, 15);
   assert.equal(chart.entries.find(e => e.score === '745')!.date, '2023-07-05');
   assert.equal(chart.entries.find(e => e.score === '1919')!.date, '2016-05-15');

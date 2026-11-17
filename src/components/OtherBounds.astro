@@ -11,8 +11,9 @@ const rows=data.families.map(f=>{
   // baseline from a paper) is not an agent result: its agent breakthrough is its first claim marked
   // agent, and a row with no such claim has none. A row with no baseline is the same.
   const classic=!isOpenAIBaseline(f.baseline);
-  const first=classic?[...f.claims].filter(c=>'agent' in c&&c.agent).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date))[0]:undefined;
-  return {href:'/other/'+f.slug,name:f.name,nameMath:'nameMath' in f?f.nameMath:undefined,
+  const noBreakthrough='noBreakthrough' in f&&f.noBreakthrough===true;
+  const first=classic&&!noBreakthrough?[...f.claims].filter(c=>'agent' in c&&c.agent).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date))[0]:undefined;
+  return {href:'/other/'+f.slug,name:f.name,noBreakthrough,nameMath:'nameMath' in f?f.nameMath:undefined,
     breakthrough:classic?first?.bound:f.baseline?.bound,source:classic?first?.url:f.baseline?.url,
     breakthroughAuthors:classic?first?.authors:baselineClaim(f.baseline)?.authors,
     // A Lean Verified leader's label opens its evidence: the prove2.me theorem page for an import. A Human

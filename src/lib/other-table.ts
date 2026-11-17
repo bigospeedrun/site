@@ -7,6 +7,9 @@
 // the records feed read the claims, so the race-start row never posts.
 // A row with no baseline (no bound existed before its first claim, as for Z in Q) shows no baseline; like a row with a
 // Classic baseline, its agent breakthrough is its first claim marked agent.
+// A row with `noBreakthrough: true` (Busy Beaver ZFC, Nil, 2026-11-17: neither a classic baseline nor an Agent
+// breakthrough makes sense for that race) has no baseline and labels no row Agent breakthrough, whatever its claims'
+// `agent` flags say. Every other row keeps its own rule.
 import {otherClaimNumber, parseDegreeClaim, rankOtherClaims} from './other-rank.ts';
 import avatars from './author-avatars.json' with {type: 'json'};
 
@@ -48,7 +51,8 @@ export function otherTableRows<C extends Claim>(family: {baseline?: Baseline; cl
 
 // The claim that the table labels Agent breakthrough: the OpenAI baseline row (or the claim that stands for it), or on a row with a Classic baseline its
 // first claim marked agent.
-export function isTableBreakthrough(family: {baseline?: {label?: string; value: string}; claims: Claim[]}, claim: object): boolean {
+export function isTableBreakthrough(family: {baseline?: {label?: string; value: string}; claims: Claim[]; noBreakthrough?: boolean}, claim: object): boolean {
+  if (family.noBreakthrough) return false;
   if ('breakthrough' in claim && claim.breakthrough === true) return true;
   if ('baseline' in claim && claim.baseline === true && isOpenAIBaseline(family.baseline)) return true;
   if (isOpenAIBaseline(family.baseline)) return false;
