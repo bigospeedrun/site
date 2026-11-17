@@ -40,7 +40,7 @@ test('the historical chart preserves publication-day precision and ends at the t
 test('K215 includes the later PA proof without upgrading unverified evidence or changing priority', () => {
   const k215 = race.claims.find(c => c.value === '215')!;
   assert.match(k215.note, /elliotglazer\/k215-pa/);
-  assert.match(k215.proofScope, /PA proofs.*no value of BB\(215\)/);
+  assert.match(k215.proofScope, /PA proofs.*no value of \\\(\\mathrm\{BB\}\(215\)\\\)/);
   assert.equal(k215.evidence, 'claimed');
   assert.equal(new Date(k215.date).toISOString().slice(0, 10), '2026-10-21');
   assert.doesNotMatch(k215.note, /do not supply an internal PA/);
