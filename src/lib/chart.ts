@@ -110,3 +110,9 @@ export function chartScale(values: number[], limit?: number, integer = false) {
  }
  return {log,lo:lo-span*.04,hi:hi+span*.1,ticks};
 }
+
+/** Ticks and tooltips show the year only when the plotted range is not all in the current year (as freshness.ts does). */
+export const chartShowsYear=(start:number,end:number,now=Date.now()):boolean=>{
+  const year=new Date(now).getUTCFullYear();
+  return new Date(start).getUTCFullYear()!==year||new Date(end).getUTCFullYear()!==year;
+};

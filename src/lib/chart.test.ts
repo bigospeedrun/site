@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { chartDate, chartRecords, chartScale, chartWindowScale, chartWindow, chartTimeTicks, chartMaxDays, type ChartEntry } from './chart.ts';
+import { chartDate, chartRecords, chartScale, chartWindowScale, chartWindow, chartTimeTicks, chartMaxDays, chartShowsYear, type ChartEntry } from './chart.ts';
 import { ranked } from './ranking.ts';
 import { classifyEvidence, evidenceLevels, isBoardEntry, isBreakthroughRecord } from './evidence.ts';
 const e=(id:string,score:string,time:number,level='claimed',scoreRelation='attained'):ChartEntry=>({id,repoId:0,score,time,level,scoreRelation,date:new Date(time).toISOString(),author:'',boundHtml:'',url:''});
@@ -228,4 +228,13 @@ test('Last N days allows N up to the days since the first record', () => {
  assert.equal(chartMaxDays([{time:0},{time:86400000}]),1);
  assert.equal(chartMaxDays([{time:0},{time:86400001}]),2);
  assert.equal(chartMaxDays([{time:5*86400000},{time:0},{time:3600000}]),5);
+});
+
+test('the chart shows the year only when the plotted range is not all in the current year', () => {
+  const now = Date.parse('2026-11-17T12:00:00Z');
+  assert.equal(chartShowsYear(Date.parse('2026-02-01T00:00:00Z'), now, now), false);
+  assert.equal(chartShowsYear(Date.parse('2026-11-16T00:00:00Z'), Date.parse('2026-11-17T00:00:00Z'), now), false);
+  assert.equal(chartShowsYear(Date.parse('2016-05-14T00:00:00Z'), now, now), true);
+  assert.equal(chartShowsYear(Date.parse('2025-12-31T00:00:00Z'), now, now), true);
+  assert.equal(chartShowsYear(Date.parse('2026-02-01T00:00:00Z'), Date.parse('2027-01-02T00:00:00Z'), now), true);
 });

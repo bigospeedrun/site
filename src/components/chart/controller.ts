@@ -1,6 +1,6 @@
 import {getEvidenceLevels} from '../../lib/evidence-filters';
 import { breakthroughLabel } from '../../lib/evidence';
-import { chartWindow, chartWindowScale, chartTimeTicks, chartMaxDays, scoreValue, type ChartEntry } from '../../lib/chart';
+import { chartWindow, chartWindowScale, chartTimeTicks, chartMaxDays, chartShowsYear, scoreValue, type ChartEntry } from '../../lib/chart';
 interface Payload {
  entries: ChartEntry[]; higher: boolean; limit?: number; classic?: number; integer?: boolean;
  // KaTeX renders at build time; the browser looks up each tick label by its TeX.
@@ -20,6 +20,7 @@ class ProgressChart extends HTMLElement {
  private observer?:ResizeObserver;
  // 0 shows all results; N shows the last N days before the latest result.
  private days=0;
+ private showYear=false;
  private pinnedId?:string;
  private hoverId?:string;
  // Visible marks of the last draw, in time order, for pointer hit tests and arrow keys.
@@ -142,6 +143,7 @@ class ProgressChart extends HTMLElement {
   plot.replaceChildren();labels.replaceChildren();this.closeTooltip();
   const width=this.clientWidth;
   if(!width)return;
+  const showYear=chartShowsYear(start,end);this.showYear=showYear;
   const mobile=width<600,height=mobile?380:330,right=width-(mobile?12:20),top=26;
   const tickStep=mobile?Math.max(1,Math.ceil((scale.ticks.length-1)/3)):1;
   const yTicks=scale.ticks.filter((_,i)=>i%tickStep===0||i===scale.ticks.length-1);
@@ -160,7 +162,7 @@ class ProgressChart extends HTMLElement {
   const middle=ticks.times.filter(t=>t>start&&t<end).sort((a,b)=>Math.abs(a-(start+end)/2)-Math.abs(b-(start+end)/2))[0];
   const times=mobile?[...new Set([start,end,...(middle===undefined?[]:[middle])])]:dateOnlyAxis&&end-start<=86400000?[...new Set([start,end])]:ticks.times;
   const showTimes=ticks.showTimes&&entries.some(e=>e.time>=start&&!/^\d{4}-\d{2}-\d{2}$/.test(e.date));
-  const bottom=height-(showTimes?53:36)-(mobile?17:0);
+  const bottom=height-(showTimes?53:36)-(mobile&&showYear?17:0);
   plot.setAttribute('viewBox',`0 0 ${width} ${height}`);
   const transform=(v:number)=>scale.log?Math.log10(v):v;
   // Values map inside an inset of one avatar halo, so no avatar crosses the axes,
@@ -196,10 +198,10 @@ class ProgressChart extends HTMLElement {
     const tick=svg('text',{x:labelX,y:bottom+18,'text-anchor':'middle',class:'plot-date'});
     const d=new Date(time);
     const dateOnly=dateOnlyAxis||entries.some(e=>e.time===time&&/^\d{4}-\d{2}-\d{2}$/.test(e.date));
-    tick.textContent=new Intl.DateTimeFormat(undefined,{...(mobile?{}:{year:'numeric' as const}),month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(tick);
+    tick.textContent=new Intl.DateTimeFormat(undefined,{...(showYear&&!mobile?{year:'numeric' as const}:{}),month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(tick);
     const tickLabels=[tick];
-    if(mobile){const year=svg('text',{x:labelX,y:bottom+35,'text-anchor':'middle',class:'plot-date'});year.textContent=new Intl.DateTimeFormat(undefined,{year:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(year);tickLabels.push(year)}
-    if(showTimes&&!dateOnly){const t=svg('text',{x:labelX,y:bottom+(mobile?52:35),'text-anchor':tick.getAttribute('text-anchor')!,class:'plot-date'});t.textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d);plot.append(t);tickLabels.push(t)}
+    if(mobile&&showYear){const year=svg('text',{x:labelX,y:bottom+35,'text-anchor':'middle',class:'plot-date'});year.textContent=new Intl.DateTimeFormat(undefined,{year:'numeric',...(dateOnly?{timeZone:'UTC'}:{})}).format(d);plot.append(year);tickLabels.push(year)}
+    if(showTimes&&!dateOnly){const t=svg('text',{x:labelX,y:bottom+(mobile&&showYear?52:35),'text-anchor':tick.getAttribute('text-anchor')!,class:'plot-date'});t.textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d);plot.append(t);tickLabels.push(t)}
     // Measure the rendered text, including localized month names and time rows.
     const halfWidth=Math.max(...tickLabels.map(label=>label.getBBox().width))/2;
     const center=Math.max(halfWidth+4,Math.min(width-halfWidth-4,labelX));
@@ -262,7 +264,7 @@ class ProgressChart extends HTMLElement {
   const author=document.createElement('strong');author.textContent=`Player: ${entry.author}`;
   const bound=document.createElement('p');bound.className='plot-bound';bound.innerHTML=entry.boundHtml;
   const dateOnly=/^\d{4}-\d{2}-\d{2}$/.test(entry.date);
-  const date=document.createElement('p');date.textContent=new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{hour:'numeric',minute:'2-digit'} as const)}).format(new Date(entry.time));
+  const date=document.createElement('p');date.textContent=new Intl.DateTimeFormat(undefined,{...(this.showYear?{year:'numeric'} as const:{}),month:'short',day:'numeric',...(dateOnly?{timeZone:'UTC'}:{hour:'numeric',minute:'2-digit'} as const)}).format(new Date(entry.time));
   const level=document.createElement('p');level.textContent=this.entryLevel(entry);
   const link=document.createElement('a');link.href=entry.url;link.textContent='Read the source';
   if(new URL(entry.url,location.href).hostname==='github.com'){link.target='_blank';link.rel='noopener'}
