@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-11-20T21:00:00Z",
+  "paper": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+  "publication_date": "2026-11-20T17:58:06Z",
+  "publication_date_basis": "GitHub commit time of the author's commit 56c59854 in Majdoddin/formal-math (the repository push was 2026-11-20T17:58:14Z). Version 2 of arXiv:2610.17420; it is not yet on arXiv. The author reported it in bigospeedrun/site issue 25.",
+  "score": "74847/25000",
+  "score_relation": "strict-upper-bound",
+  "theorem": "Corollary 24.1(e) (also stated as Corollary D in Section 1.3 of version 2), via Theorem C and Corollary 9.4",
+  "model_check": "Corollary 24.1(e): Exact Triangle (also in its all-edges version), the (min,+)-product and APSP on directed n-vertex graphs with integer weights of absolute value at most n^nu and no negative cycles are solved deterministically in time n^(3-0.00612+o(1)) = n^(2.99388+o(1)), on a word RAM with O(log n)-bit words. The author says Theorem C gives O(n^(3-epsilon*gamma+epsilon/(2r)) (log n)^(r+5)) for every fixed r, here with H(2/25, 0.0765) from Corollary 9.4, so every exponent above 2.99388 is proved, not 2.99388 itself. The fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+  "files_not_copied": "The paper is in the author's public repository, so the PDF and LaTeX source are not copied here. SHA-256 of the files at that commit:",
+  "files": {
+    "main.pdf": {
+      "sha256": "576fdc9261c13e0741bc154dc02c15478f0fe22eae7344adc82e1b6ba65c8a97",
+      "url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf"
+    },
+    "main.tex": {
+      "sha256": "6ddf46f6dc7db0f9b7a454ce6609da1db31dbc5e084c388bf3861b3db541a7b1",
+      "url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.tex"
+    }
+  },
+  "lean": {
+    "repo": "https://github.com/Majdoddin/formal-math",
+    "commit": "56c598548d70c7eed7d0e9082d148114cab50966",
+    "scope": "Running times are not formalised (the author says so in issue 25). The Lean folders check the identities, counts and reductions of version 1, not running times."
+  },
+  "verification": "Written proof, not peer reviewed. The numerical certificates behind H(2/25, 0.0765) are exact-rational scripts in the repository (scripts/ at that commit). The running time is not formalised in Lean. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783), Schonhage's five-term partial-product tensor and the author's version 1. The paper says it was written with Anthropic's Claude models under the author's direction."
+}

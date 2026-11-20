@@ -407,6 +407,50 @@
       ]
     },
     {
+      "id": "majdoddin-apsp-2026-v2",
+      "kind": "improvement",
+      "score": "74847/25000",
+      "score_relation": "strict-upper-bound",
+      "tier": "claimed",
+      "submitted_at": "2026-11-20T17:58:06Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-20T17:58:06Z",
+      "site_observed_at": "2026-11-20T21:00:00Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf"
+      },
+      "spec_version": "1",
+      "title": "Ruhollah Majdoddin deterministic APSP in time n^(2.99388+o(1)) (version 2)",
+      "authors": [
+        {
+          "name": "Ruhollah Majdoddin"
+        }
+      ],
+      "predecessors": [
+        "https://arxiv.org/abs/2610.06783",
+        "https://arxiv.org/abs/2610.17420v1"
+      ],
+      "submission_url": "https://github.com/bigospeedrun/site/issues/25",
+      "artifact": {
+        "path": "sources/majdoddin-apsp-2-99388-claim.json",
+        "sha256": "27fd8d0ee0d71a6ad7d434b9acf6ff82e9c1ccea3a641f0a6e56dc5fd2a0e42b"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+        "theorem": "Corollary 24.1(e)",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The running-time bound rests on the written proof; the companion Lean projects do not formalise running times. No site rerun.",
+          "source_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
       "id": "joshuaqfex-apsp-2026",
       "kind": "improvement",
       "score": "14964739593547/5000000000000",
@@ -895,6 +939,30 @@
       "credit_note": "Li Xuanji proves APSP in time O(n^2.995561) on the word RAM of Anthropic's statement by extending Anthropic's Lean formalization of the Josh Alman and Virginia Vassilevska Williams result with deterministic prime-by-prime filtering, two-digit residue lifting and batched tensor slots. The file header says it was prepared with Claude.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38193262568",
       "verification": "passed"
+    },
+    "majdoddin-apsp-2026-v2": {
+      "checked_at": "2026-11-20",
+      "source_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof, not peer reviewed (version 2 of the arXiv:2610.17420 paper, public on GitHub, not yet on arXiv). Its Lean projects do not formalise running times. No Big O Speedrun proof check. Evidence remains Claimed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/word-ram/v1",
+      "comparison_status": "Corollary 24.1(e): Exact Triangle (also in its all-edges version), the (min,+)-product and APSP on directed n-vertex graphs with integer weights of absolute value at most n^nu and no negative cycles are solved deterministically in time n^(3-0.00612+o(1)) = n^(2.99388+o(1)), on a word RAM with O(log n)-bit words. The author says Theorem C gives O(n^(3-epsilon*gamma+epsilon/(2r)) (log n)^(r+5)) for every fixed r, here with H(2/25, 0.0765) from Corollary 9.4, so every exponent above 2.99388 is proved, not 2.99388 itself. The fixed-width program and word-width quantifiers of EndStatement are an algorithmic interpretation, not a checked formal statement equivalence. Source comparison, not a proof check.",
+      "scope": "Directed integer weights of polynomial magnitude, no negative cycles, all-pairs distances; deterministic worst case.",
+      "exact_statement": "Exact Triangle (also all-edges), the (min,+)-product and APSP take n^(3-0.00612+o(1)) = n^(2.99388+o(1)) time, deterministically.",
+      "score_interpretation": "Open endpoint 2.99388: O(n^(2.99388+epsilon)) for every fixed epsilon > 0, not O(n^2.99388).",
+      "publication_date_precision": "date-time",
+      "publication_date": "2026-11-20T17:58:06Z",
+      "publication_source_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+      "publication_date_role": "GitHub commit of version 2",
+      "date_precision": "GitHub commit timestamp in UTC; observation time separate.",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "Apache-2.0 repository; the paper is not copied, only its hashes",
+      "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783), Schonhage's five-term partial-product tensor and the author's version 1. The paper says it was written with Anthropic's Claude models under the author's direction.",
+      "credit_note": "Ruhollah Majdoddin lowers his deterministic APSP exponent from 2.9945 to 2.99388 plus o(1) in version 2 of his paper. The author says it uses H(2/25, 0.0765) from its Corollary 9.4 in place of H(1/14, 0.077) of version 1."
     }
   },
   "updated_at": "2026-11-20T00:22:31Z"
