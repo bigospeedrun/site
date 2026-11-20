@@ -6208,10 +6208,187 @@
         "table": "big-o"
       },
       {
+        "slug": "apsp/randomized-word-ram",
+        "name": "APSP, randomized",
+        "url": "https://bigospeedrun.com/apsp/randomized-word-ram",
+        "leader": "majdoddin-apsp-randomized-2026",
+        "direction": "lower",
+        "records": [
+          {
+            "id": "anthropic-2026",
+            "score": "149971/50000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "Josh Alman and Virginia Vassilevska Williams",
+              "Anthropic"
+            ],
+            "bound": "O(n^2.99942)"
+          },
+          {
+            "id": "swapnil-jain-apsp-2026",
+            "score": "2995943/1000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Swapnil"
+            ],
+            "bound": "O(n^2.995943)"
+          },
+          {
+            "id": "jihoon-hyun-apsp-2026",
+            "score": "299791/100000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "qawbecrdtey"
+            ],
+            "bound": "O(n^2.99791)"
+          },
+          {
+            "id": "prove2me-apsp-2-9983",
+            "score": "29983/10000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "wurtle"
+            ],
+            "bound": "O(n^2.9983)"
+          },
+          {
+            "id": "prove2me-apsp-2-99791",
+            "score": "299791/100000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "xuanji"
+            ],
+            "bound": "O(n^2.99791)"
+          },
+          {
+            "id": "prove2me-apsp-2-996001",
+            "score": "2996001/1000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "xuanji"
+            ],
+            "bound": "O(n^2.996001)"
+          },
+          {
+            "id": "shreshth-s-apsp-2026",
+            "score": "37411849/12500000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "shresh"
+            ],
+            "bound": "O(n^2.99294792)"
+          },
+          {
+            "id": "majdoddin-apsp-2026",
+            "score": "5989/2000",
+            "relation": "strict-upper-bound",
+            "evidence": "Claimed",
+            "authors": [
+              "Ruhollah Majdoddin"
+            ],
+            "bound": "O(n^(2.9945 + epsilon)), for every fixed epsilon > 0"
+          },
+          {
+            "id": "majdoddin-apsp-2026-v2",
+            "score": "74847/25000",
+            "relation": "strict-upper-bound",
+            "evidence": "Claimed",
+            "authors": [
+              "Ruhollah Majdoddin"
+            ],
+            "bound": "O(n^(2.99388 + epsilon)), for every fixed epsilon > 0"
+          },
+          {
+            "id": "joshuaqfex-apsp-2026",
+            "score": "14964739593547/5000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Joshua Wharton"
+            ],
+            "bound": "O(n^2.9929479187094)"
+          },
+          {
+            "id": "direct-issue-25",
+            "score": "1497780383/500000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "Joshua Wharton"
+            ],
+            "bound": "O(n^2.995560766)"
+          },
+          {
+            "id": "direct-issue-32",
+            "score": "14977803823907/5000000000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "Hrishik Sai Bojnal"
+            ],
+            "bound": "O(n^2.9955607647814)"
+          },
+          {
+            "id": "direct-pr-13",
+            "score": "59911217/20000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "Hrishik Sai Bojnal"
+            ],
+            "bound": "O(n^2.99556085)"
+          },
+          {
+            "id": "direct-pr-6",
+            "score": "2995561/1000000",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "Li Xuanji"
+            ],
+            "bound": "O(n^2.995561)"
+          },
+          {
+            "id": "majdoddin-apsp-randomized-2026",
+            "score": "298989/100000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Ruhollah Majdoddin"
+            ],
+            "bound": "O(n^2.98989)"
+          }
+        ],
+        "carried": [
+          "anthropic-2026",
+          "swapnil-jain-apsp-2026",
+          "jihoon-hyun-apsp-2026",
+          "prove2me-apsp-2-9983",
+          "prove2me-apsp-2-99791",
+          "prove2me-apsp-2-996001",
+          "shreshth-s-apsp-2026",
+          "majdoddin-apsp-2026",
+          "majdoddin-apsp-2026-v2",
+          "joshuaqfex-apsp-2026",
+          "direct-issue-25",
+          "direct-issue-32",
+          "direct-pr-13",
+          "direct-pr-6"
+        ],
+        "table": "big-o"
+      },
+      {
         "slug": "other-quasi-riemann",
         "name": "Quasi-Riemann hypothesis",
         "url": "https://bigospeedrun.com/other/quasi-riemann",
-        "leader": "HaileyStorm:436666397/500000000",
+        "leader": "levent-alpoge:1/2",
         "table": "other-bounds",
         "direction": "lower",
         "records": [
@@ -6721,6 +6898,17 @@
             ],
             "bound": "θ ≤ 0.873332794",
             "display": "0.873332794"
+          },
+          {
+            "id": "levent-alpoge:1/2",
+            "score": "1/2",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Levent Alpöge"
+            ],
+            "bound": "θ ≤ 1/2",
+            "display": "0.5"
           }
         ]
       },
@@ -9165,7 +9353,16 @@
     "[\"integer-multiplication\",\"crocswap-pr-7786\",\"96986002767/25000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-7830\",\"96998200889/25000000000000\",\"attained\"]:record",
     "[\"other-quasi-riemann\",\"HaileyStorm:436666397/500000000\",\"436666397/500000000\",\"attained\"]:record",
-    "[\"other-quasi-riemann\",\"levent-alpoge:1/2\",\"1/2\",\"attained\"]:record"
+    "[\"other-quasi-riemann\",\"levent-alpoge:1/2\",\"1/2\",\"attained\"]:record",
+    "[\"apsp/randomized-word-ram\",\"anthropic-2026\",\"149971/50000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"prove2me-apsp-2-9983\",\"29983/10000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"prove2me-apsp-2-99791\",\"299791/100000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"prove2me-apsp-2-996001\",\"2996001/1000000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"direct-issue-25\",\"1497780383/500000000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"direct-issue-32\",\"14977803823907/5000000000000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"direct-pr-13\",\"59911217/20000000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"direct-pr-6\",\"2995561/1000000\",\"attained\"]:lean",
+    "[\"apsp/randomized-word-ram\",\"majdoddin-apsp-randomized-2026\",\"298989/100000\",\"attained\"]:record"
   ],
   "deferred": [
     {
