@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdtempSync, mkdirSync, writeFileSync, rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
+import {createHash} from 'node:crypto';
 import type {AddressInfo} from 'node:net';
 import {startSiteServer} from '../../server/site-server.ts';
 import {createKnowledge} from './chat-knowledge.ts';
@@ -10,7 +11,7 @@ import {createKnowledge} from './chat-knowledge.ts';
 // A small prebuilt dist, so the test needs no Astro build.
 const root = mkdtempSync(join(tmpdir(), 'site-server-'));
 const write = (path: string, body: string) => { mkdirSync(join(root, path, '..'), {recursive: true}); writeFileSync(join(root, path), body); };
-write('index.html', '<html><main>Home</main></html>');
+write('index.html', '<html><main>Home</main><script>window.home=1</script><script type="application/ld+json">{}</script></html>');
 write('about/index.html', '<html><main>About</main></html>');
 write('404.html', '<html><main>Not found</main></html>');
 write('_astro/app.Bx1.js', 'console.log(1)');
@@ -141,4 +142,30 @@ test('chat status, origin check, streamed reply and the per-IP rate limit', asyn
  // Without the env the chat says it is unavailable.
  const keylessPost = await fetch(keylessBase + '/api/chat', {method: 'POST', headers: {'content-type': 'application/json', 'x-forwarded-for': '203.0.113.3'}, body: JSON.stringify({messages: [{role: 'user', content: 'Hi'}]})});
  assert.equal(keylessPost.status, 503);
+});
+
+test('pages get a Report-Only Content-Security-Policy with the hashes of their inline scripts; other files do not', async () => {
+ const hash = `'sha256-${createHash('sha256').update('window.home=1').digest('base64')}'`;
+ for (const path of ['/', '/about', '/nope']) {
+  const response = await get(path);
+  const policy = response.headers.get('content-security-policy-report-only')!;
+  assert.match(policy, /^default-src 'self'; /, path);
+  assert.ok(policy.includes(`script-src 'self' ${hash} https://*.googletagmanager.com`), path);
+  assert.equal(response.headers.get('content-security-policy'), null, path);
+ }
+ for (const path of ['/llms.txt', '/_astro/app.Bx1.js', '/api/chat']) assert.equal((await get(path)).headers.get('content-security-policy-report-only'), null, path);
+});
+
+test('/api/csp-report logs a short line for a report, answers 204, takes only POST and caps the body', async () => {
+ const lines: string[] = [];
+ const original = console.log;
+ console.log = (...args: unknown[]) => { lines.push(args.join(' ')); };
+ try {
+  const post = (body: string) => fetch(base + '/api/csp-report', {method: 'POST', headers: {'content-type': 'application/csp-report'}, body});
+  assert.equal((await post('{"csp-report":{"document-uri":"https://bigospeedrun.com/x?q=1","blocked-uri":"inline","violated-directive":"script-src-elem"}}')).status, 204);
+  assert.equal((await post('nonsense')).status, 204);
+  assert.equal((await post('x'.repeat(20_000))).status, 413);
+  assert.equal((await get('/api/csp-report')).status, 405);
+ } finally { console.log = original; }
+ assert.deepEqual(lines, ['csp-report {"document-uri":"https://bigospeedrun.com/x","blocked-uri":"inline","violated-directive":"script-src-elem"}']);
 });

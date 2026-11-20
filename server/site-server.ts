@@ -1,5 +1,5 @@
 // Self-hosted bigospeedrun.com: serves the prebuilt Astro dist with the page routing,
-// the platform headers and the two API routes (/api/chat and /api/markdown).
+// the platform headers and the API routes (/api/chat, /api/markdown and /api/csp-report).
 // Run: node --experimental-strip-types server/site-server.ts [--root dist] [--port 3000] [--host 127.0.0.1]
 // It expects a proxy (Caddy) in front that terminates TLS, redirects http to https and sets
 // X-Forwarded-For to the client IP and X-Forwarded-Proto to https.
@@ -12,6 +12,7 @@ import {pathToFileURL} from 'node:url';
 import {agentResponse, type AgentPages} from '../src/lib/agent-pages.ts';
 import {createChatHandler} from '../src/lib/chat-handler.ts';
 import type {ChatKnowledge} from '../src/lib/chat-knowledge.ts';
+import {CSP_HEADER, CSP_REPORT_PATH, MAX_REPORT_BYTES, contentSecurityPolicy, createReportLimiter, distScriptHashes, summarizeReport} from '../src/lib/csp.ts';
 
 // Content types from the 2026-10-16 production measurements. Unknown types are binary.
 const types: Record<string, string> = {
@@ -39,6 +40,24 @@ export function createSiteHandler({root, env = process.env, fetcher, now}: SiteO
   const chat = createChatHandler({apiKey: env.ANTHROPIC_API_KEY, webhookUrl: env.DISCORD_WEBHOOK_URL, chatLogWebhookUrl: env.DISCORD_CHAT_LOG_WEBHOOK_URL,
     knowledge: async () => JSON.parse(await readFile(resolve(dist, 'chat-knowledge.json'), 'utf8')) as ChatKnowledge, fetcher, now});
   const etags = new Map<string, {mtime: number; etag: string}>();
+  // The inline scripts of the built pages, read once. A failed read leaves the pages without the header, never without the page.
+  const policy = distScriptHashes(dist).then(contentSecurityPolicy, () => undefined);
+  const reportAllowed = createReportLimiter(60, now);
+  async function cspReport(request: Request): Promise<Response> {
+    if (request.method !== 'POST') return new Response(null, {status: 405, headers: {'Allow': 'POST', 'Cache-Control': 'no-store'}});
+    const chunks: Uint8Array[] = [];
+    let bytes = 0;
+    const reader = request.body?.getReader();
+    while (reader) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      if ((bytes += value.length) > MAX_REPORT_BYTES) { await reader.cancel(); return new Response(null, {status: 413, headers: {'Cache-Control': 'no-store'}}); }
+      chunks.push(value);
+    }
+    const line = summarizeReport(Buffer.concat(chunks).toString('utf8'));
+    if (line && reportAllowed()) console.log(line);
+    return new Response(null, {status: 204, headers: {'Cache-Control': 'no-store'}});
+  }
 
   async function file(pathname: string): Promise<string | undefined> {
     const target = resolve(dist, '.' + pathname);
@@ -72,6 +91,7 @@ export function createSiteHandler({root, env = process.env, fetcher, now}: SiteO
     const match = markdownFirst.exec(pathname);
     if (match && wantsMarkdown(accept)) return markdown(request, '/' + match[1]);
     if (pathname === '/api/chat') return chat(request);
+    if (pathname === CSP_REPORT_PATH) return cspReport(request);
     if (pathname === '/api/markdown') return markdown(request, '/' + (url.searchParams.get('agentPath') ?? ''));
     const found = await file(pathname);
     if (found) return serveFile(request, found);
@@ -85,6 +105,8 @@ export function createSiteHandler({root, env = process.env, fetcher, now}: SiteO
     catch { response = new Response('The site could not serve this request.', {status: 500, headers: {'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store'}}); }
     const headers = new Headers(response.headers);
     for (const [name, value] of Object.entries(platformHeaders)) headers.set(name, value);
+    // The policy belongs to documents: pages, and the 404 page.
+    if (headers.get('Content-Type')?.startsWith('text/html')) { const value = await policy; if (value) headers.set(CSP_HEADER, value); }
     return new Response(response.body, {status: response.status, statusText: response.statusText, headers});
   };
 }
