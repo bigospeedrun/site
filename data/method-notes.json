@@ -17,7 +17,8 @@
       "direct-issue-99": "The new part is the weighted cache: digit costs 0, 1369 and 2740, a new ternary profile and two new evaluation points. Lean checks the whole solver, its correctness and its running time. The submission also states, and proves in Lean outside our problem statement, that in its own cache model no choice of profile, costs, threshold and multipliers goes below 1.92027940818, so tuning it can lower the exponent by at most 0.000000000005 more. Our verifier checked only the running-time bound."
     },
     "apsp": {
-      "joshuaqfex-apsp-2026": "The author found better tuning values for the all-pairs shortest paths construction. A Lean file checks 47 inequalities on those values and the exact identities between the stages of the construction."
+      "joshuaqfex-apsp-2026": "The author found better tuning values for the all-pairs shortest paths construction. A Lean file checks 47 inequalities on those values and the exact identities between the stages of the construction.",
+      "majdoddin-apsp-randomized-2026": "The author reduces shortest paths to a matrix problem. The Monte Carlo version uses random parity checks and random prime moduli, which need only the parities of the counts that the deterministic version computes. The exponent is 2.98989, below the 2.99388 of the deterministic row of the same paper."
     },
     "subset-sum": {
       "yannouli-subset-sum-0-4876723-2026": "The new part is a rule for where the certificates of filter 3 start and stop, plus new parameter margins. A written note proves the rule, and a script with exact fractions confirms the numbers.",

@@ -168,6 +168,14 @@
               "string",
               "null"
             ]
+          },
+          "carries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "minItems": 1
           }
         }
       }

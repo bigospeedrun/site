@@ -1,19 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {problemDisplayName} from '../lib/navigation';
+import {modelDisplayName,isPrimaryModel} from '../lib/navigation';
+import ModelSwitch from './ModelSwitch.astro';
 import {boardRecords} from '../lib/data';
 import ProgressChart from './ProgressChart.astro';
 import SsspBoard from './SsspBoard.astro';
 import Leaderboard from './Leaderboard.astro';
 import InfoTooltip from './InfoTooltip.astro';
 import {repoSelectionText} from '../lib/site';
-import {math} from '../lib/math';
+import {math,inlineMath} from '../lib/math';
 import {localTimeFallback} from '../lib/freshness';
 import {boardUrl} from '../lib/board';
 import {prove2meCampaign} from '../lib/submission';
 interface Props {p:import('../lib/types').Problem;}
 const {p}=Astro.props;
-const displayName=problemDisplayName(p.slug,p.title);
+const displayName=modelDisplayName(p.slug,p.modelId,isPrimaryModel(p),p.title);
 const records=boardRecords(p);
 const board=boardUrl(p.slug);
 const campaign=prove2meCampaign(p);
@@ -51,8 +52,10 @@ const statements:Record<string,string>={
 ---
 <Layout title={displayName}>
 <h1>{displayName}</h1>
+<ModelSwitch p={p}/>
 <section class="problem-intro" aria-label="Problem definition">
-<p set:html={statements[p.slug]}/>
+<p set:html={isPrimaryModel(p)?statements[p.slug]:inlineMath(p.scope)}/>
+{p.records.some(r=>r.carried)&&<p>The results of the <a href={'/'+p.slug}>deterministic board</a> count here too and show the tag Deterministic: a deterministic algorithm is a randomized one.</p>}
 {classic&&<p>Classic bound: <span set:html={math(classic.bound)}/> ({classicCitations[p.slug].map((citation,i)=><>{i>0?"; ":""}<a href={citation.url} target={citation.url.startsWith("https://github.com/")?"_blank":undefined} rel={citation.url.startsWith("https://github.com/")?"noopener":undefined}>{citation.name}</a></>)}).</p>}
 {p.slug==='integer-multiplication'&&<details><summary>What the OpenAI fixed-tape reduction is</summary><p>Most bounds on this board assume the fixed-tape reduction of OpenAI's preprint <a href="https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026" target="_blank" rel="noopener">Integer multiplication below <span set:html={math('n\\log n')}/></a>. The preprint builds fast tape procedures for two tasks from fixed finite networks of simple steps: exchanging two parts of every address in a stored array, and replacing each pair of values <span set:html={math('u,v')}/> by <span set:html={math('(u+v)/2')}/> and <span set:html={math('(u-v)/2')}/> across a whole array. It then places these procedures in Harvey and van der Hoeven's reduction from multiplication to Fourier transforms, counts the cost of every step on a fixed number of tapes, and proves time <span set:html={math('O(n\\log^{1-\\kappa} n)')}/> with <span set:html={math('\\kappa=2^{-182}')}/>. A community result changes parts of the construction, such as its networks, routing or parameters, and checks the new certificates. It does not prove the whole reduction again: it assumes that OpenAI's original framework still gives a fixed-tape Turing machine with its larger <span set:html={math('\\kappa')}/>.</p></details>}
 {p.slug==='subset-sum'&&<details><summary>Full computation rules</summary><p>Word reads and writes, indirect addressing, comparison, arithmetic (including multiplication, division and remainder), bitwise operations, shifts and independent uniform random words each cost one operation. Overflow costs multiple operations. Retained random words use memory. All input access and preparation count; the program has no advice or external tables. For each fixed <span set:html={math('c')}/> and <span set:html={math('b\\le n^c')}/>, the bound holds for every random outcome, and the program does not depend on <span set:html={math('c')}/>.</p></details>}

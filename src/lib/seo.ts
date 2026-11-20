@@ -1,4 +1,5 @@
 import otherBounds from './other-bounds.json' with {type:'json'};
+import {modelLinks} from './navigation.ts';
 export const siteOrigin = 'https://bigospeedrun.com';
 export const shareImage = `${siteOrigin}/og.png`;
 export const pageDescriptions: Record<string,string> = {
@@ -12,15 +13,17 @@ export const pageDescriptions: Record<string,string> = {
  '/integer-factoring': 'Compare deterministic integer factoring bounds, their evidence, and progress toward subexponential time.',
  '/exact-dft': 'Compare exact discrete Fourier transform bounds, their evidence, and progress below n log n time.',
  '/directed-sssp': 'Compare directed shortest path bounds, their evidence, and progress in running time.',
+ '/apsp/randomized-word-ram': 'Compare randomized all-pairs shortest path bounds, their evidence, and progress below cubic time; every deterministic result counts too.',
  '/privacy': 'Read how the site uses Google Analytics, chat messages and browser storage.',
  '/about': 'Read how Big O Speedrun selects problems and repositories, checks results, and accepts submissions.',
 };
 for(const family of otherBounds.families) pageDescriptions['/other/'+family.slug]='Compare improvements for '+family.name+', with evidence levels, source dates and proof scope.';
 
-// Model permalinks show the same page as the main problem URL.
+// Model permalinks show the same page as the main problem URL. The second model of a race (modelLinks) is its own page.
+const ownModelPaths=new Set(modelLinks.map(([slug,model])=>'/'+slug+'/'+model));
 export function pageSeo(pathname:string) {
  const segments=pathname.split('/').filter(Boolean);
- const path = '/'+(segments[0]==='other'||segments[0]==='receipts'?segments.slice(0,2).join('/'):(segments[0]??''));
+ const path = '/'+(segments[0]==='other'||segments[0]==='receipts'||ownModelPaths.has('/'+segments.slice(0,2).join('/'))?segments.slice(0,2).join('/'):(segments[0]??''));
  const canonicalPath = path==='/'?'/':path;
  return {
   canonical: siteOrigin+canonicalPath,

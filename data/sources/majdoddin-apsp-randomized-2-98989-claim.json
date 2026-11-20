@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-11-20T21:30:00Z",
+  "paper": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+  "publication_date": "2026-11-20T17:58:06Z",
+  "publication_date_basis": "GitHub commit time of the author's commit 56c59854 in Majdoddin/formal-math (the repository push was 2026-11-20T17:58:14Z). Version 2 of arXiv:2610.17420; it is not yet on arXiv. The author proposed this randomized claim in bigospeedrun/site issue 26.",
+  "score": "298989/100000",
+  "score_relation": "attained",
+  "theorem": "Corollary 23.5 of version 2 (split random covering), via Theorem 23.3 and the certified points of Table 11",
+  "model_check": "Corollary 23.5: APSP on directed n-vertex graphs with integer weights of absolute value n^O(1) and no negative cycles has a Monte Carlo algorithm with error probability n^(-C), for every constant C, in worst-case time O(n^2.98989). The proof computes the exponent 2.9898857... and absorbs the polylogarithmic factors by rounding up in the fifth decimal, so O(n^2.98989) is the stated bound. The problem is the one of the deterministic board (directed, polynomially bounded integer weights, no negative cycles, all ordered pairs). The paper does not define a randomized word RAM: it draws uniform random masks and a uniformly random prime and counts steps of a word RAM with O(log N)-bit words. Reading each random word as one step is our interpretation, as in the Monte Carlo statement proposed in issue 26. Source comparison, not a proof check.",
+  "files_not_copied": "The paper is in the author's public repository, so the PDF and LaTeX source are not copied here. SHA-256 of the files at that commit:",
+  "files": {
+    "main.pdf": {
+      "sha256": "576fdc9261c13e0741bc154dc02c15478f0fe22eae7344adc82e1b6ba65c8a97",
+      "url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf"
+    },
+    "main.tex": {
+      "sha256": "6ddf46f6dc7db0f9b7a454ce6609da1db31dbc5e084c388bf3861b3db541a7b1",
+      "url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.tex"
+    }
+  },
+  "lean": {
+    "repo": "https://github.com/Majdoddin/formal-math",
+    "commit": "56c598548d70c7eed7d0e9082d148114cab50966",
+    "scope": "Running times are not formalised in Lean. The Lean folders check identities, counts and reductions of version 1, not running times."
+  },
+  "verification": "Written proof, not peer reviewed. The certified points behind the exponent (Table 11, Theorem 23.3) are exact-rational scripts r155_fold.py, r224_unfold_check.py and r154c_cert.py in the repository (scripts/ at that commit). The paper says the margins are small and that none of this is machine-checked. No Big O Speedrun proof check. Evidence remains Claimed.",
+  "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783), the residue folding of the working note of shreshth-s, Schonhage's five-term partial-product tensor and the author's version 1. The paper says it was written with Anthropic's Claude models under the author's direction."
+}

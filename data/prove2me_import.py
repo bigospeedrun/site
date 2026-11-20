@@ -587,7 +587,10 @@ def run(root, get=fetch, now=None):
     state = dict(schema_version=1, lean_verified=LEAN_VERIFIED, boards={})
     out, held = {}, {}
     registry = json.loads((root / 'registry.json').read_text())
-    data_files = {p['slug']: p['data_file'] for p in registry['problems']}
+    # A slug with a second model (apsp/randomized-word-ram) keeps its first entry: prove2.me rows go to the default model.
+    data_files = {}
+    for p in registry['problems']:
+        data_files.setdefault(p['slug'], p['data_file'])
     for slug, board in trust['boards'].items():
         prior = previous['boards'].get(slug, {})
         if board.get('kind') == 'other':

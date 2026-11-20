@@ -5,6 +5,8 @@ import {mkdir, readFile} from 'node:fs/promises';
 const {chromium} = await import(process.argv[2] ?? 'playwright-core');
 const origin = process.argv[3] ?? 'http://127.0.0.1:4334';
 const registry = JSON.parse(await readFile(new URL('../src/data/registry.json', import.meta.url), 'utf8'));
+// A page per model: the first model of a race is /<slug>, a later one /<slug>/<model> (apsp/randomized-word-ram).
+const pages = registry.problems.map((problem, i) => registry.problems.findIndex(other => other.slug === problem.slug) === i ? problem.slug : `${problem.slug}/${problem.problem_id.split('/')[1]}`);
 const browser = await chromium.launch({executablePath: process.argv[4] ?? '/usr/bin/google-chrome', headless: true, args: ['--no-sandbox']});
 await mkdir('screenshots', {recursive: true});
 let checked = 0;
@@ -13,7 +15,7 @@ try {
     const page = await browser.newPage({viewport: {width, height: 900}, colorScheme: 'dark', timezoneId: 'America/Los_Angeles'});
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    for (const {slug} of registry.problems) {
+    for (const slug of pages) {
       await page.goto(`${origin}/${slug}`, {waitUntil: 'networkidle'});
       await page.evaluate(() => document.fonts.ready);
       await page.locator('progress-chart').waitFor();

@@ -1,0 +1,17 @@
+---
+import {problems} from '../lib/data';
+import {modelPath,modelSwitchLabels,isPrimaryModel} from '../lib/navigation';
+// The two models of a race (APSP: deterministic and randomized) are two pages. The switch links them; it shows only for a race with two.
+interface Props {p:import('../lib/types').Problem;}
+const {p}=Astro.props;
+const models=problems.filter(m=>m.slug===p.slug);
+---
+{models.length>1&&<nav class="model-switch" aria-label="Model of this race"><ul>{models.map(m=><li>{m.modelId===p.modelId?<span aria-current="page">{modelSwitchLabels[m.modelId]??m.model}</span>:<a href={modelPath(m.slug,m.modelId,isPrimaryModel(m))}>{modelSwitchLabels[m.modelId]??m.model}</a>}</li>)}</ul></nav>}
+<style>
+.model-switch ul{display:inline-flex;flex-wrap:wrap;gap:0;margin:.25rem 0 1rem;padding:0;list-style:none;border:1px solid var(--line);border-radius:.5rem;overflow:hidden}
+.model-switch li{display:block}
+.model-switch a,.model-switch span{display:inline-block;padding:.55rem 1rem;min-height:44px;box-sizing:border-box;align-content:center}
+.model-switch a{color:var(--link);text-decoration:underline;text-underline-offset:.2em}
+.model-switch span{background:var(--surface);color:var(--fg);font-weight:600}
+.model-switch li+li{border-left:1px solid var(--line)}
+</style>

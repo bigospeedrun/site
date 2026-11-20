@@ -15,7 +15,7 @@ try {
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  for (const slug of ['', ...registry.problems.map(problem => problem.slug)]) {
+  for (const slug of ['', ...registry.problems.map((problem, i) => registry.problems.findIndex(other => other.slug === problem.slug) === i ? problem.slug : `${problem.slug}/${problem.problem_id.split('/')[1]}`)]) {
    await page.goto(`${origin}/${slug}`, {waitUntil: 'networkidle'});
    await page.evaluate(() => document.fonts.ready);
    for (const chart of await page.locator('progress-chart').all()) {

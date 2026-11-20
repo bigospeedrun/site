@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import OtherBounds from '../components/OtherBounds.astro';
 import ContributePrompt from '../components/ContributePrompt.astro';
-import {problemDisplayName} from '../lib/navigation';
+import {modelDisplayName,modelPath,isPrimaryModel} from '../lib/navigation';
 import LandingTable from '../components/LandingTable.astro';
 import content from '../lib/landing.html?raw';
 import {inlineMath} from '../lib/math';
@@ -16,17 +16,19 @@ const rows = [
   {slug:'exact-dft', classic:'O(n \\log n)', breakthroughId:'exact-dft-2026', source:'https://github.com/openai/math/tree/main/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026'},
   {slug:'3sum', classic:'O(n^2)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
   {slug:'apsp', classic:'O(n^3)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
+  // The randomized model of the APSP race: a row of its own, not a race. Its classic and its agent breakthrough are the deterministic ones, carried.
+  {slug:'apsp', modelId:'randomized-word-ram', classic:'O(n^3)', breakthroughId:'anthropic-2026', source:'https://arxiv.org/abs/2610.06783'},
   {slug:'subset-sum', classic:'O^*(2^{n/2})', breakthroughId:'subset-sum-2026', source:'https://github.com/openai/math/tree/main/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026'},
   {slug:'3sat', classic:'O^*(1.307031578^n)', breakthroughId:'openai-eth-2026', source:'https://github.com/openai/math/tree/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026'},
   {slug:'integer-factoring', classic:factoringClassic, breakthroughId:'rudich-rousseau-2026', source:'https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/tree/c91cc3f4947caca8977e81a5d14244f73b5ae2b1'},
   {slug:'directed-sssp', classic:'O(m + n \\log n)', breakthroughId:'directed-sssp-2026', source:'https://www.vals.ai/blogs/faster-shortest-path-algorithm'},
 ].map(row=>{
-  const problem=problems.find(p=>p.slug===row.slug)!;
+  const problem=problems.find(p=>p.slug===row.slug&&(row.modelId?p.modelId===row.modelId:isPrimaryModel(p)))!;
   const records=boardRecords(problem);
   const breakthroughRecord=problem.records.find(record=>record.id===row.breakthroughId)!;
   const breakthrough=breakthroughRecord.shortBound??breakthroughRecord.bound;
-  const latest=landingRecords(records,problem.direction,problem.chartLines).map(record=>({bound:record.shortBound??record.bound,url:record.evidence[0]?.url??'/'+row.slug,evidenceLevel:record.evidenceLevel,date:record.date,endpoint:record.scoreRelation==='strict-upper-bound',evidenceUrl:record.evidenceLevel==='claimed'?undefined:record.evidenceUrl,authors:record.authors,refiledBy:record.refiledBy}));
-  return {...row,href:'/'+row.slug,name:problemDisplayName(row.slug),breakthrough,breakthroughAuthors:breakthroughRecord.authors,latest,endpoint:latest.some(record=>record.endpoint)};
+  const latest=landingRecords(records,problem.direction,problem.chartLines).map(record=>({bound:record.shortBound??record.bound,url:record.evidence[0]?.url??modelPath(problem.slug,problem.modelId,isPrimaryModel(problem)),evidenceLevel:record.evidenceLevel,date:record.date,endpoint:record.scoreRelation==='strict-upper-bound',evidenceUrl:record.evidenceLevel==='claimed'?undefined:record.evidenceUrl,authors:record.authors,refiledBy:record.refiledBy}));
+  return {...row,href:modelPath(problem.slug,problem.modelId,isPrimaryModel(problem)),name:modelDisplayName(problem.slug,problem.modelId,isPrimaryModel(problem),problem.title),breakthrough,breakthroughAuthors:breakthroughRecord.authors,latest,endpoint:latest.some(record=>record.endpoint)};
 });
 
 ---

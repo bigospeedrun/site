@@ -21,7 +21,9 @@ export type FeedDirection='lower'|'higher';
 // one leader (Lead, 2026-11-03, design note sections 7 and 8); leader is then null. recordRows: the frontier rows that are
 // records (ssspRecordRows: faster than every row at their density, the function rows too). Only these post as a record and
 // go to X; a board with a frontier and no recordRows has no record rows.
-export interface FeedBoard {slug:string; name:string; url:string; leader:string|null; records:FeedRecord[]; table?:FeedTable; direction?:FeedDirection; frontier?:string[]; recordRows?:string[]}
+// carried: on the board of a later model of a race (apsp/randomized-word-ram), the ids of the rows that come from the model it carries.
+// They rank and lead here, but they post on their own board, never on this one. Such a board is seeded when first seen.
+export interface FeedBoard {slug:string; name:string; url:string; leader:string|null; records:FeedRecord[]; table?:FeedTable; direction?:FeedDirection; frontier?:string[]; recordRows?:string[]; carried?:string[]}
 export interface FeedSnapshot {schema_version:1; boards:FeedBoard[]}
 export interface FeedState {schema_version:1; snapshot:FeedSnapshot; reserved:string[]; deferred?:{key:string;slug:string;authors:string[];hold?:true}[]}
 export interface FeedMessage {key:string; content:string; x_text?:string; authors?:string[]; table?:FeedTable}
@@ -65,6 +67,13 @@ export function feedBoard(problem:Pick<Problem,'slug'|'direction'>&Partial<Pick<
  return {slug:problem.slug,name,url:`https://bigospeedrun.com/${problem.slug}`,leader:ranked(records,problem.direction)[0]?.record.id??null,direction:problem.direction==='higher-is-better'?'higher':'lower',
  records:records.map(r=>({id:r.id,score:r.score,relation:r.scoreRelation??'attained',evidence:evidenceName(r.evidenceLevel),authors:r.authors.map(a=>a.name),...(r.refiledBy?{refiledBy:r.refiledBy}:{}),bound:plainBound(problem.slug,r.score,r.scoreRelation,digits),
   ...(r.verification&&evidenceName(r.evidenceLevel)==='Claimed'?{verification:r.verification}:{})}))};
+}
+// The board of a later model of a race (Lead, 2026-11-20: the randomized APSP leaderboard). Its slug is <race>/<modelId>, so its
+// state and posts stay apart from the race's first board; the bounds are written as on the race. The rows it carries are listed.
+export const isModelBoardSlug=(slug:string)=>slug.includes('/');
+export function modelFeedBoard(problem:Pick<Problem,'slug'|'direction'|'modelId'>&Partial<Pick<Problem,'chartLines'>>,records:(Parameters<typeof feedBoard>[1][number]&Partial<Pick<RecordEntry,'carried'>>)[],name:string):FeedBoard {
+ const board=feedBoard(problem,records,name);
+ return {...board,slug:`${problem.slug}/${problem.modelId}`,url:`https://bigospeedrun.com/${problem.slug}/${problem.modelId}`,carried:records.filter(r=>r.carried).map(r=>r.id)};
 }
 // Directed SSSP (Lead, 2026-11-03): only point rows "D ; T" post; the function rows (classic, papers) never do. A frontier
 // row is a point row that no other listed point row dominates and that no Lean Verified line dominates (the line of a
@@ -319,13 +328,16 @@ export function plan(previous:FeedState,snapshot:FeedSnapshot,posts:(Pick<Record
   const old=previous.snapshot.boards.find(b=>b.slug===board.slug);
   // An Other bounds board seen for the first time is seeded, as the baseline does: its
   // current leader and Lean records are reserved and nothing posts. Only later leaders post.
-  // The directed-sssp board too: its race-start rows post nothing (the announcement covers them).
-  if(!old&&(isOther(board.slug)||board.frontier)){
+  // The directed-sssp board too: its race-start rows post nothing (the announcement covers them). So does a board that carries
+  // another model's rows (the randomized APSP board, Lead 2026-11-20): its launch post is made by hand.
+  if(!old&&(isOther(board.slug)||board.frontier||board.carried)){
    for(const r of board.records)if(leads(board,r.id)||r.evidence==='Lean Verified')reserved.add(eventKey(board,r));
    continue;
   }
   const lesser=superseded(board,old,reserved,announced);
   for(const record of board.records){
+   // A carried row posts on its own board (it is a result of the other model); here it only ranks.
+   if(board.carried?.includes(record.id))continue;
    const prior=old?.records.find(r=>identity(old,r)===identity(board,record));
    const oldLeader=old?.records.find(r=>r.id===old.leader);
    // On the directed-sssp board: a row that becomes a frontier row; a row that gains Lean Verified posts only while it is one.

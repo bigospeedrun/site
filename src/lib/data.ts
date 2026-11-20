@@ -39,10 +39,14 @@ const bound=(slug:string,score:string,relation?:string)=>{
  if(slug==='integer-factoring')return factoringBound(score);
  return `O(n^{${value}${open?'+\\varepsilon':''}})`;
 };
-export const problems:Problem[]=registry.problems.map((p:any)=>{
- const data=read(p.data_file);const rawRepos=registry.repositories.filter((r:any)=>r.problem_ids.includes(p.problem_id)&&r.listing_mode!=='planned');
+// A model that `carries` another (apsp/randomized-word-ram carries apsp/word-ram) shows that model's rows on its own board, flagged
+// `carried`: a deterministic algorithm is a randomized one. The rows exist once, in the carried model's file. A carried row keeps its
+// evidence, links and note, and its bound is shown with the digits of this board. The carried model's baseline is the classic here too.
+const built=new Map<string,Problem>();
+const build=(p:any):Problem=>{
+ const data=read(p.data_file);const rawRepos=registry.repositories.filter((r:any)=>[p.problem_id,...(p.carries??[])].some((id:string)=>r.problem_ids.includes(id))&&r.listing_mode!=='planned');
  const repos:Repo[]=rawRepos.map((r:any)=>({name:r.repo,owner:r.owner,url:r.url,ownerUrl:'https://github.com/'+r.owner,open:r.repo===p.race_repo,submission:r.repo===p.race_repo?(r.submission_url??r.url+'/pulls'):undefined,rules:r.rules_url??(r.repo===p.race_repo?r.url+'/blob/main/CONTRIBUTING.md':undefined),agents:r.agents_url??undefined,mode:r.opted_in?'Listed race':r.listing_mode==='research-artifact'?'Research artifact · not an open race':'Independent read-only listing; not opted in'}));
- const records:RecordEntry[]=data.records.map((r:any)=>{
+ const ownRecords:RecordEntry[]=data.records.map((r:any)=>{
  const meta=data.record_metadata?.[r.id]??{};const repo=repoName(meta.source_url??r.source?.url??r.submission_url);const entry=rawRepos.find((x:any)=>x.repo===repo);
  // The site assigns evidence levels from the problem review rule and proof receipts.
  const certification=p.slug==='integer-multiplication'&&r.id.startsWith('crocswap-pr-')&&Number.isInteger(meta.pr_number)?crocswapVerification(certifications,{pr:meta.pr_number,score:r.score,upstreamStatus:r.upstream_status,mergedAt:meta.merged_at??undefined}):undefined;
@@ -62,6 +66,8 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
 }),bound:p.slug==="subset-sum"&&r.id==="classical-baseline"?"O^*(2^{n/2})":p.slug==="3sat"&&r.id==="classical-baseline"?"O^*(1.307031578^n)":p.slug==="integer-factoring"&&r.id==="classical-baseline"?factoringClassic:bound(p.slug,r.score,r.score_relation),evidence,predecessors:r.predecessors,dependencies:r.dependencies,status:meta.proof_status??'Not independently rerun',comparisonNote:meta.comparison_status??'',creditNote:typeof meta.credit_note==='string'?meta.credit_note:undefined,refiledBy:typeof meta.refiled_by==='string'?meta.refiled_by:undefined,methodNote:methodNoteFor(methodNotes,p.slug,r.id,repo),upstreamStatus:r.upstream_status??'not-applicable',upstreamSelected:meta.upstream_selected===true,comparison:meta.comparison_key??(r.dependencies.length?repo||r.id:'Reported model'),eligible:meta.eligible_for_record!==false,raceEventAt:meta.race_event_at??(meta.publication_date_precision==='date-time'?meta.publication_date:undefined)??(meta.upstream_selected?r.submitted_at:undefined),rerunStatus:r.rerun_status,humanVerifiedAt:certification?.at,certifiedBy:certification?.commit,humanVerifiedBasis:certification?.via,provenance:r.provenance,prove2me:meta.prove2me===true||meta.prove2me_upgrade===true,prove2meUrl,
   ...(meta.direct_submission===true&&['pending','failed','held'].includes(meta.verification)&&typeof meta.publication_date==='string'?{verification:{state:meta.verification,since:meta.publication_date}}:{})};
  });
+ const carriedRecords:RecordEntry[]=(p.carries??[]).flatMap((id:string)=>built.get(id)!.records).map((r:RecordEntry)=>({...r,carried:true}));
+ const records:RecordEntry[]=[...carriedRecords,...ownRecords];
  const kappa=data.score.symbol==='kappa';
  const densityTime=data.score.encoding==='density-time';
  const digits=densityTime?0:boundPrecision(records.filter(r=>isBoardEntry(p.slug,r)).map(r=>r.score),kappa);
@@ -70,8 +76,12 @@ export const problems:Problem[]=registry.problems.map((p:any)=>{
   record.shortBound=tableBound(record,kappa,digits,displayDigits.landing);
   record.bound=tableBound(record,kappa,digits);
  }
- return {slug:p.slug,title:titles[p.slug],model:data.model.id.replaceAll('-',' '),modelId:data.model.id,scope:data.model.description,direction:data.score.direction,symbol:data.score.symbol==='kappa'?'kappa':'exponent',repos,records,lastDataCheck:data.updated_at,lastProofCheck:records.filter(r=>r.rerunStatus?.checked_at&&['passed','failed'].includes(r.rerunStatus.state)).map(r=>r.rerunStatus!.checked_at!).filter(Boolean).sort().at(-1)??null,sourceFetch:data.checked_at,pending:'Independent checks have not run. No site proof badges.',notes:[],...(densityTime?{chartLines:data.chart.lines.map((l:any)=>({function:l.function,up_to:l.up_to,row:l.row}))}:{})};
-});
+ return {slug:p.slug,primary:registry.problems.find((e:any)=>e.slug===p.slug)===p,title:titles[p.slug],model:data.model.id.replaceAll('-',' '),modelId:data.model.id,scope:data.model.description,direction:data.score.direction,symbol:data.score.symbol==='kappa'?'kappa':'exponent',repos,records,lastDataCheck:data.updated_at,lastProofCheck:records.filter(r=>r.rerunStatus?.checked_at&&['passed','failed'].includes(r.rerunStatus.state)).map(r=>r.rerunStatus!.checked_at!).filter(Boolean).sort().at(-1)??null,sourceFetch:data.checked_at,pending:'Independent checks have not run. No site proof badges.',notes:[],...(densityTime?{chartLines:data.chart.lines.map((l:any)=>({function:l.function,up_to:l.up_to,row:l.row}))}:{})};
+};
+// Models that carry nothing first, so a carrying model finds the rows it carries.
+for(const p of registry.problems.filter((e:any)=>!e.carries))built.set(p.problem_id,build(p));
+for(const p of registry.problems.filter((e:any)=>e.carries))built.set(p.problem_id,build(p));
+export const problems:Problem[]=registry.problems.map((p:any)=>built.get(p.problem_id)!);
 
 // All views admit open review submissions as Claimed through the shared admission rule.
 // These sources claim the same scored problem; evidence strength does not change score units.

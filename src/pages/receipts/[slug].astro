@@ -7,7 +7,7 @@ import otherBounds from '../../lib/other-bounds-data';
 import {receiptSlug, receiptView} from '../../lib/receipt';
 import {localTimeFallback} from '../../lib/freshness';
 import {math} from '../../lib/math';
-import {problemDisplayName} from '../../lib/navigation';
+import {modelDisplayName, modelPath, isPrimaryModel} from '../../lib/navigation';
 // One page per proof check receipt that a Lean Verified row links to (its level link).
 export function getStaticPaths() {
   // Astro runs getStaticPaths apart from the rest of this frontmatter, so its helpers live inside it.
@@ -21,8 +21,9 @@ export function getStaticPaths() {
     byReceipt.set(receiptSlug(path), entry);
   };
   for (const p of problems) for (const r of p.records) {
-    if (!r.evidenceUrl?.startsWith('/receipts/') || !r.rerunStatus?.receipt_path) continue;
-    add(r.rerunStatus.receipt_path, {href: '/' + p.slug, boardName: problemDisplayName(p.slug, p.title), id: r.id, bound: r.bound, authors: r.authors.map(a => a.name)});
+    // A carried row shows its receipt on its own board.
+    if (r.carried || !r.evidenceUrl?.startsWith('/receipts/') || !r.rerunStatus?.receipt_path) continue;
+    add(r.rerunStatus.receipt_path, {href: modelPath(p.slug, p.modelId, isPrimaryModel(p)), boardName: modelDisplayName(p.slug, p.modelId, isPrimaryModel(p), p.title), id: r.id, bound: r.bound, authors: r.authors.map(a => a.name)});
   }
   // A claim of an Other bounds row that a maintainer rerun made Lean Verified (applyMaintainer in other-merge.ts).
   for (const f of otherBounds.families) for (const c of f.claims) {

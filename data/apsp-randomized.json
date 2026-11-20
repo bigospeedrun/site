@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "problem_id": "apsp/randomized-word-ram",
+  "model": {
+    "id": "randomized-word-ram",
+    "version": "1",
+    "description": "Randomized directed APSP with polynomially bounded integer weights and no negative cycles. Monte Carlo: the algorithm may read uniformly random words, one step each; it must halt within the time bound on every random outcome and be correct with probability at least 2/3 on every input (the claims here have error at most \\(n^{-C}\\) for every constant \\(C\\)). Same word RAM, weight and word-length quantifiers, input and output as the deterministic APSP board: edge-presence and weight matrices in, reachability flags and distances for every ordered pair out.",
+    "definition_url": "https://github.com/bigospeedrun/site/issues/26"
+  },
+  "score": {
+    "id": "time-exponent",
+    "version": "1",
+    "symbol": "alpha",
+    "definition": "Worst-case \\(O(n^\\alpha)\\), Monte Carlo, error probability at most \\(1/3\\) on every input.",
+    "direction": "lower-is-better",
+    "encoding": "rational-string",
+    "minimum": "0",
+    "maximum": "3"
+  },
+  "checked_at": "2026-11-20",
+  "sources": [
+    {
+      "url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+      "checked_at": "2026-11-20"
+    },
+    {
+      "url": "https://github.com/bigospeedrun/site/issues/26",
+      "checked_at": "2026-11-20"
+    }
+  ],
+  "records": [
+    {
+      "id": "majdoddin-apsp-randomized-2026",
+      "kind": "improvement",
+      "score": "298989/100000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-20T17:58:06Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-20T17:58:06Z",
+      "site_observed_at": "2026-11-20T21:30:00Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf"
+      },
+      "spec_version": "1",
+      "title": "Ruhollah Majdoddin Monte Carlo APSP in time O(n^2.98989) (version 2)",
+      "authors": [
+        {
+          "name": "Ruhollah Majdoddin"
+        }
+      ],
+      "predecessors": [
+        "https://arxiv.org/abs/2610.06783",
+        "https://arxiv.org/abs/2610.17420v1"
+      ],
+      "submission_url": "https://github.com/bigospeedrun/site/issues/26",
+      "artifact": {
+        "path": "sources/majdoddin-apsp-randomized-2-98989-claim.json",
+        "sha256": "a1596cf7ae5398e634cdcc22facd0799a030b56d055a446a937ea203cb438604"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+        "theorem": "Corollary 23.5",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The running-time bound rests on the written proof; the companion Lean projects do not formalise running times. No site rerun.",
+          "source_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+          "status": "unverified"
+        },
+        {
+          "id": "randomized-model-reading",
+          "statement": "The paper does not define a randomized machine. It draws uniform random masks and a uniformly random prime and counts steps of a word RAM with O(log N)-bit words. Reading each random word as one step is our interpretation of the Monte Carlo model.",
+          "source_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+          "status": "unverified"
+        }
+      ]
+    }
+  ],
+  "record_metadata": {
+    "majdoddin-apsp-randomized-2026": {
+      "checked_at": "2026-11-20",
+      "source_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "The author states a Monte Carlo algorithm for directed APSP with polynomially bounded integer weights and no negative cycles: error probability at most n^(-C) for every constant C, worst-case time O(n^2.98989). The paper proves the exponent 2.9898857... and rounds up in the fifth decimal. It is a written proof, not peer reviewed; the running time is not formalised in Lean and no Lean file checks it. The paper does not define a randomized machine: it draws uniform random masks and a uniformly random prime, and counts steps of a word RAM with O(log N)-bit words. This board reads each random word as one step. No independent rerun.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/randomized-word-ram/v1",
+      "comparison_status": "Corollary 23.5: APSP on directed n-vertex graphs with integer weights of absolute value n^O(1) and no negative cycles has a Monte Carlo algorithm with error probability n^(-C), for every constant C, in worst-case time O(n^2.98989). The proof computes the exponent 2.9898857... and absorbs the polylogarithmic factors by rounding up in the fifth decimal, so O(n^2.98989) is the stated bound. The problem is the one of the deterministic board (directed, polynomially bounded integer weights, no negative cycles, all ordered pairs). The paper does not define a randomized word RAM: it draws uniform random masks and a uniformly random prime and counts steps of a word RAM with O(log N)-bit words. Reading each random word as one step is our interpretation, as in the Monte Carlo statement proposed in issue 26. Source comparison, not a proof check.",
+      "scope": "Directed integer weights of polynomial magnitude, no negative cycles, all-pairs distances; Monte Carlo, worst-case time.",
+      "exact_statement": "APSP on directed n-vertex graphs with integer weights of absolute value n^O(1) and no negative cycles has a Monte Carlo algorithm with error probability n^(-C), for every constant C, in worst-case time O(n^2.98989).",
+      "score_interpretation": "Attained bound O(n^2.98989) for a Monte Carlo algorithm with error at most n^(-C); the proof computes 2.9898857... and rounds up.",
+      "publication_date_precision": "date-time",
+      "publication_date": "2026-11-20T17:58:06Z",
+      "publication_source_url": "https://github.com/Majdoddin/formal-math/blob/56c598548d70c7eed7d0e9082d148114cab50966/papers/thin-matrix-products-v2/main.pdf",
+      "publication_date_role": "GitHub commit of version 2",
+      "date_precision": "GitHub commit timestamp in UTC; observation time separate.",
+      "listing_status": "research-draft",
+      "open_race": false,
+      "license_status": "Apache-2.0 repository; the paper is not copied, only its hashes",
+      "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783), the residue folding of the working note of shreshth-s, Schonhage's five-term partial-product tensor and the author's version 1. The paper says it was written with Anthropic's Claude models under the author's direction.",
+      "credit_note": "Ruhollah Majdoddin gives a Monte Carlo algorithm for directed APSP in O(n^2.98989), below every deterministic exponent on the board. The paper says its Monte Carlo reductions need only the parities of the counts that the deterministic reductions compute."
+    }
+  },
+  "updated_at": "2026-11-20T21:32:17Z"
+}

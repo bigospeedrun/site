@@ -4,7 +4,7 @@ import {boardLeaders} from './sssp-board.ts';
 import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, creditLines, otherReviewPrUrl, type EvidenceLevel, type OtherClaimReview, type OtherReviewRepository} from './evidence.ts';
 import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns, prove2meCampaignForOther} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
-import {problemLinks, problemDisplayName} from './navigation.ts';
+import {problemLinks, modelPath, modelDisplayName, isPrimaryModel} from './navigation.ts';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -23,7 +23,7 @@ export interface OtherBoundsData {
 export interface ChatKnowledge {
   updatedAt: string;
   pages: Record<string, string>;
-  problems: {path: string; title: string; name: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string}[];
+  problems: {path: string; title: string; name: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string; carriesPaths?: string[]; carriesNote?: string}[];
   otherBounds: {about: string; list: string; checkedAt: string; rows: ReturnType<typeof otherBoundRows>};
   contribute: ReturnType<typeof contributeRoutes>;
   evidence: typeof evidenceLevels;
@@ -116,7 +116,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
       about: 'Other bounds are results that improve a bound. Most rows start from a bound in OpenAI\'s October 6, 2026 release (baseline kind OpenAI baseline); a row with a Classic baseline starts from a published paper, and its agent breakthrough is its first result by AI agents, if it has one. Each row ranks one quantity against its baseline. A result is Claimed (its authors published it, and we have not checked it) unless its row names a review repository (reviewRepository): a result in a pull request that repository merged is Human Verified.',
       list: '/#other-bounds', checkedAt: otherBounds.checkedAt, rows: otherBoundRows(otherBounds),
     },
-    contribute: contributeRoutes(boards),
+    contribute: contributeRoutes(boards.filter(isPrimaryModel)),
     breakthrough: {name:breakthroughLabel, definition:breakthroughDefinition},
     creditLines,
     problems: boards.map(p => {
@@ -134,7 +134,9 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
         }));
       return ({
       // name: the short name of the landing table and the Problems menu (the race board uses it).
-      path: '/' + p.slug, title: p.title, name: problemDisplayName(p.slug, p.title), scope: p.scope, updatedAt: p.lastDataCheck,
+      // A later model of a race has its own page and path; it is not a race (the race board lists /<slug> paths only).
+      path: modelPath(p.slug, p.modelId, isPrimaryModel(p)), title: p.title, name: modelDisplayName(p.slug, p.modelId, isPrimaryModel(p), p.title), scope: p.scope, updatedAt: p.lastDataCheck,
+      ...(p.records.some(r => r.carried) ? {carriesPaths: ['/' + p.slug], carriesNote: 'Every result of the board in carriesPaths also counts on this board, because a deterministic algorithm is a randomized one.'} : {}),
       baseline: p.records.find(r => r.id === 'classical-baseline')?.bound ?? null,
       current: leaders(records),
       currentByEvidence: Object.fromEntries(evidenceLevels.map(level => [level.name, leaders(records.filter(r => r.evidenceLevel === level.id))])),

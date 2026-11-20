@@ -1,4 +1,4 @@
-import {problemLinks} from '../lib/navigation';
+import {problemLinks, modelLinks} from '../lib/navigation';
 import {breakthroughLabel, breakthroughDefinition} from '../lib/evidence';
 import {siteOrigin} from '../lib/seo';
 import otherBounds from '../lib/other-bounds.json';
@@ -15,7 +15,7 @@ Use this site to compare bounds, read their assumptions and evidence, and find t
 
 ## Problems and sources
 
-${problemLinks.map(([slug,title])=>`- [${title}](${siteOrigin}/${slug}): bounds, evidence rules and source links.`).join('\n')}
+${problemLinks.flatMap(([slug,title])=>[`- [${title}](${siteOrigin}/${slug}): bounds, evidence rules and source links.`,...modelLinks.filter(([race])=>race===slug).map(([,model,name])=>`- [${name}](${siteOrigin}/${slug}/${model}): the second model of the ${title} race, with its own table and chart; the results of the first model count there too. It has no board of its own.`)]).join('\n')}
 
 ## Other bounds
 

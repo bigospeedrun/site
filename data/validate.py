@@ -108,10 +108,27 @@ print('Checked',registry['checked_at'])
 print('problem | verified | certified-conditional | claimed (observed maximum/minimum) | records')
 for entry in registry['problems']:
  p=load(entry['data_file']);check_author_links(entry['data_file'],p);validate(p,load('schemas/problem-v1.json'));assert p['problem_id']==entry['problem_id'];assert p['model']['id']==p['problem_id'].split('/')[1]
- records=p['records'];ids=[r['id'] for r in records];assert len(ids)==len(set(ids));assert set(ids)==set(p['record_metadata']);assert records[0]['kind']=='baseline'
- assert records[0]['submitted_at'] is None
- for row_id in sorted(set(method_notes.get('boards',{}).get(entry['slug'],{}))-set(ids)):print('Warning: method note for a row that is not on the board:',entry['slug'],row_id)
- assert isinstance(p['record_metadata']['classical-baseline']['publication_year'],int)
+ records=p['records'];ids=[r['id'] for r in records];assert len(ids)==len(set(ids));assert set(ids)==set(p['record_metadata'])
+ # A model that carries another (apsp/randomized-word-ram carries apsp/word-ram: a deterministic algorithm is a randomized one) reads
+ # the rows of that file onto its own board and keeps no baseline of its own: the classic is the carried one. The site does the same.
+ carried=[]
+ if entry.get('carries'):
+  assert p['score']['encoding']!='density-time',entry['problem_id']
+  assert entry is not next(e for e in registry['problems'] if e['slug']==entry['slug']),'The first model of a slug carries nothing: '+entry['problem_id']
+  for carried_id in entry['carries']:
+   source=next((e for e in registry['problems'] if e['problem_id']==carried_id),None)
+   assert source is not None and source is not entry and not source.get('carries') and source['slug']==entry['slug'],'carries: '+carried_id
+   other=load(source['data_file'])
+   assert {k:v for k,v in other['score'].items() if k!='definition'}=={k:v for k,v in p['score'].items() if k!='definition'},'The score of a carried model differs: '+carried_id
+   carried+=other['records']
+  assert not set(ids)&{r['id'] for r in carried},'A row id is on both models of '+entry['slug']
+  assert not any(r['kind']=='baseline' for r in records),'A carrying model has no baseline of its own: '+entry['problem_id']
+ else:
+  assert records[0]['kind']=='baseline'
+  assert records[0]['submitted_at'] is None
+  assert isinstance(p['record_metadata']['classical-baseline']['publication_year'],int)
+ slug_ids={r['id'] for e in registry['problems'] if e['slug']==entry['slug'] for r in load(e['data_file'])['records']}
+ for row_id in sorted(set(method_notes.get('boards',{}).get(entry['slug'],{}))-slug_ids):print('Warning: method note for a row that is not on the board:',entry['slug'],row_id)
  for r in records:
   assert r['id'] not in withdrawn,'Withdrawn submission listed: '+r['id']
   # An open endpoint (every saving below, or every exponent above, the score) is legal in
@@ -136,7 +153,7 @@ for entry in registry['problems']:
    q=Fraction(r['score']);assert str(q)==r['score'];assert Fraction(p['score']['minimum'])<=q<=Fraction(p['score']['maximum'])
    # A row worse than the classical baseline needs Lean Verified evidence (Nil ruling 2026-11-02: a stepping stone;
    # the lead, 2026-11-02: Lean Verified rows only). A tie is not worse.
-   classic=Fraction(next(x for x in records if x['id']=='classical-baseline')['score'])
+   classic=Fraction(next(x for x in carried+records if x['id']=='classical-baseline')['score'])
    if q<classic if p['score']['direction']=='higher-is-better' else q>classic:
     assert p['record_metadata'][r['id']].get('site_tier')=='verified' and r.get('rerun_status',{}).get('state')=='passed','A row worse than the classical baseline without Lean Verified evidence: '+r['id']
   if 'source_commit' in r:assert r['source_commit']!='0'*40
@@ -166,8 +183,8 @@ for entry in registry['problems']:
  for tier in TIERS:
   if p['score']['encoding']=='density-time':
    vals.append(str(sum(r['tier']==tier for r in records))+' rows');continue
-  pool=[Fraction(r['score']) for r in records if r['tier']==tier];vals.append(str(choose(pool)) if pool else '—')
- print(entry['slug'],'|',' | '.join(vals),'|',len(records))
+  pool=[Fraction(r['score']) for r in records+carried if r['tier']==tier];vals.append(str(choose(pool)) if pool else '—')
+ print(entry['problem_id'] if carried else entry['slug'],'|',' | '.join(vals),'|',len(records+carried))
 sub=load('submissions.json')['items'];assert len(sub)==len({s['pr_number'] for s in sub});assert {s['pr_number'] for s in sub}=={p['number'] for p in load('sources/crocswap-pulls.json')}
 assert sub[0]['pr_number']==1 and sub[0]['submitted_at']=='2026-10-07T20:58:44Z'
 assert any(s['upstream_status']=='merged' for s in sub) and any(s['upstream_status']=='open' for s in sub)

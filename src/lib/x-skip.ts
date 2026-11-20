@@ -3,7 +3,7 @@ import {isBreakthroughRecord} from './evidence.ts';
 import {baselineClaim,isTableBreakthrough} from './other-table.ts';
 import {compareDegree,parseDegreeClaim} from './other-rank.ts';
 import otherBounds from './other-bounds.json' with {type:'json'};
-import type {FeedSnapshot} from './records-feed.ts';
+import {isModelBoardSlug,type FeedSnapshot} from './records-feed.ts';
 import type {XEntry} from './x-posts.ts';
 
 // Nil, 2026-11-02: X never announces a Lean Verified result whose bound is worse than the breakthrough that started the
@@ -61,6 +61,9 @@ export function breakthroughBar(snapshot:FeedSnapshot|undefined,slug:string):Bar
 // warning and never stops the plan: that post goes out as before. On an Other bounds row with a bar it is held back.
 export function worseThanBreakthrough(post:XEntry,snapshot:FeedSnapshot|undefined):string|undefined {
  const lean=post.key.endsWith(':lean')||/^Status: Lean Verified$/m.test(post.x_text??'');
+ // The board of a later model of a race (apsp/randomized-word-ram, <race>/<model>) posts to Discord only (Lead decision 2026-11-20; Nil's GO of the same day made the launch Discord only). Fail closed: by the
+ // key alone, so a missing snapshot cannot let one through.
+ try{if(isModelBoardSlug(JSON.parse(post.key.slice(0,post.key.lastIndexOf(':')))[0]))return 'This board posts to Discord only (Lead decision, 2026-11-20): no X post';}catch{}
  // Directed SSSP (Lead, 2026-11-03 and 2026-11-06): X only for a Lean Verified record row, a frontier row that is faster
  // than every row at its density, the function rows (classic Dijkstra, papers) too: recordRows of the saved snapshot. A
  // snapshot without that list posts nothing.
