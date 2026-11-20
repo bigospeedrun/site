@@ -4,8 +4,8 @@ import os
 import time
 from http.client import HTTPException
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode, urlsplit
-from urllib.request import Request, build_opener, HTTPRedirectHandler, urlopen
+from urllib.parse import urlencode, urljoin, urlsplit
+from urllib.request import Request, build_opener, HTTPRedirectHandler
 
 class GitHubError(RuntimeError):
     def __init__(self, status):
@@ -22,6 +22,26 @@ class GitHub:
             path += '?' + urlencode(params)
         return json.loads(self.get(path, 16_000_000))
 
+    def _follow(self, url, headers):
+        """Open url and follow at most 3 redirects, one hop at a time. Every hop must be https with no userinfo.
+        The request headers (the token) go only to https://api.github.com with no port, and only while every hop so
+        far stayed there: a moved or renamed repository redirects to api.github.com itself, and without the token
+        that call hits the 60/h IP limit (403; darkhipo -> BigO-Hunter, 2026-11-20). Once a hop leaves for another
+        host (an artifact download), every later hop gets only the User-Agent."""
+        trusted=True
+        for hop in range(4):
+            try:
+                return build_opener(NoRedirect).open(Request(url,headers=headers if trusted else {'User-Agent':headers['User-Agent']}),timeout=90)
+            except HTTPError as error:
+                if error.code not in (301,302,303,307,308):
+                    raise
+                if hop==3:
+                    raise ValueError('Too many GitHub redirects') from None
+                url=urljoin(url,error.headers['Location']); parts=urlsplit(url)
+                if parts.scheme!='https' or parts.username or parts.password:
+                    raise ValueError('Unsafe artifact redirect') from None
+                trusted=trusted and parts.hostname=='api.github.com' and parts.port is None
+
     def get(self, path, limit=128_000_000):
         if path.startswith('/') or '://' in path:
             raise ValueError('Expected GitHub API relative path')
@@ -30,16 +50,7 @@ class GitHub:
             headers['Authorization']='Bearer '+os.environ['GITHUB_TOKEN']
         for attempt in range(3):
             try:
-                try:
-                    response=build_opener(NoRedirect).open(Request('https://api.github.com/'+path,headers=headers),timeout=90)
-                except HTTPError as error:
-                    if error.code not in (301,302,303,307,308):
-                        raise
-                    url=error.headers['Location']; parts=urlsplit(url)
-                    if parts.scheme!='https' or parts.username or parts.password:
-                        raise ValueError('Unsafe artifact redirect')
-                    # No Authorization header follows artifact redirects.
-                    response=urlopen(Request(url,headers={'User-Agent':'bigospeedrun-direct-import'}),timeout=90)
+                response=self._follow('https://api.github.com/'+path,headers)
                 with response:
                     raw=response.read(limit+1)
                 if len(raw)>limit:
