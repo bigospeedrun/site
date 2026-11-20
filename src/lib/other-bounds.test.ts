@@ -16,6 +16,7 @@ test('notes, proof scopes and statements hold no <, > or & outside math', () => 
   for (const row of data.families) {
     const texts: [string, string][] = [
       [`${row.slug} statement`, row.statement],
+      ...('note' in row ? [[`${row.slug} note`, row.note?.text ?? ""] as [string, string]] : []),
       ...('closedStatus' in row ? [[`${row.slug} closed status`, row.closedStatus?.text ?? ''] as [string, string]] : []),
       ...row.claims.map((c): [string, string] => [`${row.slug} claim ${c.handle} ${c.date} note`, c.note]),
       ...row.claims.map((c): [string, string] => [`${row.slug} claim ${c.handle} ${c.date} proof scope`, c.proofScope]),
@@ -93,4 +94,19 @@ test('only Quasi-Riemann has a closed status, and its best claim is exactly 1/2'
   assert(row.claims.some(c => c.value === '1/2' && c.evidence === 'claimed'));
   const number = (v: string) => v.includes('/') ? Number(v.split('/')[0]) / Number(v.split('/')[1]) : Number(v);
   assert.deepEqual(row.claims.filter(c => number(c.value) < 0.5).map(c => c.handle), [], 'no claim below 1/2 (symbolic values do not parse and are skipped)');
+});
+
+// The critical-line race stays open (Lead, 2026-11-20, after Nil asked) and shows a neutral note about the claimed Riemann
+// hypothesis proof. Only that row has a note; its one {link} points to the Quasi-Riemann race page, which must exist and be closed.
+test('only the critical-line race has a note, with one link to the closed Quasi-Riemann race', () => {
+  assert.deepEqual(data.families.filter(f => 'note' in f).map(f => f.slug), ['critical-line-zeros']);
+  const row = data.families.find(f => f.slug === 'critical-line-zeros')!;
+  assert.equal(row.note?.text.split('{link}').length, 2, 'one {link} in the text');
+  const href = row.note?.link.href ?? '';
+  const target = data.families.find(f => href === `/other/${f.slug}`);
+  assert(target && 'closedStatus' in target, 'the link opens a closed race');
+  assert.equal(row.note?.link.text, 'Quasi-Riemann race');
+  assert.match(row.note?.text ?? '', /\\\(19\/27\\approx0\.7037\\\)/);
+  assert(!('closedStatus' in row), 'the critical-line race is open');
+  assert(row.statement.includes('Such conditional bounds do not count here.'), 'the rule stays');
 });

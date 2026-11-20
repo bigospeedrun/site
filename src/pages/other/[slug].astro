@@ -35,6 +35,8 @@ const chart=otherChart(f,c=>Boolean(reviewUrl(c)),tex=>math(tex));
   {'nameMath' in f&&f.nameMath?<h1 set:html={inlineMath(f.nameMath)}/>:<h1>{f.name}</h1>}
   {/* A closed race says so under its title (Nil, 2026-11-20); the field exists on one board only. */}
   {'closedStatus' in f&&f.closedStatus&&<p class="race-closed"><strong>{f.closedStatus.label}:</strong> <span set:html={inlineMath(f.closedStatus.text)}/></p>}
+  {/* A note under the title, in a neutral style (Lead, 2026-11-20): {link} in its text marks where the link goes. */}
+  {'note' in f&&f.note&&<p class="race-note"><strong>{f.note.label}:</strong> {f.note.text.split('{link}').map((part,i)=><>{i>0&&<a href={f.note.link.href}>{f.note.link.text}</a>}<span set:html={inlineMath(part)}/></>)}</p>}
   <p set:html={inlineMath(f.statement)}/>
   {/* A classic baseline (a published paper) carries its own label and only its year. A row with no baseline shows none. */}
   {!f.baseline?null:'label' in f.baseline&&f.baseline.label?<p>{baselineLabel}: <a href={f.baseline.url} target="_blank" rel="noopener" set:html={math(f.baseline.display ?? f.baseline.value)}/>, {/^\d{4}$/.test(f.baseline.date)?<>published{'by' in f.baseline&&f.baseline.by&&<> by {f.baseline.by}</>} in {f.baseline.date}</>:<>released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time></>}.</p>:<p>This race starts from OpenAI's result, released <time datetime={f.baseline.date} data-local-datetime>{localTimeFallback(f.baseline.date)}</time>. It is the row marked {breakthroughLabel} in the table.</p>}
@@ -64,6 +66,7 @@ const chart=otherChart(f,c=>Boolean(reviewUrl(c)),tex=>math(tex));
 </Layout>
 <style>
 tr[hidden]{display:none}
+.race-note{border-left:4px solid var(--line);padding:.5rem .9rem;background:var(--surface)}
 .race-closed{border-left:4px solid var(--claimed);padding:.5rem .9rem;background:var(--surface)}
 .results-scroll{border:1px solid var(--line);border-radius:.5rem}table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:1rem}th,td{padding:.85rem .75rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}th{font-weight:600;background:var(--surface)}th:first-child{width:4.5rem}th:nth-child(2){width:26%}tr:last-child td{border-bottom:0}.bound :global(.katex){font-size:22px}.claimed{color:var(--claimed)}.human-verified{color:var(--human-verified)}.lean-verified{color:var(--lean-verified)}.breakthrough{color:var(--accent);font-weight:600}.evidence-rules{padding-left:1.4rem;margin:1rem 0 1.5rem}.evidence-rules li{margin:.5rem 0}details{margin-top:.5rem}summary{cursor:pointer}details p{font-size:1rem}.exact{overflow-x:auto;padding:.5rem 0}.exact :global(.katex){font-size:1.05em}li{margin:.5rem 0;overflow-wrap:anywhere}.repos{margin-top:2rem}.bound details{white-space:normal}
 @media(max-width:900px){table,tbody{display:block}thead{display:none}tr{display:grid;grid-template-columns:minmax(0,1fr);border-bottom:1px solid var(--line);padding:.5rem}td{border:0;padding:.35rem;min-width:0}tr:last-child{border:0}td.rank::before{content:'Rank ';font-weight:600}td:nth-child(4)::before{content:'Author: ';font-weight:600}td:nth-child(5)::before{content:'Date: ';font-weight:600}.bound>a{display:block;overflow-x:auto}.bound :global(.katex){font-size:22px}}

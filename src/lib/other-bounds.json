@@ -3415,6 +3415,11 @@
       "name": "Zeta zeros on the critical line",
       "quantity": "c\\text{ in }\\kappa^{*}\\ge c",
       "direction": "higher",
+      "note": {
+        "label": "Effect of the claimed Riemann hypothesis proof",
+        "text": "Levent Alpöge claims a Lean proof of the Riemann hypothesis (see the {link}, status Claimed). If independent verifications confirm it, bounds proved under the Riemann hypothesis, for example \\(19/27\\approx0.7037\\) by Bui and Heath-Brown, no longer assume an unproved hypothesis. This race stays open: the Riemann hypothesis does not say that the zeros are simple.",
+        "link": {"text": "Quasi-Riemann race", "href": "/other/quasi-riemann"}
+      },
       "statement": "The nontrivial zeros of the Riemann zeta function \\(\\zeta(s)\\) are its zeros \\(\\rho\\) with \\(0<\\operatorname{Re}\\rho<1\\). The critical line is \\(\\operatorname{Re}s=\\tfrac12\\); the Riemann hypothesis says that every nontrivial zero lies on it. A zero of multiplicity \\(m\\) counts \\(m\\) times, and a simple zero is a zero of multiplicity \\(1\\). Let \\(N(T)\\) be the number of nontrivial zeros with \\(0<\\operatorname{Im}\\rho\\le T\\), and let \\(N_0^{s}(T)\\) be the number of those that are simple and lie on the critical line. The quantity is \\(\\kappa^{*}=\\liminf_{T\\to\\infty}N_0^{s}(T)/N(T)\\), the share of the zeros that are simple and on the critical line, in the worst case as \\(T\\) grows. A result is a proof that \\(\\kappa^{*}\\ge c\\), and it must not assume an unproved hypothesis. A higher \\(c\\) is better. Several results below use the Montgomery–Taylor constant \\(H=\\tfrac32-\\tfrac{1}{\\sqrt2}\\cot\\tfrac{1}{\\sqrt2}\\approx0.6725007\\). Under the Riemann hypothesis, larger values are known (for example \\(19/27\\approx0.7037\\) by Bui and Heath-Brown). Such conditional bounds do not count here. For zeros on the critical line with no condition on multiplicity, the human record before 2026 was \\(0.417293\\) (more than five-twelfths), by the same four authors as the baseline. Anthropic's post gives that record as 41.6%.",
       "baseline": {
         "label": "Classic baseline",
