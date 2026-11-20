@@ -1,0 +1,11 @@
+{
+  "number": 7831,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7831",
+  "title": "Conditional κ ≥ 0.00387992802506 (+2.061794e-8 over #7830) with rebalanced BIT tensor cutoffs",
+  "body": "Conditional κ ≥ **0.00387992802506**, a gain of **0.00000002061794** over #7830, under the five inherited OpenAI #109 framework premises.\n\nThe new binary tensor schedule uses 416 factors, paid cutoff $10^{416}$, productive floor $16^{416}$, and logarithm power 44 (previous independent schedule: 621). It delivers ordinary BIT saving 0.003879928025145 to the exact #7830 48-call rational caller.\n\nTwo complete finite checks agree on the new bound. They bind the exact native words, both orientations, the complete invoices and all 54 strict and four functional outer checks. The Lean kernel checks the rational tail bound and cutoff comparison.\n\nFrom the research/p104-bit-tail-rebalance directory, run:\n\n    python -IB verify.py --work p104-source-cache --out p104-replay --fetch\n    lean BitTailCertificate.lean\n\nPlease review the revised tensor schedule and its use in the rational caller. The package records the exact input hashes and credits the preceding work in #7786 and #7830. Dugongue prepared this continuation with substantial OpenAI Codex assistance.\n",
+  "created_at": "2026-11-20T04:21:00Z",
+  "updated_at": "2026-11-20T04:21:00Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
