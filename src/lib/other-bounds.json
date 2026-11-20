@@ -1187,6 +1187,27 @@
           ],
           "proofScope": "Yes; lean proves the all-Dirichlet theorem for every positive modulus and character, excluding only the principal pole. The tracker's prepare and test checks passed on the head 50a933d7; its verify (hailey-collet-cycle092) and admission checks failed, and the tracker's admission message is \"worker resource ceiling reached while running lake (exit 137, result oom-kill)\". The pull request is open, not a draft, and has no merge yet. The author says Lean 4.34.1 compiled all 2,325 submitted modules locally and a separate check showed only the standard axioms. No independent rerun.",
           "bound": "\\theta\\le 0.873332794"
+        },
+        {
+          "author": "Levent Alpöge",
+          "handle": "levent-alpoge",
+          "value": "1/2",
+          "display": "0.5",
+          "date": "2026-11-20T06:16:21-08:00",
+          "dateSource": "https://news.ycombinator.com/item?id=50574968",
+          "dateKind": "first-stated",
+          "url": "https://alpo.ge/remark.pdf",
+          "lean": true,
+          "leanNote": "Yes; lean states the all-Dirichlet theorem at 1/2: LFunction_ne_zero_of_half_lt_re in lean/src/Main.lean (line 8) is the statement DirichletLNonvanishingRightOfHalf of lean/src/Statements.lean (line 6, imports only Mathlib), which covers every modulus and every Dirichlet character and excludes only the principal pole (the character 1 at s = 1). Lean v4.33.1 and Mathlib revision 0df444a360eaa60ab8c11dca51a86af692955474. A text scan of the 175,187 Lean files finds no axiom, sorry, admit, native_decide, unsafe or extern. We did not build the files or check them with the Lean kernel. No independent rerun.",
+          "evidence": "claimed",
+          "note": "This is the author's claim; it is not independently confirmed, and we did not build the Lean files or check the proof. We are waiting for independent verifications of the Lean proof. The author, Levent Alpöge, says in a four-page note: \"I believe I have, working with Claude, discovered a proof\" of the Riemann Hypothesis and that the method extends to the Generalized Riemann Hypothesis, and \"Claude and I have also formalized the arguments without assumptions.\" The note gives no written proof; the author writes \"I decided to only present Lean\". The Lean files are a 239,275,554-byte archive in 14 parts (alpo.ge/lean.tar.gz.part01 to part14; joined, sha256 9631b4f020199e580ba86178cb56c6e9b09f690c2369a80dc4334aa93f49c7fc); the note has sha256 3fc97784b71ddd44ff8aa0a177e99622a1c61b13cfa843a0989ee4a7a0cfeb8d. The theorem says every Dirichlet L-function has no zero with real part above 1/2, so the bound is 1/2. It is the Dirichlet statement of this board; no Hecke L-function is covered. The note was made at 2026-11-20 12:52 UTC (its file metadata); the earliest public reference we found is a Hacker News link at 14:16 UTC, which is the date used here. It is not linked from the author's home page, there is no repository or commit, and we found no post by the author. Open: Claimed.",
+          "authors": [
+            {
+              "name": "Levent Alpöge"
+            }
+          ],
+          "proofScope": "Yes; lean states the all-Dirichlet theorem at 1/2: LFunction_ne_zero_of_half_lt_re in lean/src/Main.lean (line 8) is the statement DirichletLNonvanishingRightOfHalf of lean/src/Statements.lean (line 6, imports only Mathlib), which covers every modulus and every Dirichlet character and excludes only the principal pole (the character 1 at s = 1). Lean v4.33.1 and Mathlib revision 0df444a360eaa60ab8c11dca51a86af692955474. A text scan of the 175,187 Lean files finds no axiom, sorry, admit, native_decide, unsafe or extern. We did not build the files or check them with the Lean kernel. No independent rerun.",
+          "bound": "\\theta\\le 1/2"
         }
       ],
       "repos": [
@@ -1259,7 +1280,7 @@
           "note": "A limit for the original \\(7/8\\) proof only: with its four audited inequalities fixed and only the geometry varied, the zero-free threshold stays at least \\(4638705/5301659\\approx 0.8749535\\). The repository says this is no barrier for other methods; the tracker results below that value change those inequalities, for example with marked zero counting."
         }
       ],
-      "bestHandle": "HaileyStorm"
+      "bestHandle": "levent-alpoge"
     },
     {
       "family": "005",

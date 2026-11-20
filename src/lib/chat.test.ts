@@ -380,7 +380,10 @@ test('a QRH question reaches the quasi-Riemann Other bounds row with its leader,
   // The row names its review repository and the rule; the leader's pull request is linked with its status.
   assert.deepEqual((row as {reviewRepository?: object}).reviewRepository, {name: 'GTimG/QuasiRiemannTracker', url: 'https://github.com/GTimG/QuasiRiemannTracker',
     rule: 'A result is Human Verified when GTimG/QuasiRiemannTracker merges its pull request. A result in an open pull request is Claimed.'});
-  assert.match((row.current as {reviewPullRequest?: string}).reviewPullRequest ?? '', /^https:\/\/github\.com\/GTimG\/QuasiRiemannTracker\/pull\/\d+$/);
+  // A leader that is not a tracker pull request (a result stated on the author's own page) has no pull request link.
+  const reviewPr = (row.current as {reviewPullRequest?: string}).reviewPullRequest;
+  if (leader.review) assert.match(reviewPr ?? '', /^https:\/\/github\.com\/GTimG\/QuasiRiemannTracker\/pull\/\d+$/);
+  else assert.equal(reviewPr, undefined);
   assert.equal(rows.filter(r => 'reviewRepository' in r).length, 1);
   assert.match(knowledge.otherBounds.about, /unless its row names a review repository/);
   assert.ok(row.relevantRepos.some(repo => repo.name === 'AxiomMath/DedekindZetaZeroFree' && repo.note));
