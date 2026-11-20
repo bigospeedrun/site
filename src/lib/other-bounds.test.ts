@@ -16,6 +16,7 @@ test('notes, proof scopes and statements hold no <, > or & outside math', () => 
   for (const row of data.families) {
     const texts: [string, string][] = [
       [`${row.slug} statement`, row.statement],
+      ...('closedStatus' in row ? [[`${row.slug} closed status`, row.closedStatus?.text ?? ''] as [string, string]] : []),
       ...row.claims.map((c): [string, string] => [`${row.slug} claim ${c.handle} ${c.date} note`, c.note]),
       ...row.claims.map((c): [string, string] => [`${row.slug} claim ${c.handle} ${c.date} proof scope`, c.proofScope]),
       ...row.repos.map((r): [string, string] => [`${row.slug} repo ${r.name} note`, 'note' in r ? String(r.note ?? '') : '']),
@@ -79,4 +80,17 @@ test('the claims in other-bounds.json hold no status text that a merge would mak
     const text = JSON.stringify(c);
     assert.doesNotMatch(text, /Open PR|is still open|had not finished/i, `${row.slug} ${c.handle}`);
   }
+});
+
+// A closed race (Nil, 2026-11-20) shows a status line under its title. Only Quasi-Riemann is closed, and it stays true
+// only while its best claim is the exact bound the line names: the line says theta = 1/2 is the best possible value.
+test('only Quasi-Riemann has a closed status, and its best claim is exactly 1/2', () => {
+  const closed = data.families.filter(f => 'closedStatus' in f).map(f => f.slug);
+  assert.deepEqual(closed, ['quasi-riemann']);
+  const row = data.families.find(f => f.slug === 'quasi-riemann')!;
+  assert.equal(row.closedStatus?.label, 'Race closed (Claimed)');
+  assert.match(row.closedStatus?.text ?? '', /^\\\(\\theta = 1\/2\\\) is the best possible value\./);
+  assert(row.claims.some(c => c.value === '1/2' && c.evidence === 'claimed'));
+  const number = (v: string) => v.includes('/') ? Number(v.split('/')[0]) / Number(v.split('/')[1]) : Number(v);
+  assert.deepEqual(row.claims.filter(c => number(c.value) < 0.5).map(c => c.handle), [], 'no claim below 1/2 (symbolic values do not parse and are skipped)');
 });
