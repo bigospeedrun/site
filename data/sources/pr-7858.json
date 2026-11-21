@@ -1,0 +1,11 @@
+{
+  "number": 7858,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7858",
+  "title": "Bound the P104 IDLE_ODD correction by actual mask size",
+  "body": "## Change and mathematical scope\n\nThe real IDLE_ODD correction δ(d)=1+(8d)^.99−(8d+1)^.99 increases with mask size. Integer certificates show δ(7)<0.05<δ(8). A local sharp cap is δ(k), or δ(min(k,26)) under the separate packed-mask correspondence. The actual #7113 type-A correction is zero and its type-B contribution gives total weighted correction per stage in [0.05826994660305777882, 0.05826994660305778448].\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. #7113 is pinned at `07a76c5e2738882c0cb322278e56f6cae3c9885d`. The package specializes the K17 repository identity and sharpens its mask bound. The abstract incidence example covers the stated relaxation only.\n\n## Validation\n\n`python3 -B scripts/research_package.py --package research/p104-idle-odd-mask-price` and the committed-byte check passed on CPython 3.12.3. Rechecks target and paid histograms, four singleton B odd idles, and all 34 stage incidence counts. The paper proof and finite checks are separate from a fresh Lean build.\n\n## Credit\n\nCredit DreamingOfClouds and Rohan Arun for the K17 formulas and signed caller. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nDerive a sharper aggregate odd-mask restriction from the actual signed product.",
+  "created_at": "2026-11-21T03:18:58Z",
+  "updated_at": "2026-11-21T03:18:58Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

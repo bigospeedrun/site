@@ -1,0 +1,11 @@
+{
+  "number": 7886,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7886",
+  "title": "Combine P104 decoder gauges using paid row budgets",
+  "body": "## Change and mathematical scope\n\nCombines separate gauges using an explicit binary-rank budget on every actual paid row. A full exact P104 decoder gives a weighted bound of 104 with a best single-gauge subset of 52. The pinned E8 example gives a unit-weight bound of 17 versus a best single subset of 6. Exact controls disprove relying on disjointness alone or general submodularity.\n\n## Task and overlap\n\nUses #7852 at 41beda1d6435760dc99e38bd7e65f36798aad212. Credits the #7869 DEN4 single-gauge deep-port argument at 06c207a9feb3994a4b987dc3010657b6e85b7956, which relates to the earlier #7855 count. The addition is the independent-gauge combination with shared row budgets and the corresponding examples and controls.\n\n## Validation and credit\n\nThe clean-copy standard-library verifier checks 21 manifested files, 12 upstream byte/Git-blob mappings, both receipts, gauge and decoder controls, overlap and rank non-submodularity. A copied source mutation was rejected. Research and checking were AI-assisted with Codex. Thanks to DreamingOfClouds and the original P104 decoder contributors.\n\n## Open next questions\n\nFind usable row budgets in the remaining loose-row classes. A general decoder wall and Lean proof remain open.",
+  "created_at": "2026-11-21T04:10:04Z",
+  "updated_at": "2026-11-21T04:10:04Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

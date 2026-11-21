@@ -1,0 +1,11 @@
+{
+  "number": 7860,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7860",
+  "title": "Prove new P104 network reductions and exact 56-drop equality cases",
+  "body": "## Change and mathematical scope\n\nTime reversal and orthogonal complement identify the 9/8 and 8/9 NET-D56 cases. A circuit argument proves D≥56 with at most one low gather in 9/8 and gives the dual statement. Exact 8/8 and 9/8 examples attain D=56. Sequential chart saturation preserves full rational transfer and reachability with nonincreasing drop. A separate cover contraction and a paid routing proof specify their own invariant and invoice.\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. #7852 supplies the 8/8 cut, NetW and tight-chain reduction. The new proof covers a missing 9/8 subcase, a sharp network witness, and rational support normalization. The two-low case remains open in unrestricted relay graphs.\n\n## Validation\n\n`python3 -B scripts/research_package.py --package research/p104-net56-small-networks` and the committed-byte check passed on CPython 3.12.3. Exact replay verifies every transfer and individual drop, the 16 normals and 8,766 necessary independent bases, stale-neighbor failure and the 7→1,462 routing price control.\n\n## Credit\n\nCredit DreamingOfClouds for the Lean network framework and E8 facts. Two Codex agents cross-reviewed the proofs and controls. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nResolve two dimension-seven gathers with eight one-dimensional depositors and shared charged ancestor cones.",
+  "created_at": "2026-11-21T03:25:31Z",
+  "updated_at": "2026-11-21T03:25:31Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

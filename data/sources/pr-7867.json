@@ -1,0 +1,11 @@
+{
+  "number": 7867,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7867",
+  "title": "Exclude the fixed-incidence three-chart rational path at the signed price",
+  "body": "## Change and mathematical scope\n\nAll 1,067,462,648 one-step chart triples on 4922–8754–5626 have a full 48-call signed gain at most −189.769756506528 at κ=0.003884928046155, even granting rank-zero contacts. The 1,058,086,804 positive-grade triples give a stronger exclusion. A two-contact apparent saving cancels exactly once the other affected paid positions are charged.\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. #7830 head `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15` fixes the word and scalar incidence. The exact connected path is different from #7814/#7819 and the live #7111 five-helper return investigation.\n\n## Validation\n\nTwo independent C++ rank implementations and the standard-library wrapper passed from fresh directory copies using `python3 -B verify.py`. Authenticate public word/layout and application, rebuild the graph and tariffs and verify both search domains and the cancellation and exact witness controls. The stopping condition is full enumeration under the stated neighborhood and fixed incidence. Changed rows, larger neighborhoods and other paths remain outside it.\n\n## Credit\n\nCredit the #7830 rational construction and its pinned P104 predecessor lineage. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nChange the preserved scalar incidence or try a genuinely different timed source.",
+  "created_at": "2026-11-21T03:30:48Z",
+  "updated_at": "2026-11-21T03:30:48Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

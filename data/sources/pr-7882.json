@@ -1,0 +1,11 @@
+{
+  "number": 7882,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7882",
+  "title": "Independently certify the P104 Q=0 duals and derive a two-hub mask restriction",
+  "body": "## Change and mathematical scope\n\nAn independent integer-root and partition-DP implementation verifies the new #7869 Q=0 duals. The directed upper endpoints are 129.037259547105064 at k=71, 128.850071932566733 at k=72 and 128.681325145969645 at k=73. They apply to the specified role-partition LPs with their named rows. All fifteen original small caller words pass the original symbolic operator checks and independent dyadic mask checks.\n\nThe #7856 witnesses first violate DYADIC_2 by 58, 62 and 60 at k=71,72,73. The paper signed-block argument specializes to a mask-only requirement of at least 10, 11 and 10 enlarged nonhubs in the two-full-hub tight frame. This rules out the later one-enlarged-role frame before pricing.\n\n## Task and overlap\n\nDirect follow-up to DreamingOfClouds' #7869 at 06c207a9feb3994a4b987dc3010657b6e85b7956, #7852 at 41beda1d6435760dc99e38bd7e65f36798aad212 and the smaller #7856 relaxation at 9b66733881850b7c87c7df9cf60fe3212c7dca2a. The underlying CROSS and DYADIC laws are credited to #7869. This packet supplies independent directed arithmetic and demonstrates exactly where the old masks fail.\n\n## Validation and credit\n\npython3 -B verify.py passed in 51.63 s and python3 -B positive_controls.py passed in 53.84 s locally, including a changed-HOST rejection. The original registered standalone #7869 package also passed. SOURCE and REVIEW files record commands, hashes and the hosted onboarding failure. OpenAI Codex assisted the independent review, building on DreamingOfClouds with Claude Opus 5.5.\n\n## Open next questions\n\nFull event-to-role binding, kernel checking of the extra rows, and the k≤71 window remain open. This establishes no new achievable κ.",
+  "created_at": "2026-11-21T04:07:30Z",
+  "updated_at": "2026-11-21T04:07:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

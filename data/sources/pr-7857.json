@@ -1,0 +1,11 @@
+{
+  "number": 7857,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7857",
+  "title": "Show that P104 height and label-membership cuts allow D + R = 28",
+  "body": "## Change and mathematical scope\n\nD=R=14 realizes the exact joint minimum in the stated balanced-plane relaxation. The witness satisfies 1,022 height cuts, both directions of all nine flag cuts, 104 label-membership paired cuts, and every paired cut separating all x endpoints from all y endpoints. A mandatory single-port paired cut rejects it. The legal-word mass premise D+R≥112 remains open.\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. #7852 gives the flag floor and K7 uses the joint 112 premise. The new integral matching balances the actual field paths and exhibits which retained cut families still leave the 28 boundary.\n\n## Validation\n\n`python3 -B scripts/research_package.py --package research/p104-height-cut-boundary` and the committed-byte check passed on CPython 3.12.3. Exact directed cut checks, an independent path-telescoping proof for the arbitrary base cuts, and a failed extra crossing for label 11.\n\n## Credit\n\nCredit DreamingOfClouds for the toolkit, flags, endpoints and height-stop analysis. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nAdd all single-port paired cuts jointly and test whether they raise the optimum.",
+  "created_at": "2026-11-21T03:18:50Z",
+  "updated_at": "2026-11-21T03:18:50Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

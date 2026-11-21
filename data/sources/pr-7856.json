@@ -1,0 +1,11 @@
+{
+  "number": 7856,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7856",
+  "title": "Reconstruct the P104 Q=0 LP boundary at k=71 through 74",
+  "body": "## Change and mathematical scope\n\nExact dual arithmetic and an HP-saturating abstract event witness show that the reconstructed Q=0 rows cannot give the requested 128.891 upper bound at k=71,72,73. At k=72 the witness exceeds 129.119942914294 and at k=73 it exceeds 128.943631864855. It satisfies event matching, pair RC2 and full row rank. Its signed-product determinant excludes it from legal signed-product frames.\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. CallerHP.corollary_ge72 in #7852 assumes h72, h73 and Extra. The original cc2 and cert73.log files are absent from the pinned package. This reconstructs and certifies a weaker, explicitly named relaxation.\n\n## Validation\n\n`python3 -B scripts/research_package.py --package research/p104-qzero-lp-countermodel` and the committed-byte check passed on CPython 3.12.3. The independent checker proves each power enclosure, primal row, dual sign and dot product, and rejects malformed event and dual mutations.\n\n## Credit\n\nCredit DreamingOfClouds for the published LP lead, event and signed-Gram models. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nGet the original certificates and derive their additional rows from the signed product.",
+  "created_at": "2026-11-21T03:18:40Z",
+  "updated_at": "2026-11-21T03:18:40Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

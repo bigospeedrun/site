@@ -1,0 +1,11 @@
+{
+  "number": 7859,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7859",
+  "title": "Independently check the mixed-rank rare-tag batching step",
+  "body": "## Change and mathematical scope\n\nThe exact Cartesian line count gives at least W^(m−1) jobs for a flag/axis class under the common-page and support conditions. Current-value flag scheduling then equals the original sparse-axis order. A two-axis width-four request with only two lines shows the need for the eventual-size condition.\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. This is an independent scoped review of #7846 at `343f7b1817e26ad3f89d2ddad313b12741d53602`, which already states the batching step for #7830’s 480-factor application at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. It examines current-value and full-batch obligations only.\n\n## Validation\n\n`python3 -B scripts/research_package.py --package research/p104-rare-tag-batch-check` and the committed-byte check passed on CPython 3.12.3. The separately written oracle checks all 15,625 coefficients on a 5×5×5 core. Stale-source, cross-support and underfilled-batch controls are rejected. Actual Gaussian page layout and physical transfer remain to be rebound.\n\n## Credit\n\nCredit Ali Romman for the submitted uniform construction and grouped Gaussian step. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nBind page support and time-ordered current values to the literal routed Gaussian execution.",
+  "created_at": "2026-11-21T03:19:22Z",
+  "updated_at": "2026-11-21T03:19:22Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

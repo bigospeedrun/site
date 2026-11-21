@@ -1,0 +1,11 @@
+{
+  "number": 7861,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7861",
+  "title": "Prove host-strip and shared-hub rank bounds for P104 callers",
+  "body": "## Change and mathematical scope\n\nAt nondegenerate two-column hosts, k≥e+2 forces total off-diagonal strip deficiency ≤e. Under the set-RC2 piece contract this gives at least 2k−e qualifying singleton incidences. The shared-hub sign theorem gives rank at least m for m ordered hosts with the stated common two-role or common-kernel structure. It rules out two high-price k=76 LawQ families and has an exact rank-three frame boundary.\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. #7852 supplies K15 set-RC2 and K16’s reduced LawQ. The new proofs exclude realizations of abstract profiles that satisfy those price rows. #7113 at `07a76c5e2738882c0cb322278e56f6cae3c9885d` supplies the weighted odd-mask control.\n\n## Validation\n\nReplayed the standalone signed-frame and price controls from a clean copy on Python 3.12 and SymPy 1.12 using the commands in the README. Checks exact matrices, mutations, finite-field controls, two explicit LawQ configurations and their corrected invoice. Legal-word realization, general price and kernel extension remain open.\n\n## Credit\n\nCredit DreamingOfClouds for K15/K16 and Rohan Arun for the #7113 control. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nUse common-kernel cuts to prune genuine signed frame incidence classes and derive a real-invoice upper bound.",
+  "created_at": "2026-11-21T03:25:39Z",
+  "updated_at": "2026-11-21T03:25:39Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 7874,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7874",
+  "title": "Certify the maximum paired-cut deficit on the P104 804-bank witness",
+  "body": "## Change and mathematical scope\n\nThe strongest designated #7113 paired cut on the fixed 804-bank, balanced-plane witness from #7857 has deficit exactly 50 in each direction. A 50-label independent set attains the deficit. A cover by 28 edges and four odd cycles certifies optimality. Appending banks while preserving the original fields and banks then forces at least 100 added nested banks and D+R ≥ 128. Arbitrary deletion, replacement or redesign of the banks remains open.\n\n## Task and overlap\n\nUses #7852 at 41beda1d6435760dc99e38bd7e65f36798aad212 and the fixed witness in #7857 at c55b7721e1a8ef438f7b932f07e4e05ab24897b9. #7869 records the general network and rise targets. This checker concerns one explicit bank set and one append-only repair policy.\n\n## Validation and credit\n\nThe manifest and python3 -B -S verify.py pass in a standalone extraction and check attainment and optimality. The package gives the sources, proof and mutation control. DreamingOfClouds supplied the P104 model. Research, checks and packaging used OpenAI Codex.\n\n## Open next questions\n\nA redesigned bank set and the full hJ and hV obligations remain open.",
+  "created_at": "2026-11-21T03:54:45Z",
+  "updated_at": "2026-11-21T03:54:45Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

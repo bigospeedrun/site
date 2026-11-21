@@ -1,0 +1,11 @@
+{
+  "number": 7883,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7883",
+  "title": "Bound the actual k=76 P104 invoice on the split two-hub family",
+  "body": "## Change and mathematical scope\n\nFor k=76, Q=T=1 in the stated two-hub, globally partition-matched signed-frame family, at least one split nonhub nonleaf forces the actual scaled invoice to be at most 128.879425704223. The proof uses exactly-two-stage triple coverage and signature-cell fragmentation. The replay prices the actual IDLE_ODD mask correction.\n\n## Task and overlap\n\nThe source model is #7852 at 41beda1d6435760dc99e38bd7e65f36798aad212. Builds on #7858 and #7861. The broader thin LP in #7869 at 06c207a9feb3994a4b987dc3010657b6e85b7956 has a verified modeled k=76 upper of 129.0076281114178, with a different triple row and without the real-invoice correction. COMPARISON.md spells out both contracts.\n\n## Validation and credit\n\nThe offline python3 -I -B replay.py passed with source hashes and Git blob checks, exact power enclosures, dynamic programming and mutation controls. The original #7869 k=76 numerical certificate is separately enclosed by integer roots. The new rank proof is paper-level. OpenAI Codex assisted. Source authors are credited in the notices.\n\n## Open next questions\n\nThe zero-split family, callers without the global event-to-piece partition, and the general k=76 corrected ceiling remain open.",
+  "created_at": "2026-11-21T04:07:36Z",
+  "updated_at": "2026-11-21T04:07:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

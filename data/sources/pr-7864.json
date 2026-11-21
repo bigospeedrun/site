@@ -1,0 +1,11 @@
+{
+  "number": 7864,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7864",
+  "title": "Bind P104 caller record masks and expose price-only packing collisions",
+  "body": "## Change and mathematical scope\n\nRound-trip all 4,783 source records and verify the one-based to zero-based stage shift for 94 idle masks and all 72 target masks. Two one-field changes leave CERTKIT’s packed pricing data identical. The first fails the exact endpoint at output 37 and the second fails J-contact alias checking.\n\n## Task and overlap\n\nScoped #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212` on main `e54523517d0f03e58352e647c403a5af3e525a57`. #7113 head `07a76c5e2738882c0cb322278e56f6cae3c9885d` supplies the caller and #7112 native control. #7829 head `1fdc9ecd1b1311d8ea6e02b6f81ae0d8d24999e2` supplies CERTKIT and rejects both changed source bytes through its manifest. This follows #7852 K17’s grammar/price boundary.\n\n## Validation\n\nThe full pinned-checkout harness passed in 53.99 s and a separate relocated export reproduced the witness and receipts in 16.64 s. Checks both source mutations, the native physical alias control and the separate bare manifest rejection. The finite Python check and index identity leave Lean parser and CallerWord.Legal instantiation open.\n\n## Credit\n\nCredit Rohan Arun for the signed caller and DreamingOfClouds for CERTKIT and K17. Clear1nsight prepared this package with substantial OpenAI Codex assistance.\n\n## Open next questions\n\nBind the normalized role, record and J-contact sequence into a source-identity theorem and then instantiate legality.",
+  "created_at": "2026-11-21T03:26:30Z",
+  "updated_at": "2026-11-21T03:26:30Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
