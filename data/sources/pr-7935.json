@@ -1,0 +1,11 @@
+{
+  "number": 7935,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7935",
+  "title": "Exclude direct second-owner omission gains after the 679-owner BIT control",
+  "body": "The two eligible same-bank helper relations do not pay for a second owner surrender. The best complete signed change is below −35.420917 at the first trial.\n\n## Scope and source\n\nStarts from the literal #7912 specialization. The named bank screen covers up to three omissions, including chart 515, with surviving payloads fixed. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit679-second-owner-cut/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. `python3 -I -B verify.py` reproduced the relocated stock and directed price checks and rejected a corrupted debit. Hosted execution is separate.\n\n## Open next questions\n\nTest a changed surviving payload or reroute, then rebind the affected owners and complete invoice.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:42:42Z",
+  "updated_at": "2026-11-21T05:42:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

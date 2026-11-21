@@ -1,0 +1,11 @@
+{
+  "number": 7968,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7968",
+  "title": "Bound fresh cross-bank bridges for three BIT returns",
+  "body": "Across 55,611 atlas bank pairs, returns 2 and 6 fail the required first-read spans. Return 7 has one pair that passes, with no eligible new frame in the enumerated sum/intersection family.\n\n## Scope and source\n\nUses #7938 and 13,297 placements of 9,424 non-atlas geometries. The stock cut also covers any initially empty bridge receiving only the granted data with original clocks and exterior. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-three-return-fresh-bridge/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The clean replay matched eight receipts, 166,832 separators, 26,594 incidence checks and the positive XOR control. The optimistic price test remains positive, so the cut uses stock. Hosted execution is separate.\n\n## Open next questions\n\nChange source clocks, exterior contributions, or permitted atlas inputs before testing a different bridge.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:16:20Z",
+  "updated_at": "2026-11-21T06:16:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

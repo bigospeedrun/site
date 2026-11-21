@@ -1,0 +1,11 @@
+{
+  "number": 7942,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7942",
+  "title": "Prove the sharp six-drop cut for three 6D P104 depositors",
+  "body": "Three 6D depositor inputs force at least six nondepositor drops in the specified profile. This gives D ≥ 56 + E + B with arbitrary rational cancellation and depositor relays. Exact controls attain D=56 and D=57 with one relay.\n\n## Scope and source\n\nExtends #7916 from two to three 6D depositor inputs while retaining the nine-gatherer rigidity, two distinct 7D gatherer charts and nonzero-low circuit. The legal-word realization bridge remains a separate obligation. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-net56-three-six-depots/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The three extracted Python commands replay the inherited T=4 case, all 104-square Gram and cell constraints, and 768 four-node and 10,240 five-node timed support graphs. The paper deductions received a separate audit. Hosted execution is separate.\n\n## Open next questions\n\nExtend to a different gatherer or depositor profile, then prove the graph induced by actual legal words has the required structure.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:50:23Z",
+  "updated_at": "2026-11-21T05:50:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

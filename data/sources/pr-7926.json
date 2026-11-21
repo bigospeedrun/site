@@ -1,0 +1,11 @@
+{
+  "number": 7926,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7926",
+  "title": "Check fixed-bank pulse relations after the 679-owner BIT specialization",
+  "body": "The #7912 specialization creates no new same-bank pulse relation in the surviving graph. The four changed adjoint banks keep full rank and every surviving reverse pulse is unchanged.\n\n## Scope and source\n\nPins the actual #7912 recompilation, the surviving owner and paid rosters, and original bank memberships. This covers relations in its fixed graph. The complete source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. The archive identifies additional inputs by exact commit, path and hash. Base `e54523517d0f03e58352e647c403a5af3e525a57`; P104 toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`.\n\n## Reproduction\n\nExtract `research/p104-bit679-postspecialization-cut/replay.tar.gz` into an empty directory. Check its inner checksum manifest. `python3 -IB verify.py` cold replay reproduced both 679- and 680-owner operators, paired signed zero, and the independent rank and subset checks. The archive preserves the verification evidence and controls. This is an offline research archive; hosted package execution is separate.\n\n## Open next questions\n\nA cascade would need a different first edit that introduces a usable relation or a changed bank.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. Related results: [P104 campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:20:09Z",
+  "updated_at": "2026-11-21T05:20:09Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

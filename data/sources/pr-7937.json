@@ -1,0 +1,11 @@
+{
+  "number": 7937,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7937",
+  "title": "Exclude single outgoing omissions across all BIT chart-267 payload bases",
+  "body": "All six GL(2,2) payload bases fail to omit any of the six named exits while preserving the other five original payloads and arrival histories.\n\n## Scope and source\n\nUses the #7913 sends, receiver first readers and all later fixed exits. The span tests grant free retention of every earlier arrival. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit267-coupled-readers/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The cold replay checked 32 separating witnesses, both operators, the full 36-call invoice, and corrupted first-reader controls. Hosted execution is separate.\n\n## Open next questions\n\nChange the paid arrivals, the exterior payload contract or the timing, and replay the affected terminal rows.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:43:14Z",
+  "updated_at": "2026-11-21T05:43:14Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

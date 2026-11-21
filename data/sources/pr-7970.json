@@ -1,0 +1,11 @@
+{
+  "number": 7970,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7970",
+  "title": "Reprice a two-helper basis change and nonsink terminal exchange on 679 owners",
+  "body": "Two literal nonsink exchanges preserve all 679 owners and full operators. One grade-two contact per call loses about 71.806626 signed units. Two contacts restore the new scratch in both orientations and double the loss.\n\n## Scope and source\n\nUses the exact #7912 specialization. The 2,690 directional stock tests retain all existing packet values, main/411 owners and productive grade bins. The 3,552 inherited dirty retirements remain open. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit679-nonsink-interface/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. Cold replay reproduced both words, all 36 caller bindings, exact price and corrupted-owner and terminal controls. Hosted execution is separate.\n\n## Open next questions\n\nChange a pre-existing paid packet or productive target with a separately verified physical return.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:16:20Z",
+  "updated_at": "2026-11-21T06:16:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

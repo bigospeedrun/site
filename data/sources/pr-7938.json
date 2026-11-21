@@ -1,0 +1,11 @@
+{
+  "number": 7938,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7938",
+  "title": "Exclude the fixed-clock two-relay repair for the BIT rank-21 triple",
+  "body": "All 334 individual charts and 14,283 source-covering pairs fail the fixed-clock two-relay test. The 357 proper nested exchange pairs fail every original deadline even with free historical stock and unlimited exchanges.\n\n## Scope and source\n\nExtends #7921 for its pinned rank-21 peer triple. Retains the original exterior rows and source and delivery clocks. The stock witnesses include cross-relay choices. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit-two-relay-stock/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. `python3 -I -B verify_all.py` passed from a clean extraction in 9.99 seconds and verified 2,073 separating assignments, baseline operators and a corrupted witness. Hosted execution is separate.\n\n## Open next questions\n\nTest changed deadlines or exterior rows with a realizable paid exchange and full reader restoration.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:43:15Z",
+  "updated_at": "2026-11-21T05:43:15Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

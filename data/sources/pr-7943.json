@@ -1,0 +1,11 @@
+{
+  "number": 7943,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7943",
+  "title": "Separate labelled k=71 placements with a two-stage deletion cut",
+  "body": "An exact T=449 placement passes all tested averaged type constraints and pair separations. Deleting stages 0 and 1 leaves capacity 329 where the pointwise rule requires 330.\n\n## Scope and source\n\nApplies to two full hubs and the named nonhub degrees. The average of this cut is the existing SUBDY_69_4 row, and existing SUBDY_64_4 gives T≥439. The exhibited placement has a below-bar type invoice and supplies a separator for a relaxation. The source extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-k71-pair-deletion-screen/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. `PYTHONDONTWRITEBYTECODE=1 python3 check.py` regenerated the literal scopes, exact trees and outward type invoice [128.867329776680726,128.867329776680727]. Independent incidence arithmetic also passed. Hosted execution is separate.\n\n## Open next questions\n\nApply pointwise capacity before pricing an above-bar neighboring type, and separately prove any actual frame realization.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:50:24Z",
+  "updated_at": "2026-11-21T06:12:14Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

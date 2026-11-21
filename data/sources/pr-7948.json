@@ -1,0 +1,11 @@
+{
+  "number": 7948,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7948",
+  "title": "Exclude one exterior arrival as the sole restoration of six chart-283 exits",
+  "body": "All 17 optimistic price survivors fail the single-scalar restoration. Six original exterior rows plus the retained recoded x43 have rank seven, exceeding the six input scalars.\n\n## Scope and source\n\nUses pinned #7924 and retains all six outgoing payloads. Separately reproduces the earlier #7923 archive source omission and its corrected source control. The owner roster and clock charges are explicit. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit388-six-exit-rank-cut/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. Full original 680-square replays, actual restoration consumers, a rank minor and exact x43⊕x74 separator passed the local cold checks. Hosted execution is separate.\n\n## Open next questions\n\nAllow changes to downstream readers or a different arrival roster, and charge every resulting restoration.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:59:20Z",
+  "updated_at": "2026-11-21T05:59:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

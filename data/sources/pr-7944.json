@@ -1,0 +1,11 @@
+{
+  "number": 7944,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7944",
+  "title": "Attain and bound one restored Q96 hot-port relay at R=58",
+  "body": "The exact minimum remains R=58 even with one real hot pickup and nested source enlargement in the named schedule. A literal restored Y6 transfer attains 58.\n\n## Scope and source\n\nStarts from #7922’s fixed rank-(10,8) chain. The screen covers 28,224 cases across the declared epoch pairs, ports and coefficient support strata. The source extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-q96-restored-hot-pickup/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. `python3 -B verify.py` checked every entry by a separate subspace implementation. The 1,346-op witness recovers all 9,216 cells; missing cancellation breaks 23 odd cells. Hosted execution is separate.\n\n## Open next questions\n\nA new arrangement needs shared or earlier recovery without losing the full receipt and change accounting.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:56:18Z",
+  "updated_at": "2026-11-21T05:56:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

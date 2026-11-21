@@ -1,0 +1,11 @@
+{
+  "number": 7951,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7951",
+  "title": "Bound every three-node line exchange in the seeded BIT component family",
+  "body": "All 48 nested placements among 982 paths and 20,394 assignments lose at both rates. Best first-trial signed change is below −34.487478.\n\n## Scope and source\n\nExtends #7930 to three seeded components with fixed exterior and protected main/411 boundary. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit-three-node-line-exchange/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The 25.07-second cold run reproduced both price methods and exact projector checks with 300 boundary certificates. Hosted execution is separate.\n\n## Open next questions\n\nTest new old-line directions or changed physical route incidence.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:00:58Z",
+  "updated_at": "2026-11-21T06:00:58Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

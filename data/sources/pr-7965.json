@@ -1,0 +1,11 @@
+{
+  "number": 7965,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7965",
+  "title": "Prove the P104 two-drop threshold per six-dimensional depositor",
+  "body": "With r six-dimensional depositor inputs in the specified P104 profile, T ≥ 2r and D ≥ 56 + E + B. Exact witness networks attain T=2r and D=56 for each r from one through eight.\n\n## Scope and source\n\nRetains exactly nine gatherers with two distinct 7D input charts and seven at least 8D, eight depositors with the other inputs at least 8D, the named P104 rigidity and support. Rational path cancellation and depot relays are allowed. The exact legal-word induced profile remains open. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-net56-threshold-deposits/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. Cold replay checked all pinned examples and a separate 759-pattern screen. An independent evaluator verified the full 18-node four-low witness, all 10,816 Gram entries, 5,824 odd cells and an altered-relay control. Hosted execution is separate.\n\n## Open next questions\n\nEstablish the induced nine-gatherer/eight-depositor profile for a specific legal word before applying the bound to its ownDrop.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:15:23Z",
+  "updated_at": "2026-11-21T06:15:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

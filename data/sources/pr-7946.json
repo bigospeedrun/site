@@ -1,0 +1,11 @@
+{
+  "number": 7946,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7946",
+  "title": "Bound the actual k=76 invoice for an exceptional degree-two nonleaf HOST",
+  "body": "The normalized actual invoice for the named exceptional degree-two nonleaf HOST is at most 122406021878059699/950000000000000, below 128.848444082169 and the 128.891 bar.\n\n## Scope and source\n\nUses the stated type-B signed frame, actual legal-word correction and global event-to-role partition. The role {e,t} has two singleton pieces, and other roles must cover 74 exceptional-stage pairs. Extends the separate #7919 leaf branch. The source extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-k76-nonleaf-exceptional-host/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. `check.py` and `independent_check.py` passed integer-root and Newton-root price proofs; prior leaf, strict-separator and incorrect single-charge controls were replayed. The paper bridge was separately audited under its premises. Hosted execution is separate.\n\n## Open next questions\n\nHandle a higher-degree nonleaf or prove the inherited frame and word assignment directly.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:56:19Z",
+  "updated_at": "2026-11-21T05:56:19Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

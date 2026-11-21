@@ -1,0 +1,11 @@
+{
+  "number": 7967,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7967",
+  "title": "Realize a ternary two-coordinate cell on a labelled 451-factor path",
+  "body": "A labelled pair of idle coordinates in the first 451-factor paid slab passes all 3,888 ternary low-high states and 31,104 basis checks. The fixed-pivot nonleading fraction tends to 5/9.\n\n## Scope and source\n\nPins #7863 and #7914 and the actual 136→399 MOVE, owner tags and 11^451 cutoff. The claim is a local ternary cell. The full product stock, erasure, stage seven and recovery remain open. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-stock451-ternary-cell/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The normal and optimized clean replays verify chart and rank conditions, exact changed returns, leading/nonleading counts and source corruption rejections. Hosted execution is separate.\n\n## Open next questions\n\nProve a cover for the whole slab including its singleton and account for ternary fallback, physical storage and recovery.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:15:23Z",
+  "updated_at": "2026-11-21T06:15:23Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

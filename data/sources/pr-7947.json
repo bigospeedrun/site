@@ -1,0 +1,11 @@
+{
+  "number": 7947,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7947",
+  "title": "Audit eight cross-port branches on residual P104 cubes i3 and i5",
+  "body": "Eight coupled 24-port projections have exact integer lower bound 43 and explicit upper witnesses of 60 or 61. All eight budget-55 questions remain open.\n\n## Scope and source\n\nExtends #7915 with exact same-row flags and the original one-way membership, active rows and normalization. The other 80 port constraints and full lex order are outside this check. The source extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-cube-coupled-membership-branches/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The clean verifier regenerated eight branch hashes, all exact arithmetic and witnesses, the inherited 665 exclusions and nine mutation controls. Hosted execution is separate.\n\n## Open next questions\n\nAdd separating ports or derive a certificate for a specific whole branch.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:59:20Z",
+  "updated_at": "2026-11-21T05:59:20Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 7936,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7936",
+  "title": "Classify all 784 two-root exchanges for the P104 f22 loose row",
+  "body": "Among all 784 two-root exchanges, 580 fail mod-2 coverage. The other 204 attain exact prices 63, 64 and 65 in counts 36, 120 and 48.\n\n## Scope and source\n\nExtends #7902 and #7917 with the original fixed f22 order-four loose row. There are 192 integer-Gram witnesses and 12 additional modulo-four witnesses at determinant ±3. The source extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-decoder-two-root-prices/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The clean extraction reproduced the coverage, price and fiber results, separately priced all 204 survivors, and rejected four corrupted controls. Hosted execution is separate.\n\n## Open next questions\n\nTest a different efficient loose row or change more than two roots. General Wall56 remains open.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:42:43Z",
+  "updated_at": "2026-11-21T05:42:43Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

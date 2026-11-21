@@ -1,0 +1,11 @@
+{
+  "number": 7958,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7958",
+  "title": "Price one restored Q96 public write serving two hot takers",
+  "body": "The sharp minimum remains R=58 with one source write shared by two recipient lifetimes in the named schedule. The bound minimizes over every permitted nested source enlargement, and a literal witness attains it.\n\n## Scope and source\n\nUses #7922 and #7944 with both compensated intakes prepared before the single write. Preserves all fixed histories and checks both token cancellations. The source extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-q96-two-hot-takers/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The cold `python3 -B verify.py` replay checked 721,536 cases with two subspace implementations and per-case digests. The literal 1,514-op witness passes all 9,216 entries and detects both independent token omissions. Hosted execution is separate.\n\n## Open next questions\n\nTest different intake timing or more general shared lifetimes with the full chronological receipt.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:10:06Z",
+  "updated_at": "2026-11-21T06:10:06Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

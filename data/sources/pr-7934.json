@@ -1,0 +1,11 @@
+{
+  "number": 7934,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7934",
+  "title": "Prove a five-bit stock obstruction to one-ingress BIT spectator repair",
+  "body": "Restoring four original readout bits while keeping the fixed independent arrival requires five bits through four arrivals. No arbitrary one-bit replacement of a named ingress can repair the near miss.\n\n## Scope and source\n\nKeeps the #7925 2239 funded reroute and 2751 arrival fixed, and allows only one of 2748, 2754, 3454 to change. The cut grants an arbitrary free bit from any fixed sender at any clock. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit469-spectator-rank/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. `python3 -I -B check.py` reproduced the exact receipt, including the 681-input forward/adjoint diagnosis, the full price and corruption controls. Hosted execution is separate.\n\n## Open next questions\n\nOpen another ingress or change the interface, preserve all fourteen affected outputs and charge the resulting readout.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:42:42Z",
+  "updated_at": "2026-11-21T05:42:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

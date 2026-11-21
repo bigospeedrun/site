@@ -1,0 +1,11 @@
+{
+  "number": 7957,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7957",
+  "title": "Raise two 28-port tight-cube projection lower bounds to 44",
+  "body": "The i3/00 and i5/00 28-port projections now have an integer lower bound of 44, with explicit upper witnesses of 63. Port zero separates both prior 24-port witnesses.\n\n## Scope and source\n\nExtends #7947 while keeping 14 active rows, the precise one-way membership flags, and the displayed independent added port sets. Budget 55 and all whole-cube conclusions remain open. The source extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-cube-separating-ports/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The cold solver-free replay checks both rational lower certificates, witness extensions, the 665 inherited exclusions, and eleven mutation controls. Hosted execution is separate.\n\n## Open next questions\n\nExtend the projection or produce a full proof for a residual cube.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:10:05Z",
+  "updated_at": "2026-11-21T06:10:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

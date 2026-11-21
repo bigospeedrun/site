@@ -1,0 +1,11 @@
+{
+  "number": 7959,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7959",
+  "title": "Exclude the seven paired BIT packet-971 exchanges at arbitrary strict clocks",
+  "body": "All seven legal same-grade paired receiver exchanges fail across 16,216 classified sender/receiver timing cells within the one-pulse model. Six have timing-independent first-reader deficits. The common-receiver pair fails protected output parity.\n\n## Scope and source\n\nRetains the #7939 three-omission control, original other payload quotients and protected 3553. The cell analysis includes retiming both changed packets and grants optimistic retained stock. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-bit971-two-clock-exchanges/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. The cold replay checked the original word, clock cuts, fourteen route grades, eight separators and 679-output parity controls using separate low-pivot elimination. Hosted execution is separate.\n\n## Open next questions\n\nAllow a different payload direction or additional changed readers, then check the protected native operator and paid restoration.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:10:07Z",
+  "updated_at": "2026-11-21T06:10:07Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
