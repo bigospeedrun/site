@@ -1,0 +1,11 @@
+{
+  "number": 7975,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7975",
+  "title": "Prove six-stage rate thresholds for the finer P104 finite transfer",
+  "body": "For the candidate-specific 451-factor separation test the signed margin must exceed `T·D/[451(1−D)]`, with `D=2γ^451+λ^451`. At claim `0.003879928046156`, the conservative six-stage sufficient raw rate exceeds `0.003879928046156008242507518340149790…` under the stated fixed losses and completed seed. The displayed `K+8.3e−18` example reaches `K+8.06e−18` at stage six. Four separate rational source-gate repricings each pass 54 strict and four functional checks.\n\n## Task and overlap\n\nThis refines the six-versus-seven rate arithmetic in #7911 `4afc1ffbcde45da360e631a8634b1c86261ddc09`. It pins the 451-factor #7863 `b3e4412fe01f07dc58305616fabf96345f49a781` and the independently reproduced incumbent #7973 `ac3df5d5c8889f464f575e32dfea43714abf08ca`. The proved arithmetic uses the stated completed seed and remains separate from the six-stage physical stack in #7914. The scoped task is the #7852 follow-up at `41beda1d6435760dc99e38bd7e65f36798aad212`, based on `e54523517d0f03e58352e647c403a5af3e525a57` and #7830 `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. The archive gives exact source identities and complete assumptions.\n\n## Validation\n\nCheck the 47-file archive manifest, then run `python3 -I -B price_transfer.py` and `python3 -I -B verify.py`. A fresh relocated replay regenerated the five receipts byte-for-byte, rejected three pinned-source mutations and detected disabled assertions.\n\n## Open next questions\n\nAuthenticate a positive changed BIT invoice and its shifted moment ratios. Establish the actual seed, supplier geometry, erasure, stock, cover, precision and full application before claiming an increased κ.\n\n## Credit\n\nClear1nsight with substantial OpenAI Codex assistance. Credit DreamingOfClouds for #7852 and the caller, supplier and proof authors recorded in the source notices. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:55:09Z",
+  "updated_at": "2026-11-21T06:55:09Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

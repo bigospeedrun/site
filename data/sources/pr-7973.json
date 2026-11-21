@@ -1,0 +1,11 @@
+{
+  "number": 7973,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7973",
+  "title": "Independently replay the 451-factor consumer and Round 6 P104 controls",
+  "body": "A fresh isolated outer run reproduces the existing conditional 451-factor value 0.00387992804346. Separate interpreters verify the funded negative repair, all 32 pulse cuts, the four-depositor equality witness and the corrected 33 mask certificates.\n\n## Scope and source\n\nPins #7863 for the 451 consumer and the actual R6 source branches. Native supplier, erasure, precision, stock, compiler and recovery retain their named conditions. The source comparator is #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Base `e54523517d0f03e58352e647c403a5af3e525a57`; toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`. The included source manifest identifies every public dependency used.\n\n## Reproduction\n\nExtract `research/p104-round6-independent-proof-replay/replay.tar.gz` into an empty directory, check its checksum manifest, and run the extracted commands. All 253 files and seven bounded checks passed after fresh extraction. The isolated outer replay took 93.84 seconds; both native orientations, relay mutation and missing-row certificate controls passed. Hosted execution is separate.\n\n## Open next questions\n\nBind a changed physical supplier and repeat the full application before raising the complete conditional lower bound.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. [Campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T06:21:49Z",
+  "updated_at": "2026-11-21T06:21:49Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
