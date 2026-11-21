@@ -46,3 +46,10 @@ test('every credit note of an Other row renders its commit references as links',
   for (const claim of Object.values(direct.boards as Record<string, {claims: {note: string}[]}>).flatMap(b => b.claims))
     assert.doesNotMatch(sourceLinks(claim.note).replace(/<a [^>]*>[\s\S]*?<\/a>/g, ''), /[A-Za-z0-9-]+\/[A-Za-z0-9._-]+@[0-9a-f]{7,40}/, claim.note);
 });
+
+test('a bracketed label with an https address becomes a link, and nothing else does', () => {
+  assert.equal(sourceLinks('He reports on [his page](https://math.mit.edu/~drew/grh/) first.'),
+    'He reports on <a href="https://math.mit.edu/~drew/grh/" target="_blank" rel="noopener">his page</a> first.');
+  for (const text of ['[x](http://example.org/)', '[x](javascript:alert(1))', '[x](https://a.b/"onmouseover=1)', 'see (https://a.b/) and [1]', '[a<b](https://a.b/)'])
+    assert.equal(sourceLinks(text), text);
+});

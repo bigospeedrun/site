@@ -110,3 +110,13 @@ test('only the critical-line race has a note, with one link to the closed Quasi-
   assert(!('closedStatus' in row), 'the critical-line race is open');
   assert(row.statement.includes('Such conditional bounds do not count here.'), 'the rule stays');
 });
+
+// The first independent check of the Alpöge proof (Andrew Sutherland's page, read 2026-11-21) is named in the row's note,
+// with its link. One person's check does not make the row Lean Verified: the route needs two public rebuilds by different people.
+test('the Alpöge row names Sutherland\'s check, links his page and stays Claimed', () => {
+  const claim = data.families.find(f => f.slug === 'quasi-riemann')!.claims.find(c => c.handle === 'levent-alpoge')!;
+  assert.equal(claim.evidence, 'claimed');
+  assert.match(claim.note, /\[Sutherland's verification page\]\(https:\/\/math\.mit\.edu\/~drew\/grh\/\)/);
+  assert.match(claim.note, /stays Claimed/);
+  assert(!claim.proofScope.includes('No independent rerun'));
+});
