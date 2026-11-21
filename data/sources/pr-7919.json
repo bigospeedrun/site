@@ -1,0 +1,11 @@
+{
+  "number": 7919,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7919",
+  "title": "Bound the actual k=76 invoice for the near-hub exceptional leaf-host branch",
+  "body": "The corrected invoice is at most 122446218640655481/950000000000000 (<128.891). A pair-kernel cut covers all 75 common stages, and the actual word condition makes the odd-idle correction zero.\n\n## Scope and source\n\nAt k=76, Q=T=1, assumes the specified type-B signed frame, global event-to-role partition, one universal hub, one hub missing one stage, and the exceptional leaf HOST. Distinct from the two-full-hub family in #7883 and #7909. DreamingOfClouds’ Q=0 and thin toolkit extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. The archive identifies additional inputs by exact commit, path and hash. Base `e54523517d0f03e58352e647c403a5af3e525a57`; P104 toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`.\n\n## Reproduction\n\nExtract `research/p104-thin-near-hub-leaf/replay.tar.gz` into an empty directory. Check its inner checksum manifest. The exact `check.py`, `independent_check.py`, `review_check.py` and source-check commands passed locally. The separately derived conservative enclosure also falls below 128.891. The archive preserves the verification evidence and controls. This is an offline research archive; hosted package execution is separate.\n\n## Open next questions\n\nHandle an exceptional stage with a different HOST assignment or establish the required word-to-role bridge. Lean formalization remains open.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. Related results: [P104 campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:15:05Z",
+  "updated_at": "2026-11-21T05:15:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

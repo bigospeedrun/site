@@ -1,0 +1,11 @@
+{
+  "number": 7920,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7920",
+  "title": "Derive hub-cell capacity constraints for the named k=71 P104 branch",
+  "body": "The named k=71 ic4_parity degree type is impossible under the existing SUBDY law. The J=4 tree on the other 70 stages needs 334 crossings. This forces at most 284 nonhub incidences across all stages, while the type requires 414.\n\n## Scope and source\n\nUses two full masks and the stated nonhub degrees. A separate labelled allocation passes #7899’s selected 357 rows and exposes a PIECE2 failure. The entire k=71 type face remains open. DreamingOfClouds’ Q=0 and thin toolkit extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. The archive identifies additional inputs by exact commit, path and hash. Base `e54523517d0f03e58352e647c403a5af3e525a57`; P104 toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`.\n\n## Reproduction\n\nExtract `research/p104-k71-hub-cell-capacity/replay.tar.gz` into an empty directory. Check its inner checksum manifest. `control.py`, `subdy.py` and `check_allocation.py` replay the capacities and reduced-screen separator. The original #7869 routines return 23584/71 < 334. The archive preserves the verification evidence and controls. This is an offline research archive; hosted package execution is separate.\n\n## Open next questions\n\nApply the decisive SUBDY rows before pricing more k=71 types, then check actual HOST and frame realization.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. Related results: [P104 campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:15:46Z",
+  "updated_at": "2026-11-21T05:15:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "number": 7894,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7894",
+  "title": "Exclude signed improvement from all pairs of BIT paid omissions",
+  "body": "At κ=0.003879929046155, two paid MOVE omissions plus any principal helper surrender give maximum signed gain zero in the stated fixed-form model. Intermediate values may change. On the 2,873 eligible packets all 4,125,628 unordered pairs were checked. There are 137,550 without protected-to-protected error, and the only 435 with a nonnegative directed price upper have identical grade histograms.\n\nPinned #7830 at 87fbf4f7b35b0f18ab12b5767775a9a424cf0b15. Unlike #7881 or #7885, this changes the intermediate pulse matrix and includes the exact interslot interaction, while keeping formulas, routes and clocks fixed. A clean python3 -B verify.py and controls.py run reproduced the integer 30-place envelopes, 10,000 brute controls and four direct primitive operator checks. OpenAI Codex assisted. Source attribution is in the packet.\n\n## Open next questions\n\nCompensated coefficients, new routes, independently coded input relations, changed geometry and three omissions remain open.",
+  "created_at": "2026-11-21T04:29:05Z",
+  "updated_at": "2026-11-21T04:29:05Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

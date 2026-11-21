@@ -1,0 +1,11 @@
+{
+  "number": 7899,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7899",
+  "title": "Test local saturation of the named k=71 P104 Q=0 branch",
+  "body": "An exact k=71 labelled branch above 129.034865989491791 passes 357 averaged rows and all ordered cuts on two overlapping eight-stage windows, with exactly two separators on every pair in their nine-stage union. It fails the global placement laws. Pair (0,9) has only one separator, 739 pairs are deficient and the actual J=2 dyadic count is 184 versus 210. Full pair and dyadic saturation consequences are proved separately under the named frame assumptions.\n\nPins #7869 06c207a9feb3994a4b987dc3010657b6e85b7956 and the independent #7882 Q0 checker. This extends local-subset averaged work with a concrete labelled placement and positive real-word control. Clean exact replay and checksum verification passed. Thanks to DreamingOfClouds. OpenAI Codex assisted.\n\n## Open next questions\n\nExtend compatibility constraints across the full 71-stage placement. The remaining priced k=71 window stays open.",
+  "created_at": "2026-11-21T04:33:53Z",
+  "updated_at": "2026-11-21T04:33:53Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

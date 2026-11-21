@@ -1,0 +1,11 @@
+{
+  "number": 7893,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7893",
+  "title": "Certify both membership branches of the P104 budget-55 cube i719",
+  "body": "Splitting residual cube i719 on m[5,49] gives two exhaustive branches, each with a checked price at least 37+19=56 against budget 55. Directly checked exclusions now cover 665 of 1,001 tight B-linear cube IDs, leaving 336 outside these tests.\n\nPinned #7852 41beda1d6435760dc99e38bd7e65f36798aad212 and the prior #7862/#7872 coverage. The standalone checker verifies the inherited 52 CNF hashes, both new branch CNF hashes, 116 displayed packing witnesses and all 18 mutation controls. The source reports historical UNSAT for the full tight class. This contribution adds a direct finite certificate for one residual. OpenAI Codex assisted; credit DreamingOfClouds for the encoding.\n\n## Open next questions\n\nExtend exhaustive cover-literal splitting to stronger residual cases. Initial small i3/i5 scope remains open.",
+  "created_at": "2026-11-21T04:27:42Z",
+  "updated_at": "2026-11-21T04:27:42Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

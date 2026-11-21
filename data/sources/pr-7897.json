@@ -1,0 +1,11 @@
+{
+  "number": 7897,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7897",
+  "title": "Remove the depositor antichain from two P104 56-drop bounds",
+  "body": "The two #7871 nine-gatherer, eight-depositor profiles have D ≥ 56+E+B even with arbitrary depositor relay paths and rational cancellations. E sums excess input dimensions above eight and B counts zero-dimensional depositor outputs. Factoring each path at its first depositor preserves the original matrix rank and gatherer circuit under sink normalization. The original transfer can fail after the reduction; the proof applies the preserved structural invariants.\n\nPins #7852 41beda1d6435760dc99e38bd7e65f36798aad212, #7871 f4c554afebe370133ed1d04fec8947fe51d85fac, #7860 and #7869. Independent paper review and three exact cold controls passed. Actual comparable-depot examples attain D=57 for the displayed excess profiles, and the transfer-failure control distinguishes structural normalization. Thanks to DreamingOfClouds. OpenAI Codex assisted.\n\n## Open next questions\n\nOther low-depositor profiles, the general NET-D56 statement and legal-word transfer remain open.",
+  "created_at": "2026-11-21T04:33:36Z",
+  "updated_at": "2026-11-21T04:33:36Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}

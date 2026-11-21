@@ -1,0 +1,11 @@
+{
+  "number": 7922,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7922",
+  "title": "Price the scoped two-direction E8 gauge chain on Q96",
+  "body": "Two independent directions on two original E8 rows have a sharp scoped chain floor of 58. The legal rank-(10,8) witness attains it with eight lifetimes and exact receipt −G/2.\n\n## Scope and source\n\nExtends the one-direction #7898 chain. The fixed-basis result covers arbitrary real rank-two coefficients, nonzero row rescaling and the specified ordered lifetime partitions. DreamingOfClouds’ Q=0 and thin toolkit extension is #7869 at `06c207a9feb3994a4b987dc3010657b6e85b7956`. The archive identifies additional inputs by exact commit, path and hash. Base `e54523517d0f03e58352e647c403a5af3e525a57`; P104 toolkit #7852 `41beda1d6435760dc99e38bd7e65f36798aad212`.\n\n## Reproduction\n\nExtract `research/p104-q96-two-direction-gauge/replay.tar.gz` into an empty directory. Check its inner checksum manifest. `python3 -B verify.py --direct-all` passed 414,960 support/deletion cases by two methods and eleven exact replay or mutation controls. The archive preserves the verification evidence and controls. This is an offline research archive; hosted package execution is separate.\n\n## Open next questions\n\nAllow a changed E8 basis or a broader cold-intake chain and establish its accounting. The general hosted-rise wall remains open.\n\nClear1nsight prepared this result with substantial OpenAI Codex assistance. Credit DreamingOfClouds for the P104 toolkit and the predecessor authors identified in the archive. Related results: [P104 campaign board](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19789228).",
+  "created_at": "2026-11-21T05:15:46Z",
+  "updated_at": "2026-11-21T05:15:46Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
