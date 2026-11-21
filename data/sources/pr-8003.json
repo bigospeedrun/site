@@ -1,0 +1,11 @@
+{
+  "number": 8003,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8003",
+  "title": "Determine addresswise complex-to-BIT adapter call counts",
+  "body": "## Change and mathematical scope\n\nWith arbitrary real-linear local addresswise preparation/readout and a retained same-address input, one whole complex call suffices at rank two for real input by retaining the input and extracting the imaginary part. For arbitrary complex rank two and for either payload type at rank three and higher, exactly two whole calls are required in this model. The mixed product’s entire multiplicatively repeated surcharge allowance is under `0.02679` on the BIT factor or `0.06831` on the rational factor, so one added factor-level grade-one occurrence exceeds it.\n\n## Task and overlap\n\nRefined #7852 follow-up on main `e54523517d0f03e58352e647c403a5af3e525a57`, toolkit `41beda1d6435760dc99e38bd7e65f36798aad212`, and native comparator #7830 at `87fbf4f7b35b0f18ab12b5767775a9a424cf0b15`. Follow-up to #7998 `3a98d46694f354fb46ef76c9392ed168943a797c` and coordinate proof #7868 `3f7c3c1f2a9a0963736562037e01fe41aec46b8c`.\n\n## Validation\n\nCold `sha256sum -c SHA256SUMS` and `python3 -I -B verify.py` passed. Exact Gaussian integer controls cover ranks one through four and reject applying the real rank-two formula at rank three; fixed-grid directed integer arithmetic verifies both price inequalities.\n\n## Open next questions\n\nThe addresswise model leaves cross-address preprocessing and integrated reuse outside its scope. Physical grid, spectator, retention, erasure and ordinary BIT application conditions remain open.\n\n## Credit\n\nClear1nsight prepared this source-bound contribution with substantial OpenAI Codex assistance. Credit DreamingOfClouds and the original P104 word, caller and verification authors retained in the source notices. [Campaign handoff](https://github.com/CrocSwap/integer-mult-bounds/discussions/7111#discussioncomment-19791901).\n",
+  "created_at": "2026-11-21T09:44:40Z",
+  "updated_at": "2026-11-21T09:44:40Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
