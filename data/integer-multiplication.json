@@ -44853,6 +44853,55 @@
         }
       ],
       "source_commit": "c3837013dd7e2c50f6c3065c8f99d52a33b617bb"
+    },
+    {
+      "id": "crocswap-pr-8033",
+      "kind": "improvement",
+      "score": "243132205397/62500000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-11-21T22:20:42Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-21T22:20:42Z",
+      "site_observed_at": "2026-11-21T23:17:23Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8033"
+      },
+      "spec_version": "1",
+      "title": "Raise conditional κ to 0.003890115286352 with a 268-factor single band",
+      "authors": [
+        {
+          "name": "Clear1nsight",
+          "url": "https://github.com/Clear1nsight"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8026",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8027",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8029",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8030",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8031",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8032"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8033",
+      "artifact": {
+        "path": "sources/pr-8033.json",
+        "sha256": "76fd15d5d3d226b8b41ebd55d603e0b82acce1995a461fb38ffdf88779f5c196"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8033",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8033",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "a1313ff9f84fd00d50b282fe432e522191277821"
     }
   ],
   "record_metadata": {
@@ -70949,7 +70998,35 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-11-21T17:28:51Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-8033": {
+      "checked_at": "2026-11-21",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8033",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 8033,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-11-21T22:20:42Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "stated kappa in research/p104-single-band-split-tariff/RESULT.json at the PR head; source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-11-21T22:20:42Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8033",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-11-21T22:20:42Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-11-21T22:17:24Z"
+  "updated_at": "2026-11-21T23:17:23Z"
 }
