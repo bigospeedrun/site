@@ -433,3 +433,13 @@ test('the privacy page names the configured chat models', () => {
   assert.equal(modelName(FALLBACK_MODEL), 'Claude Haiku 5.5');
   assert.throws(() => modelName('gpt-5'));
 });
+
+// A closed race says so in the chat knowledge, so the chat does not call it open (Nil, 2026-11-20), and its leader is Lean Verified.
+test('the chat knowledge marks the closed race as closed and Lean Verified, and no other race', () => {
+  const rows = createKnowledge([], '2026-10-10', undefined, otherBounds).otherBounds.rows;
+  const closed = rows.filter(row => 'closed' in row);
+  assert.deepEqual(closed.map(row => row.path), ['/other/quasi-riemann']);
+  assert.equal((closed[0] as {closed: string}).closed, 'Race closed: \\(\\theta = 1/2\\) is the best possible value, and two independent public rebuilds confirm the Lean proof.');
+  assert.equal(closed[0].current.evidence, 'Lean Verified');
+  assert.equal(closed[0].current.exactValue, '1/2');
+});

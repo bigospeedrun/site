@@ -7,9 +7,25 @@
       "name": "Quasi-Riemann hypothesis",
       "quantity": "\\theta",
       "direction": "lower",
+      "leanRoute": {
+        "kind": "independent-rebuilds",
+        "handle": "levent-alpoge",
+        "rebuilds": [
+          {
+            "name": "Andrew Sutherland (MIT)",
+            "url": "https://math.mit.edu/~drew/grh/",
+            "date": "2026-11-20"
+          },
+          {
+            "name": "Elliot Arledge (GitHub infatoshi)",
+            "url": "https://github.com/Infatoshi/rh-verification-receipts/blob/ac99f18cef21952de094234fab95db342ed16638/VERIFICATION_RESULT.txt",
+            "date": "2026-11-20"
+          }
+        ]
+      },
       "closedStatus": {
-        "label": "Race closed (Claimed)",
-        "text": "\\(\\theta = 1/2\\) is the best possible value. We are waiting for independent verifications of the Lean proof."
+        "label": "Race closed",
+        "text": "\\(\\theta = 1/2\\) is the best possible value, and two independent public rebuilds confirm the Lean proof."
       },
       "statement": "The quantity is the zero-free half-plane threshold \\(\\theta\\) for Dirichlet \\(L\\)-functions, which include zeta. A lower threshold is better. The OpenAI paper also covers finite-order Eisenstein Hecke functions over \\(\\mathbb{Q}(\\sqrt{-3})\\); claims with Lean prove the Dirichlet theorem only. The claims retain the source proof conditions.",
       "baseline": {
@@ -1202,15 +1218,15 @@
           "dateKind": "first-stated",
           "url": "https://alpo.ge/remark.pdf",
           "lean": true,
-          "leanNote": "Yes; lean states the all-Dirichlet theorem at 1/2: LFunction_ne_zero_of_half_lt_re in lean/src/Main.lean (line 8) is the statement DirichletLNonvanishingRightOfHalf of lean/src/Statements.lean (line 6, imports only Mathlib), which covers every modulus and every Dirichlet character and excludes only the principal pole (the character 1 at s = 1). Lean v4.33.1 and Mathlib revision 0df444a360eaa60ab8c11dca51a86af692955474. A text scan of the 175,187 Lean files finds no axiom, sorry, admit, native_decide, unsafe or extern. We did not build the files or check them with the Lean kernel ourselves. One independent check, by Andrew Sutherland, is described in the note.",
-          "evidence": "claimed",
-          "note": "This is the author's claim. Andrew Sutherland (MIT) reports the first independent check on [Sutherland's verification page](https://math.mit.edu/~drew/grh/) (last updated 20 November): Sutherland built all 175,187 modules without errors, and the independent kernel nanoda, written in Rust, accepts the full export, as do con-leche and lean4lean; the statement comparison and axiom check of the comparator passed, and its kernel stages were still running. We did not build the Lean files or check the proof ourselves. The row stays Claimed until more independent verifications are public. The author, Levent Alpöge, says in a four-page note: \"I believe I have, working with Claude, discovered a proof\" of the Riemann Hypothesis and that the method extends to the Generalized Riemann Hypothesis, and \"Claude and I have also formalized the arguments without assumptions.\" The note gives no written proof; the author writes \"I decided to only present Lean\". The Lean files are a 239,275,554-byte archive in 14 parts (alpo.ge/lean.tar.gz.part01 to part14; joined, sha256 9631b4f020199e580ba86178cb56c6e9b09f690c2369a80dc4334aa93f49c7fc); the note has sha256 3fc97784b71ddd44ff8aa0a177e99622a1c61b13cfa843a0989ee4a7a0cfeb8d. The theorem says every Dirichlet L-function has no zero with real part above 1/2, so the bound is 1/2. It is the Dirichlet statement of this board; no Hecke L-function is covered. The note was made at 2026-11-20 12:52 UTC (its file metadata); the earliest public reference we found is a Hacker News link at 14:16 UTC, which is the date used here. It is not linked from the author's home page, there is no repository or commit, and we found no post by the author. Open: Claimed.",
+          "leanNote": "Yes; lean states the all-Dirichlet theorem at 1/2: LFunction_ne_zero_of_half_lt_re in lean/src/Main.lean (line 8) is the statement DirichletLNonvanishingRightOfHalf of lean/src/Statements.lean (line 6, imports only Mathlib), which covers every modulus and every Dirichlet character and excludes only the principal pole (the character 1 at s = 1). Lean v4.33.1 and Mathlib revision 0df444a360eaa60ab8c11dca51a86af692955474. A text scan of the 175,187 Lean files finds no axiom, sorry, admit, native_decide, unsafe or extern. We did not build the files ourselves. Two independent public rebuilds, by Andrew Sutherland and Elliot Arledge, are described in the note.",
+          "evidence": "lean-verified",
+          "note": "This row is Lean Verified through independent public rebuilds: two people other than the author built the Lean files themselves, each published the build and a kernel check, and both checks accept the proof. Andrew Sutherland (MIT) built all 175,187 modules, and the independent kernel nanoda, written in Rust, accepts the exported proof ([Sutherland's verification page](https://math.mit.edu/~drew/grh/), last updated 20 November). Elliot Arledge (GitHub infatoshi) built the modules separately, made a separate export, and nanoda accepts it too ([Arledge's receipt](https://github.com/Infatoshi/rh-verification-receipts/blob/ac99f18cef21952de094234fab95db342ed16638/VERIFICATION_RESULT.txt) and [repository at that commit](https://github.com/Infatoshi/rh-verification-receipts/tree/ac99f18cef21952de094234fab95db342ed16638), 20 November). The Lean statement is this board's statement (see the proof scope). Neither build ran in a sandbox (Sutherland's page and Arledge's README say so), and Sutherland's comparator kernel stages were still running at the last page update. We did not build the Lean files ourselves. The author, Levent Alpöge, says in a four-page note: \"I believe I have, working with Claude, discovered a proof\" of the Riemann Hypothesis and that the method extends to the Generalized Riemann Hypothesis, and \"Claude and I have also formalized the arguments without assumptions.\" The note gives no written proof; the author writes \"I decided to only present Lean\". The Lean files are a 239,275,554-byte archive in 14 parts (alpo.ge/lean.tar.gz.part01 to part14; joined, sha256 9631b4f020199e580ba86178cb56c6e9b09f690c2369a80dc4334aa93f49c7fc); the note has sha256 3fc97784b71ddd44ff8aa0a177e99622a1c61b13cfa843a0989ee4a7a0cfeb8d. The theorem says every Dirichlet L-function has no zero with real part above 1/2, so the bound is 1/2. It is the Dirichlet statement of this board; no Hecke L-function is covered. The note was made at 2026-11-20 12:52 UTC (its file metadata); the earliest public reference we found is a Hacker News link at 14:16 UTC, which is the date used here. It is not linked from the author's home page, there is no repository or commit, and we found no post by the author.",
           "authors": [
             {
               "name": "Levent Alpöge"
             }
           ],
-          "proofScope": "Yes; lean states the all-Dirichlet theorem at 1/2: LFunction_ne_zero_of_half_lt_re in lean/src/Main.lean (line 8) is the statement DirichletLNonvanishingRightOfHalf of lean/src/Statements.lean (line 6, imports only Mathlib), which covers every modulus and every Dirichlet character and excludes only the principal pole (the character 1 at s = 1). Lean v4.33.1 and Mathlib revision 0df444a360eaa60ab8c11dca51a86af692955474. A text scan of the 175,187 Lean files finds no axiom, sorry, admit, native_decide, unsafe or extern. We did not build the files or check them with the Lean kernel ourselves. One independent check, by Andrew Sutherland, is described in the note.",
+          "proofScope": "Yes; lean states the all-Dirichlet theorem at 1/2: LFunction_ne_zero_of_half_lt_re in lean/src/Main.lean (line 8) is the statement DirichletLNonvanishingRightOfHalf of lean/src/Statements.lean (line 6, imports only Mathlib), which covers every modulus and every Dirichlet character and excludes only the principal pole (the character 1 at s = 1). Lean v4.33.1 and Mathlib revision 0df444a360eaa60ab8c11dca51a86af692955474. A text scan of the 175,187 Lean files finds no axiom, sorry, admit, native_decide, unsafe or extern. We did not build the files ourselves. Two independent public rebuilds, by Andrew Sutherland and Elliot Arledge, are described in the note.",
           "bound": "\\theta\\le 1/2"
         }
       ],
@@ -3416,11 +3432,14 @@
       "quantity": "c\\text{ in }\\kappa^{*}\\ge c",
       "direction": "higher",
       "note": {
-        "label": "Effect of the claimed Riemann hypothesis proof",
-        "text": "Levent Alpöge claims a Lean proof of the Riemann hypothesis (see the {link}, status Claimed). If independent verifications confirm it, bounds proved under the Riemann hypothesis, for example \\(19/27\\approx0.7037\\) by Bui and Heath-Brown, no longer assume an unproved hypothesis. This race stays open: the Riemann hypothesis does not say that the zeros are simple.",
-        "link": {"text": "Quasi-Riemann race", "href": "/other/quasi-riemann"}
+        "label": "Effect of the Riemann hypothesis proof",
+        "text": "Levent Alpöge's Lean proof of the Riemann hypothesis is Lean Verified through two independent public rebuilds (see the {link}). Bounds proved under the Riemann hypothesis, for example \\(19/27\\approx0.7037\\) by Bui and Heath-Brown, then no longer assume an unproved hypothesis, so this table lists \\(19/27\\) on that basis. This race stays open: the Riemann hypothesis does not say that the zeros are simple.",
+        "link": {
+          "text": "Quasi-Riemann race",
+          "href": "/other/quasi-riemann"
+        }
       },
-      "statement": "The nontrivial zeros of the Riemann zeta function \\(\\zeta(s)\\) are its zeros \\(\\rho\\) with \\(0<\\operatorname{Re}\\rho<1\\). The critical line is \\(\\operatorname{Re}s=\\tfrac12\\); the Riemann hypothesis says that every nontrivial zero lies on it. A zero of multiplicity \\(m\\) counts \\(m\\) times, and a simple zero is a zero of multiplicity \\(1\\). Let \\(N(T)\\) be the number of nontrivial zeros with \\(0<\\operatorname{Im}\\rho\\le T\\), and let \\(N_0^{s}(T)\\) be the number of those that are simple and lie on the critical line. The quantity is \\(\\kappa^{*}=\\liminf_{T\\to\\infty}N_0^{s}(T)/N(T)\\), the share of the zeros that are simple and on the critical line, in the worst case as \\(T\\) grows. A result is a proof that \\(\\kappa^{*}\\ge c\\), and it must not assume an unproved hypothesis. A higher \\(c\\) is better. Several results below use the Montgomery–Taylor constant \\(H=\\tfrac32-\\tfrac{1}{\\sqrt2}\\cot\\tfrac{1}{\\sqrt2}\\approx0.6725007\\). Under the Riemann hypothesis, larger values are known (for example \\(19/27\\approx0.7037\\) by Bui and Heath-Brown). Such conditional bounds do not count here. For zeros on the critical line with no condition on multiplicity, the human record before 2026 was \\(0.417293\\) (more than five-twelfths), by the same four authors as the baseline. Anthropic's post gives that record as 41.6%.",
+      "statement": "The nontrivial zeros of the Riemann zeta function \\(\\zeta(s)\\) are its zeros \\(\\rho\\) with \\(0<\\operatorname{Re}\\rho<1\\). The critical line is \\(\\operatorname{Re}s=\\tfrac12\\); the Riemann hypothesis says that every nontrivial zero lies on it. A zero of multiplicity \\(m\\) counts \\(m\\) times, and a simple zero is a zero of multiplicity \\(1\\). Let \\(N(T)\\) be the number of nontrivial zeros with \\(0<\\operatorname{Im}\\rho\\le T\\), and let \\(N_0^{s}(T)\\) be the number of those that are simple and lie on the critical line. The quantity is \\(\\kappa^{*}=\\liminf_{T\\to\\infty}N_0^{s}(T)/N(T)\\), the share of the zeros that are simple and on the critical line, in the worst case as \\(T\\) grows. A result is a proof that \\(\\kappa^{*}\\ge c\\), and it must not assume an unproved hypothesis. A higher \\(c\\) is better. Several results below use the Montgomery–Taylor constant \\(H=\\tfrac32-\\tfrac{1}{\\sqrt2}\\cot\\tfrac{1}{\\sqrt2}\\approx0.6725007\\). Under the Riemann hypothesis, larger values are known (for example \\(19/27\\approx0.7037\\) by Bui and Heath-Brown). Levent Alpöge's Lean proof of the Riemann hypothesis is Lean Verified here (see the Quasi-Riemann race), so such bounds no longer assume an unproved hypothesis and count here. A bound that assumes a hypothesis that is still unproved does not count. For zeros on the critical line with no condition on multiplicity, the human record before 2026 was \\(0.417293\\) (more than five-twelfths), by the same four authors as the baseline. Anthropic's post gives that record as 41.6%.",
       "baseline": {
         "label": "Classic baseline",
         "by": "Kyle Pratt, Nicolas Robles, Alexandru Zaharescu and Dirk Zeindler",
@@ -3526,6 +3545,33 @@
           ],
           "proofScope": "A written proof with a computer check of one inequality. It is not on arXiv and has no peer review. No Lean proof is supplied, and nobody else has run the check. It builds on Sunghyeon Jo's proof and on the Claude paper, which also have no peer review.",
           "bound": "\\kappa^{*}\\ge 0.673113"
+        },
+        {
+          "author": "H. M. Bui, D. R. Heath-Brown and Levent Alpöge",
+          "handle": "bui-heath-brown-alpoge",
+          "value": "\\tfrac{19}{27}",
+          "display": "\\approx0.7037037",
+          "date": "2026-11-20T21:51:07Z",
+          "dateSource": "https://github.com/Infatoshi/rh-verification-receipts/commit/ac99f18cef21952de094234fab95db342ed16638",
+          "dateKind": "published",
+          "url": "https://arxiv.org/abs/1302.5018",
+          "lean": false,
+          "leanNote": "No. The Riemann hypothesis, the only hypothesis of the bound, has a Lean proof that is Lean Verified on the Quasi-Riemann race; the bound itself has no Lean proof.",
+          "evidence": "claimed",
+          "note": "The bound is the theorem of Bui and Heath-Brown: assuming the Riemann hypothesis, at least \\(19/27\\) of the zeros of the zeta function are simple (arXiv:1302.5018, 2013). Under the Riemann hypothesis every zero lies on the critical line, so the share of zeros that are simple and on the line is at least \\(19/27\\). The Riemann hypothesis comes from Levent Alpöge's Lean proof, working with Claude. It is Lean Verified on the Quasi-Riemann race through two independent public rebuilds. We combined the two sources; neither source states the bound without a hypothesis. The date is the commit of Arledge's receipt, when the second public rebuild made the Riemann hypothesis proof Lean Verified here.",
+          "authors": [
+            {
+              "name": "H. M. Bui"
+            },
+            {
+              "name": "D. R. Heath-Brown"
+            },
+            {
+              "name": "Levent Alpöge"
+            }
+          ],
+          "proofScope": "The bound has a published written proof (Bui and Heath-Brown, arXiv:1302.5018; Bull. London Math. Soc. 2013). It has no Lean proof. Its only hypothesis is the Riemann hypothesis, which has a Lean proof by Levent Alpöge, working with Claude, that is Lean Verified here through two independent public rebuilds. We did not check the combination in Lean.",
+          "bound": "\\kappa^{*}\\ge 0.703703"
         }
       ],
       "repos": [
@@ -3535,7 +3581,7 @@
           "note": "Anthropic's Lean 4 proof (folder zeta23). The README and AUDIT.md give the statements and the axiom check."
         }
       ],
-      "bestHandle": "bhattacharjee-bhattacharya"
+      "bestHandle": "bui-heath-brown-alpoge"
     },
     {
       "slug": "z-diophantine-in-q",

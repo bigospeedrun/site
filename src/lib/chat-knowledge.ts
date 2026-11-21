@@ -47,6 +47,8 @@ export function otherBoundAliases(row: OtherBoundsData['families'][number]): str
     .filter(alias => alias !== row.name.toLowerCase());
 }
 
+const closedText = (f: object) => { const c = (f as {closedStatus?: {label: string; text: string}}).closedStatus; return c ? {closed: `${c.label}: ${c.text}`} : {}; };
+
 function otherBoundRows(data: OtherBoundsData) {
   return data.families.map(f => {
     const best = otherBoundLeader(f);
@@ -55,6 +57,8 @@ function otherBoundRows(data: OtherBoundsData) {
       path: '/other/' + f.slug, title: f.name, aliases: otherBoundAliases(f), ...(f.family ? {openaiFamily: f.family} : {}),
       rankedQuantity: f.quantity, better: f.rankBy ? `Results rank by ${f.rankBy.join(', then ')}, each lower is better; the chart plots the ${f.quantity.replace(/\\text\{|\}/g, '')} of the results with the best ${f.rankBy[0]}.` : f.direction === 'higher' ? 'A higher value is better.' : 'A lower value is better.',
       statement: f.statement,
+      // A closed race says so, so the chat does not call it open (Nil, 2026-11-20; the quasi-riemann row).
+      ...closedText(f),
       baseline: f.baseline ? {kind: f.baseline.label ?? 'OpenAI baseline', bound: f.baseline.bound, source: f.baseline.url, date: f.baseline.date.slice(0, 10),
         ...(f.baseline.by ? {authors: f.baseline.by} : {})} : null,
       ...(f.reviewRepository ? {reviewRepository: {name: f.reviewRepository.name, url: f.reviewRepository.url,

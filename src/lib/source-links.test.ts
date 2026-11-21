@@ -48,8 +48,8 @@ test('every credit note of an Other row renders its commit references as links',
 });
 
 test('a bracketed label with an https address becomes a link, and nothing else does', () => {
-  assert.equal(sourceLinks('He reports on [his page](https://math.mit.edu/~drew/grh/) first.'),
-    'He reports on <a href="https://math.mit.edu/~drew/grh/" target="_blank" rel="noopener">his page</a> first.');
+  assert.equal(sourceLinks('The report is on [the page](https://math.mit.edu/~drew/grh/) first.'),
+    'The report is on <a href="https://math.mit.edu/~drew/grh/" target="_blank" rel="noopener">the page</a> first.');
   for (const text of ['[x](http://example.org/)', '[x](javascript:alert(1))', '[x](https://a.b/"onmouseover=1)', 'see (https://a.b/) and [1]', '[a<b](https://a.b/)'])
     assert.equal(sourceLinks(text), text);
 });

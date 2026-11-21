@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import {tableBound,boundPrecision,scientificSaving} from './ranking.ts';
 import {baseline,plan,plainBound,message,deliver,feedBoard,appendRecordPost,xMessage,xPostLength,otherFeedBoard,plainTex,HOLD_LIMIT,postBound,directedDecimal} from './records-feed.ts';
 import type {OtherClaim,OtherRow} from './records-feed.ts';
+import discordState from '../../data/discord-records.json' with {type:'json'};
+import otherBounds from './other-bounds.json' with {type:'json'};
 import type {FeedSnapshot,FeedBoard,FeedRecord} from './records-feed.ts';
 const row=(id='a',evidence='Claimed',score='1/1000'):FeedRecord=>({id,evidence,score,relation:'attained',authors:['Alice'],bound:plainBound('exact-dft',score)});
 const board=(records=[row()],leader='a'):FeedBoard=>({slug:'exact-dft',name:'Fourier Transform',url:'https://bigospeedrun.com/exact-dft',leader,records});
@@ -601,4 +603,42 @@ test('a refile names the original author alone and the refiler on its own line (
  assert.equal(fb.records[0].refiledBy,'Refiled by MultiAgency swarm');assert.deepEqual(fb.records[0].authors,['Halit Ziya KARTAL']);
  const ob=otherFeedBoard({slug:'catalan',name:'Catalan',bestHandle:'slitsey',direction:'lower',claims:[{handle:'slitsey',value:'295',display:'295',bound:'\\mu(G)\\le 295',evidence:'lean-verified',date:'2026-11-06T17:13:45Z',authors:[{name:'S. Litsey'}],refiledBy:'Ported by MultiAgency swarm'}]});
  assert.equal(ob.records[0].refiledBy,'Ported by MultiAgency swarm');assert.deepEqual(ob.records[0].authors,['S. Litsey']);
+});
+
+// The Quasi-Riemann race is closed with a Lean Verified leader (Nil's design, 2026-11-20). The leader's new level is an event
+// (":lean") that the planner would post on its next run. The reserved key keeps it quiet: the Lead and Nil decide the posts.
+// These planner tests use fixed boards, not data/discord-records.json: that file changes with every planner run, and a test on
+// it would fail the hourly refresh after the first post (Reviewer, 2026-11-21). The one live check is the reserved key itself,
+// which the planner never removes.
+const fixedClaim=(handle:string,value:string,display:string,bound:string,evidence:string,date:string,names:string[]):OtherClaim=>({handle,value,display,bound,evidence,date,authors:names.map(name=>({name}))});
+const quasiRow=(level:string):OtherRow=>({slug:'quasi-riemann',name:'Quasi-Riemann hypothesis',direction:'lower',bestHandle:'levent-alpoge',claims:[
+ fixedClaim('HaileyStorm','436666397/500000000','0.8733','\\theta\\le 0.8733','claimed','2026-11-20T04:00:00Z',['Hailey Collet']),
+ fixedClaim('levent-alpoge','1/2','0.5','\\theta\\le 1/2',level,'2026-11-20T06:16:21-08:00',['Levent Alpöge'])]});
+test('the closed Quasi-Riemann race posts nothing: the leader is Lean Verified and its :lean event is reserved',()=>{
+ const claimed=otherFeedBoard(quasiRow('claimed')),lean=otherFeedBoard(quasiRow('lean-verified'));
+ assert.equal(lean.leader,'levent-alpoge:1/2');
+ assert.equal(lean.records.find(r=>r.id==='levent-alpoge:1/2')!.evidence,'Lean Verified');
+ const key='["other-quasi-riemann","levent-alpoge:1/2","1/2","attained"]:lean';
+ const initial=baseline(both(claimed));
+ assert.deepEqual(plan(initial,both(lean),[]).messages.map(m=>m.key),[key],'without the reservation the planner would post');
+ assert.deepEqual(plan({...initial,reserved:[...initial.reserved,key]},both(lean),[]).messages,[]);
+ // The real state keeps the reservation: the planner only adds keys to reserved, so this stays true after every run.
+ assert((discordState as unknown as Parameters<typeof plan>[0]).reserved.includes(key));
+});
+
+// The 19/27 row takes the lead of the critical-line race (Nil 2026-11-21, ask 176b7090; Lead: by design it posts, so its event is NOT reserved).
+const criticalRow=(withBui:boolean):OtherRow=>({slug:'critical-line-zeros',name:'Zeta zeros on the critical line',direction:'higher',bestHandle:withBui?'bui-heath-brown-alpoge':'bhattacharjee-bhattacharya',claims:[
+ fixedClaim('bhattacharjee-bhattacharya','\\tfrac{3125}{3112}\\bigl(H-\\tfrac{7}{3200}\\bigr)','\\approx0.6731134','\\kappa^{*}\\ge 0.673113','claimed','2026-10-19T17:39:00Z',['Deep Bhattacharjee','Ushashi Bhattacharya']),
+ ...(withBui?[fixedClaim('bui-heath-brown-alpoge','\\tfrac{19}{27}','\\approx0.7037037','\\kappa^{*}\\ge 0.703703','claimed','2026-11-20T21:51:07Z',['H. M. Bui','D. R. Heath-Brown','Levent Alpöge'])]:[])]});
+test('the 19/27 row of the critical-line race is the one planned post, as a new claim',()=>{
+ const key='["other-critical-line-zeros","bui-heath-brown-alpoge:\\\\tfrac{19}{27}","\\\\tfrac{19}{27}","attained"]:record';
+ const initial=baseline(both(otherFeedBoard(criticalRow(false))));
+ const next=both(otherFeedBoard(criticalRow(true)));
+ const first=plan(initial,next,[]);
+ assert.deepEqual(first.messages.map(m=>m.key),[key]);
+ assert.equal(first.messages[0].content,'**New claim** | **Zeta zeros on the critical line** | `kappa^(*) ≥ 0.703703` | by H. M. Bui, D. R. Heath-Brown and Levent Alpöge | Claimed | [bigospeedrun.com/other/critical-line-zeros](https://bigospeedrun.com/other/critical-line-zeros)');
+ assert.equal(first.messages[0].x_text,'New claim!\n\nProblem: Zeta zeros on the critical line\nNew value: kappa^(*) ≥ 0.703703\nPlayers: H. M. Bui, D. R. Heath-Brown, Levent Alpöge\nStatus: Claimed (not verified)');
+ // After the planner has posted it, the next run posts nothing: the key is reserved by then, not before.
+ assert(!initial.reserved.includes(key),'not reserved before the post');
+ assert.deepEqual(plan(first.state,next,[]).messages,[]);
 });

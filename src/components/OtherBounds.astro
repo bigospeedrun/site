@@ -3,8 +3,10 @@ import data from '../lib/other-bounds-data';
 import LandingTable from './LandingTable.astro';
 import {otherBoundLeader} from '../lib/other-leader';
 import {baselineClaim, isOpenAIBaseline} from '../lib/other-table';
+import {routeEvidenceUrl, isClosedRace, closedRaceRule} from '../lib/other-route';
 import {otherReviewPrUrl, type EvidenceLevel, type OtherClaimReview, type OtherReviewRepository} from '../lib/evidence';
-const rows=data.families.map(f=>{
+// A race with a closedStatus has a result that cannot be improved; it leaves the open list for its own group (Nil, 2026-11-20).
+const toRow=(f:(typeof data.families)[number])=>{
   const best=otherBoundLeader(f)!;
   const repo=(f as {reviewRepository?:OtherReviewRepository}).reviewRepository,review=(best as {review?:OtherClaimReview}).review;
   // The OpenAI baseline of a row is its agent breakthrough. A row with a classic baseline (a labeled
@@ -19,10 +21,17 @@ const rows=data.families.map(f=>{
     // A Lean Verified leader's label opens its evidence: the prove2.me theorem page for an import. A Human
     // Verified leader's label opens the pull request that the row's review repository merged.
     latest:[{bound:best.bound,url:best.url,evidenceLevel:best.evidence as EvidenceLevel,date:best.date,
-      evidenceUrl:best.evidence==='lean-verified'?(best as {evidenceUrl?:string}).evidenceUrl??best.url:best.evidence==='human-verified'&&repo&&review?otherReviewPrUrl(repo,review):undefined,authors:best.authors,refiledBy:(best as {refiledBy?:string}).refiledBy}]};
-});
+      evidenceUrl:best.evidence==='lean-verified'?(best as {evidenceUrl?:string}).evidenceUrl??routeEvidenceUrl(f,best)??best.url:best.evidence==='human-verified'&&repo&&review?otherReviewPrUrl(repo,review):undefined,authors:best.authors,refiledBy:(best as {refiledBy?:string}).refiledBy}]};
+};
+const rows=data.families.filter(f=>!isClosedRace(f)).map(toRow);
+const closedRows=data.families.filter(isClosedRace).map(toRow);
 ---
 <section aria-labelledby="other-bounds">
   <h2 id="other-bounds">Other bounds</h2>
   <LandingTable rows={rows} label="Other bounds" />
 </section>
+{closedRows.length>0&&<section aria-labelledby="closed-races">
+  <h2 id="closed-races">Closed races</h2>
+  <p>{closedRaceRule}</p>
+  <LandingTable rows={closedRows} label="Closed races" />
+</section>}

@@ -3,7 +3,7 @@ export const breakthroughDefinition = 'The first result by AI agents that broke 
 export const evidenceLevels = [
  {id:'claimed', name:'Claimed', definition:'The result is published, but no review repository accepted it and we have not checked a Lean proof.'},
  {id:'human-verified', name:'Human Verified', definition:'The result meets the repository review rule stated on the problem page.'},
- {id:'lean-verified', name:'Lean Verified', definition:'We rebuild its Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. A result also counts when prove2.me, which checks each proof with Lean on its server, proved it and we reviewed that its Lean statement is our problem statement.'},
+ {id:'lean-verified', name:'Lean Verified', definition:'We rebuild its Lean proof from source and check, with the Lean kernel, that it proves our exact problem statement. A result also counts when prove2.me, which checks each proof with Lean on its server, proved it and we reviewed that its Lean statement is our problem statement. A result also counts when at least two people other than its authors each publish their own build of its Lean proof and a kernel check that accepts it, and we reviewed that its Lean statement is our problem statement; the note of that result names them.'},
 ] as const;
 export type EvidenceLevel = typeof evidenceLevels[number]['id'];
 // The line under a row's authors on a refile or port of the authors' proof (Nil, 2026-11-09: the refiler or porter is
