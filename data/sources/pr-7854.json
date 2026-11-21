@@ -1,0 +1,11 @@
+{
+  "number": 7854,
+  "html_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/7854",
+  "title": "Exhibit a one-dimensional deposit in a nine-row P104 decoder",
+  "body": "## Change and mathematical scope\n\nAn exact nine-row half-integer P104 decoder preserves all 10,816 entries of the eight-row signed Gram completion. Its ninth deposit support is a singleton of label dimension one. All terms are nonzero and each factor side has no proportional pair. This separates a proposed row-by-row extension of eight-row rigidity. The pairing-rank mass is 73, so the general 56 wall remains open.\n\nThe same 49-by-49 support gives signed-Gram rank 8 over the rationals, binary-pairing rank 29 over the rationals, and binary-pairing rank 9 over the field of two elements. The last is the decoder row price.\n\n## Task and overlap\n\nRefines the independent decoder challenge for #7852 at `41beda1d6435760dc99e38bd7e65f36798aad212`, based on `e54523517d0f03e58352e647c403a5af3e525a57`. #7583 at `0c8b204a5fc9fce057bdbdc13eda0990c4f8b207` gives the row price and earlier rigidity and replacement bounds. This package tests the exactly-eight hypothesis on a rank-preserving enlargement.\n\n## Validation\n\n`python3 -B scripts/research_package.py --package research/p104-nine-row-decoder-rigidity` and the commit-byte check passed in CPython 3.12.3. The exact replay authenticates the copied source, checks both completions and three ranks, and detects 40 violations when the compensating sign is changed. The object is a decoder factorization. Network realization and Lean formalization are outside the checked scope.\n\n## Credit\n\nDreamingOfClouds supplied the toolkit and E8 data. Clear1nsight prepared this check with substantial OpenAI Codex assistance. The copied source retains its Apache-2.0 notice.\n\n## Open next questions\n\nTest support-changing recouplings of the three affected terms. A price-preserving recoupling theorem would be needed to reduce nonminimal factorizations to the eight-row case.",
+  "created_at": "2026-11-21T03:02:18Z",
+  "updated_at": "2026-11-21T03:02:18Z",
+  "closed_at": null,
+  "merged_at": null,
+  "state": "open"
+}
