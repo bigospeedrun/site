@@ -143,12 +143,13 @@ class DirectImportTests(unittest.TestCase):
 
     def test_catalan_target_and_reviewed_statement(self):
         # Opened 2026-10-27 after the split-build smoke (verifier run 40497685416, issue #68): its receipt's
-        # generated challenge for bound 1091 has sha256 665c79be..., and its profile carries runner github-split.
+        # generated challenge for bound 1091 has sha256 665c79be..., and its profile carried runner github-split; since
+        # 2026-11-21 (verifier task 135cf916) it is a check chain, runner github-chain.
         trust=json.loads((Path(__file__).with_name('direct-trust.json')).read_text())
         profile=trust['profiles']['catalan']
         raw=(FIXTURES/'Statement.lean').read_bytes()
         self.assertEqual(gate.sha(raw),profile['challenge_sha256'])
-        self.assertEqual((profile['runner'],profile['maximum'],profile['lean_toolchain']),('github-split','100000000','leanprover/lean4:v4.34.1'))
+        self.assertEqual((profile['runner'],profile['maximum'],profile['lean_toolchain']),('github-chain','100000000','leanprover/lean4:v4.34.1'))
         sub=gate.normalize(dict(schema_version=1,problem='catalan',bound='1091',repo_url='https://github.com/u/p',commit='a'*40,authors=[]))
         generated=gate.challenge_bytes(sub,raw)
         self.assertTrue(generated.endswith('theorem Race.bound : BigOSpeedrun.Catalan.Bound ((1091 : ℚ) / 1) := by\n  sorry\n'.encode()))
