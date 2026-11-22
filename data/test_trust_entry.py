@@ -1,0 +1,164 @@
+"""trust_entry.py (task 37ae245e): the blob set, the check, the write and the message facts, on a synthetic verifier repository."""
+import contextlib
+import io
+import json
+from pathlib import Path
+import subprocess
+import tempfile
+import unittest
+import trust_entry as t
+
+
+def git(repo, *args, **kw):
+    return subprocess.run(['git', '-C', str(repo), '-c', 'user.name=T', '-c', 'user.email=t@example.invalid', *args],
+                          check=True, capture_output=True, text=True, **kw).stdout.strip()
+
+
+class TrustEntryTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.repo = Path(self.temp.name) / 'verifier'
+        self.repo.mkdir()
+        git(self.repo, 'init', '-q')
+        self.commit1 = self.commit({'scripts/verifier.py': 'a\n', 'docs/execution.md': 'd\n', 'submissions/x/A.lean': 's\n',
+                                    'auto-research.md': 'r\n', 'auto-research/n.md': 'r\n', 'run.sh': '#!/bin/sh\n',
+                                    'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 1}, 'p2': {'k': 2}}})}, 'one')
+        self.trust_path = Path(self.temp.name) / 'direct-trust.json'
+        self.trust = {'profiles': {'p1': {'k': 1}, 'p2': {'k': 2}}, 'controller_blobs': {'z': {'sha': '0' * 40, 'mode': '100644'}},
+                      'previous_controller_blobs': {'f' * 40: {'old.py': {'sha': '1' * 40, 'mode': '100644'}}}}
+        self.save()
+
+    def commit(self, files, message):
+        for rel, text in files.items():
+            path = self.repo / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text)
+            if rel == 'run.sh':
+                path.chmod(0o755)
+        git(self.repo, 'add', '-A')
+        git(self.repo, 'commit', '-q', '-m', message)
+        return git(self.repo, 'rev-parse', 'HEAD')
+
+    def save(self):
+        self.trust_path.write_text(json.dumps(self.trust, indent=2, ensure_ascii=False) + '\n')
+
+    def run_tool(self, *args):
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            code = t.main([str(self.repo), *args, '--trust', str(self.trust_path)])
+        return code, out.getvalue(), err.getvalue()
+
+    def test_the_blob_set_has_modes_and_leaves_out_untrusted_paths(self):
+        entry = t.blob_set(self.repo, self.commit1)
+        self.assertEqual(list(entry), ['docs/execution.md', 'profiles/direct.json', 'run.sh', 'scripts/verifier.py'])
+        self.assertEqual(entry['run.sh']['mode'], '100755')
+        self.assertEqual(entry['scripts/verifier.py']['mode'], '100644')
+        self.assertTrue(all(len(v['sha']) == 40 for v in entry.values()))
+
+    def test_check_says_none_equal_or_differs_and_changes_nothing(self):
+        before = self.trust_path.read_bytes()
+        code, out, _ = self.run_tool(self.commit1)
+        self.assertEqual((code, 'entry: none' in out), (1, True))
+        self.assertEqual(self.run_tool(self.commit1, '--write')[0], 0)
+        self.assertEqual(self.run_tool(self.commit1)[0], 0)
+        trust = json.loads(self.trust_path.read_text())
+        trust['previous_controller_blobs'][self.commit1]['scripts/verifier.py']['sha'] = '2' * 40
+        self.trust_path.write_text(json.dumps(trust, indent=2) + '\n')
+        code, out, _ = self.run_tool(self.commit1)
+        self.assertEqual((code, 'entry: differs' in out), (1, True))
+        self.assertNotEqual(before, self.trust_path.read_bytes())  # only the write above changed it
+
+    def test_the_same_files_in_another_order_are_not_equal(self):
+        # The importer compares dicts, so order does not matter to it; the trust file is written in git's path order and a
+        # reviewer compares bytes, so a reordered entry is reported.
+        self.assertEqual(self.run_tool(self.commit1, '--write')[0], 0)
+        trust = json.loads(self.trust_path.read_text())
+        entry = trust['previous_controller_blobs'][self.commit1]
+        trust['previous_controller_blobs'][self.commit1] = dict(reversed(list(entry.items())))
+        self.trust_path.write_text(json.dumps(trust, indent=2, ensure_ascii=False) + '\n')
+        self.assertEqual(self.run_tool(self.commit1)[0], 1)
+
+    def test_write_adds_one_entry_at_the_end_and_changes_nothing_else(self):
+        before = json.loads(self.trust_path.read_text())
+        code, out, _ = self.run_tool(self.commit1, '--write')
+        self.assertEqual(code, 0)
+        after = json.loads(self.trust_path.read_text())
+        self.assertEqual(list(after['previous_controller_blobs']), ['f' * 40, self.commit1])
+        for key in before:
+            if key != 'previous_controller_blobs':
+                self.assertEqual(before[key], after[key])
+        self.assertEqual(after['previous_controller_blobs']['f' * 40], before['previous_controller_blobs']['f' * 40])
+        self.assertEqual(self.trust_path.read_text(), json.dumps(after, indent=2, ensure_ascii=False) + '\n')
+        # A second write of the same commit is a no-op.
+        text = self.trust_path.read_text()
+        self.assertEqual(self.run_tool(self.commit1, '--write')[0], 0)
+        self.assertEqual(text, self.trust_path.read_text())
+
+    def test_an_existing_entry_that_differs_is_never_changed(self):
+        self.trust['previous_controller_blobs'][self.commit1] = {'x.py': {'sha': '3' * 40, 'mode': '100644'}}
+        self.save()
+        before = self.trust_path.read_bytes()
+        code, _, err = self.run_tool(self.commit1, '--write')
+        self.assertEqual(code, 2)
+        self.assertIn('never changed', err)
+        self.assertEqual(before, self.trust_path.read_bytes())
+
+    def test_profiles_are_replaced_only_when_named(self):
+        second = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 10}, 'p2': {'k': 20}}})}, 'two')
+        code, out, _ = self.run_tool(second, '--profile', 'p1')
+        self.assertEqual((code, 'profile p1: differs' in out), (1, True))
+        self.assertEqual(self.run_tool(second, '--write', '--profile', 'p1')[0], 0)
+        trust = json.loads(self.trust_path.read_text())
+        self.assertEqual(trust['profiles'], {'p1': {'k': 10}, 'p2': {'k': 2}})
+        self.assertEqual(self.run_tool(second, '--profile', 'p1')[0], 0)
+        self.assertEqual(self.run_tool(second, '--profile', 'p2')[0], 1)
+
+    def test_unknown_commit_or_profile_stops(self):
+        for args in (['a' * 40], ['no-such-ref'], [self.commit1, '--profile', 'nope']):
+            before = self.trust_path.read_bytes()
+            code, _, err = self.run_tool(*args, '--write')
+            self.assertEqual(code, 2, args)
+            self.assertIn('STOP', err)
+            self.assertEqual(before, self.trust_path.read_bytes())
+        # A profile that only the verifier has.
+        third = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 1}, 'p3': {'k': 3}}})}, 'three')
+        self.assertEqual(self.run_tool(third, '--profile', 'p3')[0], 2)
+
+    def test_message_facts_list_changed_new_and_removed_files_against_the_parent(self):
+        self.assertEqual(self.run_tool(self.commit1, '--write')[0], 0)
+        second = self.commit({'scripts/verifier.py': 'b\n', 'scripts/new.py': 'n\n'}, 'two')
+        git(self.repo, 'rm', '-q', 'docs/execution.md')
+        git(self.repo, 'commit', '-q', '-m', 'three')
+        third = git(self.repo, 'rev-parse', 'HEAD')
+        self.assertEqual(self.run_tool(second, '--write')[0], 0)
+        code, out, _ = self.run_tool(third, '--write')
+        self.assertEqual(code, 0)
+        facts = out.split('--- commit message facts ---')[1]
+        self.assertIn(f'(child of {second[:7]})', facts)
+        self.assertIn('Changed since that set (0): none. New: none. Removed: docs/execution.md.', facts)
+        self.assertIn('No workflow changed.', facts)
+        self.assertEqual(self.run_tool(second)[0], 0)  # the entry of the commit before is unchanged
+        # The facts of the second commit: changed and new.
+        self.trust = json.loads(self.trust_path.read_text())
+        del self.trust['previous_controller_blobs'][second]
+        self.save()
+        code, out, _ = self.run_tool(second, '--write')
+        self.assertIn('Changed since that set (1): scripts/verifier.py. New: scripts/new.py. Removed: none.', out)
+
+    def test_a_workflow_change_is_said(self):
+        self.assertEqual(self.run_tool(self.commit1, '--write')[0], 0)
+        second = self.commit({'.github/workflows/w.yml': 'on: push\n'}, 'two')
+        code, out, _ = self.run_tool(second, '--write')
+        self.assertIn('A workflow file changed.', out)
+        self.assertNotIn('No workflow changed.', out)
+
+    def test_a_parent_without_an_entry_is_said(self):
+        second = self.commit({'scripts/verifier.py': 'b\n'}, 'two')
+        code, out, _ = self.run_tool(second, '--write')
+        self.assertEqual(code, 0)
+        self.assertIn('has no entry in the trust file', out)
+
+
+if __name__ == '__main__':
+    unittest.main()
