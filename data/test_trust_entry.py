@@ -144,6 +144,42 @@ class TrustEntryTests(unittest.TestCase):
         self.assertEqual(self.run_tool(third, '--write', '--profile', 'p1')[0], 0)
         self.assertEqual(json.loads(self.trust_path.read_text())['profiles']['p1'], {'k': 1, 'runner': 'github-chain'})
 
+    def test_a_changed_statement_hash_warns_and_says_what_the_fixture_has(self):
+        # Reviewer note c (task 8bc66e6b): direct_refresh stops with "Reviewed statement hash mismatch" when direct-fixtures
+        # does not have the bytes of challenge_sha256.
+        import hashlib
+        new_bytes = b'new statement\n'
+        new_sha = hashlib.sha256(new_bytes).hexdigest()
+        self.trust['profiles']['p1'] = {'k': 1, 'challenge_file': 'challenges/p1/Statement.lean', 'challenge_sha256': '1' * 64}
+        self.save()
+        second = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 1, 'challenge_file': 'challenges/p1/Statement.lean',
+                                                                                      'challenge_sha256': new_sha}, 'p2': {'k': 2}}})}, 'two')
+        fixtures = self.trust_path.parent / 'direct-fixtures'
+        code, out, _ = self.run_tool(second, '--profile', 'p1')
+        self.assertIn('profile p1: differs', out)
+        self.assertIn('WARNING profile p1: challenge_sha256 changes (' + '1' * 12 + ' -> ' + new_sha[:12] + '); direct-fixtures: Statement.lean does not exist', out)
+        fixtures.mkdir()
+        (fixtures / 'Statement.lean').write_bytes(b'old\n')
+        self.assertIn('Statement.lean has other bytes', self.run_tool(second, '--profile', 'p1')[1])
+        (fixtures / 'Statement.lean').write_bytes(new_bytes)
+        self.assertIn('Statement.lean has the new bytes', self.run_tool(second, '--write', '--profile', 'p1')[1])
+        # An unchanged hash gives no warning.
+        third = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 5, 'challenge_file': 'challenges/p1/Statement.lean',
+                                                                                    'challenge_sha256': new_sha}, 'p2': {'k': 2}}})}, 'three')
+        out = self.run_tool(third, '--profile', 'p1')[1]
+        self.assertIn('profile p1: differs', out)
+        self.assertNotIn('WARNING', out)
+
+    def test_a_site_only_profile_is_named_as_such(self):
+        # Reviewer note d: --profile dft233 stopped with "the verifier has no profile", which does not say it is a site-only profile.
+        self.trust['profiles']['site-only'] = {'k': 9}
+        self.save()
+        code, _, err = self.run_tool(self.commit1, '--profile', 'site-only')
+        self.assertEqual(code, 2)
+        self.assertIn('profile site-only is only in the trust file (a site-only profile', err)
+        code, _, err = self.run_tool(self.commit1, '--profile', 'nowhere')
+        self.assertEqual((code, 'the verifier has no profile nowhere' in err), (2, True))
+
     def test_the_facts_name_the_profiles_that_differ_when_the_profile_file_changed(self):
         self.assertEqual(self.run_tool(self.commit1, '--write')[0], 0)
         self.trust = json.loads(self.trust_path.read_text())

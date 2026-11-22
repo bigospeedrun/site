@@ -9,7 +9,8 @@ untrusted_path() files: submissions/ and auto-research*), and compares it with d
 - Without --write it only checks. It prints EQUAL, DIFFERS or none for the entry of COMMIT, and for each --profile NAME
   whether profiles[NAME] equals the verifier's profile of the same name at COMMIT (profiles/direct.json), or equals it except
   the execution keys (runner, lake_workers_start), which the importer ignores. It also lists the profiles that differ. The
-  exit code is 0 only when every asked check is equal. A reviewer runs this on the pushed commit to check the entry of someone else.
+  exit code is 0 only when every asked check is equal. A profile whose challenge_sha256 changes gets a WARNING (the statement file in
+  data/direct-fixtures must change with it). A reviewer runs this on the pushed commit to check the entry of someone else.
 - With --write it adds the entry of COMMIT at the end of previous_controller_blobs (push order) and replaces
   profiles[NAME] by the verifier's profile of that name (not a profile that is equal except the execution keys). It never changes an existing entry: if the entry of COMMIT
   exists and differs, it stops. It prints the draft of the commit message: the parent, the number of files, and the files that
@@ -17,12 +18,13 @@ untrusted_path() files: submissions/ and auto-research*), and compares it with d
 
 The trust file is written as json.dumps(indent=2, ensure_ascii=False) and a newline, the format of every entry so far."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
 import subprocess
 import sys
-from direct_import import same_profile
+from direct_import import same_profile, statement_fixture
 from direct_refresh import untrusted_path
 
 TRUST = Path(__file__).with_name('direct-trust.json')
@@ -79,6 +81,25 @@ def profile_state(ours, theirs):
     return 'execution' if same_profile(theirs, ours) else 'differs'
 
 
+def statement_warning(trust, name, theirs, fixtures):
+    """A warning when the verifier's profile changes challenge_sha256: direct_refresh reads the vendored statement from
+    data/direct-fixtures and stops with 'Reviewed statement hash mismatch' when its bytes do not have the profile's hash
+    (task 8bc66e6b, Reviewer note c). Says whether the fixture file already has the new bytes."""
+    old, new = trust['profiles'][name].get('challenge_sha256'), theirs.get('challenge_sha256')
+    if old == new:
+        return None
+    path = theirs.get('challenge_file') or trust['profiles'][name].get('challenge_file') or ''
+    file = fixtures / statement_fixture(trust, path)
+    if not file.is_file():
+        state = f'{file.name} does not exist'
+    else:
+        state = (f'{file.name} has the new bytes' if hashlib.sha256(file.read_bytes()).hexdigest() == new
+                 else f'{file.name} has other bytes')
+    return (f'WARNING profile {name}: challenge_sha256 changes ({str(old)[:12]} -> {str(new)[:12]}); direct-fixtures: {state}. '
+            f'Update data/direct-fixtures/{file.name} to the new statement in the same commit, or direct_refresh stops with '
+            f'"Reviewed statement hash mismatch".')
+
+
 def profile_differences(trust, clone, commit):
     """Names that differ from the trust file, names equal except for the execution keys, names only the verifier has, and names
     only the trust file has (a site-only profile such as dft233)."""
@@ -99,6 +120,9 @@ def compare(trust, clone, commit, names):
         theirs = verifier_profiles(clone, commit)
         for name in names:
             if name not in theirs:
+                if name in trust['profiles']:
+                    raise Stop(f'profile {name} is only in the trust file (a site-only profile, not in the verifier\'s {PROFILES_PATH}): '
+                               f'nothing to compare or write')
                 raise Stop(f'the verifier has no profile {name} at {commit[:7]}')
             if name not in trust['profiles']:
                 raise Stop(f'the trust file has no profile {name}')
@@ -147,8 +171,11 @@ def main(argv=None, trust_path=TRUST):
         commit = full_commit(args.clone, args.commit)
         entry, state, parent, profiles = compare(trust, args.clone, commit, args.profile)
         print(f'{commit} {len(entry)} files; entry: {state}')
-        for name, (state_of, _) in profiles.items():
+        for name, (state_of, theirs) in profiles.items():
             print(f'profile {name}: ' + {'execution': 'equal except execution keys (runner, lake_workers_start)'}.get(state_of, state_of))
+            warning = statement_warning(trust, name, theirs, Path(trust_path).parent / 'direct-fixtures') if state_of == 'differs' else None
+            if warning:
+                print(warning)
         if not args.write:
             differ = profile_differences(trust, args.clone, commit)[0]
             if differ:
