@@ -114,6 +114,54 @@ class TrustEntryTests(unittest.TestCase):
         self.assertEqual(self.run_tool(second, '--profile', 'p1')[0], 0)
         self.assertEqual(self.run_tool(second, '--profile', 'p2')[0], 1)
 
+    def test_execution_keys_are_not_a_difference_and_are_not_written(self):
+        # The importer's same_profile ignores runner and lake_workers_start; the trust file keeps its own (3sum, Lead 11-02).
+        second = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 1, 'runner': 'github-split', 'lake_workers_start': 1},
+                                                                                'p2': {'k': 2}}})}, 'two')
+        code, out, _ = self.run_tool(second, '--profile', 'p1')
+        self.assertEqual((code, 'profile p1: equal except execution keys' in out), (1, True))  # exit 1 only for the missing entry
+        self.assertEqual(self.run_tool(second, '--write', '--profile', 'p1')[0], 0)
+        trust = json.loads(self.trust_path.read_text())
+        self.assertEqual(trust['profiles']['p1'], {'k': 1})
+        code, out, _ = self.run_tool(second, '--profile', 'p1')
+        self.assertEqual((code, 'profile p1: equal except execution keys' in out, 'differ from the trust file' in out), (0, True, False))
+
+    def test_a_change_to_or_from_the_check_chain_is_a_difference_and_is_written(self):
+        # same_profile does not ignore the chain-ness of the runner: the importer rejects every chain receipt of a board
+        # whose trust profile is not on the chain (Reviewer, task ad84a7b4).
+        self.trust['profiles']['p1'] = {'k': 1, 'runner': 'github-split'}
+        self.save()
+        second = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 1, 'runner': 'github-chain'}, 'p2': {'k': 2}}})}, 'two')
+        code, out, _ = self.run_tool(second, '--profile', 'p1')
+        self.assertEqual((code, 'profile p1: differs' in out), (1, True))
+        self.assertEqual(self.run_tool(second, '--write', '--profile', 'p1')[0], 0)
+        self.assertEqual(json.loads(self.trust_path.read_text())['profiles']['p1'], {'k': 1, 'runner': 'github-chain'})
+        # lake_workers_start alone is an execution key: not a difference, not written.
+        third = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 1, 'runner': 'github-chain', 'lake_workers_start': 2},
+                                                                              'p2': {'k': 2}}})}, 'three')
+        code, out, _ = self.run_tool(third, '--profile', 'p1')
+        self.assertIn('profile p1: equal except execution keys', out)
+        self.assertEqual(self.run_tool(third, '--write', '--profile', 'p1')[0], 0)
+        self.assertEqual(json.loads(self.trust_path.read_text())['profiles']['p1'], {'k': 1, 'runner': 'github-chain'})
+
+    def test_the_facts_name_the_profiles_that_differ_when_the_profile_file_changed(self):
+        self.assertEqual(self.run_tool(self.commit1, '--write')[0], 0)
+        self.trust = json.loads(self.trust_path.read_text())
+        self.trust['profiles']['site-only'] = {'k': 9}
+        self.save()
+        second = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 11}, 'p2': {'k': 2, 'runner': 'github-split'}, 'p3': {'k': 3}}})}, 'two')
+        code, out, _ = self.run_tool(second, '--profile', 'p1')
+        self.assertIn('profiles that differ from the trust file: p1', out)
+        code, out, _ = self.run_tool(second, '--write')
+        facts = out.split('--- commit message facts ---')[1]
+        self.assertIn('profiles/direct.json changed. Profiles that differ from the trust file (pass --profile NAME): p1.', facts)
+        self.assertIn('Equal except execution keys (not written): p2.', facts)
+        self.assertIn('Only in the verifier: p3.', facts)
+        self.assertIn('Only in the trust file: site-only.', facts)
+        # No profile file change: no profile line.
+        third = self.commit({'scripts/verifier.py': 'c\n'}, 'three')
+        self.assertNotIn('profiles/direct.json changed', self.run_tool(third, '--write')[1])
+
     def test_unknown_commit_or_profile_stops(self):
         for args in (['a' * 40], ['no-such-ref'], [self.commit1, '--profile', 'nope']):
             before = self.trust_path.read_bytes()
