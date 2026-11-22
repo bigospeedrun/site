@@ -10,6 +10,15 @@ from direct_note_rules import credit_ok,predecessor_ok,upgrades_ok
 ROOT=Path(__file__).resolve().parent
 TIERS=('verified','certified-conditional','claimed')
 def load(p):return json.loads((ROOT/p).read_text())
+_by_pr=None
+def submission_by_pr():
+ # The first item of each PR number, as the lookup `next(x for x in items if x['pr_number']==n)` found it. submissions.json is
+ # 6.7 MB and this check runs for every CrocSwap row: loading it per row took 70 s of the 108 s of this script (task f37af043).
+ global _by_pr
+ if _by_pr is None:
+  _by_pr={}
+  for x in load('submissions.json')['items']:_by_pr.setdefault(x['pr_number'],x)
+ return _by_pr
 def validate(data,schema):Draft202012Validator(schema,format_checker=FormatChecker()).validate(data)
 def check_author_links(label,doc):
  # An author link goes to the person's or the organisation's profile: a GitHub profile, else an ORCID record, else the
@@ -175,7 +184,7 @@ for entry in registry['problems']:
    assert r['rerun_status']==load('sources/anthropic-rerun-status.json')[entry['slug']]
   if r['id'].startswith('crocswap-'):assert m['comparison_key']=='crocswap/integer-multiplication-v1'
   if r['id'].startswith('crocswap-pr-'):
-   source=next(x for x in load('submissions.json')['items'] if x['pr_number']==m['pr_number'])
+   source=submission_by_pr()[m['pr_number']]
    assert r['submitted_at']==source['submitted_at'] and r['submitted_at'].endswith('Z')
    assert m['publication_date_precision']=='date-time'
  choose=min if p['score']['direction']=='lower-is-better' else max
