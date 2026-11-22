@@ -10,6 +10,37 @@
         "commit": "685df2e1be4777bae7e4d9f350786303a6faaae3",
         "bound": "485017055593/125000000000000",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-208-8e5b3da238597759f722b50e907cbcd0d35c82ecd559a7cbd359a33d2b4c569b",
+        "problem_id": "exact-dft/uniform-exact-arithmetic",
+        "score": "485017055593/125000000000000",
+        "score_relation": "attained",
+        "source_commit": "685df2e1be4777bae7e4d9f350786303a6faaae3",
+        "source_url": "https://github.com/josephbebel/exact-dft-submission",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "josephbebel",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45048554930",
+        "checked_at": "2026-11-22T22:43:25.819088Z",
+        "issue_created_at": "2026-11-22T10:31:24Z",
+        "issue_updated_at_at_verification": "2026-11-22T16:32:33Z",
+        "issue_updated_at_at_import": "2026-11-22T22:43:55Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-208-45048554930-1.json",
+        "receipt_sha256": "cd473837a74c3426bca397572ca798bb3550c9d5de09c33fef9f2f865b41eb1e",
+        "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
+        "result_artifact_id": 14776876066,
+        "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-205": {
@@ -1890,6 +1921,24 @@
         "commit": "cecd9d89a7474853ca3cf50da4859748c6c209a2",
         "authors": [],
         "source_subdir": "submissions/dft/halitziyakartal-halitziyav7-42"
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "checked_at": "2026-11-22T23:14:54.977684Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45079620824",
+        "receipt_path": "sources/direct-pr-209-45079620824-1-lean.json",
+        "receipt_sha256": "41ae367f33fcdad8f70766c6d0e887cbdc02bb1b4588e2ea1361ca51c206f085",
+        "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
+        "result_artifact_id": 14778190911,
+        "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
+        "pr_identity": {
+          "number": 209,
+          "head": "cecd9d89a7474853ca3cf50da4859748c6c209a2",
+          "changed_files_sha256": "280bcc31f6dfb6b29a2e1520ce3a7338835f217c96fdf32890c326470ef01263",
+          "controller": "e93bb7dd0362535091393de28c944208a47f8333"
+        },
+        "source_file": "Submission.lean"
       }
     },
     "direct-pr-156": {
@@ -4901,10 +4950,10 @@
         "bound": "485017055593/125000000000000",
         "authors": []
       },
-      "decision": "timeout",
+      "decision": "lean-verified",
       "evidence": {
-        "decision": "timeout",
-        "reason": "The proof check ran out of time; this is not a verdict on the proof",
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
         "id": "direct-208-8e5b3da238597759f722b50e907cbcd0d35c82ecd559a7cbd359a33d2b4c569b",
         "problem_id": "exact-dft/uniform-exact-arithmetic",
         "score": "485017055593/125000000000000",
@@ -4914,22 +4963,22 @@
         "authors": [],
         "workflow_conclusion": "success",
         "issue_submitter": "josephbebel",
-        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45012852925",
-        "checked_at": "2026-11-22T16:07:12.690847Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45048554930",
+        "checked_at": "2026-11-22T22:43:25.819088Z",
         "issue_created_at": "2026-11-22T10:31:24Z",
-        "issue_updated_at_at_verification": "2026-11-22T10:31:38Z",
-        "issue_updated_at_at_import": "2026-11-22T21:40:31Z",
+        "issue_updated_at_at_verification": "2026-11-22T16:32:33Z",
+        "issue_updated_at_at_import": "2026-11-22T22:43:55Z",
         "derivation_hold": false,
         "review_required": [
           "authorship",
           "first publication date",
           "historical record eligibility"
         ],
-        "receipt_path": "sources/direct-issue-208-45012852925-1.json",
-        "receipt_sha256": "ebf10ecdd85e26cd0bf55b705f04b7e361894fd73234a529e586e5d9d69462d0",
+        "receipt_path": "sources/direct-issue-208-45048554930-1.json",
+        "receipt_sha256": "cd473837a74c3426bca397572ca798bb3550c9d5de09c33fef9f2f865b41eb1e",
         "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
-        "result_artifact_id": 14762280242,
-        "controller_fingerprint": "fe3c589b81af88060e6f3a6914094559d1c352da0840879c9013108e4b2c4cf9",
+        "result_artifact_id": 14776876066,
+        "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
         "pr_identity": null,
         "source_file": "Submission.lean"
       }

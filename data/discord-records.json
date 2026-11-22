@@ -5617,15 +5617,11 @@
             "id": "direct-issue-208",
             "score": "485017055593/125000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "josephbebel"
             ],
-            "bound": "O(n log^(1 - 0.0038801364) n)",
-            "verification": {
-              "state": "failed",
-              "since": "2026-11-22T10:31:24Z"
-            }
+            "bound": "O(n log^(1 - 0.0038801364) n)"
           },
           {
             "id": "direct-issue-30",
@@ -5651,15 +5647,11 @@
             "id": "direct-pr-209",
             "score": "389848144653/100000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "Halit Ziya KARTAL"
             ],
-            "bound": "O(n log^(1 - 0.0038984814) n)",
-            "verification": {
-              "state": "pending",
-              "since": "2026-11-22T21:15:31Z"
-            }
+            "bound": "O(n log^(1 - 0.0038984814) n)"
           },
           {
             "id": "direct-pr-29",
@@ -9469,7 +9461,10 @@
     "[\"integer-multiplication\",\"crocswap-pr-8029\",\"389011527141/100000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-8033\",\"243132205397/62500000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-8035\",\"38901152865907/10000000000000000\",\"attained\"]:record",
-    "[\"exact-dft\",\"direct-issue-208\",\"485017055593/125000000000000\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-issue-208\",\"485017055593/125000000000000\",\"attained\"]:record",
+    "[\"exact-dft\",\"direct-issue-208\",\"485017055593/125000000000000\",\"attained\"]:lean",
+    "[\"exact-dft\",\"direct-pr-209\",\"389848144653/100000000000000\",\"attained\"]:lean",
+    "[\"exact-dft\",\"direct-pr-209\",\"389848144653/100000000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
@@ -9485,14 +9480,6 @@
       "authors": [
         "CubeJerry"
       ]
-    },
-    {
-      "key": "[\"exact-dft\",\"direct-pr-209\",\"389848144653/100000000000000\",\"attained\"]:record",
-      "slug": "exact-dft",
-      "authors": [
-        "Halit Ziya KARTAL"
-      ],
-      "hold": true
     }
   ]
 }

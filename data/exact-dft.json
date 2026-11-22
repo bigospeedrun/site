@@ -666,7 +666,7 @@
       "kind": "improvement",
       "score": "485017055593/125000000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-11-22T10:31:24Z",
       "spec_version": "1",
       "title": "josephbebel direct dft submission",
@@ -676,7 +676,9 @@
           "url": "https://github.com/josephbebel"
         }
       ],
-      "predecessors": [],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/issues/190"
+      ],
       "submission_url": "https://github.com/bigospeedrun/verifier/issues/208",
       "source_commit": "685df2e1be4777bae7e4d9f350786303a6faaae3",
       "artifact": {
@@ -694,7 +696,12 @@
       "site_observed_at": "2026-11-22T11:21:36Z",
       "source": {
         "kind": "repo-artifact",
-        "url": "https://github.com/josephbebel/exact-dft-submission/tree/685df2e1be4777bae7e4d9f350786303a6faaae3"
+        "url": "https://github.com/josephbebel/exact-dft-submission/blob/685df2e1be4777bae7e4d9f350786303a6faaae3/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-22T22:43:25.819088Z",
+        "receipt_path": "sources/direct-issue-208-45048554930-1.json"
       }
     },
     {
@@ -788,7 +795,7 @@
       "kind": "improvement",
       "score": "389848144653/100000000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-11-22T21:15:31Z",
       "spec_version": "1",
       "title": "HalitZiyaKARTAL direct dft submission",
@@ -811,12 +818,17 @@
         "certificate_path": null
       },
       "dependencies": [],
-      "upstream_status": "open",
-      "upstream_status_at": "2026-11-22T21:15:31Z",
+      "upstream_status": "merged",
+      "upstream_status_at": "2026-11-22T23:15:12Z",
       "site_observed_at": "2026-11-22T21:20:53Z",
       "source": {
         "kind": "repo-artifact",
-        "url": "https://github.com/bigospeedrun/verifier/tree/cecd9d89a7474853ca3cf50da4859748c6c209a2/submissions/dft/halitziyakartal-halitziyav7-42"
+        "url": "https://github.com/bigospeedrun/verifier/blob/cecd9d89a7474853ca3cf50da4859748c6c209a2/submissions/dft/halitziyakartal-halitziyav7-42/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-22T23:14:54.977684Z",
+        "receipt_path": "sources/direct-pr-209-45079620824-1-lean.json"
       }
     },
     {
@@ -1494,13 +1506,13 @@
     },
     "direct-issue-208": {
       "checked_at": "2026-11-22",
-      "source_url": "https://github.com/josephbebel/exact-dft-submission/tree/685df2e1be4777bae7e4d9f350786303a6faaae3",
+      "source_url": "https://github.com/josephbebel/exact-dft-submission/blob/685df2e1be4777bae7e4d9f350786303a6faaae3/Submission.lean",
       "repo": "josephbebel/exact-dft-submission",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Submitted bound; the verifier's proof check ran out of time, so the proof is neither verified nor rejected. The bound remains Claimed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
       "publication_date": "2026-11-22T10:31:24Z",
       "publication_date_precision": "date-time",
@@ -1508,7 +1520,9 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/208",
       "direct_submission": true,
       "route": "issue",
-      "verification": "failed"
+      "credit_note": "josephbebel's Lean proof of the saving 0.003880136444744 for the exact Fourier transform builds on Vladislav Kuznetsov's Lean Verified 0.003363623 framework. It is new bridging work, not a new circuit: it prices Chris R's CrocSwap #7830 native word under Ali Romman's 48-call caller of #7776, a pairing those PRs do not price. Both PRs are open and unmerged. The README also credits Jerry Jiaheng Chen's #7000 physical layer, Jacob Sussman's engines and OpenAI's computational model.",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45048554930",
+      "verification": "passed"
     },
     "direct-issue-30": {
       "checked_at": "2026-11-22",
@@ -1552,13 +1566,13 @@
     },
     "direct-pr-209": {
       "checked_at": "2026-11-22",
-      "source_url": "https://github.com/bigospeedrun/verifier/tree/cecd9d89a7474853ca3cf50da4859748c6c209a2/submissions/dft/halitziyakartal-halitziyav7-42",
+      "source_url": "https://github.com/bigospeedrun/verifier/blob/cecd9d89a7474853ca3cf50da4859748c6c209a2/submissions/dft/halitziyakartal-halitziyav7-42/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "eligible_for_record": true,
+      "proof_status": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
       "publication_date": "2026-11-22T21:15:31Z",
       "publication_date_precision": "date-time",
@@ -1566,7 +1580,8 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/209",
       "direct_submission": true,
       "route": "pull_request",
-      "verification": "pending"
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45079620824",
+      "verification": "passed"
     },
     "direct-pr-29": {
       "checked_at": "2026-11-22",
@@ -1729,5 +1744,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-22T21:20:53Z"
+  "updated_at": "2026-11-22T23:23:04Z"
 }
