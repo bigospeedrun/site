@@ -662,6 +662,42 @@
       }
     },
     {
+      "id": "direct-issue-208",
+      "kind": "improvement",
+      "score": "485017055593/125000000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-22T10:31:24Z",
+      "spec_version": "1",
+      "title": "josephbebel direct dft submission",
+      "authors": [
+        {
+          "name": "josephbebel",
+          "url": "https://github.com/josephbebel"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/208",
+      "source_commit": "685df2e1be4777bae7e4d9f350786303a6faaae3",
+      "artifact": {
+        "path": "sources/direct-issue-208-submission.json",
+        "sha256": "109e3498b5559e7b238878d921cf8049c6aa44801ea32f9045ce22c7b3603614"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/208",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-22T10:31:24Z",
+      "site_observed_at": "2026-11-22T11:21:36Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/josephbebel/exact-dft-submission/tree/685df2e1be4777bae7e4d9f350786303a6faaae3"
+      }
+    },
+    {
       "id": "direct-issue-30",
       "kind": "improvement",
       "score": "2532237/2000000000",
@@ -1420,6 +1456,24 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/42734672790",
       "verification": "passed"
     },
+    "direct-issue-208": {
+      "checked_at": "2026-11-22",
+      "source_url": "https://github.com/josephbebel/exact-dft-submission/tree/685df2e1be4777bae7e4d9f350786303a6faaae3",
+      "repo": "josephbebel/exact-dft-submission",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-11-22T10:31:24Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/208",
+      "direct_submission": true,
+      "route": "issue",
+      "verification": "pending"
+    },
     "direct-issue-30": {
       "checked_at": "2026-11-22",
       "source_url": "https://github.com/ptweezy/exact-dft-lean/blob/f9357424312209f85e0c7e28dce0e6bb01986608/Submission.lean",
@@ -1621,5 +1675,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-22T00:22:27Z"
+  "updated_at": "2026-11-22T11:21:36Z"
 }
