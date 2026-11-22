@@ -831,7 +831,17 @@ class RefreshTests(unittest.TestCase):
                     git('add','unrelated.json')
                 # Offline and hermetic: no PR package is read here (package_claim has its own
                 # tests), so whatever the committed data queues cannot reach the network mock.
-                with patch.object(refresh,'package_claim',lambda *a,**k:(None,None,None)),patch.object(refresh,'ROOT',data),patch.object(refresh,'datetime',FrozenDatetime),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
+                # Each main() runs the full validate.py in a subprocess, about 100 s. The first call keeps the real run, so the
+                # importer still proves that its output validates in this layout. The second call only checks that nothing
+                # changes (the staging copy equals the committed one, which the first validate accepted), so its validate
+                # is counted and skipped (task 50a06783).
+                validates=[];real_run=subprocess.run
+                def run(cmd,*a,**k):
+                    if isinstance(cmd,list) and len(cmd)==2 and str(cmd[1]).endswith('validate.py'):
+                        validates.append(cmd)
+                        if len(validates)>1:return subprocess.CompletedProcess(cmd,0)
+                    return real_run(cmd,*a,**k)
+                with patch.object(subprocess,'run',run),patch.object(refresh,'package_claim',lambda *a,**k:(None,None,None)),patch.object(refresh,'ROOT',data),patch.object(refresh,'datetime',FrozenDatetime),patch.object(refresh,'api',api),patch.object(refresh,'content',content),patch.object(refresh,'pages',lambda path,*a,**k:pulls if path.endswith('/pulls') else []),contextlib.redirect_stdout(io.StringIO()):
                     refresh.main()
                     summary=json.loads((repo/'.git/refresh-summary.json').read_text())
                     self.assertIn('registry.json',summary['changed_files'])
@@ -840,6 +850,7 @@ class RefreshTests(unittest.TestCase):
                     git('-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','refresh')
                     refresh.main()
                     self.assertEqual(json.loads((repo/'.git/refresh-summary.json').read_text())['changed_files'],[])
+                self.assertEqual(len(validates),2)  # both main() calls ran validate; only the first was real
                 if nested:self.assertEqual((repo/'unrelated.json').read_text(),'preserve me')
 
 if __name__=='__main__':unittest.main()
