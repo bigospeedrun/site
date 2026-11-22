@@ -4878,6 +4878,49 @@
         "pr_identity": null,
         "source_file": "Submission.lean"
       }
+    },
+    "direct-issue-208:8e5b3da238597759f722b50e907cbcd0d35c82ecd559a7cbd359a33d2b4c569b": {
+      "key": "direct-issue-208",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "repo_url": "https://github.com/josephbebel/exact-dft-submission",
+        "commit": "685df2e1be4777bae7e4d9f350786303a6faaae3",
+        "bound": "485017055593/125000000000000",
+        "authors": []
+      },
+      "decision": "timeout",
+      "evidence": {
+        "decision": "timeout",
+        "reason": "The proof check ran out of time; this is not a verdict on the proof",
+        "id": "direct-208-8e5b3da238597759f722b50e907cbcd0d35c82ecd559a7cbd359a33d2b4c569b",
+        "problem_id": "exact-dft/uniform-exact-arithmetic",
+        "score": "485017055593/125000000000000",
+        "score_relation": "attained",
+        "source_commit": "685df2e1be4777bae7e4d9f350786303a6faaae3",
+        "source_url": "https://github.com/josephbebel/exact-dft-submission",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "josephbebel",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45012852925",
+        "checked_at": "2026-11-22T16:07:12.690847Z",
+        "issue_created_at": "2026-11-22T10:31:24Z",
+        "issue_updated_at_at_verification": "2026-11-22T10:31:38Z",
+        "issue_updated_at_at_import": "2026-11-22T16:07:38Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-208-45012852925-1.json",
+        "receipt_sha256": "ebf10ecdd85e26cd0bf55b705f04b7e361894fd73234a529e586e5d9d69462d0",
+        "policy_hash": "f0110e7f2603004059a3591b752ce126f988fa090e9a51d876a46a5369f09f47",
+        "result_artifact_id": 14762280242,
+        "controller_fingerprint": "fe3c589b81af88060e6f3a6914094559d1c352da0840879c9013108e4b2c4cf9",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
     }
   },
   "claimed_only_cache": {
@@ -5106,11 +5149,6 @@
     "204": {
       "version": "45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
       "updated_at": "2026-11-15T06:04:31Z",
-      "not_verified": false
-    },
-    "208": {
-      "version": "8e5b3da238597759f722b50e907cbcd0d35c82ecd559a7cbd359a33d2b4c569b",
-      "updated_at": "2026-11-22T10:31:49Z",
       "not_verified": false
     }
   }
