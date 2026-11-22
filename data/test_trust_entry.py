@@ -170,6 +170,29 @@ class TrustEntryTests(unittest.TestCase):
         self.assertIn('profile p1: differs', out)
         self.assertNotIn('WARNING', out)
 
+    def test_the_fixture_name_follows_statement_fixtures_and_a_moved_statement_warns(self):
+        # Review notes 1 to 3 on 09a2bcfa: the copy is named by statement_fixtures; "has the new bytes" asks for no work;
+        # a changed challenge_file with an equal hash warns too.
+        import hashlib
+        data = b'same statement\n'
+        sha = hashlib.sha256(data).hexdigest()
+        self.trust['statement_fixtures'] = {'challenges/q/Statement.lean': 'QStatement.lean'}
+        self.trust['profiles']['p1'] = {'k': 1, 'challenge_file': 'challenges/p/Statement.lean', 'challenge_sha256': sha}
+        self.save()
+        second = self.commit({'profiles/direct.json': json.dumps({'profiles': {'p1': {'k': 1, 'challenge_file': 'challenges/q/Statement.lean',
+                                                                                      'challenge_sha256': sha}, 'p2': {'k': 2}}})}, 'moved')
+        fixtures = self.trust_path.parent / 'direct-fixtures'
+        fixtures.mkdir()
+        (fixtures / 'Statement.lean').write_bytes(b'not the one\n')
+        out = self.run_tool(second, '--profile', 'p1')[1]
+        self.assertIn('challenge_file changes (challenges/p/Statement.lean -> challenges/q/Statement.lean', out)
+        self.assertNotIn('challenge_sha256 changes', out)
+        self.assertIn('direct-fixtures: QStatement.lean does not exist. Update data/direct-fixtures/QStatement.lean', out)
+        (fixtures / 'QStatement.lean').write_bytes(data)
+        out = self.run_tool(second, '--profile', 'p1')[1]
+        self.assertIn('direct-fixtures: QStatement.lean has the new bytes.', out)
+        self.assertNotIn('Update data/direct-fixtures', out)
+
     def test_a_site_only_profile_is_named_as_such(self):
         # Reviewer note d: --profile dft233 stopped with "the verifier has no profile", which does not say it is a site-only profile.
         self.trust['profiles']['site-only'] = {'k': 9}

@@ -9,7 +9,7 @@ untrusted_path() files: submissions/ and auto-research*), and compares it with d
 - Without --write it only checks. It prints EQUAL, DIFFERS or none for the entry of COMMIT, and for each --profile NAME
   whether profiles[NAME] equals the verifier's profile of the same name at COMMIT (profiles/direct.json), or equals it except
   the execution keys (runner, lake_workers_start), which the importer ignores. It also lists the profiles that differ. The
-  exit code is 0 only when every asked check is equal. A profile whose challenge_sha256 changes gets a WARNING (the statement file in
+  exit code is 0 only when every asked check is equal. A profile whose challenge_sha256 or challenge_file changes gets a WARNING (the statement file in
   data/direct-fixtures must change with it). A reviewer runs this on the pushed commit to check the entry of someone else.
 - With --write it adds the entry of COMMIT at the end of previous_controller_blobs (push order) and replaces
   profiles[NAME] by the verifier's profile of that name (not a profile that is equal except the execution keys). It never changes an existing entry: if the entry of COMMIT
@@ -86,18 +86,23 @@ def statement_warning(trust, name, theirs, fixtures):
     data/direct-fixtures and stops with 'Reviewed statement hash mismatch' when its bytes do not have the profile's hash
     (task 8bc66e6b, Reviewer note c). Says whether the fixture file already has the new bytes."""
     old, new = trust['profiles'][name].get('challenge_sha256'), theirs.get('challenge_sha256')
-    if old == new:
+    old_path, path = trust['profiles'][name].get('challenge_file') or '', theirs.get('challenge_file') or ''
+    if old == new and old_path == path:
         return None
-    path = theirs.get('challenge_file') or trust['profiles'][name].get('challenge_file') or ''
     file = fixtures / statement_fixture(trust, path)
     if not file.is_file():
         state = f'{file.name} does not exist'
     else:
         state = (f'{file.name} has the new bytes' if hashlib.sha256(file.read_bytes()).hexdigest() == new
                  else f'{file.name} has other bytes')
-    return (f'WARNING profile {name}: challenge_sha256 changes ({str(old)[:12]} -> {str(new)[:12]}); direct-fixtures: {state}. '
-            f'Update data/direct-fixtures/{file.name} to the new statement in the same commit, or direct_refresh stops with '
-            f'"Reviewed statement hash mismatch".')
+    what = [f'challenge_sha256 changes ({str(old)[:12]} -> {str(new)[:12]})'] if old != new else []
+    if old_path != path:  # the fixture is looked up by path: a moved statement can need a statement_fixtures entry
+        what.append(f'challenge_file changes ({old_path} -> {path}; statement_fixtures names a copy by this path)')
+    text = f'WARNING profile {name}: ' + ' and '.join(what) + f'; direct-fixtures: {state}.'
+    if not state.endswith('has the new bytes'):
+        text += (f' Update data/direct-fixtures/{file.name} to the new statement in the same commit, or direct_refresh stops with '
+                 f'"Reviewed statement hash mismatch".')
+    return text
 
 
 def profile_differences(trust, clone, commit):
