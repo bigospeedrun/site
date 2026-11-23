@@ -46014,6 +46014,58 @@
         }
       ],
       "source_commit": "2d0d7d378929269b00dcabfac1099b2bb23b3b3b"
+    },
+    {
+      "id": "crocswap-pr-8070",
+      "kind": "improvement",
+      "score": "38982141226643/10000000000000000",
+      "tier": "claimed",
+      "submitted_at": "2026-11-23T01:45:47Z",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T01:45:47Z",
+      "site_observed_at": "2026-11-23T03:17:29Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8070"
+      },
+      "spec_version": "1",
+      "title": "Conditional κ = .0038982141226643 (+0.00000015291874% over #8069; +0.00010575788118% over #8057): tighten the Gaussian debit booking",
+      "authors": [
+        {
+          "name": "ToikY",
+          "url": "https://github.com/ToikY"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8055",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8057",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8059",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8063",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8064",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8066",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8067",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8068",
+        "https://github.com/CrocSwap/integer-mult-bounds/pull/8069"
+      ],
+      "submission_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8070",
+      "artifact": {
+        "path": "sources/pr-8070.json",
+        "sha256": "159be629b71e3f7e3ab242c8c7b65309a494cafedcb3086d9ec08f690cbb7f57"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8070",
+        "theorem": null,
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "openai-109-transfer",
+          "statement": "The OpenAI #109 fixed-tape multiplication reduction and the specific all-size compiler, routing, precision, resampling and exact-recovery interfaces cited by this submission hold. The PR body retains its precise per-construction obligations.",
+          "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8070",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "7d65b2c6a19941b9922d5e4c86c495aa37073141"
     }
   ],
   "record_metadata": {
@@ -49114,7 +49166,7 @@
       "source_url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 4223103985/2^46 (about 6e-05), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ b3daf2b, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit failed (checked 2026-11-20)); it is not our exact multitape statement and we have not rerun it.",
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun. Proved on prove2.me, which checks each proof with Lean on its server; we reviewed that its Lean statement is this row's statement (same value, same source). Separately, a Lean proof of a stronger saving, kappa = 4223103985/2^46 (about 6e-05), by Kenny Daniel (platypii) with jdb19937, exists on Mathlib's multi-stack machine model (platypii/integer-mult-bounds-lean @ 8aff172, theorem MathlibTM2.mulInTime; the author's axiom audit allows only the standard axioms, and the author's CI on that commit had not finished (checked 2026-11-23)); it is not our exact multitape statement and we have not rerun it.",
       "comparison_key": "openai/original-109",
       "date_precision": "Manuscript dated September 23, 2026; submitted_at is observation time.",
       "upstream_tier": "claimed",
@@ -72782,7 +72834,35 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-11-22T23:45:47Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "crocswap-pr-8070": {
+      "checked_at": "2026-11-23",
+      "source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8070",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Source claim; not independently rerun by bigOspeedrun",
+      "pr_number": 8070,
+      "repo": "CrocSwap/integer-mult-bounds",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-11-23T02:00:38Z",
+      "comparison_key": "crocswap/integer-multiplication-v1",
+      "comparison_status": "Same CrocSwap race: numerical within-repo comparison authorized 2026-10-08. Each record retains its stated assumptions; no full proof or cross-repo compatibility claim.",
+      "score_source": "Lead review decision; source claim only",
+      "date_precision": "PR creation timestamp; score is latest observed claim, not necessarily original score.",
+      "upstream_selected": false,
+      "record_eligibility_note": "Eligible for the CrocSwap claimed-source race when merged or a published README checkpoint. Open and closed-unmerged PRs cannot hold the record.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "publication_date_precision": "date-time",
+      "race_repo": "CrocSwap/integer-mult-bounds",
+      "publication_date": "2026-11-23T01:45:47Z",
+      "publication_source_url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8070",
+      "race_series": "pr-submissions",
+      "race_event_at": "2026-11-23T01:45:47Z",
+      "race_event_kind": "PR creation; latest observed score"
     }
   },
-  "updated_at": "2026-11-23T02:17:21Z"
+  "updated_at": "2026-11-23T03:17:29Z"
 }
