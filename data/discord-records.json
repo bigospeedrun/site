@@ -5817,7 +5817,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-217",
+        "leader": "direct-pr-218",
         "direction": "higher",
         "records": [
           {
@@ -6012,6 +6012,20 @@
               "josephbebel"
             ],
             "bound": "O(n log^(1 - 0.0039171509) n)"
+          },
+          {
+            "id": "direct-pr-218",
+            "score": "195880769127703/50000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "josephbebel"
+            ],
+            "bound": "O(n log^(1 - 0.0039176153) n)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-23T21:51:55Z"
+            }
           },
           {
             "id": "direct-pr-29",
@@ -9937,6 +9951,14 @@
       "authors": [
         "ToikY"
       ]
+    },
+    {
+      "key": "[\"exact-dft\",\"direct-pr-218\",\"195880769127703/50000000000000000\",\"attained\"]:record",
+      "slug": "exact-dft",
+      "authors": [
+        "josephbebel"
+      ],
+      "hold": true
     }
   ]
 }
