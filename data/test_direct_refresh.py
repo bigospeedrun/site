@@ -1,4 +1,5 @@
 """Discovery, lifecycle, transactions, and board visibility without network."""
+import base64
 import copy
 import json
 from pathlib import Path
@@ -752,6 +753,188 @@ class RefreshTests(unittest.TestCase):
             claim=dict(route='issue',item=self.issue(),submission=sub)
             approver.retain_outcome(key,claim,'final',approver.derivation(key,verdict),{'marker':'final'})
             self.assertEqual('verification' in claim,expected=='lean-verified')
+
+    # Lead, 2026-11-23 (verifier #212): a submission that calls itself a port or refile is held for a credit note.
+    PORT_MESSAGE='Average sensitivity bound\n\nPorted from darkhipo/average-sensitivity-lean @ 78fe0e6, new constant 1/2.'
+
+    def port_api(self,readme=None,pr_messages=None,fail=None):
+        """A fake API for the declaration check: the README of a commit and the commit messages of a PR (counted reads)."""
+        test=self
+        class API(DiscoveryAPI):
+            reads=[]
+            def json(self,path,params=None):
+                if path.endswith('/readme'):
+                    API.reads.append((path,params))
+                    if fail:raise fail
+                    if readme is None:raise r.GitHubError(404)
+                    return {'content':base64.b64encode(readme.encode()).decode(),'encoding':'base64'}
+                return super().json(path,params)
+            def pages(self,path,params=None,key=None):
+                if path.endswith('/commits'):
+                    API.reads.append((path,params))
+                    if fail:raise fail
+                    return [{'commit':{'message':m}} for m in pr_messages or []]
+                return super().pages(path,params,key)
+        API.reads=[]
+        return API()
+
+    def port_claim(self,number=212,message='Average sensitivity bound',body=None,route='issue'):
+        item=self.issue(number);submission=d.parse_body(item['body'])
+        if body is not None:item['body']=body
+        if route=='pull_request':
+            item=dict(item,head=dict(sha='b'*40),number=number)
+            return dict(route='pull_request',item=item,submission=dict(problem='average-sensitivity',repo_url=None,commit='b'*40))
+        return dict(route='issue',item=item,submission=submission,commit_message=message)
+
+    def verdict_for(self,claim,decision='lean-verified'):
+        digest=d.sha(d.canonical(claim['submission']).encode())
+        return dict(decision=decision,reason='Lean and nanoda passed',id=f'direct-{claim["item"]["number"]}-{digest}',derivation_hold=False)
+
+    def test_discovery_keeps_the_pinned_commit_message(self):
+        class API(DiscoveryAPI):
+            def json(self,path,params=None):
+                if '/commits/' in path:return {'sha':path.rsplit('/',1)[1],'commit':{'message':RefreshTests.PORT_MESSAGE}}
+                return super().json(path,params)
+        claims=self.collector(API(issues=[self.issue(212)])).discover()
+        self.assertEqual(claims['direct-issue-212']['commit_message'],self.PORT_MESSAGE)
+        # A source without a message in the answer (the fake of every other test) gives an empty text, not a failure.
+        self.assertEqual(self.collector(DiscoveryAPI(issues=[self.issue(5)])).discover()['direct-issue-5']['commit_message'],'')
+
+    def test_the_declaration_words_are_a_port_or_a_refile_and_nothing_else(self):
+        for text in ['Ported from darkhipo/average-sensitivity-lean @ 78fe0e6','a PORT OF the proof of x','Refiled from #99','refile of the Lean proof',
+                     'a line-wrapped port\nof the proof','Ported  from x']:
+            self.assertIsNotNone(r.PORT_DECLARATION.search(text),text)
+        for text in ['import of Mathlib','a report of the run','support of the bound','transport of data','portfolio','a ported-from-nothing idea','re-filed']:
+            self.assertIsNone(r.PORT_DECLARATION.search(text),text)
+
+    def test_a_port_declared_in_the_commit_message_the_body_or_the_readme_is_held_until_a_note_exists(self):
+        sources={'commit message':dict(message=self.PORT_MESSAGE),
+                 'issue body':dict(body=self.issue()['body']+'\n\nThis is a port of darkhipo\'s proof.'),
+                 'README':dict(readme='# Bound\n\nRefiled from the original repository.')}
+        for name,case in sources.items():
+            with self.subTest(source=name):
+                claim=self.port_claim(**{k:v for k,v in case.items() if k!='readme'});key='direct-issue-212'
+                importer=self.collector(self.port_api(readme=case.get('readme')))
+                verdict=self.verdict_for(claim)
+                held=importer.port_hold(key,claim,verdict)
+                self.assertEqual((held['decision'],held['reason']),('held',r.PORT_NOTE))
+                # The row stays Claimed with the port note, in the feed state 'held' (the post waits), also after a refresh.
+                for stage in ['lean','final']:importer.retain_outcome(key,claim,stage,importer.port_hold(key,claim,verdict),{'marker':stage})
+                self.assertNotIn('verification',claim)
+                row,meta,_=r.row_for(key,claim,'2026-11-23T00:00:00Z')
+                self.assertEqual((row['tier'],meta['proof_status']),('claimed',r.PORT_NOTE))
+                self.assertEqual(r.verification_state(key,claim,importer.final_states),'held')
+                previous=dict(entries={},final_states=copy.deepcopy(importer.final_states))
+                again=self.collector(DiscoveryAPI()).verify({key:dict(claim,review_note=None)},previous)
+                self.assertEqual(again[key]['review_note'],r.PORT_NOTE)
+                # Any note for the entry ends the hold (a credit note with or without refiledBy: #213 is new work).
+                for note in [dict(text='A note.'),dict(text='A note.',credit=dict(author='floration',names=['floration'],refiledBy='Ported by floration'))]:
+                    noted=self.collector(self.port_api(readme=case.get('readme')))
+                    (noted.root/'direct-notes.json').write_text(json.dumps(dict(schema_version=1,notes={key:note},withdrawn={})))
+                    noted=r.Importer(self.port_api(readme=case.get('readme')),noted.root)
+                    self.assertEqual(noted.port_hold(key,claim,verdict),verdict)
+                    fresh=dict(claim);noted.retain_outcome(key,fresh,'final',noted.port_hold(key,fresh,verdict),{'marker':'final'})
+                    self.assertIn('verification',fresh)
+                # The lead's approval of this exact digest ends it too; another digest does not.
+                for listed,expected in [(verdict['id'].rsplit('-',1)[1],'lean-verified'),('0'*64,'held')]:
+                    approver=self.collector(self.port_api(readme=case.get('readme')))
+                    (approver.root/'review-decisions.json').write_text(json.dumps({'approved':[],'derivations':[
+                        {'id':key,'submission_sha256':listed,'decision':'approved','by':'BOS Lead Dev','at':'2026-11-23T00:00:00Z','note':'test'}]}))
+                    approver=r.Importer(self.port_api(readme=case.get('readme')),approver.root)
+                    self.assertEqual(approver.port_hold(key,claim,verdict)['decision'],expected)
+
+    def test_an_entry_that_does_not_declare_a_port_is_not_held_and_reads_the_readme_once(self):
+        claim=self.port_claim(message='Average sensitivity bound, first version');key='direct-issue-212'
+        api=self.port_api(readme='# Bound\n\nSupport of the proof; a report of the run.')
+        importer=self.collector(api);verdict=self.verdict_for(claim)
+        self.assertEqual(importer.port_hold(key,claim,verdict),verdict)
+        self.assertEqual(importer.port_hold(key,claim,verdict),verdict)
+        self.assertEqual(len(api.reads),1)
+        self.assertEqual(api.reads[0][1],{'ref':claim['submission']['commit']})
+        # A repository without a README (HTTP 404) is not a declaration.
+        self.assertEqual(self.collector(self.port_api()).port_hold(key,claim,verdict),verdict)
+        # Only a passing result is held: a failure or a derivation hold keeps its own outcome and costs no read.
+        quiet=self.port_api(readme='Ported from x');importer=self.collector(quiet)
+        for decision in ['blocked','timeout','held','pending']:
+            other=dict(verdict,decision=decision);self.assertEqual(importer.port_hold(key,claim,other),other)
+        self.assertEqual(quiet.reads,[])
+
+    def test_a_declaration_in_the_body_or_the_commit_message_costs_no_read(self):
+        api=self.port_api(readme='Ported from x');importer=self.collector(api)
+        for claim in [self.port_claim(message=self.PORT_MESSAGE),self.port_claim(body='refile of #99')]:
+            self.assertEqual(importer.port_hold('direct-issue-212',claim,self.verdict_for(claim))['decision'],'held')
+        self.assertEqual(api.reads,[])
+
+    def test_a_pr_is_held_by_its_commit_messages_or_its_body(self):
+        key='direct-pr-215'
+        for messages,body,expected in [(['Add the tree','Ported from darkhipo/x @ 78fe0e6'],'ordinary',True),(['Add the tree'],'This is a port of x',True),
+                                       (['Add the tree','Fix imports'],'ordinary',False)]:
+            claim=self.port_claim(215,route='pull_request');claim['item']['body']=body
+            api=self.port_api(pr_messages=messages);importer=self.collector(api)
+            verdict=dict(decision='lean-verified',reason='Lean passed',id='direct-pr-215')
+            self.assertEqual(importer.port_hold(key,claim,verdict)['decision'],'held' if expected else 'lean-verified')
+        # One read of the PR's commits per head; none when the body already declares it.
+        self.assertEqual([path.rsplit('/',2)[-2:] for path,_ in api.reads],[['215','commits']])
+
+    def test_verify_holds_a_passing_issue_result_of_a_declared_port_until_a_note_lists_it(self):
+        # The call site: a result that validate_result accepts reaches retain_outcome as 'held' for the #212 commit message.
+        result=dict(id=11,name='direct-submission-77-1-212',expired=False);proof=dict(id=12,name='verifier-receipt-and-logs-77-1-212',expired=False)
+        env=dict(schema_version=1,issue_number=212,run_id='77',receipt_artifact={'id':12})
+        def pass_result(claim):
+            digest=d.sha(d.canonical(claim['submission']).encode())
+            return dict(decision='lean-verified',reason='Lean and nanoda passed',id=f'direct-212-{digest}',derivation_hold=False,checked_at='2026-11-23T05:00:00Z')
+        outcomes={}
+        for name,notes in [('no note',None),('a note',{'direct-issue-212':dict(text='A note.')})]:
+            api=self.port_api(readme='# Bound')
+            class API(type(api)):
+                def pages(self,path,params=None,key=None):
+                    if path.endswith('/actions/artifacts'):return [result,proof]
+                    return super().pages(path,params,key)
+                def get(self,path,limit=None):return b'zip'
+            importer=self.collector(API([self.issue(212)]))
+            if notes is not None:
+                (importer.root/'direct-notes.json').write_text(json.dumps(dict(schema_version=1,notes=notes,withdrawn={})))
+                importer=r.Importer(API([self.issue(212)]),importer.root)
+            importer.runs[77]=dict(id=77,run_attempt=1,head_sha='a'*40,status='completed')
+            claim=self.port_claim(message=self.PORT_MESSAGE)
+            with patch.object(r,'archive_members',return_value={'direct-submission.json':json.dumps(env).encode()}),patch.object(importer,'trusted'), \
+                 patch.object(r,'validate_result',return_value=pass_result(claim)),patch.object(importer,'evidence',return_value={'marker':'x'}):
+                kept=importer.verify({'direct-issue-212':claim},{})
+            outcomes[name]=(kept['direct-issue-212'],list(importer.final_states.values())[0]['decision'])
+        held,state=outcomes['no note']
+        self.assertEqual((held.get('verification'),held['review_note'],state),(None,r.PORT_NOTE,'held'))
+        listed,state=outcomes['a note']
+        self.assertEqual((listed['verification'],state),({'marker':'x'},'lean-verified'))
+
+    def test_verify_holds_a_passing_pr_result_when_a_commit_message_of_the_pr_declares_a_port(self):
+        result=dict(id=21,name='pr-submission-215-1-215',expired=False);proof=dict(id=22,name='verifier-receipt-and-logs-215',expired=False)
+        env=dict(schema_version=2,route='pull_request',run_id='77',publisher_run_id='78',receipt_artifact={'id':22},request=dict(pr_number=215,base_sha='c'*40))
+        outcomes={}
+        for name,messages in [('port',['Add the tree','Ported from darkhipo/x @ 78fe0e6']),('plain',['Add the tree'])]:
+            class API(type(self.port_api(pr_messages=messages))):
+                def pages(self,path,params=None,key=None):
+                    if path.endswith('/actions/artifacts'):return [result,proof]
+                    return super().pages(path,params,key)
+                def get(self,path,limit=None):return b'zip'
+            importer=self.collector(API())
+            for run in (77,78):importer.runs[run]=dict(id=run,run_attempt=1,head_sha='a'*40,status='completed')
+            claim=self.port_claim(215,route='pull_request');layout=dict(submission=claim['submission'])
+            verdict=dict(decision='lean-verified',reason='Lean passed',id='direct-pr-215',checked_at='2026-11-23T05:00:00Z')
+            with patch.object(r,'archive_members',return_value={'pr-submission-215.json':json.dumps(env).encode()}),patch.object(importer,'trusted'), \
+                 patch.object(importer,'inspect',return_value=layout),patch.object(r,'validate_pr_result',return_value=(verdict,env,None)), \
+                 patch.object(importer,'evidence',return_value={'marker':'x'}):
+                importer.verify({'direct-pr-215':claim},{})
+            outcomes[name]=(claim.get('verification'),claim.get('review_note'),list(importer.final_states.values())[0]['decision'])
+        self.assertEqual(outcomes['port'],(None,r.PORT_NOTE,'held'))
+        self.assertEqual(outcomes['plain'],({'marker':'x'},None,'lean-verified'))
+
+    def test_a_check_that_cannot_read_the_submission_holds_and_is_not_remembered(self):
+        claim=self.port_claim();key='direct-issue-212'
+        for error in [r.GitHubError(502),ValueError('bad redirect')]:
+            importer=self.collector(self.port_api(fail=error))
+            self.assertEqual(importer.port_hold(key,claim,self.verdict_for(claim))['decision'],'held')
+            self.assertTrue(any('could not read the submission' in n for n in importer.notes))
+            self.assertEqual(importer.port_seen,{})
 
     def test_an_other_bounds_result_is_listed_only_when_lean_verified(self):
         # Verifier PR #15 (2026-10-23): average sensitivity is an Other bounds row, not a board.

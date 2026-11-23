@@ -59,6 +59,14 @@ NO_VERDICT={'timeout':TIMEOUT_NOTE,'setup':SETUP_NOTE,'chain':CHAIN_NOTE}
 NO_VERDICT_LINES={'timeout':'the proof check ran out of time','setup':'the verifier setup failed before the proof check',
                   'chain':'the verifier\'s check chain stopped before a verdict'}
 HELD_NOTE='Proof checks passed; held for a lead review of credit (derivation report). The submitted bound remains Claimed.'
+# Lead, 2026-11-23 (verifier #212: "Ported from darkhipo/average-sensitivity-lean @ 78fe0e6" in the commit message; the record
+# post went out credited to the porter): a submission that calls itself a port or refile is held for a human credit decision.
+# Where it says so: the issue or PR body, the pinned commit's message (the PR's commit messages), the README of the pinned commit
+# (an issue's repository). The hold ends when data/direct-notes.json has any note for the entry (a credit note, with or without
+# refiledBy: #213 says "ported from" and is new work), or when review-decisions.json approves the digest (derivations).
+PORT_DECLARATION=re.compile(r'\b(?:ported\s+from|port\s+of|refiled\s+from|refile\s+of)\b',re.I)
+PORT_NOTE='Proof checks passed; held for a credit note: the submission says it is a port or refile of another proof. The submitted bound remains Claimed.'
+PORT_TEXT_LIMIT=200_000  # characters of a README that the declaration check reads
 
 def untrusted_path(path):
     # No verifier script or workflow reads submissions or auto-research notes
@@ -87,6 +95,10 @@ class Importer:
         decisions=self.root/'review-decisions.json'
         listed=json.loads(decisions.read_text()).get('derivations',[]) if decisions.exists() else []
         self.approved={(d['id'],d['submission_sha256']) for d in listed if d.get('decision')=='approved'}
+        # Entries with a reviewed note (credit decision) in data/direct-notes.json, and the port-declaration reads of this run.
+        reviewed=self.root/'direct-notes.json'
+        self.credited=set(json.loads(reviewed.read_text()).get('notes',{})) if reviewed.exists() else set()
+        self.port_seen={}
 
     def trusted(self,revision):
         if revision not in self.trust:
@@ -192,7 +204,8 @@ class Importer:
                 owner_repo=sub['repo_url'].removeprefix('https://github.com/')
                 commit=self.api.json(f'repos/{owner_repo}/commits/{sub["commit"]}')
                 require(commit['sha']==sub['commit'],'Issue source pin mismatch')
-                claims['direct-issue-'+str(item['number'])]=dict(route='issue',item=item,submission=sub,closed=item.get('state')!='open')
+                claims['direct-issue-'+str(item['number'])]=dict(route='issue',item=item,submission=sub,closed=item.get('state')!='open',
+                                                                 commit_message=((commit.get('commit') or {}).get('message') or ''))
             except GitHubError as error:
                 if error.status != 404: raise
                 self.notes.append(f'Ignored unavailable source for issue #{item["number"]}')
@@ -303,6 +316,41 @@ class Importer:
             return dict(verdict,decision='held',reason=HELD_NOTE)
         return verdict
 
+    def declares_port(self,key,claim):
+        """Does the entry call itself a port or refile? The body of the issue or PR and the pinned commit's message come with
+        the listing (an issue's source pin is read at discovery); the README of the pinned commit (an issue's repository) and
+        the commit messages of a PR cost one read each, once per run and source. A read that fails holds: it is read again at
+        the next refresh, and a held row costs only a delay."""
+        item=claim['item']
+        if PORT_DECLARATION.search(item.get('body') or ''):return True
+        try:
+            if claim['route']=='issue':
+                if PORT_DECLARATION.search(claim.get('commit_message') or ''):return True
+                sub=claim['submission'];repo=sub['repo_url'].removeprefix('https://github.com/');cache=repo+'@'+sub['commit']
+                if cache not in self.port_seen:
+                    try:readme=base64.b64decode(self.api.json(f'repos/{repo}/readme',{'ref':sub['commit']}).get('content',''))
+                    except GitHubError as error:
+                        if error.status!=404:raise
+                        readme=b''  # no README
+                    self.port_seen[cache]=bool(PORT_DECLARATION.search(readme.decode('utf-8','replace')[:PORT_TEXT_LIMIT]))
+            else:
+                cache=f'pr-{item["number"]}@{item["head"]["sha"]}'
+                if cache not in self.port_seen:
+                    messages=[(c.get('commit') or {}).get('message') or '' for c in self.api.pages(PREFIX+f'pulls/{item["number"]}/commits')]
+                    self.port_seen[cache]=any(PORT_DECLARATION.search(m) for m in messages)
+            return self.port_seen[cache]
+        except (GitHubError,ValueError,KeyError,TypeError) as error:
+            self.notes.append(f'{key}: the port check could not read the submission ({type(error).__name__}); held until it can')
+            return True
+
+    def port_hold(self,key,claim,verdict):
+        """A passing result of an entry that declares itself a port or refile is 'held' until a note for it exists in
+        data/direct-notes.json or the lead approves its digest (review-decisions.json derivations)."""
+        if verdict['decision']!='lean-verified' or key in self.credited:return verdict
+        if (key,str(verdict.get('id','')).rsplit('-',1)[-1]) in self.approved:return verdict
+        if self.declares_port(key,claim):return dict(verdict,decision='held',reason=PORT_NOTE)
+        return verdict
+
     def outcome_id(self,key,submission):
         return key+':'+sha(canonical(submission).encode())
 
@@ -320,14 +368,17 @@ class Importer:
             # A setup failure is no result: the earlier final outcome for this source stays (newest real result wins).
             return
         if stage=='final':
-            self.final_states[identity]=dict(key=key,submission=claim['submission'],decision=verdict['decision'],evidence=evidence)
+            self.final_states[identity]=dict(key=key,submission=claim['submission'],decision=verdict['decision'],evidence=evidence,
+                                             **({'note':verdict['reason']} if verdict['decision']=='held' and verdict['reason']!=HELD_NOTE else {}))
         if verdict['decision']=='blocked':
             claim.pop('verification',None);claim['review_note']='Final nanoda check rejected this proof; the submitted bound remains Claimed.'
             self.notes.append(key+': nanoda rejected; Lean Verified removed; eligible row remains Claimed; publisher maintainer alert applies')
         elif verdict['decision']=='held':
             # Re-read at each refresh while the artifact lasts, so an approval lists it at the next run.
-            claim.pop('verification',None);claim['review_note']=HELD_NOTE
-            self.notes.append(key+': Lean checks passed; held for lead review (derivation report); decide in review-decisions.json derivations')
+            claim.pop('verification',None);claim['review_note']=verdict['reason'] if verdict['reason'] in (HELD_NOTE,PORT_NOTE) else HELD_NOTE
+            self.notes.append(key+(': Lean checks passed; held for a credit note (the submission says it is a port or refile); add a note for it in direct-notes.json'
+                                   if claim['review_note']==PORT_NOTE else
+                                   ': Lean checks passed; held for lead review (derivation report); decide in review-decisions.json derivations'))
         elif verdict['decision'] in NO_VERDICT:
             claim.pop('verification',None);claim['review_note']=NO_VERDICT[verdict['decision']]
             self.notes.append(key+': '+NO_VERDICT_LINES[verdict['decision']]+'; the row remains Claimed')
@@ -360,7 +411,7 @@ class Importer:
                 if state and state['decision']!='lean-verified':
                     claim.pop('verification',None)
                     if state['decision']=='blocked':claim['review_note']='Final nanoda check rejected this proof; the submitted bound remains Claimed.'
-                    if state['decision']=='held':claim['review_note']=HELD_NOTE
+                    if state['decision']=='held':claim['review_note']=state.get('note') if state.get('note')==PORT_NOTE else HELD_NOTE
                     if state['decision'] in NO_VERDICT:claim['review_note']=NO_VERDICT[state['decision']]
         artifacts=self.api.pages(PREFIX+'actions/artifacts',key='artifacts')
         by_id={a['id']:a for a in artifacts}
@@ -400,11 +451,12 @@ class Importer:
                         # A final result of a run whose other matrix jobs still run: read the jobs of its issue.
                         jobs=self.jobs(run) if publisher is None and run.get('status')=='in_progress' else None
                         verdict=validate_result(raw,item,run,artifact,self.trust,receipt_archive=proof_raw,receipt_artifact=proof_meta,publisher=publisher,jobs=jobs)
-                        verdict=self.derivation(key,verdict)
+                        verdict=self.port_hold(key,claim,self.derivation(key,verdict))
                     else:
                         publisher=self.run(int(env['publisher_run_id']));self.trusted(publisher['head_sha'])
                         layout=self.inspect(item,env['request']['base_sha'])
                         verdict,env,_=validate_pr_result(raw,artifact,name,item,run,publisher,proof_raw,proof_meta,self.trust,layout)
+                        verdict=self.port_hold(key,claim,verdict)
                         claim['submission']=layout['submission']
                     evidence=self.evidence(key,env,run,artifact,proof_meta,raw,proof_raw,verdict,publisher)
                     self.retain_outcome(key,claim,env.get('verification_stage','final'),verdict,evidence)
