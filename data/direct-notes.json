@@ -301,6 +301,20 @@
         },
         "refiledBy": "Ported by floration"
       }
+    },
+    "direct-issue-214": {
+      "predecessor": "https://github.com/bigospeedrun/verifier/issues/158",
+      "text": "A port of Dmitri I. Arkhipov's Lean Verified n log n ; n log^2 n proof to denser graphs: floration raises the dispatch threshold of its binary-heap Dijkstra from m/n at most log2 n to m/n at most n and adds the arithmetic for the new densities, which gives time n^3/2 log n with at most n^3/2 edges. The program and most of the proof are Dmitri I. Arkhipov's, in the machine model of Vals AI's C-HD proof; floration changed 1 and added 2 of the 300 Lean files.",
+      "credit": {
+        "author": "Dmitri I. Arkhipov",
+        "names": [
+          "Dmitri I. Arkhipov"
+        ],
+        "accounts": {
+          "Dmitri I. Arkhipov": "https://github.com/darkhipo"
+        },
+        "refiledBy": "Ported by floration"
+      }
     }
   },
   "withdrawn": {
