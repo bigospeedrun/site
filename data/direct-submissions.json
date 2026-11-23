@@ -10,6 +10,37 @@
         "commit": "42587a9be3977b53eb196c025d6121e5425fb3f0",
         "bound": "n^3/2 ; n^3/2 log",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "id": "direct-214-6a9789ce215ccef6e9856699ece74ae70c4c7e66ed25c3b81f3f1d02b5a37b1f",
+        "problem_id": "directed-sssp/comparison-addition-sparse",
+        "score": "n^3/2 ; n^3/2 log",
+        "score_relation": "attained",
+        "source_commit": "42587a9be3977b53eb196c025d6121e5425fb3f0",
+        "source_url": "https://github.com/floration/bigOspeedrunning",
+        "authors": [],
+        "workflow_conclusion": null,
+        "issue_submitter": "floration",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45123058117",
+        "checked_at": "2026-11-23T06:28:03.909427Z",
+        "issue_created_at": "2026-11-22T23:59:47Z",
+        "issue_updated_at_at_verification": "2026-11-22T23:59:55Z",
+        "issue_updated_at_at_import": "2026-11-23T06:28:10Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-214-45123058117-1-lean.json",
+        "receipt_sha256": "9e924225c183b19fa99dd859d078a7e0e473c415d6fb61af82afc923fb9c23f4",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
+        "result_artifact_id": 14797411347,
+        "controller_fingerprint": "a8ca7788f458393a64c6edb8bd59aede8d295d0625c55b3918c4f45faef2adc9",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-213": {
@@ -2100,6 +2131,24 @@
         "commit": "10cc3d1437b92900828e6e84f784000e6318bbb5",
         "authors": [],
         "source_subdir": "submissions/dft/josephbebel-n64x48"
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+        "checked_at": "2026-11-23T07:08:23.480983Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45123058117",
+        "receipt_path": "sources/direct-pr-215-45123058117-1-lean.json",
+        "receipt_sha256": "759c258b8223b0a6dcf6e8e0a3a37444ab6e799dea5b333dda654a7c7c9ed134",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
+        "result_artifact_id": 14797411347,
+        "controller_fingerprint": "a8ca7788f458393a64c6edb8bd59aede8d295d0625c55b3918c4f45faef2adc9",
+        "pr_identity": {
+          "number": 215,
+          "head": "10cc3d1437b92900828e6e84f784000e6318bbb5",
+          "changed_files_sha256": "9daf822d959d0c425e6b23c8a85391bc55819b2d25d8c51999dec6913db33fe3",
+          "controller": "408458f1eea728f404251983f228d3bb16a4decc"
+        },
+        "source_file": "Submission.lean"
       }
     },
     "direct-pr-209": {
@@ -5604,11 +5653,6 @@
     "204": {
       "version": "45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
       "updated_at": "2026-11-15T06:04:31Z",
-      "not_verified": false
-    },
-    "214": {
-      "version": "6a9789ce215ccef6e9856699ece74ae70c4c7e66ed25c3b81f3f1d02b5a37b1f",
-      "updated_at": "2026-11-23T06:17:24Z",
       "not_verified": false
     }
   }

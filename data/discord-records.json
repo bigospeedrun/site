@@ -5967,15 +5967,11 @@
             "id": "direct-pr-215",
             "score": "1957647056737859/500000000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
               "josephbebel"
             ],
-            "bound": "O(n log^(1 - 0.0039152941) n)",
-            "verification": {
-              "state": "pending",
-              "since": "2026-11-23T05:44:58Z"
-            }
+            "bound": "O(n log^(1 - 0.0039152941) n)"
           },
           {
             "id": "direct-pr-29",
@@ -6580,7 +6576,8 @@
         "frontier": [
           "directed-sssp-2026",
           "direct-issue-147",
-          "direct-issue-213"
+          "direct-issue-213",
+          "direct-issue-214"
         ],
         "recordRows": [
           "directed-sssp-2026"
@@ -6639,6 +6636,17 @@
               "floration"
             ],
             "bound": "O(n log^(7/6) n) for m <= n log n"
+          },
+          {
+            "id": "direct-issue-214",
+            "score": "n^3/2 ; n^3/2 log",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "MultiAgency swarm"
+            ],
+            "refiledBy": "Ported by floration",
+            "bound": "O(n^(3/2) log n) for m <= n^(3/2)"
           }
         ],
         "table": "big-o"
@@ -9852,7 +9860,10 @@
     "[\"3sum\",\"direct-issue-210\",\"1920279408184921/1000000000000000\",\"attained\"]:lean",
     "[\"other-average-sensitivity\",\"direct-issue-212:353514424368353/110766156451452\",\"353514424368353/110766156451452\",\"attained\"]:lean",
     "[\"integer-multiplication\",\"crocswap-pr-8081\",\"194923/50000000\",\"attained\"]:record",
-    "[\"directed-sssp\",\"direct-issue-213\",\"n log ; n log^7/6\",\"attained\"]:lean"
+    "[\"directed-sssp\",\"direct-issue-213\",\"n log ; n log^7/6\",\"attained\"]:lean",
+    "[\"exact-dft\",\"direct-pr-215\",\"1957647056737859/500000000000000000\",\"attained\"]:lean",
+    "[\"exact-dft\",\"direct-pr-215\",\"1957647056737859/500000000000000000\",\"attained\"]:record",
+    "[\"directed-sssp\",\"direct-issue-214\",\"n^3/2 ; n^3/2 log\",\"attained\"]:lean"
   ],
   "deferred": [
     {
@@ -9883,14 +9894,6 @@
       "authors": [
         "ToikY"
       ]
-    },
-    {
-      "key": "[\"exact-dft\",\"direct-pr-215\",\"1957647056737859/500000000000000000\",\"attained\"]:record",
-      "slug": "exact-dft",
-      "authors": [
-        "josephbebel"
-      ],
-      "hold": true
     }
   ]
 }
