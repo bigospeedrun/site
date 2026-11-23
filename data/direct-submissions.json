@@ -1,6 +1,61 @@
 {
   "schema_version": 1,
   "entries": {
+    "direct-issue-214": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "directed-sssp",
+        "repo_url": "https://github.com/floration/bigOspeedrunning",
+        "commit": "42587a9be3977b53eb196c025d6121e5425fb3f0",
+        "bound": "n^3/2 ; n^3/2 log",
+        "authors": []
+      }
+    },
+    "direct-issue-213": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "directed-sssp",
+        "repo_url": "https://github.com/floration/bigOspeedrunning",
+        "commit": "e0102b5c5b1622e9032355c31c6ff3ce4d4b70d2",
+        "bound": "n log ; n log^7/6",
+        "authors": []
+      }
+    },
+    "direct-issue-212": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "average-sensitivity",
+        "repo_url": "https://github.com/floration/bigOspeedrunning",
+        "commit": "9cfd2bd04775c68b0d1d72060f2a015200d5a967",
+        "bound": "353514424368353/110766156451452",
+        "authors": []
+      }
+    },
+    "direct-issue-211": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "apsp",
+        "repo_url": "https://github.com/floration/bigOspeedrunning",
+        "commit": "9cc2526b9b29c6444a3c16475954ac11456c09f9",
+        "bound": "149778035661233/50000000000000",
+        "authors": []
+      }
+    },
+    "direct-issue-210": {
+      "route": "issue",
+      "submission": {
+        "schema_version": 1,
+        "problem": "3sum",
+        "repo_url": "https://github.com/floration/bigOspeedrunning",
+        "commit": "9434eabeaa4a9a598459d58dcf557ab9b39ace8c",
+        "bound": "1920279408184921/1000000000000000",
+        "authors": []
+      }
+    },
     "direct-issue-208": {
       "route": "issue",
       "submission": {
@@ -36,7 +91,7 @@
         ],
         "receipt_path": "sources/direct-issue-208-45048554930-1.json",
         "receipt_sha256": "cd473837a74c3426bca397572ca798bb3550c9d5de09c33fef9f2f865b41eb1e",
-        "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
+        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
         "result_artifact_id": 14776876066,
         "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
         "pr_identity": null,
@@ -646,7 +701,7 @@
         ],
         "receipt_path": "sources/direct-issue-99-41500988477-1.json",
         "receipt_sha256": "35c8c4fff1b39d9d2f2eae0f579a15a2ace71d1751cc19453bd1c44aacfa774d",
-        "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
+        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
         "result_artifact_id": 13187050786,
         "controller_fingerprint": "b15d8552e503d033e07cc644f06ae945728d386d8f949fcd1bac788971849768",
         "pr_identity": null,
@@ -1924,13 +1979,13 @@
       },
       "verification": {
         "decision": "lean-verified",
-        "reason": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
-        "checked_at": "2026-11-22T23:14:54.977684Z",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-11-22T23:28:37.269799Z",
         "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45079620824",
-        "receipt_path": "sources/direct-pr-209-45079620824-1-lean.json",
-        "receipt_sha256": "41ae367f33fcdad8f70766c6d0e887cbdc02bb1b4588e2ea1361ca51c206f085",
-        "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
-        "result_artifact_id": 14778190911,
+        "receipt_path": "sources/direct-pr-209-45079620824-1-final.json",
+        "receipt_sha256": "5b094b1b6199d9998096d4b5a3a4a78ca5769486952b754106e26325817b8465",
+        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
+        "result_artifact_id": 14777244432,
         "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
         "pr_identity": {
           "number": 209,
@@ -4214,7 +4269,7 @@
         ],
         "receipt_path": "sources/direct-issue-99-41500988477-1.json",
         "receipt_sha256": "35c8c4fff1b39d9d2f2eae0f579a15a2ace71d1751cc19453bd1c44aacfa774d",
-        "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
+        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
         "result_artifact_id": 13187050786,
         "controller_fingerprint": "b15d8552e503d033e07cc644f06ae945728d386d8f949fcd1bac788971849768",
         "pr_identity": null,
@@ -4976,10 +5031,41 @@
         ],
         "receipt_path": "sources/direct-issue-208-45048554930-1.json",
         "receipt_sha256": "cd473837a74c3426bca397572ca798bb3550c9d5de09c33fef9f2f865b41eb1e",
-        "policy_hash": "697584b397a8802b2c47feee24b33b435f4ce257670452750a1672fbc6ab1ec0",
+        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
         "result_artifact_id": 14776876066,
         "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
         "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-pr-209:b5f497a7f579306906f32c6c267641be3ded5766efd58a0de95051b1d3a520b4": {
+      "key": "direct-pr-209",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "bound": "389848144653/100000000000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "cecd9d89a7474853ca3cf50da4859748c6c209a2",
+        "authors": [],
+        "source_subdir": "submissions/dft/halitziyakartal-halitziyav7-42"
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-11-22T23:28:37.269799Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45079620824",
+        "receipt_path": "sources/direct-pr-209-45079620824-1-final.json",
+        "receipt_sha256": "5b094b1b6199d9998096d4b5a3a4a78ca5769486952b754106e26325817b8465",
+        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
+        "result_artifact_id": 14777244432,
+        "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
+        "pr_identity": {
+          "number": 209,
+          "head": "cecd9d89a7474853ca3cf50da4859748c6c209a2",
+          "changed_files_sha256": "280bcc31f6dfb6b29a2e1520ce3a7338835f217c96fdf32890c326470ef01263",
+          "controller": "e93bb7dd0362535091393de28c944208a47f8333"
+        },
         "source_file": "Submission.lean"
       }
     }
@@ -5210,6 +5296,31 @@
     "204": {
       "version": "45eaad4e05a1fdd179c849860a337bf977493fd059b647736d25109c4d69a1a0",
       "updated_at": "2026-11-15T06:04:31Z",
+      "not_verified": false
+    },
+    "210": {
+      "version": "35a85781d5d53ff692a68d36fb5ce343d3dce994e513e3f9554064b65da4be87",
+      "updated_at": "2026-11-23T00:00:01Z",
+      "not_verified": false
+    },
+    "211": {
+      "version": "16819c214fbfe360e47af76a88668e7df98ba3fd65a99870994a064fb8014dbe",
+      "updated_at": "2026-11-23T00:00:09Z",
+      "not_verified": false
+    },
+    "212": {
+      "version": "ac429ca56f4eef1be29b0a86114d598594e9377afee08b1521406b8067133705",
+      "updated_at": "2026-11-22T23:59:58Z",
+      "not_verified": false
+    },
+    "213": {
+      "version": "87def49388928dbbc5d549c037922b3b4d940eb24615f0e5ba9caf9f061e1862",
+      "updated_at": "2026-11-22T23:59:57Z",
+      "not_verified": false
+    },
+    "214": {
+      "version": "6a9789ce215ccef6e9856699ece74ae70c4c7e66ed25c3b81f3f1d02b5a37b1f",
+      "updated_at": "2026-11-22T23:59:55Z",
       "not_verified": false
     }
   }

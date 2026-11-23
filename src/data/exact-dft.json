@@ -17,7 +17,7 @@
     "minimum": "0",
     "maximum": "1"
   },
-  "checked_at": "2026-11-22",
+  "checked_at": "2026-11-23",
   "sources": [
     {
       "url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/130.md",
@@ -801,7 +801,7 @@
       "title": "HalitZiyaKARTAL direct dft submission",
       "authors": [
         {
-          "name": "HalitZiyaKARTAL",
+          "name": "Halit Ziya KARTAL",
           "url": "https://github.com/HalitZiyaKARTAL"
         }
       ],
@@ -827,8 +827,8 @@
       },
       "rerun_status": {
         "state": "passed",
-        "checked_at": "2026-11-22T23:14:54.977684Z",
-        "receipt_path": "sources/direct-pr-209-45079620824-1-lean.json"
+        "checked_at": "2026-11-22T23:28:37.269799Z",
+        "receipt_path": "sources/direct-pr-209-45079620824-1-final.json"
       }
     },
     {
@@ -1424,7 +1424,7 @@
       "verification_source_commit": "0a637219b43fb723f4ae7a180ec329549e7cc2aa"
     },
     "direct-issue-16": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/canghaimeng/exact-dft-lean/blob/5fea541a2a3134b656c7bbdb6bf0b759cf78cb5c/Submission.lean",
       "repo": "canghaimeng/exact-dft-lean",
       "site_badge": false,
@@ -1444,7 +1444,7 @@
       "verification": "passed"
     },
     "direct-issue-186": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/darkhipo/dft-halitziyav6-rate/blob/bf3dee27165e4fec3c39cd8472c1a6bb549abf0b/Submission.lean",
       "repo": "darkhipo/dft-halitziyav6-rate",
       "site_badge": false,
@@ -1465,7 +1465,7 @@
       "verification": "passed"
     },
     "direct-issue-19": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/fringewidth/exact-dft-lean/blob/4263d8faad69c5bd9a17b8d0d3f85fdf68e30165/Submission.lean",
       "repo": "fringewidth/exact-dft-lean",
       "site_badge": false,
@@ -1485,7 +1485,7 @@
       "verification": "passed"
     },
     "direct-issue-190": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/AnanasClassic/fft-power-saving-lean/blob/38d22084f270723dbe769b94bd690c372a08e390/Submission.lean",
       "repo": "AnanasClassic/fft-power-saving-lean",
       "site_badge": false,
@@ -1505,7 +1505,7 @@
       "verification": "passed"
     },
     "direct-issue-208": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/josephbebel/exact-dft-submission/blob/685df2e1be4777bae7e4d9f350786303a6faaae3/Submission.lean",
       "repo": "josephbebel/exact-dft-submission",
       "site_badge": false,
@@ -1525,7 +1525,7 @@
       "verification": "passed"
     },
     "direct-issue-30": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/ptweezy/exact-dft-lean/blob/f9357424312209f85e0c7e28dce0e6bb01986608/Submission.lean",
       "repo": "ptweezy/exact-dft-lean",
       "site_badge": false,
@@ -1545,7 +1545,7 @@
       "verification": "passed"
     },
     "direct-pr-156": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/da94a2a6f593caa1f534f1ab1c84b88ff5d74906/submissions/dft/halitziyakartal-halitziyav6-pi/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1565,12 +1565,12 @@
       "verification": "passed"
     },
     "direct-pr-209": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/cecd9d89a7474853ca3cf50da4859748c6c209a2/submissions/dft/halitziyakartal-halitziyav7-42/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
       "eligible_for_record": true,
-      "proof_status": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
       "upstream_tier": "verified",
       "site_tier": "verified",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
@@ -1580,11 +1580,12 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/209",
       "direct_submission": true,
       "route": "pull_request",
+      "credit_note": "Halit Ziya KARTAL's Lean proof of the saving 0.00389848144653 for the exact Fourier transform is a new tree of 42 files. It prices Ali Romman's CrocSwap #8027 word, with Chris R's iterated-return programs, under Ali Romman's 48-call caller of #7776. Both PRs are open and unmerged. The tree builds on Jacob Sussman's Lean engine and OpenAI's computational model, and its credits file names more sources.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45079620824",
       "verification": "passed"
     },
     "direct-pr-29": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/607121a796548005a238a6e63589de866c9ab6f6/submissions/dft/jacobalansussman-lever-2979-full-cut/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1604,7 +1605,7 @@
       "verification": "passed"
     },
     "direct-pr-3": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/f9ffbc1f9dfbfaf84d819b087c999361d0fa3372/submissions/dft/nmamano-dft-record/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1624,7 +1625,7 @@
       "verification": "passed"
     },
     "direct-pr-37": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/6e0b482509e8143b74d983d5212af37c4d759f47/submissions/dft/ptweezy-lever-nb1/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1644,7 +1645,7 @@
       "verification": "passed"
     },
     "direct-pr-38": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/1ebc6da5c05cf2bfea58eab0a993a90397269e91/submissions/dft/halitziyakartal-halitziyav2-headcut/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1664,7 +1665,7 @@
       "verification": "passed"
     },
     "direct-pr-40": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/cf335b916babec40d3424b0b4199b98f0741a939/submissions/dft/halitziyakartal-halitziyav3-tensor/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1684,7 +1685,7 @@
       "verification": "passed"
     },
     "direct-pr-41": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/0c574321e757332ca225f7696c31d7617dfdfdf6/submissions/dft/halitziyakartal-halitziyav4-logception/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1704,7 +1705,7 @@
       "verification": "passed"
     },
     "direct-pr-90": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/3ec9ac7ba29d72991eaa07b4c2b46b1a4adcaa2a/submissions/dft/zeph1912-rank-moment-refinement/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1724,7 +1725,7 @@
       "verification": "passed"
     },
     "direct-pr-91": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/524a8af8a277ca50c1237068c2b45430a03f547e/submissions/dft/halitziyakartal-halitziyav5-pre-pi/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -1744,5 +1745,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-22T23:23:04Z"
+  "updated_at": "2026-11-23T00:23:31Z"
 }

@@ -17,7 +17,7 @@
     "minimum": "0",
     "maximum": "3"
   },
-  "checked_at": "2026-11-22",
+  "checked_at": "2026-11-23",
   "sources": [
     {
       "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/EndStatement.lean",
@@ -496,6 +496,42 @@
       "source_commit": "5dafbb186851aa80da58fb40a5e6857f4129b4fc"
     },
     {
+      "id": "direct-issue-211",
+      "kind": "improvement",
+      "score": "149778035661233/50000000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-22T23:59:44Z",
+      "spec_version": "1",
+      "title": "floration direct apsp submission",
+      "authors": [
+        {
+          "name": "floration",
+          "url": "https://github.com/floration"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/211",
+      "source_commit": "9cc2526b9b29c6444a3c16475954ac11456c09f9",
+      "artifact": {
+        "path": "sources/direct-issue-211-submission.json",
+        "sha256": "ce83d93a82f863c827f24500c46b137e84b4f0cbc6ea853c96488c9c82a27ea0"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/211",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-22T23:59:44Z",
+      "site_observed_at": "2026-11-23T00:23:31Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/floration/bigOspeedrunning/tree/9cc2526b9b29c6444a3c16475954ac11456c09f9"
+      }
+    },
+    {
       "id": "direct-issue-25",
       "kind": "improvement",
       "score": "1497780383/500000000",
@@ -884,8 +920,26 @@
       "credits": "Ruhollah Majdoddin. Builds on Alman and Vassilevska Williams (arXiv:2610.06783), Schonhage's five-term partial-product tensor and the author's version 1. The paper says it was written with Anthropic's Claude models under the author's direction.",
       "credit_note": "Ruhollah Majdoddin lowers the deterministic APSP exponent from 2.9945 to 2.99388 plus o(1) in version 2 of the paper. The author says it uses H(2/25, 0.0765) from its Corollary 9.4 in place of H(1/14, 0.077) of version 1."
     },
+    "direct-issue-211": {
+      "checked_at": "2026-11-23",
+      "source_url": "https://github.com/floration/bigOspeedrunning/tree/9cc2526b9b29c6444a3c16475954ac11456c09f9",
+      "repo": "floration/bigOspeedrunning",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "apsp/word-ram/v1",
+      "publication_date": "2026-11-22T23:59:44Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/211",
+      "direct_submission": true,
+      "route": "issue",
+      "verification": "pending"
+    },
     "direct-issue-25": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/JoshuaQFEX/apsp-bound/blob/32c6858cf43efd48bf9c8a3541274e7a655ca2ad/Submission.lean",
       "repo": "JoshuaQFEX/apsp-bound",
       "site_badge": false,
@@ -905,7 +959,7 @@
       "verification": "passed"
     },
     "direct-issue-32": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/fringewidth/apsp-bound/blob/f1f7486411b8a59c351b2fbe75ee680f82ce0579/Submission.lean",
       "repo": "fringewidth/apsp-bound",
       "site_badge": false,
@@ -925,7 +979,7 @@
       "verification": "passed"
     },
     "direct-pr-13": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/319252b348e254a4257cdc69805fd6eec3f5cd94/submissions/apsp/fringewidth-apsp-299556085/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -945,7 +999,7 @@
       "verification": "passed"
     },
     "direct-pr-6": {
-      "checked_at": "2026-11-22",
+      "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/a6e77d9a122e9e3137afbf2e1ac310b2032447f4/submissions/apsp/ldct-apsp-2995561/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
@@ -965,5 +1019,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-22T00:22:27Z"
+  "updated_at": "2026-11-23T00:23:31Z"
 }

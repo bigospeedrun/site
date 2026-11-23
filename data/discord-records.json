@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-8035",
+        "leader": "crocswap-pr-8056",
         "direction": "higher",
         "records": [
           {
@@ -5449,6 +5449,56 @@
               "Chris R"
             ],
             "bound": "O(n log^(1 - 0.0038901152865907) n)"
+          },
+          {
+            "id": "crocswap-pr-8052",
+            "score": "3898171/1000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "SY"
+            ],
+            "bound": "O(n log^(1 - 0.003898171) n)"
+          },
+          {
+            "id": "crocswap-pr-8053",
+            "score": "19490860671/5000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.0038981721342) n)"
+          },
+          {
+            "id": "crocswap-pr-8054",
+            "score": "7796346051/2000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.0038981730255) n)"
+          },
+          {
+            "id": "crocswap-pr-8055",
+            "score": "19491/5000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Ali Romman"
+            ],
+            "bound": "O(n log^(1 - 0.0038982) n)"
+          },
+          {
+            "id": "crocswap-pr-8056",
+            "score": "38982016137/10000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.0038982016137) n)"
           }
         ],
         "table": "big-o"
@@ -5740,7 +5790,7 @@
         "slug": "3sum",
         "name": "3SUM",
         "url": "https://bigospeedrun.com/3sum",
-        "leader": "direct-issue-99",
+        "leader": "direct-issue-210",
         "direction": "lower",
         "records": [
           {
@@ -5823,6 +5873,20 @@
               "Hrishik Sai Bojnal"
             ],
             "bound": "O(n^1.9203)"
+          },
+          {
+            "id": "direct-issue-210",
+            "score": "1920279408184921/1000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "floration"
+            ],
+            "bound": "O(n^1.920279408184921)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-22T23:59:44Z"
+            }
           },
           {
             "id": "direct-issue-26",
@@ -6028,6 +6092,20 @@
               "Joshua Wharton"
             ],
             "bound": "O(n^2.9929479187094)"
+          },
+          {
+            "id": "direct-issue-211",
+            "score": "149778035661233/50000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "floration"
+            ],
+            "bound": "O(n^2.99556071322466)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-22T23:59:44Z"
+            }
           },
           {
             "id": "direct-issue-25",
@@ -6396,6 +6474,20 @@
             "bound": "O(n^2.9929479187094)"
           },
           {
+            "id": "direct-issue-211",
+            "score": "149778035661233/50000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "floration"
+            ],
+            "bound": "O(n^2.99556071322466)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-22T23:59:44Z"
+            }
+          },
+          {
             "id": "direct-issue-25",
             "score": "1497780383/500000000",
             "relation": "attained",
@@ -6457,6 +6549,7 @@
           "majdoddin-apsp-2026",
           "majdoddin-apsp-2026-v2",
           "joshuaqfex-apsp-2026",
+          "direct-issue-211",
           "direct-issue-25",
           "direct-issue-32",
           "direct-pr-13",
@@ -9464,7 +9557,8 @@
     "[\"exact-dft\",\"direct-issue-208\",\"485017055593/125000000000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-issue-208\",\"485017055593/125000000000000\",\"attained\"]:lean",
     "[\"exact-dft\",\"direct-pr-209\",\"389848144653/100000000000000\",\"attained\"]:lean",
-    "[\"exact-dft\",\"direct-pr-209\",\"389848144653/100000000000000\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-pr-209\",\"389848144653/100000000000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-8056\",\"38982016137/10000000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
@@ -9480,6 +9574,14 @@
       "authors": [
         "CubeJerry"
       ]
+    },
+    {
+      "key": "[\"3sum\",\"direct-issue-210\",\"1920279408184921/1000000000000000\",\"attained\"]:record",
+      "slug": "3sum",
+      "authors": [
+        "floration"
+      ],
+      "hold": true
     }
   ]
 }
