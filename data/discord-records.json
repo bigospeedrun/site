@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-8073",
+        "leader": "crocswap-pr-8081",
         "direction": "higher",
         "records": [
           {
@@ -5689,6 +5689,76 @@
               "ToikY"
             ],
             "bound": "O(n log^(1 - 0.003898219753506) n)"
+          },
+          {
+            "id": "crocswap-pr-8076",
+            "score": "389822361743/100000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.00389822361743) n)"
+          },
+          {
+            "id": "crocswap-pr-8078",
+            "score": "194917/50000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Chris R"
+            ],
+            "bound": "O(n log^(1 - 0.00389834) n)"
+          },
+          {
+            "id": "crocswap-pr-8080",
+            "score": "38982244603/10000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "floration"
+            ],
+            "bound": "O(n log^(1 - 0.0038982244603) n)"
+          },
+          {
+            "id": "crocswap-pr-8081",
+            "score": "194923/50000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Chris R"
+            ],
+            "bound": "O(n log^(1 - 0.00389846) n)"
+          },
+          {
+            "id": "crocswap-pr-8082",
+            "score": "779646065439/200000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "floration"
+            ],
+            "bound": "O(n log^(1 - 0.003898230327195) n)"
+          },
+          {
+            "id": "crocswap-pr-8083",
+            "score": "3898226579820971/1000000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Chris R"
+            ],
+            "bound": "O(n log^(1 - 0.003898226579820971) n)"
+          },
+          {
+            "id": "crocswap-pr-8085",
+            "score": "38983400039/10000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.0038983400039) n)"
           }
         ],
         "table": "big-o"
@@ -5717,7 +5787,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-209",
+        "leader": "direct-pr-215",
         "direction": "higher",
         "records": [
           {
@@ -5892,6 +5962,20 @@
               "Halit Ziya KARTAL"
             ],
             "bound": "O(n log^(1 - 0.0038984814) n)"
+          },
+          {
+            "id": "direct-pr-215",
+            "score": "1957647056737859/500000000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "josephbebel"
+            ],
+            "bound": "O(n log^(1 - 0.0039152941) n)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-23T05:44:58Z"
+            }
           },
           {
             "id": "direct-pr-29",
@@ -6496,7 +6580,7 @@
         "frontier": [
           "directed-sssp-2026",
           "direct-issue-147",
-          "direct-issue-158"
+          "direct-issue-213"
         ],
         "recordRows": [
           "directed-sssp-2026"
@@ -6545,6 +6629,16 @@
               "MultiAgency swarm"
             ],
             "bound": "O(n log^2 n) for m <= n log n"
+          },
+          {
+            "id": "direct-issue-213",
+            "score": "n log ; n log^7/6",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "floration"
+            ],
+            "bound": "O(n log^(7/6) n) for m <= n log n"
           }
         ],
         "table": "big-o"
@@ -7928,8 +8022,9 @@
             "relation": "attained",
             "evidence": "Lean Verified",
             "authors": [
-              "floration"
+              "MultiAgency swarm"
             ],
+            "refiledBy": "Ported by floration",
             "bound": "AS(f) ≤ 3.191539d sqrt(n)",
             "display": "3.191539"
           }
@@ -9755,7 +9850,9 @@
     "[\"integer-multiplication\",\"crocswap-pr-8070\",\"38982141226643/10000000000000000\",\"attained\"]:record",
     "[\"integer-multiplication\",\"crocswap-pr-8069\",\"4872767645879/1250000000000000\",\"attained\"]:record",
     "[\"3sum\",\"direct-issue-210\",\"1920279408184921/1000000000000000\",\"attained\"]:lean",
-    "[\"other-average-sensitivity\",\"direct-issue-212:353514424368353/110766156451452\",\"353514424368353/110766156451452\",\"attained\"]:lean"
+    "[\"other-average-sensitivity\",\"direct-issue-212:353514424368353/110766156451452\",\"353514424368353/110766156451452\",\"attained\"]:lean",
+    "[\"integer-multiplication\",\"crocswap-pr-8081\",\"194923/50000000\",\"attained\"]:record",
+    "[\"directed-sssp\",\"direct-issue-213\",\"n log ; n log^7/6\",\"attained\"]:lean"
   ],
   "deferred": [
     {
@@ -9786,6 +9883,14 @@
       "authors": [
         "ToikY"
       ]
+    },
+    {
+      "key": "[\"exact-dft\",\"direct-pr-215\",\"1957647056737859/500000000000000000\",\"attained\"]:record",
+      "slug": "exact-dft",
+      "authors": [
+        "josephbebel"
+      ],
+      "hold": true
     }
   ]
 }

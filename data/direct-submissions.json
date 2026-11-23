@@ -21,6 +21,37 @@
         "commit": "e0102b5c5b1622e9032355c31c6ff3ce4d4b70d2",
         "bound": "n log ; n log^7/6",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-213-87def49388928dbbc5d549c037922b3b4d940eb24615f0e5ba9caf9f061e1862",
+        "problem_id": "directed-sssp/comparison-addition-sparse",
+        "score": "n log ; n log^7/6",
+        "score_relation": "attained",
+        "source_commit": "e0102b5c5b1622e9032355c31c6ff3ce4d4b70d2",
+        "source_url": "https://github.com/floration/bigOspeedrunning",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "floration",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45116784812",
+        "checked_at": "2026-11-23T06:09:37.062693Z",
+        "issue_created_at": "2026-11-22T23:59:46Z",
+        "issue_updated_at_at_verification": "2026-11-22T23:59:57Z",
+        "issue_updated_at_at_import": "2026-11-23T06:09:58Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-213-45116784812-1.json",
+        "receipt_sha256": "7e6ce6ce945cfa93c5560d327db72809f648d1881afcdcb3467330893c2b1b6d",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
+        "result_artifact_id": 14794251866,
+        "controller_fingerprint": "a8ca7788f458393a64c6edb8bd59aede8d295d0625c55b3918c4f45faef2adc9",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-212": {
@@ -184,7 +215,7 @@
         ],
         "receipt_path": "sources/direct-issue-208-45048554930-1.json",
         "receipt_sha256": "cd473837a74c3426bca397572ca798bb3550c9d5de09c33fef9f2f865b41eb1e",
-        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
         "result_artifact_id": 14776876066,
         "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
         "pr_identity": null,
@@ -794,7 +825,7 @@
         ],
         "receipt_path": "sources/direct-issue-99-41500988477-1.json",
         "receipt_sha256": "35c8c4fff1b39d9d2f2eae0f579a15a2ace71d1751cc19453bd1c44aacfa774d",
-        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
         "result_artifact_id": 13187050786,
         "controller_fingerprint": "b15d8552e503d033e07cc644f06ae945728d386d8f949fcd1bac788971849768",
         "pr_identity": null,
@@ -2057,6 +2088,18 @@
         "controller_fingerprint": "f057a976d6b2a02473b2f063da5db8b092543d439eef09692b214de8811ac15f",
         "pr_identity": null,
         "source_file": "Submission.lean"
+      }
+    },
+    "direct-pr-215": {
+      "route": "pull_request",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "bound": "1957647056737859/500000000000000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "10cc3d1437b92900828e6e84f784000e6318bbb5",
+        "authors": [],
+        "source_subdir": "submissions/dft/josephbebel-n64x48"
       }
     },
     "direct-pr-209": {
@@ -4362,7 +4405,7 @@
         ],
         "receipt_path": "sources/direct-issue-99-41500988477-1.json",
         "receipt_sha256": "35c8c4fff1b39d9d2f2eae0f579a15a2ace71d1751cc19453bd1c44aacfa774d",
-        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
         "result_artifact_id": 13187050786,
         "controller_fingerprint": "b15d8552e503d033e07cc644f06ae945728d386d8f949fcd1bac788971849768",
         "pr_identity": null,
@@ -5124,7 +5167,7 @@
         ],
         "receipt_path": "sources/direct-issue-208-45048554930-1.json",
         "receipt_sha256": "cd473837a74c3426bca397572ca798bb3550c9d5de09c33fef9f2f865b41eb1e",
-        "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
         "result_artifact_id": 14776876066,
         "controller_fingerprint": "62f9aa989bc2df7ab57cd786685ae98650e6e8ecae5b1ac5071f1769c6e82a42",
         "pr_identity": null,
@@ -5286,6 +5329,49 @@
         "receipt_sha256": "418cff3ba781d443e88e5b23b453fe8005ad094bdf362238ed4a82da9bcbd05c",
         "policy_hash": "ba4954cabec703b486a667fa28a210dee05fceeb360a62a8794e13f09116f79e",
         "result_artifact_id": 14791460669,
+        "controller_fingerprint": "a8ca7788f458393a64c6edb8bd59aede8d295d0625c55b3918c4f45faef2adc9",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-issue-213:87def49388928dbbc5d549c037922b3b4d940eb24615f0e5ba9caf9f061e1862": {
+      "key": "direct-issue-213",
+      "submission": {
+        "schema_version": 1,
+        "problem": "directed-sssp",
+        "repo_url": "https://github.com/floration/bigOspeedrunning",
+        "commit": "e0102b5c5b1622e9032355c31c6ff3ce4d4b70d2",
+        "bound": "n log ; n log^7/6",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-213-87def49388928dbbc5d549c037922b3b4d940eb24615f0e5ba9caf9f061e1862",
+        "problem_id": "directed-sssp/comparison-addition-sparse",
+        "score": "n log ; n log^7/6",
+        "score_relation": "attained",
+        "source_commit": "e0102b5c5b1622e9032355c31c6ff3ce4d4b70d2",
+        "source_url": "https://github.com/floration/bigOspeedrunning",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "floration",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45116784812",
+        "checked_at": "2026-11-23T06:09:37.062693Z",
+        "issue_created_at": "2026-11-22T23:59:46Z",
+        "issue_updated_at_at_verification": "2026-11-22T23:59:57Z",
+        "issue_updated_at_at_import": "2026-11-23T06:09:58Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-213-45116784812-1.json",
+        "receipt_sha256": "7e6ce6ce945cfa93c5560d327db72809f648d1881afcdcb3467330893c2b1b6d",
+        "policy_hash": "1658e89ec325c3e2a425d6dcbf20a7ed703ad9613b9e04c1dfd0792f02ad7585",
+        "result_artifact_id": 14794251866,
         "controller_fingerprint": "a8ca7788f458393a64c6edb8bd59aede8d295d0625c55b3918c4f45faef2adc9",
         "pr_identity": null,
         "source_file": "Submission.lean"
@@ -5520,14 +5606,9 @@
       "updated_at": "2026-11-15T06:04:31Z",
       "not_verified": false
     },
-    "213": {
-      "version": "87def49388928dbbc5d549c037922b3b4d940eb24615f0e5ba9caf9f061e1862",
-      "updated_at": "2026-11-23T05:17:23Z",
-      "not_verified": false
-    },
     "214": {
       "version": "6a9789ce215ccef6e9856699ece74ae70c4c7e66ed25c3b81f3f1d02b5a37b1f",
-      "updated_at": "2026-11-22T23:59:55Z",
+      "updated_at": "2026-11-23T06:17:24Z",
       "not_verified": false
     }
   }

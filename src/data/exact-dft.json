@@ -832,6 +832,44 @@
       }
     },
     {
+      "id": "direct-pr-215",
+      "kind": "improvement",
+      "score": "1957647056737859/500000000000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-23T05:44:58Z",
+      "spec_version": "1",
+      "title": "josephbebel direct dft submission",
+      "authors": [
+        {
+          "name": "josephbebel",
+          "url": "https://github.com/josephbebel"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/pull/209"
+      ],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/215",
+      "source_commit": "10cc3d1437b92900828e6e84f784000e6318bbb5",
+      "artifact": {
+        "path": "sources/direct-pr-215-submission.json",
+        "sha256": "a2c02199c95f6da5f9a233449b72c5b9d4c9e6ecf94007dee8ca6b11390c4c9a"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/215",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T05:44:58Z",
+      "site_observed_at": "2026-11-23T06:21:09Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/tree/10cc3d1437b92900828e6e84f784000e6318bbb5/submissions/dft/josephbebel-n64x48"
+      }
+    },
+    {
       "id": "direct-pr-29",
       "kind": "improvement",
       "score": "3577409/2000000000",
@@ -1584,6 +1622,25 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45079620824",
       "verification": "passed"
     },
+    "direct-pr-215": {
+      "checked_at": "2026-11-23",
+      "source_url": "https://github.com/bigospeedrun/verifier/tree/10cc3d1437b92900828e6e84f784000e6318bbb5/submissions/dft/josephbebel-n64x48",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-11-23T05:44:58Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/215",
+      "direct_submission": true,
+      "route": "pull_request",
+      "credit_note": "josephbebel's Lean proof of the saving 0.003915294113475718 for the exact Fourier transform builds on Halit Ziya KARTAL's PR 209 tree: it keeps his compact checker, engine and Lean formalisation of Ali Romman's 48-call caller of #7776, changes 15 of the 42 Lean files and adds one. New: a stronger supplier word, found with OpenAI Codex from Ali Romman's CrocSwap #8027 native, its port to the checker, a key-range split of the scalar check and a new rate certificate.",
+      "verification": "pending"
+    },
     "direct-pr-29": {
       "checked_at": "2026-11-23",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/607121a796548005a238a6e63589de866c9ab6f6/submissions/dft/jacobalansussman-lever-2979-full-cut/Submission.lean",
@@ -1745,5 +1802,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-23T00:23:31Z"
+  "updated_at": "2026-11-23T06:21:09Z"
 }

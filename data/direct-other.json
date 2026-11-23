@@ -236,7 +236,7 @@
     "other-average-sensitivity": {
       "claims": [
         {
-          "author": "floration",
+          "author": "MultiAgency swarm",
           "handle": "direct-issue-212",
           "value": "353514424368353/110766156451452",
           "display": "3.191539",
@@ -246,17 +246,18 @@
           "url": "https://github.com/bigospeedrun/verifier/issues/212",
           "lean": true,
           "evidence": "lean-verified",
-          "note": "",
+          "note": "A port of MultiAgency swarm's Lean Verified 3.191538244 proof with one constant changed: floration replaces the coefficient 90295/28292 by 353514424368353/110766156451452 with a matching certificate for the lower bound of \\(\\pi\\), which lowers the coefficient from 3.19153824403 to 3.19153824321. The proof is MultiAgency swarm's, started from Anchen0823's Lean Verified proof; the coupling estimate is due to Prathmesh Lagdive, Vaibhav Aglave and Suraj Damre.",
           "authors": [
             {
-              "name": "floration",
-              "url": "https://github.com/floration"
+              "name": "MultiAgency swarm",
+              "url": "https://github.com/darkhipo"
             }
           ],
           "leanNote": "Yes: the Big O Speedrun verifier checked this Lean proof (Lean kernel and the permitted-axiom audit).",
           "proofScope": "The verifier checked Race.bound : BigOSpeedrun.AverageSensitivity.Bound (353514424368353/110766156451452) at commit 9cfd2bd04775c68b0d1d72060f2a015200d5a967 of https://github.com/floration/bigOspeedrunning.",
           "bound": "\\mathrm{AS}(f)\\le 3.191539d\\sqrt n",
-          "receiptPath": "sources/direct-issue-212-45113883576-1.json"
+          "receiptPath": "sources/direct-issue-212-45113883576-1.json",
+          "refiledBy": "Ported by floration"
         },
         {
           "author": "Anchen0823",
