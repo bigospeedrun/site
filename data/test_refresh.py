@@ -824,7 +824,13 @@ class RefreshTests(unittest.TestCase):
                     target=data/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(snapshot[rel])
                 intake=refresh.load(data,'sources/intake.json');intake.pop('fingerprint',None);refresh.dump(data,'sources/intake.json',intake)
                 def git(*args):return subprocess.run(['git',*args],cwd=repo,check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
-                git('init','-q');git('add','.')
+                git('init','-q')
+                # The fixture holds about 9,000 files, so each commit passes the gc.auto threshold (6,700 loose objects) and git
+                # starts a detached "gc --auto". It still writes in .git/objects while the temp dir is removed: rmtree failed
+                # with "Directory not empty" (refresh run 45110895179, 2026-11-23). Before task 50a06783 the 100 s validate
+                # between the commits hid it. The test needs no gc.
+                git('config','gc.auto','0');git('config','maintenance.auto','false')
+                git('add','.')
                 git('-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','fixture')
                 if nested:
                     (repo/'unrelated.json').write_text('preserve me')
