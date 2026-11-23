@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-8070",
+        "leader": "crocswap-pr-8073",
         "direction": "higher",
         "records": [
           {
@@ -5659,6 +5659,36 @@
               "ToikY"
             ],
             "bound": "O(n log^(1 - 0.0038982141226643) n)"
+          },
+          {
+            "id": "crocswap-pr-8071",
+            "score": "15592856493/4000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.00389821412325) n)"
+          },
+          {
+            "id": "crocswap-pr-8072",
+            "score": "487276785399/125000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.003898214283192) n)"
+          },
+          {
+            "id": "crocswap-pr-8073",
+            "score": "1949109876753/500000000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.003898219753506) n)"
           }
         ],
         "table": "big-o"
@@ -6038,15 +6068,12 @@
             "id": "direct-issue-210",
             "score": "1920279408184921/1000000000000000",
             "relation": "attained",
-            "evidence": "Claimed",
+            "evidence": "Lean Verified",
             "authors": [
-              "floration"
+              "Wang-jiong-han"
             ],
-            "bound": "O(n^1.920279408184921)",
-            "verification": {
-              "state": "pending",
-              "since": "2026-11-22T23:59:44Z"
-            }
+            "refiledBy": "Ported by floration",
+            "bound": "O(n^1.920279408184921)"
           },
           {
             "id": "direct-issue-26",
@@ -7713,7 +7740,7 @@
         "slug": "other-average-sensitivity",
         "name": "Average sensitivity",
         "url": "https://bigospeedrun.com/other/average-sensitivity",
-        "leader": "direct-issue-93:90295/28292",
+        "leader": "direct-issue-212:353514424368353/110766156451452",
         "table": "other-bounds",
         "direction": "lower",
         "records": [
@@ -7891,6 +7918,17 @@
             "evidence": "Lean Verified",
             "authors": [
               "MultiAgency swarm"
+            ],
+            "bound": "AS(f) ≤ 3.191539d sqrt(n)",
+            "display": "3.191539"
+          },
+          {
+            "id": "direct-issue-212:353514424368353/110766156451452",
+            "score": "353514424368353/110766156451452",
+            "relation": "attained",
+            "evidence": "Lean Verified",
+            "authors": [
+              "floration"
             ],
             "bound": "AS(f) ≤ 3.191539d sqrt(n)",
             "display": "3.191539"
@@ -9715,7 +9753,9 @@
     "[\"integer-multiplication\",\"crocswap-pr-8056\",\"38982016137/10000000000000\",\"attained\"]:record",
     "[\"apsp\",\"direct-issue-211\",\"149778035661233/50000000000000\",\"attained\"]:lean",
     "[\"integer-multiplication\",\"crocswap-pr-8070\",\"38982141226643/10000000000000000\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-8069\",\"4872767645879/1250000000000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-8069\",\"4872767645879/1250000000000000\",\"attained\"]:record",
+    "[\"3sum\",\"direct-issue-210\",\"1920279408184921/1000000000000000\",\"attained\"]:lean",
+    "[\"other-average-sensitivity\",\"direct-issue-212:353514424368353/110766156451452\",\"353514424368353/110766156451452\",\"attained\"]:lean"
   ],
   "deferred": [
     {
@@ -9739,6 +9779,13 @@
         "floration"
       ],
       "hold": true
+    },
+    {
+      "key": "[\"integer-multiplication\",\"crocswap-pr-8073\",\"1949109876753/500000000000000\",\"attained\"]:record",
+      "slug": "integer-multiplication",
+      "authors": [
+        "ToikY"
+      ]
     }
   ]
 }

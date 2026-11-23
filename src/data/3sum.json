@@ -456,17 +456,19 @@
       "kind": "improvement",
       "score": "1920279408184921/1000000000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-11-22T23:59:44Z",
       "spec_version": "1",
       "title": "floration direct 3sum submission",
       "authors": [
         {
-          "name": "floration",
-          "url": "https://github.com/floration"
+          "name": "Wang-jiong-han",
+          "url": "https://github.com/Wang-jiong-han"
         }
       ],
-      "predecessors": [],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/issues/99"
+      ],
       "submission_url": "https://github.com/bigospeedrun/verifier/issues/210",
       "source_commit": "9434eabeaa4a9a598459d58dcf557ab9b39ace8c",
       "artifact": {
@@ -484,7 +486,12 @@
       "site_observed_at": "2026-11-23T00:23:31Z",
       "source": {
         "kind": "repo-artifact",
-        "url": "https://github.com/floration/bigOspeedrunning/tree/9434eabeaa4a9a598459d58dcf557ab9b39ace8c"
+        "url": "https://github.com/floration/bigOspeedrunning/blob/9434eabeaa4a9a598459d58dcf557ab9b39ace8c/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-23T04:17:35.907300Z",
+        "receipt_path": "sources/direct-issue-210-45093678381-1.json"
       }
     },
     {
@@ -1050,13 +1057,13 @@
     },
     "direct-issue-210": {
       "checked_at": "2026-11-23",
-      "source_url": "https://github.com/floration/bigOspeedrunning/tree/9434eabeaa4a9a598459d58dcf557ab9b39ace8c",
+      "source_url": "https://github.com/floration/bigOspeedrunning/blob/9434eabeaa4a9a598459d58dcf557ab9b39ace8c/Submission.lean",
       "repo": "floration/bigOspeedrunning",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "3sum/word-ram/v1",
       "publication_date": "2026-11-22T23:59:44Z",
       "publication_date_precision": "date-time",
@@ -1064,7 +1071,10 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/210",
       "direct_submission": true,
       "route": "issue",
-      "verification": "pending"
+      "credit_note": "A port of Wang-jiong-han's Lean Verified 1.920279408185 proof with its last safety margin tightened: floration changes only numeric constants, which lowers the proved exponent to 1.920279408184921. The weighted cache and the proof steps are Wang-jiong-han's, on c0ldzy17's construction with Joshua Wharton's numerical certificates and Hrishik Sai Bojnal's parameter refinements; floration changed 9 of the 1569 Lean files of the proof.",
+      "refiled_by": "Ported by floration",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45093678381",
+      "verification": "passed"
     },
     "direct-issue-26": {
       "checked_at": "2026-11-23",
@@ -1245,5 +1255,5 @@
       "verification": "pending"
     }
   },
-  "updated_at": "2026-11-23T00:23:31Z"
+  "updated_at": "2026-11-23T05:22:14Z"
 }

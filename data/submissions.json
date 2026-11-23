@@ -158195,13 +158195,16 @@
       "upstream_status": "open",
       "upstream_status_at": "2026-11-23T02:48:18Z",
       "checked_at": "2026-11-23",
-      "claimed_score": null,
-      "record_ids": [],
+      "claimed_score": "15592856493/4000000000000",
+      "record_ids": [
+        "crocswap-pr-8071"
+      ],
       "note": "The PR adds no single own research package CLAIM.json.",
       "ready_checked": "2026-11-23T03:02:01Z",
       "claim_head": "9555f2df027f4a182722f736c97e5efafa5382c6",
       "claim_text": "f72a6a70e6a0e77c3f948ee8787c6751a6ff05734c82eaea05d6c921e91a69c9",
-      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_path_head": "9555f2df027f4a182722f736c97e5efafa5382c6",
+      "claim_decided": true,
       "claim_files": [
         [
           "added",
@@ -158224,13 +158227,16 @@
       "upstream_status": "open",
       "upstream_status_at": "2026-11-23T03:21:23Z",
       "checked_at": "2026-11-23",
-      "claimed_score": null,
-      "record_ids": [],
+      "claimed_score": "487276785399/125000000000000",
+      "record_ids": [
+        "crocswap-pr-8072"
+      ],
       "note": "The PR adds no single own research package CLAIM.json.",
       "ready_checked": "2026-11-23T03:34:43Z",
       "claim_head": "75f7e1c44f48c43983016bcf8878c4d9e5e87c62",
       "claim_text": "3ee84da73ff0cef3dd73ba55f3aaac98f47ba606b0b4cf573bf75beb0fe30b62",
-      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_path_head": "75f7e1c44f48c43983016bcf8878c4d9e5e87c62",
+      "claim_decided": true,
       "claim_files": [
         [
           "added",
@@ -158238,6 +158244,337 @@
         ]
       ],
       "claim_files_head": "75f7e1c44f48c43983016bcf8878c4d9e5e87c62",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8073,
+      "author": "ToikY",
+      "author_url": "https://github.com/ToikY",
+      "title": "Conditional κ = .003898219753506 (+0.00014032871470% over #8072; +0.00025020473499% over #8057): tighten the K7 suffix charge",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8073",
+      "submitted_at": "2026-11-23T03:57:08Z",
+      "updated_at": "2026-11-23T04:11:21Z",
+      "source_commit": "cf4c4b7ea4b746be174ee4ba4e49f03b5bc79f8e",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T03:57:08Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": "1949109876753/500000000000000",
+      "record_ids": [
+        "crocswap-pr-8073"
+      ],
+      "note": null,
+      "ready_checked": "2026-11-23T04:11:21Z",
+      "claim_head": "cf4c4b7ea4b746be174ee4ba4e49f03b5bc79f8e",
+      "claim_text": "c2b4eaf0cce7d79e31d289fdfff546bdf1a96b77fd4d4ea418504d2c48a2e72d",
+      "claim_path_head": "cf4c4b7ea4b746be174ee4ba4e49f03b5bc79f8e",
+      "claim_decided": true,
+      "claim_files": [
+        [
+          "added",
+          "research/p104-weighted-k7-suffix/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "cf4c4b7ea4b746be174ee4ba4e49f03b5bc79f8e",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8074,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Gaussian receiver ranks certify 140,277 cheaper same-value reroute exclusions",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8074",
+      "submitted_at": "2026-11-23T04:28:56Z",
+      "updated_at": "2026-11-23T05:13:44Z",
+      "source_commit": "9593ac511db4756dc5dd3066ccea4f116c0e124e",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:28:56Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "9593ac511db4756dc5dd3066ccea4f116c0e124e",
+      "claim_text": "9a7ab28b814b46e5c949b2617bd5946094520c5c33b0c16d32dde9f67e327262",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-gaussian-receiver-rank/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "9593ac511db4756dc5dd3066ccea4f116c0e124e",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8075,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Exact frame prices exclude 3,083,991,930 Gaussian assignments at κ = 0.0039",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8075",
+      "submitted_at": "2026-11-23T04:32:53Z",
+      "updated_at": "2026-11-23T05:14:12Z",
+      "source_commit": "c6ae303c06275be22f631aa3d5847ef2e0011710",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:32:53Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "The PR adds no single own research package CLAIM.json.",
+      "ready_checked": "2026-11-23T05:14:12Z",
+      "claim_head": "c6ae303c06275be22f631aa3d5847ef2e0011710",
+      "claim_text": "185060c54f1dc558936e6caca5d10a5195ac41c88e48462b8e67eebd85820bb9",
+      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-gaussian-frame-price/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "c6ae303c06275be22f631aa3d5847ef2e0011710",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8076,
+      "author": "ToikY",
+      "author_url": "https://github.com/ToikY",
+      "title": "Conditional κ = .003898223617430 (+0.00009912022011% over #8073; +0.00034932520311% over #8057): charge the ordinary child tariff at 2401/1024",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8076",
+      "submitted_at": "2026-11-23T04:36:24Z",
+      "updated_at": "2026-11-23T04:49:35Z",
+      "source_commit": "d502eb21637717fe22fc16d4c4e3ede6ec59a106",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:36:24Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "The PR adds no single own research package CLAIM.json.",
+      "ready_checked": "2026-11-23T04:49:35Z",
+      "claim_head": "d502eb21637717fe22fc16d4c4e3ede6ec59a106",
+      "claim_text": "7d511f55c207f9bc7427a35bb3ccffa326bee1ac2c8d1ba30274450ed2df30fd",
+      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-weighted-child-tariff/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "d502eb21637717fe22fc16d4c4e3ede6ec59a106",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8077,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Bracket the two-type Gaussian funding threshold and prove the 0.0039 scaling obstruction",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8077",
+      "submitted_at": "2026-11-23T04:48:49Z",
+      "updated_at": "2026-11-23T04:48:49Z",
+      "source_commit": "e41d1b25a9a901691dcfd906a87a5a7bf89883e9",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:48:49Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "e41d1b25a9a901691dcfd906a87a5a7bf89883e9",
+      "claim_text": "f3444f5b6f3a954a4d4c107e215a75155c554c5ffa5f0019e8c192a284de4430",
+      "claim_files": [],
+      "claim_files_head": "e41d1b25a9a901691dcfd906a87a5a7bf89883e9",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8078,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Conditional κ = 0.00389834 with two fully priced expanded-budget signed profiles",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8078",
+      "submitted_at": "2026-11-23T04:49:37Z",
+      "updated_at": "2026-11-23T04:49:37Z",
+      "source_commit": "b72d3fa097d2521939f6b8536029da674648d863",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:49:37Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "The PR adds no single own research package CLAIM.json.",
+      "ready_checked": "2026-11-23T04:49:37Z",
+      "claim_head": "b72d3fa097d2521939f6b8536029da674648d863",
+      "claim_text": "5ab1913056c5d8f8b7be8b24fe39455e5d96d69e42b737d725370e756214e7f0",
+      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_files": [],
+      "claim_files_head": "b72d3fa097d2521939f6b8536029da674648d863",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8079,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Prove productive-mask split obstructions at all 4,776 Gaussian caller boundaries",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8079",
+      "submitted_at": "2026-11-23T04:51:46Z",
+      "updated_at": "2026-11-23T04:51:46Z",
+      "source_commit": "51e5df90ac95d27cb543e7cbd1e93f54a198eede",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:51:46Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "51e5df90ac95d27cb543e7cbd1e93f54a198eede",
+      "claim_text": "b41b3f0b6d91fd34d59a80898e39b7fd9de6cfb706f716493351409e2a00cc38",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-productive-mask-seams/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "51e5df90ac95d27cb543e7cbd1e93f54a198eede",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8080,
+      "author": "floration",
+      "author_url": "https://github.com/floration",
+      "title": "Retune the K7 ordinary floor for the charged suffix at conditional κ 0.003898224460300",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8080",
+      "submitted_at": "2026-11-23T04:55:39Z",
+      "updated_at": "2026-11-23T04:55:39Z",
+      "source_commit": "9127fc7eacf7d4e037efdf179deb54888a48665b",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:55:39Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "The PR adds no single own research package CLAIM.json.",
+      "ready_checked": "2026-11-23T04:55:39Z",
+      "claim_head": "9127fc7eacf7d4e037efdf179deb54888a48665b",
+      "claim_text": "640bb5c83bc0d6942ccdb17a68eb2fc51e48523535e13a6927bf5053b1759020",
+      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-k7-floor-retune/RESULT.json"
+        ],
+        [
+          "added",
+          "research/p104-weighted-k7-suffix/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "9127fc7eacf7d4e037efdf179deb54888a48665b",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8081,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Conditional κ = 0.00389846 with a fully charged 25-bit Gaussian installation",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8081",
+      "submitted_at": "2026-11-23T04:58:16Z",
+      "updated_at": "2026-11-23T04:58:16Z",
+      "source_commit": "510113821774bb27f7ddaad4e8b94837a1c2cf52",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T04:58:16Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "The PR adds no single own research package CLAIM.json.",
+      "ready_checked": "2026-11-23T04:58:16Z",
+      "claim_head": "510113821774bb27f7ddaad4e8b94837a1c2cf52",
+      "claim_text": "b9ac9b6a52eddd2d3e56c9f87e9cc1d2cad45500f6e1220d1ca35af04394311a",
+      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_files": [],
+      "claim_files_head": "510113821774bb27f7ddaad4e8b94837a1c2cf52",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8082,
+      "author": "floration",
+      "author_url": "https://github.com/floration",
+      "title": "Drop the positive summation reserve from the ordinary K7 factor at conditional κ 0.003898230327195",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8082",
+      "submitted_at": "2026-11-23T05:10:00Z",
+      "updated_at": "2026-11-23T05:10:00Z",
+      "source_commit": "3cb92cf5c07e98a96d298ee33a4d744c5e32f1ca",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T05:10:00Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "The PR adds no single own research package CLAIM.json.",
+      "ready_checked": "2026-11-23T05:10:00Z",
+      "claim_head": "3cb92cf5c07e98a96d298ee33a4d744c5e32f1ca",
+      "claim_text": "51887dfe807240e6e1aae045e423f94c1fcdba86446a7ec837e0310b493fdeac",
+      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-k7-ordinary-reserve/RESULT.json"
+        ],
+        [
+          "added",
+          "research/p104-weighted-k7-suffix/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "3cb92cf5c07e98a96d298ee33a4d744c5e32f1ca",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8083,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Conditional κ = 0.003898226579820971 at ToikY’s #8076 recurring budget",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8083",
+      "submitted_at": "2026-11-23T05:10:51Z",
+      "updated_at": "2026-11-23T05:10:51Z",
+      "source_commit": "dd2e2ff28102557f7c30619d6abd8a861e363d1d",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T05:10:51Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "The PR adds no single own research package CLAIM.json.",
+      "ready_checked": "2026-11-23T05:10:51Z",
+      "claim_head": "dd2e2ff28102557f7c30619d6abd8a861e363d1d",
+      "claim_text": "c041eabe350c4d2e1b59a061608458fcddd678f56bbf9359069f6913992a2318",
+      "review_reason": "The PR adds no single own research package CLAIM.json.",
+      "claim_files": [],
+      "claim_files_head": "dd2e2ff28102557f7c30619d6abd8a861e363d1d",
+      "claim_files_base": "main",
+      "claim_files_result": true
+    },
+    {
+      "pr_number": 8084,
+      "author": "Clear1nsight",
+      "author_url": "https://github.com/Clear1nsight",
+      "title": "Prove a strict ordinary K7 component above 0.0039 with a charged 25-bit installer",
+      "url": "https://github.com/CrocSwap/integer-mult-bounds/pull/8084",
+      "submitted_at": "2026-11-23T05:12:53Z",
+      "updated_at": "2026-11-23T05:12:53Z",
+      "source_commit": "af73b476d5fdeaa763e0bff2dd87b2ecaf097c49",
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-23T05:12:53Z",
+      "checked_at": "2026-11-23",
+      "claimed_score": null,
+      "record_ids": [],
+      "note": "No research package kappa claim.",
+      "claim_head": "af73b476d5fdeaa763e0bff2dd87b2ecaf097c49",
+      "claim_text": "4053e366b1f64010938840316226bb1b25e675713b855b9b44b7089116662ac6",
+      "claim_files": [
+        [
+          "added",
+          "research/p104-ordinary-eta-lift/RESULT.json"
+        ]
+      ],
+      "claim_files_head": "af73b476d5fdeaa763e0bff2dd87b2ecaf097c49",
       "claim_files_base": "main",
       "claim_files_result": true
     }
