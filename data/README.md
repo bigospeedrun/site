@@ -14,6 +14,11 @@ The row shows the exact package kappa. A PR whose title names a kappa
 without such a package, or whose Claude reading does not agree, goes to
 `claim-review.json` for the lead, who decides in
 `review-decisions.json` under `claims` (pr, head, score or null).
+A decision with `"carry": true` and a null score (not a claim) holds for a new head of the open PR when the
+new head states no kappa: no key naming kappa (any depth) in a CLAIM, RESULT or ARITHMETIC json that the PR adds or
+changes, no kappa value in the title, and no kappa value above the board leader in the body. The row note names the
+carried head, and no queue entry or alert follows. Any other new head waits in the queue as before. A decision
+without `carry`, or with a score, is never carried this way. A newer decision, or deleting the decision, ends it.
 
 Run `python3 data/platypii_lean.py` to update the platypii Lean note on the
 integer multiplication OpenAI row (monitor only, the row stays Claimed). At each new

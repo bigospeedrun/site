@@ -461,6 +461,87 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(refresh.claim_queue([item(refresh.HEAD_CHANGED)])[0]['head_changed'],True)
         self.assertNotIn('head_changed',refresh.claim_queue([item('No package.')])[0])
 
+    def test_a_not_a_claim_decision_with_carry_holds_for_a_new_head_that_states_no_kappa(self):
+        # Lead, 2026-11-23: CubeJerry's #8091-#8093 push new heads often; each head went back to the queue.
+        from fractions import Fraction
+        old,new='a'*40,'b'*40
+        p={'number':8092,'state':'open','title':'Construct the selected native and finite compiler instances','body':'Selected κ = 0.00363005817. No new κ.','head':{'sha':new}}
+        leader=Fraction('39/10000')
+        decided={'pr':8092,'head':old,'score':None,'carry':True,'by':'BOS Ops & Records','at':'2026-11-23T10:39:00Z','note':'Not a claim.'}
+        decisions={(8092,old):decided}
+        yes=lambda:True
+        # Carried: no score, no reason, no read of the package by evaluate; the decision comes back marked with the new head.
+        score,reason,claim_path,claim_head,claim_text,retry,decision=refresh.claim_state(p,{},decisions,lambda:self.fail('no read'),leader,None,yes)
+        self.assertEqual((score,reason,claim_path,claim_head,retry),(None,None,None,new,False))
+        self.assertEqual(decision,dict(decided,carried=new))
+        note=refresh.carried_note(decision,new)
+        self.assertIn('aaaaaaaaaaaa',note);self.assertIn('bbbbbbbbbbbb',note);self.assertIn('2026-11-23',note)
+        # Carried at this head and text: no file read on the next run.
+        prior={'claim_decided':True,'claim_head':new,'claim_text':claim_text,'carried_from':old}
+        again=refresh.claim_state(p,prior,decisions,lambda:self.fail('no read'),leader,None,lambda:self.fail('no read'))
+        self.assertEqual((again[0],again[1],again[6]['carried']),(None,None,new))
+        # A changed text (body) or another decision is read again.
+        changed=refresh.claim_state(p|{'body':'Selected κ = 0.00363005817.'},prior,decisions,lambda:self.fail('no read'),leader,None,lambda:False)
+        self.assertEqual(changed[:2],(None,refresh.HEAD_CHANGED))
+        # No carry: a kappa key in a package file (the reader says no), a kappa value in the title, a body value above the
+        # leader (or any value when the leader is unknown), a failing reader.
+        waits=refresh.HEAD_CHANGED
+        for case,q,lead,reader in [('key',p,leader,lambda:False),
+                                   ('title value',p|{'title':'Conditional κ = 0.0017'},leader,yes),
+                                   ('title record',p|{'title':'A new record 0.0017'},leader,yes),
+                                   ('body above',p|{'body':'This reaches κ = 0.004.'},leader,yes),
+                                   ('body, no leader',p,None,yes)]:
+            with self.subTest(case):
+                self.assertEqual(refresh.claim_state(q,{},decisions,lambda:self.fail('no read'),lead,None,reader)[:2],(None,waits))
+        # A body value at or below the leader carries; so does a body with none.
+        for body in ['It lists κ = 0.0039 and κ = 0.0001.','','No new κ.']:
+            with self.subTest(body=body):
+                self.assertEqual(refresh.claim_state(p|{'body':body},{},decisions,lambda:self.fail('no read'),leader,None,yes)[:2],(None,None))
+        # Never carried: no "carry" field (including the free-text "not scored yet" kind), carry that is not true, a scored
+        # decision, a later decision at another head, a PR in NOT_CLAIMS, a merged or closed PR, no reader.
+        plain=dict(decided);plain.pop('carry')
+        for case,ds,q,reader in [('no field',{(8092,old):plain},p,yes),
+                                 ('carry "yes"',{(8092,old):dict(decided,carry='yes')},p,yes),
+                                 ('scored',{(8092,old):dict(decided,score='39/10000')},p,yes),
+                                 ('later, no carry',decisions|{(8092,'c'*40):dict(plain,head='c'*40,at='2026-11-23T11:00:00Z')},p,yes),
+                                 ('closed',decisions,p|{'state':'closed'},yes),
+                                 ('no reader',decisions,p,None)]:
+            with self.subTest(case):
+                got=refresh.claim_state(q,{},ds,lambda:(None,None,'r'),leader,None,reader)
+                self.assertNotEqual((got[1],got[6] and got[6].get('carried')),(None,new))
+        with patch.dict(refresh.NOT_CLAIMS,{8092:'Not a claim.'}):
+            self.assertNotEqual(refresh.claim_state(p,{},decisions,lambda:(None,None,None),leader,None,yes)[6],dict(decided,carried=new))
+        # A draft is silent whatever a decision says.
+        self.assertEqual(refresh.claim_state(p|{'draft':True,'created_at':'2026-11-23T00:00:00Z'},{},decisions,lambda:self.fail('no read'),leader,None,yes)[:2],(None,None))
+
+    def test_the_kappa_key_reader_fails_closed(self):
+        has=refresh.has_kappa_key
+        self.assertFalse(has({'status':'no new kappa','theorem':{'name':'x','bounds':[1,{'size':3}]}}))  # a value is no key
+        for case in [{'kappa':'1/2'},{'a':{'b':[{'conditional_kappa':'1'}]}},{'Κ':1},{'κ':1},{'complete_cost':{'KAPPA':1}},[{'x':{'kappa_bound':1}}]]:
+            with self.subTest(case=case):
+                self.assertTrue(has(case))
+        deep={'a':1}
+        for _ in range(60):deep={'a':deep}
+        self.assertTrue(has(deep))  # too deep to read
+        p={'number':8092,'head':{'sha':'b'*40}}
+        good='research/x/RESULT.json'
+        def reader(files,bodies):
+            def content(repo,path,sha):
+                self.assertEqual(sha,'b'*40)
+                if bodies[path] is RuntimeError:raise RuntimeError('GitHub GET failed (HTTP 404)')
+                return bodies[path]
+            with patch.object(refresh,'content',content):
+                return refresh.no_kappa_key(p,lambda m:files)
+        self.assertTrue(reader([['added',good]],{good:b'{"status":"no new kappa"}'}))
+        self.assertTrue(reader([],{}))  # no package file at all
+        self.assertFalse(reader([['added',good]],{good:b'{"kappa":"1/2"}'}))
+        self.assertFalse(reader([['added',good]],{good:b'not json'}))
+        self.assertFalse(reader([['added',good]],{good:RuntimeError}))
+        self.assertFalse(reader([['added',good],['modified','research/x/CLAIM.json']],{good:b'{}','research/x/CLAIM.json':b'{"kappa":"1"}'}))
+        self.assertFalse(reader(refresh.CappedFiles([['added',good]]),{good:b'{}'}))
+        many=[['added',f'research/d{i}/RESULT.json'] for i in range(refresh.MAX_CARRY_FILES+1)]
+        self.assertFalse(reader(many,{path:b'{}' for _,path in many}))
+
     def test_same_package_compares_the_bytes_at_both_heads(self):
         p={'number':4440,'head':{'sha':'b'*40}}
         approved={'head':'a'*40,'score':'37/12500'}

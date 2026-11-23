@@ -354,6 +354,48 @@ def same_package(p, decision, files_of, others):
     except (RuntimeError, ValueError):
         return None
 
+# Lead, 2026-11-23: CubeJerry's #8091-#8093 push new heads often, and each head was decided again as "not a claim". A
+# decision with "carry": true (and score null) is carried to a new head of the open PR when the new head states no kappa:
+# no key with "kappa" or the kappa sign at any depth in a CLAIM, RESULT or ARITHMETIC json that the PR adds or changes,
+# no kappa value in the title, and no kappa value above the board leader in the body (a kappa at or below the leader is
+# no record, the rule of #3308). A scored decision, a decision without "carry", an unreadable file or a capped file
+# list never carries: the PR waits in the queue as before, and the next run reads it again.
+MAX_CARRY_FILES = 10
+KAPPA_KEY = re.compile('kappa|κ', re.I)
+
+def has_kappa_key(value, depth=0):
+    """True when a JSON value has a key naming kappa at any depth. Too deep to read counts as true."""
+    if depth > 40:
+        return True
+    if isinstance(value, dict):
+        return any(KAPPA_KEY.search(str(key)) or has_kappa_key(item, depth + 1) for key, item in value.items())
+    if isinstance(value, list):
+        return any(has_kappa_key(item, depth + 1) for item in value)
+    return False
+
+def no_kappa_key(p, files_of):
+    """True when every CLAIM, RESULT and ARITHMETIC json that the PR adds or changes is readable at its head and has no
+    key naming kappa."""
+    try:
+        files = files_of(p['number'])
+        if isinstance(files, CappedFiles) or len(files) > MAX_CARRY_FILES:
+            return False
+        return not any(has_kappa_key(json.loads(content(CROC, path, p['head']['sha']))) for _, path in files)
+    except (RuntimeError, ValueError, TypeError):
+        return False
+
+def states_no_kappa(p, leader):
+    """True when the title names no kappa value and the body names none above the board leader."""
+    if NAMES_KAPPA.search(p['title']) or title_kappas(p['title']):
+        return False
+    values = title_kappas(p.get('body') or '')
+    return not values or (leader is not None and max(values) <= leader)
+
+def carried_note(decision, head):
+    return (f"Not a claim: decided by {decision.get('by') or 'the lead'} at head {decision['head'][:12]}"
+            f"{' on ' + decision['at'][:10] if decision.get('at') else ''}, carried to head {head[:12]}: no CLAIM, RESULT or ARITHMETIC json "
+            "has a kappa key, the title names no kappa value, and the body names none above the board leader.")
+
 def result_unread(p, prior):
     """A silent PR from RESULT_SINCE_PR on whose file list was read before RESULT.json
     support (#3945, #4076, #4088 and #4091 state their value only there)."""
@@ -395,7 +437,7 @@ def claim_queue(items):
                  **({'head_changed':True} if s['review_reason'] == HEAD_CHANGED else {})) for s in items
             if s.get('review_reason') and s['upstream_status'] != 'closed-unmerged' and not isinstance(s['review_reason'], claim_judge.Deferred)]
 
-def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
+def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None, no_kappa=None):
     """The claim fields of one PR: (score, reason, claim_path, claim_head, claim_text,
     retry, decision). evaluate() reads the PR's package and runs the Claude check.
     same_package(decision) gives the decided package path when it is byte-identical at
@@ -425,6 +467,16 @@ def claim_state(p, prior, decisions, evaluate, leader=None, same_package=None):
         path = same_package(earlier)
         if path:
             return earlier['score'], None, path, head_sha, text_sha, False, earlier
+    if (earlier and earlier['score'] is None and earlier.get('carry') is True and no_kappa and n not in NOT_CLAIMS
+            and p.get('state') == 'open'):
+        # A "not a claim" decision with "carry": true holds for a new head that states no kappa (Lead, 2026-11-23, #8091-#8093).
+        # Carried once per head and text: the row keeps carried_from, the head of the decision. Deleting the decision ends it.
+        carried = dict(earlier, carried=head_sha)
+        if (prior.get('claim_decided') and claim_head == head_sha and claim_text == text_sha
+                and prior.get('carried_from') == earlier['head']):
+            return None, None, None, head_sha, text_sha, False, carried
+        if states_no_kappa(p, leader) and no_kappa():
+            return None, None, None, head_sha, text_sha, False, carried
     if earlier and n not in NOT_CLAIMS and p.get('state') == 'open':
         # An open PR decided at an older head and not carried above: the lead decides the new head. No package read and
         # no Claude call; the row leaves the board (no score on the stale head) and the PR waits in the queue with
@@ -598,7 +650,7 @@ def refresh(stage, now):
         score, reason, claim_path, claim_head, claim_text, retry, decision = claim_state(
             p, prior, decisions, lambda: package_claim(stage, p, heads[CROC]['sha'], others, files_of,
                                                        [m for m in reversed(numbers) if m < n], leader, listed), leader,
-            lambda d: same_package(p, d, files_of, others))
+            lambda d: same_package(p, d, files_of, others), lambda: no_kappa_key(p, files_of))
         # One lookup per decided head: claim_path_head records it, found or not.
         if decision and score and not claim_path and prior.get('claim_path_head') != head_sha:
             claim_path = decided_package(p, score, files_of, others)
@@ -620,6 +672,8 @@ def refresh(stage, now):
         if decision and score: item['claim_path_head'] = head_sha
         if retry: item['claim_retry'] = True
         if decision: item['claim_decided'] = True
+        if decision and decision.get('carried'):
+            item['carried_from'] = decision['head']; item['note'] = carried_note(decision, head_sha)
         if reason: item['review_reason'] = reason
         items.append(item)
         if status == 'merged' and ids and (not prior or prior['upstream_status'] != 'merged'):
