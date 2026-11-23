@@ -3,9 +3,9 @@
     "disposition": "merge",
     "importable": true,
     "merge_commit": "c6513e56cffef0f6f33c167fe11f4a43bab88a0d",
-    "publisher_commit": "408458f1eea728f404251983f228d3bb16a4decc",
+    "publisher_commit": "c6513e56cffef0f6f33c167fe11f4a43bab88a0d",
     "publisher_run_attempt": "1",
-    "publisher_run_id": "45123070320",
+    "publisher_run_id": "45132205336",
     "reason": "lean_and_axiom_passed_nanoda_pending",
     "receipt": {
       "artifact_sha256": {
@@ -942,8 +942,8 @@
     "display_title": "Verify direct submissions",
     "run_number": 2530,
     "event": "workflow_dispatch",
-    "status": "in_progress",
-    "conclusion": null,
+    "status": "completed",
+    "conclusion": "success",
     "workflow_id": 380847968,
     "check_suite_id": 122106515896,
     "check_suite_node_id": "CS_kwDOVDiv6M8AAAAcbh2RuA",
@@ -951,7 +951,7 @@
     "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/45123058117",
     "pull_requests": [],
     "created_at": "2026-11-23T06:17:02Z",
-    "updated_at": "2026-11-23T06:23:15Z",
+    "updated_at": "2026-11-23T07:35:33Z",
     "actor": {
       "login": "nmamano",
       "id": 3745260,
@@ -1163,23 +1163,23 @@
     }
   },
   "result_artifact": {
-    "id": 14797411347,
-    "node_id": "MDg6QXJ0aWZhY3QxNDc5NzQxMTM0Nw==",
-    "name": "pr-submission-45123058117-1-publisher-45123070320-1",
-    "size_in_bytes": 14820,
-    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14797411347",
-    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14797411347/zip",
+    "id": 14798018250,
+    "node_id": "MDg6QXJ0aWZhY3QxNDc5ODAxODI1MA==",
+    "name": "pr-submission-45123058117-1-publisher-45132205336-1",
+    "size_in_bytes": 7984,
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14798018250",
+    "archive_download_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/artifacts/14798018250/zip",
     "expired": false,
-    "digest": "sha256:8da0eb62e130cb8c124ec73c369957e4be4e0213b2c6d68f861aff5869ec3979",
-    "created_at": "2026-11-23T07:08:50Z",
-    "updated_at": "2026-11-23T07:08:50Z",
-    "expires_at": "2027-02-21T06:17:09Z",
+    "digest": "sha256:e13e4f169ef0a0b1d9decf341c4f85323d75dcfec28f8271b4fc327121501e85",
+    "created_at": "2026-11-23T07:35:38Z",
+    "updated_at": "2026-11-23T07:35:38Z",
+    "expires_at": "2027-02-21T07:35:22Z",
     "workflow_run": {
-      "id": 45123070320,
+      "id": 45132205336,
       "repository_id": 1413001192,
       "head_repository_id": 1413001192,
       "head_branch": "main",
-      "head_sha": "408458f1eea728f404251983f228d3bb16a4decc"
+      "head_sha": "c6513e56cffef0f6f33c167fe11f4a43bab88a0d"
     }
   },
   "proof_artifact": {
@@ -1203,25 +1203,25 @@
     }
   },
   "publisher_run": {
-    "id": 45123070320,
+    "id": 45132205336,
     "name": "Publish submission PR result",
-    "node_id": "WFR_kwLOVDiv6M8AAAAKgYtpcA",
+    "node_id": "WFR_kwLOVDiv6M8AAAAKghbNGA",
     "head_branch": "main",
-    "head_sha": "408458f1eea728f404251983f228d3bb16a4decc",
+    "head_sha": "c6513e56cffef0f6f33c167fe11f4a43bab88a0d",
     "path": ".github/workflows/pr-publish.yml",
     "display_title": "Publish submission PR result",
-    "run_number": 5387,
+    "run_number": 5395,
     "event": "workflow_run",
     "status": "completed",
     "conclusion": "success",
     "workflow_id": 380847965,
-    "check_suite_id": 122106552821,
-    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAcbh4h9Q",
-    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45123070320",
-    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/45123070320",
+    "check_suite_id": 122130585402,
+    "check_suite_node_id": "CS_kwDOVDiv6M8AAAAcb4zXOg",
+    "url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45132205336",
+    "html_url": "https://github.com/bigospeedrun/verifier/actions/runs/45132205336",
     "pull_requests": [],
-    "created_at": "2026-11-23T06:17:09Z",
-    "updated_at": "2026-11-23T07:08:53Z",
+    "created_at": "2026-11-23T07:35:22Z",
+    "updated_at": "2026-11-23T07:35:41Z",
     "actor": {
       "login": "nmamano",
       "id": 3745260,
@@ -1245,7 +1245,7 @@
     },
     "run_attempt": 1,
     "referenced_workflows": [],
-    "run_started_at": "2026-11-23T06:17:09Z",
+    "run_started_at": "2026-11-23T07:35:22Z",
     "triggering_actor": {
       "login": "nmamano",
       "id": 3745260,
@@ -1267,26 +1267,26 @@
       "user_view_type": "public",
       "site_admin": false
     },
-    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45123070320/jobs",
-    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45123070320/logs",
-    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/122106552821",
-    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45123070320/artifacts",
-    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45123070320/cancel",
-    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45123070320/rerun",
+    "jobs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45132205336/jobs",
+    "logs_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45132205336/logs",
+    "check_suite_url": "https://api.github.com/repos/bigospeedrun/verifier/check-suites/122130585402",
+    "artifacts_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45132205336/artifacts",
+    "cancel_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45132205336/cancel",
+    "rerun_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/runs/45132205336/rerun",
     "previous_attempt_url": null,
     "workflow_url": "https://api.github.com/repos/bigospeedrun/verifier/actions/workflows/380847965",
     "head_commit": {
-      "id": "408458f1eea728f404251983f228d3bb16a4decc",
-      "tree_id": "47c4d7740f44510652fe83c78aaec1370d2f5c94",
-      "message": "Requeue after a failure on our side: a reviewed, dispatched path instead of a manual CAS (task 8b170a8c)\n\nverifier#208 needed a manual edit of the lease ref (as #99 and #190 did) because an admission record is never evicted. Now a\nmaintainer dispatches `Verify direct submissions` with requeue_issue and requeue_reason; that run does only this one job\n(queue_lease.py requeue), the scan never retries by itself. It takes the lease and removes the one admission record of the\nissue, and refuses (nothing changed) unless: the public site trust file lists the controller blobs of this verifier commit;\nthe issue is an open submission issue with a record; the old run's receipt ended without a verdict on the proof; the old run\nused another verifier commit; and the issue was not requeued at this commit (requeued/<issue>-<sha12>.json in the lease tree\nis the guard and the audit trail). One lease commit, force false, with a read-back. The user values enter as environment\nvariables; the job posts nothing.\n\n\"Without a verdict\" is ONE rule, verdicts.no_verdict: the site importer's setup / timeout / chain decisions (data/direct_import.py\nsetup_failed, timed_out, chain_stopped), copied because the verifier cannot import the site. The copy was run against the importer\non 19,500 mutated receipts with no difference, and the tests pin it on 13 real receipts of public runs (tests/fixtures/receipts:\n#208 timeout and both passed stages, #99 and #187 and #182 timeouts, two setup failures, out of memory, audit incomplete, a not\nverified one, two passed chain receipts); a chain stop is a copy of a real chain receipt with the Lean kernel changed, as no\nreal one exists yet. A pass, a rejection, a forbidden axiom, an out-of-memory stop and an incomplete audit never qualify.\n\nTests: refusals change no tree, the exact one-path removal, the guard, the held lease, the importer's blob-set rule, the receipt\nread with its digest, the workflow shape, the key equals the key the scan reserves; 13 mutations of the checks and the rule\neach fail the suite.\n\nCo-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>",
-      "timestamp": "2026-11-22T23:46:25Z",
+      "id": "c6513e56cffef0f6f33c167fe11f4a43bab88a0d",
+      "tree_id": "e5bbf12c7d88378942c2c221db24b82bc2c3c727",
+      "message": "DFT submission: native 64 x 48-call on the compact checker, saving 1957647056737859/500000000000000000 (#215)\n\nCo-authored-by: Joseph Bebel <218205787+josephbebel@users.noreply.github.com>",
+      "timestamp": "2026-11-23T07:08:46Z",
       "author": {
-        "name": "nil",
-        "email": "nil.mamano@gmail.com"
+        "name": "josephbebel",
+        "email": "joseph.bebel+githubprofessional@gmail.com"
       },
       "committer": {
-        "name": "nil",
-        "email": "nil.mamano@gmail.com"
+        "name": "GitHub",
+        "email": "noreply@github.com"
       }
     },
     "repository": {

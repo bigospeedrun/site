@@ -374,7 +374,7 @@
       "title": "floration direct directed-sssp submission",
       "authors": [
         {
-          "name": "Dmitri I. Arkhipov",
+          "name": "MultiAgency swarm",
           "url": "https://github.com/darkhipo"
         }
       ],
@@ -402,8 +402,8 @@
       },
       "rerun_status": {
         "state": "passed",
-        "checked_at": "2026-11-23T06:28:03.909427Z",
-        "receipt_path": "sources/direct-issue-214-45123058117-1-lean.json"
+        "checked_at": "2026-11-23T06:28:58.800268Z",
+        "receipt_path": "sources/direct-issue-214-45123058117-1.json"
       }
     }
   ],
@@ -533,7 +533,7 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/213",
       "direct_submission": true,
       "route": "issue",
-      "credit_note": "floration pads the graph with isolated vertices so that Vals AI's C-HD program runs above its density cap of n log^3/4 n edges, which gives time n log^7/6 n with at most n log n edges. The padding proof is new. The submission builds on Dmitri I. Arkhipov's n log n ; n log^2 n proof: his Dijkstra and Bellman-Ford program runs when the graph has fewer than 65536 vertices or more than n^2 edges.",
+      "credit_note": "floration pads the graph with isolated vertices so that Vals AI's C-HD program runs above its density cap of n log^3/4 n edges, which gives time n log^7/6 n with at most n log n edges. The padding proof is new. The submission builds on MultiAgency swarm's n log n ; n log^2 n proof: its Dijkstra and Bellman-Ford program runs when the graph has fewer than 65536 vertices or more than n^2 edges.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45116784812",
       "verification": "passed"
     },
@@ -543,7 +543,7 @@
       "repo": "floration/bigOspeedrunning",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
       "upstream_tier": "verified",
       "site_tier": "verified",
       "comparison_key": "directed-sssp/comparison-addition-sparse/v1",
@@ -553,13 +553,13 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/214",
       "direct_submission": true,
       "route": "issue",
-      "credit_note": "A port of Dmitri I. Arkhipov's Lean Verified n log n ; n log^2 n proof to denser graphs: floration raises the dispatch threshold of its binary-heap Dijkstra from m/n at most log2 n to m/n at most n and adds the arithmetic for the new densities, which gives time n^3/2 log n with at most n^3/2 edges. The program and most of the proof are Dmitri I. Arkhipov's, in the machine model of Vals AI's C-HD proof; floration changed 1 and added 2 of the 300 Lean files.",
+      "credit_note": "A port of MultiAgency swarm's Lean Verified n log n ; n log^2 n proof to denser graphs: floration raises the dispatch threshold of its binary-heap Dijkstra from m/n at most log2 n to m/n at most n and adds the arithmetic for the new densities, which gives time n^3/2 log n with at most n^3/2 edges. The program and most of the proof are MultiAgency swarm's, in the machine model of Vals AI's C-HD proof; floration changed 1 and added 2 of the 300 Lean files.",
       "refiled_by": "Ported by floration",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45123058117",
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-23T07:23:56Z",
+  "updated_at": "2026-11-23T08:21:15Z",
   "chart": {
     "ticks": [
       "n log^1/4",
