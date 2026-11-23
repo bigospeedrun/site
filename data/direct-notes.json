@@ -319,6 +319,19 @@
     "direct-issue-213": {
       "predecessor": "https://github.com/bigospeedrun/verifier/issues/158",
       "text": "floration pads the graph with isolated vertices so that Vals AI's C-HD program runs above its density cap of n log^3/4 n edges, which gives time n log^7/6 n with at most n log n edges. The padding proof is new. The submission builds on Dmitri I. Arkhipov's n log n ; n log^2 n proof: his Dijkstra and Bellman-Ford program runs when the graph has fewer than 65536 vertices or more than n^2 edges."
+    },
+    "direct-pr-215": {
+      "predecessor": "https://github.com/bigospeedrun/verifier/pull/209",
+      "text": "josephbebel's Lean proof of the saving 0.003915294113475718 for the exact Fourier transform builds on Halit Ziya KARTAL's PR 209 tree: it keeps his compact checker, engine and Lean formalisation of Ali Romman's 48-call caller of #7776, changes 15 of the 42 Lean files and adds one. New: a stronger supplier word, found with OpenAI Codex from Ali Romman's CrocSwap #8027 native, its port to the checker, a key-range split of the scalar check and a new rate certificate.",
+      "credit": {
+        "author": "josephbebel",
+        "names": [
+          "josephbebel"
+        ],
+        "accounts": {
+          "josephbebel": "https://github.com/josephbebel"
+        }
+      }
     }
   },
   "withdrawn": {
