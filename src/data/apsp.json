@@ -500,17 +500,19 @@
       "kind": "improvement",
       "score": "149778035661233/50000000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-11-22T23:59:44Z",
       "spec_version": "1",
       "title": "floration direct apsp submission",
       "authors": [
         {
-          "name": "floration",
-          "url": "https://github.com/floration"
+          "name": "Hrishik Sai Bojnal",
+          "url": "https://github.com/fringewidth"
         }
       ],
-      "predecessors": [],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/issues/32"
+      ],
       "submission_url": "https://github.com/bigospeedrun/verifier/issues/211",
       "source_commit": "9cc2526b9b29c6444a3c16475954ac11456c09f9",
       "artifact": {
@@ -528,7 +530,12 @@
       "site_observed_at": "2026-11-23T00:23:31Z",
       "source": {
         "kind": "repo-artifact",
-        "url": "https://github.com/floration/bigOspeedrunning/tree/9cc2526b9b29c6444a3c16475954ac11456c09f9"
+        "url": "https://github.com/floration/bigOspeedrunning/blob/9cc2526b9b29c6444a3c16475954ac11456c09f9/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-23T00:54:07.362260Z",
+        "receipt_path": "sources/direct-issue-211-45086183201-1.json"
       }
     },
     {
@@ -922,13 +929,13 @@
     },
     "direct-issue-211": {
       "checked_at": "2026-11-23",
-      "source_url": "https://github.com/floration/bigOspeedrunning/tree/9cc2526b9b29c6444a3c16475954ac11456c09f9",
+      "source_url": "https://github.com/floration/bigOspeedrunning/blob/9cc2526b9b29c6444a3c16475954ac11456c09f9/Submission.lean",
       "repo": "floration/bigOspeedrunning",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "apsp/word-ram/v1",
       "publication_date": "2026-11-22T23:59:44Z",
       "publication_date_precision": "date-time",
@@ -936,7 +943,10 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/211",
       "direct_submission": true,
       "route": "issue",
-      "verification": "pending"
+      "credit_note": "A port of Hrishik Sai Bojnal's Lean Verified 2.9955607647814 proof with one parameter retuned: floration changes the tensor-depth multiplier from 20 to 1807/90, which lowers the proved exponent to 2.99556071322466. The algorithm and the proof steps are Li Xuanji's, with the refinements of Hrishik Sai Bojnal and Joshua Wharton; floration changed 17 of the 401 Lean files of the proof.",
+      "refiled_by": "Ported by floration",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45086183201",
+      "verification": "passed"
     },
     "direct-issue-25": {
       "checked_at": "2026-11-23",
@@ -1019,5 +1029,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-23T00:23:31Z"
+  "updated_at": "2026-11-23T01:21:00Z"
 }
