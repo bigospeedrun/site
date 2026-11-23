@@ -308,6 +308,31 @@ class RefreshTests(unittest.TestCase):
             with self.subTest(name):
                 Draft202012Validator(schema,format_checker=FormatChecker()).validate(dict(subs,items=[item]))
 
+    def test_a_carried_row_passes_the_submissions_schema(self):
+        # 2026-11-23: the carry (144af496) wrote carried_from, the schema did not list it, and refresh run 45192521679 failed in validate.py.
+        from jsonschema import Draft202012Validator, FormatChecker
+        root=Path(refresh.__file__).resolve().parent
+        schema=json.loads((root/'schemas/submissions-v1.json').read_text())
+        subs=json.loads((root/'submissions.json').read_text())
+        old,new='a'*40,'b'*40
+        p={'number':8092,'state':'open','title':'t','body':'No new κ.','head':{'sha':new}}
+        decided={'pr':8092,'head':old,'score':None,'carry':True,'by':'BOS Ops & Records','at':'2026-11-23T10:39:00Z'}
+        score,reason,claim_path,claim_head,claim_text,retry,decision=refresh.claim_state(p,{},{(8092,old):decided},lambda:self.fail('no read'),refresh.Fraction('39/10000'),None,lambda:True)
+        self.assertEqual(decision['carried'],new)
+        item=dict(subs['items'][0],claim_head=claim_head,claim_text=claim_text,claim_decided=True,carried_from=decision['head'],note=refresh.carried_note(decision,new))
+        Draft202012Validator(schema,format_checker=FormatChecker()).validate(dict(subs,items=[item]))
+        with self.assertRaises(Exception):  # the check is live: a head that is no 40-hex sha is refused
+            Draft202012Validator(schema,format_checker=FormatChecker()).validate(dict(subs,items=[dict(item,carried_from='x')]))
+
+    def test_every_item_field_refresh_writes_is_in_the_submissions_schema(self):
+        # The class of the failure above: a field written to a submissions row but not listed (additionalProperties is false).
+        import re
+        root=Path(refresh.__file__).resolve().parent
+        listed=set(json.loads((root/'schemas/submissions-v1.json').read_text())['properties']['items']['items']['properties'])
+        written=set(re.findall(r"\bitem\['(\w+)'\]\s*=",(root/'refresh.py').read_text()))
+        self.assertIn('carried_from',written)
+        self.assertEqual(sorted(written-listed),[])
+
     def test_an_independent_validation_of_a_listed_value_is_silent(self):
         # Lead, 2026-10-24: #5241, #5384, #5395, #5396, #5399 and #5400 validate listed values; none can be a record.
         listed=frozenset({('crocswap-pr-5398',refresh.Fraction('0.00302728823')),('crocswap-pr-5387',refresh.Fraction('0.003026674765'))})

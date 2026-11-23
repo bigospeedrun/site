@@ -74,6 +74,10 @@
           "claim_decided": {
             "const": true
           },
+          "carried_from": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
           "claim_files": {
             "type": "array",
             "items": {
