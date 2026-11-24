@@ -2131,6 +2131,24 @@
         "commit": "2adca56fd9b5e17ac86f7d44eb7b4a1b32edb722",
         "authors": [],
         "source_subdir": "submissions/dft/ananasclassic-short-gauges"
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-11-24T04:57:23.186200Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45321868320",
+        "receipt_path": "sources/direct-pr-219-45321868320-1-final.json",
+        "receipt_sha256": "4fc83a71043e314d09c4dd5f2536973f59156834e959f540772ce58857f5c784",
+        "policy_hash": "52a2effc9928238f38b8e070391371a67eeeb3d34f65cedcbacf7415b4d95c10",
+        "result_artifact_id": 14891416485,
+        "controller_fingerprint": "d78ac2bb21b30c06378d89d6a2732b2e1d9303cb628ae08652a86dffb0759be3",
+        "pr_identity": {
+          "number": 219,
+          "head": "2adca56fd9b5e17ac86f7d44eb7b4a1b32edb722",
+          "changed_files_sha256": "4c0bddf2bf2ef44314c0ce3254a8ce5f45aabc921357647014da71c96843771e",
+          "controller": "8cadba231fd32e573362f0da20b4cd22320a5e51"
+        },
+        "source_file": "Submission.lean"
       }
     },
     "direct-pr-218": {
@@ -5630,6 +5648,37 @@
           "head": "1f844ac079b85ce72786aa9bc44b94f4e450176b",
           "changed_files_sha256": "1663cc215f7ffa32b2f7ad2d60cc5ac91fa11a1d025fa209adaa60467e150cd7",
           "controller": "3dc8e4d0a4eeaef4953fcd538944da3f82e989d3"
+        },
+        "source_file": "Submission.lean"
+      }
+    },
+    "direct-pr-219:47c5ba9365a1cd49806526f71f53d76b720f8408654dce8027e1cb0926acbe52": {
+      "key": "direct-pr-219",
+      "submission": {
+        "schema_version": 1,
+        "problem": "dft",
+        "bound": "122716746257/31250000000000",
+        "repo_url": "https://github.com/bigospeedrun/verifier",
+        "commit": "2adca56fd9b5e17ac86f7d44eb7b4a1b32edb722",
+        "authors": [],
+        "source_subdir": "submissions/dft/ananasclassic-short-gauges"
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "checked_at": "2026-11-24T04:57:23.186200Z",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45321868320",
+        "receipt_path": "sources/direct-pr-219-45321868320-1-final.json",
+        "receipt_sha256": "4fc83a71043e314d09c4dd5f2536973f59156834e959f540772ce58857f5c784",
+        "policy_hash": "52a2effc9928238f38b8e070391371a67eeeb3d34f65cedcbacf7415b4d95c10",
+        "result_artifact_id": 14891416485,
+        "controller_fingerprint": "d78ac2bb21b30c06378d89d6a2732b2e1d9303cb628ae08652a86dffb0759be3",
+        "pr_identity": {
+          "number": 219,
+          "head": "2adca56fd9b5e17ac86f7d44eb7b4a1b32edb722",
+          "changed_files_sha256": "4c0bddf2bf2ef44314c0ce3254a8ce5f45aabc921357647014da71c96843771e",
+          "controller": "8cadba231fd32e573362f0da20b4cd22320a5e51"
         },
         "source_file": "Submission.lean"
       }
