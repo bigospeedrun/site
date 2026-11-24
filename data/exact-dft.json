@@ -961,6 +961,44 @@
       }
     },
     {
+      "id": "direct-pr-219",
+      "kind": "improvement",
+      "score": "122716746257/31250000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-24T03:34:12Z",
+      "spec_version": "1",
+      "title": "AnanasClassic direct dft submission",
+      "authors": [
+        {
+          "name": "Vladislav Kuznetsov",
+          "url": "https://github.com/AnanasClassic"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/pull/215"
+      ],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/219",
+      "source_commit": "2adca56fd9b5e17ac86f7d44eb7b4a1b32edb722",
+      "artifact": {
+        "path": "sources/direct-pr-219-submission.json",
+        "sha256": "f48420a9c6e1cbd8feaa8f2cdbce888fd7dab7e2f519f262cb950bacabdc69d8"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/219",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-24T03:34:12Z",
+      "site_observed_at": "2026-11-24T04:22:43Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/tree/2adca56fd9b5e17ac86f7d44eb7b4a1b32edb722/submissions/dft/ananasclassic-short-gauges"
+      }
+    },
+    {
       "id": "direct-pr-29",
       "kind": "improvement",
       "score": "3577409/2000000000",
@@ -1773,6 +1811,25 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45278175095",
       "verification": "passed"
     },
+    "direct-pr-219": {
+      "checked_at": "2026-11-24",
+      "source_url": "https://github.com/bigospeedrun/verifier/tree/2adca56fd9b5e17ac86f7d44eb7b4a1b32edb722/submissions/dft/ananasclassic-short-gauges",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-11-24T03:34:12Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/219",
+      "direct_submission": true,
+      "route": "pull_request",
+      "credit_note": "Vladislav Kuznetsov's Lean proof of the saving 0.003926935880224 for the exact Fourier transform extends josephbebel's PR 215 tree (64 shortcuts on Ali Romman's CrocSwap #8027 supplier), which builds on Halit Ziya KARTAL's PR 209 compact checker and 48-call construction. New: a supplier of 5,593 paid transfers per call (PR 215: 5,610), from 18 transformations of his own #8027 research and seven further basis changes, found with OpenAI Codex. 25 of the 49 Lean files are unchanged from PR 215.",
+      "verification": "pending"
+    },
     "direct-pr-29": {
       "checked_at": "2026-11-24",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/607121a796548005a238a6e63589de866c9ab6f6/submissions/dft/jacobalansussman-lever-2979-full-cut/Submission.lean",
@@ -1934,5 +1991,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-24T00:22:58Z"
+  "updated_at": "2026-11-24T04:22:43Z"
 }

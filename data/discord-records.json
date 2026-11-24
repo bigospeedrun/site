@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-8097",
+        "leader": "crocswap-pr-8098",
         "direction": "higher",
         "records": [
           {
@@ -5799,6 +5799,16 @@
               "SY"
             ],
             "bound": "O(n log^(1 - 0.003900862325217) n)"
+          },
+          {
+            "id": "crocswap-pr-8098",
+            "score": "243803896823/62500000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "ToikY"
+            ],
+            "bound": "O(n log^(1 - 0.003900862349168) n)"
           }
         ],
         "table": "big-o"
@@ -5827,7 +5837,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-218",
+        "leader": "direct-pr-219",
         "direction": "higher",
         "records": [
           {
@@ -6032,6 +6042,20 @@
               "josephbebel"
             ],
             "bound": "O(n log^(1 - 0.0039176153) n)"
+          },
+          {
+            "id": "direct-pr-219",
+            "score": "122716746257/31250000000000",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Vladislav Kuznetsov"
+            ],
+            "bound": "O(n log^(1 - 0.0039269358) n)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-24T03:34:12Z"
+            }
           },
           {
             "id": "direct-pr-29",
@@ -9929,7 +9953,9 @@
     "[\"exact-dft\",\"direct-pr-217\",\"1958575453840217/500000000000000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-pr-218\",\"195880769127703/50000000000000000\",\"attained\"]:lean",
     "[\"exact-dft\",\"direct-pr-218\",\"195880769127703/50000000000000000\",\"attained\"]:record",
-    "[\"integer-multiplication\",\"crocswap-pr-8097\",\"3900862325217/1000000000000000\",\"attained\"]:record"
+    "[\"integer-multiplication\",\"crocswap-pr-8097\",\"3900862325217/1000000000000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-8098\",\"243803896823/62500000000000\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"crocswap-pr-8073\",\"1949109876753/500000000000000\",\"attained\"]:record"
   ],
   "deferred": [
     {
@@ -9955,11 +9981,12 @@
       "hold": true
     },
     {
-      "key": "[\"integer-multiplication\",\"crocswap-pr-8073\",\"1949109876753/500000000000000\",\"attained\"]:record",
-      "slug": "integer-multiplication",
+      "key": "[\"exact-dft\",\"direct-pr-219\",\"122716746257/31250000000000\",\"attained\"]:record",
+      "slug": "exact-dft",
       "authors": [
-        "ToikY"
-      ]
+        "Vladislav Kuznetsov"
+      ],
+      "hold": true
     }
   ]
 }
