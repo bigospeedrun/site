@@ -1055,7 +1055,7 @@
       "kind": "improvement",
       "score": "1964168318021889452978092781285559931/500000000000000000000000000000000000000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-11-24T11:40:11Z",
       "spec_version": "1",
       "title": "josephbebel direct dft submission",
@@ -1080,12 +1080,17 @@
         "certificate_path": null
       },
       "dependencies": [],
-      "upstream_status": "open",
-      "upstream_status_at": "2026-11-24T11:40:11Z",
+      "upstream_status": "merged",
+      "upstream_status_at": "2026-11-24T12:24:16Z",
       "site_observed_at": "2026-11-24T12:22:01Z",
       "source": {
         "kind": "repo-artifact",
-        "url": "https://github.com/bigospeedrun/verifier/tree/9b29dc26061c6ea0738a41121948c18da5e9c803/submissions/dft/josephbebel-relay5590"
+        "url": "https://github.com/bigospeedrun/verifier/blob/9b29dc26061c6ea0738a41121948c18da5e9c803/submissions/dft/josephbebel-relay5590/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-24T12:44:50.278856Z",
+        "receipt_path": "sources/direct-pr-221-45387337101-1-final.json"
       }
     },
     {
@@ -1943,13 +1948,13 @@
     },
     "direct-pr-221": {
       "checked_at": "2026-11-24",
-      "source_url": "https://github.com/bigospeedrun/verifier/tree/9b29dc26061c6ea0738a41121948c18da5e9c803/submissions/dft/josephbebel-relay5590",
+      "source_url": "https://github.com/bigospeedrun/verifier/blob/9b29dc26061c6ea0738a41121948c18da5e9c803/submissions/dft/josephbebel-relay5590/Submission.lean",
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "eligible_for_record": true,
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
       "publication_date": "2026-11-24T11:40:11Z",
       "publication_date_precision": "date-time",
@@ -1958,7 +1963,8 @@
       "direct_submission": true,
       "route": "pull_request",
       "credit_note": "josephbebel's Lean proof of the saving 0.003928336636044 for the exact Fourier transform uses a new supplier of 5,590 transfers per call: three relays, found with OpenAI Codex, on Vladislav Kuznetsov's PR 219 circuit (5,593 transfers, on Ali Romman's CrocSwap #8027 supplier). It keeps Halit Ziya KARTAL's PR 209 checker and 48-call caller and josephbebel's PR 218 decoder, and reuses Gigabyte0x1337's PR 220 adaptive tensor-order proof with its bounds regenerated.",
-      "verification": "pending"
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45387337101",
+      "verification": "passed"
     },
     "direct-pr-29": {
       "checked_at": "2026-11-24",
@@ -2121,5 +2127,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-24T12:22:01Z"
+  "updated_at": "2026-11-24T13:23:20Z"
 }
