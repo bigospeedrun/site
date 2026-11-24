@@ -5837,7 +5837,7 @@
         "slug": "exact-dft",
         "name": "Fourier Transform",
         "url": "https://bigospeedrun.com/exact-dft",
-        "leader": "direct-pr-221",
+        "leader": "direct-pr-222",
         "direction": "higher",
         "records": [
           {
@@ -6073,6 +6073,20 @@
               "josephbebel"
             ],
             "bound": "O(n log^(1 - 0.00392833663604) n)"
+          },
+          {
+            "id": "direct-pr-222",
+            "score": "38964865893230436366153658480529544221/9913168046082531583689425721225195775330",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Vladislav Kuznetsov"
+            ],
+            "bound": "O(n log^(1 - 0.0039306169039) n)",
+            "verification": {
+              "state": "pending",
+              "since": "2026-11-24T21:50:37Z"
+            }
           },
           {
             "id": "direct-pr-29",
@@ -10000,6 +10014,14 @@
       "slug": "3sum",
       "authors": [
         "floration"
+      ],
+      "hold": true
+    },
+    {
+      "key": "[\"exact-dft\",\"direct-pr-222\",\"38964865893230436366153658480529544221/9913168046082531583689425721225195775330\",\"attained\"]:record",
+      "slug": "exact-dft",
+      "authors": [
+        "Vladislav Kuznetsov"
       ],
       "hold": true
     }
