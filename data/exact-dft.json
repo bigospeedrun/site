@@ -1051,6 +1051,44 @@
       }
     },
     {
+      "id": "direct-pr-221",
+      "kind": "improvement",
+      "score": "1964168318021889452978092781285559931/500000000000000000000000000000000000000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-24T11:40:11Z",
+      "spec_version": "1",
+      "title": "josephbebel direct dft submission",
+      "authors": [
+        {
+          "name": "josephbebel",
+          "url": "https://github.com/josephbebel"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/pull/220"
+      ],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/221",
+      "source_commit": "9b29dc26061c6ea0738a41121948c18da5e9c803",
+      "artifact": {
+        "path": "sources/direct-pr-221-submission.json",
+        "sha256": "ebe53a591c703637e116da1acd7081822abbc3c9a45bb728ad36822b9fa1c197"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/221",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-24T11:40:11Z",
+      "site_observed_at": "2026-11-24T12:22:01Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/tree/9b29dc26061c6ea0738a41121948c18da5e9c803/submissions/dft/josephbebel-relay5590"
+      }
+    },
+    {
       "id": "direct-pr-29",
       "kind": "improvement",
       "score": "3577409/2000000000",
@@ -1903,6 +1941,25 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45354758426",
       "verification": "passed"
     },
+    "direct-pr-221": {
+      "checked_at": "2026-11-24",
+      "source_url": "https://github.com/bigospeedrun/verifier/tree/9b29dc26061c6ea0738a41121948c18da5e9c803/submissions/dft/josephbebel-relay5590",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-11-24T11:40:11Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/221",
+      "direct_submission": true,
+      "route": "pull_request",
+      "credit_note": "josephbebel's Lean proof of the saving 0.003928336636044 for the exact Fourier transform uses a new supplier of 5,590 transfers per call: three relays, found with OpenAI Codex, on Vladislav Kuznetsov's PR 219 circuit (5,593 transfers, on Ali Romman's CrocSwap #8027 supplier). It keeps Halit Ziya KARTAL's PR 209 checker and 48-call caller and josephbebel's PR 218 decoder, and reuses Gigabyte0x1337's PR 220 adaptive tensor-order proof with its bounds regenerated.",
+      "verification": "pending"
+    },
     "direct-pr-29": {
       "checked_at": "2026-11-24",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/607121a796548005a238a6e63589de866c9ab6f6/submissions/dft/jacobalansussman-lever-2979-full-cut/Submission.lean",
@@ -2064,5 +2121,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-24T10:24:17Z"
+  "updated_at": "2026-11-24T12:22:01Z"
 }
