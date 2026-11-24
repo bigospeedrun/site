@@ -1014,6 +1014,10 @@
       "title": "Gigabyte0x1337 direct dft submission",
       "authors": [
         {
+          "name": "Vladislav Kuznetsov",
+          "url": "https://github.com/AnanasClassic"
+        },
+        {
           "name": "Gigabyte0x1337",
           "url": "https://github.com/Gigabyte0x1337"
         }
@@ -1042,8 +1046,8 @@
       },
       "rerun_status": {
         "state": "passed",
-        "checked_at": "2026-11-24T09:01:26.979482Z",
-        "receipt_path": "sources/direct-pr-220-45354758426-1-lean.json"
+        "checked_at": "2026-11-24T09:23:56.574773Z",
+        "receipt_path": "sources/direct-pr-220-45354758426-1-final.json"
       }
     },
     {
@@ -1885,7 +1889,7 @@
       "repo": "bigospeedrun/verifier",
       "site_badge": false,
       "eligible_for_record": true,
-      "proof_status": "Lean and permitted-axiom audit passed; nanoda advisory check pending",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
       "upstream_tier": "verified",
       "site_tier": "verified",
       "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
@@ -1895,7 +1899,7 @@
       "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/220",
       "direct_submission": true,
       "route": "pull_request",
-      "credit_note": "Gigabyte0x1337's Lean proof of the saving 0.003926935880234 for the exact Fourier transform runs on Vladislav Kuznetsov's PR 219 circuit (5,593 transfers per call, on josephbebel's PR 215 shortcuts, Ali Romman's CrocSwap #8027 supplier and Halit Ziya KARTAL's PR 209 checker), whose 48 Lean files it keeps byte-identical. New: a rate proof that chooses the tensor order adaptively, found with OpenAI Codex, which raises the saving by about 1e-14.",
+      "credit_note": "Joint credit: Vladislav Kuznetsov (5,593-transfer circuit, PR 219) and Gigabyte0x1337 (adaptive tensor-order proof). The circuit builds on josephbebel's PR 215 shortcuts, Ali Romman's CrocSwap #8027 supplier and Halit Ziya KARTAL's PR 209 checker; PR 220 keeps its 48 Lean files byte-identical. Gigabyte0x1337's new rate proof, found with OpenAI Codex, chooses the tensor order adaptively and gives the saving 0.003926935880234, about 1e-14 above PR 219.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45354758426",
       "verification": "passed"
     },
@@ -2060,5 +2064,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-24T09:24:48Z"
+  "updated_at": "2026-11-24T10:24:17Z"
 }
