@@ -7,6 +7,14 @@ import {createKnowledge} from './chat-knowledge.ts';
 import type {Problem} from './types.ts';
 
 const matrix = JSON.parse(readFileSync(new URL('../data/matrix-multiplication.json', import.meta.url), 'utf8'));
+// Sign of (score - 1/2), exact: the score is a/b or a decimal.
+const versusHalf = (score: string) => {
+  const [a, b = '1'] = score.split('/');
+  const [whole, frac = ''] = a.split('.');
+  const num = BigInt(whole + frac), den = BigInt(b) * 10n ** BigInt(frac.length);
+  const d = 2n * num - den;
+  return d > 0n ? 1 : d < 0n ? -1 : 0;
+};
 const value = (score: string) => score.includes('/') ? Number(score.split('/')[0]) / Number(score.split('/')[1]) : Number(score);
 
 // Nil, 2026-11-25 (ask 2e93b417): the matrix multiplication race is closed; Lean Verified since two independent rebuilds
@@ -70,8 +78,11 @@ test('the exact-dft board carries one note, links OpenAI at the pinned commit, a
   assert.match(text, /so there only an exact \\\(1\/2\\\) can beat it/);
   assert.doesNotMatch(text, /stays open/);
   assert.equal(dft.score.direction, 'higher-is-better');
-  assert.deepEqual(dft.records.filter((r: {score: string}) => value(r.score) > 0.5).map((r: {id: string}) => r.id), [], 'the note says no row can exceed 1/2');
-  assert(dft.records.every((r: {score: string}) => value(r.score) < 0.5), 'every row is below the 1/2 the note calls the ceiling');
+  // Exact, not float: direct-pr-223's 4999...9/9999...9 (40 digits each) is 1/2 - 1/(2(10^40-1)), and a double rounds it to 1/2 (2026-11-25: the hourly refresh failed on this).
+  assert.deepEqual(dft.records.filter((r: {score: string}) => versusHalf(r.score) > 0).map((r: {id: string}) => r.id), [], 'the note says no row can exceed 1/2');
+  assert(dft.records.every((r: {score: string}) => versusHalf(r.score) < 0), 'every row is below the 1/2 the note calls the ceiling');
+  assert.equal(versusHalf('4999999999999999999999999999999999999999/9999999999999999999999999999999999999999'), -1);
+  assert.equal(versusHalf('1/2'), 0);
 });
 
 test('the chat knowledge carries the exact-dft note, and no other board', () => {
