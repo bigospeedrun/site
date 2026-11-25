@@ -12,7 +12,8 @@ import {math,inlineMath} from '../lib/math';
 import {localTimeFallback} from '../lib/freshness';
 import {boardUrl} from '../lib/board';
 import {prove2meCampaign} from '../lib/submission';
-import {closedBoards,closedBoardHtml} from '../lib/closed-boards';
+import {closedBoards} from '../lib/closed-boards';
+import {closedBoardHtml} from '../lib/closed-boards-html';
 interface Props {p:import('../lib/types').Problem;}
 const {p}=Astro.props;
 const displayName=modelDisplayName(p.slug,p.modelId,isPrimaryModel(p),p.title);

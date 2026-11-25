@@ -1,7 +1,8 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {closedBoards, closedBoardHtml, closedBoardLinks, closedBoardText} from './closed-boards.ts';
+import {closedBoards, closedBoardLinks, closedBoardText} from './closed-boards.ts';
+import {closedBoardHtml} from './closed-boards-html.ts';
 import {createKnowledge} from './chat-knowledge.ts';
 import type {Problem} from './types.ts';
 
