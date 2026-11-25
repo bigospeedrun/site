@@ -47,7 +47,7 @@
       "direct-issue-214": "This is MultiAgency swarm's proof for verifier issue 158, ported to denser graphs: floration raises the dispatch threshold of its binary-heap Dijkstra from \\(m/n\\le\\log_2 n\\) to \\(m/n\\le n\\) and adds the arithmetic for the new densities, which gives time \\(n^{3/2}\\log n\\) with at most \\(n^{3/2}\\) edges. The program, in the machine model of Vals AI's C-HD proof, and most of the proof are MultiAgency swarm's; floration changed 1 and added 2 of its 300 Lean files. Ported by floration."
     },
     "integer-multiplication": {
-      "openai-multitape-nov24-2026": "The machine treats blocks of digits as polynomial coefficients, computes their convolution with short Fourier transforms, and then propagates the carries in one scan. On a tape, most of the cost is to bring together digits that are far apart, as in a matrix transposition. The machine does the swaps of a transposition in bulk on many streams, with a parity polynomial from OpenAI's companion Fourier paper, in about \\(\\sqrt{m\\log m}\\) stages for \\(m\\) swaps. We have not rebuilt the Lean proof."
+      "openai-multitape-nov24-2026": "The machine treats blocks of digits as polynomial coefficients, computes their convolution with short Fourier transforms, and then propagates the carries in one scan. On a tape, most of the cost is to bring together digits that are far apart, as in a matrix transposition. The machine does the swaps of a transposition in bulk on many streams, with a parity polynomial from OpenAI's companion Fourier paper, in about \\(\\sqrt{m\\log m}\\) stages for \\(m\\) swaps. We rebuilt the Lean proof."
     }
   },
   "board_notes": {

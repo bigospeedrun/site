@@ -110,7 +110,7 @@
       "id": "openai-multitape-nov24-2026",
       "kind": "improvement",
       "score": "1/2",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-11-25T00:04:41Z",
       "upstream_status": "not-applicable",
       "upstream_status_at": "2026-11-25T00:04:41Z",
@@ -142,7 +142,12 @@
       },
       "dependencies": [],
       "source_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
-      "score_relation": "strict-upper-bound"
+      "score_relation": "strict-upper-bound",
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-25T06:30:11.649179Z",
+        "receipt_path": "sources/openai-multitape-nov24-2026-45546103830-1.json"
+      }
     },
     {
       "id": "crocswap-frozen-154",
@@ -74132,9 +74137,9 @@
       "site_badge": false,
       "eligible_for_record": true,
       "record_eligibility_note": "Eligible as a stated, published result of the same fixed-multitape model; no cross-race claim. It does not depend on the earlier OpenAI reduction or on the CrocSwap interfaces.",
-      "proof_status": "Source claim; we have not rerun it. The paper's Lean proof is public: statement uniformIntegerMultiplication in lean/ComparatorChallenges/NearSquareRootMultiplication.lean, proof in lean/OAI/Computability/NearSquareRoot/Main.lean, toolchain Lean 4.34.1, commit 92b516ef. No Big O Speedrun rerun yet, so the evidence level stays Claimed. The lower bound under variable-count Weak ETH is MultitapeWeakETH.lean lines 387-401 (statement of the infimum); it is a hypothesis, not proven.",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed. We rebuilt the paper's Lean proof with Comparator on GitHub Actions (bigospeedrun/verifier run 45546103830, a test run at verifier commit 903ff7b8): Lean's kernel and nanoda accept uniformIntegerMultiplication against OpenAI's statement file lean/ComparatorChallenges/NearSquareRootMultiplication.lean at commit 92b516ef, toolchain Lean 4.34.1, with only the axioms propext, Classical.choice and Quot.sound. The statement gives every fixed kappa < 1/2, not kappa = 1/2. The lower bound under variable-count Weak ETH (MultitapeWeakETH.lean lines 387-401) is a hypothesis, not proven, and we did not rerun it.",
       "comparison_key": "openai/multitape-uniform-nov24-v1",
-      "comparison_status": "Same model as this board: one fixed deterministic multitape machine, a fixed alphabet and fixed number of one-dimensional tapes, the full 2n-bit product, worst-case time. The Lean statement also bounds the visited cells by O(n), which our statement does not ask for. Its logarithm is the natural one in the Lean file and base two in the paper; that changes the time only by a constant factor, and the exponent not at all. Row not yet checked against our own challenge file.",
+      "comparison_status": "Same model as this board: one fixed deterministic multitape machine, a fixed alphabet and fixed number of one-dimensional tapes, the full 2n-bit product, worst-case time. The Lean statement also bounds the visited cells by O(n), which our statement does not ask for. Its logarithm is the natural one in the Lean file and base two in the paper; that changes the time only by a constant factor, and the exponent not at all. We checked the Lean statement against this board's statement on 2026-11-25. Its machine has a finite alphabet, finitely many one-dimensional tapes and one rule for all n; it writes the full 2n-bit product, and the bound is on the worst case over all inputs of length n. Its tapes are infinite in both directions and its input tape is writable; a machine with one-way tapes and a read-only input tape simulates it with a constant factor and O(n) extra steps. For a fixed kappa < 1/2, eventually d(n) <= 1/2 - kappa and 1+ln n <= 2 lg n, so the time is O(n (log n)^(1-kappa)).",
       "scope": "Correct for every positive length n; one machine for all n; for all large n, worst-case time at most n(1+log n)^(1/2+d(n)) for one fixed d(n) that tends to 0; at most O(n) tape cells. Unconditional.",
       "exact_statement": "One deterministic multitape Turing machine multiplies two n-bit integers in worst-case time n(1+log n)^(1/2+o(1)). Therefore O(n (log n)^(1-kappa)) for each fixed kappa < 1/2. The value kappa = 1/2 is not claimed: the paper leaves O(n sqrt(log n)) open.",
       "credits": "OpenAI (the paper's author line). The paper names no human author.",
@@ -74149,7 +74154,8 @@
       "submission_rules": "Not a CrocSwap submission; a published preprint with a Lean formalization.",
       "notes_url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/README.md",
       "upstream_tier": "claimed",
-      "site_tier": "claimed"
+      "site_tier": "verified",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45546103830"
     }
   },
   "updated_at": "2026-11-24T13:17:30Z"

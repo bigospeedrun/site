@@ -1,0 +1,950 @@
+{
+  "envelope": {
+    "challenge": {
+      "file": "challenges/integer-multiplication/NearSquareRootMultiplication.lean",
+      "sha256": "29701b0ccef385b102bc3193484d9e0a5ecde3ec0005233bd87806d570413607",
+      "generated_sha256": "29701b0ccef385b102bc3193484d9e0a5ecde3ec0005233bd87806d570413607",
+      "upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+      "upstream_repo": "https://github.com/openai/math",
+      "upstream_path": "lean/ComparatorChallenges/NearSquareRootMultiplication.lean"
+    },
+    "checked_at": "2026-11-25T06:30:11.649179Z",
+    "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/45546103830",
+    "route": "measure",
+    "branch": "measure/integer-multiplication",
+    "verifier_commit": "903ff7b81fb0b095363e2fd0c242dc974be8c7ab",
+    "test_only": true,
+    "theorem_names": [
+      "OAI.Computability.NearSquareRoot.uniformIntegerMultiplication"
+    ],
+    "receipt": {
+      "artifact_sha256": {
+        "apt-tools.log": "ff877e8204a2d5bb83981e9e1b420a09ea0d83403828f06d243d0e6c87724533",
+        "apt-update.log": "69e53d8cf947c3003616360cb0af8f3b52891696639ca83f2bf9c07586017319",
+        "audit.log": "ab0e51a586f1528b08bc04f79d47252cb6773dcd718a6332a0be56c15bb9a2bd",
+        "build-comparator.log": "9babef2a94cf126e5a20169e9a46241af620dd696ba1dc366a70068f16ef40e8",
+        "build-lake-adapter.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build-landrun.log": "5e09e7add5ffb69e6ec818cd8417bef048ede8025e5a71a6dc067b62b9776191",
+        "build-nanoda.log": "e395b818ceed275e6541c817a4da6f7b4bca66e632dcb4d36dd37df3c740d41c",
+        "build-nattest.log": "6e3b75fc7fc0bbeb807b2e53aa53f20b95002fde3f93d05c1594190fac87fefe",
+        "build.log": "fd5e42b523353be217b510a01779db9319ef6ce49b4749ee12b820e398e3a6dd",
+        "bwrap-apparmor-policy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cache-hash-metadata.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dependency-Cli-checkout.log": "c898721f43d1332795805fed225fb2ab0595c7b8a029c4a9e3c437473521b5e8",
+        "dependency-Cli-fetch.log": "9094417b7a563375dd9f98605caa2f2cb0cc73077b2c498eb7c101dc1bab279b",
+        "dependency-Cli-init.log": "806fb9690dbeea89238e99f8dd297b5af2e0e0f565af71af6f5626a6d61faf3e",
+        "dependency-LeanSearchClient-checkout.log": "7d98119a745a3443f54178ab9619295af66435d735ac04882e276a8a9bffaea1",
+        "dependency-LeanSearchClient-fetch.log": "5b5559b62e0b216d5e13b67a4ba1a230afd09f8c0995af59c8c828c43fc294b7",
+        "dependency-LeanSearchClient-init.log": "7da5337a0fc32514d71481e6bd805dea2161c22056ea299c1b9ad45e663240a9",
+        "dependency-Qq-checkout.log": "ad1b37dbf80199957a96283ccce1b75fb04305981124e49cbdc24d12437c8198",
+        "dependency-Qq-fetch.log": "13597b5d2e96d90eee3ebcc349f5dc29db0615761725a2bd30fd372e037695f3",
+        "dependency-Qq-init.log": "ffa3697aed5c4505fa7b759ea58199632d47708e338d7c844267b2c5754d61e1",
+        "dependency-aesop-checkout.log": "de5e1aa3ee75894a89798703b227a067c3e877d93dafb5419dc70b86ccc109a6",
+        "dependency-aesop-fetch.log": "88e03fded2183f72ff02d3f8bbf8f8bfb95b4bfd69babb6039e2df0cb7f1721e",
+        "dependency-aesop-init.log": "ddfe172f4b698d0ac102ac2178f4280b00372368ef06591a3952fcc668834fc3",
+        "dependency-batteries-checkout.log": "6816a3fef77fa1286c37b8e56ca42c77a51ad242dbb758bfd9f4de43ec50cb06",
+        "dependency-batteries-fetch.log": "116ec193ab5389d576971f2f8a288a9f9fe82744a84da6da90ce289f1e330eda",
+        "dependency-batteries-init.log": "2aba402bb7545f350f21c752a73448002dc8b209f4963bde1df90ea8266b5a91",
+        "dependency-importGraph-checkout.log": "6a4ee8a98d7afdb48cb4c55be58ed0efeaeeefdfb3bf6468909bec14e6aa28b4",
+        "dependency-importGraph-fetch.log": "7c91610e786ab9296071b4bebd42fc455236dd285c2d40beb476b5120c36e605",
+        "dependency-importGraph-init.log": "a48fa1c744a9cebca87074efdb8cfbcb7d6cbaae8af8d46f504f4223c9a551bc",
+        "dependency-mathlib-checkout.log": "a0bb7af7ae0fa5e2cc405332624d7b50a0ed8d31605c0b4b526558ffd20d50a1",
+        "dependency-mathlib-fetch.log": "56a9c709fa42a138a71cef4abafc00e97d480b8e106800c3c34fa21edbceed12",
+        "dependency-mathlib-init.log": "2bcb292b69734b9db2ced338b6ac726cedc20827a6780104169f95f2d66c1b73",
+        "dependency-plausible-checkout.log": "5c722697c8d43ea73fde7079343e63c3bb58b408427b579f6a98f114b2c27ae3",
+        "dependency-plausible-fetch.log": "58688df170d3968e90c11f7fe16f1957ca189393874ba37e84fae3631b9d6b26",
+        "dependency-plausible-init.log": "4077b7e1977b1b77945885d54ad3705e70446164adda8a0c5d8844827b97eb72",
+        "dependency-proofwidgets-checkout.log": "be10a7d449140089e34615969c9fe1a689688c806b5a3f09ce38b17fb6d28794",
+        "dependency-proofwidgets-fetch.log": "5bac8844efd0a2d90aa71757fd8825ed40852e654732b3e51c2e71184e330a1d",
+        "dependency-proofwidgets-init.log": "4c883bd1450aa7a672b32e14df04922d40e349467c3d76da18d2643ce6e1a397",
+        "elan-download.log": "7d43a13ebbdc96ec0a85d6601fe5fafb34a98a692c7caccb09bb5a7611ca9509",
+        "elan-install.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elan-unpack.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel-swap-allocate.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel-swap-enable.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel-swap-format.log": "b8204754b3cef4ab12647c2decaa3ad110a297d76bad267372ea472468c1b625",
+        "kernel-swap-permissions.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lean-install.log": "5082da115170ffc8e18b06c074600b98284ad5dcaf4a1b3b14ae66bfbeb1796c",
+        "lean-path.log": "4f4f34f1bc4f5cab4255fa6d759fcd684cc6ad06ff5c31a6167dae82ea282c16",
+        "lean.log": "775da67fc1f80c9556fffc30f3b5aa9eb90988ec514fca0612c23b1e14b761c2",
+        "mathlib-cache.log": "060d80917d077dcc3811648ed0e570f9c0c3ed8efc82daa2c02a95e9d5d6a81d",
+        "nanoda.log": "f6402b4fee865ea11c1255847d1855884cef87d43791232a04d6653c72a14a43",
+        "nattest.log": "c50403fc3cde7c327ba4655e6b3c34bd960a0e26bf7affd79684bd388c403664",
+        "runner-sdk-space.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sandbox-preflight.log": "41648742f98aab2171f9eb88297548170de3f3b760e7c07ef9fcc94aedd69355",
+        "solution-dependency-0-checkout.log": "e474609be193ad715f97d84ff183e4fc58acded9fe717ab99329b60980b198d3",
+        "solution-dependency-0-fetch.log": "c3ce7828e3e3c409804babd8b344a6fa4b75b3f2fa23bd2345f0f01a72a76f7a",
+        "solution-dependency-0-init.log": "f1f694b934a238eb6098b980e3a1f7008eec32d1f067d6af35c3d5f86ba6ea10",
+        "solution-dependency-0-patch-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solution-dependency-0-patch.log": "8abcc9b7edefacb0364153aaec55334a672d7f649a97166a2c290c4be28b89a6",
+        "solution-dependency-1-checkout.log": "82f66699dd2364e3b7468ac96873b9d203dc07a4b7c18460cec16f47994fa5d6",
+        "solution-dependency-1-fetch.log": "c8f77d0f8db97559592491331922a39aac9dee6d80d6f4450befc8ce2dccf120",
+        "solution-dependency-1-init.log": "01e05130221a9d063cd050ea7f74b4fa5896bb37ed75000838a6c7d88409f552",
+        "solution-dependency-1-patch-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solution-dependency-1-patch.log": "a324823a21f59a8c14241115b34a758904f0aff00cfea64bfb7b36701284416d",
+        "solution-dependency-2-checkout.log": "a8294591dd9d934f379b624e7a1e07fb82294d5f4c6d51dbeaecaf3594613416",
+        "solution-dependency-2-fetch.log": "b00ac31ab5d9de716c101569a0c302e92cb1b4bcf9cf74b579b8299a9545fe20",
+        "solution-dependency-2-init.log": "a9d6fddd0a791e1fb0b5eb55365166b510f4bfbf6b40ae589f8f9637d1f4efdf",
+        "solution-dependency-2-patch-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solution-dependency-2-patch.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source-sha256.json": "f6de2fb688173ef68ab288ec3ffbf64b0ab97569133a3fe98df89ebfcfd5cd91",
+        "submission-checkout.log": "7f270ba76b9206ec21c6835a2de110230b5013424f2b16d542d3b780d68a572d",
+        "submission-fetch.log": "93208f1c575871332524ccdaab0b2f59230345e1a00357f678eecc7a800d0aaf",
+        "submission-init.log": "b0cb466a875c47cba4ca64cba0f001ef50a616dc50516bac9b66fd30769c2e1c",
+        "submission-sparse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-comparator-checkout.log": "3c2feb74939b9406dafa0cb51c8c8e3dfe3699b74c1601779505d0710b48e416",
+        "tool-comparator-fetch.log": "9261bb13765d6f67a340db2c08ec13cde32a1692ae58e6a0ec5aa9c47602c0da",
+        "tool-comparator-init.log": "8e15416f568c947d6b68e42b7ac7e7d538a5d80d8cf6cdd58d2dde6fc25a880d",
+        "tool-comparator-nanoda-patch-check-comparator-nanoda-threads.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-comparator-nanoda-patch-comparator-nanoda-threads.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-checkout.log": "d4f2490c3adcc8a16a8dfbe64d206920e721444b20d42612fae9a14686be2737",
+        "tool-exporter-fetch.log": "4679263f7ddb25fedf2f8f6fdefa03853ca318c1ca9b9e61b634e859cee32b2e",
+        "tool-exporter-init.log": "018b405fedf95d297837cdacc99659adb689b297c8717951de499143b20a5b6b",
+        "tool-exporter-patch-check-lean4export-natlit-parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-check-lean4export-pr52-natlit-print.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-lean4export-natlit-parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-exporter-patch-lean4export-pr52-natlit-print.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tool-landrun-checkout.log": "d79c67290ceb531c3a58de807a7fa90ffb38fef022cb06beb789045ad1150093",
+        "tool-landrun-fetch.log": "5236b9fb8cd4e085ff194e356bb8f7235b824d3598b30e372ba59a226fc326e8",
+        "tool-landrun-init.log": "a9eb19dc8f9948571af0e040de262ccf9b0afad041ed34b8a563ba78daac7eda",
+        "tool-nanoda-checkout.log": "1742125a8fcb0f116dde29abd4986b2b3760c293de3a2bdb1a2dc811c5bfe208",
+        "tool-nanoda-fetch.log": "fe5e4563df306b10c17a90cc13543aa66cb53d35d5b2d71a807012324d981461",
+        "tool-nanoda-init.log": "0823fe50f87fc13c0edb7540c3847aa4be35620dabf31ab1809f8abaa36ccc6d",
+        "tool-sha256.json": "2f887e046394d3bfda359a99bf1df555dd267ff529241bb84f4d51d6f562b7e2",
+        "trusted-lake-config.log": "355a9a028f81641782d75d6e6b58dec70f29d2f61238a9e271690259d9bf5680"
+      },
+      "axiom_audit": {
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "audit.log",
+        "memory_limit_bytes": 15032385536,
+        "reported_axioms": {
+          "OAI.Computability.NearSquareRoot.uniformIntegerMultiplication": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "sampled_peak_cgroup_bytes": 3304181760,
+        "sampled_peak_nocache_bytes": 878399128,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 24,
+        "status": "passed",
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 15.022
+      },
+      "build": {
+        "attempts": [
+          {
+            "exit_code": 0,
+            "guard_stop": null,
+            "lake_jobs": 4,
+            "memory_limit_bytes": 15032385536,
+            "sampled_peak_cgroup_bytes": 6565142528,
+            "sampled_peak_nocache_bytes": 4470981848,
+            "sampled_peak_swap_bytes": 0,
+            "sampled_peak_tasks": 55,
+            "swap_limit_bytes": 0,
+            "systemd_result": "success",
+            "tasks_limit": 4096,
+            "wall_seconds": 5146.926
+          }
+        ],
+        "exit_code": 0,
+        "guard_stop": null,
+        "log": "build.log",
+        "memory_limit_bytes": 15032385536,
+        "sampled_peak_cgroup_bytes": 6565142528,
+        "sampled_peak_nocache_bytes": 4470981848,
+        "sampled_peak_swap_bytes": 0,
+        "sampled_peak_tasks": 55,
+        "swap_limit_bytes": 0,
+        "systemd_result": "success",
+        "tasks_limit": 4096,
+        "wall_seconds": 5146.926
+      },
+      "check_summary": {
+        "axiom_audit": "passed",
+        "lean": "passed (comparator_acceptance)",
+        "nanoda": "passed (comparator_acceptance)"
+      },
+      "checked_at": "2026-11-25T06:30:11.649179Z",
+      "finished_unix": 1795588211.649179,
+      "generated_challenge_sha256": "29701b0ccef385b102bc3193484d9e0a5ecde3ec0005233bd87806d570413607",
+      "kernels": {
+        "lean": {
+          "attempts": [
+            {
+              "exit_code": 0,
+              "guard_stop": null,
+              "lake_jobs": 4,
+              "memory_limit_bytes": 15032385536,
+              "sampled_peak_cgroup_bytes": 9338130432,
+              "sampled_peak_nocache_bytes": 7841926536,
+              "sampled_peak_swap_bytes": 419180544,
+              "sampled_peak_tasks": 31,
+              "swap_limit_bytes": 17179869184,
+              "systemd_result": "success",
+              "tasks_limit": 4096,
+              "wall_seconds": 896.51
+            }
+          ],
+          "exit_code": 0,
+          "guard_stop": null,
+          "log": "lean.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "comparator_acceptance",
+          "sampled_peak_cgroup_bytes": 9338130432,
+          "sampled_peak_nocache_bytes": 7841926536,
+          "sampled_peak_swap_bytes": 419180544,
+          "sampled_peak_tasks": 31,
+          "status": "passed",
+          "swap_limit_bytes": 17179869184,
+          "systemd_result": "success",
+          "tasks_limit": 4096,
+          "wall_seconds": 896.512
+        },
+        "nanoda": {
+          "attempts": [
+            {
+              "exit_code": 0,
+              "guard_stop": null,
+              "lake_jobs": 4,
+              "memory_limit_bytes": 15032385536,
+              "nanoda_threads": 4,
+              "sampled_peak_cgroup_bytes": 10238283776,
+              "sampled_peak_nocache_bytes": 7895090936,
+              "sampled_peak_swap_bytes": 2014519296,
+              "sampled_peak_tasks": 31,
+              "swap_limit_bytes": 17179869184,
+              "systemd_result": "success",
+              "tasks_limit": 4096,
+              "wall_seconds": 1076.652
+            }
+          ],
+          "exit_code": 0,
+          "guard_stop": null,
+          "log": "nanoda.log",
+          "memory_limit_bytes": 15032385536,
+          "reason": "comparator_acceptance",
+          "sampled_peak_cgroup_bytes": 10238283776,
+          "sampled_peak_nocache_bytes": 7895090936,
+          "sampled_peak_swap_bytes": 2014519296,
+          "sampled_peak_tasks": 31,
+          "status": "passed",
+          "swap_limit_bytes": 17179869184,
+          "systemd_result": "success",
+          "tasks_limit": 4096,
+          "wall_seconds": 1076.67
+        }
+      },
+      "lake_workers": 4,
+      "lean_path": [
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Cli/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/batteries/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/Qq/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/aesop/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/proofwidgets/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/importGraph/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/LeanSearchClient/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/plausible/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/packages/mathlib/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/stage/.lake/build/lib/lean",
+        "/home/runner/work/_temp/bos-verifier/tools/elan/toolchains/leanprover--lean4---v4.34.1/lib/lean"
+      ],
+      "nanoda_threads": 4,
+      "pack": {
+        "bytes": 1526956505,
+        "compressed_bytes": 436287705,
+        "files": 22792,
+        "members": 22958,
+        "setup_json_skipped": 3256,
+        "sha256": "b7f33df00e8161902750c52fe038fdd981ace803165db5da78232daa75285dc9",
+        "skipped_count": 0,
+        "skipped_first": []
+      },
+      "profile": {
+        "bound": "1/2",
+        "challenge_file": "challenges/integer-multiplication/NearSquareRootMultiplication.lean",
+        "challenge_sha256": "29701b0ccef385b102bc3193484d9e0a5ecde3ec0005233bd87806d570413607",
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "model": "integer-multiplication/multitape-tm",
+        "permitted_axioms": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "runner": "github-split",
+        "score_relation": "strict-upper-bound",
+        "solution_dependencies": [
+          {
+            "commit": "c39a751132c88b6e8080b74c74023fd95b3d8be0",
+            "license": "Apache-2.0",
+            "patch_file": "patches/openai-92b516e-PrimeNumberTheoremAnd-lean4341.patch",
+            "patch_sha256": "0890432340c0025973bcfe070b634355fa366cc831595f68526e4c73c8903d82",
+            "patch_upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+            "patch_upstream_path": "lean/patches/PrimeNumberTheoremAnd-lean4341.patch",
+            "patch_upstream_repo": "https://github.com/openai/math",
+            "repo_url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+            "source_roots": [
+              "PrimeNumberTheoremAnd"
+            ]
+          },
+          {
+            "commit": "2f5835c322314f55f1026ec2f139d704b7c45c69",
+            "lean_options": {
+              "autoImplicit": true
+            },
+            "license": "none stated in the repository",
+            "patch_file": "patches/openai-92b516e-StrongPNT-lean4341.patch",
+            "patch_sha256": "2cac5cbef22987314f9293bebcf243d0a3341caaf0227925d1f8d4c31be924d7",
+            "patch_upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+            "patch_upstream_path": "lean/patches/StrongPNT-lean4341.patch",
+            "patch_upstream_repo": "https://github.com/openai/math",
+            "repo_url": "https://github.com/math-inc/strongpnt",
+            "source_roots": [
+              "StrongPNT"
+            ]
+          },
+          {
+            "commit": "41c45c6d72e979419e46224bb7b4be5cee31f2b5",
+            "lean_options": {
+              "autoImplicit": true,
+              "maxSynthPendingDepth": 3,
+              "pp.unicode.fun": true,
+              "relaxedAutoImplicit": false
+            },
+            "license": "Apache-2.0",
+            "patch_file": "patches/openai-92b516e-AbsorptionCutoff-lean4341.patch",
+            "patch_sha256": "8b35104dc12f807f594f7a61f7a183d967edcd0e601c7172e0e851e4c3adb3ba",
+            "patch_upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+            "patch_upstream_path": "lean/patches/AbsorptionCutoff-lean4341.patch",
+            "patch_upstream_repo": "https://github.com/openai/math",
+            "repo_url": "https://github.com/BennyAvelin/AbsorptionCutoff",
+            "source_roots": [
+              "AbsorptionCutoff"
+            ]
+          }
+        ],
+        "solution_module": "OAI.Computability.NearSquareRoot.Main",
+        "source_prefixes": [
+          "OAI/Computability/NearSquareRoot",
+          "OAI/Computability/IntegerMultiplication",
+          "OAI/Computability/MinUncut",
+          "OAI/NumberTheory/Jacobsthal",
+          "OAI/LinearAlgebra/FiniteFourier"
+        ],
+        "source_roots": [
+          "OAI"
+        ],
+        "source_subdir": "lean",
+        "sparse_paths": [
+          "/lean/OAI/Computability/NearSquareRoot/",
+          "/lean/OAI/Computability/IntegerMultiplication/",
+          "/lean/OAI/Computability/MinUncut/",
+          "/lean/OAI/NumberTheory/Jacobsthal/",
+          "/lean/OAI/LinearAlgebra/FiniteFourier/"
+        ],
+        "theorem_names": [
+          "OAI.Computability.NearSquareRoot.uniformIntegerMultiplication"
+        ],
+        "upstream_challenge": "lean/ComparatorChallenges/NearSquareRootMultiplication.lean",
+        "upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+        "upstream_repo": "https://github.com/openai/math"
+      },
+      "request": {
+        "challenge_file": "challenges/integer-multiplication/NearSquareRootMultiplication.lean",
+        "commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+        "lean_toolchain": "leanprover/lean4:v4.34.1",
+        "repo_url": "https://github.com/openai/math",
+        "theorem_names": "OAI.Computability.NearSquareRoot.uniformIntegerMultiplication"
+      },
+      "resource_report": {
+        "units": [
+          {
+            "memory_nocache_ratio": 0.297,
+            "memory_peak_ratio": 0.437,
+            "unit": "build attempt 1 (4 Lake workers)",
+            "wall_ratio": 0.256,
+            "warn": []
+          },
+          {
+            "memory_nocache_ratio": 0.058,
+            "memory_peak_ratio": 0.22,
+            "unit": "axiom_audit",
+            "wall_ratio": 0.001,
+            "warn": []
+          },
+          {
+            "memory_nocache_ratio": 0.522,
+            "memory_peak_ratio": 0.621,
+            "swap_peak_ratio": 0.024,
+            "unit": "lean attempt 1",
+            "wall_ratio": 0.045,
+            "warn": []
+          },
+          {
+            "memory_nocache_ratio": 0.525,
+            "memory_peak_ratio": 0.681,
+            "swap_peak_ratio": 0.117,
+            "unit": "nanoda attempt 1 (4 nanoda threads)",
+            "wall_ratio": 0.054,
+            "warn": []
+          }
+        ],
+        "warn_ratio": 0.8,
+        "warning": false,
+        "warnings": []
+      },
+      "run_url": "https://github.com/bigospeedrun/verifier/actions/runs/45546103830",
+      "schema_version": 1,
+      "solution_dependencies": [
+        {
+          "commit": "c39a751132c88b6e8080b74c74023fd95b3d8be0",
+          "license": "Apache-2.0",
+          "patch_file": "patches/openai-92b516e-PrimeNumberTheoremAnd-lean4341.patch",
+          "patch_sha256": "0890432340c0025973bcfe070b634355fa366cc831595f68526e4c73c8903d82",
+          "patch_upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+          "patch_upstream_path": "lean/patches/PrimeNumberTheoremAnd-lean4341.patch",
+          "patch_upstream_repo": "https://github.com/openai/math",
+          "repo_url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+          "source_roots": [
+            "PrimeNumberTheoremAnd"
+          ]
+        },
+        {
+          "commit": "2f5835c322314f55f1026ec2f139d704b7c45c69",
+          "lean_options": {
+            "autoImplicit": true
+          },
+          "license": "none stated in the repository",
+          "patch_file": "patches/openai-92b516e-StrongPNT-lean4341.patch",
+          "patch_sha256": "2cac5cbef22987314f9293bebcf243d0a3341caaf0227925d1f8d4c31be924d7",
+          "patch_upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+          "patch_upstream_path": "lean/patches/StrongPNT-lean4341.patch",
+          "patch_upstream_repo": "https://github.com/openai/math",
+          "repo_url": "https://github.com/math-inc/strongpnt",
+          "source_roots": [
+            "StrongPNT"
+          ]
+        },
+        {
+          "commit": "41c45c6d72e979419e46224bb7b4be5cee31f2b5",
+          "lean_options": {
+            "autoImplicit": true,
+            "maxSynthPendingDepth": 3,
+            "pp.unicode.fun": true,
+            "relaxedAutoImplicit": false
+          },
+          "license": "Apache-2.0",
+          "patch_file": "patches/openai-92b516e-AbsorptionCutoff-lean4341.patch",
+          "patch_sha256": "8b35104dc12f807f594f7a61f7a183d967edcd0e601c7172e0e851e4c3adb3ba",
+          "patch_upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+          "patch_upstream_path": "lean/patches/AbsorptionCutoff-lean4341.patch",
+          "patch_upstream_repo": "https://github.com/openai/math",
+          "repo_url": "https://github.com/BennyAvelin/AbsorptionCutoff",
+          "source_roots": [
+            "AbsorptionCutoff"
+          ]
+        }
+      ],
+      "source_file_count": 4425,
+      "started_unix": 1795585935.5072246,
+      "status": "passed",
+      "status_reason": "lean_and_axiom_passed",
+      "steps": [
+        {
+          "exit_code": 0,
+          "name": "submission-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-fetch",
+          "wall_seconds": 40.674
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-sparse",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "submission-checkout",
+          "wall_seconds": 1.633
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-0-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-0-fetch",
+          "wall_seconds": 0.697
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-0-checkout",
+          "wall_seconds": 0.046
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-0-patch-check",
+          "wall_seconds": 0.015
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-0-patch",
+          "wall_seconds": 0.085
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-1-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-1-fetch",
+          "wall_seconds": 0.628
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-1-checkout",
+          "wall_seconds": 0.023
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-1-patch-check",
+          "wall_seconds": 0.009
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-1-patch",
+          "wall_seconds": 0.039
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-2-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-2-fetch",
+          "wall_seconds": 0.674
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-2-checkout",
+          "wall_seconds": 0.037
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-2-patch-check",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "solution-dependency-2-patch",
+          "wall_seconds": 0.05
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-update",
+          "wall_seconds": 5.424
+        },
+        {
+          "exit_code": 0,
+          "name": "apt-tools",
+          "wall_seconds": 5.14
+        },
+        {
+          "exit_code": 0,
+          "name": "bwrap-apparmor-policy",
+          "wall_seconds": 0.015
+        },
+        {
+          "exit_code": 0,
+          "name": "runner-sdk-space",
+          "wall_seconds": 35.225
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-download",
+          "wall_seconds": 0.328
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-unpack",
+          "wall_seconds": 0.1
+        },
+        {
+          "exit_code": 0,
+          "name": "elan-install",
+          "wall_seconds": 0.217
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-install",
+          "wall_seconds": 11.401
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-init",
+          "wall_seconds": 0.096
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-fetch",
+          "wall_seconds": 0.363
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-checkout",
+          "wall_seconds": 0.064
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-init",
+          "wall_seconds": 0.094
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-fetch",
+          "wall_seconds": 0.376
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-checkout",
+          "wall_seconds": 0.047
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-check-lean4export-pr52-natlit-print",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-lean4export-pr52-natlit-print",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-check-lean4export-natlit-parse",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-exporter-patch-lean4export-natlit-parse",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-nanoda-patch-check-comparator-nanoda-threads",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-comparator-nanoda-patch-comparator-nanoda-threads",
+          "wall_seconds": 0.002
+        },
+        {
+          "exit_code": 0,
+          "name": "build-comparator",
+          "wall_seconds": 8.984
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nattest",
+          "wall_seconds": 6.266
+        },
+        {
+          "exit_code": 0,
+          "name": "nattest",
+          "wall_seconds": 18.035
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-fetch",
+          "wall_seconds": 0.408
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-nanoda-checkout",
+          "wall_seconds": 0.007
+        },
+        {
+          "exit_code": 0,
+          "name": "build-nanoda",
+          "wall_seconds": 20.319
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-fetch",
+          "wall_seconds": 0.368
+        },
+        {
+          "exit_code": 0,
+          "name": "tool-landrun-checkout",
+          "wall_seconds": 0.005
+        },
+        {
+          "exit_code": 0,
+          "name": "build-landrun",
+          "wall_seconds": 12.685
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-fetch",
+          "wall_seconds": 8.087
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-mathlib-checkout",
+          "wall_seconds": 0.753
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-init",
+          "wall_seconds": 0.003
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-fetch",
+          "wall_seconds": 0.354
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-plausible-checkout",
+          "wall_seconds": 0.006
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-fetch",
+          "wall_seconds": 0.306
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-LeanSearchClient-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-fetch",
+          "wall_seconds": 0.376
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-importGraph-checkout",
+          "wall_seconds": 0.01
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-fetch",
+          "wall_seconds": 0.56
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-proofwidgets-checkout",
+          "wall_seconds": 0.045
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-fetch",
+          "wall_seconds": 0.42
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-aesop-checkout",
+          "wall_seconds": 0.016
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-fetch",
+          "wall_seconds": 0.336
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Qq-checkout",
+          "wall_seconds": 0.006
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-fetch",
+          "wall_seconds": 0.448
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-batteries-checkout",
+          "wall_seconds": 0.02
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-init",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-fetch",
+          "wall_seconds": 0.318
+        },
+        {
+          "exit_code": 0,
+          "name": "dependency-Cli-checkout",
+          "wall_seconds": 0.004
+        },
+        {
+          "exit_code": 0,
+          "name": "mathlib-cache",
+          "wall_seconds": 47.255
+        },
+        {
+          "exit_code": 0,
+          "name": "cache-hash-metadata",
+          "wall_seconds": 0.445
+        },
+        {
+          "exit_code": 0,
+          "name": "build-lake-adapter",
+          "wall_seconds": 0.073
+        },
+        {
+          "exit_code": 0,
+          "name": "trusted-lake-config",
+          "wall_seconds": 2.447
+        },
+        {
+          "exit_code": 0,
+          "name": "lean-path",
+          "wall_seconds": 1.185
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.033
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-allocate",
+          "wall_seconds": 0.034
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-permissions",
+          "wall_seconds": 0.008
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-format",
+          "wall_seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "name": "kernel-swap-enable",
+          "wall_seconds": 0.009
+        },
+        {
+          "exit_code": 0,
+          "name": "sandbox-preflight",
+          "wall_seconds": 0.034
+        }
+      ],
+      "test_only": true,
+      "theorem_names": [
+        "OAI.Computability.NearSquareRoot.uniformIntegerMultiplication"
+      ],
+      "theorems": {
+        "OAI.Computability.NearSquareRoot.uniformIntegerMultiplication": {
+          "lean_kernel": "passed",
+          "nanoda_kernel": "passed",
+          "reported_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "timing_group": "shared theorem closure"
+        }
+      },
+      "tool_pins": {
+        "comparator": "d03acab154d269c06e60e4de7e4cc85deebff94b",
+        "comparator_nanoda_patches": [
+          {
+            "file": "patches/comparator-nanoda-threads.patch",
+            "sha256": "8408bfc82f8c0a24848a140522e88718952d741411e4cd079792d087e8055530"
+          }
+        ],
+        "elan_tar_sha256": "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63",
+        "elan_version": "v4.2.4",
+        "landrun": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+        "lean4export": "076e8e57707e813375e8f9da8bf989799ace9680",
+        "lean4export_patches": [
+          {
+            "file": "patches/lean4export-pr52-natlit-print.patch",
+            "sha256": "dbcb657d2c0e4bdd7c396d750d55031bff54cb21e82aef8a6f6318ae3b4b76c2"
+          },
+          {
+            "file": "patches/lean4export-natlit-parse.patch",
+            "sha256": "10eb8ba02b8ea82c7a5e9fce3021eb1f80c5095dbc2343fd908eb78ae7ecdcb9"
+          }
+        ],
+        "nanoda": "8de7e0c4ed3052745a7f8725164efd9e76d84c56"
+      },
+      "total_wall_seconds": 2276.142,
+      "unpack": {
+        "bytes": 1526956505,
+        "files": 22792,
+        "members": 22958,
+        "sha256": "b7f33df00e8161902750c52fe038fdd981ace803165db5da78232daa75285dc9"
+      },
+      "verification_stage": "final",
+      "verifier_commit": "903ff7b81fb0b095363e2fd0c242dc974be8c7ab"
+    }
+  }
+}

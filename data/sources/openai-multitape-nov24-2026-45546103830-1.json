@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "checked_at": "2026-11-25T06:30:11.649179Z",
+  "description": "Lean and nanoda passed; permitted-axiom audit passed",
+  "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45546103830",
+  "verifier_commit": "903ff7b81fb0b095363e2fd0c242dc974be8c7ab",
+  "upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+  "source_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+  "statement_sha256": "29701b0ccef385b102bc3193484d9e0a5ecde3ec0005233bd87806d570413607",
+  "targets": [
+    "OAI.Computability.NearSquareRoot.uniformIntegerMultiplication"
+  ],
+  "score": "1/2",
+  "score_relation": "strict-upper-bound",
+  "scope": "Comparator rebuild of OpenAI's Lean proof of uniformIntegerMultiplication against OpenAI's own statement file (a byte copy at verifier commit 903ff7b8). The statement gives worst-case time n(1+ln n)^(1/2+d(n)) with d(n) -> 0, so every fixed kappa < 1/2; kappa = 1/2 is not claimed. The lower bound under variable-count Weak ETH was not rerun.",
+  "artifact_path": "sources/openai-multitape-nov24-2026-45546103830-1.zip",
+  "artifact_sha256": "85877152168397ef8331009a743aeb62337ca2c79184dbdcadad597a7191ba12",
+  "source_receipt_path": "sources/openai-multitape-nov24-2026-45546103830-1-source.json"
+}
