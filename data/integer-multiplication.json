@@ -26,6 +26,10 @@
     {
       "url": "https://annals.math.princeton.edu/2021/193-2/p04",
       "checked_at": "2026-10-08"
+    },
+    {
+      "url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/build/intro.tex",
+      "checked_at": "2026-11-25"
     }
   ],
   "records": [
@@ -101,6 +105,44 @@
         "checked_at": "2026-10-18T15:05:22Z",
         "receipt_path": "sources/prove2me-integer-multiplication-openai-original-109.json"
       }
+    },
+    {
+      "id": "openai-multitape-nov24-2026",
+      "kind": "improvement",
+      "score": "1/2",
+      "tier": "claimed",
+      "submitted_at": "2026-11-25T00:04:41Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-25T00:04:41Z",
+      "site_observed_at": "2026-11-25T03:22:19Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/build/intro.tex"
+      },
+      "spec_version": "1",
+      "title": "OpenAI uniform multitape multiplication: every fixed κ < 1/2",
+      "authors": [
+        {
+          "name": "OpenAI",
+          "url": "https://github.com/openai"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/build/sections/00-introduction.tex"
+      ],
+      "submission_url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/build/intro.tex",
+      "artifact": {
+        "path": "sources/openai-nov24-tapes-intro.tex",
+        "sha256": "cb91122eaae757ba6f8c999a52ae975e8123376d7a39957a2404de2be8c13081"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/build/intro.tex",
+        "theorem": "Theorem 1 (One multiplier for all lengths); uniformIntegerMultiplication",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "source_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+      "score_relation": "strict-upper-bound"
     },
     {
       "id": "crocswap-frozen-154",
@@ -74083,6 +74125,31 @@
       "race_series": "pr-submissions",
       "race_event_at": "2026-11-24T01:35:04Z",
       "race_event_kind": "PR creation; latest observed score"
+    },
+    "openai-multitape-nov24-2026": {
+      "checked_at": "2026-11-25",
+      "source_url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/build/intro.tex",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "record_eligibility_note": "Eligible as a stated, published result of the same fixed-multitape model; no cross-race claim. It does not depend on the earlier OpenAI reduction or on the CrocSwap interfaces.",
+      "proof_status": "Source claim; we have not rerun it. The paper's Lean proof is public: statement uniformIntegerMultiplication in lean/ComparatorChallenges/NearSquareRootMultiplication.lean, proof in lean/OAI/Computability/NearSquareRoot/Main.lean, toolchain Lean 4.34.1, commit 92b516ef. No Big O Speedrun rerun yet, so the evidence level stays Claimed. The lower bound under variable-count Weak ETH is MultitapeWeakETH.lean lines 387-401 (statement of the infimum); it is a hypothesis, not proven.",
+      "comparison_key": "openai/multitape-uniform-nov24-v1",
+      "comparison_status": "Same model as this board: one fixed deterministic multitape machine, a fixed alphabet and fixed number of one-dimensional tapes, the full 2n-bit product, worst-case time. The Lean statement also bounds the visited cells by O(n), which our statement does not ask for. Its logarithm is the natural one in the Lean file and base two in the paper; that changes the time only by a constant factor, and the exponent not at all. Row not yet checked against our own challenge file.",
+      "scope": "Correct for every positive length n; one machine for all n; for all large n, worst-case time at most n(1+log n)^(1/2+d(n)) for one fixed d(n) that tends to 0; at most O(n) tape cells. Unconditional.",
+      "exact_statement": "One deterministic multitape Turing machine multiplies two n-bit integers in worst-case time n(1+log n)^(1/2+o(1)). Therefore O(n (log n)^(1-kappa)) for each fixed kappa < 1/2. The value kappa = 1/2 is not claimed: the paper leaves O(n sqrt(log n)) open.",
+      "credits": "OpenAI (the paper's author line). The paper names no human author.",
+      "credit_note": "The upper bound uses the short Fourier transforms of OpenAI's companion paper on finite Fourier transforms. The paper proves the matching lower bound only under a hypothesis about how fast 3-SAT can be solved (variable-count Weak ETH), and nobody has proved that hypothesis. So a saving of 1/2 is the best possible only if the hypothesis holds.",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Commit that added the folder to github.com/openai/math, not scientific priority",
+      "publication_date": "2026-11-25T00:04:41Z",
+      "publication_source_url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/build/intro.tex",
+      "listing_status": "published-preprint",
+      "open_race": false,
+      "observed_pr_count": 0,
+      "submission_rules": "Not a CrocSwap submission; a published preprint with a Lean formalization.",
+      "notes_url": "https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-integer-multiplication-on-tapes-November-24-2026/README.md",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed"
     }
   },
   "updated_at": "2026-11-24T13:17:30Z"

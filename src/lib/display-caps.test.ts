@@ -32,7 +32,10 @@ test('scores that agree up to the cap show the same label, and short boards keep
 test('a capped label never claims a stronger bound than the exact score', () => {
  // Kappa is a saving: its shown value rounds down.
  const shown = kappa('2/3', 20);
- assert.match(shown, /1-6\.6666666666666666666\\cdot 10\^\{\\scriptstyle -1\}/);
+ // A saving from 0.1 up to 1 reads as a decimal, not as 6.67 times a power of ten (OpenAI multitape row, kappa < 1/2).
+ assert.match(shown, /1-0\.66666666666666666666/);
+ assert.match(kappa('1/2', 3), /1-0\.5(?!\d)/);
+ assert.doesNotMatch(kappa('1/2', 3), /cdot/);
  // An exponent rounds up; a short exact exponent or fraction stays exact.
  const exponent = (score: string, cap?: number) => tableBound({score, bound: 'O(n^{2})'}, false, 0, cap);
  assert.equal(exponent('981/500'), 'O(n^{1.962})');

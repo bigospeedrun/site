@@ -166,5 +166,7 @@ export function scientificSaving(score:string,significantDigits:number):string {
  const raw=String(units).padStart(significantDigits,'0');
  const coefficient=(raw[0]+(significantDigits>1?'.'+raw.slice(1):'')).replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,'');
  if(exponent===0)return coefficient;
+ // A saving from 0.1 up to 1 reads as a decimal: "1-0.5+\varepsilon", not "1-5\cdot 10^{-1}+\varepsilon" (OpenAI multitape row, kappa < 1/2, 2026-11-25).
+ if(exponent===-1)return '0.'+coefficient.replace('.','');
  return (coefficient==='1'?'':coefficient+'\\cdot ')+`10^{${exponent}}`;
 }
