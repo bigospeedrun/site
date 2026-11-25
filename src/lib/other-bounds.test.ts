@@ -187,3 +187,9 @@ test('the critical-line race lists 19/27 as a Claimed leader built on the Lean V
   // The race it depends on is closed and Lean Verified.
   assert.equal(data.families.find(f => f.slug === 'quasi-riemann')!.claims.find(c => c.handle === 'levent-alpoge')!.evidence, 'lean-verified');
 });
+
+// Lead, 2026-11-25 (Search Console: people search what "Z is Diophantine in Q" means): the page opens with that sentence, stated exactly.
+test('the Z-in-Q statement opens by saying what "Z is Diophantine in Q" means', () => {
+  const row = data.families.find(f => f.slug === 'z-diophantine-in-q')!;
+  assert(row.statement.startsWith('\\(\\mathbb Z\\) is Diophantine in \\(\\mathbb Q\\) means that there is a polynomial \\(P(q,w_1,\\dots,w_k)\\) with integer coefficients such that, for every rational number \\(q\\), \\(q\\) is an integer exactly when \\(P(q,w_1,\\dots,w_k)=0\\) for some rational numbers \\(w_1,\\dots,w_k\\). Such a polynomial defines '));
+});
