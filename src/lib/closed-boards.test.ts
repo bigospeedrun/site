@@ -64,6 +64,11 @@ test('the exact-dft board carries one note, links OpenAI at the pinned commit, a
   assert.equal(links[1].url, 'https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/lean/OAI/LinearAlgebra/FiniteFourier/Main.lean#L17');
   assert.doesNotMatch(text.replace(/\\\(.*?\\\)/g, ''), /[<>&]/);
   assert.match(closedBoardHtml(text), /class="katex"/);
+  // Lead, 2026-11-25 (verifier #223): for a verifier submission (at most 40 digits per number) the best value below 1/2; only an exact 1/2 beats it there. Papers have no digit limit.
+  assert.match(text, /1\/2-1\/\(2\(10\^\{40\}-1\)\)/);
+  assert.match(text, /For a verifier submission, whose bound has at most 40 digits per number, the best value below/);
+  assert.match(text, /so there only an exact \\\(1\/2\\\) can beat it/);
+  assert.doesNotMatch(text, /stays open/);
   assert.equal(dft.score.direction, 'higher-is-better');
   assert.deepEqual(dft.records.filter((r: {score: string}) => value(r.score) > 0.5).map((r: {id: string}) => r.id), [], 'the note says no row can exceed 1/2');
   assert(dft.records.every((r: {score: string}) => value(r.score) < 0.5), 'every row is below the 1/2 the note calls the ceiling');
