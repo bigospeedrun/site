@@ -1137,6 +1137,53 @@
       }
     },
     {
+      "id": "direct-pr-223",
+      "kind": "improvement",
+      "score": "4999999999999999999999999999999999999999/9999999999999999999999999999999999999999",
+      "score_relation": "attained",
+      "tier": "verified",
+      "submitted_at": "2026-11-25T12:26:47Z",
+      "spec_version": "1",
+      "title": "AnanasClassic direct dft submission",
+      "authors": [
+        {
+          "name": "OpenAI",
+          "url": "https://github.com/openai"
+        },
+        {
+          "name": "Vladislav Kuznetsov",
+          "url": "https://github.com/AnanasClassic"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/bigospeedrun/verifier/pull/222"
+      ],
+      "submission_url": "https://github.com/bigospeedrun/verifier/pull/223",
+      "source_commit": "6141fafb0e24c7fbbf3ace167134803f0331a91d",
+      "artifact": {
+        "path": "sources/direct-pr-223-submission.json",
+        "sha256": "4a4d7d0eb3c32cdd7532134865f95275663046b135e6b2f75a87089b08cc1d05"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/pull/223",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "merged",
+      "upstream_status_at": "2026-11-25T13:10:38Z",
+      "site_observed_at": "2026-11-25T15:23:31Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/bigospeedrun/verifier/blob/6141fafb0e24c7fbbf3ace167134803f0331a91d/submissions/dft/ananasclassic-binary-kernel/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-25T13:16:13.507596Z",
+        "receipt_path": "sources/direct-pr-223-45617084325-1-final.json"
+      }
+    },
+    {
       "id": "direct-pr-29",
       "kind": "improvement",
       "score": "3577409/2000000000",
@@ -2029,6 +2076,26 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45499447903",
       "verification": "passed"
     },
+    "direct-pr-223": {
+      "checked_at": "2026-11-25",
+      "source_url": "https://github.com/bigospeedrun/verifier/blob/6141fafb0e24c7fbbf3ace167134803f0331a91d/submissions/dft/ananasclassic-binary-kernel/Submission.lean",
+      "repo": "bigospeedrun/verifier",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
+      "comparison_key": "exact-dft/uniform-exact-arithmetic/v1",
+      "publication_date": "2026-11-25T12:26:47Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/pull/223",
+      "direct_submission": true,
+      "route": "pull_request",
+      "credit_note": "Joint credit: OpenAI (the binary Walsh template and the proof of its call-rate bound; its Lean files are kept unchanged except for import paths) and Vladislav Kuznetsov (the RAM program and the proof of its cost on this board). The all-length compiler is his from PR 222, with Gigabyte0x1337's rate-to-DFT wrapper from PR 220. OpenAI Codex assisted.",
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45617084325",
+      "verification": "passed"
+    },
     "direct-pr-29": {
       "checked_at": "2026-11-25",
       "source_url": "https://github.com/bigospeedrun/verifier/blob/607121a796548005a238a6e63589de866c9ab6f6/submissions/dft/jacobalansussman-lever-2979-full-cut/Submission.lean",
@@ -2190,5 +2257,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-25T13:23:39Z"
+  "updated_at": "2026-11-25T15:23:31Z"
 }
