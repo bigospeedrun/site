@@ -7,7 +7,7 @@
         "slug": "integer-multiplication",
         "name": "Integer Multiplication",
         "url": "https://bigospeedrun.com/integer-multiplication",
-        "leader": "crocswap-pr-8098",
+        "leader": "openai-multitape-nov24-2026",
         "direction": "higher",
         "records": [
           {
@@ -19,6 +19,16 @@
               "OpenAI"
             ],
             "bound": "O(n log^(1 - 0.00000000000000000000000000000000000000000000000000000016313261169996311316) n)"
+          },
+          {
+            "id": "openai-multitape-nov24-2026",
+            "score": "1/2",
+            "relation": "strict-upper-bound",
+            "evidence": "Claimed",
+            "authors": [
+              "OpenAI"
+            ],
+            "bound": "O(n log^(1 - 0.5 + epsilon) n), for every fixed epsilon > 0"
           },
           {
             "id": "crocswap-frozen-154",
@@ -9990,7 +10000,8 @@
     "[\"exact-dft\",\"direct-pr-221\",\"1964168318021889452978092781285559931/500000000000000000000000000000000000000\",\"attained\"]:lean",
     "[\"exact-dft\",\"direct-pr-221\",\"1964168318021889452978092781285559931/500000000000000000000000000000000000000\",\"attained\"]:record",
     "[\"exact-dft\",\"direct-pr-222\",\"38964865893230436366153658480529544221/9913168046082531583689425721225195775330\",\"attained\"]:lean",
-    "[\"exact-dft\",\"direct-pr-222\",\"38964865893230436366153658480529544221/9913168046082531583689425721225195775330\",\"attained\"]:record"
+    "[\"exact-dft\",\"direct-pr-222\",\"38964865893230436366153658480529544221/9913168046082531583689425721225195775330\",\"attained\"]:record",
+    "[\"integer-multiplication\",\"openai-multitape-nov24-2026\",\"1/2\",\"strict-upper-bound\"]:record"
   ],
   "deferred": [
     {
