@@ -139,17 +139,18 @@
       "upstream_tier": "claimed",
       "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
       "comparison_key": "matrix-multiplication/arithmetic-circuit-complex/v1",
-      "comparison_status": "Complex numbers. Author supplies Lean; no site rerun yet. Manuscript dated 2026-10-02; public collection released 2026-10-06.",
+      "comparison_status": "Complex numbers. Author supplies Lean; our verifier reran it on 2026-10-11 (run 38112644463). Manuscript dated 2026-10-02; public collection released 2026-10-06. OpenAI's later square_exponent (openai/math 92b516ef, 2026-11-24) proves that 9/4 is exact for division-free circuits; our verifier rebuilt it on 2026-11-25 (run 45538609390, receipt sources/matrix-exponent-45538609390-1.json), and Carlos Toledo's cert-machine rebuilt it independently (commit 801cd9c1).",
       "publication_year": 2026,
       "publication_date": "2026-10-06",
       "publication_date_precision": "date",
       "publication_date_role": "Public release date",
       "publication_source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
       "manuscript_date": "2026-10-02",
-      "scope": "Complex numbers. Author supplies Lean; no site rerun yet.",
+      "scope": "Complex numbers. Author supplies Lean; our verifier reran it (run 38112644463).",
       "submitted_at_role": "Site observation timestamp; publication date is recorded separately at day precision.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/38112644463",
-      "verification_source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb"
+      "verification_source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+      "exponent_rebuild_receipt_path": "sources/matrix-exponent-45538609390-1.json"
     }
   },
   "updated_at": "2026-10-11T05:49:20Z"

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "checked_at": "2026-11-25T04:04:12.755373Z",
+  "description": "Lean and nanoda passed; permitted-axiom audit passed",
+  "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45538609390",
+  "verifier_commit": "b270caa9c35647e669e6da792cb5573e586043dd",
+  "upstream_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+  "source_commit": "92b516ef8e2abf66c3db7aa31438d3010bc7956f",
+  "statement_sha256": "a56cd2267e261903bb62e18eaa4f4663c81dfea83510f20eb19617a42e640534",
+  "targets": [
+    "OAI.LinearAlgebra.SpectralBooks.square_exponent"
+  ],
+  "score": "9/4",
+  "scope": "Comparator rebuild of OpenAI's Lean proof of square_exponent against OpenAI's own statement file (a byte copy at verifier commit b270caa9): over the complex numbers, the exponent of square matrix multiplication for division-free circuits is exactly 9/4. A second, independent rebuild: Carlos Toledo's cert-machine at 801cd9c1.",
+  "artifact_path": "sources/matrix-exponent-45538609390-1.zip",
+  "artifact_sha256": "b9a8bead6cdfce5a8c7c792b7a24880a59aca1b09bc24b85218ca2f84335ec70",
+  "source_receipt_path": "sources/matrix-exponent-45538609390-1-source.json"
+}
