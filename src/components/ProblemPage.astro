@@ -12,12 +12,15 @@ import {math,inlineMath} from '../lib/math';
 import {localTimeFallback} from '../lib/freshness';
 import {boardUrl} from '../lib/board';
 import {prove2meCampaign} from '../lib/submission';
+import {closedBoards,closedBoardHtml} from '../lib/closed-boards';
 interface Props {p:import('../lib/types').Problem;}
 const {p}=Astro.props;
 const displayName=modelDisplayName(p.slug,p.modelId,isPrimaryModel(p),p.title);
 const records=boardRecords(p);
 const board=boardUrl(p.slug);
 const campaign=prove2meCampaign(p);
+// A closed race says so under its title (Nil, 2026-11-25, ask 2e93b417), on its first model's page only.
+const closed=isPrimaryModel(p)?closedBoards[p.slug]:undefined;
 // Rows imported from prove2.me (data/prove2me_import.py) are Lean Verified while LEAN_VERIFIED is True; the Lean rule names them then.
 const prove2meLean=records.some(r=>r.prove2me&&r.evidenceLevel==='lean-verified');
 const classic=p.records.find(r=>r.id==='classical-baseline');
@@ -52,6 +55,7 @@ const statements:Record<string,string>={
 ---
 <Layout title={displayName}>
 <h1>{displayName}</h1>
+{closed&&<p class="race-closed"><strong>{closed.label}:</strong> <span set:html={closedBoardHtml(closed.text)}/></p>}
 <ModelSwitch p={p}/>
 <section class="problem-intro" aria-label="Problem definition">
 <p set:html={isPrimaryModel(p)?statements[p.slug]:inlineMath(p.scope)}/>
@@ -78,6 +82,6 @@ const statements:Record<string,string>={
 <ul>{p.repos.map(repo=><li><a href={repo.url} target="_blank" rel="noopener">{repo.name}</a></li>)}</ul></section>
 </Layout>
 <style>
-.evidence-rules{padding-left:1.4rem;margin:1rem 0 1.5rem;color:var(--fg)}.evidence-rules li{margin:.5rem 0}.claimed{color:var(--claimed)}.human-verified{color:var(--human-verified)}.lean-verified{color:var(--lean-verified)}.problem-intro{max-width:72rem}.problem-intro p{margin-bottom:.85rem}
+.evidence-rules{padding-left:1.4rem;margin:1rem 0 1.5rem;color:var(--fg)}.evidence-rules li{margin:.5rem 0}.claimed{color:var(--claimed)}.human-verified{color:var(--human-verified)}.lean-verified{color:var(--lean-verified)}.problem-intro{max-width:72rem}.race-closed{border-left:4px solid var(--claimed);padding:.5rem .9rem;background:var(--surface);max-width:72rem}.problem-intro p{margin-bottom:.85rem}
 .repos{margin-top:2rem}.repos h2{font-size:1.35rem}.repos ul{padding-left:1.4rem;margin:.6rem 0}.repos li{margin:.3rem 0}.repos a{overflow-wrap:anywhere}
 </style>

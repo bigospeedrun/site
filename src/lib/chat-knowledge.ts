@@ -5,6 +5,7 @@ import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthro
 import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns, prove2meCampaignForOther} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import {problemLinks, modelPath, modelDisplayName, isPrimaryModel} from './navigation.ts';
+import {closedBoards, closedBoardText} from './closed-boards.ts';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -23,7 +24,7 @@ export interface OtherBoundsData {
 export interface ChatKnowledge {
   updatedAt: string;
   pages: Record<string, string>;
-  problems: {path: string; title: string; name: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string; carriesPaths?: string[]; carriesNote?: string}[];
+  problems: {path: string; title: string; name: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string; carriesPaths?: string[]; carriesNote?: string; closed?: string}[];
   otherBounds: {about: string; list: string; checkedAt: string; rows: ReturnType<typeof otherBoundRows>};
   contribute: ReturnType<typeof contributeRoutes>;
   evidence: typeof evidenceLevels;
@@ -140,6 +141,8 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
       // name: the short name of the landing table and the Problems menu (the race board uses it).
       // A later model of a race has its own page and path; it is not a race (the race board lists /<slug> paths only).
       path: modelPath(p.slug, p.modelId, isPrimaryModel(p)), title: p.title, name: modelDisplayName(p.slug, p.modelId, isPrimaryModel(p), p.title), scope: p.scope, updatedAt: p.lastDataCheck,
+      // A closed race says so, so the chat does not call it open (Nil, 2026-11-25; the matrix multiplication board).
+      ...(isPrimaryModel(p) && closedBoards[p.slug] ? {closed: closedBoardText(closedBoards[p.slug])} : {}),
       ...(p.records.some(r => r.carried) ? {carriesPaths: ['/' + p.slug], carriesNote: 'Every result of the board in carriesPaths also counts on this board, because a deterministic algorithm is a randomized one.'} : {}),
       baseline: p.records.find(r => r.id === 'classical-baseline')?.bound ?? null,
       current: leaders(records),
