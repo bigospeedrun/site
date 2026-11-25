@@ -64,7 +64,10 @@ HELD_NOTE='Proof checks passed; held for a lead review of credit (derivation rep
 # Where it says so: the issue or PR body, the pinned commit's message (the PR's commit messages), the README of the pinned commit
 # (an issue's repository). The hold ends when data/direct-notes.json has any note for the entry (a credit note, with or without
 # refiledBy: #213 says "ported from" and is new work), or when review-decisions.json approves the digest (derivations).
-PORT_DECLARATION=re.compile(r'\b(?:ported\s+from|port\s+of|refiled\s+from|refile\s+of)\b',re.I)
+# Lead, 2026-11-25 (verifier #223: "This submission ports that template to the challenge RAM"): any form of the word port or
+# refile counts (port, ports, ported, porting, refile, refiles, refiled, refiling), as a whole word. Letters and a hyphen on
+# either side do not count, so report, support, transport, import, portfolio, ported-from-x and re-filed do not match.
+PORT_DECLARATION=re.compile(r'(?<![\w-])(?:port(?:s|ed|ing)?|refil(?:e|es|ed|ing))(?![\w-])',re.I)
 PORT_NOTE='Proof checks passed; held for a credit note: the submission says it is a port or refile of another proof. The submitted bound remains Claimed.'
 PORT_TEXT_LIMIT=200_000  # characters of a README that the declaration check reads
 

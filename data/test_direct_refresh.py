@@ -802,9 +802,14 @@ class RefreshTests(unittest.TestCase):
 
     def test_the_declaration_words_are_a_port_or_a_refile_and_nothing_else(self):
         for text in ['Ported from darkhipo/average-sensitivity-lean @ 78fe0e6','a PORT OF the proof of x','Refiled from #99','refile of the Lean proof',
-                     'a line-wrapped port\nof the proof','Ported  from x']:
+                     'a line-wrapped port\nof the proof','Ported  from x',
+                     # verifier#223 and the other forms (Lead, 2026-11-25).
+                     'This submission ports that template to the challenge RAM','porting the proof to Lean 4.34','a port to the new model',
+                     'We port the argument','We ported it.','Refiling #99 here','(port)','PORTS the bound']:
             self.assertIsNotNone(r.PORT_DECLARATION.search(text),text)
-        for text in ['import of Mathlib','a report of the run','support of the bound','transport of data','portfolio','a ported-from-nothing idea','re-filed']:
+        for text in ['import of Mathlib','a report of the run','support of the bound','transport of data','portfolio','a ported-from-nothing idea','re-filed',
+                     'It supports the bound','reported by the CI','imports Mathlib','transporting the bound','opportunity','portable','Portland',
+                     'passport','sport','export','deport','important','portion','proportional','refilling','refiled_at','port_hold']:
             self.assertIsNone(r.PORT_DECLARATION.search(text),text)
 
     def test_a_port_declared_in_the_commit_message_the_body_or_the_readme_is_held_until_a_note_exists(self):
