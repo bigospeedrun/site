@@ -5,7 +5,7 @@ import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthro
 import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns, prove2meCampaignForOther} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import {problemLinks, modelPath, modelDisplayName, isPrimaryModel} from './navigation.ts';
-import {closedBoards, closedBoardText} from './closed-boards.ts';
+import {closedBoards, closedBoardText, boardNotices, CLOSED_LINK} from './closed-boards.ts';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -24,7 +24,7 @@ export interface OtherBoundsData {
 export interface ChatKnowledge {
   updatedAt: string;
   pages: Record<string, string>;
-  problems: {path: string; title: string; name: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string; carriesPaths?: string[]; carriesNote?: string; closed?: string}[];
+  problems: {path: string; title: string; name: string; scope: string; current: unknown[]; currentByEvidence: Record<string, unknown[]>; repositories: unknown[]; baseline: string | null; updatedAt: string; carriesPaths?: string[]; carriesNote?: string; closed?: string; note?: string}[];
   otherBounds: {about: string; list: string; checkedAt: string; rows: ReturnType<typeof otherBoundRows>};
   contribute: ReturnType<typeof contributeRoutes>;
   evidence: typeof evidenceLevels;
@@ -143,6 +143,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
       path: modelPath(p.slug, p.modelId, isPrimaryModel(p)), title: p.title, name: modelDisplayName(p.slug, p.modelId, isPrimaryModel(p), p.title), scope: p.scope, updatedAt: p.lastDataCheck,
       // A closed race says so, so the chat does not call it open (Nil, 2026-11-25; the matrix multiplication board).
       ...(isPrimaryModel(p) && closedBoards[p.slug] ? {closed: closedBoardText(closedBoards[p.slug])} : {}),
+      ...(isPrimaryModel(p) && boardNotices[p.slug] ? {note: boardNotices[p.slug].replace(CLOSED_LINK, '$1 ($2)')} : {}),
       ...(p.records.some(r => r.carried) ? {carriesPaths: ['/' + p.slug], carriesNote: 'Every result of the board in carriesPaths also counts on this board, because a deterministic algorithm is a randomized one.'} : {}),
       baseline: p.records.find(r => r.id === 'classical-baseline')?.bound ?? null,
       current: leaders(records),

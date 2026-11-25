@@ -12,7 +12,7 @@ import {math,inlineMath} from '../lib/math';
 import {localTimeFallback} from '../lib/freshness';
 import {boardUrl} from '../lib/board';
 import {prove2meCampaign} from '../lib/submission';
-import {closedBoards} from '../lib/closed-boards';
+import {closedBoards,boardNotices} from '../lib/closed-boards';
 import {closedBoardHtml} from '../lib/closed-boards-html';
 interface Props {p:import('../lib/types').Problem;}
 const {p}=Astro.props;
@@ -22,6 +22,8 @@ const board=boardUrl(p.slug);
 const campaign=prove2meCampaign(p);
 // A closed race says so under its title (Nil, 2026-11-25, ask 2e93b417), on its first model's page only.
 const closed=isPrimaryModel(p)?closedBoards[p.slug]:undefined;
+// A short note under the title of a race that is not closed (exact-dft: Lead, 2026-11-25).
+const notice=isPrimaryModel(p)?boardNotices[p.slug]:undefined;
 // Rows imported from prove2.me (data/prove2me_import.py) are Lean Verified while LEAN_VERIFIED is True; the Lean rule names them then.
 const prove2meLean=records.some(r=>r.prove2me&&r.evidenceLevel==='lean-verified');
 const classic=p.records.find(r=>r.id==='classical-baseline');
@@ -57,6 +59,7 @@ const statements:Record<string,string>={
 <Layout title={displayName}>
 <h1>{displayName}</h1>
 {closed&&<p class="race-closed"><strong>{closed.label}:</strong> <span set:html={closedBoardHtml(closed.text)}/></p>}
+{notice&&<p class="race-closed" set:html={closedBoardHtml(notice)}/>}
 <ModelSwitch p={p}/>
 <section class="problem-intro" aria-label="Problem definition">
 <p set:html={isPrimaryModel(p)?statements[p.slug]:inlineMath(p.scope)}/>

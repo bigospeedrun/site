@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {closedBoards, closedBoardLinks, closedBoardText} from './closed-boards.ts';
+import {closedBoards, boardNotices, closedBoardLinks, closedBoardText} from './closed-boards.ts';
 import {closedBoardHtml} from './closed-boards-html.ts';
 import {createKnowledge} from './chat-knowledge.ts';
 import type {Problem} from './types.ts';
@@ -43,4 +43,29 @@ test('the chat knowledge marks the matrix multiplication board as closed, and no
   const rows = createKnowledge(['3sum', 'matrix-multiplication', 'exact-dft'].map(problem), '2026-11-25').problems;
   assert.deepEqual(rows.filter(r => 'closed' in r).map(r => r.path), ['/matrix-multiplication']);
   assert.equal(rows.find(r => r.path === '/matrix-multiplication')?.closed, closedBoardText(closedBoards['matrix-multiplication']));
+});
+
+// Lead, 2026-11-25: OpenAI's linear-circuit Fourier result is a note on the exact-dft board, not a row and not a closed line.
+const dft = JSON.parse(readFileSync(new URL('../data/exact-dft.json', import.meta.url), 'utf8'));
+test('the exact-dft board carries one note, links OpenAI at the pinned commit, and no row exceeds 1/2', () => {
+  assert.deepEqual(Object.keys(boardNotices), ['exact-dft']);
+  assert.equal(closedBoards['exact-dft'], undefined, 'the race is not closed');
+  const text = boardNotices['exact-dft'];
+  const links = closedBoardLinks(text);
+  assert.deepEqual(links.map(l => l.label), ['new preprint', 'Lean proof']);
+  assert.equal(links[0].url, 'https://github.com/openai/math/tree/92b516ef8e2abf66c3db7aa31438d3010bc7956f/preprints/The-logarithmic-exponent-of-finite-Fourier-transforms-November-24-2026');
+  assert.equal(links[1].url, 'https://github.com/openai/math/blob/92b516ef8e2abf66c3db7aa31438d3010bc7956f/lean/OAI/LinearAlgebra/FiniteFourier/Main.lean#L17');
+  assert.doesNotMatch(text.replace(/\\\(.*?\\\)/g, ''), /[<>&]/);
+  assert.match(closedBoardHtml(text), /class="katex"/);
+  assert.equal(dft.score.direction, 'higher-is-better');
+  assert.deepEqual(dft.records.filter((r: {score: string}) => value(r.score) > 0.5).map((r: {id: string}) => r.id), [], 'the note says no row can exceed 1/2');
+  assert(dft.records.every((r: {score: string}) => value(r.score) < 0.5), 'every row is below the 1/2 the note calls the ceiling');
+});
+
+test('the chat knowledge carries the exact-dft note, and no other board', () => {
+  const problem = (slug: string) => ({slug, title: slug, scope: '', symbol: 'kappa', direction: 'higher-is-better', lastDataCheck: '2026-11-25', records: [], repos: []}) as unknown as Problem;
+  const rows = createKnowledge(['3sum', 'matrix-multiplication', 'exact-dft'].map(problem), '2026-11-25').problems;
+  assert.deepEqual(rows.filter(r => 'note' in r).map(r => r.path), ['/exact-dft']);
+  assert.match(String(rows.find(r => r.path === '/exact-dft')?.note), /new preprint \(https:\/\/github\.com\/openai\/math\/tree\/92b516ef8e/);
+  assert.equal('closed' in (rows.find(r => r.path === '/exact-dft') ?? {}), false);
 });
