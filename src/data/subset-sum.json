@@ -364,7 +364,7 @@
       "kind": "improvement",
       "score": "9999/20000",
       "score_relation": "attained",
-      "tier": "claimed",
+      "tier": "verified",
       "submitted_at": "2026-11-26T15:53:14Z",
       "spec_version": "1",
       "title": "pompompur-in direct subset-sum submission",
@@ -399,7 +399,12 @@
       "site_observed_at": "2026-11-26T16:23:48Z",
       "source": {
         "kind": "repo-artifact",
-        "url": "https://github.com/pompompur-in/subset-sum-lean/tree/a7c2c63e3f3017e8f011d6f061f93adc6bffd947"
+        "url": "https://github.com/pompompur-in/subset-sum-lean/blob/a7c2c63e3f3017e8f011d6f061f93adc6bffd947/Submission.lean"
+      },
+      "rerun_status": {
+        "state": "passed",
+        "checked_at": "2026-11-26T19:17:28.495298Z",
+        "receipt_path": "sources/direct-issue-226-45874665450-1.json"
       }
     },
     {
@@ -613,13 +618,13 @@
     },
     "direct-issue-226": {
       "checked_at": "2026-11-26",
-      "source_url": "https://github.com/pompompur-in/subset-sum-lean/tree/a7c2c63e3f3017e8f011d6f061f93adc6bffd947",
+      "source_url": "https://github.com/pompompur-in/subset-sum-lean/blob/a7c2c63e3f3017e8f011d6f061f93adc6bffd947/Submission.lean",
       "repo": "pompompur-in/subset-sum-lean",
       "site_badge": false,
       "eligible_for_record": false,
-      "proof_status": "Submitted bound; independent verification has not passed.",
-      "upstream_tier": "claimed",
-      "site_tier": "claimed",
+      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
+      "upstream_tier": "verified",
+      "site_tier": "verified",
       "comparison_key": "subset-sum/randomized-word-ram/v1",
       "publication_date": "2026-11-26T15:53:14Z",
       "publication_date_precision": "date-time",
@@ -628,7 +633,8 @@
       "direct_submission": true,
       "route": "issue",
       "credit_note": "Joint credit: OpenAI (the algorithm, from its paper \"Subset Sum in Time O(2^0.49n)\" of 4 October 2026) and 4latte and Chiikabu Labs (the Lean formalization, with its parameters set for the exponent 9999/20000). Claude Duet by Anthropic assisted.",
-      "verification": "pending"
+      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45874665450",
+      "verification": "passed"
     },
     "direct-issue-94": {
       "checked_at": "2026-11-26",
@@ -650,5 +656,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-26T16:23:48Z"
+  "updated_at": "2026-11-26T19:22:23Z"
 }

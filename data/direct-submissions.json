@@ -10,6 +10,37 @@
         "commit": "a7c2c63e3f3017e8f011d6f061f93adc6bffd947",
         "bound": "9999/20000",
         "authors": []
+      },
+      "verification": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-226-ac156f7cbe4da151e415706c70a4fcf12ec31143816f5efa295e6e7aaf3f5f17",
+        "problem_id": "subset-sum/randomized-word-ram",
+        "score": "9999/20000",
+        "score_relation": "attained",
+        "source_commit": "a7c2c63e3f3017e8f011d6f061f93adc6bffd947",
+        "source_url": "https://github.com/pompompur-in/subset-sum-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "pompompur-in",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45874665450",
+        "checked_at": "2026-11-26T19:17:28.495298Z",
+        "issue_created_at": "2026-11-26T15:53:14Z",
+        "issue_updated_at_at_verification": "2026-11-26T17:33:25Z",
+        "issue_updated_at_at_import": "2026-11-26T19:02:28Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-226-45874665450-1.json",
+        "receipt_sha256": "7347c25d3c63eb4ae2fd52403e7bd3d71550dc11b89557548f9e22941f8ca5c2",
+        "policy_hash": "0592e0b085372d0812808ee835a150aa002f7d3a959fc8f6cc6f42a6f8aeba8b",
+        "result_artifact_id": 15147701747,
+        "controller_fingerprint": "f4b21ae9671f23212a2ae696932b5428e295f5ca4704f9235678c523d7496692",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
       }
     },
     "direct-issue-214": {
@@ -5937,6 +5968,49 @@
         },
         "source_file": "Submission.lean"
       }
+    },
+    "direct-issue-226:ac156f7cbe4da151e415706c70a4fcf12ec31143816f5efa295e6e7aaf3f5f17": {
+      "key": "direct-issue-226",
+      "submission": {
+        "schema_version": 1,
+        "problem": "subset-sum",
+        "repo_url": "https://github.com/pompompur-in/subset-sum-lean",
+        "commit": "a7c2c63e3f3017e8f011d6f061f93adc6bffd947",
+        "bound": "9999/20000",
+        "authors": []
+      },
+      "decision": "lean-verified",
+      "evidence": {
+        "decision": "lean-verified",
+        "reason": "Lean and nanoda passed; permitted-axiom audit passed",
+        "id": "direct-226-ac156f7cbe4da151e415706c70a4fcf12ec31143816f5efa295e6e7aaf3f5f17",
+        "problem_id": "subset-sum/randomized-word-ram",
+        "score": "9999/20000",
+        "score_relation": "attained",
+        "source_commit": "a7c2c63e3f3017e8f011d6f061f93adc6bffd947",
+        "source_url": "https://github.com/pompompur-in/subset-sum-lean",
+        "authors": [],
+        "workflow_conclusion": "success",
+        "issue_submitter": "pompompur-in",
+        "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45874665450",
+        "checked_at": "2026-11-26T19:17:28.495298Z",
+        "issue_created_at": "2026-11-26T15:53:14Z",
+        "issue_updated_at_at_verification": "2026-11-26T17:33:25Z",
+        "issue_updated_at_at_import": "2026-11-26T19:02:28Z",
+        "derivation_hold": false,
+        "review_required": [
+          "authorship",
+          "first publication date",
+          "historical record eligibility"
+        ],
+        "receipt_path": "sources/direct-issue-226-45874665450-1.json",
+        "receipt_sha256": "7347c25d3c63eb4ae2fd52403e7bd3d71550dc11b89557548f9e22941f8ca5c2",
+        "policy_hash": "0592e0b085372d0812808ee835a150aa002f7d3a959fc8f6cc6f42a6f8aeba8b",
+        "result_artifact_id": 15147701747,
+        "controller_fingerprint": "f4b21ae9671f23212a2ae696932b5428e295f5ca4704f9235678c523d7496692",
+        "pr_identity": null,
+        "source_file": "Submission.lean"
+      }
     }
   },
   "claimed_only_cache": {
@@ -6176,11 +6250,6 @@
       "version": "f51a53e5ff85dc2614070a289beff05caf27f882650ab1eb942bf5a1aa38bee2",
       "updated_at": "2026-11-26T14:33:16Z",
       "not_verified": true
-    },
-    "226": {
-      "version": "ac156f7cbe4da151e415706c70a4fcf12ec31143816f5efa295e6e7aaf3f5f17",
-      "updated_at": "2026-11-26T17:33:25Z",
-      "not_verified": false
     }
   }
 }
