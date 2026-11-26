@@ -9,13 +9,13 @@ import {chartRecords} from './chart.ts';
 
 const race = data.families.find(f => f.slug === 'busy-beaver-zfc')!;
 
-test('Busy Beaver ranks state thresholds down to 215 and keeps the historical qualifications', () => {
+test('Busy Beaver ranks state thresholds down to 192 and keeps the historical qualifications', () => {
   assert.equal(race.direction, 'lower');
-  assert.equal(otherBoundLeader(race)?.value, '215');
+  assert.equal(otherBoundLeader(race)?.value, '192');
   assert.equal(boardUrl('other-' + race.slug), 'https://board.bigospeedrun.com/other-busy-beaver-zfc');
   const rows = otherTableRows(race);
-  assert.equal(rows.length, 15);
-  assert.deepEqual(rows.map(r => r.claim.value), ['215', '230', '253', '254', '335', '354', '432', '549', '588', '636', '643', '745', '748', '1919', '7910']);
+  assert.equal(rows.length, 18);
+  assert.deepEqual(rows.map(r => r.claim.value), ['192', '207', '209', '215', '230', '253', '254', '335', '354', '432', '549', '588', '636', '643', '745', '748', '1919', '7910']);
   assert.ok(race.claims.every(c => c.evidence === 'claimed'));
   assert.match(race.claims.find(c => c.value === '7910')!.note, /stronger.*assumptions/);
   assert.match(race.claims.find(c => c.value === '215')!.proofScope, /external halting\/refutation equivalences/);
@@ -49,12 +49,12 @@ test('the historical chart preserves publication-day precision and ends at the t
   const chart = otherChart(race, () => false)!;
   assert.equal(chart.integer, true);
   assert.equal(chart.higher, false);
-  assert.equal(chart.entries.length, 15);
+  assert.equal(chart.entries.length, 18);
   assert.equal(chart.entries.find(e => e.score === '745')!.date, '2023-07-05');
   assert.equal(chart.entries.find(e => e.score === '1919')!.date, '2016-05-15');
   const records = chartRecords(chart.entries, new Set(['claimed']), chart.higher);
   assert.equal(records[0].score, '7910');
-  assert.equal(records.at(-1)!.score, '215');
+  assert.equal(records.at(-1)!.score, '192');
   assert.ok(records.every((r, i) => i === 0 || Number(r.score) < Number(records[i-1].score)));
 });
 
@@ -68,4 +68,23 @@ test('K215 includes the later PA proof without upgrading unverified evidence or 
   const m253 = race.claims.find(c => c.value === '253')!;
   assert.equal(m253.authors[0].name, 'mira-emmy (AI agent)');
   assert.equal(race.claims.find(c => c.value === '254')!.authors[0].name, 'Mira-Cult');
+});
+
+// Lead, 2026-11-26 (jamesyc/BusyBeaver intake): James Chang's ZF209, ZF207 and ZF192 are Claimed rows, ZF192 leads; the Peano arithmetic and
+// large-cardinal machines in the same repository are not rows of this race.
+test('James Chang leads with ZF192; ZF209 and ZF207 are history rows; the repository\'s other machines are not rows', () => {
+  const chang = race.claims.filter(c => c.handle === 'jamesyc');
+  assert.deepEqual(chang.map(c => c.value), ['209', '207', '192']);
+  assert.equal(race.bestHandle, 'jamesyc');
+  assert.ok(chang.every(c => c.evidence === 'claimed' && c.author === 'James Chang' && c.authors.length === 1 && c.authors[0].name === 'James Chang'));
+  assert.ok(chang.every(c => c.proofScope.length <= 500 && c.proofScope.endsWith('We have not rebuilt the Lean proof.')));
+  assert.match(chang[2].note, /started from Elliot Glazer's 230-state K230 machine/);
+  assert.match(chang[2].note, /equiconsistency with ZFC/);
+  assert.match(chang[2].note, /paper proof with assistance from ChatGPT/);
+  assert.doesNotMatch(chang[2].proofScope, /every model of ZF/, 'ZF192 does not prove the reverse implication for nonstandard histories');
+  assert.match(chang[2].proofScope, /reverse implication for nonstandard histories is outside the scope/);
+  assert.match(chang[1].note, /ZF209's \(developed with assistance from ChatGPT\), adapted to the new table with assistance from Claude Code/);
+  assert.ok(chang.every((c, i) => i === 0 || Date.parse(chang[i - 1].date) < Date.parse(c.date)), 'the claims stay in date order');
+  assert.ok(race.claims.every((c, i) => i === 0 || Date.parse(race.claims[i - 1].date) <= Date.parse(c.date)));
+  for (const slug of ['PA196', 'I3-334', 'I3-380', 'I0-451']) assert.ok(!race.claims.some(c => c.url.includes(slug)), slug);
 });

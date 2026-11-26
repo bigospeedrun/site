@@ -5155,6 +5155,72 @@
           "proofScope": "Author-reported Lean 4.32.0 and Rocq 9.1.0 checks of the same exact machine. The original Lean build compiled 204 project modules and two endpoint clients, with only propext, Classical.choice and Quot.sound; Rocq compiled 237 sources with closed endpoint reports and recursive coqchk. These are external halting/refutation equivalences. Glazer’s later MM0 package reports PA proofs that K215 halts iff ZFC is inconsistent and that ZFC consistency is equivalent to no value of \\(\\mathrm{BB}(215)\\) being ZFC-provable; see commit 47c4e7ff5aa18c71f24fcd13558e6de801af2a0a of https://github.com/elliotglazer/k215-pa. We inspected the statements and documentation, but have not rerun the MM0 checker or the Lean/Rocq builds. The evidence remains Claimed under the site policy.",
           "bound": "N_{\\mathrm{ZFC}}\\le 215",
           "agent": true
+        },
+        {
+          "author": "James Chang",
+          "handle": "jamesyc",
+          "value": "209",
+          "display": "209",
+          "date": "2026-11-18T09:21:40Z",
+          "dateSource": "https://github.com/jamesyc/BusyBeaver/actions/runs/44275182147",
+          "dateKind": "published",
+          "url": "https://github.com/jamesyc/BusyBeaver/blob/286324f9ad106bbeab32b70404e7a82be2cd660d/ZF209/README.md",
+          "lean": true,
+          "leanNote": "The README reports a local Linux build, an axiom audit and a stock Comparator run that passed, with Lean's kernel and NanoDa accepting the proof; the con-ron replay hit its time limit without a verdict, and a Palomar submission was pending. We have not rerun any of it. The evidence remains Claimed under the site policy.",
+          "evidence": "claimed",
+          "note": "ZF209 has 209 working states and a separate uncounted halt, including blank initialization. James Chang wrote the construction and its Lean proof with assistance from ChatGPT; the tape engine builds on work by Elliot Glazer and Jeff Ketchersid. ZF counts here through its equiconsistency with ZFC. The date is the first public workflow run on the pinned commit (18 November UTC); the commit itself is dated 15 November. Table SHA-256: 6b8acf3cf8523e2c2db2020f69c19f7ced2b1343e1b09621697515ed54b6eabd.",
+          "authors": [
+            {
+              "name": "James Chang",
+              "url": "https://github.com/jamesyc"
+            }
+          ],
+          "proofScope": "Lean 4 proof, conditional on two assumptions: if ZF is consistent, the machine never halts and ZF does not prove that it never halts; if ZF is arithmetically \\(\\Sigma_1\\)-sound, ZF proves neither halting nor non-halting. The statement covers every model of ZF, including models with nonstandard numbers. No minimality is claimed. We have not rebuilt the Lean proof.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 209"
+        },
+        {
+          "author": "James Chang",
+          "handle": "jamesyc",
+          "value": "207",
+          "display": "207",
+          "date": "2026-11-19T03:19:35Z",
+          "dateSource": "https://github.com/jamesyc/BusyBeaver/commit/9437ef874e1c76a0ec45330554e895157d56c604",
+          "dateKind": "first-stated",
+          "url": "https://github.com/jamesyc/BusyBeaver/blob/9437ef874e1c76a0ec45330554e895157d56c604/ZF207/README.md",
+          "lean": true,
+          "leanNote": "The author reports a local build, an axiom audit and a Comparator run that passed, with Lean's kernel, NanoDa and the bundled con-ron accepting the proof (Comparator ran unsandboxed on macOS), and a Palomar submission pending. We have not rerun any of it. The evidence remains Claimed under the site policy.",
+          "evidence": "claimed",
+          "note": "ZF207 has 207 working states and a separate uncounted halt, including blank initialization. James Chang designed the table. It runs ZF209's proof search with a smaller decoder. The Lean proof is ZF209's (developed with assistance from ChatGPT), adapted to the new table with assistance from Claude Code. ZF counts here through its equiconsistency with ZFC. Table SHA-256: e8bbb3d03034a24b27d1255533910581e981b1cdda63e11696ee06b02a18e9b2.",
+          "authors": [
+            {
+              "name": "James Chang",
+              "url": "https://github.com/jamesyc"
+            }
+          ],
+          "proofScope": "Lean 4 proof, conditional on two assumptions: if ZF is consistent, the machine never halts and ZF does not prove that it never halts; if ZF is arithmetically \\(\\Sigma_1\\)-sound, ZF proves neither halting nor non-halting. The statement covers every model of ZF, including models with nonstandard numbers. No minimality is claimed. We have not rebuilt the Lean proof.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 207"
+        },
+        {
+          "author": "James Chang",
+          "handle": "jamesyc",
+          "value": "192",
+          "display": "192",
+          "date": "2026-11-22T10:56:17Z",
+          "dateSource": "https://github.com/jamesyc/BusyBeaver/commit/bd3f7575b2277addb6c043201b0404d6016564be",
+          "dateKind": "first-stated",
+          "url": "https://github.com/jamesyc/BusyBeaver/blob/bd3f7575b2277addb6c043201b0404d6016564be/ZF192/README.md",
+          "lean": true,
+          "leanNote": "The repository supplies a Lean 4 proof with a Comparator configuration that permits only propext, Classical.choice and Quot.sound, with NanoDa enabled. A hosted Palomar preflight of this exact commit, started by the author, passed (run 45146191568, 23 November). We have not rerun it. The evidence remains Claimed under the site policy.",
+          "evidence": "claimed",
+          "note": "ZF192 has 192 working states, 384 transition rows and a separate uncounted halt, including blank initialization. James Chang wrote the construction and its paper proof with assistance from ChatGPT; the formalization record lists ChatGPT and Codex. The table came from a new SAT search that started from Elliot Glazer's 230-state K230 machine; the search was independent of Chang's ZF207 and ZF209 tables. ZF counts here through its equiconsistency with ZFC. The date is the commit of the pinned page (22 November UTC); the same table was public in an earlier version of the repository from 10:19 UTC that day. Table SHA-256: be1db915a6f40e37a601d3cb54bc0cf0d9597bdf0c75e97098cf4c201c6d5585.",
+          "authors": [
+            {
+              "name": "James Chang",
+              "url": "https://github.com/jamesyc"
+            }
+          ],
+          "proofScope": "Lean 4 proof, conditional on two assumptions: if ZF is consistent, the machine never halts and ZF does not prove that it never halts; if ZF is arithmetically \\(\\Sigma_1\\)-sound, ZF proves neither halting nor non-halting. The author states that the full reverse implication for nonstandard histories is outside the scope of the proof. No minimality is claimed. We have not rebuilt the Lean proof.",
+          "bound": "N_{\\mathrm{ZFC}}\\le 192"
         }
       ],
       "repos": [
@@ -5182,9 +5248,14 @@
           "name": "K215 verification record",
           "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/c9dc79323429112c698100f3226a6e4d56c8b782/Computability/BusyBeaver/Research/ZFC/k225-formal/verification/k215/README.md",
           "note": "Pinned statements, build reports, axioms and reproduction instructions. Author-reported checks have not been rerun by this site."
+        },
+        {
+          "name": "jamesyc/BusyBeaver",
+          "url": "https://github.com/jamesyc/BusyBeaver",
+          "note": "The ZF209, ZF207 and ZF192 proof packages, with the exact machines. The repository also holds Peano arithmetic and large-cardinal machines, which are not rows here."
         }
       ],
-      "bestHandle": "vladimirreshetnikov"
+      "bestHandle": "jamesyc"
     }
   ],
   "followups": [
