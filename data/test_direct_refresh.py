@@ -140,9 +140,20 @@ class RefreshTests(unittest.TestCase):
                          [bot(report+'\n\nThis result belongs to an older or closed submission. The current issue is not verified by this result.')],
                          [bot(report,'mallory','User')],
                          [bot(report.replace(commit,'f'*40))],
-                         [bot(report.replace('Not verified','Lean Verified'))]]:
+                         [bot(report.replace('Not verified','Lean Verified'))],
+                         # A stale report with a compile error: from 2026-11-26 the sentence has its own paragraph; before,
+                         # it followed the one-line quote on the same line.
+                         [bot(report+'\n\nCompile error:\n\n> `` x `` \n\nThis result belongs to an older or closed submission. The current issue is not verified by this result.\n\nA pass checks')],
+                         [bot(report+'\n\nCompile error:\n\n> x &#96;N&#96;This result belongs to an older or closed submission. The current issue is not verified by this result.\n\nA pass checks')]]:
             with self.subTest(comments=comments[:1]):
                 self.assertEqual(set(run(comments)[0]),{'direct-issue-5'})
+        # Lead, 2026-11-26: a crafted compile error that quotes a NOT_FINAL sentence does not keep a failed row listed,
+        # in the current code-span quote or in the older one-line quote.
+        for text in r.NOT_FINAL:
+            for crafted in [report+f'\n\nCompile error:\n\n> `` {text} ``\n\nA pass checks the stated bound.',
+                            report+f'\n\nCompile error:\n\n> {text}A pass checks the stated bound.\n\nTo submit a corrected proof, open a new issue.']:
+                with self.subTest(crafted=crafted[-90:]):
+                    self.assertEqual(run([bot(crafted)])[0],{})
 
     def test_a_late_claimed_only_end_that_says_not_verified_stays_listed_as_claimed(self):
         # The verifier's late claimed-only path posts a Not verified report with 'remains Claimed; no proof run

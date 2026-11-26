@@ -43,7 +43,15 @@ OTHER={'average-sensitivity':dict(bound='\\mathrm{{AS}}(f)\\le {value}d\\sqrt n'
 SMOKE_NUMBERS={1,2}
 # A 'Not verified' report with one of these texts is not the final result of this version: it belongs to an
 # older or closed submission, or it ends a claimed-only submission that stays listed as Claimed.
-NOT_FINAL=('belongs to an older or closed submission','remains Claimed; no proof run started')
+# The verifier's fixed sentences that make a Not verified report NOT final (bigospeedrun/verifier scripts/submissions.py report()).
+# One counts only at the end of a paragraph (Lead, 2026-11-26): the report quotes the submitter's compile error, so the
+# sentence can also appear inside that quote. The quote is one line: from 2026-11-26 a paragraph of its own that ends with
+# its code-span fence; before, the next fixed part of the report followed it on the same line, so the paragraph of an
+# older report also ends with fixed text, never with the quote.
+NOT_FINAL=('This result belongs to an older or closed submission. The current issue is not verified by this result.',
+           'The issue or current record changed before compilation. This submission remains Claimed; no proof run started.')
+def not_final(body):
+    return any(paragraph.strip().endswith(text) for paragraph in re.split(r'\r?\n\s*\n',body) for text in NOT_FINAL)
 CLAIMED_ONLY_NOTE='Submitted bound; it did not beat the best Lean Verified result, so no proof run started.'
 # Lead, 2026-11-02 (verifier #99): a check that ran out of time is not a verdict. The row stays listed as Claimed with
 # this status; its feed state is 'failed', so it never posts (records-feed.ts), also when it comes back after a refresh.
@@ -285,7 +293,7 @@ class Importer:
         else:
             comments=self.api.pages(PREFIX+f'issues/{number}/comments')
             result=any((c.get('user') or {}).get('login')=='github-actions[bot]' and (c.get('user') or {}).get('type')=='Bot'
-                       and first.match(c.get('body') or '') and not any(text in (c.get('body') or '') for text in NOT_FINAL)
+                       and first.match(c.get('body') or '') and not not_final(c.get('body') or '')
                        for c in comments)
         self.not_verified_cache[str(number)]=dict(version=version,updated_at=item.get('updated_at'),not_verified=result)
         return result
