@@ -642,3 +642,16 @@ test('the 19/27 row of the critical-line race is the one planned post, as a new 
  assert(!initial.reserved.includes(key),'not reserved before the post');
  assert.deepEqual(plan(first.state,next,[]).messages,[]);
 });
+// #225 (Lead, 2026-11-26): the post keeps the new bound apart from EVERY other score of the board, not only from the best
+// other row. With the best other row only, 9999/20000 was kept apart from 0.4875755 at 3 places and posted as 0.5, the
+// value of the Lean Verified 1/2 row.
+test('a post keeps its bound apart from every other score of the board; rows with the same exact score are skipped',()=>{
+ const s=(id:string,score:string,evidence='Claimed',relation='attained'):FeedRecord=>({id,score,relation,evidence,authors:['A'],bound:plainBound('subset-sum',score,relation)});
+ const rows=[s('lv','1/2','Lean Verified'),s('a','49/100'),s('jv1000','975151/2000000'),s('i225','9999/20000')];
+ const board:FeedBoard={slug:'subset-sum',name:'Subset Sum',url:'https://bigospeedrun.com/subset-sum',leader:'i225',direction:'lower',records:rows,table:'big-o'};
+ assert.equal(postBound(board,rows[3]),'O(2^(0.49995n))');
+ // A row with the same exact score (another relation, a refile, another written form) never separates: the digits do not
+ // run to the table cap.
+ const same={...board,records:[...rows,s('strict','9999/20000','Claimed','strict-upper-bound'),s('refile','19998/40000')]};
+ assert.equal(postBound(same,rows[3]),'O(2^(0.49995n))');
+});

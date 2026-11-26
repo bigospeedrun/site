@@ -107,18 +107,20 @@ export function directedDecimal(score:string,up:boolean,{sig,places}:{sig?:numbe
  if(text.length<=shift)text='0'.repeat(shift-text.length+1)+text;
  return (text.slice(0,text.length-shift)+'.'+text.slice(text.length-shift)).replace(/0+$/,'').replace(/\.$/,'');
 }
-// The bound text of a post on a Big O board: digits from the new bound and the row it beats (the best other
-// row), at least 3, and more while the two would look equal, up to the site's table cap (displayDigits.table),
-// so rows that agree beyond the cap still show the same value. The site tables keep their board precision.
+// The bound text of a post on a Big O board: at least 3 digits, and more while the new bound would look equal to
+// ANY other score of the board, up to the site's table cap (displayDigits.table), so rows that agree beyond the cap
+// still show the same value. The site tables keep their board precision. Comparing only with the best other row
+// failed on #225 (Lead, 2026-11-26): 9999/20000 was kept apart from 0.4875755 at 3 places and posted as 0.5, the
+// value of the Lean Verified 1/2 row. Rows with the same exact score (another relation, a refile) never separate,
+// so they are skipped.
 export function postBound(board:FeedBoard,record:FeedRecord,minDigits=3):string {
  if(board.frontier)return record.bound;
  const kappa=board.slug==='integer-multiplication'||board.slug==='exact-dft';
  // Toward the weaker bound: down on a higher-is-better board (kappa, 3-SAT alpha), up otherwise.
  const higher=kappa||board.direction==='higher';
  const up=!higher;
- const others=board.records.filter(r=>r.score!==record.score||r.relation!==record.relation);
- const better=(a:string,b:string)=>{const [an,ad='1']=a.split('/'),[bn,bd='1']=b.split('/');const x=BigInt(an)*BigInt(bd),y=BigInt(bn)*BigInt(ad);return higher?x>y:x<y;};
- const beaten=others.reduce<FeedRecord|undefined>((best,r)=>!best||better(r.score,best.score)?r:best,undefined);
+ const same=(a:string,b:string)=>{const [an,ad='1']=a.split('/'),[bn,bd='1']=b.split('/');return BigInt(an)*BigInt(bd)===BigInt(bn)*BigInt(ad);};
+ const others=board.records.filter(r=>!same(r.score,record.score));
  const shown=(score:string,digits:number)=>directedDecimal(score,up,kappa?{sig:digits}:{places:digits});
  let digits=Math.min(minDigits,displayDigits.table);
  // A saving shows the digits of the site's table (Lead, 2026-11-02, after DFT posts of 0.00302 and 0.00312 for the
@@ -126,7 +128,7 @@ export function postBound(board:FeedBoard,record:FeedRecord,minDigits=3):string 
  // The site rounds a saving down too. When the board is pinned at the cap (old rows that agree for 20+ digits, #5270)
  // the post keeps the rule below, so it does not show 20 digits.
  if(kappa){const site=boundPrecision(board.records.map(r=>r.score),true);if(site<displayDigits.table)digits=Math.max(digits,site);}
- while(beaten&&digits<displayDigits.table&&shown(record.score,digits)===shown(beaten.score,digits))digits++;
+ while(digits<displayDigits.table&&others.some(r=>shown(r.score,digits)===shown(record.score,digits)))digits++;
  return plainBound(board.slug,record.score,record.relation,digits,shown(record.score,digits));
 }
 // The bound text of a Lean Verified post on an Other bounds board (Lead, 2026-10-24, after the #62 post that showed the
