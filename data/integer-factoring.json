@@ -9,13 +9,13 @@
   },
   "score": {
     "id": "subexponential-scale",
-    "version": "1",
+    "version": "2",
     "symbol": "s",
-    "definition": "One scale, higher is better. Worst-case time N^{c+o(1)} with c > 0 scores -c (for every fixed epsilon > 0, at most 2^{(c+epsilon)b} for all large b). Time N^{o(1)} = 2^{o(b)} scores 0. Time 2^{b/(log b)^(alpha-o(1))} with alpha > 0 scores alpha (for every fixed epsilon > 0, at most 2^{b/(log b)^(alpha-epsilon)} for all large b). Factors b^{O(1)} do not change a score.",
+    "definition": "One scale, higher is better. Worst-case time N^{c+o(1)} with c > 0 scores -c (for every fixed epsilon > 0, at most 2^{(c+epsilon)b} for all large b). Time N^{o(1)} = 2^{o(b)} scores 0. Time 2^{b/(log b)^(alpha-o(1))} with alpha > 0 scores alpha (for every fixed epsilon > 0, at most 2^{b/(log b)^(alpha-epsilon)} for all large b). Factors b^{O(1)} do not change a score. Time 2^{b^{theta+o(1)}} with 0 <= theta < 1 scores 101 - theta (for every fixed epsilon > 0, at most 2^{b^{theta+epsilon}} for all large b; in N, 2^{(log N)^{theta+o(1)}}), so every such row (a score above 100) ranks above every alpha row (alpha at most 100), and a lower theta ranks higher; b^{O(1)} time is theta = 0, the maximum 101.",
     "direction": "higher-is-better",
     "encoding": "rational-string",
     "minimum": "-1",
-    "maximum": "100"
+    "maximum": "101"
   },
   "checked_at": "2026-10-30",
   "sources": [

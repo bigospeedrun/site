@@ -4,7 +4,7 @@ import type { RecordEntry } from '../lib/types';
 import { evidenceLevels, evidenceName, breakthroughLabel } from '../lib/evidence';
 import { math } from '../lib/math';
 import { initials } from '../lib/avatars';
-import { chartDate, chartWindowScale, chartWindow, chartRecords, chartMaxDays, scoreValue, type ChartEntry } from '../lib/chart';
+import { chartDate, chartWindowScale, chartWindow, chartRecords, chartMaxDays, scoreValue, type ChartEntry, type ChartAxis } from '../lib/chart';
 import type { OtherChart } from '../lib/other-chart';
 // An Other bounds page passes `other` (other-chart.ts): its points, its quantity as the heading, and its classic
 // bound for the dashed line when it has one. It has no problem limit, so without a classic bound there is no dashed line.
@@ -15,12 +15,14 @@ const dataFiles = import.meta.glob('../data/*.json', {eager:true,import:'default
 const source = dataFiles[`../data/${slug}.json`];
 const higher = other ? other.higher : direction==='higher-is-better';
 const factoring = slug==='integer-factoring';
+// Integer factoring plots its three score bands on one monotone axis (chart.ts bandY).
+const axis:ChartAxis|undefined = factoring ? 'bands' : undefined;
 const symbol = other ? other.quantity.split('\\text{ in }')[0] : factoring?'s':slug==='matrix-multiplication'?'t':higher&&slug!=='3sat' ? '\\kappa' : '\\alpha';
 const form = Astro.props.boundLatex ?? (higher ? 'O(n\\log^{1-\\kappa} n)' : slug==='subset-sum' ? 'O(2^{\\alpha n})' : slug==='directed-sssp' ? 'O(n\\log^{\\alpha}n)' : 'O(n^{\\alpha})');
 const limit = other ? undefined : Astro.props.limit ?? scoreValue(higher ? source?.score.maximum??'1' : source?.score.minimum??'0');
 const limitBound = factoring ? 'N^{1/2+o(1)}' : slug==='3sat' ? 'O^*(2^n)' : higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
 const classicRecord = ['apsp','3sum','matrix-multiplication','integer-factoring'].includes(slug) ? source?.records.find((r:any)=>r.id==='classical-baseline') : undefined;
-const classic = other ? other.classic : classicRecord ? scoreValue(classicRecord.score) : undefined;
+const classic = other ? other.classic : classicRecord ? scoreValue(classicRecord.score,axis) : undefined;
 const integer = other?.integer ?? false;
 const dated = records.filter(r=>chartDate(r)!==undefined);
 const entries:ChartEntry[] = other ? other.entries : dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(r.bound),url:r.evidence[0]?.url??'#',avatar:r.authors[0]?.avatar,initials:initials(r.authors[0]?.name??r.title)}));
@@ -33,12 +35,12 @@ for(let mask=0;mask<2**evidenceLevels.length;mask++){
  const levels=new Set<string>(evidenceLevels.filter((_,i)=>mask&(1<<i)).map(l=>l.id));
  const progression=chartRecords(entries,levels,higher);
  for(let days=0;days<=maxDays;days++){
-  for(const tick of chartWindowScale(chartWindow(entries,levels,higher,days*24,progression),limit,days>0,classic,integer).ticks)tickHtml[tick.tex]??=math(tick.tex);
+  for(const tick of chartWindowScale(chartWindow(entries,levels,higher,days*24,progression),limit,days>0,classic,integer,axis).ticks)tickHtml[tick.tex]??=math(tick.tex);
  }
 }
-const scale=chartWindowScale(chartWindow(entries,new Set<string>(defaultLevels),higher),limit,false,classic,integer);
+const scale=chartWindowScale(chartWindow(entries,new Set<string>(defaultLevels),higher),limit,false,classic,integer,axis);
 const defaultDays=Math.min(3,maxDays);
-const payload={entries,higher,limit,classic,...(integer?{integer}:{}),tickHtml,levels:Object.fromEntries(evidenceLevels.map(l=>[l.id,l.name]))};
+const payload={entries,higher,limit,classic,...(integer?{integer}:{}),...(axis?{axis}:{}),tickHtml,levels:Object.fromEntries(evidenceLevels.map(l=>[l.id,l.name]))};
 const omitted=other ? other.omitted : records.length-dated.length;
 ---
 <progress-chart data-chart={JSON.stringify(payload)} aria-label={`${label} record progression`}>
@@ -55,7 +57,7 @@ const omitted=other ? other.omitted : records.length-dated.length;
   {evidenceLevels.map(level=><span class="level-label" role="listitem" aria-label={level.name} title={level.name}><span class:list={['plot-key',level.id]} aria-hidden="true"><svg class="key-ring" viewBox="-12 -12 24 24"><circle r="8.5"/></svg></span><span class="level-name">{level.name}</span><span class="level-short" aria-hidden="true">{level.id==='claimed'?'Claimed':level.id==='human-verified'?'Human':'Lean'}</span></span>)}
  </div></div>
  <div class="plot-area" hidden={!entries.length}>
-  <div class="plot-axis-title"><span set:html={math(symbol)}/> (<span data-scale-name>{scale.log?'log':'linear'}</span> scale)</div>
+  {axis==='bands'?<div class="plot-axis-title">Bound, faster is higher</div>:<div class="plot-axis-title"><span set:html={math(symbol)}/> (<span data-scale-name>{scale.log?'log':'linear'}</span> scale)</div>}
   <svg class="progress-svg" aria-label="Record bounds by date" role="group"></svg>
   <div class="plot-labels" aria-hidden="true"></div>
   <div class="plot-reference" set:html={limit===undefined?'':math(`${symbol}=${limit}:\\ ${limitBound}`)}/>

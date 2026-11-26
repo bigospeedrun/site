@@ -1,11 +1,14 @@
 import type {Problem, RecordEntry} from './types.ts';
-import {boundPrecision, tableBound} from './ranking.ts';
+import {boundPrecision, tableBound, factoringBand} from './ranking.ts';
 import {boardLeaders} from './sssp-board.ts';
 import {evidenceLevels, evidenceName, isBoardEntry, breakthroughLabel, breakthroughDefinition, creditLines, otherReviewPrUrl, type EvidenceLevel, type OtherClaimReview, type OtherReviewRepository} from './evidence.ts';
 import {verifierUrl, verifierProblems, discordUrl, submitChannel, prove2meCampaigns, prove2meCampaignForOther} from './submission.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import {problemLinks, modelPath, modelDisplayName, isPrimaryModel} from './navigation.ts';
 import {closedBoards, closedBoardText, boardNotices, CLOSED_LINK} from './closed-boards.ts';
+
+// Integer factoring ranks every bound on one scale s, higher is better (scaleBand of each row names its band and value).
+const FACTORING_SCALE = 'One scale s, higher is better: time N^{c+o(1)} scores -c; N^{o(1)} scores 0; N^{1/(log log N)^{alpha-o(1)}} scores alpha (at most 100); 2^{(log N)^{theta+o(1)}} = 2^{b^{theta+o(1)}} with 0 <= theta < 1 scores 101 - theta, so it ranks above every alpha, and a lower theta ranks higher. exactScore is s; scaleBand gives the band and its value.';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -131,6 +134,8 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
       const digits = sssp ? 0 : boundPrecision(records.map(r => r.score), p.symbol === 'kappa');
       const leaders = (entries: RecordEntry[]) => boardLeaders(p, entries).map(r => ({
           id: r.id, bound: sssp ? r.bound : tableBound(r, p.symbol === 'kappa', digits), exactScore: r.score, scoreRelation: r.scoreRelation,
+          // Integer factoring's exactScore is a point on its one scale (101 - theta for 2^{b^{theta+o(1)}}), not a bound value.
+          ...(p.slug === 'integer-factoring' ? {scaleBand: factoringBand(r.score)} : {}),
           evidence: evidenceName(r.evidenceLevel), authors: r.authors, ...(r.refiledBy ? {refiledBy: r.refiledBy} : {}), date: r.date,
           dateMeaning: r.dateLabel, assumptions: r.dependencies, comparisonNote: r.comparisonNote,
           ...(r.methodNote ? {method: r.methodNote} : {}),
@@ -145,6 +150,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
       ...(isPrimaryModel(p) && closedBoards[p.slug] ? {closed: closedBoardText(closedBoards[p.slug])} : {}),
       ...(isPrimaryModel(p) && boardNotices[p.slug] ? {note: boardNotices[p.slug].replace(CLOSED_LINK, '$1 ($2)')} : {}),
       ...(p.records.some(r => r.carried) ? {carriesPaths: ['/' + p.slug], carriesNote: 'Every result of the board in carriesPaths also counts on this board, because a deterministic algorithm is a randomized one.'} : {}),
+      ...(p.slug === 'integer-factoring' ? {scoreScale: FACTORING_SCALE} : {}),
       baseline: p.records.find(r => r.id === 'classical-baseline')?.bound ?? null,
       current: leaders(records),
       currentByEvidence: Object.fromEntries(evidenceLevels.map(level => [level.name, leaders(records.filter(r => r.evidenceLevel === level.id))])),

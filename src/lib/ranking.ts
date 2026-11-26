@@ -123,6 +123,33 @@ export function shortFraction(score:string,cap:number=displayDigits.table):strin
  const [n,d]=score.split('/');
  return d!==undefined&&!/^10*$/.test(d)&&n.length+d.length<=cap?`${n}/${d}`:undefined;
 }
+// The theta band (Lead and Nil, 2026-11-26): time 2^{b^{theta+o(1)}} with 0 <= theta < 1 scores 101 - theta, so
+// every theta row (s in (100, 101]) ranks above every alpha row (s <= 100), and a lower theta scores higher. In N:
+// b^{theta+o(1)} = (log N)^{theta+o(1)}, since b = log2 N + O(1) and the o(1) takes up the constant factors.
+// factoringTheta gives theta as a reduced fraction for a score in the band, or undefined for any other score.
+export const FACTORING_THETA_FLOOR='100';
+export function factoringTheta(score:string):string|undefined {
+ if(compare(score,FACTORING_THETA_FLOOR)<=0)return undefined;
+ const [ns,ds='1']=score.split('/');
+ const n=BigInt(ns),d=BigInt(ds),num=101n*d-n;
+ const gcd=(a:bigint,b:bigint):bigint=>b===0n?a:gcd(b,a%b);
+ const g=gcd(num<0n?-num:num,d)||1n;
+ return d/g===1n?String(num/g):`${num/g}/${d/g}`;
+}
+// The band of a factoring score and its value there, for readers of the raw score (the chat): -1/5 is N^{1/5+o(1)}
+// (band 'N-exponent', value 1/5), 0 is N^{o(1)}, 1/2 is alpha = 1/2, 401/4 is theta = 3/4.
+export type FactoringBand = {band: 'N-exponent' | 'N^o(1)' | 'alpha' | 'theta'; value: string};
+export function factoringBand(score:string):FactoringBand {
+ const sign=compare(score,'0');
+ if(sign<0)return {band:'N-exponent',value:score.slice(1)};
+ if(sign===0)return {band:'N^o(1)',value:'0'};
+ const theta=factoringTheta(score);
+ return theta===undefined?{band:'alpha',value:score}:{band:'theta',value:theta};
+}
+// theta is lower-is-better: exact when short, otherwise rounded up, so the shown bound is never stronger.
+function factoringThetaText(theta:string,cap:number):string {
+ return shortFraction(theta,cap)??exactExponent(theta,cap).replace(/^\\frac\{(\d+)\}\{(\d+)\}$/,'$1/$2');
+}
 function factoringAlpha(score:string,cap:number):string {
  return shortFraction(score,cap)??exactExponentDown(score,cap).replace(/^\\frac\{(\d+)\}\{(\d+)\}$/,'$1/$2');
 }
@@ -130,6 +157,8 @@ export function factoringBound(score:string,cap:number=displayDigits.table):stri
  const sign=compare(score,'0');
  if(sign===0)return 'N^{o(1)}';
  if(sign<0)return `N^{${exactExponent(score.slice(1),cap)}+o(1)}`;
+ const theta=factoringTheta(score);
+ if(theta!==undefined)return theta==='0'?'2^{(\\log N)^{o(1)}}':`2^{(\\log N)^{${factoringThetaText(theta,cap)}+o(1)}}`;
  return `N^{1/(\\log\\log N)^{${factoringAlpha(score,cap)}-o(1)}}`;
 }
 // The same bound as plain text, for record posts.
@@ -138,9 +167,11 @@ export function factoringPlainBound(score:string,cap:number=displayDigits.table)
  const sign=compare(score,'0');
  if(sign===0)return 'N^o(1)';
  if(sign<0)return `N^(${value(score.slice(1))} + o(1))`;
+ const theta=factoringTheta(score);
+ if(theta!==undefined)return theta==='0'?'2^((log N)^o(1))':`2^((log N)^(${factoringThetaText(theta,cap)} + o(1)))`;
  return `N^(1/(log log N)^(${factoringAlpha(score,cap)} - o(1)))`;
 }
-const factoringForm=/N\^|\\log b/;
+const factoringForm=/N\^|\\log b|\\log N\)\^/;
 export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number,cap:number=displayDigits.table):string {
  if(factoringForm.test(record.bound))return factoringBound(record.score,cap);
  const exponent=kappa?'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);

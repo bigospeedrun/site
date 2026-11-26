@@ -1,8 +1,10 @@
 import {getEvidenceLevels} from '../../lib/evidence-filters';
 import { breakthroughLabel } from '../../lib/evidence';
-import { chartWindow, chartWindowScale, chartTimeTicks, chartMaxDays, chartShowsYear, scoreValue, type ChartEntry } from '../../lib/chart';
+import { chartWindow, chartWindowScale, chartTimeTicks, chartMaxDays, chartShowsYear, scoreValue, type ChartEntry, type ChartAxis } from '../../lib/chart';
 interface Payload {
  entries: ChartEntry[]; higher: boolean; limit?: number; classic?: number; integer?: boolean;
+ // 'bands': integer factoring's three score bands (chart.ts bandY); limit and classic are already band y values.
+ axis?: ChartAxis;
  // KaTeX renders at build time; the browser looks up each tick label by its TeX.
  tickHtml: Record<string,string>;
  levels: Record<string,string>;
@@ -130,11 +132,11 @@ class ProgressChart extends HTMLElement {
   this.showEntry(mark.entry,mark.x,mark.y,this.clientWidth,plot.getBoundingClientRect().height);
  }
  private draw(){
-  const {entries,higher,limit,classic,integer}=this.data;
+  const {entries,higher,limit,classic,integer,axis}=this.data;
   const levels=new Set(this.levels);
   const view=chartWindow(entries,levels,higher,this.days*24);
   const {start,end,carry,records}=view;
-  const scale=chartWindowScale(view,limit,this.days>0,classic,integer);
+  const scale=chartWindowScale(view,limit,this.days>0,classic,integer,axis);
   this.querySelectorAll('[data-scale-name]').forEach(label=>label.textContent=scale.log?'log':'linear');
   const plot=this.querySelector<SVGSVGElement>('svg.progress-svg')!;
   const labels=this.querySelector<HTMLElement>('.plot-labels')!;
@@ -216,7 +218,7 @@ class ProgressChart extends HTMLElement {
    axis.textContent=dateOnlyAxis?'Date':'Date (local time)';plot.append(axis);
   }
   if(records.length||carry){
-   const path=(carry?`M ${left} ${y(scoreValue(carry.score))} `:'')+records.map((e,i)=>`${i||carry?'H':'M'} ${x(e.time)} ${i||carry?'V':''} ${y(scoreValue(e.score))}`).join(' ')+` H ${right}`;
+   const path=(carry?`M ${left} ${y(scoreValue(carry.score,axis))} `:'')+records.map((e,i)=>`${i||carry?'H':'M'} ${x(e.time)} ${i||carry?'V':''} ${y(scoreValue(e.score,axis))}`).join(' ')+` H ${right}`;
    const clipId=`chart-clip-${crypto.randomUUID()}`;
    const clip=svg('clipPath',{id:clipId});clip.append(svg('rect',{x:left,y:top,width:right-left,height:bottom-top}));plot.append(clip);
    plot.append(svg('path',{d:path,class:'plot-record','clip-path':`url(#${clipId})`}));
@@ -227,7 +229,7 @@ class ProgressChart extends HTMLElement {
   const clip=svg('clipPath',{id:avatarClip,clipPathUnits:'objectBoundingBox'});clip.append(svg('circle',{cx:.5,cy:.5,r:.5}));plot.append(clip);
   this.marks=[];
   records.forEach((entry,index)=>{
-   const px=x(entry.time),py=y(scoreValue(entry.score));
+   const px=x(entry.time),py=y(scoreValue(entry.score,axis));
    const point=svg('g',{transform:`translate(${px},${py})`,class:`plot-point ${entry.level}`,tabindex:0,role:'button','aria-pressed':String(this.pinnedId===entry.id),'aria-label':`Player: ${entry.author}, ${this.entryLevel(entry)}. Show bound and source.`, 'data-entry-id':entry.id});
    this.drawAvatar(point,entry,radius,avatarClip);
    const mark={entry,x:px,y:py,point};

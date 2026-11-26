@@ -7,7 +7,32 @@ export interface ChartEntry {
  avatar?: string; initials?: string;
 }
 
-export const scoreValue = (score: string): number => scoreNumber(score);
+// The chart's y value of a score. Most boards plot the score itself. 'bands' is the integer factoring scale (Lead and
+// Nil, 2026-11-26), whose scores lie in three bands that a linear axis would squash: N^{c+o(1)} (s = -c <= 0) plots at
+// s; alpha (0 < s <= 100) at alpha/(1+alpha), in (0, 1); theta (100 < s <= 101, s = 101 - theta) at 2 - theta, in
+// (1, 2]. The map keeps the order, so the record line stays right; the ticks name the band values, not y.
+export type ChartAxis = 'bands';
+export const bandY = (s: number): number => s <= 0 ? s : s <= 100 ? s/(1+s) : s-99;
+export const scoreValue = (score: string, axis?: ChartAxis): number => axis==='bands' ? bandY(scoreNumber(score)) : scoreNumber(score);
+// A band value as a short label: a fraction with a denominator up to 12, otherwise 3 significant digits.
+function bandNumber(x: number): string {
+ for(let d=1;d<=12;d++){const n=Math.round(x*d);if(Math.abs(x*d-n)<1e-9)return d===1?String(n):`${n}/${d}`;}
+ return String(Number(x.toPrecision(3)));
+}
+export function bandLabel(y: number): string {
+ if(y<0)return `N^{${bandNumber(-y)}}`;
+ if(y===0)return 'N^{o(1)}';
+ if(y<1)return `\\alpha=${bandNumber(y/(1-y))}`;
+ return `\\theta=${bandNumber(2-y)}`;
+}
+// Ticks at the plotted values themselves (and at N^{o(1)} when the range crosses it), each named by its band value.
+export function bandScale(values: number[]) {
+ const all=[...new Set(values.length?values:[0])].sort((a,b)=>a-b);
+ const min=all[0],max=all[all.length-1];
+ if(min<0&&max>0&&!all.includes(0))all.push(0);
+ const span=max-min||1;
+ return {log:false,lo:min-span*.06,hi:max+span*.1,ticks:all.sort((a,b)=>a-b).map(value=>({value,tex:bandLabel(value)}))};
+}
 
 // A source or commit date is usable even when scientific priority is unknown.
 // Observation timestamps and publication years do not establish a dated result.
@@ -70,7 +95,12 @@ export function chartTimeTicks(start:number,end:number,maxTicks:number) {
 }
 
 // `integer`: every value is a whole number (a count, such as Snaky's moves), so the linear ticks are whole numbers too.
-export function chartWindowScale(view: ReturnType<typeof chartWindow>, limit: number | undefined, zoomed: boolean, classic?: number, integer = false) {
+export function chartWindowScale(view: ReturnType<typeof chartWindow>, limit: number | undefined, zoomed: boolean, classic?: number, integer = false, axis?: ChartAxis) {
+ if(axis==='bands'){
+  const records=[...(view.carry?[view.carry]:[]),...view.records];
+  // As below: with a classic bound, the distant trivial limit (trial division) stays outside the axis.
+  return bandScale([...records.map(r=>scoreValue(r.score,axis)),...(classic!==undefined?[classic]:!zoomed&&limit!==undefined?[limit]:[])]);
+ }
  // Polynomial races have tiny improvements near the classic exponent. Keep
  // their distant trivial limit outside the axis, and retain the entering record
  // so zoom never clips the horizontal line or hides its next improvement.
