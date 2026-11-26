@@ -360,6 +360,49 @@
       }
     },
     {
+      "id": "direct-issue-226",
+      "kind": "improvement",
+      "score": "9999/20000",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-26T15:53:14Z",
+      "spec_version": "1",
+      "title": "pompompur-in direct subset-sum submission",
+      "authors": [
+        {
+          "name": "OpenAI",
+          "url": "https://github.com/openai"
+        },
+        {
+          "name": "4latte",
+          "url": "https://github.com/pompompur-in"
+        },
+        {
+          "name": "Chiikabu Labs"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/bigospeedrun/verifier/issues/226",
+      "source_commit": "a7c2c63e3f3017e8f011d6f061f93adc6bffd947",
+      "artifact": {
+        "path": "sources/direct-issue-226-submission.json",
+        "sha256": "0b5c52733fed0ceeab4bb02cc71eff3383e68e3bd10e4da8cd5e3e72e226e463"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/bigospeedrun/verifier/issues/226",
+        "theorem": "Race.bound",
+        "certificate_path": null
+      },
+      "dependencies": [],
+      "upstream_status": "open",
+      "upstream_status_at": "2026-11-26T15:53:14Z",
+      "site_observed_at": "2026-11-26T16:23:48Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/pompompur-in/subset-sum-lean/tree/a7c2c63e3f3017e8f011d6f061f93adc6bffd947"
+      }
+    },
+    {
       "id": "direct-issue-94",
       "kind": "improvement",
       "score": "3/4",
@@ -568,6 +611,25 @@
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41489680877",
       "verification": "passed"
     },
+    "direct-issue-226": {
+      "checked_at": "2026-11-26",
+      "source_url": "https://github.com/pompompur-in/subset-sum-lean/tree/a7c2c63e3f3017e8f011d6f061f93adc6bffd947",
+      "repo": "pompompur-in/subset-sum-lean",
+      "site_badge": false,
+      "eligible_for_record": false,
+      "proof_status": "Submitted bound; independent verification has not passed.",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "subset-sum/randomized-word-ram/v1",
+      "publication_date": "2026-11-26T15:53:14Z",
+      "publication_date_precision": "date-time",
+      "publication_date_role": "Submission opened",
+      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/226",
+      "direct_submission": true,
+      "route": "issue",
+      "credit_note": "Joint credit: OpenAI (the algorithm, from its paper \"Subset Sum in Time O(2^0.49n)\" of 4 October 2026) and 4latte and Chiikabu Labs (the Lean formalization, with its parameters set for the exponent 9999/20000). Claude Duet by Anthropic assisted.",
+      "verification": "pending"
+    },
     "direct-issue-94": {
       "checked_at": "2026-11-26",
       "source_url": "https://github.com/darkhipo/subset-sum-mitm/blob/8b105f01848fc0e370abfa3a23ed5c3de463f321/Submission.lean",
@@ -588,5 +650,5 @@
       "verification": "passed"
     }
   },
-  "updated_at": "2026-11-26T15:21:55Z"
+  "updated_at": "2026-11-26T16:23:48Z"
 }
