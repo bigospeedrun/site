@@ -15,17 +15,19 @@ const dataFiles = import.meta.glob('../data/*.json', {eager:true,import:'default
 const source = dataFiles[`../data/${slug}.json`];
 const higher = other ? other.higher : direction==='higher-is-better';
 const factoring = slug==='integer-factoring';
+// Randomized integer factoring plots theta itself on a linear axis, lower is better.
+const randomFactoring = slug==='integer-factoring-randomized';
 // Integer factoring plots its three score bands on one monotone axis (chart.ts bandY).
 const axis:ChartAxis|undefined = factoring ? 'bands' : undefined;
-const symbol = other ? other.quantity.split('\\text{ in }')[0] : factoring?'s':slug==='matrix-multiplication'?'t':higher&&slug!=='3sat' ? '\\kappa' : '\\alpha';
+const symbol = other ? other.quantity.split('\\text{ in }')[0] : factoring?'s':randomFactoring?'\\theta':slug==='matrix-multiplication'?'t':higher&&slug!=='3sat' ? '\\kappa' : '\\alpha';
 const form = Astro.props.boundLatex ?? (higher ? 'O(n\\log^{1-\\kappa} n)' : slug==='subset-sum' ? 'O(2^{\\alpha n})' : slug==='directed-sssp' ? 'O(n\\log^{\\alpha}n)' : 'O(n^{\\alpha})');
 const limit = other ? undefined : Astro.props.limit ?? scoreValue(higher ? source?.score.maximum??'1' : source?.score.minimum??'0');
-const limitBound = factoring ? 'N^{1/2+o(1)}' : slug==='3sat' ? 'O^*(2^n)' : higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
-const classicRecord = ['apsp','3sum','matrix-multiplication','integer-factoring'].includes(slug) ? source?.records.find((r:any)=>r.id==='classical-baseline') : undefined;
+const limitBound = factoring ? 'N^{1/2+o(1)}' : randomFactoring ? '2^{(\\log N)^{o(1)}}' : slug==='3sat' ? 'O^*(2^n)' : higher || slug==='directed-sssp' ? 'O(n)' : slug==='subset-sum' ? (form.includes('*')?'O^*(1)':'O(1)') : limit===1 ? 'O(n)' : limit===0 ? 'O(1)' : `O(n^{${limit}})`;
+const classicRecord = ['apsp','3sum','matrix-multiplication','integer-factoring','integer-factoring-randomized'].includes(slug) ? source?.records.find((r:any)=>r.id==='classical-baseline') : undefined;
 const classic = other ? other.classic : classicRecord ? scoreValue(classicRecord.score,axis) : undefined;
 const integer = other?.integer ?? false;
 const dated = records.filter(r=>chartDate(r)!==undefined);
-const entries:ChartEntry[] = other ? other.entries : dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(r.bound),url:r.evidence[0]?.url??'#',avatar:r.authors[0]?.avatar,initials:initials(r.authors[0]?.name??r.title)}));
+const entries:ChartEntry[] = other ? other.entries : dated.map(r=>({id:r.id,isBreakthrough:r.isBreakthrough,repoId:r.repoId,score:r.score,scoreRelation:r.scoreRelation,...(r.lConstant!==undefined?{lConstant:r.lConstant}:{}),level:r.evidenceLevel,time:Date.parse(chartDate(r)!),date:chartDate(r)!,author:r.authors.map(a=>a.name).join(', ')||r.title,boundHtml:math(r.bound),url:r.evidence[0]?.url??'#',avatar:r.authors[0]?.avatar,initials:initials(r.authors[0]?.name??r.title)}));
 const defaultLevels=evidenceLevels.map(l=>l.id);
 const maxDays=chartMaxDays(entries);
 // The browser computes each scale itself. KaTeX runs only here, so the build
@@ -65,7 +67,8 @@ const omitted=other ? other.omitted : records.length-dated.length;
  </div>
  {other?.classicBound&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math(other.classicBound)}/>.</p>}
  {!other&&classic!==undefined&&factoring&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math('s=-1/5')}/> (<span set:html={math('N^{1/5+o(1)}')}/>). Trial division, <span set:html={math('s=-1/2')}/> (<span set:html={math(limitBound)}/>), is below this range.</p>}
- {!other&&classic!==undefined&&!factoring&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math(`O(n^{${classic}${slug==='matrix-multiplication'?'+\\varepsilon':''}})`)}/>. The trivial lower bound <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>) is below this range.</p>}
+ {!other&&classic!==undefined&&randomFactoring&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math('\\theta=1/2')}/> (<span set:html={math('2^{(\\log N)^{1/2+o(1)}}')}/>). The trivial lower bound <span set:html={math('\\theta=0')}/> (<span set:html={math(limitBound)}/>) is below this range.</p>}
+ {!other&&classic!==undefined&&!factoring&&!randomFactoring&&<p class="plot-reference-note">The dashed line marks the classic bound <span set:html={math(`O(n^{${classic}${slug==='matrix-multiplication'?'+\\varepsilon':''}})`)}/>. The trivial lower bound <span set:html={math(`${symbol}=${limit}`)}/> (<span set:html={math(limitBound)}/>) is below this range.</p>}
  <form class="plot-ranges" role="group" aria-label="Date range" hidden={!entries.length||maxDays<2} data-range-form>
   <button type="button" data-range-all aria-pressed="true">All</button>
   <label class="range-days" data-range-days>Last <input type="number" name="days" min="1" max={maxDays} step="1" value={defaultDays} inputmode="numeric" required/> <span data-days-unit>{defaultDays===1?'day':'days'}</span></label>

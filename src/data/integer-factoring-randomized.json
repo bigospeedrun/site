@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "problem_id": "integer-factoring-randomized/randomized-bit-model",
+  "model": {
+    "id": "randomized-bit-model",
+    "version": "1",
+    "description": "Randomized integer factoring: given an integer N >= 2 in binary, with b bits, output its complete factorization into primes. The algorithm can use random bits: independent fair coins, each read at cost one. On every input and every run, the output must be correct, and the algorithm must halt with probability 1 (a Las Vegas algorithm). Time is the expected number of bit operations, in the worst case over all inputs N with b bits (steps of a multitape Turing machine or of a word RAM with O(log b)-bit words: an expected time T on one model gives an expected time T^{O(1)} on the other, and a polynomial in the time does not change theta. The second ranking key, the constant c of L_N[theta, c], uses the multitape Turing machine time, because squaring the time doubles c; a RAM bound converts with its own overhead). One algorithm for all N. Output of only the smallest prime factor gives the same scores (the complete factorization takes at most b such searches, and it contains the smallest prime factor). A deterministic algorithm also qualifies. A bound must be unconditional: a result that assumes an unproved hypothesis does not score. A hypothesis counts as met when this site lists it as a Lean Verified theorem; today, that is the generalized Riemann hypothesis for Dirichlet L-functions, which Levent Alpöge proved (Lean Verified on the Quasi-Riemann hypothesis board).",
+    "definition_url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0"
+  },
+  "score": {
+    "id": "theta-scale",
+    "version": "1",
+    "symbol": "theta",
+    "definition": "theta, lower is better. Expected time 2^{(log N)^{theta+o(1)}} = 2^{b^{theta+o(1)}} with 0 <= theta <= 1 scores theta: for every fixed epsilon > 0, the expected time is at most 2^{b^{theta+epsilon}} for all large b. Factors b^{O(1)} do not change a score. A time L_N[a, c] = e^{(c+o(1))(ln N)^a (ln ln N)^{1-a}} with 0 < a < 1 scores theta = a, whatever the constant c > 0 is. Rows with the same theta rank by c, lower is better, with c of the multitape Turing machine time (l_constant; the row shows L_N[theta, c]); a row that states no c ranks after every row that states one. Then rows rank by evidence level, then by date.",
+    "direction": "lower-is-better",
+    "encoding": "rational-string",
+    "minimum": "0",
+    "maximum": "1"
+  },
+  "checked_at": "2026-11-27",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0",
+      "checked_at": "2026-11-27"
+    }
+  ],
+  "records": [
+    {
+      "id": "classical-baseline",
+      "kind": "baseline",
+      "score": "1/2",
+      "l_constant": "1",
+      "tier": "claimed",
+      "submitted_at": null,
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-27T03:45:00Z",
+      "site_observed_at": "2026-11-27T03:45:00Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0"
+      },
+      "spec_version": "1",
+      "title": "H. W. Lenstra, Jr. and Carl Pomerance (1992), A rigorous time bound for factoring integers",
+      "authors": [
+        {
+          "name": "H. W. Lenstra, Jr. and Carl Pomerance (1992), A rigorous time bound for factoring integers"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0",
+      "artifact": {
+        "path": "sources/integer-factoring-randomized-baseline.json",
+        "sha256": "29ffc47530420ea1564a9ce535606b0c93f3598c668881f8a0c08d2608e6c15b"
+      },
+      "evidence": {
+        "paper_url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0",
+        "theorem": "Main theorem (abstract)",
+        "certificate_path": null
+      },
+      "dependencies": []
+    }
+  ],
+  "record_metadata": {
+    "classical-baseline": {
+      "checked_at": "2026-11-27",
+      "eligible_for_record": true,
+      "proof_status": "Published Las Vegas bound (J. Amer. Math. Soc. 1992); no site proof check.",
+      "publication_year": 1992,
+      "publication_date_precision": "year",
+      "publication_source_url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring-randomized/randomized-bit-model/v1"
+    }
+  },
+  "updated_at": "2026-11-27T03:45:00Z"
+}

@@ -20,16 +20,24 @@ export function decimal(score: string): string {
 // Positive when a beats b. An open endpoint is weaker than an attained value at the same
 // score in both directions: a kappa endpoint gives every saving below it, an exponent
 // endpoint every exponent above it (n^(a+o(1)) is weaker than O(n^a)).
-function better(a:{score:string;scoreRelation?:string},b:{score:string;scoreRelation?:string},direction:string):number {
+// At an equal score and relation, the constant c of L_N[theta, c] decides (lConstantOrder).
+function better(a:{score:string;scoreRelation?:string;lConstant?:string},b:{score:string;scoreRelation?:string;lConstant?:string},direction:string):number {
  const open=(r:{scoreRelation?:string})=>r.scoreRelation==='strict-upper-bound'?1:0;
- return (direction==='higher-is-better'?1:-1)*compare(a.score,b.score)||open(b)-open(a);
+ return (direction==='higher-is-better'?1:-1)*compare(a.score,b.score)||open(b)-open(a)||lConstantOrder(a,b);
+}
+// The randomized integer factoring board (Lead, 2026-11-27): rows with the same theta rank by the constant c of their
+// bound L_N[theta, c] = e^{(c+o(1))(ln N)^theta (ln ln N)^{1-theta}}, lower is better. A row with no stated c ranks after
+// every row with one. Positive when a beats b; 0 when neither row states c (every other board).
+export function lConstantOrder(a:{lConstant?:string},b:{lConstant?:string}):number {
+ if(a.lConstant===undefined||b.lConstant===undefined)return (a.lConstant===undefined?0:1)-(b.lConstant===undefined?0:1);
+ return compare(b.lConstant,a.lConstant);
 }
 // Best first. Of equal bounds, the higher evidence level first (evidenceOrder), then the earlier row. Equal bounds share a rank.
-export function ranked<T extends {score:string;scoreRelation?:string;date:string;repoId:number;id:string;evidenceLevel?:string}>(records:T[], direction:string, level:(record:T)=>string|undefined=record=>record.evidenceLevel) {
+export function ranked<T extends {score:string;scoreRelation?:string;lConstant?:string;date:string;repoId:number;id:string;evidenceLevel?:string}>(records:T[], direction:string, level:(record:T)=>string|undefined=record=>record.evidenceLevel) {
  const sorted=[...records].sort((a,b)=>better(b,a,direction)||evidenceOrder(level(b))-evidenceOrder(level(a))||a.date.localeCompare(b.date)||a.repoId-b.repoId||a.id.localeCompare(b.id));
  let rank=1;return sorted.map((record,i)=>{if(i&&better(record,sorted[i-1],direction)!==0)rank=i+1;return {record,rank,tie:i>0&&better(record,sorted[i-1],direction)===0}});
 }
-export function progression<T extends {score:string;scoreRelation?:string;date:string;repoId:number;id:string}>(records:T[], direction:string):T[]{
+export function progression<T extends {score:string;scoreRelation?:string;lConstant?:string;date:string;repoId:number;id:string}>(records:T[], direction:string):T[]{
  const ordered=[...records].sort((a,b)=>a.date.localeCompare(b.date)||a.repoId-b.repoId||a.id.localeCompare(b.id));
  const best:T[]=[];for(const r of ordered){const prev=best.at(-1);if(!prev||better(r,prev,direction)>0)best.push(r)}return best;
 }
@@ -153,12 +161,35 @@ function factoringThetaText(theta:string,cap:number):string {
 function factoringAlpha(score:string,cap:number):string {
  return shortFraction(score,cap)??exactExponentDown(score,cap).replace(/^\\frac\{(\d+)\}\{(\d+)\}$/,'$1/$2');
 }
+// The time 2^{(log N)^{theta+o(1)}} of a theta (the deterministic board's theta band, and the score of the randomized board).
+export function thetaBound(theta:string,cap:number=displayDigits.table):string {
+ return theta==='0'?'2^{(\\log N)^{o(1)}}':`2^{(\\log N)^{${factoringThetaText(theta,cap)}+o(1)}}`;
+}
+export function thetaPlainBound(theta:string,cap:number=displayDigits.table):string {
+ return theta==='0'?'2^((log N)^o(1))':`2^((log N)^(${factoringThetaText(theta,cap)} + o(1)))`;
+}
+// The constant c of L_N[theta, c], exact: an integer, a finite decimal, else a fraction.
+function lConstantText(c:string,latex:boolean):string {
+ const [n,d=1n]=c.split('/').map(BigInt);
+ let rest=d;for(const p of [2n,5n])while(rest%p===0n)rest/=p;
+ if(rest!==1n)return latex?`\\tfrac{${n}}{${d}}`:`${n}/${d}`;
+ let places=0;while(n*10n**BigInt(places)%d!==0n)places++;
+ const digits=(n*10n**BigInt(places)/d).toString().padStart(places+1,'0');
+ return places?digits.slice(0,-places)+'.'+digits.slice(-places):digits;
+}
+// The bound L_N[theta, c] of a row that states c (the randomized integer factoring board), in KaTeX and as plain text.
+export function lBound(theta:string,c:string,cap:number=displayDigits.table):string {
+ return `L_N[${factoringThetaText(theta,cap)},\\,${lConstantText(c,true)}]`;
+}
+export function lPlainBound(theta:string,c:string,cap:number=displayDigits.table):string {
+ return `L_N[${factoringThetaText(theta,cap)}, ${lConstantText(c,false)}]`;
+}
 export function factoringBound(score:string,cap:number=displayDigits.table):string {
  const sign=compare(score,'0');
  if(sign===0)return 'N^{o(1)}';
  if(sign<0)return `N^{${exactExponent(score.slice(1),cap)}+o(1)}`;
  const theta=factoringTheta(score);
- if(theta!==undefined)return theta==='0'?'2^{(\\log N)^{o(1)}}':`2^{(\\log N)^{${factoringThetaText(theta,cap)}+o(1)}}`;
+ if(theta!==undefined)return thetaBound(theta,cap);
  return `N^{1/(\\log\\log N)^{${factoringAlpha(score,cap)}-o(1)}}`;
 }
 // The same bound as plain text, for record posts.
@@ -168,11 +199,13 @@ export function factoringPlainBound(score:string,cap:number=displayDigits.table)
  if(sign===0)return 'N^o(1)';
  if(sign<0)return `N^(${value(score.slice(1))} + o(1))`;
  const theta=factoringTheta(score);
- if(theta!==undefined)return theta==='0'?'2^((log N)^o(1))':`2^((log N)^(${factoringThetaText(theta,cap)} + o(1)))`;
+ if(theta!==undefined)return thetaPlainBound(theta,cap);
  return `N^(1/(log log N)^(${factoringAlpha(score,cap)} - o(1)))`;
 }
 const factoringForm=/N\^|\\log b|\\log N\)\^/;
-export function tableBound(record:{score:string;scoreRelation?:string;bound:string},kappa:boolean,digits:number,cap:number=displayDigits.table):string {
+// scoreScale 'theta': the score is theta itself (the randomized integer factoring board), not a point of the deterministic scale.
+export function tableBound(record:{score:string;scoreRelation?:string;bound:string;scoreScale?:'theta';lConstant?:string},kappa:boolean,digits:number,cap:number=displayDigits.table):string {
+ if(record.scoreScale==='theta')return record.lConstant!==undefined?lBound(record.score,record.lConstant,cap):thetaBound(record.score,cap);
  if(factoringForm.test(record.bound))return factoringBound(record.score,cap);
  const exponent=kappa?'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);
  const power=exponent+(record.scoreRelation==='strict-upper-bound'||record.bound.includes('\\varepsilon')?'+\\varepsilon':'');

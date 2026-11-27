@@ -11,6 +11,7 @@ export const pageDescriptions: Record<string,string> = {
  '/subset-sum': 'Compare subset sum bounds, their evidence, and progress in exponential running time.',
  '/3sat': 'Compare 3-SAT bounds, their evidence, and progress in subexponential running time.',
  '/integer-factoring': 'Compare deterministic integer factoring bounds, their evidence, and progress toward subexponential time.',
+ '/integer-factoring-randomized': 'Compare randomized integer factoring bounds that are always correct, their evidence, and progress in the power of log N in the exponent.',
  '/exact-dft': 'Compare exact discrete Fourier transform bounds, their evidence, and progress below n log n time.',
  '/directed-sssp': 'Compare directed shortest path bounds, their evidence, and progress in running time.',
  '/apsp/randomized-word-ram': 'Compare randomized all-pairs shortest path bounds, their evidence, and progress below cubic time; every deterministic result counts too.',

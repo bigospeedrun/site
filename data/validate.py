@@ -143,6 +143,11 @@ for entry in registry['problems']:
   # An open endpoint (every saving below, or every exponent above, the score) is legal in
   # both directions; only a baseline must be attained.
   if r.get('score_relation')=='strict-upper-bound':assert r['kind']!='baseline',r['id']
+  # The constant c of L_N[theta, c] (Lead, 2026-11-27): the second ranking key of the randomized integer factoring board
+  # only, an exact positive rational in lowest terms (the schema gives its form).
+  if 'l_constant' in r:
+   assert entry['slug']=='integer-factoring-randomized','l_constant is only for the randomized integer factoring board: '+r['id']
+   c=Fraction(r['l_constant']);assert c>0 and str(c)==r['l_constant'],'l_constant is not a positive rational in lowest terms: '+r['id']
   if p['score']['encoding']=='density-time':
    # directed-sssp (data/sssp.py): a point row "D ; T" in the verifier's normal form, or a function row (the
    # classic, papers) in function_text normal form. Only a point row can be Lean Verified. A point row whose T is

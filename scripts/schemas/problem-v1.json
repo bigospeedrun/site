@@ -462,6 +462,11 @@
               "strict-upper-bound"
             ],
             "description": "Absent means attained. strict-upper-bound stores an excluded endpoint: every fixed saving below score (higher-is-better) or every fixed exponent above score (lower-is-better) is supported, not the endpoint itself."
+          },
+          "l_constant": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*(/[1-9][0-9]*)?$",
+            "description": "Randomized integer factoring board only: the constant c, on the multitape Turing machine, of a bound L_N[theta, c] = e^{(c+o(1))(ln N)^theta (ln ln N)^{1-theta}}, as an exact positive rational in lowest terms. Rows with the same theta rank by c, lower is better; a row without c ranks after every row with c at that theta."
           }
         },
         "allOf": [

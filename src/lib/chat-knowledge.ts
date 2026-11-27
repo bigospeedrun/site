@@ -9,6 +9,8 @@ import {closedBoards, closedBoardText, boardNotices, CLOSED_LINK} from './closed
 
 // Integer factoring ranks every bound on one scale s, higher is better (scaleBand of each row names its band and value).
 const FACTORING_SCALE = 'One scale s, higher is better: time N^{c+o(1)} scores -c; N^{o(1)} scores 0; N^{1/(log log N)^{alpha-o(1)}} scores alpha (at most 100); 2^{(log N)^{theta+o(1)}} = 2^{b^{theta+o(1)}} with 0 <= theta < 1 scores 101 - theta, so it ranks above every alpha, and a lower theta ranks higher. exactScore is s; scaleBand gives the band and its value.';
+// Randomized integer factoring scores theta itself (exactScore is theta), lower is better.
+const RANDOMIZED_FACTORING_SCALE = 'theta, lower is better: expected time 2^{(log N)^{theta+o(1)}} = 2^{b^{theta+o(1)}} with 0 <= theta <= 1 scores theta, the worst case over inputs with b bits of the expected time of an algorithm that is always correct and halts with probability 1. A time L_N[a, c] = e^{(c+o(1))(ln N)^a (ln ln N)^(1-a)} with 0 < a < 1 has theta = a, whatever c is. Rows with the same theta rank by c, lower is better, with c of the multitape Turing machine time (a RAM bound converts with its own overhead, because squaring the time doubles c) (lConstant, and the bound reads L_N[theta, c]; a row that states no c ranks after every row that does), then by evidence level, then by date. Only unconditional bounds score; a hypothesis counts as met when the site lists it as a Lean Verified theorem (today: the generalized Riemann hypothesis for Dirichlet L-functions, which Levent Alpöge proved, Lean Verified at /other/quasi-riemann).';
 
 // The parts of src/lib/other-bounds.json that the chat uses.
 export interface OtherBoundsData {
@@ -133,7 +135,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
       const sssp = p.slug === 'directed-sssp';
       const digits = sssp ? 0 : boundPrecision(records.map(r => r.score), p.symbol === 'kappa');
       const leaders = (entries: RecordEntry[]) => boardLeaders(p, entries).map(r => ({
-          id: r.id, bound: sssp ? r.bound : tableBound(r, p.symbol === 'kappa', digits), exactScore: r.score, scoreRelation: r.scoreRelation,
+          id: r.id, bound: sssp ? r.bound : tableBound(r, p.symbol === 'kappa', digits), exactScore: r.score, scoreRelation: r.scoreRelation, ...(r.lConstant !== undefined ? {lConstant: r.lConstant} : {}),
           // Integer factoring's exactScore is a point on its one scale (101 - theta for 2^{b^{theta+o(1)}}), not a bound value.
           ...(p.slug === 'integer-factoring' ? {scaleBand: factoringBand(r.score)} : {}),
           evidence: evidenceName(r.evidenceLevel), authors: r.authors, ...(r.refiledBy ? {refiledBy: r.refiledBy} : {}), date: r.date,
@@ -150,7 +152,7 @@ export function createKnowledge(problems: Problem[], updatedAt: string,
       ...(isPrimaryModel(p) && closedBoards[p.slug] ? {closed: closedBoardText(closedBoards[p.slug])} : {}),
       ...(isPrimaryModel(p) && boardNotices[p.slug] ? {note: boardNotices[p.slug].replace(CLOSED_LINK, '$1 ($2)')} : {}),
       ...(p.records.some(r => r.carried) ? {carriesPaths: ['/' + p.slug], carriesNote: 'Every result of the board in carriesPaths also counts on this board, because a deterministic algorithm is a randomized one.'} : {}),
-      ...(p.slug === 'integer-factoring' ? {scoreScale: FACTORING_SCALE} : {}),
+      ...(p.slug === 'integer-factoring' ? {scoreScale: FACTORING_SCALE} : p.slug === 'integer-factoring-randomized' ? {scoreScale: RANDOMIZED_FACTORING_SCALE} : {}),
       baseline: p.records.find(r => r.id === 'classical-baseline')?.bound ?? null,
       current: leaders(records),
       currentByEvidence: Object.fromEntries(evidenceLevels.map(level => [level.name, leaders(records.filter(r => r.evidenceLevel === level.id))])),

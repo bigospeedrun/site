@@ -2,6 +2,8 @@ import { ranked, scoreNumber } from './ranking.ts';
 
 export interface ChartEntry {
  id: string; repoId: number; score: string; scoreRelation?: string; level: string; time: number;
+ // The constant c of L_N[theta, c] (the randomized integer factoring board): it ranks rows of one theta (ranking.ts).
+ lConstant?: string;
  date: string; author: string; boundHtml: string; url: string; isBreakthrough?: boolean;
  // The first author's avatar path, or initials when the author has no personal GitHub avatar.
  avatar?: string; initials?: string;

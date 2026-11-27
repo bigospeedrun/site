@@ -47,6 +47,13 @@ export function validateData(directory,{artifacts=true}={}) {
    assert.equal(createHash('sha256').update(raw).digest('hex'),record.artifact.sha256,'Artifact hash mismatch');
    }
    assert(!data.record_metadata[record.id].site_badge,'Unreviewed site badge');
+   // l_constant, the c of L_N[theta, c], ranks rows of one theta on the randomized integer factoring board only (data/validate.py).
+   if(record.l_constant!==undefined){
+    assert.equal(entry.slug,'integer-factoring-randomized','l_constant is only for the randomized integer factoring board');
+    const [n,d=1n]=record.l_constant.split('/').map(BigInt);const gcd=(a,b)=>b?gcd(b,a%b):a;
+    assert(d!==1n||!record.l_constant.includes('/'),'l_constant: write an integer without /1');
+    assert.equal(gcd(n,d),1n,'l_constant is not in lowest terms');
+   }
   }
  }
  console.log('Validated bundle schemas and record identities'+(artifacts?', plus artifact hashes.':'.'));

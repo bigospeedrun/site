@@ -1,4 +1,4 @@
-import {ranked,boundPrecision,boundExponent,scientificSaving,displayDigits,factoringPlainBound,shortFraction} from './ranking.ts';
+import {ranked,boundPrecision,boundExponent,scientificSaving,displayDigits,factoringPlainBound,shortFraction,thetaPlainBound,lPlainBound,lConstantOrder} from './ranking.ts';
 import {evidenceName,evidenceLevels} from './evidence.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import type {ChartLine,Problem,RecordEntry} from './types';
@@ -11,7 +11,9 @@ import {ssspFrontier,ssspRecordRows} from './sssp-board.ts';
 export interface FeedVerification {state:'pending'|'failed'|'held'; since:string}
 // refiledBy: the refiler line of a refile of another author's proof (Nil, 2026-11-09): the post names it on its own line,
 // never among the authors.
-export interface FeedRecord {id:string; score:string; relation:string; evidence:string; authors:string[]; refiledBy?:string; bound:string; display?:string; verification?:FeedVerification}
+// lConstant: the constant c of L_N[theta, c] on the randomized integer factoring board (Lead, 2026-11-27). Rows with the same
+// theta and different c are different bounds: c is part of the row identity and of the posted bound key.
+export interface FeedRecord {id:string; score:string; relation:string; evidence:string; authors:string[]; refiledBy?:string; bound:string; display?:string; verification?:FeedVerification; lConstant?:string}
 // table: the landing-page table of the board. 'big-o' (also when absent, in older
 // snapshots) posts to the Big O records channel; 'other-bounds' to the Other bounds one.
 export type FeedTable='big-o'|'other-bounds';
@@ -48,6 +50,8 @@ function decimalSaving(score:string,digits:number):string {
 }
 export function plainBound(slug:string,score:string,relation='attained',digits?:number,shown?:string):string {
  if(slug==='integer-factoring')return factoringPlainBound(score);
+ // The randomized factoring board scores theta itself (src/lib/data.ts).
+ if(slug==='integer-factoring-randomized')return thetaPlainBound(score);
  const kappa=slug==='integer-multiplication'||slug==='exact-dft';
  const precision=digits??boundPrecision([score],kappa);
  // 3-SAT alpha is higher-is-better, so it rounds down; other exponents round up.
@@ -61,11 +65,11 @@ export function plainBound(slug:string,score:string,relation='attained',digits?:
  if(slug==='subset-sum')return epsilon?`O(2^((${value} + epsilon)n))${epsilon}`:`O(2^(${value}n))`;
  return epsilon?`O(n^(${value} + epsilon))${epsilon}`:`O(n^${value})`;
 }
-export function feedBoard(problem:Pick<Problem,'slug'|'direction'>&Partial<Pick<Problem,'chartLines'>>,records:(Pick<RecordEntry,'id'|'score'|'scoreRelation'|'date'|'repoId'|'evidenceLevel'|'authors'>&Partial<Pick<RecordEntry,'verification'|'refiledBy'>>)[],name:string):FeedBoard {
+export function feedBoard(problem:Pick<Problem,'slug'|'direction'>&Partial<Pick<Problem,'chartLines'>>,records:(Pick<RecordEntry,'id'|'score'|'scoreRelation'|'date'|'repoId'|'evidenceLevel'|'authors'>&Partial<Pick<RecordEntry,'verification'|'refiledBy'|'lConstant'>>)[],name:string):FeedBoard {
  if(problem.slug==='directed-sssp')return ssspFeedBoard(problem,records,name,problem.chartLines??[]);
  const digits=boundPrecision(records.map(r=>r.score),problem.slug==='integer-multiplication'||problem.slug==='exact-dft');
  return {slug:problem.slug,name,url:`https://bigospeedrun.com/${problem.slug}`,leader:ranked(records,problem.direction)[0]?.record.id??null,direction:problem.direction==='higher-is-better'?'higher':'lower',
- records:records.map(r=>({id:r.id,score:r.score,relation:r.scoreRelation??'attained',evidence:evidenceName(r.evidenceLevel),authors:r.authors.map(a=>a.name),...(r.refiledBy?{refiledBy:r.refiledBy}:{}),bound:plainBound(problem.slug,r.score,r.scoreRelation,digits),
+ records:records.map(r=>({id:r.id,score:r.score,relation:r.scoreRelation??'attained',evidence:evidenceName(r.evidenceLevel),authors:r.authors.map(a=>a.name),...(r.refiledBy?{refiledBy:r.refiledBy}:{}),bound:r.lConstant!==undefined?lPlainBound(r.score,r.lConstant):plainBound(problem.slug,r.score,r.scoreRelation,digits),...(r.lConstant!==undefined?{lConstant:r.lConstant}:{}),
   ...(r.verification&&evidenceName(r.evidenceLevel)==='Claimed'?{verification:r.verification}:{})}))};
 }
 // The board of a later model of a race (Lead, 2026-11-20: the randomized APSP leaderboard). Its slug is <race>/<modelId>, so its
@@ -114,7 +118,8 @@ export function directedDecimal(score:string,up:boolean,{sig,places}:{sig?:numbe
 // value of the Lean Verified 1/2 row. Rows with the same exact score (another relation, a refile) never separate,
 // so they are skipped.
 export function postBound(board:FeedBoard,record:FeedRecord,minDigits=3):string {
- if(board.frontier)return record.bound;
+ // The randomized factoring board shows theta and c exactly (feedBoard).
+ if(board.frontier||board.slug==='integer-factoring-randomized')return record.bound;
  const kappa=board.slug==='integer-multiplication'||board.slug==='exact-dft';
  // Toward the weaker bound: down on a higher-is-better board (kappa, 3-SAT alpha), up otherwise.
  const higher=kappa||board.direction==='higher';
@@ -193,7 +198,7 @@ export function otherFeedBoard(row:OtherRow):FeedBoard {
 }
 const isOther=(slug:string)=>slug.startsWith('other-');
 export const HOLD_LIMIT=24*60*60*1000;
-function identity(board:FeedBoard,record:FeedRecord):string {return JSON.stringify([board.slug,record.id,record.score,record.relation]);}
+function identity(board:FeedBoard,record:FeedRecord):string {return JSON.stringify([board.slug,record.id,record.score,record.relation,...(record.lConstant!==undefined?[record.lConstant]:[])]);}
 function eventKey(board:FeedBoard,record:FeedRecord):string {return identity(board,record)+':'+(record.evidence==='Lean Verified'?'lean':'record');}
 function clean(text:string):string {return text.replace(/[<>@]/g,' ').replace(/\s+/g,' ').trim();}
 function discordText(text:string):string {return text.replace(/[\\`*_~|[\]()]/g,'\\$&');}
@@ -231,8 +236,8 @@ export function baseline(snapshot:FeedSnapshot):FeedState {
 // Accepted posts retain the original event key; omit only the submission ID for deduplication.
 function postedBoundKey(key:string):string {
  const split=key.lastIndexOf(':');
- const [slug,,score,relation]=JSON.parse(key.slice(0,split)) as string[];
- return JSON.stringify([slug,score,relation,key.slice(split+1)]);
+ const [slug,,score,relation,lConstant]=JSON.parse(key.slice(0,split)) as string[];
+ return JSON.stringify([slug,score,relation,key.slice(split+1),...(lConstant!==undefined?[lConstant]:[])]);
 }
 // The value a post showed: its X 'New value' or 'Value' line, else the bound in the Discord text.
 function postedValue(post:Partial<RecordPost>):string|undefined {
@@ -246,9 +251,9 @@ function ratio(score:string):[bigint,bigint]|null {
  return null;
 }
 // Two rows of one board have the same bound: an equal score (exact value, or the same "D ; T" point on the directed-sssp
-// board) and the same relation. A score that is not a number compares as text.
+// board), the same relation and the same c of L_N[theta, c] (lConstant). A score that is not a number compares as text.
 function sameBound(board:FeedBoard,a:FeedRecord,b:FeedRecord):boolean {
- if(a.relation!==b.relation)return false;
+ if(a.relation!==b.relation||a.lConstant!==b.lConstant)return false;
  if(board.frontier){const x=parse(a.score),y=parse(b.score);return x.length===y.length&&lexCmp(x,y)===0;}
  const x=ratio(a.score),y=ratio(b.score);
  return x&&y?x[0]*y[1]===y[0]*x[1]:a.score===b.score;
@@ -274,16 +279,18 @@ function superseded(board:FeedBoard,old:FeedBoard|undefined,reserved:Set<string>
   if(reserved.has(key)||announced.has(postedBoundKey(key)))continue;
   groups.set(group,[...(groups.get(group)??[]),record]);
  }
- // Is the score of record a better than b by the direction? At an equal score: an attained row beats an open endpoint.
+ // Is the score of record a better than b by the direction? At an equal score: an attained row beats an open endpoint,
+ // then the lower c of L_N[theta, c] (lConstantOrder).
  const better=(a:FeedRecord,b:FeedRecord)=>{
   const [an,ad]=ratio(a.score)!,[bn,bd]=ratio(b.score)!,x=an*bd,y=bn*ad;
   if(x!==y)return board.direction==='higher'?x>y:x<y;
-  return a.relation==='attained'&&b.relation!=='attained';
+  if(a.relation!==b.relation)return a.relation==='attained';
+  return lConstantOrder(a,b)>0;
  };
- // At least as good: not worse, whatever the relation.
+ // At least as good: not worse, whatever the relation (at an equal score, a c that is not higher).
  const atLeastAsGood=(a:FeedRecord,b:FeedRecord)=>{
   const [an,ad]=ratio(a.score)!,[bn,bd]=ratio(b.score)!,x=an*bd,y=bn*ad;
-  return x===y||(board.direction==='higher'?x>y:x<y);
+  return x===y&&lConstantOrder(a,b)>=0||(board.direction==='higher'?x>y:x<y);
  };
  for(const [group,gaining] of groups){
   const prior=(existing.get(group)??[]).filter(r=>ratio(r.score));
@@ -422,6 +429,7 @@ export const discordRecordColors:Readonly<Record<string,number>>={
  'subset-sum':0x3B82F6,
  '3sat':0xEC4899,
  'integer-factoring':0x84CC16,
+ 'integer-factoring-randomized':0x14B8A6,
 };
 // The webhook of each table's records channel: #records-big-o and #records-other-bounds.
 const validWebhook=(url:string|undefined)=>/^https:\/\/discord\.com\/api\/webhooks\/\d+\/[A-Za-z0-9_-]+$/.test(url??'');

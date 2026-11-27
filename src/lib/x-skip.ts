@@ -11,6 +11,8 @@ import type {XEntry} from './x-posts.ts';
 // the feed's own data names it, no list of boards is kept here. A bound equal to or better than the bar posts as
 // before. Boards whose race-start row has another author are not touched. Discord is not touched either.
 const BREAKTHROUGH_AUTHORS=['OpenAI','Anthropic'];
+// Races whose record posts never go to X.
+export const DISCORD_ONLY:readonly string[]=['integer-factoring-randomized'];
 // An Other bounds row (Lead, 2026-11-07, prime gaps: a Lean Verified 246 is worse than OpenAI's 186): the bar is the
 // row's Agent breakthrough as its table labels it (isTableBreakthrough): OpenAI's baseline, or on a row with a Classic
 // baseline its first claim by agents. It counts only when OpenAI or Anthropic made it.
@@ -64,6 +66,8 @@ export function worseThanBreakthrough(post:XEntry,snapshot:FeedSnapshot|undefine
  // The board of a later model of a race (apsp/randomized-word-ram, <race>/<model>) posts to Discord only (Lead decision 2026-11-20; Nil's GO of the same day made the launch Discord only). Fail closed: by the
  // key alone, so a missing snapshot cannot let one through.
  try{if(isModelBoardSlug(JSON.parse(post.key.slice(0,post.key.lastIndexOf(':')))[0]))return 'This board posts to Discord only (Lead decision, 2026-11-20): no X post';}catch{}
+ // The randomized integer factoring race (Nil's GO, 2026-11-27: no X announcement) posts to Discord only, by the key as above.
+ try{if(DISCORD_ONLY.includes(JSON.parse(post.key.slice(0,post.key.lastIndexOf(':')))[0]))return 'This race posts to Discord only (Nil, 2026-11-27): no X post';}catch{}
  // Directed SSSP (Lead, 2026-11-03 and 2026-11-06): X only for a Lean Verified record row, a frontier row that is faster
  // than every row at its density, the function rows (classic Dijkstra, papers) too: recordRows of the saved snapshot. A
  // snapshot without that list posts nothing.
