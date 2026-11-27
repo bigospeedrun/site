@@ -172,3 +172,14 @@ test('the chat knowledge names the band of each factoring row and the scale, on 
  assert.deepEqual(factoring.current.map((r:any)=>[r.id,r.bound,r.exactScore,r.scaleBand]),[['theta','2^{(\\log N)^{3/4+o(1)}}','401/4',{band:'theta',value:'3/4'}]]);
  assert.deepEqual(rows.filter(r=>'scoreScale' in r).map(r=>r.path),['/integer-factoring']);
 });
+
+// The Reviewer and the Lead, 2026-11-27: the models agree only up to T^{O(1)}, not b^{O(1)} factors. That keeps the
+// scores 0, alpha and 101 - theta, but squaring the time doubles c, so a score -c uses the multitape Turing machine time
+// (the model of the classic Harvey and Hittmeir bound, section 1).
+test('the model text: a score -c uses the Turing machine time, and no text claims b^{O(1)} factors between the models', () => {
+ const data=JSON.parse(readFileSync(new URL('../data/integer-factoring.json',import.meta.url),'utf8'));
+ assert.match(data.model.description,/squaring the time doubles c, so it uses the Turing machine time/);
+ assert.doesNotMatch(data.model.description,/up to b\^\{O\(1\)\} factors/);
+ const page=readFileSync(new URL('../components/ProblemPage.astro',import.meta.url),'utf8');
+ assert.doesNotMatch(page,/differ by factors/);
+});

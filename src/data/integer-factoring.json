@@ -4,7 +4,7 @@
   "model": {
     "id": "deterministic-bit-model",
     "version": "1",
-    "description": "Integer factoring: given an integer N >= 2 in binary, with b bits, output its smallest prime factor. Time counts bit operations (equivalently, steps of a multitape Turing machine or a word RAM with O(log b)-bit words, up to b^{O(1)} factors) on every input. Only deterministic algorithms qualify: no random bits. One algorithm for all N. The complete factorization into primes gives the same scores (it takes at most b smallest-factor calls, and it contains the smallest prime factor).",
+    "description": "Integer factoring: given an integer N >= 2 in binary, with b bits, output its smallest prime factor. Time counts bit operations: steps of a multitape Turing machine on every input. The Lean statement uses Mathlib's TM2 machines (stacks in place of tapes), which simulate a multitape machine and back with a constant-factor overhead. A word RAM with O(log b)-bit words gives the same score when the score is 0, alpha or 101 - theta, because a RAM time T takes at most T^{O(1)} Turing machine steps and a polynomial in the time does not change these scores. A score -c depends on the model, because squaring the time doubles c, so it uses the Turing machine time. Only deterministic algorithms qualify: no random bits. One algorithm for all N. The complete factorization into primes gives the same scores (it takes at most b smallest-factor calls, and it contains the smallest prime factor).",
     "definition_url": "https://github.com/IsaacRudich/SubexponentialDeterministicFactoring/blob/c91cc3f4947caca8977e81a5d14244f73b5ae2b1/Challenge.lean"
   },
   "score": {
