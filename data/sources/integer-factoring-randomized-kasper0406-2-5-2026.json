@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-11-27",
+  "source_url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md",
+  "score": "2/5",
+  "publication_date": "2026-10-28T08:57:34Z",
+  "publication_date_role": "author date of commit d33c24a5 in kasper0406/factoring-connection (mfU: Theorem U-MF draft v0). The row is pinned at commit 351e8eee, the version the KeyBreak paper cites as [33]",
+  "scope": "Theorem U-MF (notes/mfU_theorem.md): the algorithm FACTOR_MF is Las Vegas. On every input N >= 2 it returns the complete prime factorization (every prime is either a sieved prime or AKS-certified). Its expected running time is at most L_N[2/5, c_MF + o(1)], where c_MF depends on parameters and on a constant C_gamma that comes from the implied constants of the cited theorems, so no single numeric constant is stated (the README gives about 9.45 at C_gamma = 0). On this board that is 2^{b^{2/5+o(1)}}, theta 2/5. The row states no constant c.",
+  "files_not_copied": "The notes are in a public repository, so they are not copied here. SHA-256 and git blob of the file at that commit:",
+  "files": {
+    "notes/mfU_theorem.md": {
+      "sha256": "b7afa724afee0c2dc94aa6a1fea597d5c7e62e6deec3a6f187e6c1033d04debe",
+      "url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md",
+      "git_blob": "2933ad53dea50f0a64a077628c9aceafc1f97410"
+    }
+  },
+  "lean": "No Lean file checks this theorem. The repository's Lean folders cover other results.",
+  "authors_statement": "The README says the repository is AI-assisted research: Claude agents wrote the code, proofs and notes, and GPT-6.1-sol (Codex CLI) did literature sweeps and adversarial reviews. The repository owner is kasper0406 (GitHub profile name Kasper Nielsen). The notes say: Nothing has been refereed by a human; all checks so far are AI reviews. Earlier theorems of the repository (U at L_N[2/5], 2L-final at L_N[3/8]) are stated by the author as conditional on the repository's internal unrefereed chain and on an unrefereed preprint, so they are not rows here.",
+  "note": "Source claim only. Written proof, checked only by AI reviewers. No independent site proof check; evidence stays Claimed."
+}

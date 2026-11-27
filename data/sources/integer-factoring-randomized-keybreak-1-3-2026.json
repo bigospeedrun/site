@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-11-27",
+  "source_url": "https://crypto.sjtu.edu.cn/factoring.pdf",
+  "score": "1/3",
+  "publication_date": "2026-11-26T16:11:06Z",
+  "publication_date_role": "PDF creation date (the title page says November 26, 2026; the server's Last-Modified is 16:14:10Z). The URL is not pinned to a commit: the file was fetched on 2026-11-27 and its SHA-256 is recorded here with a Wayback Machine snapshot (saved 2026-11-27T03:58:18Z, link below)",
+  "scope": "Theorem 1.1: a fixed classical randomized algorithm that, for every integer N >= 2, terminates on every random tape and returns the distinct prime factors with multiplicities. The correctness of the output and termination are unconditional. Its expected running time, in bit operations including the factorization of all auxiliary integers, is at most exp((1013+o(1)) Lambda(N)) with Lambda(N) = (log N)^(1/3)(log log N)^(2/3), that is L_N[1/3, 1013]. Theorem 1.2: the same algorithm, using the generalized Riemann hypothesis for Dirichlet L-functions (which Alpöge proved; Lean Verified on our quasi-Riemann board), has expected time at most L_N[1/3, 2.97]. On this board both are 2^{b^{1/3+o(1)}}, theta 1/3; the row shows the constant 2.97 of Theorem 1.2 and notes the constant 1013 of Theorem 1.1. The paper says its own unconditional constant is larger than the 105 of Cogentic's concurrent manuscript.",
+  "files_not_copied": "The PDF is on a university server, not in a repository; it is not copied here.",
+  "files": {
+    "factoring.pdf": {
+      "sha256": "2b534eaf77fb2b9712018879059d8d4667c40c0a4adf2fff90efc22fb356cfc9",
+      "url": "https://crypto.sjtu.edu.cn/factoring.pdf",
+      "fetched": "2026-11-27",
+      "bytes": 1082713,
+      "pages": 144,
+      "wayback": "https://web.archive.org/web/20261127035818/https://crypto.sjtu.edu.cn/factoring.pdf"
+    }
+  },
+  "lean": "No Lean file or formal proof is mentioned.",
+  "authors_statement": "The title page reads: The KeyBreak Cryptanalysis Agent (Harness design and prompt by Qi Wang, Zhian Qian, Changhao Yuan, Juanru Li, Xiaogang Zhou, Shi Bai, and Yu Yu. Base model: GPT-6 Astra), with affiliations Shanghai Jiao Tong University, East China Normal University and China Telecom Quantum Information Technology Group. It does not say that the work is entirely by agents. The paper says its descent builds on the manuscript collection [33], the factoring-connection repository of kasper0406 (28 Oct 2026, version 351e8ee), and names what it takes from it: weights for requests between levels, the private-root construction, square certification and recursion on smaller inputs, and the analysis under the Riemann hypothesis. The paper proves the relation-count and incidence estimates for these constructions.",
+  "note": "Source claim only. Written proof, not peer reviewed. No independent site proof check; evidence stays Claimed.",
+  "wayback": "https://web.archive.org/web/20261127035818/https://crypto.sjtu.edu.cn/factoring.pdf"
+}

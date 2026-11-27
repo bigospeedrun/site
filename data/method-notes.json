@@ -52,6 +52,11 @@
     },
     "integer-multiplication": {
       "openai-multitape-nov24-2026": "The machine treats blocks of digits as polynomial coefficients, computes their convolution with short Fourier transforms, and then propagates the carries in one scan. On a tape, most of the cost is to bring together digits that are far apart, as in a matrix transposition. The machine does the swaps of a transposition in bulk on many streams, with a parity polynomial from OpenAI's companion Fourier paper, in about \\(\\sqrt{m\\log m}\\) stages for \\(m\\) swaps. We rebuilt the Lean proof."
+    },
+    "integer-factoring-randomized": {
+      "kasper0406-randomized-2-5-2026": "Agent-assisted: Kasper Nielsen directed Claude agents that wrote the code, proofs and notes, with GPT-6.1-sol for reviews. A Las Vegas algorithm that always outputs the complete factorization, in expected time \\(L_N[2/5, c]\\). The constant c depends on constants of cited theorems, so none is stated. No human has refereed the proof, and no Lean file checks it.",
+      "cogentic-randomized-1-3-2026": "The algorithm always outputs the correct complete factorization and halts with probability 1 (a Las Vegas algorithm), on a multitape machine with random coins. Its expected time is \\(L_N[1/3, 105]\\), leading constant 105. The README says the agent Cogentic (Gemini 4) obtained the paper and its Lean proof entirely, with no human help after the first prompt. The Lean files are not released, so the proof is a written one.",
+      "keybreak-sjtu-randomized-1-3-2026": "Agent-assisted: the KeyBreak agent, with harness and prompt by Qi Wang, Zhian Qian, Changhao Yuan, Juanru Li, Xiaogang Zhou, Shi Bai and Yu Yu, on constructions of Kasper Nielsen. Thm 1.2 gives \\(L_N[1/3, 2.97]\\) using GRH for Dirichlet L-functions, which Levent Alpöge proved (Lean Verified on our quasi-Riemann board); without it \\(L_N[1/3, 1013]\\) (Thm 1.1). Written proof, no Lean."
     }
   },
   "board_notes": {

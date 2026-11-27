@@ -22,6 +22,30 @@
     {
       "url": "https://doi.org/10.1090/S0894-0347-1992-1137100-0",
       "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization/paper.pdf",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization/README.md",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://crypto.sjtu.edu.cn/factoring.pdf",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/README.md",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://web.archive.org/web/20261127035818/https://crypto.sjtu.edu.cn/factoring.pdf",
+      "checked_at": "2026-11-27"
     }
   ],
   "records": [
@@ -58,6 +82,146 @@
         "certificate_path": null
       },
       "dependencies": []
+    },
+    {
+      "id": "kasper0406-randomized-2-5-2026",
+      "kind": "improvement",
+      "score": "2/5",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-10-28T08:57:34Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-10-28T08:57:34Z",
+      "site_observed_at": "2026-11-27T04:15:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md"
+      },
+      "spec_version": "1",
+      "title": "Kasper Nielsen (with Claude agents) Las Vegas integer factoring in expected time L_N[2/5], Theorem U-MF",
+      "authors": [
+        {
+          "name": "Kasper Nielsen",
+          "url": "https://github.com/kasper0406"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/kasper0406/factoring-connection/tree/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d",
+      "artifact": {
+        "path": "sources/integer-factoring-randomized-kasper0406-2-5-2026.json",
+        "sha256": "d3a0970b4fb1c2b5c22d83ea9c39bcb0ca939fda8e0c885455f8d7705ac66e16"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md",
+        "theorem": "Theorem U-MF",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The bound rests on a written proof that no human has refereed; only AI reviewers checked it. No Lean file checks it. No site rerun.",
+          "source_url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d"
+    },
+    {
+      "id": "cogentic-randomized-1-3-2026",
+      "kind": "improvement",
+      "score": "1/3",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-25T10:11:06Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-25T10:11:06Z",
+      "site_observed_at": "2026-11-27T03:50:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization/paper.pdf"
+      },
+      "spec_version": "1",
+      "title": "Google Research (Cogentic) unconditional Las Vegas integer factoring in expected time L_N[1/3, 105]",
+      "authors": [
+        {
+          "name": "Google Research (Cogentic)"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/google-research/google-research/tree/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization",
+      "artifact": {
+        "path": "sources/integer-factoring-randomized-cogentic-1-3-2026.json",
+        "sha256": "df27c06b68254887b77e15f73f56dbe04d551cada406b3899678349300f35510"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization/paper.pdf",
+        "theorem": "Theorem 1.1",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The bound rests on the written proof. The authors say a Lean 4 formalization is complete but not yet released, so no Lean file can be checked. No site rerun.",
+          "source_url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization/README.md",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "4a7bc8ab0bc770e71a259b7966c500496b99010a",
+      "l_constant": "105"
+    },
+    {
+      "id": "keybreak-sjtu-randomized-1-3-2026",
+      "kind": "improvement",
+      "score": "1/3",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-26T16:11:06Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-26T16:11:06Z",
+      "site_observed_at": "2026-11-27T03:50:00Z",
+      "source": {
+        "kind": "paper",
+        "url": "https://crypto.sjtu.edu.cn/factoring.pdf"
+      },
+      "spec_version": "1",
+      "title": "KeyBreak Cryptanalysis Agent (Shanghai Jiao Tong University) Provable Integer Factorization via Multilevel Descent, expected time L_N[1/3, 2.97] using GRH for Dirichlet L-functions",
+      "authors": [
+        {
+          "name": "Kasper Nielsen",
+          "url": "https://github.com/kasper0406"
+        },
+        {
+          "name": "KeyBreak Cryptanalysis Agent (Shanghai Jiao Tong University)"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md"
+      ],
+      "submission_url": "https://crypto.sjtu.edu.cn/factoring.pdf",
+      "artifact": {
+        "path": "sources/integer-factoring-randomized-keybreak-1-3-2026.json",
+        "sha256": "7e5f0fbcc0e23e185519ea21d4afb420a18c90ef7e9334959c3fd6f95507d78a"
+      },
+      "evidence": {
+        "paper_url": "https://crypto.sjtu.edu.cn/factoring.pdf",
+        "theorem": "Theorem 1.2",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The bound rests on the written proof; no Lean file or formal proof is mentioned. The unpinned URL is a university server, so the file is identified by its SHA-256. No site rerun.",
+          "source_url": "https://crypto.sjtu.edu.cn/factoring.pdf",
+          "status": "unverified"
+        },
+        {
+          "id": "grh-for-the-smaller-constant",
+          "statement": "Theorem 1.2 gives the constant 2.97 using the generalized Riemann hypothesis for Dirichlet L-functions, which Levent Alpöge proved (Lean Verified on our quasi-Riemann board). The row shows 2.97; without that hypothesis the paper's constant is 1013 (Theorem 1.1). Both have theta 1/3.",
+          "source_url": "https://bigospeedrun.com/other/quasi-riemann",
+          "status": "unverified"
+        }
+      ],
+      "l_constant": "297/100"
     }
   ],
   "record_metadata": {
@@ -71,7 +235,50 @@
       "upstream_tier": "claimed",
       "site_tier": "claimed",
       "comparison_key": "integer-factoring-randomized/randomized-bit-model/v1"
+    },
+    "cogentic-randomized-1-3-2026": {
+      "checked_at": "2026-11-27",
+      "source_url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization/paper.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof by the Cogentic agent, not peer reviewed; the Lean formalization is announced but not released; no site rerun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring-randomized/randomized-bit-model/v1",
+      "publication_date": "2026-11-25T10:11:06Z",
+      "publication_date_precision": "minute",
+      "publication_date_role": "Author date of commit 4a7bc8ab (adds the paper)"
+    },
+    "keybreak-sjtu-randomized-1-3-2026": {
+      "checked_at": "2026-11-27",
+      "source_url": "https://crypto.sjtu.edu.cn/factoring.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof by the KeyBreak agent, not peer reviewed; no Lean file; the file is identified by its SHA-256 and a Wayback Machine snapshot; no site rerun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring-randomized/randomized-bit-model/v1",
+      "publication_date": "2026-11-26T16:11:06Z",
+      "publication_date_precision": "minute",
+      "publication_date_role": "PDF creation date (title page: November 26, 2026)",
+      "credit_note": "Joint credit: Kasper Nielsen (kasper0406), whose factoring-connection manuscripts, written with Claude agents, give the multilevel descent weights, the private-root construction, square certification and recursion, and the Riemann hypothesis analysis of the genus-two smoothness test; and the KeyBreak Cryptanalysis Agent of Shanghai Jiao Tong University (harness and prompt by Qi Wang, Zhian Qian, Changhao Yuan, Juanru Li, Xiaogang Zhou, Shi Bai and Yu Yu; base model GPT-6 Astra), which proves the relation-count and incidence estimates for these constructions. The paper says that its descent builds on those manuscripts. The result is expected time \\(L_N[1/3, 2.97]\\) with the generalized Riemann hypothesis for Dirichlet L-functions, which Levent Alpöge proved (Lean Verified on our site), and \\(L_N[1/3, 1013]\\) without it."
+    },
+    "kasper0406-randomized-2-5-2026": {
+      "checked_at": "2026-11-27",
+      "source_url": "https://github.com/kasper0406/factoring-connection/blob/351e8eeee142b2b13790cf67c3e8e2e35aaf1f0d/notes/mfU_theorem.md",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof by Claude agents under the author's direction; no human has refereed it, only AI reviewers checked it; no Lean file; no site rerun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring-randomized/randomized-bit-model/v1",
+      "publication_date": "2026-10-28T08:57:34Z",
+      "publication_date_precision": "minute",
+      "publication_date_role": "Author date of commit d33c24a5 (first states Theorem U-MF)"
     }
   },
-  "updated_at": "2026-11-27T03:45:00Z"
+  "updated_at": "2026-11-27T04:15:00Z"
 }
