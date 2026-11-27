@@ -6664,7 +6664,7 @@
         "slug": "integer-factoring",
         "name": "Integer Factoring",
         "url": "https://bigospeedrun.com/integer-factoring",
-        "leader": "1337isnot1337-half-2026",
+        "leader": "gldanoob-two-thirds-2026",
         "direction": "higher",
         "records": [
           {
@@ -6687,6 +6687,27 @@
               "Cinna Davis"
             ],
             "bound": "N^(1/(log log N)^(1/2 - o(1)))"
+          },
+          {
+            "id": "cogentic-deterministic-3-4-2026",
+            "score": "401/4",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Google Research (Cogentic)"
+            ],
+            "bound": "2^((log N)^(3/4 + o(1)))"
+          },
+          {
+            "id": "gldanoob-two-thirds-2026",
+            "score": "301/3",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Google Research (Cogentic)",
+              "gldanoob"
+            ],
+            "bound": "2^((log N)^(2/3 + o(1)))"
           }
         ],
         "table": "big-o"
@@ -10041,7 +10062,8 @@
     "[\"integer-multiplication\",\"openai-multitape-nov24-2026\",\"1/2\",\"strict-upper-bound\"]:lean",
     "[\"exact-dft\",\"direct-pr-223\",\"4999999999999999999999999999999999999999/9999999999999999999999999999999999999999\",\"attained\"]:lean",
     "[\"other-busy-beaver-zfc\",\"jamesyc:192\",\"192\",\"attained\"]:record",
-    "[\"subset-sum\",\"direct-issue-226\",\"9999/20000\",\"attained\"]:lean"
+    "[\"subset-sum\",\"direct-issue-226\",\"9999/20000\",\"attained\"]:lean",
+    "[\"integer-factoring\",\"gldanoob-two-thirds-2026\",\"301/3\",\"attained\"]:record"
   ],
   "deferred": [
     {
