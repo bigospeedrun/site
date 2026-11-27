@@ -54,6 +54,22 @@
     {
       "url": "https://github.com/1337isnot1337/integer-factoring/pull/19",
       "checked_at": "2026-10-30"
+    },
+    {
+      "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/paper.pdf",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/README.md",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://github.com/gldanoob/int-fac/blob/cc5dffbb3fb6e603330bec7f6df11600d0d15306/formal/cogentic/Cogentic/TwoThirdsFactorization.lean#L81",
+      "checked_at": "2026-11-27"
+    },
+    {
+      "url": "https://github.com/gldanoob/int-fac/tree/cc5dffbb3fb6e603330bec7f6df11600d0d15306",
+      "checked_at": "2026-11-27"
     }
   ],
   "records": [
@@ -178,6 +194,102 @@
         "checked_at": "2026-10-30T19:49:23.782125Z",
         "receipt_path": "sources/maintainer-integer-factoring-sqrtlog-41108289491.json"
       }
+    },
+    {
+      "id": "cogentic-deterministic-3-4-2026",
+      "kind": "improvement",
+      "score": "401/4",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-25T10:11:06Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-25T10:11:06Z",
+      "site_observed_at": "2026-11-27T03:45:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/paper.pdf"
+      },
+      "spec_version": "1",
+      "title": "Google Research (Cogentic) deterministic integer factoring in bit operations O(exp(3 (ln N)^(3/4)))",
+      "authors": [
+        {
+          "name": "Google Research (Cogentic)"
+        }
+      ],
+      "predecessors": [],
+      "submission_url": "https://github.com/google-research/google-research/tree/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34",
+      "artifact": {
+        "path": "sources/integer-factoring-cogentic-deterministic-3-4-2026.json",
+        "sha256": "6d2af1754e6fcd58bb7f77842abf25f31a8abec81b6c7ac43c37ec7e7dd57185"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/paper.pdf",
+        "theorem": "Theorem 1.1",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "written-proof-running-time",
+          "statement": "The bound rests on the written proof. The authors say a Lean 4 formalization is complete but not yet released, so no Lean file can be checked. No site rerun.",
+          "source_url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/README.md",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "4a7bc8ab0bc770e71a259b7966c500496b99010a"
+    },
+    {
+      "id": "gldanoob-two-thirds-2026",
+      "kind": "improvement",
+      "score": "301/3",
+      "score_relation": "attained",
+      "tier": "claimed",
+      "submitted_at": "2026-11-25T14:44:41Z",
+      "upstream_status": "not-applicable",
+      "upstream_status_at": "2026-11-25T14:44:41Z",
+      "site_observed_at": "2026-11-27T03:45:00Z",
+      "source": {
+        "kind": "repo-artifact",
+        "url": "https://github.com/gldanoob/int-fac/blob/cc5dffbb3fb6e603330bec7f6df11600d0d15306/formal/cogentic/Cogentic/TwoThirdsFactorization.lean#L81"
+      },
+      "spec_version": "1",
+      "title": "gldanoob and Cogentic deterministic integer factoring in time 2^{O(b^{2/3} (log b)^{1/3})}, Lean theorem factor_words_two_thirds",
+      "authors": [
+        {
+          "name": "Google Research (Cogentic)"
+        },
+        {
+          "name": "gldanoob",
+          "url": "https://github.com/gldanoob"
+        }
+      ],
+      "predecessors": [
+        "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/paper.pdf"
+      ],
+      "submission_url": "https://github.com/gldanoob/int-fac",
+      "artifact": {
+        "path": "sources/integer-factoring-gldanoob-two-thirds-2026.json",
+        "sha256": "64e5a3c69179d03e1081537dde41168892551d5e3874f0b77a8792e1721d075f"
+      },
+      "evidence": {
+        "paper_url": "https://github.com/gldanoob/int-fac/blob/cc5dffbb3fb6e603330bec7f6df11600d0d15306/README.md",
+        "theorem": "Cogentic.Companion.factor_words_two_thirds",
+        "certificate_path": null
+      },
+      "dependencies": [
+        {
+          "id": "dirichlet-grh-hypothesis",
+          "statement": "The theorem uses the generalized Riemann hypothesis for Dirichlet L-functions, which Alpöge proved (Lean Verified on our quasi-Riemann board, linked). The Lean theorem takes it as a hypothesis (DirichletLZerosOnLine), the default target also imports proved lemmas of the same development, and the author did not compile the full import of that proof.",
+          "source_url": "https://bigospeedrun.com/other/quasi-riemann",
+          "status": "unverified"
+        },
+        {
+          "id": "author-cost-model",
+          "statement": "The cost is counted in a bit-charge model defined in the Lean files, not in the board's Mathlib machine model. The full import of the GRH files was not compiled by the author, and we have not rebuilt the proof.",
+          "source_url": "https://github.com/gldanoob/int-fac/tree/cc5dffbb3fb6e603330bec7f6df11600d0d15306",
+          "status": "unverified"
+        }
+      ],
+      "source_commit": "cc5dffbb3fb6e603330bec7f6df11600d0d15306"
     }
   ],
   "record_metadata": {
@@ -222,7 +334,35 @@
       "publication_date_role": "Commit date of c19044bd (first stated, PR #19)",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41108289491",
       "verification_source_commit": "e91442d3162cae7f775e008efb2ea998c4478344"
+    },
+    "cogentic-deterministic-3-4-2026": {
+      "checked_at": "2026-11-27",
+      "source_url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/paper.pdf",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Written proof by the Cogentic agent, not peer reviewed; the Lean formalization is announced but not released; no site rerun",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring/deterministic-bit-model/v1",
+      "publication_date": "2026-11-25T10:11:06Z",
+      "publication_date_precision": "minute",
+      "publication_date_role": "Author date of commit 4a7bc8ab (adds the paper)"
+    },
+    "gldanoob-two-thirds-2026": {
+      "checked_at": "2026-11-27",
+      "source_url": "https://github.com/gldanoob/int-fac/blob/cc5dffbb3fb6e603330bec7f6df11600d0d15306/formal/cogentic/Cogentic/TwoThirdsFactorization.lean#L81",
+      "site_badge": false,
+      "eligible_for_record": true,
+      "proof_status": "Lean theorem checked only by the author. It uses the generalized Riemann hypothesis for Dirichlet L-functions, which Alpöge proved (Lean Verified on our quasi-Riemann board); the Lean theorem takes it as a hypothesis and the author did not compile the full import of that proof. The cost is counted in the author's own bit model. No site rerun.",
+      "comparison_status": "source scope only",
+      "upstream_tier": "claimed",
+      "site_tier": "claimed",
+      "comparison_key": "integer-factoring/deterministic-bit-model/v1",
+      "publication_date": "2026-11-25T14:44:41Z",
+      "publication_date_precision": "minute",
+      "publication_date_role": "Author date of commit 439360c1 (first states deterministic two-thirds factoring)"
     }
   },
-  "updated_at": "2026-10-30T20:27:37Z"
+  "updated_at": "2026-11-27T03:45:00Z"
 }

@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-11-27",
+  "source_url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/paper.pdf",
+  "score": "401/4",
+  "publication_date": "2026-11-25T10:11:06Z",
+  "publication_date_role": "author date of commit 4a7bc8ab in google-research/google-research (the commit date is 10:21:27Z), which adds the paper",
+  "scope": "Theorem 1.1 (abstract, item 1): every composite integer N >= 4 is factored deterministically on a multitape Turing machine and on a standard word RAM in worst-case bit-operation complexity O(exp(3 (ln N)^(3/4))) = L_N[3/4, o(1)], with no randomness, no unproven smoothness hypothesis and no Riemann-hypothesis assumption. The algorithm finds one nontrivial divisor; the smallest prime factor follows by recursion (at most b splits) and primality testing, which changes the time by a polynomial factor only. On this board that is 2^{b^{3/4}}, theta 3/4, score 101 - 3/4 = 401/4.",
+  "files_not_copied": "The paper is in a public repository, so the PDF is not copied here. SHA-256 of the files at that commit:",
+  "files": {
+    "paper.pdf": {
+      "sha256": "0ccf115516dab3cbeee15167f2dea62fcb29d03a19224cb4a9ae69a5ce402993",
+      "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/paper.pdf"
+    },
+    "README.md": {
+      "url": "https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/README.md",
+      "git_blob": "0ace537853fa19ebe20edca585a27197d3f6a4a4"
+    }
+  },
+  "lean": "The README says a complete Mathlib-only Lean 4 formalization has been completed and will be released later. It is not in the repository at this commit, so no Lean file can be checked here.",
+  "authors_statement": "The README says the paper and its Lean 4 formalization were entirely obtained by Cogentic, an agentic framework using Gemini 4, with no human interaction other than the initial prompt. The Cogentic harness was built by Yang Cai, Vineet Gupta, Yanchen Jiang, Christopher Liaw, Aranyak Mehta, Grigoris Velegkas and Di Wang (Google Research and Google DeepMind). The arXiv number in the README (2609.40324) is the Cogentic framework preprint, not this paper.",
+  "note": "Source claim only. Written proof, not peer reviewed. No independent site proof check; evidence stays Claimed."
+}

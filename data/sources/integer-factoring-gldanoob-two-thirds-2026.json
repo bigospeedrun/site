@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-11-27",
+  "source_url": "https://github.com/gldanoob/int-fac/blob/cc5dffbb3fb6e603330bec7f6df11600d0d15306/formal/cogentic/Cogentic/TwoThirdsFactorization.lean#L81",
+  "score": "301/3",
+  "publication_date": "2026-11-25T14:44:41Z",
+  "publication_date_role": "author date of commit 439360c1 in gldanoob/int-fac (first states deterministic two-thirds factoring)",
+  "scope": "Theorem Cogentic.Companion.factor_words_two_thirds (line : DirichletLZerosOnLine) : LocalFactorizationBound (formal/cogentic/Cogentic/TwoThirdsFactorization.lean, L81, commit cc5dffbb). LocalFactorizationBound says that, for every n >= 2, a fixed program returns words that decode to primes with product n and exact multiplicities, and that for every eps > 0 the charged cost is eventually at most exp((C+eps)(log n)^(2/3)(log log n)^(1/3)). That is 2^{O(b^{2/3}(log b)^{1/3})}, theta 2/3 on this board, score 101 - 2/3 = 301/3. The statement takes no splitter hypothesis at this commit. The repository head has moved since (d77c21fc, 2026-11-26T15:27:52Z); this row is pinned at cc5dffbb.",
+  "hypothesis": "The only hypothesis of the final statement is DirichletLZerosOnLine, every zero of every Dirichlet L-function with 0 < Re s < 1 has Re s = 1/2 (the generalized Riemann hypothesis for Dirichlet L-functions). It comes from the lake dependency homeowmorphism/riemann-hypothesis-original at 3091d9fb. The default Lean target also imports proved lemmas of the same GRH development directly, beyond that one hypothesis.",
+  "lean": "Lean 4.33.1, Mathlib 0df444a, about 340 files, checked only by the author. The cost is counted in a bit-charge model defined in the Lean files (nodeTrace, tree.work), not in Mathlib's TM2 machine model of Rudich and Rousseau's Challenge.lean. The author says the full import of the GRH files was not compiled (about 105 GB needed); only the default target and the wrapper types were checked. We have not rebuilt any of it.",
+  "authors_statement": "The repository is by gldanoob. The method builds on Google's Cogentic deterministic paper (google-research commit 4a7bc8ab): it keeps its local order extraction and changes the polynomial search.",
+  "note": "Source claim only. No independent site proof check; evidence stays Claimed."
+}
