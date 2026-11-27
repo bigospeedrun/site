@@ -6713,6 +6713,49 @@
         "table": "big-o"
       },
       {
+        "slug": "integer-factoring-randomized",
+        "name": "Randomized Integer Factoring",
+        "url": "https://bigospeedrun.com/integer-factoring-randomized",
+        "leader": "keybreak-sjtu-randomized-1-3-2026",
+        "direction": "lower",
+        "records": [
+          {
+            "id": "kasper0406-randomized-2-5-2026",
+            "score": "2/5",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "kasper0406"
+            ],
+            "bound": "2^((log N)^(2/5 + o(1)))"
+          },
+          {
+            "id": "cogentic-randomized-1-3-2026",
+            "score": "1/3",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "Google Research (Cogentic)"
+            ],
+            "bound": "L_N[1/3, 105]",
+            "lConstant": "105"
+          },
+          {
+            "id": "keybreak-sjtu-randomized-1-3-2026",
+            "score": "1/3",
+            "relation": "attained",
+            "evidence": "Claimed",
+            "authors": [
+              "kasper0406",
+              "KeyBreak Cryptanalysis Agent (Shanghai Jiao Tong University)"
+            ],
+            "bound": "L_N[1/3, 2.97]",
+            "lConstant": "297/100"
+          }
+        ],
+        "table": "big-o"
+      },
+      {
         "slug": "directed-sssp",
         "name": "Directed Shortest Paths",
         "url": "https://bigospeedrun.com/directed-sssp",
@@ -10063,7 +10106,8 @@
     "[\"exact-dft\",\"direct-pr-223\",\"4999999999999999999999999999999999999999/9999999999999999999999999999999999999999\",\"attained\"]:lean",
     "[\"other-busy-beaver-zfc\",\"jamesyc:192\",\"192\",\"attained\"]:record",
     "[\"subset-sum\",\"direct-issue-226\",\"9999/20000\",\"attained\"]:lean",
-    "[\"integer-factoring\",\"gldanoob-two-thirds-2026\",\"301/3\",\"attained\"]:record"
+    "[\"integer-factoring\",\"gldanoob-two-thirds-2026\",\"301/3\",\"attained\"]:record",
+    "[\"integer-factoring-randomized\",\"keybreak-sjtu-randomized-1-3-2026\",\"1/3\",\"attained\",\"297/100\"]:record"
   ],
   "deferred": [
     {
