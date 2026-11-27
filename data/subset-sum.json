@@ -319,47 +319,6 @@
       ]
     },
     {
-      "id": "direct-issue-104",
-      "kind": "improvement",
-      "score": "1/2",
-      "score_relation": "attained",
-      "tier": "verified",
-      "submitted_at": "2026-11-02T07:24:11Z",
-      "spec_version": "1",
-      "title": "darkhipo direct subset-sum submission",
-      "authors": [
-        {
-          "name": "darkhipo",
-          "url": "https://github.com/darkhipo"
-        }
-      ],
-      "predecessors": [],
-      "submission_url": "https://github.com/bigospeedrun/verifier/issues/104",
-      "source_commit": "fccd1159daf8e41f506844d4255bdebd0ccd94cc",
-      "artifact": {
-        "path": "sources/direct-issue-104-submission.json",
-        "sha256": "743bce15cd623fb624d3171c4de040f5435257fbd92590342fd79526c080dbad"
-      },
-      "evidence": {
-        "paper_url": "https://github.com/bigospeedrun/verifier/issues/104",
-        "theorem": "Race.bound",
-        "certificate_path": null
-      },
-      "dependencies": [],
-      "upstream_status": "open",
-      "upstream_status_at": "2026-11-02T07:24:11Z",
-      "site_observed_at": "2026-11-02T09:27:32Z",
-      "source": {
-        "kind": "repo-artifact",
-        "url": "https://github.com/darkhipo/subset-sum-mitm/blob/fccd1159daf8e41f506844d4255bdebd0ccd94cc/Submission.lean"
-      },
-      "rerun_status": {
-        "state": "passed",
-        "checked_at": "2026-11-02T17:28:46.779135Z",
-        "receipt_path": "sources/direct-issue-104-41489680877-1.json"
-      }
-    },
-    {
       "id": "direct-issue-226",
       "kind": "improvement",
       "score": "9999/20000",
@@ -405,47 +364,6 @@
         "state": "passed",
         "checked_at": "2026-11-26T19:17:28.495298Z",
         "receipt_path": "sources/direct-issue-226-45874665450-1.json"
-      }
-    },
-    {
-      "id": "direct-issue-94",
-      "kind": "improvement",
-      "score": "3/4",
-      "score_relation": "attained",
-      "tier": "verified",
-      "submitted_at": "2026-11-01T19:08:37Z",
-      "spec_version": "1",
-      "title": "darkhipo direct subset-sum submission",
-      "authors": [
-        {
-          "name": "darkhipo",
-          "url": "https://github.com/darkhipo"
-        }
-      ],
-      "predecessors": [],
-      "submission_url": "https://github.com/bigospeedrun/verifier/issues/94",
-      "source_commit": "8b105f01848fc0e370abfa3a23ed5c3de463f321",
-      "artifact": {
-        "path": "sources/direct-issue-94-submission.json",
-        "sha256": "bce09a4e2226082da642b276faf1e0ba7985fb9cb94dd1a6abb90563534c4702"
-      },
-      "evidence": {
-        "paper_url": "https://github.com/bigospeedrun/verifier/issues/94",
-        "theorem": "Race.bound",
-        "certificate_path": null
-      },
-      "dependencies": [],
-      "upstream_status": "open",
-      "upstream_status_at": "2026-11-01T19:08:37Z",
-      "site_observed_at": "2026-11-02T09:27:32Z",
-      "source": {
-        "kind": "repo-artifact",
-        "url": "https://github.com/darkhipo/subset-sum-mitm/blob/8b105f01848fc0e370abfa3a23ed5c3de463f321/Submission.lean"
-      },
-      "rerun_status": {
-        "state": "passed",
-        "checked_at": "2026-11-02T05:25:44.130535Z",
-        "receipt_path": "sources/direct-issue-94-41393097953-1.json"
       }
     }
   ],
@@ -597,25 +515,6 @@
       "credits": "Baitian Li and Lixi Ye. Builds on the representation technique of Randolph and Wegrzycki (STOC 2026) and the depth-2 linear circuit framework of Alman and Li (FOCS 2025). The paper's AI disclosure credits GPT-6 Pro and GPT-6 Astra for parts of the work.",
       "credit_note": "Baitian Li and Lixi Ye take the exponent of Subset Sum below 1/2 with the representation technique of Randolph and Węgrzycki, where testing two partial solutions is the partial match problem, and a depth 2 linear circuit for it, following Alman and Li. The paper says it was developed independently of OpenAI's 0.49 paper. Its AI disclosure says GPT-6 Pro built the first circuit and GPT-6 Astra found the reduction for ordinary subset sum."
     },
-    "direct-issue-104": {
-      "checked_at": "2026-11-27",
-      "source_url": "https://github.com/darkhipo/subset-sum-mitm/blob/fccd1159daf8e41f506844d4255bdebd0ccd94cc/Submission.lean",
-      "repo": "darkhipo/subset-sum-mitm",
-      "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
-      "upstream_tier": "verified",
-      "site_tier": "verified",
-      "comparison_key": "subset-sum/randomized-word-ram/v1",
-      "publication_date": "2026-11-02T07:24:11Z",
-      "publication_date_precision": "date-time",
-      "publication_date_role": "Submission opened",
-      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/104",
-      "direct_submission": true,
-      "route": "issue",
-      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41489680877",
-      "verification": "passed"
-    },
     "direct-issue-226": {
       "checked_at": "2026-11-27",
       "source_url": "https://github.com/pompompur-in/subset-sum-lean/blob/a7c2c63e3f3017e8f011d6f061f93adc6bffd947/Submission.lean",
@@ -635,26 +534,7 @@
       "credit_note": "Joint credit: OpenAI (the algorithm, from its paper \"Subset Sum in Time O(2^0.49n)\" of 4 October 2026) and 4latte and Chiikabu Labs (the Lean formalization, with its parameters set for the exponent 9999/20000). Claude Duet by Anthropic assisted.",
       "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/45874665450",
       "verification": "passed"
-    },
-    "direct-issue-94": {
-      "checked_at": "2026-11-27",
-      "source_url": "https://github.com/darkhipo/subset-sum-mitm/blob/8b105f01848fc0e370abfa3a23ed5c3de463f321/Submission.lean",
-      "repo": "darkhipo/subset-sum-mitm",
-      "site_badge": false,
-      "eligible_for_record": false,
-      "proof_status": "Lean and nanoda passed; permitted-axiom audit passed",
-      "upstream_tier": "verified",
-      "site_tier": "verified",
-      "comparison_key": "subset-sum/randomized-word-ram/v1",
-      "publication_date": "2026-11-01T19:08:37Z",
-      "publication_date_precision": "date-time",
-      "publication_date_role": "Submission opened",
-      "publication_source_url": "https://github.com/bigospeedrun/verifier/issues/94",
-      "direct_submission": true,
-      "route": "issue",
-      "receipt_url": "https://github.com/bigospeedrun/verifier/actions/runs/41393097953",
-      "verification": "passed"
     }
   },
-  "updated_at": "2026-11-27T00:23:17Z"
+  "updated_at": "2026-11-27T03:23:07Z"
 }
