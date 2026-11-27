@@ -1,6 +1,7 @@
 // Content-Security-Policy of bigospeedrun.com (task f07ab309, Nil via Lead SRE, 2026-11-20). Modeled on cloud.isomux.com's.
 // Scripts: our own files, the inline scripts that Astro writes into the pages (allowed by hash, read from the built
-// dist when the server starts, so a new build needs no list to edit), and Google's tag host for analytics.js (GA4).
+// dist when the server starts, so a new build needs no list to edit), Google's tag host for analytics.js (GA4) and the
+// beacon that our proxy, Cloudflare, injects.
 // Styles keep 'unsafe-inline': KaTeX writes tens of thousands of style attributes, which a hash cannot cover.
 // Fonts and images are our own files or data: URIs (the build inlines the smallest KaTeX font in the page style; the
 // first report-only run on a local build found this). The chat and markdown calls go to our own origin. No page embeds an outside frame,
@@ -9,14 +10,23 @@ import {createHash} from 'node:crypto';
 import {readdir, readFile} from 'node:fs/promises';
 import {join} from 'node:path';
 
-// The header is Report-Only first. After a week with no reports of real pages, change this one name to
-// 'Content-Security-Policy' in a reviewed commit (the enforce step of task f07ab309).
-export const CSP_HEADER = 'Content-Security-Policy-Report-Only';
+// Enforced since the review of the report-only run (task f07ab309, 2026-11-27): 58 reports, none from a browser
+// extension, and every host they name is now allowed on purpose (googleSignals, cloudflareBeacon). report-uri stays,
+// so a page that breaks still logs a csp-report line. Rollback: revert this commit.
+export const CSP_HEADER = 'Content-Security-Policy';
 export const CSP_REPORT_PATH = '/api/csp-report';
 
-// The hosts that GA4 documents for its tag (Google Tag Platform, "Content Security Policy"). The report-only
-// header shows any other host that the tag really needs.
+// The hosts that GA4 documents for its tag (Google Tag Platform, "Content Security Policy"). A csp-report line
+// shows any other host that the tag needs.
 const analytics = ['https://www.google-analytics.com', 'https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'];
+// GA4 with Google signals on: the report-only run (2026-11-27) showed gtag posting to https://www.google.com/g/collect.
+// Google's list for signals adds *.g.doubleclick.net (no report yet; Reviewer note a). A regional Google domain
+// (google.de and others) is not listed: the tag loses only that hit, and a csp-report line shows it.
+const googleSignals = ['https://www.google.com', 'https://*.g.doubleclick.net'];
+// Cloudflare, our proxy, injects its Web Analytics beacon into every page (the report-only run: 53 of 58 reports).
+// Cloudflare already serves every byte of the site, so allowing its script host adds no new party. The beacon
+// reports to our own origin (/cdn-cgi/rum), so connect-src needs no host for it.
+const cloudflareBeacon = 'https://static.cloudflareinsights.com';
 
 // The sha256 source of each inline script that runs: a classic script or a module without src. A data block (the
 // JSON-LD of a page) is never run, so the policy does not cover it.
@@ -52,13 +62,13 @@ export function contentSecurityPolicy(scriptHashes: string[]): string {
   return [
     `default-src 'self'`,
     `base-uri 'self'`,
-    `connect-src 'self' ${analytics.join(' ')}`,
+    `connect-src 'self' ${[...analytics, ...googleSignals].join(' ')}`,
     `font-src 'self' data:`,
     `form-action 'self'`,
     `frame-ancestors 'none'`,
-    `img-src 'self' data: ${analytics.join(' ')}`,
+    `img-src 'self' data: ${[...analytics, ...googleSignals].join(' ')}`,
     `object-src 'none'`,
-    `script-src ${[`'self'`, ...scriptHashes, 'https://*.googletagmanager.com'].join(' ')}`,
+    `script-src ${[`'self'`, ...scriptHashes, 'https://*.googletagmanager.com', cloudflareBeacon].join(' ')}`,
     `style-src 'self' 'unsafe-inline'`,
     `report-uri ${CSP_REPORT_PATH}`,
   ].join('; ');

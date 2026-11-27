@@ -144,16 +144,16 @@ test('chat status, origin check, streamed reply and the per-IP rate limit', asyn
  assert.equal(keylessPost.status, 503);
 });
 
-test('pages get a Report-Only Content-Security-Policy with the hashes of their inline scripts; other files do not', async () => {
+test('pages get an enforced Content-Security-Policy with the hashes of their inline scripts; other files do not', async () => {
  const hash = `'sha256-${createHash('sha256').update('window.home=1').digest('base64')}'`;
  for (const path of ['/', '/about', '/nope']) {
   const response = await get(path);
-  const policy = response.headers.get('content-security-policy-report-only')!;
+  const policy = response.headers.get('content-security-policy')!;
   assert.match(policy, /^default-src 'self'; /, path);
   assert.ok(policy.includes(`script-src 'self' ${hash} https://*.googletagmanager.com`), path);
-  assert.equal(response.headers.get('content-security-policy'), null, path);
+  assert.equal(response.headers.get('content-security-policy-report-only'), null, path);
  }
- for (const path of ['/llms.txt', '/_astro/app.Bx1.js', '/api/chat']) assert.equal((await get(path)).headers.get('content-security-policy-report-only'), null, path);
+ for (const path of ['/llms.txt', '/_astro/app.Bx1.js', '/api/chat']) assert.equal((await get(path)).headers.get('content-security-policy'), null, path);
 });
 
 test('/api/csp-report logs a short line for a report, answers 204, takes only POST and caps the body', async () => {

@@ -14,7 +14,7 @@ test('the inline scripts that run are hashed; scripts with src and data blocks a
 test('the policy allows only our origin, our hashed inline scripts and the analytics hosts, and nobody may frame the site', () => {
   const policy = contentSecurityPolicy([hash('a'), hash('b')]);
   const directives = Object.fromEntries(policy.split('; ').map(d => [d.split(' ')[0], d.split(' ').slice(1)]));
-  assert.deepEqual(directives['script-src'], ["'self'", hash('a'), hash('b'), 'https://*.googletagmanager.com']);
+  assert.deepEqual(directives['script-src'], ["'self'", hash('a'), hash('b'), 'https://*.googletagmanager.com', 'https://static.cloudflareinsights.com']);
   assert.ok(!policy.includes("'unsafe-inline'") || directives['style-src'].includes("'unsafe-inline'"));
   assert.ok(!directives['script-src'].includes("'unsafe-inline'") && !directives['script-src'].includes("'unsafe-eval'"));
   assert.deepEqual(directives['default-src'], ["'self'"]);
@@ -23,7 +23,10 @@ test('the policy allows only our origin, our hashed inline scripts and the analy
   assert.deepEqual(directives['base-uri'], ["'self'"]);
   assert.deepEqual(directives['report-uri'], ['/api/csp-report']);
   assert.ok(directives['connect-src'].includes('https://*.google-analytics.com') && directives['img-src'].includes('data:'));
-  assert.equal(CSP_HEADER, 'Content-Security-Policy-Report-Only');
+  assert.equal(CSP_HEADER, 'Content-Security-Policy');
+  // The hosts that the report-only run showed (2026-11-27): GA4 signals (www.google.com); the Cloudflare beacon is in script-src above.
+  assert.ok(directives['connect-src'].includes('https://www.google.com') && directives['connect-src'].includes('https://*.g.doubleclick.net'));
+  assert.ok(directives['img-src'].includes('https://www.google.com'));
 });
 
 test('a report keeps a few short fields without the query part; junk gives no line; the limiter allows N a minute', () => {
