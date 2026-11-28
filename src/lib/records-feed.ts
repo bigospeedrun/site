@@ -1,4 +1,4 @@
-import {ranked,boundPrecision,boundExponent,scientificSaving,displayDigits,factoringPlainBound,shortFraction,thetaPlainBound,lPlainBound,lConstantOrder} from './ranking.ts';
+import {kappaExponentFraction,ranked,boundPrecision,boundExponent,scientificSaving,displayDigits,factoringPlainBound,shortFraction,thetaPlainBound,lPlainBound,lConstantOrder} from './ranking.ts';
 import {evidenceName,evidenceLevels} from './evidence.ts';
 import {otherBoundLeader} from './other-leader.ts';
 import type {ChartLine,Problem,RecordEntry} from './types';
@@ -58,7 +58,11 @@ export function plainBound(slug:string,score:string,relation='attained',digits?:
  const rounded=shown??(kappa?decimalSaving(score,precision):slug==='3sat'?directedDecimal(score,false,{places:precision}):boundExponent(score,false,precision));
  const value=rounded.includes('.')?rounded.replace(/0+$/,'').replace(/\.$/,''):rounded;
  const epsilon=relation==='strict-upper-bound'?', for every fixed epsilon > 0':'';
- if(kappa)return `O(n log^(1 - ${value}${epsilon? ' + epsilon':''}) n)${epsilon}`;
+ if(kappa){
+  // A short exact 1 - kappa shows as the exponent itself (ranking.ts kappaExponentFraction), on the site and here.
+  const exponent=kappaExponentFraction(score)??`1 - ${value}`;
+  return `O(n log^(${exponent}${epsilon?' + epsilon':''}) n)${epsilon}`;
+ }
  if(slug==='matrix-multiplication')return `O(n^(${value} + epsilon)), for every fixed epsilon > 0`;
  // An open endpoint never posts as attained: n^(a+o(1)) is O(n^(a + epsilon)), not O(n^a).
  if(slug==='3sat')return `O*(2^(n/(log n)^(${shortFraction(score)??value} - o(1))))`;

@@ -207,7 +207,7 @@ const factoringForm=/N\^|\\log b|\\log N\)\^/;
 export function tableBound(record:{score:string;scoreRelation?:string;bound:string;scoreScale?:'theta';lConstant?:string},kappa:boolean,digits:number,cap:number=displayDigits.table):string {
  if(record.scoreScale==='theta')return record.lConstant!==undefined?lBound(record.score,record.lConstant,cap):thetaBound(record.score,cap);
  if(factoringForm.test(record.bound))return factoringBound(record.score,cap);
- const exponent=kappa?'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);
+ const exponent=kappa?kappaExponentFraction(record.score)??'1-'+scientificSaving(record.score,Math.min(digits,cap)).replace(/10\^\{/g,'10^{\\scriptstyle '):exactExponent(record.score,cap);
  const power=exponent+(record.scoreRelation==='strict-upper-bound'||record.bound.includes('\\varepsilon')?'+\\varepsilon':'');
  // 3-SAT alpha is higher-is-better: round it down.
  if(record.bound.includes('-o(1)'))return `O^*(2^{n/(\\log n)^{${shortFraction(record.score,cap)??exactExponentDown(record.score,cap)}-o(1)}})`;
@@ -216,6 +216,19 @@ export function tableBound(record:{score:string;scoreRelation?:string;bound:stri
  return `O(n^{${power}})`;
 }
 
+
+// The log exponent 1 - kappa of a kappa board (integer multiplication, exact DFT) as an exact fraction, when it is
+// short: in lowest terms, with a denominator from 2 to KAPPA_FRACTION_MAX (Lead, 2026-11-28: kappa = 1/2 shows
+// log^{1/2}, not log^{1-0.5}). Otherwise undefined, and the bound keeps the saving form 1 - 3.9 * 10^{-3}. kappa = 0
+// (denominator 1) keeps the saving form too.
+export const KAPPA_FRACTION_MAX = 100;
+export function kappaExponentFraction(score:string):string|undefined {
+ const [n,d=1n]=score.split('/').map(BigInt);
+ const gcd=(a:bigint,b:bigint):bigint=>b?gcd(b,a%b):a;
+ const top=d-n,g=gcd(top<0n?-top:top,d);
+ const [p,q]=[top/g,d/g];
+ return p>0n&&q>=2n&&q<=BigInt(KAPPA_FRACTION_MAX)?`${p}/${q}`:undefined;
+}
 
 // Format a nonnegative rational saving with exact downward rounding.
 export function scientificSaving(score:string,significantDigits:number):string {
